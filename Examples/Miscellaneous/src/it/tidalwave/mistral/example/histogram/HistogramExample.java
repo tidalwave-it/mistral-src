@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: HistogramExample.java 181 2006-11-17 16:23:18Z fabriziogiudici $
+ * $Id: HistogramExample.java 938 2008-08-25 19:47:50Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.mistral.example.histogram;
@@ -41,7 +41,7 @@ import it.tidalwave.image.op.HistogramOp;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: HistogramExample.java 181 2006-11-17 16:23:18Z fabriziogiudici $
+ * @version $Id: HistogramExample.java 938 2008-08-25 19:47:50Z fabriziogiudici $
  *
  ******************************************************************************/
 public class HistogramExample 
@@ -75,7 +75,6 @@ public class HistogramExample
         // Computes the histogram
         //
         Histogram histogram = image.execute(new HistogramOp()).getHistogram();  
-        histogram.compute();
         logger.info("Histogram computed in " + image.getLatestOperationTime() + " msec");
         //
         // Prints some information item from the histogram

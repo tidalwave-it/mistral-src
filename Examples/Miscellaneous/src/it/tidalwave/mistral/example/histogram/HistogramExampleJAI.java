@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: HistogramExampleJAI.java 181 2006-11-17 16:23:18Z fabriziogiudici $
+ * $Id: HistogramExampleJAI.java 938 2008-08-25 19:47:50Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.mistral.example.histogram;
@@ -32,7 +32,6 @@ package it.tidalwave.mistral.example.histogram;
 import java.util.logging.Logger;
 import java.io.File;
 import java.io.IOException;
-import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBuffer;
 import java.awt.image.SampleModel;
@@ -43,13 +42,12 @@ import javax.media.jai.Histogram;
 import javax.media.jai.PlanarImage;
 import javax.media.jai.RenderedOp;
 import javax.media.jai.operator.CropDescriptor;
-import javax.media.jai.operator.FileLoadDescriptor;
 import javax.media.jai.operator.HistogramDescriptor;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: HistogramExampleJAI.java 181 2006-11-17 16:23:18Z fabriziogiudici $
+ * @version $Id: HistogramExampleJAI.java 938 2008-08-25 19:47:50Z fabriziogiudici $
  *
  ******************************************************************************/
 public class HistogramExampleJAI 
