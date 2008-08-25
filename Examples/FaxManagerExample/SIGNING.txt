@@ -1,0 +1,16 @@
+It is possible to sign the generated jar files. Follow these instructions:
+
+1. Decide where you want to keep the keystore (e.g. "/the/path/to/your/keystore") and choose a password for it (e.g. "yourpassword"). 
+2. Create a file named "keystore.properties" in this directory, with the contents:
+
+	keystore: /the/path/to/your/keystore
+	password: yourpassword
+
+3. Generate a certificate named "FaxManager" with the keytool (it's installed with the JDK). For instance:
+
+	keytool -genkey -alias FaxManager -keyalg RSA -keystore /the/path/to/your/keystore -storepass yourpassword
+
+   Fill the requested information and when keytool asks for the certificate password, just press return to use the same password as the keystore.
+
+4. Run "ant sign".
+5. The project will be built and jar files under "dist" will be signed.

@@ -1,0 +1,79 @@
+/*******************************************************************************
+ *
+ * Mistral - open source imaging engine
+ * ====================================
+ *
+ * Project home page: http://mistral.tidalwave.it
+ * 
+ *******************************************************************************
+ *
+ * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
+ *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0 
+ * 
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an "AS IS" BASIS, 
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and 
+ * limitations under the License. 
+ * 
+ *******************************************************************************
+ * 
+ * $Id: AssignColorProfileOpTest.java 474 2007-02-02 19:27:36Z fabriziogiudici $
+ * 
+ ******************************************************************************/
+package it.tidalwave.image.op;
+
+import it.tidalwave.image.op.AssignColorProfileOp;
+import java.awt.color.ColorSpace;
+import java.awt.color.ICC_Profile;
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
+
+/*******************************************************************************
+ *
+ * @author  Fabrizio Giudici
+ * @version $Id: AssignColorProfileOpTest.java 474 2007-02-02 19:27:36Z fabriziogiudici $
+ *
+ ******************************************************************************/
+public class AssignColorProfileOpTest extends TestCase 
+  {
+    public AssignColorProfileOpTest (String testName) 
+      {
+        super(testName);
+      }
+
+    public static Test suite() 
+      {
+        return new TestSuite(AssignColorProfileOpTest.class);
+      }
+
+    /**
+     * Test of getICCProfile method, of class it.tidalwave.image.op.AssignColorProfileOp.
+     */
+    public void testGetICCProfile()   
+      {
+        System.out.println("getICCProfile");
+        
+        ICC_Profile iccProfile = ICC_Profile.getInstance(ColorSpace.CS_sRGB);
+        AssignColorProfileOp op = new AssignColorProfileOp(iccProfile);
+        assertEquals(iccProfile, op.getICCProfile());
+      }
+
+    /**
+     * Test of toString method, of class it.tidalwave.image.op.AssignColorProfileOp.
+     */
+    public void testToString() 
+      {
+        System.out.println("toString");
+        ICC_Profile iccProfile = ICC_Profile.getInstance(ColorSpace.CS_sRGB);
+        AssignColorProfileOp op = new AssignColorProfileOp(iccProfile);
+        op.toString();
+      }  
+  }

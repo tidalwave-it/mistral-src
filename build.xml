@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Mistral - open source imaging engine
+====================================
+
+Project home page: http://mistral.tidalwave.it
+ 
+==============================================================================
+
+Copyright (C) 2003-2008 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
+                       and Emmanuele Sordini (Emmanuele@Sordini.com)
+
+Licensed under the Apache License, Version 2.0 (the "License"); 
+you may not use this file except in compliance with the License. 
+You may obtain a copy of the License at 
+ 
+    http://www.apache.org/licenses/LICENSE-2.0 
+ 
+Unless required by applicable law or agreed to in writing, software 
+distributed under the License is distributed on an "AS IS" BASIS, 
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+See the License for the specific language governing permissions and 
+limitations under the License. 
+ 
+==============================================================================
+ 
+$Id: build.xml 929 2008-08-24 15:22:45Z fabriziogiudici $
+-->
+
+<project name="Mistral" default="jar" basedir=".">
+    
+    <description>Builds, tests, and runs the project Mistral.</description>
+    
+    <property name="java.net.projectName" value="mistral"/>
+    <property name="java.net.projectURL" value="mistral"/>
+    
+    <import file="tools/publish.xml"/>
+    
+    
+    <taskdef resource="org/kohsuke/javanettasks.properties">
+        <classpath>
+            <fileset dir="tools/javaNetTasks" />
+        </classpath>
+    </taskdef>    
+    
+    <!-- =======================================================================
+    Creates all the jar files in the project. 
+    ======================================================================== -->
+    <target name="jar">
+        <ant dir="EditableImage" target="jar" inheritall="false"/>
+        <ant dir="Operations" target="jar" inheritall="false"/>
+        <ant dir="Contributions" target="jar" inheritall="false"/>
+        <ant dir="Renderer" target="jar" inheritall="false"/>
+        <ant dir="Processor" target="jar" inheritall="false"/>
+        <ant dir="JAI-Adapter" target="jar" inheritall="false"/>
+        <ant dir="ImageJ-Adapter" target="jar" inheritall="false"/>
+        <ant dir="Examples/ViewerExample" target="jar" inheritall="false"/>
+        <ant dir="Examples/HistogramViewerExample" target="jar" inheritall="false"/>
+        <ant dir="Examples/FaxManagerExample" target="jar" inheritall="false"/>
+    </target>
+    
+    <!-- =======================================================================
+    Compile all the tests
+    ======================================================================== -->
+    <target name="compile-test" depends="jar">
+        <ant dir="EditableImage" target="compile-test" inheritall="false"/>
+        <ant dir="Operations" target="compile-test" inheritall="false"/>
+        <ant dir="Contributions" target="compile-test" inheritall="false"/>
+        <ant dir="Renderer" target="compile-test" inheritall="false"/>
+        <ant dir="Processor" target="compile-test" inheritall="false"/>
+        <ant dir="JAI-Adapter" target="compile-test" inheritall="false"/>
+        <ant dir="ImageJ-Adapter" target="compile-test" inheritall="false"/>
+    </target>
+    
+    <!-- =======================================================================
+
+    ======================================================================== -->
+    <target name="test" depends="compile-test">
+        <ant dir="AllTests" target="test" inheritall="false"/>
+    </target>
+
+    <!-- =======================================================================
+
+    ======================================================================== -->
+    <target name="cobertura-report">
+        <ant dir="EditableImage" target="cobertura-report" inheritall="false"/>
+        <ant dir="Operations" target="cobertura-report" inheritall="false"/>
+        <ant dir="Contributions" target="cobertura-report" inheritall="false"/>
+<!--
+        <ant dir="Renderer" target="cobertura-report" inheritall="false"/>
+        <ant dir="Processor" target="cobertura-report" inheritall="false"/>
+        <ant dir="JAI-Adapter" target="cobertura-report" inheritall="false"/>
+        <ant dir="ImageJ-Adapter" target="cobertura-report" inheritall="false"/>
+-->
+    </target>
+
+    <!-- =======================================================================
+    Creates all the javadocs and copies them in the www folder.
+    ======================================================================== -->
+    <target name="javadoc">
+        <ant dir="EditableImage" target="javadoc" inheritall="false"/>
+        <ant dir="Operations" target="javadoc" inheritall="false"/>
+        <ant dir="Contributions" target="javadoc" inheritall="false"/>
+        <ant dir="Renderer" target="javadoc" inheritall="false"/>
+        <ant dir="Processor" target="javadoc" inheritall="false"/>
+        <copy todir="../www/javadoc/EditableImage">
+            <fileset dir="EditableImage/dist/javadoc"/>
+        </copy>
+        <copy todir="../www/javadoc/Operations">
+            <fileset dir="Operations/dist/javadoc"/>
+        </copy>
+        <copy todir="../www/javadoc/Contributions">
+            <fileset dir="Contributions/dist/javadoc"/>
+        </copy>
+        <copy todir="../www/javadoc/Renderer">
+            <fileset dir="Renderer/dist/javadoc"/>
+        </copy>
+        <copy todir="../www/javadoc/Processor">
+            <fileset dir="Processor/dist/javadoc"/>
+        </copy>
+    </target>
+    
+    <!-- =======================================================================
+    Cleans everything.
+    ======================================================================== -->
+    <target name="clean">
+        <ant dir="EditableImage" target="clean" inheritall="false"/>
+        <ant dir="Operations" target="clean" inheritall="false"/>
+        <ant dir="Contributions" target="clean" inheritall="false"/>
+        <ant dir="Renderer" target="clean" inheritall="false"/>
+        <ant dir="Processor" target="clean" inheritall="false"/>
+        <ant dir="JAI-Adapter" target="clean" inheritall="false"/>
+        <ant dir="ImageJ-Adapter" target="clean" inheritall="false"/>
+        <ant dir="Examples/ViewerExample" target="clean" inheritall="false"/>
+        <ant dir="Examples/HistogramViewerExample" target="clean" inheritall="false"/>
+        <ant dir="Examples/FaxManagerExample" target="clean" inheritall="false"/>
+        <delete dir="dist" failonerror="false"/>
+        <delete dir="log" failonerror="false"/>
+    </target>
+    
+    <!-- =======================================================================
+    Runs the performance tests.
+    ======================================================================== -->
+    <target name="performance-tests">
+    </target>
+    
+    <!-- =======================================================================
+    Creates the WebStart examples and copies them in the www folder.
+    ======================================================================== -->
+    <target name="publish-examples">
+        <ant dir="Examples/ViewerExample" target="default" inheritall="false"/>
+        <copy todir="../www/jnlp/ViewerExample">
+            <fileset dir="Examples/ViewerExample/dist" includes="**/*.jar"/>
+            <fileset file="Examples/ViewerExample/src/ViewerExample.jnlp"/>
+            <fileset file="Examples/ViewerExample/src/ViewerExample.html"/>
+        </copy>
+        <ant dir="Examples/HistogramViewerExample" target="default" inheritall="false"/>
+        <copy todir="../www/jnlp/HistogramViewerExample">
+            <fileset dir="Examples/HistogramViewerExample/dist" includes="**/*.jar" excludes="**/*jai*.jar, **/*JAI*.jar"/>
+            <fileset file="Examples/HistogramViewerExample/src/HistogramViewerExample.jnlp"/>
+        </copy>
+        <!-- remove references to the JAI stuff from MANIFEST.MF or the JWS will complain. -->
+        <unzip src="../www/jnlp/HistogramViewerExample/HistogramViewerExample.jar" dest="tmp"/>
+        <manifest file="tmp/META-INF/MANIFEST.MF" mode="update"> 
+            <attribute name="Class-Path" value="lib/EditableImage.jar"/>
+        </manifest>
+        <jar destfile="../www/jnlp/HistogramViewerExample/HistogramViewerExample.jar" basedir="tmp"/>
+        <delete dir="tmp"/>
+        <copy todir="../www/jnlp/HistogramViewerExampleJAI">
+            <fileset dir="Examples/HistogramViewerExample/dist" includes="**/*.jar"/>
+            <fileset file="Examples/HistogramViewerExample/src/HistogramViewerExampleJAI.jnlp"/>
+        </copy>
+        <ant dir="Examples/FaxManagerExample" target="default" inheritall="false"/>
+        <copy todir="../www/jnlp/FaxManagerExample">
+            <fileset dir="Examples/FaxManagerExample/dist" includes="**/*.jar"/>
+            <fileset file="Examples/FaxManagerExample/src/FaxManagerExample.jnlp"/>
+            <fileset file="Examples/FaxManagerExample/src/FaxManagerExample.html"/>
+        </copy>
+    </target>
+    
+</project>

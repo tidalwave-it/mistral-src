@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Mistral - open source imaging engine
+====================================
+
+Project home page: http://mistral.tidalwave.it
+
+==============================================================================
+
+Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
+                       and Emmanuele Sordini (Emmanuele@Sordini.com)
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+==============================================================================
+
+$Id: cobertura.xml 620 2007-04-09 09:08:56Z fabriziogiudici $
+-->
+
+<project> 
+    <path id="cobertura.classpath">
+        <!-- hack to find the lib folder also from the Examples directory -->
+        <fileset dir="${basedir}/..">
+            <include name="**/tools/cobertura-1.8/cobertura.jar" />
+            <include name="**/tools/cobertura-1.8/lib/**/*.jar" />
+        </fileset>
+    </path>
+    
+    <taskdef classpathref="cobertura.classpath" resource="tasks.properties"/>
+    
+    <target name="cobertura-instrument" depends="init,compile-test,-pre-test-run">
+        <cobertura-instrument todir="${build.test.cobertura.classes.dir}">
+            <fileset dir="${build.classes.dir}">
+                <include name="**/*.class"/>
+            </fileset>
+        </cobertura-instrument>
+    </target>
+       
+    <target name="cobertura-coverage-report" depends="init">
+        <cobertura-report srcdir="${src.dir}" destdir="${cobertura.report.dir}"/>
+       <delete file="Serialized" failonerror="false"/>
+       <delete file="cobertura.ser" failonerror="false"/>
+    </target>
+   
+    <target name="publish-cobertura-report" depends="init,cobertura-coverage-report">
+        <copy todir="../../www/report/cobertura/${ant.project.name}">
+            <fileset dir="${cobertura.report.dir}" includes="**/*"/>
+        </copy>    
+    </target>
+
+    <target name="cobertura-report" depends="test-coverage, publish-cobertura-report"/>
+   
+    <target name="test-coverage" depends="init,compile-test,-pre-test-run,cobertura-instrument,-do-test-run,test-report,-post-test-run,-test-browse" description="Run unit tests with coverage."/>
+
+    <target name="-cobertura-clean">
+       <delete file="Serialized" failonerror="false"/>
+       <delete file="cobertura.ser" failonerror="false"/>
+    </target>
+</project> 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<jnlp 
+  spec="1.0+" 
+  codebase="https://mistral.dev.java.net/jnlp/HistogramViewerExampleJAI"
+  href="HistogramViewerExampleJAI.jnlp">
+  <information>
+    <title>Mistral Histogram Viewer Example</title>
+    <vendor>Tidalwave</vendor>
+    <homepage href="http://mistral.tidalwave.it" />
+    <description>Example of Mistral rendering components</description>
+    <description kind="short">Demos the functionality of the Mistral rendering components</description>
+    <description kind="tooltip">Mistral Viewer Example</description>
+    <offline-allowed />
+  </information>
+  <resources>
+    <j2se version="1.5+" max-heap-size="512M"/>
+    <jar href="HistogramViewerExample.jar"/>
+    <jar href="lib/ViewerExample.jar"/>
+    <jar href="lib/EditableImage.jar"/>
+    <jar href="lib/Renderer.jar"/>
+  </resources>
+  <application-desc main-class="it.tidalwave.mistral.example.histogramviewer.Main" />
+</jnlp>
