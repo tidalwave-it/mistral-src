@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: AllMistralTests.java 599 2007-04-08 17:25:06Z fabriziogiudici $
+ * $Id: AllMistralTests.java 939 2008-08-25 19:50:05Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image;
@@ -37,7 +37,7 @@ import junit.framework.TestSuite;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: AllMistralTests.java 599 2007-04-08 17:25:06Z fabriziogiudici $
+ * @version $Id: AllMistralTests.java 939 2008-08-25 19:50:05Z fabriziogiudici $
  *
  ******************************************************************************/
 public class AllMistralTests extends TestSuite 
@@ -45,7 +45,7 @@ public class AllMistralTests extends TestSuite
     public static Test suite()
       {
         final TestSuite suite = new TestSuite();
-        suite.addTest(AllEditableImageTests.suite());
+//        suite.addTest(AllEditableImageTests.suite());
         suite.addTest(AllContributionsTests.suite());
         suite.addTest(AllJAITests.suite());
         return suite;

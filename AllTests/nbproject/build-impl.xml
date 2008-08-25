@@ -314,7 +314,6 @@ is divided into following sections:
         <ant antfile="${project.Mistral_-_Contributions}/build.xml" inheritall="false" target="jar"/>
         <ant antfile="${project.Mistral_-_EditableImage}/build.xml" inheritall="false" target="jar"/>
         <ant antfile="${project.Mistral_-_JAI-Adapter}/build.xml" inheritall="false" target="jar"/>
-        <ant antfile="${project.Mistral_-_Metadata}/build.xml" inheritall="false" target="jar"/>
         <ant antfile="${project.Mistral_-_Operations}/build.xml" inheritall="false" target="jar"/>
         <ant antfile="${project.Mistral_-_Processor}/build.xml" inheritall="false" target="jar"/>
         <ant antfile="${project.Mistral_-_Renderer}/build.xml" inheritall="false" target="jar"/>
