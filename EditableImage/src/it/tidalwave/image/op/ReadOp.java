@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ReadOp.java 942 2008-09-02 15:00:18Z fabriziogiudici $
+ * $Id: ReadOp.java 943 2008-09-02 15:04:57Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
@@ -59,7 +59,7 @@ import it.tidalwave.bluemarine.arguments.Arguments;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ReadOp.java 942 2008-09-02 15:00:18Z fabriziogiudici $
+ * @version $Id: ReadOp.java 943 2008-09-02 15:04:57Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ReadOp extends Operation
@@ -84,8 +84,7 @@ public class ReadOp extends Operation
     public static class PluginBlackList implements Options 
       {
         public final static PluginBlackList DEFAULT = new PluginBlackList(
-            // WRONG! These are the good ones!
-            // In any case, find a way for apps to customize the list of unwanted plugins
+            // WRONG! These are the good ones! But keep for compability until you test everything.
             "com.sun.media.imageioimpl.plugins.jpeg.CLibJPEGImageReader",
             "com.sun.media.imageioimpl.plugins.jpeg.CLibJPEGImageWriter",
             //
@@ -109,7 +108,7 @@ public class ReadOp extends Operation
         @Override
         public String toString() 
           {
-            return String.format("PluginBlackList[%s]", plugins);
+            return String.format("PluginBlackList%s", plugins);
           }
       }
     
