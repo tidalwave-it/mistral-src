@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ReadOp.java 940 2008-09-02 14:18:32Z fabriziogiudici $
+ * $Id: ReadOp.java 941 2008-09-02 14:52:37Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
@@ -59,7 +59,7 @@ import javax.annotation.Nonnull;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ReadOp.java 940 2008-09-02 14:18:32Z fabriziogiudici $
+ * @version $Id: ReadOp.java 941 2008-09-02 14:52:37Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ReadOp extends Operation
@@ -104,6 +104,12 @@ public class ReadOp extends Operation
         public boolean contains (@Nonnull final String pluginName)
           {
             return plugins.contains(pluginName);  
+          }
+
+        @Override
+        public String toString() 
+          {
+            return String.format("PluginBlackList[%s]", plugins);
           }
       }
     
@@ -371,10 +377,11 @@ public class ReadOp extends Operation
           }
         
         this.input = input;
-        this.type = Arguments.find(Type.class, Type.IMAGE);
-        this.pluginBlackList = Arguments.find(PluginBlackList.class, PluginBlackList.DEFAULT);
+        this.type = Arguments.find (Type.class, Type.IMAGE, options);
+        this.pluginBlackList = Arguments.find(PluginBlackList.class, PluginBlackList.DEFAULT, options);
         this.imageIndex = imageIndex;
         this.thumbnailIndex = thumbnailIndex;
+        logger.fine(String.format("ReadOp(%s, %d, %d, %s)", input, imageIndex, thumbnailIndex, Arrays.asList(options)));
       }
     
     /***************************************************************************
