@@ -24,12 +24,13 @@
  * 
  *******************************************************************************
  * 
- * $Id: ReadOp.java 941 2008-09-02 14:52:37Z fabriziogiudici $
+ * $Id: ReadOp.java 942 2008-09-02 15:00:18Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
 
-import it.tidalwave.bluemarine.arguments.Arguments;
+import javax.annotation.Nonnegative;
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -37,6 +38,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
+import java.util.Arrays;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -52,14 +54,12 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.java2d.ImplementationFactoryJ2D;
 import it.tidalwave.image.java2d.Java2DUtils;
 import it.tidalwave.image.op.impl.FileChannelImageInputStream;
-import java.util.Arrays;
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
+import it.tidalwave.bluemarine.arguments.Arguments;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ReadOp.java 941 2008-09-02 14:52:37Z fabriziogiudici $
+ * @version $Id: ReadOp.java 942 2008-09-02 15:00:18Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ReadOp extends Operation
