@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ReadOp.java 943 2008-09-02 15:04:57Z fabriziogiudici $
+ * $Id: ReadOp.java 944 2008-09-02 15:58:32Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
@@ -59,7 +59,7 @@ import it.tidalwave.bluemarine.arguments.Arguments;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ReadOp.java 943 2008-09-02 15:04:57Z fabriziogiudici $
+ * @version $Id: ReadOp.java 944 2008-09-02 15:58:32Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ReadOp extends Operation
@@ -136,7 +136,7 @@ public class ReadOp extends Operation
           {
             if (input == null)
               {
-                throw new IOException("Cannot read object");
+                throw new IOException("Cannot read object, input is null");
               }
             
             return reader.run(input, pluginBlackList);
@@ -620,7 +620,7 @@ public class ReadOp extends Operation
                     
                     if (pluginBlackList.contains(pluginClassName))
                       {
-                        logger.finest(">>>> discarded because it's in the black list");
+                        logger.finest(String.format(">>>> %s discarded because it's in the black list", reader));
                         continue;  
                       }
                     else if (pluginClassName.indexOf("TIFF") < 0) // TODO: maybe is it better to test for supported extension or mime?

@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: EditableImage.java 940 2008-09-02 14:18:32Z fabriziogiudici $
+ * $Id: EditableImage.java 944 2008-09-02 15:58:32Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image;
@@ -80,7 +80,7 @@ import it.tidalwave.image.metadata.loader.TIFFMetadataLoader;
  * (e.g. by using or not JAI, etc...)
  *
  * @author  Fabrizio Giudici
- * @version $Id: EditableImage.java 940 2008-09-02 14:18:32Z fabriziogiudici $
+ * @version $Id: EditableImage.java 944 2008-09-02 15:58:32Z fabriziogiudici $
  *
  ******************************************************************************/
 public class EditableImage implements Cloneable, Serializable // Externalizable
@@ -251,8 +251,8 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
 
         final EditableImage editableImage = new EditableImage(null);
         final Object image = editableImage.internalExecute(createOp);
-        editableImage.imageModelHolder = ImageModelHolder.wrap(ImplementationFactoryRegistry.getInstance()
-                                                                                            .createImageModel(image));
+        final ImageModel imageModel = ImplementationFactoryRegistry.getInstance().createImageModel(image);
+        editableImage.imageModelHolder = ImageModelHolder.wrap(imageModel);
 
         return editableImage;
       }
