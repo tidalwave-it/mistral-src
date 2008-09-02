@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: ImplementationFactoryJ2D.java 924 2008-08-18 20:36:44Z fabriziogiudici $
+ * $Id: ImplementationFactoryJ2D.java 940 2008-09-02 14:18:32Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.java2d;
@@ -53,7 +53,7 @@ import it.tidalwave.image.op.WriteOp;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ImplementationFactoryJ2D.java 924 2008-08-18 20:36:44Z fabriziogiudici $
+ * @version $Id: ImplementationFactoryJ2D.java 940 2008-09-02 14:18:32Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ImplementationFactoryJ2D extends ImplementationFactory
@@ -125,6 +125,7 @@ public class ImplementationFactoryJ2D extends ImplementationFactory
      *
      *
      **************************************************************************/
+    @Override
     public ImageModel createImageModel (BufferedImage bufferedImage)
       {
         return new ImageModelJ2D(bufferedImage);

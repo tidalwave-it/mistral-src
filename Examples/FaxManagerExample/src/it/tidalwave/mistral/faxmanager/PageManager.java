@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: PageManager.java 903 2008-04-08 22:30:39Z fabriziogiudici $
+ * $Id: PageManager.java 940 2008-09-02 14:18:32Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.mistral.faxmanager;
@@ -143,7 +143,7 @@ abstract class Task<T>
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: PageManager.java 903 2008-04-08 22:30:39Z fabriziogiudici $
+ * @version $Id: PageManager.java 940 2008-09-02 14:18:32Z fabriziogiudici $
  *
  ******************************************************************************/
 public class PageManager
@@ -548,7 +548,7 @@ public class PageManager
      {
        if (!preparedPages.contains(pageNumber))
          {
-           EditableImage image = EditableImage.create(new ReadOp(buffer, ReadOp.Type.IMAGE, pageNumber)); 
+           EditableImage image = EditableImage.create(new ReadOp(buffer, pageNumber)); 
            final TIFF tiff = image.getMetadata(TIFF.class);
 
            if (tiff.isXResolutionAvailable() && tiff.isYResolutionAvailable())

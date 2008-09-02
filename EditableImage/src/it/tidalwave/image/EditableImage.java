@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: EditableImage.java 919 2008-06-10 20:38:23Z fabriziogiudici $
+ * $Id: EditableImage.java 940 2008-09-02 14:18:32Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image;
@@ -80,13 +80,14 @@ import it.tidalwave.image.metadata.loader.TIFFMetadataLoader;
  * (e.g. by using or not JAI, etc...)
  *
  * @author  Fabrizio Giudici
- * @version $Id: EditableImage.java 919 2008-06-10 20:38:23Z fabriziogiudici $
+ * @version $Id: EditableImage.java 940 2008-09-02 14:18:32Z fabriziogiudici $
  *
  ******************************************************************************/
 public class EditableImage implements Cloneable, Serializable // Externalizable
   {
     private static final String CLASS = EditableImage.class.getName();
     private static final Logger logger = Logger.getLogger(CLASS);
+    private static final long serialVersionUID = -4527258052032240717L;
     
     private static WorkaroundBM25 workaroundBM25;
     
