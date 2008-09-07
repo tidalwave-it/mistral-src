@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: EXIF.java 901 2008-04-05 14:45:15Z fabriziogiudici $
+ * $Id: EXIF.java 945 2008-09-07 09:37:16Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.metadata;
@@ -38,17 +38,20 @@ import java.awt.color.ICC_Profile;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: EXIF.java 901 2008-04-05 14:45:15Z fabriziogiudici $
+ * @version $Id: EXIF.java 945 2008-09-07 09:37:16Z fabriziogiudici $
  *
  ******************************************************************************/
 public class EXIF extends EXIFDirectoryGenerated
   {
-    private final static long serialVersionUID = 3088068666726854799L;
     private final static String CLASS = EXIF.class.getName();
     private final static Logger logger = Logger.getLogger(CLASS);
-    private final static SimpleDateFormat EXIF_DATE_PARSER = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
-    private final static SimpleDateFormat EXIF_DATE_PARSER2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+    private final static long serialVersionUID = 3088068666726854799L;
+    
     private final static String ASCII_PREFIX = "ASCII\u0000\u0000\u0000";
+
+    // Not static since they are not thread safe
+    private final SimpleDateFormat exifDateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
+    private final SimpleDateFormat exifDateFormat2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
     /***************************************************************************
      *
@@ -277,7 +280,7 @@ public class EXIF extends EXIFDirectoryGenerated
      **************************************************************************/
     public void setDateTimeAsDate (final Date date)
       {
-        setDateTime((date == null) ? null : EXIF_DATE_PARSER.format(date));
+        setDateTime((date == null) ? null : formatDate(date));
       }
     
     /***************************************************************************
@@ -324,7 +327,7 @@ public class EXIF extends EXIFDirectoryGenerated
       {
         final Date oldValue = getDateTimeOriginalAsDate();
         final boolean oldAvailable = isDateTimeOriginalAsDateAvailable();
-        setDateTimeOriginal((date == null) ? null : EXIF_DATE_PARSER.format(date));
+        setDateTimeOriginal((date == null) ? null : formatDate(date));
         propertyChangeSupport.firePropertyChange("dateTimeOriginalAsDate", oldValue, getDateTimeOriginalAsDate());
         propertyChangeSupport.firePropertyChange("dateTimeOriginalAsDateAvailable", oldAvailable, isDateTimeOriginalAsDateAvailable());
       }
@@ -373,7 +376,7 @@ public class EXIF extends EXIFDirectoryGenerated
       {
         final Date oldValue = getDateTimeDigitizedAsDate();
         final boolean oldAvailable = isDateTimeDigitizedAsDateAvailable();
-        setDateTimeDigitized((date == null) ? null : EXIF_DATE_PARSER.format(date));
+        setDateTimeDigitized((date == null) ? null : formatDate(date));
         propertyChangeSupport.firePropertyChange("dateTimeDigitizedAsDate", oldValue, getDateTimeDigitizedAsDate());
         propertyChangeSupport.firePropertyChange("dateTimeDigitizedAsDateAvailable", oldAvailable, isDateTimeDigitizedAsDateAvailable());
       }
@@ -458,8 +461,25 @@ public class EXIF extends EXIFDirectoryGenerated
 
     /***************************************************************************
      *
+     * synchronized since SimpleDateFormat is not thread-safe.
+     * 
      **************************************************************************/
-    private static Date parseDate (final String string)
+    private synchronized String formatDate (final Date date)
+      {
+        if (date == null)
+          {
+            return null;
+          }
+
+        return exifDateFormat.format(date);
+      }
+    
+    /***************************************************************************
+     *
+     * synchronized since SimpleDateFormat is not thread-safe.
+     * 
+     **************************************************************************/
+    private synchronized Date parseDate (final String string)
       {
         if (string == null)
           {
@@ -468,19 +488,19 @@ public class EXIF extends EXIFDirectoryGenerated
 
         try
           {
-            return EXIF_DATE_PARSER.parse(string);
+            return exifDateFormat.parse(string);
           }
 
         catch (Exception e)
           {
             try
               {
-                return EXIF_DATE_PARSER2.parse(string);
+                return exifDateFormat2.parse(string);
               }
 
             catch (Exception e1)
               {
-                System.err.println("*** BAD DATE " + string);
+                logger.warning("*** BAD DATE " + string);
                 return null;
               }
           }
