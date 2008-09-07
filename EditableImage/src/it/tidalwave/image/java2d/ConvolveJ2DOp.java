@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: ConvolveJ2DOp.java 625 2007-04-09 10:02:01Z fabriziogiudici $
+ * $Id: ConvolveJ2DOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.java2d;
@@ -40,7 +40,7 @@ import it.tidalwave.image.op.OperationImplementation;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ConvolveJ2DOp.java 625 2007-04-09 10:02:01Z fabriziogiudici $
+ * @version $Id: ConvolveJ2DOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ConvolveJ2DOp extends OperationImplementation<ConvolveOp, BufferedImage>

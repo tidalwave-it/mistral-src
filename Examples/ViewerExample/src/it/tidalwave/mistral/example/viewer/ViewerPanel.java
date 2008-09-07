@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ViewerPanel.java 513 2007-03-16 21:31:26Z fabriziogiudici $
+ * $Id: ViewerPanel.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.mistral.example.viewer;
@@ -50,7 +50,7 @@ import it.tidalwave.mistral.example.AbstractViewerPanel;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ViewerPanel.java 513 2007-03-16 21:31:26Z fabriziogiudici $
+ * @version $Id: ViewerPanel.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ViewerPanel extends AbstractViewerPanel

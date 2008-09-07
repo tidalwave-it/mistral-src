@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: HistogramGrid.java 401 2007-01-28 21:42:45Z fabriziogiudici $
+ * $Id: HistogramGrid.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.mistral.example.histogramviewer;
@@ -37,7 +37,7 @@ import java.awt.Rectangle;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: HistogramGrid.java 401 2007-01-28 21:42:45Z fabriziogiudici $
+ * @version $Id: HistogramGrid.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class HistogramGrid

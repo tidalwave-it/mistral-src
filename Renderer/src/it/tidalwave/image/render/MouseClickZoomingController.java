@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: MouseClickZoomingController.java 647 2007-05-06 20:50:00Z fabriziogiudici $
+ * $Id: MouseClickZoomingController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.render;
@@ -46,7 +46,7 @@ import it.tidalwave.image.render.event.EditableImageRendererEvent;
  * plug different implementations (e.g. animations).
  *
  * @author  Fabrizio Giudici
- * @version $Id: MouseClickZoomingController.java 647 2007-05-06 20:50:00Z fabriziogiudici $
+ * @version $Id: MouseClickZoomingController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class MouseClickZoomingController

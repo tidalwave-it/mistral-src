@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: AbstractCreateOp.java 764 2007-07-22 20:47:54Z fabriziogiudici $
+ * $Id: AbstractCreateOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.op;
@@ -32,7 +32,7 @@ package it.tidalwave.image.op;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: AbstractCreateOp.java 764 2007-07-22 20:47:54Z fabriziogiudici $
+ * @version $Id: AbstractCreateOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public abstract class AbstractCreateOp extends Operation

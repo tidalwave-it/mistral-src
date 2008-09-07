@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: HistogramExampleJAI.java 938 2008-08-25 19:47:50Z fabriziogiudici $
+ * $Id: HistogramExampleJAI.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.mistral.example.histogram;
@@ -47,7 +47,7 @@ import javax.media.jai.operator.HistogramDescriptor;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: HistogramExampleJAI.java 938 2008-08-25 19:47:50Z fabriziogiudici $
+ * @version $Id: HistogramExampleJAI.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class HistogramExampleJAI 

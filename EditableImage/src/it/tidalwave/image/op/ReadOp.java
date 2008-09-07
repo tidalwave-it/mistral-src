@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ReadOp.java 944 2008-09-02 15:58:32Z fabriziogiudici $
+ * $Id: ReadOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
@@ -59,7 +59,7 @@ import it.tidalwave.bluemarine.arguments.Arguments;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ReadOp.java 944 2008-09-02 15:58:32Z fabriziogiudici $
+ * @version $Id: ReadOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ReadOp extends Operation

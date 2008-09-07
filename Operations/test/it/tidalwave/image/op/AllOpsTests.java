@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: AllOpsTests.java 597 2007-04-08 17:22:42Z fabriziogiudici $
+ * $Id: AllOpsTests.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
@@ -35,7 +35,7 @@ import junit.framework.TestSuite;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: AllOpsTests.java 597 2007-04-08 17:22:42Z fabriziogiudici $
+ * @version $Id: AllOpsTests.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class AllOpsTests extends TestSuite 

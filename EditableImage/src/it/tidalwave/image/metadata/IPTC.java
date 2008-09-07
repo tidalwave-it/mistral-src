@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2008 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: IPTC.java 908 2008-06-10 12:15:45Z fabriziogiudici $
+ * $Id: IPTC.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.metadata;
@@ -35,7 +35,7 @@ import java.util.logging.Logger;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: IPTC.java 908 2008-06-10 12:15:45Z fabriziogiudici $
+ * @version $Id: IPTC.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class IPTC extends IPTCDirectoryGenerated

@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: SizeOp.java 493 2007-03-15 16:16:28Z fabriziogiudici $
+ * $Id: SizeOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.op;
@@ -33,7 +33,7 @@ package it.tidalwave.image.op;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: SizeOp.java 493 2007-03-15 16:16:28Z fabriziogiudici $
+ * @version $Id: SizeOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class SizeOp extends Operation

@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: JAIUtils.java 591 2007-04-06 20:48:00Z esordini $
+ * $Id: JAIUtils.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.jai;
@@ -59,7 +59,7 @@ import java.awt.image.Raster;
  *
  * @author  Fabrizio Giudici
  * @author  Emmanuele Sordini
- * @version $Id: JAIUtils.java 591 2007-04-06 20:48:00Z esordini $
+ * @version $Id: JAIUtils.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class JAIUtils extends Java2DUtils

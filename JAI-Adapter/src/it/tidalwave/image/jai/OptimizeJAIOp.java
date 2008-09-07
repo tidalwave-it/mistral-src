@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: OptimizeJAIOp.java 921 2008-08-17 15:36:02Z fabriziogiudici $
+ * $Id: OptimizeJAIOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.jai;
@@ -50,7 +50,7 @@ import it.tidalwave.image.op.OptimizeOp;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: OptimizeJAIOp.java 921 2008-08-17 15:36:02Z fabriziogiudici $
+ * @version $Id: OptimizeJAIOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class OptimizeJAIOp extends OperationImplementation<OptimizeOp, PlanarImage>

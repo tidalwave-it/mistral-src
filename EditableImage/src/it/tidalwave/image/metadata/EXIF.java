@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2008 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: EXIF.java 945 2008-09-07 09:37:16Z fabriziogiudici $
+ * $Id: EXIF.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.metadata;
@@ -38,7 +38,7 @@ import java.awt.color.ICC_Profile;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: EXIF.java 945 2008-09-07 09:37:16Z fabriziogiudici $
+ * @version $Id: EXIF.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class EXIF extends EXIFDirectoryGenerated

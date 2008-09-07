@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: ForceRenderingOp.java 613 2007-04-08 20:35:21Z fabriziogiudici $
+ * $Id: ForceRenderingOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.op;
@@ -33,7 +33,7 @@ package it.tidalwave.image.op;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ForceRenderingOp.java 613 2007-04-08 20:35:21Z fabriziogiudici $
+ * @version $Id: ForceRenderingOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ForceRenderingOp extends Operation

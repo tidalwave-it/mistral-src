@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: ImageModelHolder.java 769 2007-09-13 23:33:54Z fabriziogiudici $
+ * $Id: ImageModelHolder.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image;
@@ -35,7 +35,7 @@ import java.io.Serializable;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ImageModelHolder.java 769 2007-09-13 23:33:54Z fabriziogiudici $
+ * @version $Id: ImageModelHolder.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public abstract class ImageModelHolder implements Serializable

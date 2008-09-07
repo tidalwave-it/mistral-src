@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: CreateJAIOp.java 676 2007-06-15 13:34:52Z fabriziogiudici $
+ * $Id: CreateJAIOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.jai;
@@ -41,7 +41,7 @@ import it.tidalwave.image.op.CreateOp;
  *
  * @author  Emmanuele Sordini
  * @author  Fabrizio Giudici
- * @version $Id: CreateJAIOp.java 676 2007-06-15 13:34:52Z fabriziogiudici $
+ * @version $Id: CreateJAIOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class CreateJAIOp extends OperationImplementation<CreateOp, PlanarImage>

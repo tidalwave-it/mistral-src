@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: J2DUtilsScaleWithAffineTransformPerformanceTest.java 688 2007-06-16 13:38:50Z fabriziogiudici $
+ * $Id: J2DUtilsScaleWithAffineTransformPerformanceTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.java2d.performance;
@@ -39,7 +39,7 @@ import it.tidalwave.image.java2d.Java2DUtils;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: J2DUtilsScaleWithAffineTransformPerformanceTest.java 688 2007-06-16 13:38:50Z fabriziogiudici $
+ * @version $Id: J2DUtilsScaleWithAffineTransformPerformanceTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class J2DUtilsScaleWithAffineTransformPerformanceTest extends BasePerformanceTestSupport 

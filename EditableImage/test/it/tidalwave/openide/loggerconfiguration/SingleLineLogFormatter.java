@@ -3,7 +3,7 @@
  * OpenBlueSky - Enhanced NetBeans RCP Components
  * ==============================================
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
  * Project home page: http://openbluesky.dev.java.net
  *
  *******************************************************************************
@@ -22,7 +22,7 @@
  *
  *******************************************************************************
  *
- * $Id: SingleLineLogFormatter.java 857 2008-02-13 09:07:32Z fabriziogiudici $
+ * $Id: SingleLineLogFormatter.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.openide.loggerconfiguration;
@@ -38,7 +38,7 @@ import java.util.logging.LogRecord;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: SingleLineLogFormatter.java 857 2008-02-13 09:07:32Z fabriziogiudici $
+ * @version $Id: SingleLineLogFormatter.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class SingleLineLogFormatter extends Formatter

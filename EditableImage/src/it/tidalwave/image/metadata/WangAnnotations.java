@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2008 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: WangAnnotations.java 875 2008-02-21 12:57:14Z fabriziogiudici $
+ * $Id: WangAnnotations.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.metadata;
@@ -49,7 +49,7 @@ import java.util.Arrays;
  * http://support.global360.com/content/I4W/documentation/annospec.htm
  * 
  * @author  Fabrizio Giudici
- * @version $Id: WangAnnotations.java 875 2008-02-21 12:57:14Z fabriziogiudici $
+ * @version $Id: WangAnnotations.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class WangAnnotations 

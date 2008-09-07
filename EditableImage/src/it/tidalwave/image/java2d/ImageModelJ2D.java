@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: ImageModelJ2D.java 708 2007-06-17 12:50:27Z fabriziogiudici $
+ * $Id: ImageModelJ2D.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.java2d;
@@ -52,7 +52,7 @@ import it.tidalwave.image.op.ImplementationFactory;
  * (e.g. by using or not JAI, etc...)
  *
  * @author Fabrizio Giudici
- * @version $Id: ImageModelJ2D.java 708 2007-06-17 12:50:27Z fabriziogiudici $
+ * @version $Id: ImageModelJ2D.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ImageModelJ2D extends ImageModel

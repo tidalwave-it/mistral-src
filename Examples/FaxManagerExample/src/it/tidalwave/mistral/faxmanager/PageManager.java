@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2008 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: PageManager.java 940 2008-09-02 14:18:32Z fabriziogiudici $
+ * $Id: PageManager.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.mistral.faxmanager;
@@ -143,7 +143,7 @@ abstract class Task<T>
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: PageManager.java 940 2008-09-02 14:18:32Z fabriziogiudici $
+ * @version $Id: PageManager.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class PageManager

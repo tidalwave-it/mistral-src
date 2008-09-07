@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: EditableImageRenderer.java 892 2008-03-18 16:01:18Z fabriziogiudici $
+ * $Id: EditableImageRenderer.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.render;
@@ -60,7 +60,7 @@ import it.tidalwave.image.util.Platform;
  * capabilities and a fit-to-size feature.
  *
  * @author  Fabrizio Giudici
- * @version $Id: EditableImageRenderer.java 892 2008-03-18 16:01:18Z fabriziogiudici $
+ * @version $Id: EditableImageRenderer.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class EditableImageRenderer extends JComponent

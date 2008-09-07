@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: DragPanningController.java 488 2007-03-10 13:40:50Z fabriziogiudici $
+ * $Id: DragPanningController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.render;
@@ -43,7 +43,7 @@ import java.awt.event.MouseMotionListener;
  * photo in the viewport by dragging with the mouse.
  *
  * @author  Fabrizio Giudici
- * @version $Id: DragPanningController.java 488 2007-03-10 13:40:50Z fabriziogiudici $
+ * @version $Id: DragPanningController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class DragPanningController

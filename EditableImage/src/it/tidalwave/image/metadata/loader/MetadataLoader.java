@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2008 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: MetadataLoader.java 919 2008-06-10 20:38:23Z fabriziogiudici $
+ * $Id: MetadataLoader.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.metadata.loader;
@@ -34,7 +34,7 @@ import javax.imageio.metadata.IIOMetadata;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: MetadataLoader.java 919 2008-06-10 20:38:23Z fabriziogiudici $
+ * @version $Id: MetadataLoader.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public interface MetadataLoader

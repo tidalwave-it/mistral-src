@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: ImageModel.java 709 2007-06-17 12:51:14Z fabriziogiudici $
+ * $Id: ImageModel.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image;
@@ -44,7 +44,7 @@ import javax.imageio.ImageIO;
 /*******************************************************************************
  *
  * @author Fabrizio Giudici
- * @version $Id: ImageModel.java 709 2007-06-17 12:51:14Z fabriziogiudici $
+ * @version $Id: ImageModel.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public abstract class ImageModel implements Externalizable

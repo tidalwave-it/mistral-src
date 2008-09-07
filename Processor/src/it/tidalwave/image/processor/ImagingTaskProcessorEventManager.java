@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ImagingTaskProcessorEventManager.java 723 2007-06-21 23:47:01Z fabriziogiudici $
+ * $Id: ImagingTaskProcessorEventManager.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.processor;
@@ -39,7 +39,7 @@ import it.tidalwave.image.processor.event.ImagingTaskProcessorListener;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ImagingTaskProcessorEventManager.java 723 2007-06-21 23:47:01Z fabriziogiudici $
+ * @version $Id: ImagingTaskProcessorEventManager.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 /* package */ class ImagingTaskProcessorEventManager 

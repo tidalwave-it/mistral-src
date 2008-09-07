@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: OmissisTool.java 895 2008-03-27 08:30:50Z fabriziogiudici $
+ * $Id: OmissisTool.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.mistral.faxmanager.edittool;
@@ -39,7 +39,7 @@ import it.tidalwave.image.render.EditableImageRenderer;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: OmissisTool.java 895 2008-03-27 08:30:50Z fabriziogiudici $
+ * @version $Id: OmissisTool.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class OmissisTool extends SelectRectangleTool

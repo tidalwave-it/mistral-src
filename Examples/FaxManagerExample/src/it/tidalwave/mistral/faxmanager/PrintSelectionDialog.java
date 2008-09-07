@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: PrintSelectionDialog.java 864 2008-02-13 13:41:02Z fabriziogiudici $
+ * $Id: PrintSelectionDialog.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.mistral.faxmanager;
@@ -38,7 +38,7 @@ import javax.swing.SwingUtilities;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: PrintSelectionDialog.java 864 2008-02-13 13:41:02Z fabriziogiudici $
+ * @version $Id: PrintSelectionDialog.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class PrintSelectionDialog extends JPanel 

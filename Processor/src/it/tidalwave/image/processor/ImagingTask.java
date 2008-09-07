@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ImagingTask.java 923 2008-08-17 16:15:16Z fabriziogiudici $
+ * $Id: ImagingTask.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.processor;
@@ -41,7 +41,7 @@ import it.tidalwave.image.op.Operation;
  * Concrete implementations of this class MUST BE serializable.
  *
  * @author  Fabrizio Giudici
- * @version $Id: ImagingTask.java 923 2008-08-17 16:15:16Z fabriziogiudici $
+ * @version $Id: ImagingTask.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 abstract public class ImagingTask implements Serializable

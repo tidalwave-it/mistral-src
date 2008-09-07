@@ -7,8 +7,8 @@
 * 
 *******************************************************************************
 *
-* Copyright (C) 2003-2008 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
-*                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+* Copyright (C) 2003-2008 by Fabrizio Giudici
+*                        and Emmanuele Sordini
 *
 * Licensed under the Apache License, Version 2.0 (the "License"); 
 * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
 * 
 *******************************************************************************
 * 
-* $Id: FaxApplet.java 903 2008-04-08 22:30:39Z fabriziogiudici $
+* $Id: FaxApplet.java 946 2008-09-07 09:45:55Z fabriziogiudici $
 * 
 ******************************************************************************/
 package it.tidalwave.mistral.faxmanager;
@@ -90,7 +90,7 @@ import javax.print.attribute.standard.OrientationRequested;
 /*******************************************************************************
 *
 * @author  Fabrizio Giudici
-* @version $Id: FaxApplet.java 903 2008-04-08 22:30:39Z fabriziogiudici $
+* @version $Id: FaxApplet.java 946 2008-09-07 09:45:55Z fabriziogiudici $
 *
 ******************************************************************************/
 public class FaxApplet extends JApplet

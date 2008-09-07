@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: CreateOpTest.java 621 2007-04-09 09:16:25Z fabriziogiudici $
+ * $Id: CreateOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
@@ -38,7 +38,7 @@ import junit.framework.TestSuite;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: CreateOpTest.java 621 2007-04-09 09:16:25Z fabriziogiudici $
+ * @version $Id: CreateOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class CreateOpTest extends TestCase

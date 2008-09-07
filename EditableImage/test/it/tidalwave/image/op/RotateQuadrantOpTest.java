@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: RotateQuadrantOpTest.java 180 2006-11-17 16:21:33Z fabriziogiudici $
+ * $Id: RotateQuadrantOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
@@ -36,7 +36,7 @@ import junit.framework.TestSuite;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: RotateQuadrantOpTest.java 180 2006-11-17 16:21:33Z fabriziogiudici $
+ * @version $Id: RotateQuadrantOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class RotateQuadrantOpTest extends TestCase 

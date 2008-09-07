@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: RotationController.java 485 2007-03-10 11:55:15Z fabriziogiudici $
+ * $Id: RotationController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.render;
@@ -32,7 +32,7 @@ package it.tidalwave.image.render;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: RotationController.java 485 2007-03-10 11:55:15Z fabriziogiudici $
+ * @version $Id: RotationController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class RotationController

@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ConvertToBufferedImageIJOp.java 592 2007-04-07 19:10:17Z fabriziogiudici $
+ * $Id: ConvertToBufferedImageIJOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.ij;
@@ -38,7 +38,7 @@ import it.tidalwave.image.op.ConvertToBufferedImageOp;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ConvertToBufferedImageIJOp.java 592 2007-04-07 19:10:17Z fabriziogiudici $
+ * @version $Id: ConvertToBufferedImageIJOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ConvertToBufferedImageIJOp extends OperationImplementation<ConvertToBufferedImageOp, ImagePlus>

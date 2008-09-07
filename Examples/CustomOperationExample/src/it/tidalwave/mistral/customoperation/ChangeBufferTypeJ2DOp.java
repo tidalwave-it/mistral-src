@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ChangeBufferTypeJ2DOp.java 607 2007-04-08 18:50:30Z fabriziogiudici $
+ * $Id: ChangeBufferTypeJ2DOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.mistral.customoperation;
@@ -37,7 +37,7 @@ import it.tidalwave.image.op.OperationImplementation;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ChangeBufferTypeJ2DOp.java 607 2007-04-08 18:50:30Z fabriziogiudici $
+ * @version $Id: ChangeBufferTypeJ2DOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ChangeBufferTypeJ2DOp extends OperationImplementation<ChangeBufferTypeOp, BufferedImage>

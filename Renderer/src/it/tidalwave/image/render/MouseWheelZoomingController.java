@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: MouseWheelZoomingController.java 516 2007-03-16 22:11:28Z fabriziogiudici $
+ * $Id: MouseWheelZoomingController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.render;
@@ -37,7 +37,7 @@ import java.awt.event.MouseWheelListener;
  * This class zooms listening to the mouse wheel.
  *
  * @author  Fabrizio Giudici
- * @version $Id: MouseWheelZoomingController.java 516 2007-03-16 22:11:28Z fabriziogiudici $
+ * @version $Id: MouseWheelZoomingController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class MouseWheelZoomingController 

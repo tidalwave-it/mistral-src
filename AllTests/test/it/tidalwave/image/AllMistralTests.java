@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: AllMistralTests.java 939 2008-08-25 19:50:05Z fabriziogiudici $
+ * $Id: AllMistralTests.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image;
@@ -37,7 +37,7 @@ import junit.framework.TestSuite;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: AllMistralTests.java 939 2008-08-25 19:50:05Z fabriziogiudici $
+ * @version $Id: AllMistralTests.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class AllMistralTests extends TestSuite 

@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: HistogramJAI.java 201 2006-11-17 21:36:58Z fabriziogiudici $
+ * $Id: HistogramJAI.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.jai;
@@ -43,7 +43,7 @@ import it.tidalwave.image.render.PreviewSettings;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: HistogramJAI.java 201 2006-11-17 21:36:58Z fabriziogiudici $
+ * @version $Id: HistogramJAI.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class HistogramJAI extends it.tidalwave.image.Histogram

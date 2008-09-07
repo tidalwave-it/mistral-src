@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: ImageModelCache.java 726 2007-06-25 21:34:51Z fabriziogiudici $
+ * $Id: ImageModelCache.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image;
@@ -38,7 +38,7 @@ import java.io.Serializable;
  * network among different computing nodes. 
  *
  * @author  Fabrizio Giudici
- * @version $Id: ImageModelCache.java 726 2007-06-25 21:34:51Z fabriziogiudici $
+ * @version $Id: ImageModelCache.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public abstract class ImageModelCache

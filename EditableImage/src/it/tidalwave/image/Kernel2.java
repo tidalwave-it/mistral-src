@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: Kernel2.java 429 2007-02-01 11:40:11Z fabriziogiudici $
+ * $Id: Kernel2.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image;
@@ -37,7 +37,7 @@ import java.awt.image.Kernel;
  * This class just adds to the standard Kernel the toString() implementation.
  *
  * @author  Fabrizio Giudici
- * @version $Id: Kernel2.java 429 2007-02-01 11:40:11Z fabriziogiudici $
+ * @version $Id: Kernel2.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class Kernel2 extends Kernel

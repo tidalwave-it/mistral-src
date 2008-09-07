@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: XYPlotter.java 225 2006-11-18 22:51:50Z fabriziogiudici $
+ * $Id: XYPlotter.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.mistral.example.histogramviewer;
@@ -45,7 +45,7 @@ import it.tidalwave.image.render.Overlay;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: XYPlotter.java 225 2006-11-18 22:51:50Z fabriziogiudici $
+ * @version $Id: XYPlotter.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class XYPlotter extends JComponent

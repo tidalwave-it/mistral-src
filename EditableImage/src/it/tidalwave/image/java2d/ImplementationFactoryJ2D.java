@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: ImplementationFactoryJ2D.java 940 2008-09-02 14:18:32Z fabriziogiudici $
+ * $Id: ImplementationFactoryJ2D.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.java2d;
@@ -53,7 +53,7 @@ import it.tidalwave.image.op.WriteOp;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ImplementationFactoryJ2D.java 940 2008-09-02 14:18:32Z fabriziogiudici $
+ * @version $Id: ImplementationFactoryJ2D.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ImplementationFactoryJ2D extends ImplementationFactory

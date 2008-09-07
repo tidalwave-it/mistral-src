@@ -7,8 +7,8 @@ Project home page: http://mistral.tidalwave.it
 
 ==============================================================================
 
-Copyright (C) 2003-2008 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
-                       and Emmanuele Sordini (Emmanuele@Sordini.com)
+Copyright (C) 2003-2008 by Fabrizio Giudici
+                       and Emmanuele Sordini
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ limitations under the License.
 
 ==============================================================================
 
-$Id: build.xml 916 2008-06-10 20:04:50Z fabriziogiudici $
+$Id: build.xml 946 2008-09-07 09:45:55Z fabriziogiudici $
 -->
 <project name="EditableImage" default="jar" basedir=".">
     <description>Builds, tests, and runs the project EditableImage.</description>

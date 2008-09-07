@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: EditableImage.java 944 2008-09-02 15:58:32Z fabriziogiudici $
+ * $Id: EditableImage.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image;
@@ -80,7 +80,7 @@ import it.tidalwave.image.metadata.loader.TIFFMetadataLoader;
  * (e.g. by using or not JAI, etc...)
  *
  * @author  Fabrizio Giudici
- * @version $Id: EditableImage.java 944 2008-09-02 15:58:32Z fabriziogiudici $
+ * @version $Id: EditableImage.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class EditableImage implements Cloneable, Serializable // Externalizable

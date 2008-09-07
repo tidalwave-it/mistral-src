@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ThumbnailListCellRenderer.java 872 2008-02-15 08:49:44Z fabriziogiudici $
+ * $Id: ThumbnailListCellRenderer.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.mistral.faxmanager;
@@ -47,7 +47,7 @@ import it.tidalwave.image.op.ScaleOp;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ThumbnailListCellRenderer.java 872 2008-02-15 08:49:44Z fabriziogiudici $
+ * @version $Id: ThumbnailListCellRenderer.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ThumbnailListCellRenderer extends DefaultListCellRenderer

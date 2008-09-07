@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ScaleJ2DOpTest.java 690 2007-06-16 13:54:56Z fabriziogiudici $
+ * $Id: ScaleJ2DOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.java2d;
@@ -43,7 +43,7 @@ import it.tidalwave.image.util.Platform;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ScaleJ2DOpTest.java 690 2007-06-16 13:54:56Z fabriziogiudici $
+ * @version $Id: ScaleJ2DOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ScaleJ2DOpTest extends BaseTestSupport 

@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: CreateOpTestSupport.java 671 2007-06-15 13:26:36Z fabriziogiudici $
+ * $Id: CreateOpTestSupport.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op.testsupport;
@@ -37,7 +37,7 @@ import it.tidalwave.image.op.CreateOp;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: CreateOpTestSupport.java 671 2007-06-15 13:26:36Z fabriziogiudici $
+ * @version $Id: CreateOpTestSupport.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public abstract class CreateOpTestSupport extends BaseTestSupport

@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: AnimatedScaleController.java 663 2007-06-11 08:52:48Z fabriziogiudici $
+ * $Id: AnimatedScaleController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.render;
@@ -43,7 +43,7 @@ import it.tidalwave.image.Quality;
  * A special <code>ScaleController</code> which performs smooth scale transictions.
  *
  * @author  Fabrizio Giudici
- * @version $Id: AnimatedScaleController.java 663 2007-06-11 08:52:48Z fabriziogiudici $
+ * @version $Id: AnimatedScaleController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class AnimatedScaleController extends ScaleController

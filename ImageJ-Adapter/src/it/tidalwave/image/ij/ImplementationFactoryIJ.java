@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ImplementationFactoryIJ.java 462 2007-02-02 14:06:11Z fabriziogiudici $
+ * $Id: ImplementationFactoryIJ.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.ij;
@@ -70,7 +70,7 @@ import it.tidalwave.image.op.TranslateOp;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ImplementationFactoryIJ.java 462 2007-02-02 14:06:11Z fabriziogiudici $
+ * @version $Id: ImplementationFactoryIJ.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ImplementationFactoryIJ extends ImplementationFactory

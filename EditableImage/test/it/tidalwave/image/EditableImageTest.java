@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2008 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: EditableImageTest.java 919 2008-06-10 20:38:23Z fabriziogiudici $
+ * $Id: EditableImageTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image;
@@ -48,7 +48,7 @@ import org.junit.Test;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: EditableImageTest.java 919 2008-06-10 20:38:23Z fabriziogiudici $
+ * @version $Id: EditableImageTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class EditableImageTest extends BaseTestSupport
@@ -336,7 +336,7 @@ public class EditableImageTest extends BaseTestSupport
         assertEquals("Mugwum contract photographer", iptc.getByLineTitle());
         assertEquals(caption, iptc.getCaption());
         assertEquals("Malibalipuram", iptc.getCity());
-        assertEquals("©2005 Julie Doe / Mugwum Press, all rights reserved", iptc.getCopyrightNotice());
+        assertEquals("ï¿½2005 Julie Doe / Mugwum Press, all rights reserved", iptc.getCopyrightNotice());
         assertEquals("India", iptc.getCountryOrPrimaryLocation());
         assertEquals("Mugwum Press", iptc.getCredit());
         assertEquals("Sat Jan 01 00:00:00 CET 2005", iptc.getDateCreated().toString());

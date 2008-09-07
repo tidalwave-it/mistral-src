@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: Java2DUtils.java 718 2007-06-21 06:15:58Z fabriziogiudici $
+ * $Id: Java2DUtils.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.java2d;
@@ -67,7 +67,7 @@ import it.tidalwave.image.Quality;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: Java2DUtils.java 718 2007-06-21 06:15:58Z fabriziogiudici $
+ * @version $Id: Java2DUtils.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class Java2DUtils

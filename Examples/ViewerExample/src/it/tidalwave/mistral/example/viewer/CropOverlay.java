@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: CropOverlay.java 181 2006-11-17 16:23:18Z fabriziogiudici $
+ * $Id: CropOverlay.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.mistral.example.viewer;
@@ -41,7 +41,7 @@ import java.awt.Rectangle;
  * An Overlay is something that is drawn over a rendered image.
  *
  * @author  Fabrizio Giudici
- * @version $Id: CropOverlay.java 181 2006-11-17 16:23:18Z fabriziogiudici $
+ * @version $Id: CropOverlay.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class CropOverlay implements Overlay

@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2008 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: DirectoryRawAdapter.java 928 2008-08-24 15:17:05Z fabriziogiudici $
+ * $Id: DirectoryRawAdapter.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.metadata.loader;
@@ -39,7 +39,7 @@ import it.tidalwave.image.Rational;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: DirectoryRawAdapter.java 928 2008-08-24 15:17:05Z fabriziogiudici $
+ * @version $Id: DirectoryRawAdapter.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class DirectoryRawAdapter implements DirectoryAdapter

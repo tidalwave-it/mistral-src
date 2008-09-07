@@ -7,8 +7,8 @@
  *
  *******************************************************************************
  *
- * Copyright (C) 2003-2007 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: DrawJ2DOp.java 728 2007-07-02 08:46:57Z fabriziogiudici $
+ * $Id: DrawJ2DOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.java2d;
@@ -43,7 +43,7 @@ import javax.imageio.ImageIO;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: DrawJ2DOp.java 728 2007-07-02 08:46:57Z fabriziogiudici $
+ * @version $Id: DrawJ2DOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class DrawJ2DOp extends OperationImplementation<DrawOp, BufferedImage>

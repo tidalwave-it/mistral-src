@@ -7,8 +7,8 @@
  * 
  *******************************************************************************
  *
- * Copyright (C) 2003-2006 by Fabrizio Giudici (Fabrizio.Giudici@tidalwave.it)
- *                        and Emmanuele Sordini (Emmanuele@Sordini.com)
+ * Copyright (C) 2003-2008 by Fabrizio Giudici
+ *                        and Emmanuele Sordini
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: BaseTestSupport.java 481 2007-02-02 21:34:25Z fabriziogiudici $
+ * $Id: BaseTestSupport.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image;
@@ -48,7 +48,7 @@ import it.tidalwave.image.op.ReadOp;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: BaseTestSupport.java 481 2007-02-02 21:34:25Z fabriziogiudici $
+ * @version $Id: BaseTestSupport.java 946 2008-09-07 09:45:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public abstract class BaseTestSupport extends TestCase 
