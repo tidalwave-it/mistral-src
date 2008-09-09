@@ -24,12 +24,17 @@ limitations under the License.
 
 ==============================================================================
 
-$Id: build.xml 946 2008-09-07 09:45:55Z fabriziogiudici $
+$Id: build.xml 949 2008-09-09 11:38:26Z fabriziogiudici $
 -->
 <project name="EditableImage" default="jar" basedir=".">
     <description>Builds, tests, and runs the project EditableImage.</description>
+
+    <property name="tools.dir" value="${basedir}/../tools"/>
+
     <import file="nbproject/build-impl.xml"/>
-    <import file="../tools/cobertura.xml"/>
+    <import file="${tools.dir}/ant/openbluesky.xml"/>
+
+    <target name="build" depends="jar"/> <!-- required by OpenBlueSky -->
     
     <!-- would be nice to put this on a -pre-compile, but causes error when this project
          is compiled as a dependency from JAI-Adapter etc. Basically the task is called

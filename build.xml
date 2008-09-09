@@ -24,7 +24,7 @@ limitations under the License.
  
 ==============================================================================
  
-$Id: build.xml 929 2008-08-24 15:22:45Z fabriziogiudici $
+$Id: build.xml 949 2008-09-09 11:38:26Z fabriziogiudici $
 -->
 
 <project name="Mistral" default="jar" basedir=".">
@@ -33,10 +33,10 @@ $Id: build.xml 929 2008-08-24 15:22:45Z fabriziogiudici $
     
     <property name="java.net.projectName" value="mistral"/>
     <property name="java.net.projectURL" value="mistral"/>
+    <property name="tools.dir" value="${basedir}/tools"/>
     
-    <import file="tools/publish.xml"/>
-    
-    
+    <import file="publish.xml"/>
+   
     <taskdef resource="org/kohsuke/javanettasks.properties">
         <classpath>
             <fileset dir="tools/javaNetTasks" />
@@ -54,9 +54,12 @@ $Id: build.xml 929 2008-08-24 15:22:45Z fabriziogiudici $
         <ant dir="Processor" target="jar" inheritall="false"/>
         <ant dir="JAI-Adapter" target="jar" inheritall="false"/>
         <ant dir="ImageJ-Adapter" target="jar" inheritall="false"/>
+
+<!--
         <ant dir="Examples/ViewerExample" target="jar" inheritall="false"/>
         <ant dir="Examples/HistogramViewerExample" target="jar" inheritall="false"/>
         <ant dir="Examples/FaxManagerExample" target="jar" inheritall="false"/>
+-->
     </target>
     
     <!-- =======================================================================
@@ -82,10 +85,10 @@ $Id: build.xml 929 2008-08-24 15:22:45Z fabriziogiudici $
     <!-- =======================================================================
 
     ======================================================================== -->
-    <target name="cobertura-report">
-        <ant dir="EditableImage" target="cobertura-report" inheritall="false"/>
-        <ant dir="Operations" target="cobertura-report" inheritall="false"/>
-        <ant dir="Contributions" target="cobertura-report" inheritall="false"/>
+    <target name="coverage-report">
+        <ant dir="EditableImage" target="coverage-report" inheritall="false"/>
+        <ant dir="Operations" target="coverage-report" inheritall="false"/>
+        <ant dir="Contributions" target="coverage-report" inheritall="false"/>
 <!--
         <ant dir="Renderer" target="cobertura-report" inheritall="false"/>
         <ant dir="Processor" target="cobertura-report" inheritall="false"/>
@@ -94,6 +97,18 @@ $Id: build.xml 929 2008-08-24 15:22:45Z fabriziogiudici $
 -->
     </target>
 
+    <!-- =======================================================================
+
+    ======================================================================== -->
+    <target name="findbugs">
+        <ant dir="EditableImage" target="findbugs" inheritall="false"/>
+        <ant dir="Operations" target="findbugs" inheritall="false"/>
+        <ant dir="Contributions" target="findbugs" inheritall="false"/>
+        <ant dir="Renderer" target="findbugs" inheritall="false"/>
+        <ant dir="Processor" target="findbugs" inheritall="false"/>
+        <ant dir="JAI-Adapter" target="findbugs" inheritall="false"/>
+        <ant dir="ImageJ-Adapter" target="findbugs" inheritall="false"/>
+    </target>
     <!-- =======================================================================
     Creates all the javadocs and copies them in the www folder.
     ======================================================================== -->

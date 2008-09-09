@@ -24,9 +24,16 @@ limitations under the License.
 
 ==============================================================================
 
-$Id: build.xml 946 2008-09-07 09:45:55Z fabriziogiudici $
+$Id: build.xml 949 2008-09-09 11:38:26Z fabriziogiudici $
 -->
 <project name="ViewerExample" default="default" basedir=".">
     <description>Builds, tests, and runs the project ViewerExample.</description>
+
+    <property name="tools.dir" value="${basedir}/../../tools"/>
+
     <import file="nbproject/build-impl.xml"/>
+    <import file="${tools.dir}/ant/openbluesky.xml"/>
+
+    <target name="build" depends="jar"/> <!-- required by OpenBlueSky -->
+
 </project>
