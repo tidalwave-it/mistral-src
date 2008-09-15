@@ -30,7 +30,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Pack200Servlet</servlet-name>
-        <url-pattern>/Pack200Servlet</url-pattern>
+        <url-pattern>/lib/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

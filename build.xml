@@ -24,7 +24,7 @@ limitations under the License.
  
 ==============================================================================
  
-$Id: build.xml 949 2008-09-09 11:38:26Z fabriziogiudici $
+$Id: build.xml 953 2008-09-15 21:52:58Z fabriziogiudici $
 -->
 
 <project name="Mistral" default="jar" basedir=".">
@@ -146,9 +146,11 @@ $Id: build.xml 949 2008-09-09 11:38:26Z fabriziogiudici $
         <ant dir="Processor" target="clean" inheritall="false"/>
         <ant dir="JAI-Adapter" target="clean" inheritall="false"/>
         <ant dir="ImageJ-Adapter" target="clean" inheritall="false"/>
+<!--
         <ant dir="Examples/ViewerExample" target="clean" inheritall="false"/>
         <ant dir="Examples/HistogramViewerExample" target="clean" inheritall="false"/>
         <ant dir="Examples/FaxManagerExample" target="clean" inheritall="false"/>
+-->
         <delete dir="dist" failonerror="false"/>
         <delete dir="log" failonerror="false"/>
     </target>
