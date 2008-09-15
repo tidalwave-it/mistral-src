@@ -93,7 +93,7 @@ public class Pack200Servlet extends HttpServlet {
             throws IOException, ServletException {
 
         String encoding = request.getHeader(ACCEPT_ENCODING);
-        String pathInfo = System.getProperty("catalina.base") + "/webapps/SmsWebApp/SmsApplet/" +
+        String pathInfo = System.getProperty("catalina.base") + "/webapps/FaxServerExample/lib/" +
                 request.getRequestURI().replaceAll(".*/", "");
         String pathInfoEx = pathInfo;
         String contentType = request.getContentType();
