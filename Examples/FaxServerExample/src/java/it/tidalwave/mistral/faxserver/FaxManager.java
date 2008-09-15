@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: FaxManager.java 530 2007-03-29 23:02:03Z fabriziogiudici $
+ * $Id: FaxManager.java 951 2008-09-15 06:52:41Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.mistral.faxserver;
@@ -40,7 +40,7 @@ import java.io.OutputStream;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: FaxManager.java 530 2007-03-29 23:02:03Z fabriziogiudici $
+ * @version $Id: FaxManager.java 951 2008-09-15 06:52:41Z fabriziogiudici $
  *
  ******************************************************************************/
 public class FaxManager
@@ -96,7 +96,7 @@ public class FaxManager
     public Fax[] getFaxes ()
       {
         final String[] files = inputFolder.list();
-        final Fax[] faxes = new Fax[files.length];
+        final Fax[] faxes = new Fax[(files != null) ? files.length : 0];
 
         for (int i = 0; i < faxes.length; i++)
           {
