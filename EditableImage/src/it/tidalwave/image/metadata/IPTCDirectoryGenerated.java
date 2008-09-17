@@ -21,63 +21,91 @@ public class IPTCDirectoryGenerated extends Directory
         super(latestModificationTime);
       }
 
-    public final static int RECORD_VERSION = 512;
-    public final static int OBJECT_TYPE_REFERENCE = 515;
-    public final static int OBJECT_ATTRIBUTE_REFERENCE = 516;
-    public final static int OBJECT_NAME = 517;
-    public final static int EDIT_STATUS = 519;
-    public final static int EDITORIAL_UPDATE = 520;
-    public final static int URGENCY = 522;
-    public final static int SUBJECT_REFERENCE = 524;
-    public final static int CATEGORY = 527;
-    public final static int SUPPLEMENTAL_CATEGORIES = 532;
-    public final static int FIXTURE_IDENTIFIER = 534;
-    public final static int KEYWORDS = 537;
-    public final static int CONTENT_LOCATION_CODE = 538;
-    public final static int CONTENT_LOCATION_NAME = 539;
-    public final static int RELEASE_DATE = 542;
-    public final static int RELEASE_TIME = 547;
-    public final static int EXPIRATION_DATE = 549;
-    public final static int EXPIRATION_TIME = 550;
-    public final static int SPECIAL_INSTRUCTIONS = 552;
-    public final static int ACTION_ADVISED = 554;
-    public final static int REFERENCE_SERVICE = 557;
-    public final static int REFERENCE_DATE = 559;
-    public final static int REFERENCE_NUMBER = 562;
-    public final static int DATE_CREATED = 567;
-    public final static int TIME_CREATED = 572;
-    public final static int DIGITAL_CREATION_DATE = 574;
-    public final static int DIGITAL_CREATION_TIME = 575;
-    public final static int ORIGINATING_PROGRAM = 577;
-    public final static int OBJECT_CYCLE = 587;
-    public final static int PROGRAM_VERSION = 582;
-    public final static int BY_LINE = 592;
-    public final static int BY_LINE_TITLE = 597;
-    public final static int CITY = 602;
-    public final static int SUB_LOCATION = 604;
-    public final static int PROVINCE_OR_STATE = 607;
-    public final static int COUNTRY_CODE = 612;
-    public final static int COUNTRY_OR_PRIMARY_LOCATION = 613;
-    public final static int ORIGINAL_TRANSMISSION_REFERENCE = 615;
-    public final static int HEADLINE = 617;
-    public final static int CREDIT = 622;
-    public final static int SOURCE = 627;
-    public final static int COPYRIGHT_NOTICE = 628;
-    public final static int CONTACT = 630;
-    public final static int CAPTION = 632;
-    public final static int WRITER = 634;
-    public final static int RASTERIZED_CAPTION = 637;
-    public final static int IMAGE_TYPE = 642;
-    public final static int IMAGE_ORIENTATION = 643;
-    public final static int LANGUAGE_IDENTIFIER = 647;
-    public final static int AUDIO_TYPE = 662;
-    public final static int AUDIO_SAMPLING_RATE = 663;
-    public final static int AUDIO_SAMPLING_RESOLUTION = 664;
-    public final static int AUDIO_DURATION = 665;
-    public final static int AUDIO_OUTCUE = 666;
-    public final static int OBJECTDATA_PREVIEW_FILE_FORMAT = 712;
-    public final static int OBJECTDATA_PREVIEW_FILE_FORMAT_VERSION = 713;
-    public final static int OBJECTDATA_PREVIEW_PREVIEW_DATA = 714;
+    public final static int APPLICATION_RECORD_VERSION = 0;
+    public final static int OBJECT_TYPE_REFERENCE = 3;
+    public final static int OBJECT_ATTRIBUTE_REFERENCE = 4;
+    public final static int OBJECT_NAME = 5;
+    public final static int EDIT_STATUS = 7;
+    public final static int EDITORIAL_UPDATE = 8;
+    public final static int URGENCY = 10;
+    public final static int SUBJECT_REFERENCE = 12;
+    public final static int CATEGORY = 15;
+    public final static int SUPPLEMENTAL_CATEGORIES = 20;
+    public final static int FIXTURE_IDENTIFIER = 22;
+    public final static int KEYWORDS = 25;
+    public final static int CONTENT_LOCATION_CODE = 26;
+    public final static int CONTENT_LOCATION_NAME = 27;
+    public final static int RELEASE_DATE = 30;
+    public final static int RELEASE_TIME = 35;
+    public final static int EXPIRATION_DATE = 37;
+    public final static int EXPIRATION_TIME = 38;
+    public final static int SPECIAL_INSTRUCTIONS = 40;
+    public final static int ACTION_ADVISED = 42;
+    public final static int REFERENCE_SERVICE = 45;
+    public final static int REFERENCE_DATE = 47;
+    public final static int REFERENCE_NUMBER = 50;
+    public final static int DATE_CREATED = 55;
+    public final static int TIME_CREATED = 60;
+    public final static int DIGITAL_CREATION_DATE = 62;
+    public final static int DIGITAL_CREATION_TIME = 63;
+    public final static int ORIGINATING_PROGRAM = 65;
+    public final static int PROGRAM_VERSION = 70;
+    public final static int OBJECT_CYCLE = 75;
+    public final static int BYLINE = 80;
+    public final static int BYLINE_TITLE = 85;
+    public final static int CITY = 90;
+    public final static int SUBLOCATION = 92;
+    public final static int PROVINCESTATE = 95;
+    public final static int COUNTRYPRIMARY_LOCATION_CODE = 100;
+    public final static int COUNTRYPRIMARY_LOCATION_NAME = 101;
+    public final static int ORIGINAL_TRANSMISSION_REFERENCE = 103;
+    public final static int HEADLINE = 105;
+    public final static int CREDIT = 110;
+    public final static int SOURCE = 115;
+    public final static int COPYRIGHT_NOTICE = 116;
+    public final static int CONTACT = 118;
+    public final static int CAPTIONABSTRACT = 120;
+    public final static int LOCAL_CAPTION = 121;
+    public final static int WRITEREDITOR = 122;
+    public final static int RASTERIZED_CAPTION = 125;
+    public final static int IMAGE_TYPE = 130;
+    public final static int IMAGE_ORIENTATION = 131;
+    public final static int LANGUAGE_IDENTIFIER = 135;
+    public final static int AUDIO_TYPE = 150;
+    public final static int AUDIO_SAMPLING_RATE = 151;
+    public final static int AUDIO_SAMPLING_RESOLUTION = 152;
+    public final static int AUDIO_DURATION = 153;
+    public final static int AUDIO_OUTCUE = 154;
+    public final static int JOB_ID = 184;
+    public final static int MASTER_DOCUMENT_ID = 185;
+    public final static int SHORT_DOCUMENT_ID = 186;
+    public final static int UNIQUE_DOCUMENT_ID = 187;
+    public final static int OWNER_ID = 188;
+    public final static int OBJECT_PREVIEW_FILE_FORMAT = 200;
+    public final static int OBJECT_PREVIEW_FILE_VERSION = 201;
+    public final static int OBJECT_PREVIEW_DATA = 202;
+    public final static int PREFS = 221;
+    public final static int CLASSIFY_STATE = 225;
+    public final static int SIMILARITY_INDEX = 228;
+    public final static int DOCUMENT_NOTES = 230;
+    public final static int DOCUMENT_HISTORY = 231;
+    public final static int EXIF_CAMERA_INFO = 232;
+    public final static int ADOBE_CREATOR_ADDRESS = 10000;
+    public final static int ADOBE_CREATOR_CITY = 10001;
+    public final static int ADOBE_CREATOR_STATE__PROVINCE = 10002;
+    public final static int ADOBE_CREATOR_POSTAL_CODE = 10003;
+    public final static int ADOBE_CREATOR_COUNTRY = 10004;
+    public final static int ADOBE_CREATOR_PHONE = 10005;
+    public final static int ADOBE_CREATOR_EMAIL = 10006;
+    public final static int ADOBE_CREATOR_WEBSITE = 10007;
+    public final static int ADOBE_IPTC_SUBJECT_CODE = 10010;
+    public final static int ADOBE_INTELLECTUAL_GENRE = 10020;
+    public final static int ADOBE_SCENE = 10021;
+    public final static int ADOBE_LOCATION = 10022;
+    public final static int ADOBE_COUNTRY_ISO_CODE = 10023;
+    public final static int ADOBE_COPYRIGHT_STATUS = 10030;
+    public final static int ADOBE_RIGHT_USAGE_TERMS = 10031;
+    public final static int ADOBE_COPYRIGHT_INFO_URL = 10032;
 
     @Override
     public String getTagName (int tag)
@@ -86,108 +114,136 @@ public class IPTCDirectoryGenerated extends Directory
       }
     static
       {
-        descriptionMapByTag.put(512, "Record Version");
-        descriptionMapByTag.put(515, "Object Type Reference");
-        descriptionMapByTag.put(516, "Object Attribute Reference");
-        descriptionMapByTag.put(517, "Object Name");
-        descriptionMapByTag.put(519, "Edit Status");
-        descriptionMapByTag.put(520, "Editorial Update");
-        descriptionMapByTag.put(522, "Urgency");
-        descriptionMapByTag.put(524, "Subject Reference");
-        descriptionMapByTag.put(527, "Category");
-        descriptionMapByTag.put(532, "Supplemental Categories");
-        descriptionMapByTag.put(534, "Fixture Identifier");
-        descriptionMapByTag.put(537, "Keywords");
-        descriptionMapByTag.put(538, "Content Location Code");
-        descriptionMapByTag.put(539, "Content Location Name");
-        descriptionMapByTag.put(542, "Release Date");
-        descriptionMapByTag.put(547, "Release Time");
-        descriptionMapByTag.put(549, "Expiration Date");
-        descriptionMapByTag.put(550, "Expiration Time");
-        descriptionMapByTag.put(552, "Special Instructions");
-        descriptionMapByTag.put(554, "Action Advised");
-        descriptionMapByTag.put(557, "Reference Service");
-        descriptionMapByTag.put(559, "Reference Date");
-        descriptionMapByTag.put(562, "Reference Number");
-        descriptionMapByTag.put(567, "Date Created");
-        descriptionMapByTag.put(572, "Time Created");
-        descriptionMapByTag.put(574, "Digital Creation Date");
-        descriptionMapByTag.put(575, "Digital Creation Time");
-        descriptionMapByTag.put(577, "Originating Program");
-        descriptionMapByTag.put(587, "Object Cycle");
-        descriptionMapByTag.put(582, "Program Version");
-        descriptionMapByTag.put(592, "By Line");
-        descriptionMapByTag.put(597, "By Line Title");
-        descriptionMapByTag.put(602, "City");
-        descriptionMapByTag.put(604, "Sub Location");
-        descriptionMapByTag.put(607, "Province Or State");
-        descriptionMapByTag.put(612, "Country Code");
-        descriptionMapByTag.put(613, "Country Or Primary Location");
-        descriptionMapByTag.put(615, "Original Transmission Reference");
-        descriptionMapByTag.put(617, "Headline");
-        descriptionMapByTag.put(622, "Credit");
-        descriptionMapByTag.put(627, "Source");
-        descriptionMapByTag.put(628, "Copyright Notice");
-        descriptionMapByTag.put(630, "Contact");
-        descriptionMapByTag.put(632, "Caption");
-        descriptionMapByTag.put(634, "Writer");
-        descriptionMapByTag.put(637, "Rasterized Caption");
-        descriptionMapByTag.put(642, "Image Type");
-        descriptionMapByTag.put(643, "Image Orientation");
-        descriptionMapByTag.put(647, "Language Identifier");
-        descriptionMapByTag.put(662, "Audio Type");
-        descriptionMapByTag.put(663, "Audio Sampling Rate");
-        descriptionMapByTag.put(664, "Audio Sampling Resolution");
-        descriptionMapByTag.put(665, "Audio Duration");
-        descriptionMapByTag.put(666, "Audio Outcue");
-        descriptionMapByTag.put(712, "ObjectData Preview File Format");
-        descriptionMapByTag.put(713, "ObjectData Preview File Format Version");
-        descriptionMapByTag.put(714, "ObjectData Preview Preview Data");
+        descriptionMapByTag.put(0, "Application Record Version");
+        descriptionMapByTag.put(3, "Object Type Reference");
+        descriptionMapByTag.put(4, "Object Attribute Reference");
+        descriptionMapByTag.put(5, "Object Name");
+        descriptionMapByTag.put(7, "Edit Status");
+        descriptionMapByTag.put(8, "Editorial Update");
+        descriptionMapByTag.put(10, "Urgency");
+        descriptionMapByTag.put(12, "Subject Reference");
+        descriptionMapByTag.put(15, "Category");
+        descriptionMapByTag.put(20, "Supplemental Categories");
+        descriptionMapByTag.put(22, "Fixture Identifier");
+        descriptionMapByTag.put(25, "Keywords");
+        descriptionMapByTag.put(26, "Content Location Code");
+        descriptionMapByTag.put(27, "Content Location Name");
+        descriptionMapByTag.put(30, "Release Date");
+        descriptionMapByTag.put(35, "Release Time");
+        descriptionMapByTag.put(37, "Expiration Date");
+        descriptionMapByTag.put(38, "Expiration Time");
+        descriptionMapByTag.put(40, "Special Instructions");
+        descriptionMapByTag.put(42, "Action Advised");
+        descriptionMapByTag.put(45, "Reference Service");
+        descriptionMapByTag.put(47, "Reference Date");
+        descriptionMapByTag.put(50, "Reference Number");
+        descriptionMapByTag.put(55, "Date Created");
+        descriptionMapByTag.put(60, "Time Created");
+        descriptionMapByTag.put(62, "Digital Creation Date");
+        descriptionMapByTag.put(63, "Digital Creation Time");
+        descriptionMapByTag.put(65, "Originating Program");
+        descriptionMapByTag.put(70, "Program Version");
+        descriptionMapByTag.put(75, "Object Cycle");
+        descriptionMapByTag.put(80, "By-line");
+        descriptionMapByTag.put(85, "By-line Title");
+        descriptionMapByTag.put(90, "City");
+        descriptionMapByTag.put(92, "Sub-location");
+        descriptionMapByTag.put(95, "Province-State");
+        descriptionMapByTag.put(100, "Country-Primary Location Code");
+        descriptionMapByTag.put(101, "Country-Primary Location Name");
+        descriptionMapByTag.put(103, "Original Transmission Reference");
+        descriptionMapByTag.put(105, "Headline");
+        descriptionMapByTag.put(110, "Credit");
+        descriptionMapByTag.put(115, "Source");
+        descriptionMapByTag.put(116, "Copyright Notice");
+        descriptionMapByTag.put(118, "Contact");
+        descriptionMapByTag.put(120, "Caption-Abstract");
+        descriptionMapByTag.put(121, "Local Caption");
+        descriptionMapByTag.put(122, "Writer-Editor");
+        descriptionMapByTag.put(125, "Rasterized Caption");
+        descriptionMapByTag.put(130, "Image Type");
+        descriptionMapByTag.put(131, "Image Orientation");
+        descriptionMapByTag.put(135, "Language Identifier");
+        descriptionMapByTag.put(150, "Audio Type");
+        descriptionMapByTag.put(151, "Audio Sampling Rate");
+        descriptionMapByTag.put(152, "Audio Sampling Resolution");
+        descriptionMapByTag.put(153, "Audio Duration");
+        descriptionMapByTag.put(154, "Audio Outcue");
+        descriptionMapByTag.put(184, "Job ID");
+        descriptionMapByTag.put(185, "Master Document ID");
+        descriptionMapByTag.put(186, "Short Document ID");
+        descriptionMapByTag.put(187, "Unique Document ID");
+        descriptionMapByTag.put(188, "Owner ID");
+        descriptionMapByTag.put(200, "Object Preview File Format");
+        descriptionMapByTag.put(201, "Object Preview File Version");
+        descriptionMapByTag.put(202, "Object Preview Data");
+        descriptionMapByTag.put(221, "Prefs");
+        descriptionMapByTag.put(225, "Classify State");
+        descriptionMapByTag.put(228, "Similarity Index");
+        descriptionMapByTag.put(230, "Document Notes");
+        descriptionMapByTag.put(231, "Document History");
+        descriptionMapByTag.put(232, "EXIF Camera Info");
+        descriptionMapByTag.put(10000, "Adobe Creator Address");
+        descriptionMapByTag.put(10001, "Adobe Creator City");
+        descriptionMapByTag.put(10002, "Adobe Creator State  Province");
+        descriptionMapByTag.put(10003, "Adobe Creator Postal Code");
+        descriptionMapByTag.put(10004, "Adobe Creator Country");
+        descriptionMapByTag.put(10005, "Adobe Creator Phone");
+        descriptionMapByTag.put(10006, "Adobe Creator Email");
+        descriptionMapByTag.put(10007, "Adobe Creator Website");
+        descriptionMapByTag.put(10010, "Adobe IPTC Subject Code");
+        descriptionMapByTag.put(10020, "Adobe Intellectual Genre");
+        descriptionMapByTag.put(10021, "Adobe Scene");
+        descriptionMapByTag.put(10022, "Adobe Location");
+        descriptionMapByTag.put(10023, "Adobe Country ISO Code");
+        descriptionMapByTag.put(10030, "Adobe Copyright Status");
+        descriptionMapByTag.put(10031, "Adobe Right Usage Terms");
+        descriptionMapByTag.put(10032, "Adobe Copyright Info URL");
 
       }
-    public void setRecordVersion (final Integer recordVersion)
+    public void setApplicationRecordVersion (final Integer applicationRecordVersion)
       {
-        final Integer oldValue = getRecordVersion();
-        final boolean oldPropAvailable = isRecordVersionAvailable();
+        final Integer oldValue = getApplicationRecordVersion();
+        final boolean oldPropAvailable = isApplicationRecordVersionAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
-        setObject(IPTCDirectoryGenerated.RECORD_VERSION, recordVersion);
-        propertyChangeSupport.firePropertyChange("recordVersion", oldValue, recordVersion);
-        propertyChangeSupport.firePropertyChange("recordVersionAvailable", oldPropAvailable, isRecordVersionAvailable());
+        setObject(IPTCDirectoryGenerated.APPLICATION_RECORD_VERSION, applicationRecordVersion);
+        propertyChangeSupport.firePropertyChange("applicationRecordVersion", oldValue, applicationRecordVersion);
+        propertyChangeSupport.firePropertyChange("applicationRecordVersionAvailable", oldPropAvailable, isApplicationRecordVersionAvailable());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public Integer getRecordVersion()
+    public Integer getApplicationRecordVersion()
       {
-        return getObject(RECORD_VERSION, Integer.class);
+        return getObject(APPLICATION_RECORD_VERSION, Integer.class);
       }
 
-    public void setRecordVersionAvailable (final boolean available)
+    public void setApplicationRecordVersionAvailable (final boolean available)
       {
-        final Integer oldValue = getRecordVersion();
-        final boolean oldPropAvailable = isRecordVersionAvailable();
+        final Integer oldValue = getApplicationRecordVersion();
+        final boolean oldPropAvailable = isApplicationRecordVersionAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
 
-        if (available && !containsTag(RECORD_VERSION))
+        if (available && !containsTag(APPLICATION_RECORD_VERSION))
           {
-            setObject(RECORD_VERSION, null);
+            setObject(APPLICATION_RECORD_VERSION, null);
           }
         else if (!available)
           {
-            removeTag(RECORD_VERSION);
+            removeTag(APPLICATION_RECORD_VERSION);
           }
 
-        propertyChangeSupport.firePropertyChange("recordVersionAvailable", oldPropAvailable, available);
-        propertyChangeSupport.firePropertyChange("recordVersion", oldValue, getRecordVersion());
+        propertyChangeSupport.firePropertyChange("applicationRecordVersionAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("applicationRecordVersion", oldValue, getApplicationRecordVersion());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public boolean isRecordVersionAvailable()
+    public boolean isApplicationRecordVersionAvailable()
       {
-        return containsTag(RECORD_VERSION);
+        return containsTag(APPLICATION_RECORD_VERSION);
       }
 
     public void setObjectTypeReference (final String objectTypeReference)
@@ -415,9 +471,9 @@ public class IPTCDirectoryGenerated extends Directory
         return containsTag(EDITORIAL_UPDATE);
       }
 
-    public void setUrgency (final Integer urgency)
+    public void setUrgency (final String urgency)
       {
-        final Integer oldValue = getUrgency();
+        final String oldValue = getUrgency();
         final boolean oldPropAvailable = isUrgencyAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -428,14 +484,14 @@ public class IPTCDirectoryGenerated extends Directory
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public Integer getUrgency()
+    public String getUrgency()
       {
-        return getObject(URGENCY, Integer.class);
+        return getObject(URGENCY, String.class);
       }
 
     public void setUrgencyAvailable (final boolean available)
       {
-        final Integer oldValue = getUrgency();
+        final String oldValue = getUrgency();
         final boolean oldPropAvailable = isUrgencyAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -640,9 +696,9 @@ public class IPTCDirectoryGenerated extends Directory
         return containsTag(FIXTURE_IDENTIFIER);
       }
 
-    public void setKeywords (final String[] keywords)
+    public void setKeywords (final String keywords)
       {
-        final String[] oldValue = getKeywords();
+        final String oldValue = getKeywords();
         final boolean oldPropAvailable = isKeywordsAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -653,14 +709,14 @@ public class IPTCDirectoryGenerated extends Directory
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public String[] getKeywords()
+    public String getKeywords()
       {
-        return getObject(KEYWORDS, String[].class);
+        return getObject(KEYWORDS, String.class);
       }
 
     public void setKeywordsAvailable (final boolean available)
       {
-        final String[] oldValue = getKeywords();
+        final String oldValue = getKeywords();
         final boolean oldPropAvailable = isKeywordsAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -775,9 +831,9 @@ public class IPTCDirectoryGenerated extends Directory
         return containsTag(CONTENT_LOCATION_NAME);
       }
 
-    public void setReleaseDate (final java.util.Date releaseDate)
+    public void setReleaseDate (final String releaseDate)
       {
-        final java.util.Date oldValue = getReleaseDate();
+        final String oldValue = getReleaseDate();
         final boolean oldPropAvailable = isReleaseDateAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -788,14 +844,14 @@ public class IPTCDirectoryGenerated extends Directory
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public java.util.Date getReleaseDate()
+    public String getReleaseDate()
       {
-        return getObject(RELEASE_DATE, java.util.Date.class);
+        return getObject(RELEASE_DATE, String.class);
       }
 
     public void setReleaseDateAvailable (final boolean available)
       {
-        final java.util.Date oldValue = getReleaseDate();
+        final String oldValue = getReleaseDate();
         final boolean oldPropAvailable = isReleaseDateAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -820,9 +876,9 @@ public class IPTCDirectoryGenerated extends Directory
         return containsTag(RELEASE_DATE);
       }
 
-    public void setReleaseTime (final java.util.Date releaseTime)
+    public void setReleaseTime (final String releaseTime)
       {
-        final java.util.Date oldValue = getReleaseTime();
+        final String oldValue = getReleaseTime();
         final boolean oldPropAvailable = isReleaseTimeAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -833,14 +889,14 @@ public class IPTCDirectoryGenerated extends Directory
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public java.util.Date getReleaseTime()
+    public String getReleaseTime()
       {
-        return getObject(RELEASE_TIME, java.util.Date.class);
+        return getObject(RELEASE_TIME, String.class);
       }
 
     public void setReleaseTimeAvailable (final boolean available)
       {
-        final java.util.Date oldValue = getReleaseTime();
+        final String oldValue = getReleaseTime();
         final boolean oldPropAvailable = isReleaseTimeAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -865,9 +921,9 @@ public class IPTCDirectoryGenerated extends Directory
         return containsTag(RELEASE_TIME);
       }
 
-    public void setExpirationDate (final java.util.Date expirationDate)
+    public void setExpirationDate (final String expirationDate)
       {
-        final java.util.Date oldValue = getExpirationDate();
+        final String oldValue = getExpirationDate();
         final boolean oldPropAvailable = isExpirationDateAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -878,14 +934,14 @@ public class IPTCDirectoryGenerated extends Directory
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public java.util.Date getExpirationDate()
+    public String getExpirationDate()
       {
-        return getObject(EXPIRATION_DATE, java.util.Date.class);
+        return getObject(EXPIRATION_DATE, String.class);
       }
 
     public void setExpirationDateAvailable (final boolean available)
       {
-        final java.util.Date oldValue = getExpirationDate();
+        final String oldValue = getExpirationDate();
         final boolean oldPropAvailable = isExpirationDateAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -910,9 +966,9 @@ public class IPTCDirectoryGenerated extends Directory
         return containsTag(EXPIRATION_DATE);
       }
 
-    public void setExpirationTime (final java.util.Date expirationTime)
+    public void setExpirationTime (final String expirationTime)
       {
-        final java.util.Date oldValue = getExpirationTime();
+        final String oldValue = getExpirationTime();
         final boolean oldPropAvailable = isExpirationTimeAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -923,14 +979,14 @@ public class IPTCDirectoryGenerated extends Directory
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public java.util.Date getExpirationTime()
+    public String getExpirationTime()
       {
-        return getObject(EXPIRATION_TIME, java.util.Date.class);
+        return getObject(EXPIRATION_TIME, String.class);
       }
 
     public void setExpirationTimeAvailable (final boolean available)
       {
-        final java.util.Date oldValue = getExpirationTime();
+        final String oldValue = getExpirationTime();
         final boolean oldPropAvailable = isExpirationTimeAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -1000,9 +1056,41 @@ public class IPTCDirectoryGenerated extends Directory
         return containsTag(SPECIAL_INSTRUCTIONS);
       }
 
-    public void setActionAdvised (final String actionAdvised)
+    public static enum ActionAdvised
+       {
+         OBJECT_KILL(01, "Object Kill"),
+         OBJECT_REPLACE(02, "Object Replace"),
+         OJBECT_APPEND(03, "Ojbect Append"),
+         OBJECT_REFERENCE(04, "Object Reference"),
+         _UNKNOWN(-1, "_unknown_");
+         private final static long serialVersionUID = 3059468666726854749L;
+         private int value;
+         private String name;
+
+         private ActionAdvised (final int value, final String name)
+           {
+             this.value = value;
+             this.name = name;
+           }
+
+         public int getValue()
+           {
+             return value;
+           }
+
+         public static ActionAdvised fromInteger (int value)
+           {
+             if (value == 01) return OBJECT_KILL;
+             if (value == 02) return OBJECT_REPLACE;
+             if (value == 03) return OJBECT_APPEND;
+             if (value == 04) return OBJECT_REFERENCE;
+
+             return _UNKNOWN;
+           }
+       }
+    public void setActionAdvised (final ActionAdvised actionAdvised)
       {
-        final String oldValue = getActionAdvised();
+        final ActionAdvised oldValue = getActionAdvised();
         final boolean oldPropAvailable = isActionAdvisedAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -1013,14 +1101,14 @@ public class IPTCDirectoryGenerated extends Directory
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public String getActionAdvised()
+    public ActionAdvised getActionAdvised()
       {
-        return getObject(ACTION_ADVISED, String.class);
+        return getObject(ACTION_ADVISED, ActionAdvised.class);
       }
 
     public void setActionAdvisedAvailable (final boolean available)
       {
-        final String oldValue = getActionAdvised();
+        final ActionAdvised oldValue = getActionAdvised();
         final boolean oldPropAvailable = isActionAdvisedAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -1090,9 +1178,9 @@ public class IPTCDirectoryGenerated extends Directory
         return containsTag(REFERENCE_SERVICE);
       }
 
-    public void setReferenceDate (final java.util.Date referenceDate)
+    public void setReferenceDate (final String referenceDate)
       {
-        final java.util.Date oldValue = getReferenceDate();
+        final String oldValue = getReferenceDate();
         final boolean oldPropAvailable = isReferenceDateAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -1103,14 +1191,14 @@ public class IPTCDirectoryGenerated extends Directory
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public java.util.Date getReferenceDate()
+    public String getReferenceDate()
       {
-        return getObject(REFERENCE_DATE, java.util.Date.class);
+        return getObject(REFERENCE_DATE, String.class);
       }
 
     public void setReferenceDateAvailable (final boolean available)
       {
-        final java.util.Date oldValue = getReferenceDate();
+        final String oldValue = getReferenceDate();
         final boolean oldPropAvailable = isReferenceDateAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -1180,9 +1268,9 @@ public class IPTCDirectoryGenerated extends Directory
         return containsTag(REFERENCE_NUMBER);
       }
 
-    public void setDateCreated (final java.util.Date dateCreated)
+    public void setDateCreated (final String dateCreated)
       {
-        final java.util.Date oldValue = getDateCreated();
+        final String oldValue = getDateCreated();
         final boolean oldPropAvailable = isDateCreatedAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -1193,14 +1281,14 @@ public class IPTCDirectoryGenerated extends Directory
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public java.util.Date getDateCreated()
+    public String getDateCreated()
       {
-        return getObject(DATE_CREATED, java.util.Date.class);
+        return getObject(DATE_CREATED, String.class);
       }
 
     public void setDateCreatedAvailable (final boolean available)
       {
-        final java.util.Date oldValue = getDateCreated();
+        final String oldValue = getDateCreated();
         final boolean oldPropAvailable = isDateCreatedAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -1225,9 +1313,9 @@ public class IPTCDirectoryGenerated extends Directory
         return containsTag(DATE_CREATED);
       }
 
-    public void setTimeCreated (final java.util.Date timeCreated)
+    public void setTimeCreated (final String timeCreated)
       {
-        final java.util.Date oldValue = getTimeCreated();
+        final String oldValue = getTimeCreated();
         final boolean oldPropAvailable = isTimeCreatedAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -1238,14 +1326,14 @@ public class IPTCDirectoryGenerated extends Directory
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public java.util.Date getTimeCreated()
+    public String getTimeCreated()
       {
-        return getObject(TIME_CREATED, java.util.Date.class);
+        return getObject(TIME_CREATED, String.class);
       }
 
     public void setTimeCreatedAvailable (final boolean available)
       {
-        final java.util.Date oldValue = getTimeCreated();
+        final String oldValue = getTimeCreated();
         final boolean oldPropAvailable = isTimeCreatedAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -1270,9 +1358,9 @@ public class IPTCDirectoryGenerated extends Directory
         return containsTag(TIME_CREATED);
       }
 
-    public void setDigitalCreationDate (final java.util.Date digitalCreationDate)
+    public void setDigitalCreationDate (final String digitalCreationDate)
       {
-        final java.util.Date oldValue = getDigitalCreationDate();
+        final String oldValue = getDigitalCreationDate();
         final boolean oldPropAvailable = isDigitalCreationDateAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -1283,14 +1371,14 @@ public class IPTCDirectoryGenerated extends Directory
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public java.util.Date getDigitalCreationDate()
+    public String getDigitalCreationDate()
       {
-        return getObject(DIGITAL_CREATION_DATE, java.util.Date.class);
+        return getObject(DIGITAL_CREATION_DATE, String.class);
       }
 
     public void setDigitalCreationDateAvailable (final boolean available)
       {
-        final java.util.Date oldValue = getDigitalCreationDate();
+        final String oldValue = getDigitalCreationDate();
         final boolean oldPropAvailable = isDigitalCreationDateAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -1315,9 +1403,9 @@ public class IPTCDirectoryGenerated extends Directory
         return containsTag(DIGITAL_CREATION_DATE);
       }
 
-    public void setDigitalCreationTime (final java.util.Date digitalCreationTime)
+    public void setDigitalCreationTime (final String digitalCreationTime)
       {
-        final java.util.Date oldValue = getDigitalCreationTime();
+        final String oldValue = getDigitalCreationTime();
         final boolean oldPropAvailable = isDigitalCreationTimeAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -1328,14 +1416,14 @@ public class IPTCDirectoryGenerated extends Directory
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public java.util.Date getDigitalCreationTime()
+    public String getDigitalCreationTime()
       {
-        return getObject(DIGITAL_CREATION_TIME, java.util.Date.class);
+        return getObject(DIGITAL_CREATION_TIME, String.class);
       }
 
     public void setDigitalCreationTimeAvailable (final boolean available)
       {
-        final java.util.Date oldValue = getDigitalCreationTime();
+        final String oldValue = getDigitalCreationTime();
         final boolean oldPropAvailable = isDigitalCreationTimeAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -1405,51 +1493,6 @@ public class IPTCDirectoryGenerated extends Directory
         return containsTag(ORIGINATING_PROGRAM);
       }
 
-    public void setObjectCycle (final String objectCycle)
-      {
-        final String oldValue = getObjectCycle();
-        final boolean oldPropAvailable = isObjectCycleAvailable();
-        final boolean oldAvailable = isAvailable();
-        final Date oldLatestModificationTime = getLatestModificationTime();
-        setObject(IPTCDirectoryGenerated.OBJECT_CYCLE, objectCycle);
-        propertyChangeSupport.firePropertyChange("objectCycle", oldValue, objectCycle);
-        propertyChangeSupport.firePropertyChange("objectCycleAvailable", oldPropAvailable, isObjectCycleAvailable());
-        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
-        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
-      }
-
-    public String getObjectCycle()
-      {
-        return getObject(OBJECT_CYCLE, String.class);
-      }
-
-    public void setObjectCycleAvailable (final boolean available)
-      {
-        final String oldValue = getObjectCycle();
-        final boolean oldPropAvailable = isObjectCycleAvailable();
-        final boolean oldAvailable = isAvailable();
-        final Date oldLatestModificationTime = getLatestModificationTime();
-
-        if (available && !containsTag(OBJECT_CYCLE))
-          {
-            setObject(OBJECT_CYCLE, null);
-          }
-        else if (!available)
-          {
-            removeTag(OBJECT_CYCLE);
-          }
-
-        propertyChangeSupport.firePropertyChange("objectCycleAvailable", oldPropAvailable, available);
-        propertyChangeSupport.firePropertyChange("objectCycle", oldValue, getObjectCycle());
-        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
-        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
-      }
-
-    public boolean isObjectCycleAvailable()
-      {
-        return containsTag(OBJECT_CYCLE);
-      }
-
     public void setProgramVersion (final String programVersion)
       {
         final String oldValue = getProgramVersion();
@@ -1495,94 +1538,139 @@ public class IPTCDirectoryGenerated extends Directory
         return containsTag(PROGRAM_VERSION);
       }
 
-    public void setByLine (final String byLine)
+    public void setObjectCycle (final String objectCycle)
       {
-        final String oldValue = getByLine();
-        final boolean oldPropAvailable = isByLineAvailable();
+        final String oldValue = getObjectCycle();
+        final boolean oldPropAvailable = isObjectCycleAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
-        setObject(IPTCDirectoryGenerated.BY_LINE, byLine);
-        propertyChangeSupport.firePropertyChange("byLine", oldValue, byLine);
-        propertyChangeSupport.firePropertyChange("byLineAvailable", oldPropAvailable, isByLineAvailable());
+        setObject(IPTCDirectoryGenerated.OBJECT_CYCLE, objectCycle);
+        propertyChangeSupport.firePropertyChange("objectCycle", oldValue, objectCycle);
+        propertyChangeSupport.firePropertyChange("objectCycleAvailable", oldPropAvailable, isObjectCycleAvailable());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public String getByLine()
+    public String getObjectCycle()
       {
-        return getObject(BY_LINE, String.class);
+        return getObject(OBJECT_CYCLE, String.class);
       }
 
-    public void setByLineAvailable (final boolean available)
+    public void setObjectCycleAvailable (final boolean available)
       {
-        final String oldValue = getByLine();
-        final boolean oldPropAvailable = isByLineAvailable();
+        final String oldValue = getObjectCycle();
+        final boolean oldPropAvailable = isObjectCycleAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
 
-        if (available && !containsTag(BY_LINE))
+        if (available && !containsTag(OBJECT_CYCLE))
           {
-            setObject(BY_LINE, null);
+            setObject(OBJECT_CYCLE, null);
           }
         else if (!available)
           {
-            removeTag(BY_LINE);
+            removeTag(OBJECT_CYCLE);
           }
 
-        propertyChangeSupport.firePropertyChange("byLineAvailable", oldPropAvailable, available);
-        propertyChangeSupport.firePropertyChange("byLine", oldValue, getByLine());
+        propertyChangeSupport.firePropertyChange("objectCycleAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("objectCycle", oldValue, getObjectCycle());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public boolean isByLineAvailable()
+    public boolean isObjectCycleAvailable()
       {
-        return containsTag(BY_LINE);
+        return containsTag(OBJECT_CYCLE);
       }
 
-    public void setByLineTitle (final String byLineTitle)
+    public void setByline (final String byline)
       {
-        final String oldValue = getByLineTitle();
-        final boolean oldPropAvailable = isByLineTitleAvailable();
+        final String oldValue = getByline();
+        final boolean oldPropAvailable = isBylineAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
-        setObject(IPTCDirectoryGenerated.BY_LINE_TITLE, byLineTitle);
-        propertyChangeSupport.firePropertyChange("byLineTitle", oldValue, byLineTitle);
-        propertyChangeSupport.firePropertyChange("byLineTitleAvailable", oldPropAvailable, isByLineTitleAvailable());
+        setObject(IPTCDirectoryGenerated.BYLINE, byline);
+        propertyChangeSupport.firePropertyChange("byline", oldValue, byline);
+        propertyChangeSupport.firePropertyChange("bylineAvailable", oldPropAvailable, isBylineAvailable());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public String getByLineTitle()
+    public String getByline()
       {
-        return getObject(BY_LINE_TITLE, String.class);
+        return getObject(BYLINE, String.class);
       }
 
-    public void setByLineTitleAvailable (final boolean available)
+    public void setBylineAvailable (final boolean available)
       {
-        final String oldValue = getByLineTitle();
-        final boolean oldPropAvailable = isByLineTitleAvailable();
+        final String oldValue = getByline();
+        final boolean oldPropAvailable = isBylineAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
 
-        if (available && !containsTag(BY_LINE_TITLE))
+        if (available && !containsTag(BYLINE))
           {
-            setObject(BY_LINE_TITLE, null);
+            setObject(BYLINE, null);
           }
         else if (!available)
           {
-            removeTag(BY_LINE_TITLE);
+            removeTag(BYLINE);
           }
 
-        propertyChangeSupport.firePropertyChange("byLineTitleAvailable", oldPropAvailable, available);
-        propertyChangeSupport.firePropertyChange("byLineTitle", oldValue, getByLineTitle());
+        propertyChangeSupport.firePropertyChange("bylineAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("byline", oldValue, getByline());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public boolean isByLineTitleAvailable()
+    public boolean isBylineAvailable()
       {
-        return containsTag(BY_LINE_TITLE);
+        return containsTag(BYLINE);
+      }
+
+    public void setBylineTitle (final String bylineTitle)
+      {
+        final String oldValue = getBylineTitle();
+        final boolean oldPropAvailable = isBylineTitleAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.BYLINE_TITLE, bylineTitle);
+        propertyChangeSupport.firePropertyChange("bylineTitle", oldValue, bylineTitle);
+        propertyChangeSupport.firePropertyChange("bylineTitleAvailable", oldPropAvailable, isBylineTitleAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getBylineTitle()
+      {
+        return getObject(BYLINE_TITLE, String.class);
+      }
+
+    public void setBylineTitleAvailable (final boolean available)
+      {
+        final String oldValue = getBylineTitle();
+        final boolean oldPropAvailable = isBylineTitleAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(BYLINE_TITLE))
+          {
+            setObject(BYLINE_TITLE, null);
+          }
+        else if (!available)
+          {
+            removeTag(BYLINE_TITLE);
+          }
+
+        propertyChangeSupport.firePropertyChange("bylineTitleAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("bylineTitle", oldValue, getBylineTitle());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isBylineTitleAvailable()
+      {
+        return containsTag(BYLINE_TITLE);
       }
 
     public void setCity (final String city)
@@ -1630,184 +1718,184 @@ public class IPTCDirectoryGenerated extends Directory
         return containsTag(CITY);
       }
 
-    public void setSubLocation (final String subLocation)
+    public void setSublocation (final String sublocation)
       {
-        final String oldValue = getSubLocation();
-        final boolean oldPropAvailable = isSubLocationAvailable();
+        final String oldValue = getSublocation();
+        final boolean oldPropAvailable = isSublocationAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
-        setObject(IPTCDirectoryGenerated.SUB_LOCATION, subLocation);
-        propertyChangeSupport.firePropertyChange("subLocation", oldValue, subLocation);
-        propertyChangeSupport.firePropertyChange("subLocationAvailable", oldPropAvailable, isSubLocationAvailable());
+        setObject(IPTCDirectoryGenerated.SUBLOCATION, sublocation);
+        propertyChangeSupport.firePropertyChange("sublocation", oldValue, sublocation);
+        propertyChangeSupport.firePropertyChange("sublocationAvailable", oldPropAvailable, isSublocationAvailable());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public String getSubLocation()
+    public String getSublocation()
       {
-        return getObject(SUB_LOCATION, String.class);
+        return getObject(SUBLOCATION, String.class);
       }
 
-    public void setSubLocationAvailable (final boolean available)
+    public void setSublocationAvailable (final boolean available)
       {
-        final String oldValue = getSubLocation();
-        final boolean oldPropAvailable = isSubLocationAvailable();
+        final String oldValue = getSublocation();
+        final boolean oldPropAvailable = isSublocationAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
 
-        if (available && !containsTag(SUB_LOCATION))
+        if (available && !containsTag(SUBLOCATION))
           {
-            setObject(SUB_LOCATION, null);
+            setObject(SUBLOCATION, null);
           }
         else if (!available)
           {
-            removeTag(SUB_LOCATION);
+            removeTag(SUBLOCATION);
           }
 
-        propertyChangeSupport.firePropertyChange("subLocationAvailable", oldPropAvailable, available);
-        propertyChangeSupport.firePropertyChange("subLocation", oldValue, getSubLocation());
+        propertyChangeSupport.firePropertyChange("sublocationAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("sublocation", oldValue, getSublocation());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public boolean isSubLocationAvailable()
+    public boolean isSublocationAvailable()
       {
-        return containsTag(SUB_LOCATION);
+        return containsTag(SUBLOCATION);
       }
 
-    public void setProvinceOrState (final String provinceOrState)
+    public void setProvinceState (final String provinceState)
       {
-        final String oldValue = getProvinceOrState();
-        final boolean oldPropAvailable = isProvinceOrStateAvailable();
+        final String oldValue = getProvinceState();
+        final boolean oldPropAvailable = isProvinceStateAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
-        setObject(IPTCDirectoryGenerated.PROVINCE_OR_STATE, provinceOrState);
-        propertyChangeSupport.firePropertyChange("provinceOrState", oldValue, provinceOrState);
-        propertyChangeSupport.firePropertyChange("provinceOrStateAvailable", oldPropAvailable, isProvinceOrStateAvailable());
+        setObject(IPTCDirectoryGenerated.PROVINCESTATE, provinceState);
+        propertyChangeSupport.firePropertyChange("provinceState", oldValue, provinceState);
+        propertyChangeSupport.firePropertyChange("provinceStateAvailable", oldPropAvailable, isProvinceStateAvailable());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public String getProvinceOrState()
+    public String getProvinceState()
       {
-        return getObject(PROVINCE_OR_STATE, String.class);
+        return getObject(PROVINCESTATE, String.class);
       }
 
-    public void setProvinceOrStateAvailable (final boolean available)
+    public void setProvinceStateAvailable (final boolean available)
       {
-        final String oldValue = getProvinceOrState();
-        final boolean oldPropAvailable = isProvinceOrStateAvailable();
+        final String oldValue = getProvinceState();
+        final boolean oldPropAvailable = isProvinceStateAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
 
-        if (available && !containsTag(PROVINCE_OR_STATE))
+        if (available && !containsTag(PROVINCESTATE))
           {
-            setObject(PROVINCE_OR_STATE, null);
+            setObject(PROVINCESTATE, null);
           }
         else if (!available)
           {
-            removeTag(PROVINCE_OR_STATE);
+            removeTag(PROVINCESTATE);
           }
 
-        propertyChangeSupport.firePropertyChange("provinceOrStateAvailable", oldPropAvailable, available);
-        propertyChangeSupport.firePropertyChange("provinceOrState", oldValue, getProvinceOrState());
+        propertyChangeSupport.firePropertyChange("provinceStateAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("provinceState", oldValue, getProvinceState());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public boolean isProvinceOrStateAvailable()
+    public boolean isProvinceStateAvailable()
       {
-        return containsTag(PROVINCE_OR_STATE);
+        return containsTag(PROVINCESTATE);
       }
 
-    public void setCountryCode (final String countryCode)
+    public void setCountryPrimaryLocationCode (final String countryPrimaryLocationCode)
       {
-        final String oldValue = getCountryCode();
-        final boolean oldPropAvailable = isCountryCodeAvailable();
+        final String oldValue = getCountryPrimaryLocationCode();
+        final boolean oldPropAvailable = isCountryPrimaryLocationCodeAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
-        setObject(IPTCDirectoryGenerated.COUNTRY_CODE, countryCode);
-        propertyChangeSupport.firePropertyChange("countryCode", oldValue, countryCode);
-        propertyChangeSupport.firePropertyChange("countryCodeAvailable", oldPropAvailable, isCountryCodeAvailable());
+        setObject(IPTCDirectoryGenerated.COUNTRYPRIMARY_LOCATION_CODE, countryPrimaryLocationCode);
+        propertyChangeSupport.firePropertyChange("countryPrimaryLocationCode", oldValue, countryPrimaryLocationCode);
+        propertyChangeSupport.firePropertyChange("countryPrimaryLocationCodeAvailable", oldPropAvailable, isCountryPrimaryLocationCodeAvailable());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public String getCountryCode()
+    public String getCountryPrimaryLocationCode()
       {
-        return getObject(COUNTRY_CODE, String.class);
+        return getObject(COUNTRYPRIMARY_LOCATION_CODE, String.class);
       }
 
-    public void setCountryCodeAvailable (final boolean available)
+    public void setCountryPrimaryLocationCodeAvailable (final boolean available)
       {
-        final String oldValue = getCountryCode();
-        final boolean oldPropAvailable = isCountryCodeAvailable();
+        final String oldValue = getCountryPrimaryLocationCode();
+        final boolean oldPropAvailable = isCountryPrimaryLocationCodeAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
 
-        if (available && !containsTag(COUNTRY_CODE))
+        if (available && !containsTag(COUNTRYPRIMARY_LOCATION_CODE))
           {
-            setObject(COUNTRY_CODE, null);
+            setObject(COUNTRYPRIMARY_LOCATION_CODE, null);
           }
         else if (!available)
           {
-            removeTag(COUNTRY_CODE);
+            removeTag(COUNTRYPRIMARY_LOCATION_CODE);
           }
 
-        propertyChangeSupport.firePropertyChange("countryCodeAvailable", oldPropAvailable, available);
-        propertyChangeSupport.firePropertyChange("countryCode", oldValue, getCountryCode());
+        propertyChangeSupport.firePropertyChange("countryPrimaryLocationCodeAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("countryPrimaryLocationCode", oldValue, getCountryPrimaryLocationCode());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public boolean isCountryCodeAvailable()
+    public boolean isCountryPrimaryLocationCodeAvailable()
       {
-        return containsTag(COUNTRY_CODE);
+        return containsTag(COUNTRYPRIMARY_LOCATION_CODE);
       }
 
-    public void setCountryOrPrimaryLocation (final String countryOrPrimaryLocation)
+    public void setCountryPrimaryLocationName (final String countryPrimaryLocationName)
       {
-        final String oldValue = getCountryOrPrimaryLocation();
-        final boolean oldPropAvailable = isCountryOrPrimaryLocationAvailable();
+        final String oldValue = getCountryPrimaryLocationName();
+        final boolean oldPropAvailable = isCountryPrimaryLocationNameAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
-        setObject(IPTCDirectoryGenerated.COUNTRY_OR_PRIMARY_LOCATION, countryOrPrimaryLocation);
-        propertyChangeSupport.firePropertyChange("countryOrPrimaryLocation", oldValue, countryOrPrimaryLocation);
-        propertyChangeSupport.firePropertyChange("countryOrPrimaryLocationAvailable", oldPropAvailable, isCountryOrPrimaryLocationAvailable());
+        setObject(IPTCDirectoryGenerated.COUNTRYPRIMARY_LOCATION_NAME, countryPrimaryLocationName);
+        propertyChangeSupport.firePropertyChange("countryPrimaryLocationName", oldValue, countryPrimaryLocationName);
+        propertyChangeSupport.firePropertyChange("countryPrimaryLocationNameAvailable", oldPropAvailable, isCountryPrimaryLocationNameAvailable());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public String getCountryOrPrimaryLocation()
+    public String getCountryPrimaryLocationName()
       {
-        return getObject(COUNTRY_OR_PRIMARY_LOCATION, String.class);
+        return getObject(COUNTRYPRIMARY_LOCATION_NAME, String.class);
       }
 
-    public void setCountryOrPrimaryLocationAvailable (final boolean available)
+    public void setCountryPrimaryLocationNameAvailable (final boolean available)
       {
-        final String oldValue = getCountryOrPrimaryLocation();
-        final boolean oldPropAvailable = isCountryOrPrimaryLocationAvailable();
+        final String oldValue = getCountryPrimaryLocationName();
+        final boolean oldPropAvailable = isCountryPrimaryLocationNameAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
 
-        if (available && !containsTag(COUNTRY_OR_PRIMARY_LOCATION))
+        if (available && !containsTag(COUNTRYPRIMARY_LOCATION_NAME))
           {
-            setObject(COUNTRY_OR_PRIMARY_LOCATION, null);
+            setObject(COUNTRYPRIMARY_LOCATION_NAME, null);
           }
         else if (!available)
           {
-            removeTag(COUNTRY_OR_PRIMARY_LOCATION);
+            removeTag(COUNTRYPRIMARY_LOCATION_NAME);
           }
 
-        propertyChangeSupport.firePropertyChange("countryOrPrimaryLocationAvailable", oldPropAvailable, available);
-        propertyChangeSupport.firePropertyChange("countryOrPrimaryLocation", oldValue, getCountryOrPrimaryLocation());
+        propertyChangeSupport.firePropertyChange("countryPrimaryLocationNameAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("countryPrimaryLocationName", oldValue, getCountryPrimaryLocationName());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public boolean isCountryOrPrimaryLocationAvailable()
+    public boolean isCountryPrimaryLocationNameAvailable()
       {
-        return containsTag(COUNTRY_OR_PRIMARY_LOCATION);
+        return containsTag(COUNTRYPRIMARY_LOCATION_NAME);
       }
 
     public void setOriginalTransmissionReference (final String originalTransmissionReference)
@@ -2080,99 +2168,144 @@ public class IPTCDirectoryGenerated extends Directory
         return containsTag(CONTACT);
       }
 
-    public void setCaption (final String caption)
+    public void setCaptionAbstract (final String captionAbstract)
       {
-        final String oldValue = getCaption();
-        final boolean oldPropAvailable = isCaptionAvailable();
+        final String oldValue = getCaptionAbstract();
+        final boolean oldPropAvailable = isCaptionAbstractAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
-        setObject(IPTCDirectoryGenerated.CAPTION, caption);
-        propertyChangeSupport.firePropertyChange("caption", oldValue, caption);
-        propertyChangeSupport.firePropertyChange("captionAvailable", oldPropAvailable, isCaptionAvailable());
+        setObject(IPTCDirectoryGenerated.CAPTIONABSTRACT, captionAbstract);
+        propertyChangeSupport.firePropertyChange("captionAbstract", oldValue, captionAbstract);
+        propertyChangeSupport.firePropertyChange("captionAbstractAvailable", oldPropAvailable, isCaptionAbstractAvailable());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public String getCaption()
+    public String getCaptionAbstract()
       {
-        return getObject(CAPTION, String.class);
+        return getObject(CAPTIONABSTRACT, String.class);
       }
 
-    public void setCaptionAvailable (final boolean available)
+    public void setCaptionAbstractAvailable (final boolean available)
       {
-        final String oldValue = getCaption();
-        final boolean oldPropAvailable = isCaptionAvailable();
+        final String oldValue = getCaptionAbstract();
+        final boolean oldPropAvailable = isCaptionAbstractAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
 
-        if (available && !containsTag(CAPTION))
+        if (available && !containsTag(CAPTIONABSTRACT))
           {
-            setObject(CAPTION, null);
+            setObject(CAPTIONABSTRACT, null);
           }
         else if (!available)
           {
-            removeTag(CAPTION);
+            removeTag(CAPTIONABSTRACT);
           }
 
-        propertyChangeSupport.firePropertyChange("captionAvailable", oldPropAvailable, available);
-        propertyChangeSupport.firePropertyChange("caption", oldValue, getCaption());
+        propertyChangeSupport.firePropertyChange("captionAbstractAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("captionAbstract", oldValue, getCaptionAbstract());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public boolean isCaptionAvailable()
+    public boolean isCaptionAbstractAvailable()
       {
-        return containsTag(CAPTION);
+        return containsTag(CAPTIONABSTRACT);
       }
 
-    public void setWriter (final String writer)
+    public void setLocalCaption (final String localCaption)
       {
-        final String oldValue = getWriter();
-        final boolean oldPropAvailable = isWriterAvailable();
+        final String oldValue = getLocalCaption();
+        final boolean oldPropAvailable = isLocalCaptionAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
-        setObject(IPTCDirectoryGenerated.WRITER, writer);
-        propertyChangeSupport.firePropertyChange("writer", oldValue, writer);
-        propertyChangeSupport.firePropertyChange("writerAvailable", oldPropAvailable, isWriterAvailable());
+        setObject(IPTCDirectoryGenerated.LOCAL_CAPTION, localCaption);
+        propertyChangeSupport.firePropertyChange("localCaption", oldValue, localCaption);
+        propertyChangeSupport.firePropertyChange("localCaptionAvailable", oldPropAvailable, isLocalCaptionAvailable());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public String getWriter()
+    public String getLocalCaption()
       {
-        return getObject(WRITER, String.class);
+        return getObject(LOCAL_CAPTION, String.class);
       }
 
-    public void setWriterAvailable (final boolean available)
+    public void setLocalCaptionAvailable (final boolean available)
       {
-        final String oldValue = getWriter();
-        final boolean oldPropAvailable = isWriterAvailable();
+        final String oldValue = getLocalCaption();
+        final boolean oldPropAvailable = isLocalCaptionAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
 
-        if (available && !containsTag(WRITER))
+        if (available && !containsTag(LOCAL_CAPTION))
           {
-            setObject(WRITER, null);
+            setObject(LOCAL_CAPTION, null);
           }
         else if (!available)
           {
-            removeTag(WRITER);
+            removeTag(LOCAL_CAPTION);
           }
 
-        propertyChangeSupport.firePropertyChange("writerAvailable", oldPropAvailable, available);
-        propertyChangeSupport.firePropertyChange("writer", oldValue, getWriter());
+        propertyChangeSupport.firePropertyChange("localCaptionAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("localCaption", oldValue, getLocalCaption());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public boolean isWriterAvailable()
+    public boolean isLocalCaptionAvailable()
       {
-        return containsTag(WRITER);
+        return containsTag(LOCAL_CAPTION);
       }
 
-    public void setRasterizedCaption (final byte[] rasterizedCaption)
+    public void setWriterEditor (final String writerEditor)
       {
-        final byte[] oldValue = getRasterizedCaption();
+        final String oldValue = getWriterEditor();
+        final boolean oldPropAvailable = isWriterEditorAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.WRITEREDITOR, writerEditor);
+        propertyChangeSupport.firePropertyChange("writerEditor", oldValue, writerEditor);
+        propertyChangeSupport.firePropertyChange("writerEditorAvailable", oldPropAvailable, isWriterEditorAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getWriterEditor()
+      {
+        return getObject(WRITEREDITOR, String.class);
+      }
+
+    public void setWriterEditorAvailable (final boolean available)
+      {
+        final String oldValue = getWriterEditor();
+        final boolean oldPropAvailable = isWriterEditorAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(WRITEREDITOR))
+          {
+            setObject(WRITEREDITOR, null);
+          }
+        else if (!available)
+          {
+            removeTag(WRITEREDITOR);
+          }
+
+        propertyChangeSupport.firePropertyChange("writerEditorAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("writerEditor", oldValue, getWriterEditor());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isWriterEditorAvailable()
+      {
+        return containsTag(WRITEREDITOR);
+      }
+
+    public void setRasterizedCaption (final String rasterizedCaption)
+      {
+        final String oldValue = getRasterizedCaption();
         final boolean oldPropAvailable = isRasterizedCaptionAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -2183,14 +2316,14 @@ public class IPTCDirectoryGenerated extends Directory
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public byte[] getRasterizedCaption()
+    public String getRasterizedCaption()
       {
-        return getObject(RASTERIZED_CAPTION, byte[].class);
+        return getObject(RASTERIZED_CAPTION, String.class);
       }
 
     public void setRasterizedCaptionAvailable (final boolean available)
       {
-        final byte[] oldValue = getRasterizedCaption();
+        final String oldValue = getRasterizedCaption();
         final boolean oldPropAvailable = isRasterizedCaptionAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
@@ -2575,144 +2708,1443 @@ public class IPTCDirectoryGenerated extends Directory
         return containsTag(AUDIO_OUTCUE);
       }
 
-    public void setObjectDataPreviewFileFormat (final String objectDataPreviewFileFormat)
+    public void setJobID (final String jobID)
       {
-        final String oldValue = getObjectDataPreviewFileFormat();
-        final boolean oldPropAvailable = isObjectDataPreviewFileFormatAvailable();
+        final String oldValue = getJobID();
+        final boolean oldPropAvailable = isJobIDAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
-        setObject(IPTCDirectoryGenerated.OBJECTDATA_PREVIEW_FILE_FORMAT, objectDataPreviewFileFormat);
-        propertyChangeSupport.firePropertyChange("objectDataPreviewFileFormat", oldValue, objectDataPreviewFileFormat);
-        propertyChangeSupport.firePropertyChange("objectDataPreviewFileFormatAvailable", oldPropAvailable, isObjectDataPreviewFileFormatAvailable());
+        setObject(IPTCDirectoryGenerated.JOB_ID, jobID);
+        propertyChangeSupport.firePropertyChange("jobID", oldValue, jobID);
+        propertyChangeSupport.firePropertyChange("jobIDAvailable", oldPropAvailable, isJobIDAvailable());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public String getObjectDataPreviewFileFormat()
+    public String getJobID()
       {
-        return getObject(OBJECTDATA_PREVIEW_FILE_FORMAT, String.class);
+        return getObject(JOB_ID, String.class);
       }
 
-    public void setObjectDataPreviewFileFormatAvailable (final boolean available)
+    public void setJobIDAvailable (final boolean available)
       {
-        final String oldValue = getObjectDataPreviewFileFormat();
-        final boolean oldPropAvailable = isObjectDataPreviewFileFormatAvailable();
+        final String oldValue = getJobID();
+        final boolean oldPropAvailable = isJobIDAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
 
-        if (available && !containsTag(OBJECTDATA_PREVIEW_FILE_FORMAT))
+        if (available && !containsTag(JOB_ID))
           {
-            setObject(OBJECTDATA_PREVIEW_FILE_FORMAT, null);
+            setObject(JOB_ID, null);
           }
         else if (!available)
           {
-            removeTag(OBJECTDATA_PREVIEW_FILE_FORMAT);
+            removeTag(JOB_ID);
           }
 
-        propertyChangeSupport.firePropertyChange("objectDataPreviewFileFormatAvailable", oldPropAvailable, available);
-        propertyChangeSupport.firePropertyChange("objectDataPreviewFileFormat", oldValue, getObjectDataPreviewFileFormat());
+        propertyChangeSupport.firePropertyChange("jobIDAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("jobID", oldValue, getJobID());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public boolean isObjectDataPreviewFileFormatAvailable()
+    public boolean isJobIDAvailable()
       {
-        return containsTag(OBJECTDATA_PREVIEW_FILE_FORMAT);
+        return containsTag(JOB_ID);
       }
 
-    public void setObjectDataPreviewFileFormatVersion (final String objectDataPreviewFileFormatVersion)
+    public void setMasterDocumentID (final String masterDocumentID)
       {
-        final String oldValue = getObjectDataPreviewFileFormatVersion();
-        final boolean oldPropAvailable = isObjectDataPreviewFileFormatVersionAvailable();
+        final String oldValue = getMasterDocumentID();
+        final boolean oldPropAvailable = isMasterDocumentIDAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
-        setObject(IPTCDirectoryGenerated.OBJECTDATA_PREVIEW_FILE_FORMAT_VERSION, objectDataPreviewFileFormatVersion);
-        propertyChangeSupport.firePropertyChange("objectDataPreviewFileFormatVersion", oldValue, objectDataPreviewFileFormatVersion);
-        propertyChangeSupport.firePropertyChange("objectDataPreviewFileFormatVersionAvailable", oldPropAvailable, isObjectDataPreviewFileFormatVersionAvailable());
+        setObject(IPTCDirectoryGenerated.MASTER_DOCUMENT_ID, masterDocumentID);
+        propertyChangeSupport.firePropertyChange("masterDocumentID", oldValue, masterDocumentID);
+        propertyChangeSupport.firePropertyChange("masterDocumentIDAvailable", oldPropAvailable, isMasterDocumentIDAvailable());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public String getObjectDataPreviewFileFormatVersion()
+    public String getMasterDocumentID()
       {
-        return getObject(OBJECTDATA_PREVIEW_FILE_FORMAT_VERSION, String.class);
+        return getObject(MASTER_DOCUMENT_ID, String.class);
       }
 
-    public void setObjectDataPreviewFileFormatVersionAvailable (final boolean available)
+    public void setMasterDocumentIDAvailable (final boolean available)
       {
-        final String oldValue = getObjectDataPreviewFileFormatVersion();
-        final boolean oldPropAvailable = isObjectDataPreviewFileFormatVersionAvailable();
+        final String oldValue = getMasterDocumentID();
+        final boolean oldPropAvailable = isMasterDocumentIDAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
 
-        if (available && !containsTag(OBJECTDATA_PREVIEW_FILE_FORMAT_VERSION))
+        if (available && !containsTag(MASTER_DOCUMENT_ID))
           {
-            setObject(OBJECTDATA_PREVIEW_FILE_FORMAT_VERSION, null);
+            setObject(MASTER_DOCUMENT_ID, null);
           }
         else if (!available)
           {
-            removeTag(OBJECTDATA_PREVIEW_FILE_FORMAT_VERSION);
+            removeTag(MASTER_DOCUMENT_ID);
           }
 
-        propertyChangeSupport.firePropertyChange("objectDataPreviewFileFormatVersionAvailable", oldPropAvailable, available);
-        propertyChangeSupport.firePropertyChange("objectDataPreviewFileFormatVersion", oldValue, getObjectDataPreviewFileFormatVersion());
+        propertyChangeSupport.firePropertyChange("masterDocumentIDAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("masterDocumentID", oldValue, getMasterDocumentID());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public boolean isObjectDataPreviewFileFormatVersionAvailable()
+    public boolean isMasterDocumentIDAvailable()
       {
-        return containsTag(OBJECTDATA_PREVIEW_FILE_FORMAT_VERSION);
+        return containsTag(MASTER_DOCUMENT_ID);
       }
 
-    public void setObjectDataPreviewPreviewData (final byte[] objectDataPreviewPreviewData)
+    public void setShortDocumentID (final String shortDocumentID)
       {
-        final byte[] oldValue = getObjectDataPreviewPreviewData();
-        final boolean oldPropAvailable = isObjectDataPreviewPreviewDataAvailable();
+        final String oldValue = getShortDocumentID();
+        final boolean oldPropAvailable = isShortDocumentIDAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
-        setObject(IPTCDirectoryGenerated.OBJECTDATA_PREVIEW_PREVIEW_DATA, objectDataPreviewPreviewData);
-        propertyChangeSupport.firePropertyChange("objectDataPreviewPreviewData", oldValue, objectDataPreviewPreviewData);
-        propertyChangeSupport.firePropertyChange("objectDataPreviewPreviewDataAvailable", oldPropAvailable, isObjectDataPreviewPreviewDataAvailable());
+        setObject(IPTCDirectoryGenerated.SHORT_DOCUMENT_ID, shortDocumentID);
+        propertyChangeSupport.firePropertyChange("shortDocumentID", oldValue, shortDocumentID);
+        propertyChangeSupport.firePropertyChange("shortDocumentIDAvailable", oldPropAvailable, isShortDocumentIDAvailable());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public byte[] getObjectDataPreviewPreviewData()
+    public String getShortDocumentID()
       {
-        return getObject(OBJECTDATA_PREVIEW_PREVIEW_DATA, byte[].class);
+        return getObject(SHORT_DOCUMENT_ID, String.class);
       }
 
-    public void setObjectDataPreviewPreviewDataAvailable (final boolean available)
+    public void setShortDocumentIDAvailable (final boolean available)
       {
-        final byte[] oldValue = getObjectDataPreviewPreviewData();
-        final boolean oldPropAvailable = isObjectDataPreviewPreviewDataAvailable();
+        final String oldValue = getShortDocumentID();
+        final boolean oldPropAvailable = isShortDocumentIDAvailable();
         final boolean oldAvailable = isAvailable();
         final Date oldLatestModificationTime = getLatestModificationTime();
 
-        if (available && !containsTag(OBJECTDATA_PREVIEW_PREVIEW_DATA))
+        if (available && !containsTag(SHORT_DOCUMENT_ID))
           {
-            setObject(OBJECTDATA_PREVIEW_PREVIEW_DATA, null);
+            setObject(SHORT_DOCUMENT_ID, null);
           }
         else if (!available)
           {
-            removeTag(OBJECTDATA_PREVIEW_PREVIEW_DATA);
+            removeTag(SHORT_DOCUMENT_ID);
           }
 
-        propertyChangeSupport.firePropertyChange("objectDataPreviewPreviewDataAvailable", oldPropAvailable, available);
-        propertyChangeSupport.firePropertyChange("objectDataPreviewPreviewData", oldValue, getObjectDataPreviewPreviewData());
+        propertyChangeSupport.firePropertyChange("shortDocumentIDAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("shortDocumentID", oldValue, getShortDocumentID());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public boolean isObjectDataPreviewPreviewDataAvailable()
+    public boolean isShortDocumentIDAvailable()
       {
-        return containsTag(OBJECTDATA_PREVIEW_PREVIEW_DATA);
+        return containsTag(SHORT_DOCUMENT_ID);
+      }
+
+    public void setUniqueDocumentID (final String uniqueDocumentID)
+      {
+        final String oldValue = getUniqueDocumentID();
+        final boolean oldPropAvailable = isUniqueDocumentIDAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.UNIQUE_DOCUMENT_ID, uniqueDocumentID);
+        propertyChangeSupport.firePropertyChange("uniqueDocumentID", oldValue, uniqueDocumentID);
+        propertyChangeSupport.firePropertyChange("uniqueDocumentIDAvailable", oldPropAvailable, isUniqueDocumentIDAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getUniqueDocumentID()
+      {
+        return getObject(UNIQUE_DOCUMENT_ID, String.class);
+      }
+
+    public void setUniqueDocumentIDAvailable (final boolean available)
+      {
+        final String oldValue = getUniqueDocumentID();
+        final boolean oldPropAvailable = isUniqueDocumentIDAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(UNIQUE_DOCUMENT_ID))
+          {
+            setObject(UNIQUE_DOCUMENT_ID, null);
+          }
+        else if (!available)
+          {
+            removeTag(UNIQUE_DOCUMENT_ID);
+          }
+
+        propertyChangeSupport.firePropertyChange("uniqueDocumentIDAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("uniqueDocumentID", oldValue, getUniqueDocumentID());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isUniqueDocumentIDAvailable()
+      {
+        return containsTag(UNIQUE_DOCUMENT_ID);
+      }
+
+    public void setOwnerID (final String ownerID)
+      {
+        final String oldValue = getOwnerID();
+        final boolean oldPropAvailable = isOwnerIDAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.OWNER_ID, ownerID);
+        propertyChangeSupport.firePropertyChange("ownerID", oldValue, ownerID);
+        propertyChangeSupport.firePropertyChange("ownerIDAvailable", oldPropAvailable, isOwnerIDAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getOwnerID()
+      {
+        return getObject(OWNER_ID, String.class);
+      }
+
+    public void setOwnerIDAvailable (final boolean available)
+      {
+        final String oldValue = getOwnerID();
+        final boolean oldPropAvailable = isOwnerIDAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(OWNER_ID))
+          {
+            setObject(OWNER_ID, null);
+          }
+        else if (!available)
+          {
+            removeTag(OWNER_ID);
+          }
+
+        propertyChangeSupport.firePropertyChange("ownerIDAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("ownerID", oldValue, getOwnerID());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isOwnerIDAvailable()
+      {
+        return containsTag(OWNER_ID);
+      }
+
+    public static enum ObjectPreviewFileFormat
+       {
+         NO_OBJECTDATA(0, "No ObjectData"),
+         IPTC_NAA_DIGITAL_NEWSPHOTO_PARAMETER_RECORD(1, "IPTC-NAA Digital Newsphoto Parameter Record"),
+         IPTC7901_RECOMMENDED_MESSAGE_FORMAT(2, "IPTC7901 Recommended Message Format"),
+         TAGGED_IMAGE_FILE_FORMAT_ADOBE_ALDUS_IMAGE_DATA(3, "Tagged Image File Format Adobe/Aldus Image data)"),
+         ILLUSTRATOR_ADOBE_GRAPHICS_DATA(4, "Illustrator Adobe Graphics data)"),
+         APPLESINGLE_APPLE_COMPUTER_INC(5, "AppleSingle Apple Computer Inc)"),
+         NAA_89_3_ANPA_1312(6, "NAA 89-3 ANPA 1312"),
+         MACBINARY_II(7, "MacBinary II"),
+         IPTC_UNSTRUCTURED_CHARACTER_ORIENTED_FILE_FORMAT_UCOFF(8, "IPTC Unstructured Character Oriented File Format UCOFF)"),
+         UNITED_PRESS_INTERNATIONAL_ANPA_1312_VARIANT(9, "United Press International ANPA 1312 variant"),
+         UNITED_PRESS_INTERNATIONAL_DOWN_LOAD_MESSAGE(10, "United Press International Down-Load Message"),
+         JPEG_FILE_INTERCHANGE_JFIF(11, "JPEG File Interchange JFIF)"),
+         PHOTO_CD_IMAGE_PAC_EASTMAN_KODAK(12, "Photo-CD Image-Pac Eastman Kodak)"),
+         BIT_MAPPED_GRAPHICS_FILE_BMP_MICROSOFT(13, "Bit Mapped Graphics File BMP Microsoft)"),
+         DIGITAL_AUDIO_FILE_WAV_MICROSOFT__CREATIVE_LABS(14, "Digital Audio File WAV Microsoft  Creative Labs)"),
+         AUDIO_PLUS_MOVING_VIDEO_AVI_MICROSOFT(15, "Audio plus Moving Video AVI Microsoft)"),
+         PC_DOS_WINDOWS_EXECUTABLE_FILES_COMEXE(16, "PC DOS/Windows Executable Files COMEXE"),
+         COMPRESSED_BINARY_FILE_ZIP_PKWARE_INC(17, "Compressed Binary File ZIP PKWare Inc)"),
+         AUDIO_INTERCHANGE_FILE_FORMAT_AIFF_APPLE_COMPUTER_INC(18, "Audio Interchange File Format AIFF Apple Computer Inc)"),
+         RIFF_WAVE_MICROSOFT_CORPORATION(19, "RIFF Wave Microsoft Corporation)"),
+         FREEHAND_MACROMEDIA_ALDUS(20, "Freehand Macromedia/Aldus)"),
+         HYPERTEXT_MARKUP_LANGUAGE_HTML_THE_INTERNET_SOCIETY(21, "Hypertext Markup Language HTML The Internet Society)"),
+         MPEG_2_AUDIO_LAYER_2_MUSICOM(22, "MPEG 2 Audio Layer 2 Musicom)"),
+         MPEG_2_AUDIO_LAYER_3(23, "MPEG 2 Audio Layer 3"),
+         PORTABLE_DOCUMENT_FILE_PDF_ADOBE(24, "Portable Document File PDF Adobe"),
+         NEWS_INDUSTRY_TEXT_FORMAT_NITF(25, "News Industry Text Format NITF)"),
+         TAPE_ARCHIVE_TAR(26, "Tape Archive TAR"),
+         TIDNINGARNAS_TELEGRAMBYRA_NITF_VERSION_TTNITF_DTD(27, "Tidningarnas Telegrambyra NITF version TTNITF DTD)"),
+         RITZAUS_BUREAU_NITF_VERSION_RBNITF_DTD(28, "Ritzaus Bureau NITF version RBNITF DTD)"),
+         COREL_DRAW_CDR(29, "Corel Draw CDR"),
+         _UNKNOWN(-1, "_unknown_");
+         private final static long serialVersionUID = 3059468666726854749L;
+         private int value;
+         private String name;
+
+         private ObjectPreviewFileFormat (final int value, final String name)
+           {
+             this.value = value;
+             this.name = name;
+           }
+
+         public int getValue()
+           {
+             return value;
+           }
+
+         public static ObjectPreviewFileFormat fromInteger (int value)
+           {
+             if (value == 0) return NO_OBJECTDATA;
+             if (value == 1) return IPTC_NAA_DIGITAL_NEWSPHOTO_PARAMETER_RECORD;
+             if (value == 2) return IPTC7901_RECOMMENDED_MESSAGE_FORMAT;
+             if (value == 3) return TAGGED_IMAGE_FILE_FORMAT_ADOBE_ALDUS_IMAGE_DATA;
+             if (value == 4) return ILLUSTRATOR_ADOBE_GRAPHICS_DATA;
+             if (value == 5) return APPLESINGLE_APPLE_COMPUTER_INC;
+             if (value == 6) return NAA_89_3_ANPA_1312;
+             if (value == 7) return MACBINARY_II;
+             if (value == 8) return IPTC_UNSTRUCTURED_CHARACTER_ORIENTED_FILE_FORMAT_UCOFF;
+             if (value == 9) return UNITED_PRESS_INTERNATIONAL_ANPA_1312_VARIANT;
+             if (value == 10) return UNITED_PRESS_INTERNATIONAL_DOWN_LOAD_MESSAGE;
+             if (value == 11) return JPEG_FILE_INTERCHANGE_JFIF;
+             if (value == 12) return PHOTO_CD_IMAGE_PAC_EASTMAN_KODAK;
+             if (value == 13) return BIT_MAPPED_GRAPHICS_FILE_BMP_MICROSOFT;
+             if (value == 14) return DIGITAL_AUDIO_FILE_WAV_MICROSOFT__CREATIVE_LABS;
+             if (value == 15) return AUDIO_PLUS_MOVING_VIDEO_AVI_MICROSOFT;
+             if (value == 16) return PC_DOS_WINDOWS_EXECUTABLE_FILES_COMEXE;
+             if (value == 17) return COMPRESSED_BINARY_FILE_ZIP_PKWARE_INC;
+             if (value == 18) return AUDIO_INTERCHANGE_FILE_FORMAT_AIFF_APPLE_COMPUTER_INC;
+             if (value == 19) return RIFF_WAVE_MICROSOFT_CORPORATION;
+             if (value == 20) return FREEHAND_MACROMEDIA_ALDUS;
+             if (value == 21) return HYPERTEXT_MARKUP_LANGUAGE_HTML_THE_INTERNET_SOCIETY;
+             if (value == 22) return MPEG_2_AUDIO_LAYER_2_MUSICOM;
+             if (value == 23) return MPEG_2_AUDIO_LAYER_3;
+             if (value == 24) return PORTABLE_DOCUMENT_FILE_PDF_ADOBE;
+             if (value == 25) return NEWS_INDUSTRY_TEXT_FORMAT_NITF;
+             if (value == 26) return TAPE_ARCHIVE_TAR;
+             if (value == 27) return TIDNINGARNAS_TELEGRAMBYRA_NITF_VERSION_TTNITF_DTD;
+             if (value == 28) return RITZAUS_BUREAU_NITF_VERSION_RBNITF_DTD;
+             if (value == 29) return COREL_DRAW_CDR;
+
+             return _UNKNOWN;
+           }
+       }
+    public void setObjectPreviewFileFormat (final ObjectPreviewFileFormat objectPreviewFileFormat)
+      {
+        final ObjectPreviewFileFormat oldValue = getObjectPreviewFileFormat();
+        final boolean oldPropAvailable = isObjectPreviewFileFormatAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.OBJECT_PREVIEW_FILE_FORMAT, objectPreviewFileFormat);
+        propertyChangeSupport.firePropertyChange("objectPreviewFileFormat", oldValue, objectPreviewFileFormat);
+        propertyChangeSupport.firePropertyChange("objectPreviewFileFormatAvailable", oldPropAvailable, isObjectPreviewFileFormatAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public ObjectPreviewFileFormat getObjectPreviewFileFormat()
+      {
+        return getObject(OBJECT_PREVIEW_FILE_FORMAT, ObjectPreviewFileFormat.class);
+      }
+
+    public void setObjectPreviewFileFormatAvailable (final boolean available)
+      {
+        final ObjectPreviewFileFormat oldValue = getObjectPreviewFileFormat();
+        final boolean oldPropAvailable = isObjectPreviewFileFormatAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(OBJECT_PREVIEW_FILE_FORMAT))
+          {
+            setObject(OBJECT_PREVIEW_FILE_FORMAT, null);
+          }
+        else if (!available)
+          {
+            removeTag(OBJECT_PREVIEW_FILE_FORMAT);
+          }
+
+        propertyChangeSupport.firePropertyChange("objectPreviewFileFormatAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("objectPreviewFileFormat", oldValue, getObjectPreviewFileFormat());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isObjectPreviewFileFormatAvailable()
+      {
+        return containsTag(OBJECT_PREVIEW_FILE_FORMAT);
+      }
+
+    public void setObjectPreviewFileVersion (final Integer objectPreviewFileVersion)
+      {
+        final Integer oldValue = getObjectPreviewFileVersion();
+        final boolean oldPropAvailable = isObjectPreviewFileVersionAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.OBJECT_PREVIEW_FILE_VERSION, objectPreviewFileVersion);
+        propertyChangeSupport.firePropertyChange("objectPreviewFileVersion", oldValue, objectPreviewFileVersion);
+        propertyChangeSupport.firePropertyChange("objectPreviewFileVersionAvailable", oldPropAvailable, isObjectPreviewFileVersionAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public Integer getObjectPreviewFileVersion()
+      {
+        return getObject(OBJECT_PREVIEW_FILE_VERSION, Integer.class);
+      }
+
+    public void setObjectPreviewFileVersionAvailable (final boolean available)
+      {
+        final Integer oldValue = getObjectPreviewFileVersion();
+        final boolean oldPropAvailable = isObjectPreviewFileVersionAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(OBJECT_PREVIEW_FILE_VERSION))
+          {
+            setObject(OBJECT_PREVIEW_FILE_VERSION, null);
+          }
+        else if (!available)
+          {
+            removeTag(OBJECT_PREVIEW_FILE_VERSION);
+          }
+
+        propertyChangeSupport.firePropertyChange("objectPreviewFileVersionAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("objectPreviewFileVersion", oldValue, getObjectPreviewFileVersion());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isObjectPreviewFileVersionAvailable()
+      {
+        return containsTag(OBJECT_PREVIEW_FILE_VERSION);
+      }
+
+    public void setObjectPreviewData (final String objectPreviewData)
+      {
+        final String oldValue = getObjectPreviewData();
+        final boolean oldPropAvailable = isObjectPreviewDataAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.OBJECT_PREVIEW_DATA, objectPreviewData);
+        propertyChangeSupport.firePropertyChange("objectPreviewData", oldValue, objectPreviewData);
+        propertyChangeSupport.firePropertyChange("objectPreviewDataAvailable", oldPropAvailable, isObjectPreviewDataAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getObjectPreviewData()
+      {
+        return getObject(OBJECT_PREVIEW_DATA, String.class);
+      }
+
+    public void setObjectPreviewDataAvailable (final boolean available)
+      {
+        final String oldValue = getObjectPreviewData();
+        final boolean oldPropAvailable = isObjectPreviewDataAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(OBJECT_PREVIEW_DATA))
+          {
+            setObject(OBJECT_PREVIEW_DATA, null);
+          }
+        else if (!available)
+          {
+            removeTag(OBJECT_PREVIEW_DATA);
+          }
+
+        propertyChangeSupport.firePropertyChange("objectPreviewDataAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("objectPreviewData", oldValue, getObjectPreviewData());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isObjectPreviewDataAvailable()
+      {
+        return containsTag(OBJECT_PREVIEW_DATA);
+      }
+
+    public void setPrefs (final String prefs)
+      {
+        final String oldValue = getPrefs();
+        final boolean oldPropAvailable = isPrefsAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.PREFS, prefs);
+        propertyChangeSupport.firePropertyChange("prefs", oldValue, prefs);
+        propertyChangeSupport.firePropertyChange("prefsAvailable", oldPropAvailable, isPrefsAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getPrefs()
+      {
+        return getObject(PREFS, String.class);
+      }
+
+    public void setPrefsAvailable (final boolean available)
+      {
+        final String oldValue = getPrefs();
+        final boolean oldPropAvailable = isPrefsAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(PREFS))
+          {
+            setObject(PREFS, null);
+          }
+        else if (!available)
+          {
+            removeTag(PREFS);
+          }
+
+        propertyChangeSupport.firePropertyChange("prefsAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("prefs", oldValue, getPrefs());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isPrefsAvailable()
+      {
+        return containsTag(PREFS);
+      }
+
+    public void setClassifyState (final String classifyState)
+      {
+        final String oldValue = getClassifyState();
+        final boolean oldPropAvailable = isClassifyStateAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.CLASSIFY_STATE, classifyState);
+        propertyChangeSupport.firePropertyChange("classifyState", oldValue, classifyState);
+        propertyChangeSupport.firePropertyChange("classifyStateAvailable", oldPropAvailable, isClassifyStateAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getClassifyState()
+      {
+        return getObject(CLASSIFY_STATE, String.class);
+      }
+
+    public void setClassifyStateAvailable (final boolean available)
+      {
+        final String oldValue = getClassifyState();
+        final boolean oldPropAvailable = isClassifyStateAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(CLASSIFY_STATE))
+          {
+            setObject(CLASSIFY_STATE, null);
+          }
+        else if (!available)
+          {
+            removeTag(CLASSIFY_STATE);
+          }
+
+        propertyChangeSupport.firePropertyChange("classifyStateAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("classifyState", oldValue, getClassifyState());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isClassifyStateAvailable()
+      {
+        return containsTag(CLASSIFY_STATE);
+      }
+
+    public void setSimilarityIndex (final String similarityIndex)
+      {
+        final String oldValue = getSimilarityIndex();
+        final boolean oldPropAvailable = isSimilarityIndexAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.SIMILARITY_INDEX, similarityIndex);
+        propertyChangeSupport.firePropertyChange("similarityIndex", oldValue, similarityIndex);
+        propertyChangeSupport.firePropertyChange("similarityIndexAvailable", oldPropAvailable, isSimilarityIndexAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getSimilarityIndex()
+      {
+        return getObject(SIMILARITY_INDEX, String.class);
+      }
+
+    public void setSimilarityIndexAvailable (final boolean available)
+      {
+        final String oldValue = getSimilarityIndex();
+        final boolean oldPropAvailable = isSimilarityIndexAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(SIMILARITY_INDEX))
+          {
+            setObject(SIMILARITY_INDEX, null);
+          }
+        else if (!available)
+          {
+            removeTag(SIMILARITY_INDEX);
+          }
+
+        propertyChangeSupport.firePropertyChange("similarityIndexAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("similarityIndex", oldValue, getSimilarityIndex());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isSimilarityIndexAvailable()
+      {
+        return containsTag(SIMILARITY_INDEX);
+      }
+
+    public void setDocumentNotes (final String documentNotes)
+      {
+        final String oldValue = getDocumentNotes();
+        final boolean oldPropAvailable = isDocumentNotesAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.DOCUMENT_NOTES, documentNotes);
+        propertyChangeSupport.firePropertyChange("documentNotes", oldValue, documentNotes);
+        propertyChangeSupport.firePropertyChange("documentNotesAvailable", oldPropAvailable, isDocumentNotesAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getDocumentNotes()
+      {
+        return getObject(DOCUMENT_NOTES, String.class);
+      }
+
+    public void setDocumentNotesAvailable (final boolean available)
+      {
+        final String oldValue = getDocumentNotes();
+        final boolean oldPropAvailable = isDocumentNotesAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(DOCUMENT_NOTES))
+          {
+            setObject(DOCUMENT_NOTES, null);
+          }
+        else if (!available)
+          {
+            removeTag(DOCUMENT_NOTES);
+          }
+
+        propertyChangeSupport.firePropertyChange("documentNotesAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("documentNotes", oldValue, getDocumentNotes());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isDocumentNotesAvailable()
+      {
+        return containsTag(DOCUMENT_NOTES);
+      }
+
+    public void setDocumentHistory (final String documentHistory)
+      {
+        final String oldValue = getDocumentHistory();
+        final boolean oldPropAvailable = isDocumentHistoryAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.DOCUMENT_HISTORY, documentHistory);
+        propertyChangeSupport.firePropertyChange("documentHistory", oldValue, documentHistory);
+        propertyChangeSupport.firePropertyChange("documentHistoryAvailable", oldPropAvailable, isDocumentHistoryAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getDocumentHistory()
+      {
+        return getObject(DOCUMENT_HISTORY, String.class);
+      }
+
+    public void setDocumentHistoryAvailable (final boolean available)
+      {
+        final String oldValue = getDocumentHistory();
+        final boolean oldPropAvailable = isDocumentHistoryAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(DOCUMENT_HISTORY))
+          {
+            setObject(DOCUMENT_HISTORY, null);
+          }
+        else if (!available)
+          {
+            removeTag(DOCUMENT_HISTORY);
+          }
+
+        propertyChangeSupport.firePropertyChange("documentHistoryAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("documentHistory", oldValue, getDocumentHistory());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isDocumentHistoryAvailable()
+      {
+        return containsTag(DOCUMENT_HISTORY);
+      }
+
+    public void setEXIFCameraInfo (final String EXIFCameraInfo)
+      {
+        final String oldValue = getEXIFCameraInfo();
+        final boolean oldPropAvailable = isEXIFCameraInfoAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.EXIF_CAMERA_INFO, EXIFCameraInfo);
+        propertyChangeSupport.firePropertyChange("EXIFCameraInfo", oldValue, EXIFCameraInfo);
+        propertyChangeSupport.firePropertyChange("EXIFCameraInfoAvailable", oldPropAvailable, isEXIFCameraInfoAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getEXIFCameraInfo()
+      {
+        return getObject(EXIF_CAMERA_INFO, String.class);
+      }
+
+    public void setEXIFCameraInfoAvailable (final boolean available)
+      {
+        final String oldValue = getEXIFCameraInfo();
+        final boolean oldPropAvailable = isEXIFCameraInfoAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(EXIF_CAMERA_INFO))
+          {
+            setObject(EXIF_CAMERA_INFO, null);
+          }
+        else if (!available)
+          {
+            removeTag(EXIF_CAMERA_INFO);
+          }
+
+        propertyChangeSupport.firePropertyChange("EXIFCameraInfoAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("EXIFCameraInfo", oldValue, getEXIFCameraInfo());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isEXIFCameraInfoAvailable()
+      {
+        return containsTag(EXIF_CAMERA_INFO);
+      }
+
+    public void setAdobeCreatorAddress (final String adobeCreatorAddress)
+      {
+        final String oldValue = getAdobeCreatorAddress();
+        final boolean oldPropAvailable = isAdobeCreatorAddressAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.ADOBE_CREATOR_ADDRESS, adobeCreatorAddress);
+        propertyChangeSupport.firePropertyChange("adobeCreatorAddress", oldValue, adobeCreatorAddress);
+        propertyChangeSupport.firePropertyChange("adobeCreatorAddressAvailable", oldPropAvailable, isAdobeCreatorAddressAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getAdobeCreatorAddress()
+      {
+        return getObject(ADOBE_CREATOR_ADDRESS, String.class);
+      }
+
+    public void setAdobeCreatorAddressAvailable (final boolean available)
+      {
+        final String oldValue = getAdobeCreatorAddress();
+        final boolean oldPropAvailable = isAdobeCreatorAddressAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(ADOBE_CREATOR_ADDRESS))
+          {
+            setObject(ADOBE_CREATOR_ADDRESS, null);
+          }
+        else if (!available)
+          {
+            removeTag(ADOBE_CREATOR_ADDRESS);
+          }
+
+        propertyChangeSupport.firePropertyChange("adobeCreatorAddressAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("adobeCreatorAddress", oldValue, getAdobeCreatorAddress());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isAdobeCreatorAddressAvailable()
+      {
+        return containsTag(ADOBE_CREATOR_ADDRESS);
+      }
+
+    public void setAdobeCreatorCity (final String adobeCreatorCity)
+      {
+        final String oldValue = getAdobeCreatorCity();
+        final boolean oldPropAvailable = isAdobeCreatorCityAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.ADOBE_CREATOR_CITY, adobeCreatorCity);
+        propertyChangeSupport.firePropertyChange("adobeCreatorCity", oldValue, adobeCreatorCity);
+        propertyChangeSupport.firePropertyChange("adobeCreatorCityAvailable", oldPropAvailable, isAdobeCreatorCityAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getAdobeCreatorCity()
+      {
+        return getObject(ADOBE_CREATOR_CITY, String.class);
+      }
+
+    public void setAdobeCreatorCityAvailable (final boolean available)
+      {
+        final String oldValue = getAdobeCreatorCity();
+        final boolean oldPropAvailable = isAdobeCreatorCityAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(ADOBE_CREATOR_CITY))
+          {
+            setObject(ADOBE_CREATOR_CITY, null);
+          }
+        else if (!available)
+          {
+            removeTag(ADOBE_CREATOR_CITY);
+          }
+
+        propertyChangeSupport.firePropertyChange("adobeCreatorCityAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("adobeCreatorCity", oldValue, getAdobeCreatorCity());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isAdobeCreatorCityAvailable()
+      {
+        return containsTag(ADOBE_CREATOR_CITY);
+      }
+
+    public void setAdobeCreatorStateProvince (final String adobeCreatorStateProvince)
+      {
+        final String oldValue = getAdobeCreatorStateProvince();
+        final boolean oldPropAvailable = isAdobeCreatorStateProvinceAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.ADOBE_CREATOR_STATE__PROVINCE, adobeCreatorStateProvince);
+        propertyChangeSupport.firePropertyChange("adobeCreatorStateProvince", oldValue, adobeCreatorStateProvince);
+        propertyChangeSupport.firePropertyChange("adobeCreatorStateProvinceAvailable", oldPropAvailable, isAdobeCreatorStateProvinceAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getAdobeCreatorStateProvince()
+      {
+        return getObject(ADOBE_CREATOR_STATE__PROVINCE, String.class);
+      }
+
+    public void setAdobeCreatorStateProvinceAvailable (final boolean available)
+      {
+        final String oldValue = getAdobeCreatorStateProvince();
+        final boolean oldPropAvailable = isAdobeCreatorStateProvinceAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(ADOBE_CREATOR_STATE__PROVINCE))
+          {
+            setObject(ADOBE_CREATOR_STATE__PROVINCE, null);
+          }
+        else if (!available)
+          {
+            removeTag(ADOBE_CREATOR_STATE__PROVINCE);
+          }
+
+        propertyChangeSupport.firePropertyChange("adobeCreatorStateProvinceAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("adobeCreatorStateProvince", oldValue, getAdobeCreatorStateProvince());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isAdobeCreatorStateProvinceAvailable()
+      {
+        return containsTag(ADOBE_CREATOR_STATE__PROVINCE);
+      }
+
+    public void setAdobeCreatorPostalCode (final String adobeCreatorPostalCode)
+      {
+        final String oldValue = getAdobeCreatorPostalCode();
+        final boolean oldPropAvailable = isAdobeCreatorPostalCodeAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.ADOBE_CREATOR_POSTAL_CODE, adobeCreatorPostalCode);
+        propertyChangeSupport.firePropertyChange("adobeCreatorPostalCode", oldValue, adobeCreatorPostalCode);
+        propertyChangeSupport.firePropertyChange("adobeCreatorPostalCodeAvailable", oldPropAvailable, isAdobeCreatorPostalCodeAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getAdobeCreatorPostalCode()
+      {
+        return getObject(ADOBE_CREATOR_POSTAL_CODE, String.class);
+      }
+
+    public void setAdobeCreatorPostalCodeAvailable (final boolean available)
+      {
+        final String oldValue = getAdobeCreatorPostalCode();
+        final boolean oldPropAvailable = isAdobeCreatorPostalCodeAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(ADOBE_CREATOR_POSTAL_CODE))
+          {
+            setObject(ADOBE_CREATOR_POSTAL_CODE, null);
+          }
+        else if (!available)
+          {
+            removeTag(ADOBE_CREATOR_POSTAL_CODE);
+          }
+
+        propertyChangeSupport.firePropertyChange("adobeCreatorPostalCodeAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("adobeCreatorPostalCode", oldValue, getAdobeCreatorPostalCode());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isAdobeCreatorPostalCodeAvailable()
+      {
+        return containsTag(ADOBE_CREATOR_POSTAL_CODE);
+      }
+
+    public void setAdobeCreatorCountry (final String adobeCreatorCountry)
+      {
+        final String oldValue = getAdobeCreatorCountry();
+        final boolean oldPropAvailable = isAdobeCreatorCountryAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.ADOBE_CREATOR_COUNTRY, adobeCreatorCountry);
+        propertyChangeSupport.firePropertyChange("adobeCreatorCountry", oldValue, adobeCreatorCountry);
+        propertyChangeSupport.firePropertyChange("adobeCreatorCountryAvailable", oldPropAvailable, isAdobeCreatorCountryAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getAdobeCreatorCountry()
+      {
+        return getObject(ADOBE_CREATOR_COUNTRY, String.class);
+      }
+
+    public void setAdobeCreatorCountryAvailable (final boolean available)
+      {
+        final String oldValue = getAdobeCreatorCountry();
+        final boolean oldPropAvailable = isAdobeCreatorCountryAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(ADOBE_CREATOR_COUNTRY))
+          {
+            setObject(ADOBE_CREATOR_COUNTRY, null);
+          }
+        else if (!available)
+          {
+            removeTag(ADOBE_CREATOR_COUNTRY);
+          }
+
+        propertyChangeSupport.firePropertyChange("adobeCreatorCountryAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("adobeCreatorCountry", oldValue, getAdobeCreatorCountry());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isAdobeCreatorCountryAvailable()
+      {
+        return containsTag(ADOBE_CREATOR_COUNTRY);
+      }
+
+    public void setAdobeCreatorPhone (final String adobeCreatorPhone)
+      {
+        final String oldValue = getAdobeCreatorPhone();
+        final boolean oldPropAvailable = isAdobeCreatorPhoneAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.ADOBE_CREATOR_PHONE, adobeCreatorPhone);
+        propertyChangeSupport.firePropertyChange("adobeCreatorPhone", oldValue, adobeCreatorPhone);
+        propertyChangeSupport.firePropertyChange("adobeCreatorPhoneAvailable", oldPropAvailable, isAdobeCreatorPhoneAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getAdobeCreatorPhone()
+      {
+        return getObject(ADOBE_CREATOR_PHONE, String.class);
+      }
+
+    public void setAdobeCreatorPhoneAvailable (final boolean available)
+      {
+        final String oldValue = getAdobeCreatorPhone();
+        final boolean oldPropAvailable = isAdobeCreatorPhoneAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(ADOBE_CREATOR_PHONE))
+          {
+            setObject(ADOBE_CREATOR_PHONE, null);
+          }
+        else if (!available)
+          {
+            removeTag(ADOBE_CREATOR_PHONE);
+          }
+
+        propertyChangeSupport.firePropertyChange("adobeCreatorPhoneAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("adobeCreatorPhone", oldValue, getAdobeCreatorPhone());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isAdobeCreatorPhoneAvailable()
+      {
+        return containsTag(ADOBE_CREATOR_PHONE);
+      }
+
+    public void setAdobeCreatorEmail (final String adobeCreatorEmail)
+      {
+        final String oldValue = getAdobeCreatorEmail();
+        final boolean oldPropAvailable = isAdobeCreatorEmailAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.ADOBE_CREATOR_EMAIL, adobeCreatorEmail);
+        propertyChangeSupport.firePropertyChange("adobeCreatorEmail", oldValue, adobeCreatorEmail);
+        propertyChangeSupport.firePropertyChange("adobeCreatorEmailAvailable", oldPropAvailable, isAdobeCreatorEmailAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getAdobeCreatorEmail()
+      {
+        return getObject(ADOBE_CREATOR_EMAIL, String.class);
+      }
+
+    public void setAdobeCreatorEmailAvailable (final boolean available)
+      {
+        final String oldValue = getAdobeCreatorEmail();
+        final boolean oldPropAvailable = isAdobeCreatorEmailAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(ADOBE_CREATOR_EMAIL))
+          {
+            setObject(ADOBE_CREATOR_EMAIL, null);
+          }
+        else if (!available)
+          {
+            removeTag(ADOBE_CREATOR_EMAIL);
+          }
+
+        propertyChangeSupport.firePropertyChange("adobeCreatorEmailAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("adobeCreatorEmail", oldValue, getAdobeCreatorEmail());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isAdobeCreatorEmailAvailable()
+      {
+        return containsTag(ADOBE_CREATOR_EMAIL);
+      }
+
+    public void setAdobeCreatorWebsite (final String adobeCreatorWebsite)
+      {
+        final String oldValue = getAdobeCreatorWebsite();
+        final boolean oldPropAvailable = isAdobeCreatorWebsiteAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.ADOBE_CREATOR_WEBSITE, adobeCreatorWebsite);
+        propertyChangeSupport.firePropertyChange("adobeCreatorWebsite", oldValue, adobeCreatorWebsite);
+        propertyChangeSupport.firePropertyChange("adobeCreatorWebsiteAvailable", oldPropAvailable, isAdobeCreatorWebsiteAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getAdobeCreatorWebsite()
+      {
+        return getObject(ADOBE_CREATOR_WEBSITE, String.class);
+      }
+
+    public void setAdobeCreatorWebsiteAvailable (final boolean available)
+      {
+        final String oldValue = getAdobeCreatorWebsite();
+        final boolean oldPropAvailable = isAdobeCreatorWebsiteAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(ADOBE_CREATOR_WEBSITE))
+          {
+            setObject(ADOBE_CREATOR_WEBSITE, null);
+          }
+        else if (!available)
+          {
+            removeTag(ADOBE_CREATOR_WEBSITE);
+          }
+
+        propertyChangeSupport.firePropertyChange("adobeCreatorWebsiteAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("adobeCreatorWebsite", oldValue, getAdobeCreatorWebsite());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isAdobeCreatorWebsiteAvailable()
+      {
+        return containsTag(ADOBE_CREATOR_WEBSITE);
+      }
+
+    public void setAdobeIPTCSubjectCode (final String adobeIPTCSubjectCode)
+      {
+        final String oldValue = getAdobeIPTCSubjectCode();
+        final boolean oldPropAvailable = isAdobeIPTCSubjectCodeAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.ADOBE_IPTC_SUBJECT_CODE, adobeIPTCSubjectCode);
+        propertyChangeSupport.firePropertyChange("adobeIPTCSubjectCode", oldValue, adobeIPTCSubjectCode);
+        propertyChangeSupport.firePropertyChange("adobeIPTCSubjectCodeAvailable", oldPropAvailable, isAdobeIPTCSubjectCodeAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getAdobeIPTCSubjectCode()
+      {
+        return getObject(ADOBE_IPTC_SUBJECT_CODE, String.class);
+      }
+
+    public void setAdobeIPTCSubjectCodeAvailable (final boolean available)
+      {
+        final String oldValue = getAdobeIPTCSubjectCode();
+        final boolean oldPropAvailable = isAdobeIPTCSubjectCodeAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(ADOBE_IPTC_SUBJECT_CODE))
+          {
+            setObject(ADOBE_IPTC_SUBJECT_CODE, null);
+          }
+        else if (!available)
+          {
+            removeTag(ADOBE_IPTC_SUBJECT_CODE);
+          }
+
+        propertyChangeSupport.firePropertyChange("adobeIPTCSubjectCodeAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("adobeIPTCSubjectCode", oldValue, getAdobeIPTCSubjectCode());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isAdobeIPTCSubjectCodeAvailable()
+      {
+        return containsTag(ADOBE_IPTC_SUBJECT_CODE);
+      }
+
+    public void setAdobeIntellectualGenre (final String adobeIntellectualGenre)
+      {
+        final String oldValue = getAdobeIntellectualGenre();
+        final boolean oldPropAvailable = isAdobeIntellectualGenreAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.ADOBE_INTELLECTUAL_GENRE, adobeIntellectualGenre);
+        propertyChangeSupport.firePropertyChange("adobeIntellectualGenre", oldValue, adobeIntellectualGenre);
+        propertyChangeSupport.firePropertyChange("adobeIntellectualGenreAvailable", oldPropAvailable, isAdobeIntellectualGenreAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getAdobeIntellectualGenre()
+      {
+        return getObject(ADOBE_INTELLECTUAL_GENRE, String.class);
+      }
+
+    public void setAdobeIntellectualGenreAvailable (final boolean available)
+      {
+        final String oldValue = getAdobeIntellectualGenre();
+        final boolean oldPropAvailable = isAdobeIntellectualGenreAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(ADOBE_INTELLECTUAL_GENRE))
+          {
+            setObject(ADOBE_INTELLECTUAL_GENRE, null);
+          }
+        else if (!available)
+          {
+            removeTag(ADOBE_INTELLECTUAL_GENRE);
+          }
+
+        propertyChangeSupport.firePropertyChange("adobeIntellectualGenreAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("adobeIntellectualGenre", oldValue, getAdobeIntellectualGenre());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isAdobeIntellectualGenreAvailable()
+      {
+        return containsTag(ADOBE_INTELLECTUAL_GENRE);
+      }
+
+    public void setAdobeScene (final String adobeScene)
+      {
+        final String oldValue = getAdobeScene();
+        final boolean oldPropAvailable = isAdobeSceneAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.ADOBE_SCENE, adobeScene);
+        propertyChangeSupport.firePropertyChange("adobeScene", oldValue, adobeScene);
+        propertyChangeSupport.firePropertyChange("adobeSceneAvailable", oldPropAvailable, isAdobeSceneAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getAdobeScene()
+      {
+        return getObject(ADOBE_SCENE, String.class);
+      }
+
+    public void setAdobeSceneAvailable (final boolean available)
+      {
+        final String oldValue = getAdobeScene();
+        final boolean oldPropAvailable = isAdobeSceneAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(ADOBE_SCENE))
+          {
+            setObject(ADOBE_SCENE, null);
+          }
+        else if (!available)
+          {
+            removeTag(ADOBE_SCENE);
+          }
+
+        propertyChangeSupport.firePropertyChange("adobeSceneAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("adobeScene", oldValue, getAdobeScene());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isAdobeSceneAvailable()
+      {
+        return containsTag(ADOBE_SCENE);
+      }
+
+    public void setAdobeLocation (final String adobeLocation)
+      {
+        final String oldValue = getAdobeLocation();
+        final boolean oldPropAvailable = isAdobeLocationAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.ADOBE_LOCATION, adobeLocation);
+        propertyChangeSupport.firePropertyChange("adobeLocation", oldValue, adobeLocation);
+        propertyChangeSupport.firePropertyChange("adobeLocationAvailable", oldPropAvailable, isAdobeLocationAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getAdobeLocation()
+      {
+        return getObject(ADOBE_LOCATION, String.class);
+      }
+
+    public void setAdobeLocationAvailable (final boolean available)
+      {
+        final String oldValue = getAdobeLocation();
+        final boolean oldPropAvailable = isAdobeLocationAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(ADOBE_LOCATION))
+          {
+            setObject(ADOBE_LOCATION, null);
+          }
+        else if (!available)
+          {
+            removeTag(ADOBE_LOCATION);
+          }
+
+        propertyChangeSupport.firePropertyChange("adobeLocationAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("adobeLocation", oldValue, getAdobeLocation());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isAdobeLocationAvailable()
+      {
+        return containsTag(ADOBE_LOCATION);
+      }
+
+    public void setAdobeCountryISOCode (final String adobeCountryISOCode)
+      {
+        final String oldValue = getAdobeCountryISOCode();
+        final boolean oldPropAvailable = isAdobeCountryISOCodeAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.ADOBE_COUNTRY_ISO_CODE, adobeCountryISOCode);
+        propertyChangeSupport.firePropertyChange("adobeCountryISOCode", oldValue, adobeCountryISOCode);
+        propertyChangeSupport.firePropertyChange("adobeCountryISOCodeAvailable", oldPropAvailable, isAdobeCountryISOCodeAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getAdobeCountryISOCode()
+      {
+        return getObject(ADOBE_COUNTRY_ISO_CODE, String.class);
+      }
+
+    public void setAdobeCountryISOCodeAvailable (final boolean available)
+      {
+        final String oldValue = getAdobeCountryISOCode();
+        final boolean oldPropAvailable = isAdobeCountryISOCodeAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(ADOBE_COUNTRY_ISO_CODE))
+          {
+            setObject(ADOBE_COUNTRY_ISO_CODE, null);
+          }
+        else if (!available)
+          {
+            removeTag(ADOBE_COUNTRY_ISO_CODE);
+          }
+
+        propertyChangeSupport.firePropertyChange("adobeCountryISOCodeAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("adobeCountryISOCode", oldValue, getAdobeCountryISOCode());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isAdobeCountryISOCodeAvailable()
+      {
+        return containsTag(ADOBE_COUNTRY_ISO_CODE);
+      }
+
+    public void setAdobeCopyrightStatus (final String adobeCopyrightStatus)
+      {
+        final String oldValue = getAdobeCopyrightStatus();
+        final boolean oldPropAvailable = isAdobeCopyrightStatusAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.ADOBE_COPYRIGHT_STATUS, adobeCopyrightStatus);
+        propertyChangeSupport.firePropertyChange("adobeCopyrightStatus", oldValue, adobeCopyrightStatus);
+        propertyChangeSupport.firePropertyChange("adobeCopyrightStatusAvailable", oldPropAvailable, isAdobeCopyrightStatusAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getAdobeCopyrightStatus()
+      {
+        return getObject(ADOBE_COPYRIGHT_STATUS, String.class);
+      }
+
+    public void setAdobeCopyrightStatusAvailable (final boolean available)
+      {
+        final String oldValue = getAdobeCopyrightStatus();
+        final boolean oldPropAvailable = isAdobeCopyrightStatusAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(ADOBE_COPYRIGHT_STATUS))
+          {
+            setObject(ADOBE_COPYRIGHT_STATUS, null);
+          }
+        else if (!available)
+          {
+            removeTag(ADOBE_COPYRIGHT_STATUS);
+          }
+
+        propertyChangeSupport.firePropertyChange("adobeCopyrightStatusAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("adobeCopyrightStatus", oldValue, getAdobeCopyrightStatus());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isAdobeCopyrightStatusAvailable()
+      {
+        return containsTag(ADOBE_COPYRIGHT_STATUS);
+      }
+
+    public void setAdobeRightUsageTerms (final String adobeRightUsageTerms)
+      {
+        final String oldValue = getAdobeRightUsageTerms();
+        final boolean oldPropAvailable = isAdobeRightUsageTermsAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.ADOBE_RIGHT_USAGE_TERMS, adobeRightUsageTerms);
+        propertyChangeSupport.firePropertyChange("adobeRightUsageTerms", oldValue, adobeRightUsageTerms);
+        propertyChangeSupport.firePropertyChange("adobeRightUsageTermsAvailable", oldPropAvailable, isAdobeRightUsageTermsAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getAdobeRightUsageTerms()
+      {
+        return getObject(ADOBE_RIGHT_USAGE_TERMS, String.class);
+      }
+
+    public void setAdobeRightUsageTermsAvailable (final boolean available)
+      {
+        final String oldValue = getAdobeRightUsageTerms();
+        final boolean oldPropAvailable = isAdobeRightUsageTermsAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(ADOBE_RIGHT_USAGE_TERMS))
+          {
+            setObject(ADOBE_RIGHT_USAGE_TERMS, null);
+          }
+        else if (!available)
+          {
+            removeTag(ADOBE_RIGHT_USAGE_TERMS);
+          }
+
+        propertyChangeSupport.firePropertyChange("adobeRightUsageTermsAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("adobeRightUsageTerms", oldValue, getAdobeRightUsageTerms());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isAdobeRightUsageTermsAvailable()
+      {
+        return containsTag(ADOBE_RIGHT_USAGE_TERMS);
+      }
+
+    public void setAdobeCopyrightInfoURL (final String adobeCopyrightInfoURL)
+      {
+        final String oldValue = getAdobeCopyrightInfoURL();
+        final boolean oldPropAvailable = isAdobeCopyrightInfoURLAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(IPTCDirectoryGenerated.ADOBE_COPYRIGHT_INFO_URL, adobeCopyrightInfoURL);
+        propertyChangeSupport.firePropertyChange("adobeCopyrightInfoURL", oldValue, adobeCopyrightInfoURL);
+        propertyChangeSupport.firePropertyChange("adobeCopyrightInfoURLAvailable", oldPropAvailable, isAdobeCopyrightInfoURLAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getAdobeCopyrightInfoURL()
+      {
+        return getObject(ADOBE_COPYRIGHT_INFO_URL, String.class);
+      }
+
+    public void setAdobeCopyrightInfoURLAvailable (final boolean available)
+      {
+        final String oldValue = getAdobeCopyrightInfoURL();
+        final boolean oldPropAvailable = isAdobeCopyrightInfoURLAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(ADOBE_COPYRIGHT_INFO_URL))
+          {
+            setObject(ADOBE_COPYRIGHT_INFO_URL, null);
+          }
+        else if (!available)
+          {
+            removeTag(ADOBE_COPYRIGHT_INFO_URL);
+          }
+
+        propertyChangeSupport.firePropertyChange("adobeCopyrightInfoURLAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("adobeCopyrightInfoURL", oldValue, getAdobeCopyrightInfoURL());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isAdobeCopyrightInfoURLAvailable()
+      {
+        return containsTag(ADOBE_COPYRIGHT_INFO_URL);
       }
 
     public boolean isAvailable()
       {
-        return isRecordVersionAvailable()
+        return isApplicationRecordVersionAvailable()
              | isObjectTypeReferenceAvailable()
              | isObjectAttributeReferenceAvailable()
              | isObjectNameAvailable()
@@ -2740,23 +4172,24 @@ public class IPTCDirectoryGenerated extends Directory
              | isDigitalCreationDateAvailable()
              | isDigitalCreationTimeAvailable()
              | isOriginatingProgramAvailable()
-             | isObjectCycleAvailable()
              | isProgramVersionAvailable()
-             | isByLineAvailable()
-             | isByLineTitleAvailable()
+             | isObjectCycleAvailable()
+             | isBylineAvailable()
+             | isBylineTitleAvailable()
              | isCityAvailable()
-             | isSubLocationAvailable()
-             | isProvinceOrStateAvailable()
-             | isCountryCodeAvailable()
-             | isCountryOrPrimaryLocationAvailable()
+             | isSublocationAvailable()
+             | isProvinceStateAvailable()
+             | isCountryPrimaryLocationCodeAvailable()
+             | isCountryPrimaryLocationNameAvailable()
              | isOriginalTransmissionReferenceAvailable()
              | isHeadlineAvailable()
              | isCreditAvailable()
              | isSourceAvailable()
              | isCopyrightNoticeAvailable()
              | isContactAvailable()
-             | isCaptionAvailable()
-             | isWriterAvailable()
+             | isCaptionAbstractAvailable()
+             | isLocalCaptionAvailable()
+             | isWriterEditorAvailable()
              | isRasterizedCaptionAvailable()
              | isImageTypeAvailable()
              | isImageOrientationAvailable()
@@ -2766,9 +4199,36 @@ public class IPTCDirectoryGenerated extends Directory
              | isAudioSamplingResolutionAvailable()
              | isAudioDurationAvailable()
              | isAudioOutcueAvailable()
-             | isObjectDataPreviewFileFormatAvailable()
-             | isObjectDataPreviewFileFormatVersionAvailable()
-             | isObjectDataPreviewPreviewDataAvailable()
+             | isJobIDAvailable()
+             | isMasterDocumentIDAvailable()
+             | isShortDocumentIDAvailable()
+             | isUniqueDocumentIDAvailable()
+             | isOwnerIDAvailable()
+             | isObjectPreviewFileFormatAvailable()
+             | isObjectPreviewFileVersionAvailable()
+             | isObjectPreviewDataAvailable()
+             | isPrefsAvailable()
+             | isClassifyStateAvailable()
+             | isSimilarityIndexAvailable()
+             | isDocumentNotesAvailable()
+             | isDocumentHistoryAvailable()
+             | isEXIFCameraInfoAvailable()
+             | isAdobeCreatorAddressAvailable()
+             | isAdobeCreatorCityAvailable()
+             | isAdobeCreatorStateProvinceAvailable()
+             | isAdobeCreatorPostalCodeAvailable()
+             | isAdobeCreatorCountryAvailable()
+             | isAdobeCreatorPhoneAvailable()
+             | isAdobeCreatorEmailAvailable()
+             | isAdobeCreatorWebsiteAvailable()
+             | isAdobeIPTCSubjectCodeAvailable()
+             | isAdobeIntellectualGenreAvailable()
+             | isAdobeSceneAvailable()
+             | isAdobeLocationAvailable()
+             | isAdobeCountryISOCodeAvailable()
+             | isAdobeCopyrightStatusAvailable()
+             | isAdobeRightUsageTermsAvailable()
+             | isAdobeCopyrightInfoURLAvailable()
 ;
       }
   }

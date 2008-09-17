@@ -111,6 +111,6 @@ public class TIFFRecord
 
     private String getStrippedTagName() 
       {
-        return Utils.strip(tagName);
+        return Utils.strip(tagName).replace('/', '_').replace('(', '_').replace(')', '_');
       }
   }

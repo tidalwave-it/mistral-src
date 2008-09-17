@@ -19,7 +19,7 @@ public class TestGenerated
         final InputStreamReader input = new InputStreamReader(loader.getResourceAsStream("resources/TIFF.properties"));
         MetadataGenerator exifGenerator = new MetadataGenerator(input);
         final StringWriter output = new StringWriter();
-        exifGenerator.generate(output);
+        exifGenerator.generate(output, "");
 
         final String expected = readAll(loader.getResourceAsStream("resources/EXIFDirectoryGenerated.txt"));
         assertTrue(expected.equals(output.toString()));
