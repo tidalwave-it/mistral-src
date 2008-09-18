@@ -90,22 +90,22 @@ public class IPTCDirectoryGenerated extends Directory
     public final static int DOCUMENT_NOTES = 230;
     public final static int DOCUMENT_HISTORY = 231;
     public final static int EXIF_CAMERA_INFO = 232;
-    public final static int ADOBE_CREATOR_ADDRESS = 10000;
-    public final static int ADOBE_CREATOR_CITY = 10001;
-    public final static int ADOBE_CREATOR_STATE__PROVINCE = 10002;
-    public final static int ADOBE_CREATOR_POSTAL_CODE = 10003;
-    public final static int ADOBE_CREATOR_COUNTRY = 10004;
-    public final static int ADOBE_CREATOR_PHONE = 10005;
-    public final static int ADOBE_CREATOR_EMAIL = 10006;
-    public final static int ADOBE_CREATOR_WEBSITE = 10007;
-    public final static int ADOBE_IPTC_SUBJECT_CODE = 10010;
-    public final static int ADOBE_INTELLECTUAL_GENRE = 10020;
-    public final static int ADOBE_SCENE = 10021;
-    public final static int ADOBE_LOCATION = 10022;
-    public final static int ADOBE_COUNTRY_ISO_CODE = 10023;
-    public final static int ADOBE_COPYRIGHT_STATUS = 10030;
-    public final static int ADOBE_RIGHT_USAGE_TERMS = 10031;
-    public final static int ADOBE_COPYRIGHT_INFO_URL = 10032;
+    public final static int ADOBE_CREATOR_ADDRESS = 100000;
+    public final static int ADOBE_CREATOR_CITY = 100001;
+    public final static int ADOBE_CREATOR_STATE__PROVINCE = 100002;
+    public final static int ADOBE_CREATOR_POSTAL_CODE = 100003;
+    public final static int ADOBE_CREATOR_COUNTRY = 100004;
+    public final static int ADOBE_CREATOR_PHONE = 100005;
+    public final static int ADOBE_CREATOR_EMAIL = 100006;
+    public final static int ADOBE_CREATOR_WEBSITE = 100007;
+    public final static int ADOBE_IPTC_SUBJECT_CODE = 100010;
+    public final static int ADOBE_INTELLECTUAL_GENRE = 100020;
+    public final static int ADOBE_SCENE = 100021;
+    public final static int ADOBE_LOCATION = 100022;
+    public final static int ADOBE_COUNTRY_ISO_CODE = 100023;
+    public final static int ADOBE_COPYRIGHT_STATUS = 100030;
+    public final static int ADOBE_RIGHT_USAGE_TERMS = 100031;
+    public final static int ADOBE_COPYRIGHT_INFO_URL = 100032;
 
     @Override
     public String getTagName (int tag)
@@ -183,22 +183,22 @@ public class IPTCDirectoryGenerated extends Directory
         descriptionMapByTag.put(230, "Document Notes");
         descriptionMapByTag.put(231, "Document History");
         descriptionMapByTag.put(232, "EXIF Camera Info");
-        descriptionMapByTag.put(10000, "Adobe Creator Address");
-        descriptionMapByTag.put(10001, "Adobe Creator City");
-        descriptionMapByTag.put(10002, "Adobe Creator State  Province");
-        descriptionMapByTag.put(10003, "Adobe Creator Postal Code");
-        descriptionMapByTag.put(10004, "Adobe Creator Country");
-        descriptionMapByTag.put(10005, "Adobe Creator Phone");
-        descriptionMapByTag.put(10006, "Adobe Creator Email");
-        descriptionMapByTag.put(10007, "Adobe Creator Website");
-        descriptionMapByTag.put(10010, "Adobe IPTC Subject Code");
-        descriptionMapByTag.put(10020, "Adobe Intellectual Genre");
-        descriptionMapByTag.put(10021, "Adobe Scene");
-        descriptionMapByTag.put(10022, "Adobe Location");
-        descriptionMapByTag.put(10023, "Adobe Country ISO Code");
-        descriptionMapByTag.put(10030, "Adobe Copyright Status");
-        descriptionMapByTag.put(10031, "Adobe Right Usage Terms");
-        descriptionMapByTag.put(10032, "Adobe Copyright Info URL");
+        descriptionMapByTag.put(100000, "Adobe Creator Address");
+        descriptionMapByTag.put(100001, "Adobe Creator City");
+        descriptionMapByTag.put(100002, "Adobe Creator State  Province");
+        descriptionMapByTag.put(100003, "Adobe Creator Postal Code");
+        descriptionMapByTag.put(100004, "Adobe Creator Country");
+        descriptionMapByTag.put(100005, "Adobe Creator Phone");
+        descriptionMapByTag.put(100006, "Adobe Creator Email");
+        descriptionMapByTag.put(100007, "Adobe Creator Website");
+        descriptionMapByTag.put(100010, "Adobe IPTC Subject Code");
+        descriptionMapByTag.put(100020, "Adobe Intellectual Genre");
+        descriptionMapByTag.put(100021, "Adobe Scene");
+        descriptionMapByTag.put(100022, "Adobe Location");
+        descriptionMapByTag.put(100023, "Adobe Country ISO Code");
+        descriptionMapByTag.put(100030, "Adobe Copyright Status");
+        descriptionMapByTag.put(100031, "Adobe Right Usage Terms");
+        descriptionMapByTag.put(100032, "Adobe Copyright Info URL");
 
       }
     public void setApplicationRecordVersion (final Integer applicationRecordVersion)
