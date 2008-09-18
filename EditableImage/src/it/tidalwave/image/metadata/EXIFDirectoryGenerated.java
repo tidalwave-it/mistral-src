@@ -258,6 +258,33 @@ public class EXIFDirectoryGenerated extends Directory
     public final static int AS_SHOT_PRE_PROFILE_MATRIX = 50832;
     public final static int CURRENT_ICC_PROFILE = 50833;
     public final static int CURRENT_PRE_PROFILE_MATRIX = 50834;
+    public final static int COLORIMETRIC_REFERENCE = 50879;
+    public final static int CAMERA_CALIBRATION_SIGNATURE = 50931;
+    public final static int PROFILE_CALIBRATION_SIGNATURE = 50932;
+    public final static int EXTRA_CAMERA_PROFILES = 50933;
+    public final static int AS_SHOT_PROFILE_NAME = 50934;
+    public final static int NOISE_RESOLUTION_APPLIED = 50935;
+    public final static int PROFILE_NAME = 50936;
+    public final static int PROFILE_HUE_SAT_MAP_DIMS = 50397;
+    public final static int PROFILE_HUE_SAT_MAP_DATA_1 = 50938;
+    public final static int PROFILE_HUE_SAT_MAP_DATA_2 = 50939;
+    public final static int PROFILE_TONE_CURVE = 50940;
+    public final static int PROFILE_EMBED_POLICY = 50941;
+    public final static int PROFILE_COPYRIGHT = 50942;
+    public final static int FORWARD_MATRIX_1 = 50964;
+    public final static int FORWARD_MATRIX_2 = 50965;
+    public final static int PREVIEW_APPLICATION_NAME = 50966;
+    public final static int PREVIEW_APPLICATION_VERSION = 50967;
+    public final static int PREVIEW_SETTINGS_NAME = 50968;
+    public final static int PREVIEW_IFD = 50969;
+    public final static int PREVIEW_COLOR_SPACE = 50970;
+    public final static int PREVIEW_DATE_TIME = 50971;
+    public final static int RAW_IMAGE_DIGEST = 50972;
+    public final static int ORIGINAL_RAW_FILE_DIGEST = 50793;
+    public final static int SUB_TILE_BLOCK_SIZE = 50974;
+    public final static int ROW_INTERLEAVE_FACTOR = 50975;
+    public final static int PROFILE_LOOK_TABLE_DIMS = 50981;
+    public final static int PROFILE_LOOK_TABLE_DATA = 50982;
 
     @Override
     public String getTagName (int tag)
@@ -503,6 +530,33 @@ public class EXIFDirectoryGenerated extends Directory
         descriptionMapByTag.put(50832, "As Shot Pre Profile Matrix");
         descriptionMapByTag.put(50833, "Current ICC Profile");
         descriptionMapByTag.put(50834, "Current Pre Profile Matrix");
+        descriptionMapByTag.put(50879, "Colorimetric Reference");
+        descriptionMapByTag.put(50931, "Camera Calibration Signature");
+        descriptionMapByTag.put(50932, "Profile Calibration Signature");
+        descriptionMapByTag.put(50933, "Extra Camera Profiles");
+        descriptionMapByTag.put(50934, "As Shot Profile Name");
+        descriptionMapByTag.put(50935, "Noise Resolution Applied");
+        descriptionMapByTag.put(50936, "Profile Name");
+        descriptionMapByTag.put(50397, "Profile Hue Sat Map Dims");
+        descriptionMapByTag.put(50938, "Profile Hue Sat Map Data 1");
+        descriptionMapByTag.put(50939, "Profile Hue Sat Map Data 2");
+        descriptionMapByTag.put(50940, "Profile Tone Curve");
+        descriptionMapByTag.put(50941, "Profile Embed Policy");
+        descriptionMapByTag.put(50942, "Profile Copyright");
+        descriptionMapByTag.put(50964, "Forward Matrix 1");
+        descriptionMapByTag.put(50965, "Forward Matrix 2");
+        descriptionMapByTag.put(50966, "Preview Application Name");
+        descriptionMapByTag.put(50967, "Preview Application Version");
+        descriptionMapByTag.put(50968, "Preview Settings Name");
+        descriptionMapByTag.put(50969, "Preview IFD");
+        descriptionMapByTag.put(50970, "Preview Color Space");
+        descriptionMapByTag.put(50971, "Preview Date Time");
+        descriptionMapByTag.put(50972, "Raw Image Digest");
+        descriptionMapByTag.put(50793, "Original Raw File Digest");
+        descriptionMapByTag.put(50974, "Sub Tile Block Size");
+        descriptionMapByTag.put(50975, "Row Interleave Factor");
+        descriptionMapByTag.put(50981, "Profile Look Table Dims");
+        descriptionMapByTag.put(50982, "Profile Look Table Data");
 
       }
     public static enum NewSubFileType
@@ -12038,6 +12092,1287 @@ public class EXIFDirectoryGenerated extends Directory
         return containsTag(CURRENT_PRE_PROFILE_MATRIX);
       }
 
+    public void setColorimetricReference (final Integer colorimetricReference)
+      {
+        final Integer oldValue = getColorimetricReference();
+        final boolean oldPropAvailable = isColorimetricReferenceAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.COLORIMETRIC_REFERENCE, colorimetricReference);
+        propertyChangeSupport.firePropertyChange("colorimetricReference", oldValue, colorimetricReference);
+        propertyChangeSupport.firePropertyChange("colorimetricReferenceAvailable", oldPropAvailable, isColorimetricReferenceAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public Integer getColorimetricReference()
+      {
+        return getObject(COLORIMETRIC_REFERENCE, Integer.class);
+      }
+
+    public void setColorimetricReferenceAvailable (final boolean available)
+      {
+        final Integer oldValue = getColorimetricReference();
+        final boolean oldPropAvailable = isColorimetricReferenceAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(COLORIMETRIC_REFERENCE))
+          {
+            setObject(COLORIMETRIC_REFERENCE, null);
+          }
+        else if (!available)
+          {
+            removeTag(COLORIMETRIC_REFERENCE);
+          }
+
+        propertyChangeSupport.firePropertyChange("colorimetricReferenceAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("colorimetricReference", oldValue, getColorimetricReference());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isColorimetricReferenceAvailable()
+      {
+        return containsTag(COLORIMETRIC_REFERENCE);
+      }
+
+    public void setCameraCalibrationSignature (final String cameraCalibrationSignature)
+      {
+        final String oldValue = getCameraCalibrationSignature();
+        final boolean oldPropAvailable = isCameraCalibrationSignatureAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.CAMERA_CALIBRATION_SIGNATURE, cameraCalibrationSignature);
+        propertyChangeSupport.firePropertyChange("cameraCalibrationSignature", oldValue, cameraCalibrationSignature);
+        propertyChangeSupport.firePropertyChange("cameraCalibrationSignatureAvailable", oldPropAvailable, isCameraCalibrationSignatureAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getCameraCalibrationSignature()
+      {
+        return getObject(CAMERA_CALIBRATION_SIGNATURE, String.class);
+      }
+
+    public void setCameraCalibrationSignatureAvailable (final boolean available)
+      {
+        final String oldValue = getCameraCalibrationSignature();
+        final boolean oldPropAvailable = isCameraCalibrationSignatureAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(CAMERA_CALIBRATION_SIGNATURE))
+          {
+            setObject(CAMERA_CALIBRATION_SIGNATURE, null);
+          }
+        else if (!available)
+          {
+            removeTag(CAMERA_CALIBRATION_SIGNATURE);
+          }
+
+        propertyChangeSupport.firePropertyChange("cameraCalibrationSignatureAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("cameraCalibrationSignature", oldValue, getCameraCalibrationSignature());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isCameraCalibrationSignatureAvailable()
+      {
+        return containsTag(CAMERA_CALIBRATION_SIGNATURE);
+      }
+
+    public void setProfileCalibrationSignature (final String profileCalibrationSignature)
+      {
+        final String oldValue = getProfileCalibrationSignature();
+        final boolean oldPropAvailable = isProfileCalibrationSignatureAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.PROFILE_CALIBRATION_SIGNATURE, profileCalibrationSignature);
+        propertyChangeSupport.firePropertyChange("profileCalibrationSignature", oldValue, profileCalibrationSignature);
+        propertyChangeSupport.firePropertyChange("profileCalibrationSignatureAvailable", oldPropAvailable, isProfileCalibrationSignatureAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getProfileCalibrationSignature()
+      {
+        return getObject(PROFILE_CALIBRATION_SIGNATURE, String.class);
+      }
+
+    public void setProfileCalibrationSignatureAvailable (final boolean available)
+      {
+        final String oldValue = getProfileCalibrationSignature();
+        final boolean oldPropAvailable = isProfileCalibrationSignatureAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(PROFILE_CALIBRATION_SIGNATURE))
+          {
+            setObject(PROFILE_CALIBRATION_SIGNATURE, null);
+          }
+        else if (!available)
+          {
+            removeTag(PROFILE_CALIBRATION_SIGNATURE);
+          }
+
+        propertyChangeSupport.firePropertyChange("profileCalibrationSignatureAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("profileCalibrationSignature", oldValue, getProfileCalibrationSignature());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isProfileCalibrationSignatureAvailable()
+      {
+        return containsTag(PROFILE_CALIBRATION_SIGNATURE);
+      }
+
+    public void setExtraCameraProfiles (final int[] extraCameraProfiles)
+      {
+        final int[] oldValue = getExtraCameraProfiles();
+        final boolean oldPropAvailable = isExtraCameraProfilesAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.EXTRA_CAMERA_PROFILES, extraCameraProfiles);
+        propertyChangeSupport.firePropertyChange("extraCameraProfiles", oldValue, extraCameraProfiles);
+        propertyChangeSupport.firePropertyChange("extraCameraProfilesAvailable", oldPropAvailable, isExtraCameraProfilesAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public int[] getExtraCameraProfiles()
+      {
+        return getObject(EXTRA_CAMERA_PROFILES, int[].class);
+      }
+
+    public void setExtraCameraProfilesAvailable (final boolean available)
+      {
+        final int[] oldValue = getExtraCameraProfiles();
+        final boolean oldPropAvailable = isExtraCameraProfilesAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(EXTRA_CAMERA_PROFILES))
+          {
+            setObject(EXTRA_CAMERA_PROFILES, null);
+          }
+        else if (!available)
+          {
+            removeTag(EXTRA_CAMERA_PROFILES);
+          }
+
+        propertyChangeSupport.firePropertyChange("extraCameraProfilesAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("extraCameraProfiles", oldValue, getExtraCameraProfiles());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isExtraCameraProfilesAvailable()
+      {
+        return containsTag(EXTRA_CAMERA_PROFILES);
+      }
+
+    public void setAsShotProfileName (final String asShotProfileName)
+      {
+        final String oldValue = getAsShotProfileName();
+        final boolean oldPropAvailable = isAsShotProfileNameAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.AS_SHOT_PROFILE_NAME, asShotProfileName);
+        propertyChangeSupport.firePropertyChange("asShotProfileName", oldValue, asShotProfileName);
+        propertyChangeSupport.firePropertyChange("asShotProfileNameAvailable", oldPropAvailable, isAsShotProfileNameAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getAsShotProfileName()
+      {
+        return getObject(AS_SHOT_PROFILE_NAME, String.class);
+      }
+
+    public void setAsShotProfileNameAvailable (final boolean available)
+      {
+        final String oldValue = getAsShotProfileName();
+        final boolean oldPropAvailable = isAsShotProfileNameAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(AS_SHOT_PROFILE_NAME))
+          {
+            setObject(AS_SHOT_PROFILE_NAME, null);
+          }
+        else if (!available)
+          {
+            removeTag(AS_SHOT_PROFILE_NAME);
+          }
+
+        propertyChangeSupport.firePropertyChange("asShotProfileNameAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("asShotProfileName", oldValue, getAsShotProfileName());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isAsShotProfileNameAvailable()
+      {
+        return containsTag(AS_SHOT_PROFILE_NAME);
+      }
+
+    public void setNoiseResolutionApplied (final Rational noiseResolutionApplied)
+      {
+        final Rational oldValue = getNoiseResolutionApplied();
+        final boolean oldPropAvailable = isNoiseResolutionAppliedAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.NOISE_RESOLUTION_APPLIED, noiseResolutionApplied);
+        propertyChangeSupport.firePropertyChange("noiseResolutionApplied", oldValue, noiseResolutionApplied);
+        propertyChangeSupport.firePropertyChange("noiseResolutionAppliedAvailable", oldPropAvailable, isNoiseResolutionAppliedAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public Rational getNoiseResolutionApplied()
+      {
+        return getObject(NOISE_RESOLUTION_APPLIED, Rational.class);
+      }
+
+    public void setNoiseResolutionAppliedAvailable (final boolean available)
+      {
+        final Rational oldValue = getNoiseResolutionApplied();
+        final boolean oldPropAvailable = isNoiseResolutionAppliedAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(NOISE_RESOLUTION_APPLIED))
+          {
+            setObject(NOISE_RESOLUTION_APPLIED, null);
+          }
+        else if (!available)
+          {
+            removeTag(NOISE_RESOLUTION_APPLIED);
+          }
+
+        propertyChangeSupport.firePropertyChange("noiseResolutionAppliedAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("noiseResolutionApplied", oldValue, getNoiseResolutionApplied());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isNoiseResolutionAppliedAvailable()
+      {
+        return containsTag(NOISE_RESOLUTION_APPLIED);
+      }
+
+    public void setProfileName (final String profileName)
+      {
+        final String oldValue = getProfileName();
+        final boolean oldPropAvailable = isProfileNameAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.PROFILE_NAME, profileName);
+        propertyChangeSupport.firePropertyChange("profileName", oldValue, profileName);
+        propertyChangeSupport.firePropertyChange("profileNameAvailable", oldPropAvailable, isProfileNameAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getProfileName()
+      {
+        return getObject(PROFILE_NAME, String.class);
+      }
+
+    public void setProfileNameAvailable (final boolean available)
+      {
+        final String oldValue = getProfileName();
+        final boolean oldPropAvailable = isProfileNameAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(PROFILE_NAME))
+          {
+            setObject(PROFILE_NAME, null);
+          }
+        else if (!available)
+          {
+            removeTag(PROFILE_NAME);
+          }
+
+        propertyChangeSupport.firePropertyChange("profileNameAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("profileName", oldValue, getProfileName());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isProfileNameAvailable()
+      {
+        return containsTag(PROFILE_NAME);
+      }
+
+    public void setProfileHueSatMapDims (final int[] profileHueSatMapDims)
+      {
+        final int[] oldValue = getProfileHueSatMapDims();
+        final boolean oldPropAvailable = isProfileHueSatMapDimsAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.PROFILE_HUE_SAT_MAP_DIMS, profileHueSatMapDims);
+        propertyChangeSupport.firePropertyChange("profileHueSatMapDims", oldValue, profileHueSatMapDims);
+        propertyChangeSupport.firePropertyChange("profileHueSatMapDimsAvailable", oldPropAvailable, isProfileHueSatMapDimsAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public int[] getProfileHueSatMapDims()
+      {
+        return getObject(PROFILE_HUE_SAT_MAP_DIMS, int[].class);
+      }
+
+    public void setProfileHueSatMapDimsAvailable (final boolean available)
+      {
+        final int[] oldValue = getProfileHueSatMapDims();
+        final boolean oldPropAvailable = isProfileHueSatMapDimsAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(PROFILE_HUE_SAT_MAP_DIMS))
+          {
+            setObject(PROFILE_HUE_SAT_MAP_DIMS, null);
+          }
+        else if (!available)
+          {
+            removeTag(PROFILE_HUE_SAT_MAP_DIMS);
+          }
+
+        propertyChangeSupport.firePropertyChange("profileHueSatMapDimsAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("profileHueSatMapDims", oldValue, getProfileHueSatMapDims());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isProfileHueSatMapDimsAvailable()
+      {
+        return containsTag(PROFILE_HUE_SAT_MAP_DIMS);
+      }
+
+    public void setProfileHueSatMapData1 (final Float[] profileHueSatMapData1)
+      {
+        final Float[] oldValue = getProfileHueSatMapData1();
+        final boolean oldPropAvailable = isProfileHueSatMapData1Available();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.PROFILE_HUE_SAT_MAP_DATA_1, profileHueSatMapData1);
+        propertyChangeSupport.firePropertyChange("profileHueSatMapData1", oldValue, profileHueSatMapData1);
+        propertyChangeSupport.firePropertyChange("profileHueSatMapData1Available", oldPropAvailable, isProfileHueSatMapData1Available());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public Float[] getProfileHueSatMapData1()
+      {
+        return getObject(PROFILE_HUE_SAT_MAP_DATA_1, Float[].class);
+      }
+
+    public void setProfileHueSatMapData1Available (final boolean available)
+      {
+        final Float[] oldValue = getProfileHueSatMapData1();
+        final boolean oldPropAvailable = isProfileHueSatMapData1Available();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(PROFILE_HUE_SAT_MAP_DATA_1))
+          {
+            setObject(PROFILE_HUE_SAT_MAP_DATA_1, null);
+          }
+        else if (!available)
+          {
+            removeTag(PROFILE_HUE_SAT_MAP_DATA_1);
+          }
+
+        propertyChangeSupport.firePropertyChange("profileHueSatMapData1Available", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("profileHueSatMapData1", oldValue, getProfileHueSatMapData1());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isProfileHueSatMapData1Available()
+      {
+        return containsTag(PROFILE_HUE_SAT_MAP_DATA_1);
+      }
+
+    public void setProfileHueSatMapData2 (final Float[] profileHueSatMapData2)
+      {
+        final Float[] oldValue = getProfileHueSatMapData2();
+        final boolean oldPropAvailable = isProfileHueSatMapData2Available();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.PROFILE_HUE_SAT_MAP_DATA_2, profileHueSatMapData2);
+        propertyChangeSupport.firePropertyChange("profileHueSatMapData2", oldValue, profileHueSatMapData2);
+        propertyChangeSupport.firePropertyChange("profileHueSatMapData2Available", oldPropAvailable, isProfileHueSatMapData2Available());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public Float[] getProfileHueSatMapData2()
+      {
+        return getObject(PROFILE_HUE_SAT_MAP_DATA_2, Float[].class);
+      }
+
+    public void setProfileHueSatMapData2Available (final boolean available)
+      {
+        final Float[] oldValue = getProfileHueSatMapData2();
+        final boolean oldPropAvailable = isProfileHueSatMapData2Available();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(PROFILE_HUE_SAT_MAP_DATA_2))
+          {
+            setObject(PROFILE_HUE_SAT_MAP_DATA_2, null);
+          }
+        else if (!available)
+          {
+            removeTag(PROFILE_HUE_SAT_MAP_DATA_2);
+          }
+
+        propertyChangeSupport.firePropertyChange("profileHueSatMapData2Available", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("profileHueSatMapData2", oldValue, getProfileHueSatMapData2());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isProfileHueSatMapData2Available()
+      {
+        return containsTag(PROFILE_HUE_SAT_MAP_DATA_2);
+      }
+
+    public void setProfileToneCurve (final Float[] profileToneCurve)
+      {
+        final Float[] oldValue = getProfileToneCurve();
+        final boolean oldPropAvailable = isProfileToneCurveAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.PROFILE_TONE_CURVE, profileToneCurve);
+        propertyChangeSupport.firePropertyChange("profileToneCurve", oldValue, profileToneCurve);
+        propertyChangeSupport.firePropertyChange("profileToneCurveAvailable", oldPropAvailable, isProfileToneCurveAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public Float[] getProfileToneCurve()
+      {
+        return getObject(PROFILE_TONE_CURVE, Float[].class);
+      }
+
+    public void setProfileToneCurveAvailable (final boolean available)
+      {
+        final Float[] oldValue = getProfileToneCurve();
+        final boolean oldPropAvailable = isProfileToneCurveAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(PROFILE_TONE_CURVE))
+          {
+            setObject(PROFILE_TONE_CURVE, null);
+          }
+        else if (!available)
+          {
+            removeTag(PROFILE_TONE_CURVE);
+          }
+
+        propertyChangeSupport.firePropertyChange("profileToneCurveAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("profileToneCurve", oldValue, getProfileToneCurve());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isProfileToneCurveAvailable()
+      {
+        return containsTag(PROFILE_TONE_CURVE);
+      }
+
+    public static enum ProfileEmbedPolicy
+       {
+         ALLOW_COPYING(0, "allow copying"),
+         EMBED_IF_USED(1, "embed if used"),
+         EMBED_NEVER(2, "embed never"),
+         NO_RESTRICTIONS(3, "no restrictions"),
+         _UNKNOWN(-1, "_unknown_");
+         private final static long serialVersionUID = 3059468666726854749L;
+         private int value;
+         private String name;
+
+         private ProfileEmbedPolicy (final int value, final String name)
+           {
+             this.value = value;
+             this.name = name;
+           }
+
+         public int getValue()
+           {
+             return value;
+           }
+
+         public static ProfileEmbedPolicy fromInteger (int value)
+           {
+             if (value == 0) return ALLOW_COPYING;
+             if (value == 1) return EMBED_IF_USED;
+             if (value == 2) return EMBED_NEVER;
+             if (value == 3) return NO_RESTRICTIONS;
+
+             return _UNKNOWN;
+           }
+       }
+    public void setProfileEmbedPolicy (final ProfileEmbedPolicy profileEmbedPolicy)
+      {
+        final ProfileEmbedPolicy oldValue = getProfileEmbedPolicy();
+        final boolean oldPropAvailable = isProfileEmbedPolicyAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.PROFILE_EMBED_POLICY, profileEmbedPolicy);
+        propertyChangeSupport.firePropertyChange("profileEmbedPolicy", oldValue, profileEmbedPolicy);
+        propertyChangeSupport.firePropertyChange("profileEmbedPolicyAvailable", oldPropAvailable, isProfileEmbedPolicyAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public ProfileEmbedPolicy getProfileEmbedPolicy()
+      {
+        return getObject(PROFILE_EMBED_POLICY, ProfileEmbedPolicy.class);
+      }
+
+    public void setProfileEmbedPolicyAvailable (final boolean available)
+      {
+        final ProfileEmbedPolicy oldValue = getProfileEmbedPolicy();
+        final boolean oldPropAvailable = isProfileEmbedPolicyAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(PROFILE_EMBED_POLICY))
+          {
+            setObject(PROFILE_EMBED_POLICY, null);
+          }
+        else if (!available)
+          {
+            removeTag(PROFILE_EMBED_POLICY);
+          }
+
+        propertyChangeSupport.firePropertyChange("profileEmbedPolicyAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("profileEmbedPolicy", oldValue, getProfileEmbedPolicy());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isProfileEmbedPolicyAvailable()
+      {
+        return containsTag(PROFILE_EMBED_POLICY);
+      }
+
+    public void setProfileCopyright (final String profileCopyright)
+      {
+        final String oldValue = getProfileCopyright();
+        final boolean oldPropAvailable = isProfileCopyrightAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.PROFILE_COPYRIGHT, profileCopyright);
+        propertyChangeSupport.firePropertyChange("profileCopyright", oldValue, profileCopyright);
+        propertyChangeSupport.firePropertyChange("profileCopyrightAvailable", oldPropAvailable, isProfileCopyrightAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getProfileCopyright()
+      {
+        return getObject(PROFILE_COPYRIGHT, String.class);
+      }
+
+    public void setProfileCopyrightAvailable (final boolean available)
+      {
+        final String oldValue = getProfileCopyright();
+        final boolean oldPropAvailable = isProfileCopyrightAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(PROFILE_COPYRIGHT))
+          {
+            setObject(PROFILE_COPYRIGHT, null);
+          }
+        else if (!available)
+          {
+            removeTag(PROFILE_COPYRIGHT);
+          }
+
+        propertyChangeSupport.firePropertyChange("profileCopyrightAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("profileCopyright", oldValue, getProfileCopyright());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isProfileCopyrightAvailable()
+      {
+        return containsTag(PROFILE_COPYRIGHT);
+      }
+
+    public void setForwardMatrix1 (final Rational[] forwardMatrix1)
+      {
+        final Rational[] oldValue = getForwardMatrix1();
+        final boolean oldPropAvailable = isForwardMatrix1Available();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.FORWARD_MATRIX_1, forwardMatrix1);
+        propertyChangeSupport.firePropertyChange("forwardMatrix1", oldValue, forwardMatrix1);
+        propertyChangeSupport.firePropertyChange("forwardMatrix1Available", oldPropAvailable, isForwardMatrix1Available());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public Rational[] getForwardMatrix1()
+      {
+        return getObject(FORWARD_MATRIX_1, Rational[].class);
+      }
+
+    public void setForwardMatrix1Available (final boolean available)
+      {
+        final Rational[] oldValue = getForwardMatrix1();
+        final boolean oldPropAvailable = isForwardMatrix1Available();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(FORWARD_MATRIX_1))
+          {
+            setObject(FORWARD_MATRIX_1, null);
+          }
+        else if (!available)
+          {
+            removeTag(FORWARD_MATRIX_1);
+          }
+
+        propertyChangeSupport.firePropertyChange("forwardMatrix1Available", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("forwardMatrix1", oldValue, getForwardMatrix1());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isForwardMatrix1Available()
+      {
+        return containsTag(FORWARD_MATRIX_1);
+      }
+
+    public void setForwardMatrix2 (final Rational[] forwardMatrix2)
+      {
+        final Rational[] oldValue = getForwardMatrix2();
+        final boolean oldPropAvailable = isForwardMatrix2Available();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.FORWARD_MATRIX_2, forwardMatrix2);
+        propertyChangeSupport.firePropertyChange("forwardMatrix2", oldValue, forwardMatrix2);
+        propertyChangeSupport.firePropertyChange("forwardMatrix2Available", oldPropAvailable, isForwardMatrix2Available());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public Rational[] getForwardMatrix2()
+      {
+        return getObject(FORWARD_MATRIX_2, Rational[].class);
+      }
+
+    public void setForwardMatrix2Available (final boolean available)
+      {
+        final Rational[] oldValue = getForwardMatrix2();
+        final boolean oldPropAvailable = isForwardMatrix2Available();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(FORWARD_MATRIX_2))
+          {
+            setObject(FORWARD_MATRIX_2, null);
+          }
+        else if (!available)
+          {
+            removeTag(FORWARD_MATRIX_2);
+          }
+
+        propertyChangeSupport.firePropertyChange("forwardMatrix2Available", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("forwardMatrix2", oldValue, getForwardMatrix2());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isForwardMatrix2Available()
+      {
+        return containsTag(FORWARD_MATRIX_2);
+      }
+
+    public void setPreviewApplicationName (final String previewApplicationName)
+      {
+        final String oldValue = getPreviewApplicationName();
+        final boolean oldPropAvailable = isPreviewApplicationNameAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.PREVIEW_APPLICATION_NAME, previewApplicationName);
+        propertyChangeSupport.firePropertyChange("previewApplicationName", oldValue, previewApplicationName);
+        propertyChangeSupport.firePropertyChange("previewApplicationNameAvailable", oldPropAvailable, isPreviewApplicationNameAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getPreviewApplicationName()
+      {
+        return getObject(PREVIEW_APPLICATION_NAME, String.class);
+      }
+
+    public void setPreviewApplicationNameAvailable (final boolean available)
+      {
+        final String oldValue = getPreviewApplicationName();
+        final boolean oldPropAvailable = isPreviewApplicationNameAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(PREVIEW_APPLICATION_NAME))
+          {
+            setObject(PREVIEW_APPLICATION_NAME, null);
+          }
+        else if (!available)
+          {
+            removeTag(PREVIEW_APPLICATION_NAME);
+          }
+
+        propertyChangeSupport.firePropertyChange("previewApplicationNameAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("previewApplicationName", oldValue, getPreviewApplicationName());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isPreviewApplicationNameAvailable()
+      {
+        return containsTag(PREVIEW_APPLICATION_NAME);
+      }
+
+    public void setPreviewApplicationVersion (final String previewApplicationVersion)
+      {
+        final String oldValue = getPreviewApplicationVersion();
+        final boolean oldPropAvailable = isPreviewApplicationVersionAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.PREVIEW_APPLICATION_VERSION, previewApplicationVersion);
+        propertyChangeSupport.firePropertyChange("previewApplicationVersion", oldValue, previewApplicationVersion);
+        propertyChangeSupport.firePropertyChange("previewApplicationVersionAvailable", oldPropAvailable, isPreviewApplicationVersionAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getPreviewApplicationVersion()
+      {
+        return getObject(PREVIEW_APPLICATION_VERSION, String.class);
+      }
+
+    public void setPreviewApplicationVersionAvailable (final boolean available)
+      {
+        final String oldValue = getPreviewApplicationVersion();
+        final boolean oldPropAvailable = isPreviewApplicationVersionAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(PREVIEW_APPLICATION_VERSION))
+          {
+            setObject(PREVIEW_APPLICATION_VERSION, null);
+          }
+        else if (!available)
+          {
+            removeTag(PREVIEW_APPLICATION_VERSION);
+          }
+
+        propertyChangeSupport.firePropertyChange("previewApplicationVersionAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("previewApplicationVersion", oldValue, getPreviewApplicationVersion());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isPreviewApplicationVersionAvailable()
+      {
+        return containsTag(PREVIEW_APPLICATION_VERSION);
+      }
+
+    public void setPreviewSettingsName (final String previewSettingsName)
+      {
+        final String oldValue = getPreviewSettingsName();
+        final boolean oldPropAvailable = isPreviewSettingsNameAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.PREVIEW_SETTINGS_NAME, previewSettingsName);
+        propertyChangeSupport.firePropertyChange("previewSettingsName", oldValue, previewSettingsName);
+        propertyChangeSupport.firePropertyChange("previewSettingsNameAvailable", oldPropAvailable, isPreviewSettingsNameAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getPreviewSettingsName()
+      {
+        return getObject(PREVIEW_SETTINGS_NAME, String.class);
+      }
+
+    public void setPreviewSettingsNameAvailable (final boolean available)
+      {
+        final String oldValue = getPreviewSettingsName();
+        final boolean oldPropAvailable = isPreviewSettingsNameAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(PREVIEW_SETTINGS_NAME))
+          {
+            setObject(PREVIEW_SETTINGS_NAME, null);
+          }
+        else if (!available)
+          {
+            removeTag(PREVIEW_SETTINGS_NAME);
+          }
+
+        propertyChangeSupport.firePropertyChange("previewSettingsNameAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("previewSettingsName", oldValue, getPreviewSettingsName());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isPreviewSettingsNameAvailable()
+      {
+        return containsTag(PREVIEW_SETTINGS_NAME);
+      }
+
+    public void setPreviewIFD (final byte[] previewIFD)
+      {
+        final byte[] oldValue = getPreviewIFD();
+        final boolean oldPropAvailable = isPreviewIFDAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.PREVIEW_IFD, previewIFD);
+        propertyChangeSupport.firePropertyChange("previewIFD", oldValue, previewIFD);
+        propertyChangeSupport.firePropertyChange("previewIFDAvailable", oldPropAvailable, isPreviewIFDAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public byte[] getPreviewIFD()
+      {
+        return getObject(PREVIEW_IFD, byte[].class);
+      }
+
+    public void setPreviewIFDAvailable (final boolean available)
+      {
+        final byte[] oldValue = getPreviewIFD();
+        final boolean oldPropAvailable = isPreviewIFDAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(PREVIEW_IFD))
+          {
+            setObject(PREVIEW_IFD, null);
+          }
+        else if (!available)
+          {
+            removeTag(PREVIEW_IFD);
+          }
+
+        propertyChangeSupport.firePropertyChange("previewIFDAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("previewIFD", oldValue, getPreviewIFD());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isPreviewIFDAvailable()
+      {
+        return containsTag(PREVIEW_IFD);
+      }
+
+    public static enum PreviewColorSpace
+       {
+         UNKNOWN(0, "Unknown"),
+         GRAY_GAMMA_22(1, "Gray Gamma 22"),
+         SRGB(2, "sRGB"),
+         ADOBE_RGB(3, "Adobe RGB"),
+         PROPHOTO_RGB(4, "ProPhoto RGB"),
+         _UNKNOWN(-1, "_unknown_");
+         private final static long serialVersionUID = 3059468666726854749L;
+         private int value;
+         private String name;
+
+         private PreviewColorSpace (final int value, final String name)
+           {
+             this.value = value;
+             this.name = name;
+           }
+
+         public int getValue()
+           {
+             return value;
+           }
+
+         public static PreviewColorSpace fromInteger (int value)
+           {
+             if (value == 0) return UNKNOWN;
+             if (value == 1) return GRAY_GAMMA_22;
+             if (value == 2) return SRGB;
+             if (value == 3) return ADOBE_RGB;
+             if (value == 4) return PROPHOTO_RGB;
+
+             return _UNKNOWN;
+           }
+       }
+    public void setPreviewColorSpace (final PreviewColorSpace previewColorSpace)
+      {
+        final PreviewColorSpace oldValue = getPreviewColorSpace();
+        final boolean oldPropAvailable = isPreviewColorSpaceAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.PREVIEW_COLOR_SPACE, previewColorSpace);
+        propertyChangeSupport.firePropertyChange("previewColorSpace", oldValue, previewColorSpace);
+        propertyChangeSupport.firePropertyChange("previewColorSpaceAvailable", oldPropAvailable, isPreviewColorSpaceAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public PreviewColorSpace getPreviewColorSpace()
+      {
+        return getObject(PREVIEW_COLOR_SPACE, PreviewColorSpace.class);
+      }
+
+    public void setPreviewColorSpaceAvailable (final boolean available)
+      {
+        final PreviewColorSpace oldValue = getPreviewColorSpace();
+        final boolean oldPropAvailable = isPreviewColorSpaceAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(PREVIEW_COLOR_SPACE))
+          {
+            setObject(PREVIEW_COLOR_SPACE, null);
+          }
+        else if (!available)
+          {
+            removeTag(PREVIEW_COLOR_SPACE);
+          }
+
+        propertyChangeSupport.firePropertyChange("previewColorSpaceAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("previewColorSpace", oldValue, getPreviewColorSpace());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isPreviewColorSpaceAvailable()
+      {
+        return containsTag(PREVIEW_COLOR_SPACE);
+      }
+
+    public void setPreviewDateTime (final String previewDateTime)
+      {
+        final String oldValue = getPreviewDateTime();
+        final boolean oldPropAvailable = isPreviewDateTimeAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.PREVIEW_DATE_TIME, previewDateTime);
+        propertyChangeSupport.firePropertyChange("previewDateTime", oldValue, previewDateTime);
+        propertyChangeSupport.firePropertyChange("previewDateTimeAvailable", oldPropAvailable, isPreviewDateTimeAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public String getPreviewDateTime()
+      {
+        return getObject(PREVIEW_DATE_TIME, String.class);
+      }
+
+    public void setPreviewDateTimeAvailable (final boolean available)
+      {
+        final String oldValue = getPreviewDateTime();
+        final boolean oldPropAvailable = isPreviewDateTimeAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(PREVIEW_DATE_TIME))
+          {
+            setObject(PREVIEW_DATE_TIME, null);
+          }
+        else if (!available)
+          {
+            removeTag(PREVIEW_DATE_TIME);
+          }
+
+        propertyChangeSupport.firePropertyChange("previewDateTimeAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("previewDateTime", oldValue, getPreviewDateTime());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isPreviewDateTimeAvailable()
+      {
+        return containsTag(PREVIEW_DATE_TIME);
+      }
+
+    public void setRawImageDigest (final byte[] rawImageDigest)
+      {
+        final byte[] oldValue = getRawImageDigest();
+        final boolean oldPropAvailable = isRawImageDigestAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.RAW_IMAGE_DIGEST, rawImageDigest);
+        propertyChangeSupport.firePropertyChange("rawImageDigest", oldValue, rawImageDigest);
+        propertyChangeSupport.firePropertyChange("rawImageDigestAvailable", oldPropAvailable, isRawImageDigestAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public byte[] getRawImageDigest()
+      {
+        return getObject(RAW_IMAGE_DIGEST, byte[].class);
+      }
+
+    public void setRawImageDigestAvailable (final boolean available)
+      {
+        final byte[] oldValue = getRawImageDigest();
+        final boolean oldPropAvailable = isRawImageDigestAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(RAW_IMAGE_DIGEST))
+          {
+            setObject(RAW_IMAGE_DIGEST, null);
+          }
+        else if (!available)
+          {
+            removeTag(RAW_IMAGE_DIGEST);
+          }
+
+        propertyChangeSupport.firePropertyChange("rawImageDigestAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("rawImageDigest", oldValue, getRawImageDigest());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isRawImageDigestAvailable()
+      {
+        return containsTag(RAW_IMAGE_DIGEST);
+      }
+
+    public void setOriginalRawFileDigest (final byte[] originalRawFileDigest)
+      {
+        final byte[] oldValue = getOriginalRawFileDigest();
+        final boolean oldPropAvailable = isOriginalRawFileDigestAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.ORIGINAL_RAW_FILE_DIGEST, originalRawFileDigest);
+        propertyChangeSupport.firePropertyChange("originalRawFileDigest", oldValue, originalRawFileDigest);
+        propertyChangeSupport.firePropertyChange("originalRawFileDigestAvailable", oldPropAvailable, isOriginalRawFileDigestAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public byte[] getOriginalRawFileDigest()
+      {
+        return getObject(ORIGINAL_RAW_FILE_DIGEST, byte[].class);
+      }
+
+    public void setOriginalRawFileDigestAvailable (final boolean available)
+      {
+        final byte[] oldValue = getOriginalRawFileDigest();
+        final boolean oldPropAvailable = isOriginalRawFileDigestAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(ORIGINAL_RAW_FILE_DIGEST))
+          {
+            setObject(ORIGINAL_RAW_FILE_DIGEST, null);
+          }
+        else if (!available)
+          {
+            removeTag(ORIGINAL_RAW_FILE_DIGEST);
+          }
+
+        propertyChangeSupport.firePropertyChange("originalRawFileDigestAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("originalRawFileDigest", oldValue, getOriginalRawFileDigest());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isOriginalRawFileDigestAvailable()
+      {
+        return containsTag(ORIGINAL_RAW_FILE_DIGEST);
+      }
+
+    public void setSubTileBlockSize (final int[] subTileBlockSize)
+      {
+        final int[] oldValue = getSubTileBlockSize();
+        final boolean oldPropAvailable = isSubTileBlockSizeAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.SUB_TILE_BLOCK_SIZE, subTileBlockSize);
+        propertyChangeSupport.firePropertyChange("subTileBlockSize", oldValue, subTileBlockSize);
+        propertyChangeSupport.firePropertyChange("subTileBlockSizeAvailable", oldPropAvailable, isSubTileBlockSizeAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public int[] getSubTileBlockSize()
+      {
+        return getObject(SUB_TILE_BLOCK_SIZE, int[].class);
+      }
+
+    public void setSubTileBlockSizeAvailable (final boolean available)
+      {
+        final int[] oldValue = getSubTileBlockSize();
+        final boolean oldPropAvailable = isSubTileBlockSizeAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(SUB_TILE_BLOCK_SIZE))
+          {
+            setObject(SUB_TILE_BLOCK_SIZE, null);
+          }
+        else if (!available)
+          {
+            removeTag(SUB_TILE_BLOCK_SIZE);
+          }
+
+        propertyChangeSupport.firePropertyChange("subTileBlockSizeAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("subTileBlockSize", oldValue, getSubTileBlockSize());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isSubTileBlockSizeAvailable()
+      {
+        return containsTag(SUB_TILE_BLOCK_SIZE);
+      }
+
+    public void setRowInterleaveFactor (final Long rowInterleaveFactor)
+      {
+        final Long oldValue = getRowInterleaveFactor();
+        final boolean oldPropAvailable = isRowInterleaveFactorAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.ROW_INTERLEAVE_FACTOR, rowInterleaveFactor);
+        propertyChangeSupport.firePropertyChange("rowInterleaveFactor", oldValue, rowInterleaveFactor);
+        propertyChangeSupport.firePropertyChange("rowInterleaveFactorAvailable", oldPropAvailable, isRowInterleaveFactorAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public Long getRowInterleaveFactor()
+      {
+        return getObject(ROW_INTERLEAVE_FACTOR, Long.class);
+      }
+
+    public void setRowInterleaveFactorAvailable (final boolean available)
+      {
+        final Long oldValue = getRowInterleaveFactor();
+        final boolean oldPropAvailable = isRowInterleaveFactorAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(ROW_INTERLEAVE_FACTOR))
+          {
+            setObject(ROW_INTERLEAVE_FACTOR, null);
+          }
+        else if (!available)
+          {
+            removeTag(ROW_INTERLEAVE_FACTOR);
+          }
+
+        propertyChangeSupport.firePropertyChange("rowInterleaveFactorAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("rowInterleaveFactor", oldValue, getRowInterleaveFactor());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isRowInterleaveFactorAvailable()
+      {
+        return containsTag(ROW_INTERLEAVE_FACTOR);
+      }
+
+    public void setProfileLookTableDims (final int[] profileLookTableDims)
+      {
+        final int[] oldValue = getProfileLookTableDims();
+        final boolean oldPropAvailable = isProfileLookTableDimsAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.PROFILE_LOOK_TABLE_DIMS, profileLookTableDims);
+        propertyChangeSupport.firePropertyChange("profileLookTableDims", oldValue, profileLookTableDims);
+        propertyChangeSupport.firePropertyChange("profileLookTableDimsAvailable", oldPropAvailable, isProfileLookTableDimsAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public int[] getProfileLookTableDims()
+      {
+        return getObject(PROFILE_LOOK_TABLE_DIMS, int[].class);
+      }
+
+    public void setProfileLookTableDimsAvailable (final boolean available)
+      {
+        final int[] oldValue = getProfileLookTableDims();
+        final boolean oldPropAvailable = isProfileLookTableDimsAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(PROFILE_LOOK_TABLE_DIMS))
+          {
+            setObject(PROFILE_LOOK_TABLE_DIMS, null);
+          }
+        else if (!available)
+          {
+            removeTag(PROFILE_LOOK_TABLE_DIMS);
+          }
+
+        propertyChangeSupport.firePropertyChange("profileLookTableDimsAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("profileLookTableDims", oldValue, getProfileLookTableDims());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isProfileLookTableDimsAvailable()
+      {
+        return containsTag(PROFILE_LOOK_TABLE_DIMS);
+      }
+
+    public void setProfileLookTableData (final Float[] profileLookTableData)
+      {
+        final Float[] oldValue = getProfileLookTableData();
+        final boolean oldPropAvailable = isProfileLookTableDataAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(EXIFDirectoryGenerated.PROFILE_LOOK_TABLE_DATA, profileLookTableData);
+        propertyChangeSupport.firePropertyChange("profileLookTableData", oldValue, profileLookTableData);
+        propertyChangeSupport.firePropertyChange("profileLookTableDataAvailable", oldPropAvailable, isProfileLookTableDataAvailable());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public Float[] getProfileLookTableData()
+      {
+        return getObject(PROFILE_LOOK_TABLE_DATA, Float[].class);
+      }
+
+    public void setProfileLookTableDataAvailable (final boolean available)
+      {
+        final Float[] oldValue = getProfileLookTableData();
+        final boolean oldPropAvailable = isProfileLookTableDataAvailable();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(PROFILE_LOOK_TABLE_DATA))
+          {
+            setObject(PROFILE_LOOK_TABLE_DATA, null);
+          }
+        else if (!available)
+          {
+            removeTag(PROFILE_LOOK_TABLE_DATA);
+          }
+
+        propertyChangeSupport.firePropertyChange("profileLookTableDataAvailable", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("profileLookTableData", oldValue, getProfileLookTableData());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean isProfileLookTableDataAvailable()
+      {
+        return containsTag(PROFILE_LOOK_TABLE_DATA);
+      }
+
     public boolean isAvailable()
       {
         return isNewSubFileTypeAvailable()
@@ -12277,6 +13612,33 @@ public class EXIFDirectoryGenerated extends Directory
              | isAsShotPreProfileMatrixAvailable()
              | isCurrentICCProfileAvailable()
              | isCurrentPreProfileMatrixAvailable()
+             | isColorimetricReferenceAvailable()
+             | isCameraCalibrationSignatureAvailable()
+             | isProfileCalibrationSignatureAvailable()
+             | isExtraCameraProfilesAvailable()
+             | isAsShotProfileNameAvailable()
+             | isNoiseResolutionAppliedAvailable()
+             | isProfileNameAvailable()
+             | isProfileHueSatMapDimsAvailable()
+             | isProfileHueSatMapData1Available()
+             | isProfileHueSatMapData2Available()
+             | isProfileToneCurveAvailable()
+             | isProfileEmbedPolicyAvailable()
+             | isProfileCopyrightAvailable()
+             | isForwardMatrix1Available()
+             | isForwardMatrix2Available()
+             | isPreviewApplicationNameAvailable()
+             | isPreviewApplicationVersionAvailable()
+             | isPreviewSettingsNameAvailable()
+             | isPreviewIFDAvailable()
+             | isPreviewColorSpaceAvailable()
+             | isPreviewDateTimeAvailable()
+             | isRawImageDigestAvailable()
+             | isOriginalRawFileDigestAvailable()
+             | isSubTileBlockSizeAvailable()
+             | isRowInterleaveFactorAvailable()
+             | isProfileLookTableDimsAvailable()
+             | isProfileLookTableDataAvailable()
 ;
       }
   }
