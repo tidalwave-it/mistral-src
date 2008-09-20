@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: Directory.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: Directory.java 957 2008-09-20 23:48:41Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.metadata;
@@ -40,6 +40,8 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import java.io.Serializable;
 import it.tidalwave.image.Rational;
 import it.tidalwave.image.metadata.loader.DirectoryAdapter;
+import javax.annotation.CheckForNull;
+import javax.annotation.Nonnull;
 
 /***************************************************************************
  *
@@ -47,7 +49,7 @@ import it.tidalwave.image.metadata.loader.DirectoryAdapter;
  * or maker notes. 
  *
  * @author  Fabrizio Giudici
- * @version $Id: Directory.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: Directory.java 957 2008-09-20 23:48:41Z fabriziogiudici $
  *
  ******************************************************************************/
 public class Directory extends JavaBeanSupport implements Serializable
@@ -160,12 +162,19 @@ public class Directory extends JavaBeanSupport implements Serializable
      * @return          the value
      *
      **************************************************************************/
-    public <T> T getObject (final int tag, final Class<T> asType)
+    @CheckForNull
+    public <T> T getObject (final int tag, @Nonnull final Class<T> asType)
       {
         Object value = tagMap.get(tag);
 
+        if (value == null)
+          {
+            return null;
+          }
+
         if (value instanceof Number)
           {
+            // Handle Enums
             try
               {
 //                final String methodName = "get" + strip(getTagName(tag));
@@ -182,12 +191,12 @@ public class Directory extends JavaBeanSupport implements Serializable
               {
                 throw new RuntimeException(e);
               }
-            
+
+            // Handle promotions
             if (((value instanceof Short) || (value instanceof Byte)) && asType.equals(Integer.class))
               {
                 value = Integer.valueOf(((Number)value).intValue());
               }
-            
             else if (((value instanceof Short) || (value instanceof Integer) || (value instanceof Byte)) && asType.equals(Long.class))
               {
                 value = Long.valueOf(((Number)value).intValue());
@@ -200,6 +209,14 @@ public class Directory extends JavaBeanSupport implements Serializable
             value = new Rational((int)array[0][0], (int)array[0][1]);
           }
 
+        // If an array is asked and a scalar is available, convert it to an array[1]
+        if (asType.isArray() && !value.getClass().isArray())
+          {
+            final Object array = Array.newInstance(asType.getComponentType(), 1);
+            Array.set(array, 0, value);
+            value = array;
+          }
+        
         return (T)value;
       }
     
