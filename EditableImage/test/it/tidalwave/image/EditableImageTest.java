@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: EditableImageTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: EditableImageTest.java 958 2008-10-09 13:37:26Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image;
@@ -48,7 +48,7 @@ import org.junit.Test;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: EditableImageTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: EditableImageTest.java 958 2008-10-09 13:37:26Z fabriziogiudici $
  *
  ******************************************************************************/
 public class EditableImageTest extends BaseTestSupport
@@ -332,22 +332,22 @@ public class EditableImageTest extends BaseTestSupport
                                 "skies, sky, blue";
         
         assertEquals(17, iptc.getTagCodes().length);
-        assertEquals("Julie Doe", iptc.getByLine());
-        assertEquals("Mugwum contract photographer", iptc.getByLineTitle());
-        assertEquals(caption, iptc.getCaption());
+        assertEquals("Julie Doe", iptc.getByline());
+        assertEquals("Mugwum contract photographer", iptc.getBylineTitle());
+        assertEquals(caption, iptc.getCaptionAbstract());
         assertEquals("Malibalipuram", iptc.getCity());
         assertEquals("�2005 Julie Doe / Mugwum Press, all rights reserved", iptc.getCopyrightNotice());
-        assertEquals("India", iptc.getCountryOrPrimaryLocation());
+        assertEquals("India", iptc.getCountryPrimaryLocationName());
         assertEquals("Mugwum Press", iptc.getCredit());
         assertEquals("Sat Jan 01 00:00:00 CET 2005", iptc.getDateCreated().toString());
         assertEquals("Shore Temple, Malibalipuram, India", iptc.getHeadline());
         assertEquals("[" + keywords + "]", Arrays.asList(iptc.getKeywords()).toString());
         assertEquals("ar21319", iptc.getObjectName());
         assertEquals("Sacred India", iptc.getOriginalTransmissionReference());
-        assertEquals("Tamil Nadu", iptc.getProvinceOrState());
+        assertEquals("Tamil Nadu", iptc.getProvinceState());
         assertEquals("Julie Doe / Mugwum Press", iptc.getSource());
         assertEquals("Newsmagazines Out", iptc.getSpecialInstructions());
-        assertEquals("Jacques Brown", iptc.getWriter());
+        assertEquals("Jacques Brown", iptc.getWriterEditor());
       }
     
     @Test
