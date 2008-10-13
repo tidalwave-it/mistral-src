@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ReadOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: ReadOp.java 959 2008-10-13 10:57:38Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
@@ -50,16 +50,16 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import java.awt.image.BufferedImage;
+import it.tidalwave.util.parameters.Parameters;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.java2d.ImplementationFactoryJ2D;
 import it.tidalwave.image.java2d.Java2DUtils;
 import it.tidalwave.image.op.impl.FileChannelImageInputStream;
-import it.tidalwave.bluemarine.arguments.Arguments;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ReadOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: ReadOp.java 959 2008-10-13 10:57:38Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ReadOp extends Operation
@@ -376,8 +376,8 @@ public class ReadOp extends Operation
           }
         
         this.input = input;
-        this.type = Arguments.find (Type.class, Type.IMAGE, options);
-        this.pluginBlackList = Arguments.find(PluginBlackList.class, PluginBlackList.DEFAULT, options);
+        this.type = Parameters.find (Type.class, Type.IMAGE, options);
+        this.pluginBlackList = Parameters.find(PluginBlackList.class, PluginBlackList.DEFAULT, options);
         this.imageIndex = imageIndex;
         this.thumbnailIndex = thumbnailIndex;
         logger.fine(String.format("ReadOp(%s, %d, %d, %s)", input, imageIndex, thumbnailIndex, Arrays.asList(options)));
