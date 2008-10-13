@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ReadOp.java 959 2008-10-13 10:57:38Z fabriziogiudici $
+ * $Id: ReadOp.java 960 2008-10-13 11:24:39Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
@@ -50,7 +50,7 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import java.awt.image.BufferedImage;
-import it.tidalwave.util.parameters.Parameters;
+import it.tidalwave.image.util.Parameters;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.java2d.ImplementationFactoryJ2D;
 import it.tidalwave.image.java2d.Java2DUtils;
@@ -59,7 +59,7 @@ import it.tidalwave.image.op.impl.FileChannelImageInputStream;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ReadOp.java 959 2008-10-13 10:57:38Z fabriziogiudici $
+ * @version $Id: ReadOp.java 960 2008-10-13 11:24:39Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ReadOp extends Operation
