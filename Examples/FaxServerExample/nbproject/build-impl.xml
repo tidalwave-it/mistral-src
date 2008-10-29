@@ -159,9 +159,9 @@
         </condition>
         <property name="runmain.jvmargs" value=""/>
     </target>
-    <target depends="init" name="-init-cos">
-        <condition property="ensure.built.source.roots" value="${src.dir}">
-            <isfalse value="${disable.deploy.on.save}"/>
+    <target depends="init" name="-init-cos" unless="deploy.on.save">
+        <condition property="deploy.on.save" value="true">
+            <istrue value="${j2ee.deploy.on.save}"/>
         </condition>
     </target>
     <target name="-post-init">
