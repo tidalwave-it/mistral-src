@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: EditableImage.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: EditableImage.java 961 2008-10-29 12:41:14Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image;
@@ -80,7 +80,7 @@ import it.tidalwave.image.metadata.loader.TIFFMetadataLoader;
  * (e.g. by using or not JAI, etc...)
  *
  * @author  Fabrizio Giudici
- * @version $Id: EditableImage.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: EditableImage.java 961 2008-10-29 12:41:14Z fabriziogiudici $
  *
  ******************************************************************************/
 public class EditableImage implements Cloneable, Serializable // Externalizable
@@ -201,6 +201,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
         // By default put empty objects for which isAvailable() returns false
         metadataMapByClass.put(TIFF.class, Arrays.asList(new TIFF()));
         metadataMapByClass.put(EXIF.class, Arrays.asList(new EXIF()));
+        metadataMapByClass.put(IPTC.class, Arrays.asList(new IPTC()));
         metadataMapByClass.put(MakerNote.class, Arrays.asList(new MakerNote()));
       }
 
