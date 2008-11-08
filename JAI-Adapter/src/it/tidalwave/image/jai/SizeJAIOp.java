@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: SizeJAIOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: SizeJAIOp.java 963 2008-11-08 11:02:04Z lucaforni $
  *
  ******************************************************************************/
 package it.tidalwave.image.jai;
@@ -46,7 +46,8 @@ import it.tidalwave.image.op.SizeOp;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: SizeJAIOp.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @author  Luca Forni
+ * @version $Id: SizeJAIOp.java 963 2008-11-08 11:02:04Z lucaforni $
  *
  ******************************************************************************/
 public class SizeJAIOp extends OperationImplementation<SizeOp, PlanarImage>
@@ -66,6 +67,16 @@ public class SizeJAIOp extends OperationImplementation<SizeOp, PlanarImage>
         final Quality quality = Quality.BEST;
         PlanarImage result = planarImage;
 
+        float scaleX = scale;
+        float widthScaled = result.getWidth() * scaleX;
+        widthScaled = Math.round(widthScaled - 0.5f);
+        scaleX = widthScaled / result.getWidth();
+
+        float scaleY = scale;
+        float heightScaled = result.getHeight() * scaleY;
+        heightScaled = Math.round(heightScaled - 0.5f);
+        scaleY = heightScaled / result.getHeight();
+
         if (scale > 1.0)
           {
             result = JAIUtils.jaiMagnification(planarImage, scale, quality, hints);
@@ -80,18 +91,20 @@ public class SizeJAIOp extends OperationImplementation<SizeOp, PlanarImage>
               {
                 final Interpolation interpolation = Interpolation.getInstance(Interpolation.INTERP_BILINEAR);
                 logger.finer(">>>>>>>> Scale(" + scale + ", " + interpolation + ")");
-                result = ScaleDescriptor.create(planarImage, scale, scale, ZERO, ZERO, interpolation, hints);
+                result = ScaleDescriptor.create(planarImage, scaleX, scaleY, ZERO, ZERO, interpolation, hints);
               }
 
             else // scale <= 0.5
               {
-                final Kernel averagingKernel = JAIUtils.getAveragingKernel((int)Math.round(1.0 / scale));
+            	int n = (int)Math.round(1.0 / scale);
+            	n = (n > 3) ? 3 : n; //max valore per kernel = 3
+                final Kernel averagingKernel = JAIUtils.getAveragingKernel(n);
                 logger.finer(">>>>>>>> Convolve() with averaging kernel: " + averagingKernel);
                 result = ConvolveDescriptor.create(planarImage, new KernelJAI(averagingKernel), hints);
 
                 final Interpolation interpolation = Interpolation.getInstance(Interpolation.INTERP_NEAREST);
                 logger.finer(">>>>>>>> Scale(" + scale + ", " + interpolation + ")");
-                result = ScaleDescriptor.create(result, scale, scale, ZERO, ZERO, interpolation, hints);
+                result = ScaleDescriptor.create(result, scaleX, scaleY, ZERO, ZERO, interpolation, hints);
               }
 
           }
@@ -101,3 +114,4 @@ public class SizeJAIOp extends OperationImplementation<SizeOp, PlanarImage>
         return result;
       }
   }
+
