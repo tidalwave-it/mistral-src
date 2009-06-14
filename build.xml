@@ -24,7 +24,7 @@ limitations under the License.
  
 ==============================================================================
  
-$Id: build.xml 953 2008-09-15 21:52:58Z fabriziogiudici $
+$Id: build.xml 965 2009-06-14 11:23:12Z fabriziogiudici $
 -->
 
 <project name="Mistral" default="jar" basedir=".">
@@ -89,12 +89,10 @@ $Id: build.xml 953 2008-09-15 21:52:58Z fabriziogiudici $
         <ant dir="EditableImage" target="coverage-report" inheritall="false"/>
         <ant dir="Operations" target="coverage-report" inheritall="false"/>
         <ant dir="Contributions" target="coverage-report" inheritall="false"/>
-<!--
-        <ant dir="Renderer" target="cobertura-report" inheritall="false"/>
-        <ant dir="Processor" target="cobertura-report" inheritall="false"/>
-        <ant dir="JAI-Adapter" target="cobertura-report" inheritall="false"/>
-        <ant dir="ImageJ-Adapter" target="cobertura-report" inheritall="false"/>
--->
+        <ant dir="Renderer" target="coverage-report" inheritall="false"/>
+        <ant dir="Processor" target="coverage-report" inheritall="false"/>
+        <ant dir="JAI-Adapter" target="coverage-report" inheritall="false"/>
+        <ant dir="ImageJ-Adapter" target="coverage-report" inheritall="false"/>
     </target>
 
     <!-- =======================================================================
@@ -109,6 +107,7 @@ $Id: build.xml 953 2008-09-15 21:52:58Z fabriziogiudici $
         <ant dir="JAI-Adapter" target="findbugs" inheritall="false"/>
         <ant dir="ImageJ-Adapter" target="findbugs" inheritall="false"/>
     </target>
+
     <!-- =======================================================================
     Creates all the javadocs and copies them in the www folder.
     ======================================================================== -->
