@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: MetadataLoader.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: MetadataLoader.java 964 2009-06-14 11:17:33Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.metadata.loader;
@@ -34,7 +34,7 @@ import javax.imageio.metadata.IIOMetadata;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: MetadataLoader.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: MetadataLoader.java 964 2009-06-14 11:17:33Z fabriziogiudici $
  *
  ******************************************************************************/
 public interface MetadataLoader
@@ -55,7 +55,7 @@ public interface MetadataLoader
      *
      *
      **************************************************************************/
-    public Object findIPTC(IIOMetadata iioMetadata);
+    public Object findIPTC (IIOMetadata iioMetadata);
     
     /***************************************************************************
      *
