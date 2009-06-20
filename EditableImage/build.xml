@@ -24,14 +24,14 @@ limitations under the License.
 
 ==============================================================================
 
-$Id: build.xml 949 2008-09-09 11:38:26Z fabriziogiudici $
+$Id: build.xml 970 2009-06-20 20:25:10Z fabriziogiudici $
 -->
 <project name="EditableImage" default="jar" basedir=".">
     <description>Builds, tests, and runs the project EditableImage.</description>
 
     <property name="tools.dir" value="${basedir}/../tools"/>
 
-    <import file="nbproject/build-impl.xml"/>
+    <import file="_nbproject/build-impl.xml"/>
     <import file="${tools.dir}/ant/openbluesky.xml"/>
 
     <target name="build" depends="jar"/> <!-- required by OpenBlueSky -->
@@ -40,6 +40,7 @@ $Id: build.xml 949 2008-09-09 11:38:26Z fabriziogiudici $
          is compiled as a dependency from JAI-Adapter etc. Basically the task is called
          as it was defined in JAI-Apater --> 
     <target name="generate-metadata">
+        <mkdir dir="${basedir}/build/src-generated/it/tidalwave/image/metadata"/>
         <java classname="it.tidalwave.image.tools.MetadataGenerator">
             <classpath>
                 <pathelement location="../MetadataGenerator/build/classes"/>
@@ -49,7 +50,7 @@ $Id: build.xml 949 2008-09-09 11:38:26Z fabriziogiudici $
             </classpath>
             <arg value="TIFF.properties" />
             <arg value="EXIFDirectoryGenerated" />
-            <arg value="${basedir}/src/it/tidalwave/image/metadata/" />
+            <arg value="${basedir}/build/src-generated/it/tidalwave/image/metadata/" />
         </java>
         <java classname="it.tidalwave.image.tools.MetadataGenerator">
             <classpath>
@@ -60,7 +61,7 @@ $Id: build.xml 949 2008-09-09 11:38:26Z fabriziogiudici $
             </classpath>
             <arg value="IPTC.properties" />
             <arg value="IPTCDirectoryGenerated" />
-            <arg value="${basedir}/src/it/tidalwave/image/metadata/" />
+            <arg value="${basedir}/build/src-generated/it/tidalwave/image/metadata/" />
         </java>
     </target>
     
