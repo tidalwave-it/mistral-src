@@ -30,7 +30,7 @@
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>Contributions</artifactId>
+            <artifactId>MistralContributions</artifactId>
             <version>0.9.7-SNAPSHOT</version>
         </dependency>
     </dependencies>
