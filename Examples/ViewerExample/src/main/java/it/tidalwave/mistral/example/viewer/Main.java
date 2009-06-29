@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: Main.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: Main.java 1014 2009-06-29 15:37:55Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.mistral.example.viewer;
@@ -45,7 +45,7 @@ import it.tidalwave.image.util.Platform;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: Main.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: Main.java 1014 2009-06-29 15:37:55Z fabriziogiudici $
  *
  ******************************************************************************/
 public class Main
@@ -66,7 +66,7 @@ public class Main
             InputStream is = Main.class.getResourceAsStream("log.properties");
             LogManager.getLogManager().readConfiguration(is);
             is.close();
-            new File("log").mkdirs();
+            new File("target/logs").mkdirs();
           }
         catch (SecurityException e)
           {
