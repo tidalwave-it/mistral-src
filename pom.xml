@@ -76,15 +76,21 @@
         <bundle.namespace>${pom.groupId}.${pom.artifactId}</bundle.namespace>
     </properties>
 
- <repositories>
+    <repositories>
+        <repository>
+            <id>maven2-repository.dev.java.net</id>
+            <name>Java.net Repository for Maven</name>
+            <url>http://download.java.net/maven/2</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
 
-<repository>
-  <id>maven2-repository.dev.java.net</id>
-  <name>Java.net Repository for Maven</name>
-  <url>http://download.java.net/maven/2</url>
-  <layout>default</layout>
-</repository>
- </repositories>
+    <distributionManagement>
+        <repository>
+            <id>java.net-m2-repository</id>
+            <url>java-net:/maven2-repository/trunk/repository/</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
         <dependency>
@@ -133,8 +139,16 @@
     *
     **************************************************************************************************************** -->
     <build>
-        <finalName>${project.artifactId}-${project.version}.${buildNumber}</finalName>
         <!-- For buildNumber to be properly evaluated by assembly:assembly, use also the validate goal -->
+        <finalName>${project.artifactId}-${project.version}.${buildNumber}</finalName>
+
+        <extensions>
+            <extension>
+                <groupId>org.jvnet.wagon-svn</groupId>
+                <artifactId>wagon-svn</artifactId>
+                <version>RELEASE</version>
+            </extension>
+        </extensions>
 
         <resources>
             <resource>
