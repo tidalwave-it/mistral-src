@@ -412,6 +412,11 @@
     **************************************************************************************************************** -->
     <modules>
         <module>EditableImage</module>
+        <module>Operations</module>
+        <module>Contributions</module>
+        <module>Processor</module>
+        <module>Renderer</module>
+        <module>JAI-Adapter</module>
     </modules>
 
 </project>
