@@ -39,7 +39,7 @@
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>Renderer</artifactId>
+            <artifactId>MistralRenderer</artifactId>
             <version>0.9.7-SNAPSHOT</version>
         </dependency>
     </dependencies>
