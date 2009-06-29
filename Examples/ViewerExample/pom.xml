@@ -24,7 +24,7 @@
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>Operations</artifactId>
+            <artifactId>MistralOperations</artifactId>
             <version>0.9.7-SNAPSHOT</version>
         </dependency>
         <dependency>

@@ -11,7 +11,7 @@
         <version>0.9.7-SNAPSHOT</version>
     </parent>
 
-    <artifactId>Operations</artifactId>
+    <artifactId>MistralOperations</artifactId>
     <version>0.9.7-SNAPSHOT</version>
     <packaging>jar</packaging>
     <!-- packaging>nbm</packaging FIXME -->
