@@ -14,7 +14,7 @@
     <artifactId>ExampleMiscellaneous</artifactId>
     <version>0.9.8-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>ExampleMiscellaneous</name>
+    <name>Mistral Examples Miscellaneous</name>
 
     <dependencies>
         <dependency>

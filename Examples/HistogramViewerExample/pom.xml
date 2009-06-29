@@ -14,7 +14,7 @@
     <artifactId>ExampleHistogramViewer</artifactId>
     <version>0.9.8-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>ExampleHistogramViewer</name>
+    <name>Mistral Examples HistogramViewer</name>
 
     <dependencies>
         <dependency>

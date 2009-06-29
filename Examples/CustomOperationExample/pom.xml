@@ -14,7 +14,7 @@
     <artifactId>ExampleCustomOperation</artifactId>
     <version>0.9.8-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>ExampleCustomOperation</name>
+    <name>Mistral Examples CustomOperation</name>
 
     <dependencies>
         <dependency>
