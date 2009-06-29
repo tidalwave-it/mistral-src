@@ -411,7 +411,7 @@
     *
     **************************************************************************************************************** -->
     <modules>
-        <module>EditableImage</module>
+        <module>Core</module>
         <module>Operations</module>
         <module>Contributions</module>
         <module>Processor</module>

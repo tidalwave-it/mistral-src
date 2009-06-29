@@ -11,11 +11,11 @@
         <version>0.9.7-SNAPSHOT</version>
     </parent>
 
-    <artifactId>EditableImage</artifactId>
+    <artifactId>MistralCore</artifactId>
     <version>0.9.7-SNAPSHOT</version>
     <packaging>jar</packaging>
     <!-- packaging>nbm</packaging FIXME -->
-    <name>EditableImage</name>
+    <name>Mistral Core</name>
 
     <build>
         <plugins>

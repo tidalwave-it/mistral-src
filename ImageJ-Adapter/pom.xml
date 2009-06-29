@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>EditableImage</artifactId>
+            <artifactId>MistralCore</artifactId>
             <version>0.9.7-SNAPSHOT</version>
         </dependency>
         <dependency>
