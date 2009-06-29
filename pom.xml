@@ -417,6 +417,13 @@
         <module>Processor</module>
         <module>Renderer</module>
         <module>JAI-Adapter</module>
+        <!-- module>ImageJ-Adapter</module -->
+
+        <module>Examples/CustomOperationExample</module>
+        <module>Examples/ViewerExample</module>
+        <module>Examples/HistogramViewerExample</module>
+        <module>Examples/MiscellaneousExample</module>
+        <module>Examples/FaxManagerExample</module>
     </modules>
 
 </project>
