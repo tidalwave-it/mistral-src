@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<project name="mistral-generate-sources" default="generate-sources" basedir=".">
+    <description>Builds, tests, and runs the project mistral.</description>
+   
+    <property name="src.dir" value="src/main/java"/>
+    <property name="tool.src.dir" value="src/tool"/>
+    <property name="build.dir" value="target"/>
+    <property name="build.classes.dir" value="${build.dir}/tool-classes"/>
+    <property name="metadata.dir" value="src/main/metadata"/>
+    <property name="metadata.dest" value="target/src-generated"/>
+
+    <target name="generate-sources">
+        <echo message="Auto-generating some sources..."/>
+        <mkdir dir="${metadata.dest}"/>
+
+        <property name="tools.dir" value="${basedir}/../tools"/>
+
+        <java classname="it.tidalwave.image.tools.MetadataGenerator">
+            <classpath>
+                <pathelement location="../MetadataGenerator/build/classes"/>
+                <pathelement location="../lib/antlr/antlr-2.7.6.jar"/>
+                <pathelement location="../lib/antlr/antlr-3.0.1.jar"/>
+                <pathelement location="../lib/antlr/stringtemplate-3.0.jar"/>
+            </classpath>
+            <arg value="TIFF.properties" />
+            <arg value="EXIFDirectoryGenerated" />
+            <arg value="${metadata.dest}/it/tidalwave/image/metadata/" />
+        </java>
+        <java classname="it.tidalwave.image.tools.MetadataGenerator">
+            <classpath>
+                <pathelement location="../MetadataGenerator/build/classes"/>
+                <pathelement location="../lib/antlr/antlr-2.7.6.jar"/>
+                <pathelement location="../lib/antlr/antlr-3.0.1.jar"/>
+                <pathelement location="../lib/antlr/stringtemplate-3.0.jar"/>
+            </classpath>
+            <arg value="IPTC.properties" />
+            <arg value="IPTCDirectoryGenerated" />
+            <arg value="${metadata.dest}/it/tidalwave/image/metadata/" />
+        </java>
+    </target>
+    
+</project>
+
