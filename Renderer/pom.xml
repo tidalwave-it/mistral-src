@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>it.tidalwave.image</groupId>
+        <artifactId>mistral</artifactId>
+        <version>0.9.7-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>Renderer</artifactId>
+    <version>0.9.7-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <!-- packaging>nbm</packaging FIXME -->
+    <name>Renderer</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>it.tidalwave.image</groupId>
+            <artifactId>EditableImage</artifactId>
+            <version>0.9.7-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Export-Package>it.tidalwave.image.*</Export-Package>
+                        <!-- FIXME: some packages are needed by reajent - how to do friends?
+                        <Private-Package>it.tidalwave.imageio.*</Private-Package>
+                        <Export-Package>it.tidalwave.image
+                        </Export-Package>
+                        -->
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+
+
