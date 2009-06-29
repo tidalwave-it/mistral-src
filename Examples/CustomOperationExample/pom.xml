@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>it.tidalwave.image</groupId>
+        <artifactId>mistral</artifactId>
+        <version>0.9.7-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>ExampleCustomOperation</artifactId>
+    <version>0.9.7-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>ExampleCustomOperation</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>it.tidalwave.image</groupId>
+            <artifactId>EditableImage</artifactId>
+            <version>0.9.7-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>it.tidalwave.image</groupId>
+            <artifactId>Operations</artifactId>
+            <version>0.9.7-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>it.tidalwave.image</groupId>
+            <artifactId>Contributions</artifactId>
+            <version>0.9.7-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+</project>
+
+
+
