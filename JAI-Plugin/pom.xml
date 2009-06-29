@@ -11,7 +11,7 @@
         <version>0.9.7-SNAPSHOT</version>
     </parent>
 
-    <artifactId>JAI-Adapter</artifactId>
+    <artifactId>MistralJAIPlugin</artifactId>
     <version>0.9.7-SNAPSHOT</version>
     <packaging>jar</packaging>
     <!-- packaging>nbm</packaging FIXME -->

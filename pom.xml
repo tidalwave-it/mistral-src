@@ -416,7 +416,7 @@
         <module>Contributions</module>
         <module>Processor</module>
         <module>Renderer</module>
-        <module>JAI-Adapter</module>
+        <module>JAI-Plugin</module>
         <!-- module>ImageJ-Adapter</module -->
 
         <module>Examples/CustomOperationExample</module>
