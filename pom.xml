@@ -443,7 +443,7 @@
         <module>Processor</module>
         <module>Renderer</module>
         <module>JAI-Plugin</module>
-        <!-- module>ImageJ-Plugin</module -->
+        <module>ImageJ-Plugin</module>
 
 <!--
         <module>Examples/CustomOperationExample</module>
