@@ -115,21 +115,25 @@
             <groupId>it.tidalwave.imageio</groupId>
             <artifactId>jrawio</artifactId>
             <version>1.5.0-SNAPSHOT</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.imageio</groupId>
             <artifactId>reajent</artifactId>
             <version>1.5.0-SNAPSHOT</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>com.drewnoakes</groupId>
             <artifactId>metadata-extractor</artifactId>
             <version>2.4.0-beta-1</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>com.sun.media</groupId>
             <artifactId>jai_imageio</artifactId>
             <version>1.1</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
@@ -331,6 +335,13 @@
                         </manifestEntries>
                     </archive>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- Produces the NBMs for the NetBeans Platform -->
@@ -433,14 +444,17 @@
         <module>JAI-Plugin</module>
         <!-- module>ImageJ-Plugin</module -->
 
+<!--
         <module>Examples/CustomOperationExample</module>
         <module>Examples/ViewerExample</module>
         <module>Examples/HistogramViewerExample</module>
         <module>Examples/MiscellaneousExample</module>
         <module>Examples/FaxManagerExample</module>
+-->
     </modules>
 
 </project>
+
 
 
 
