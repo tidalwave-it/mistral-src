@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: BaseTestSupport.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: BaseTestSupport.java 1022 2009-07-06 13:08:20Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image;
@@ -50,14 +50,14 @@ import org.junit.BeforeClass;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: BaseTestSupport.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: BaseTestSupport.java 1022 2009-07-06 13:08:20Z fabriziogiudici $
  *
  ******************************************************************************/
 public abstract class BaseTestSupport extends TestCase 
   {
     protected static final Logger logger = Logger.getLogger("TEST");
     protected static final String tmp = System.getProperty("java.io.tmpdir");
-    protected static final File imageFolder = new File(System.getProperty("test.photos.dir", ""));
+    protected static File imageFolder = new File(System.getProperty("it.tidalwave.image.test.folder", ""));
     protected static final File file_timezones32_png;    
     /*
      * The images required for testing are not part of the distributions since they are several megabytes large. 
@@ -88,9 +88,18 @@ public abstract class BaseTestSupport extends TestCase
       {
         if (!imageFolder.exists())
           {
-            // if you see this error message running tests, read the comments above
-            System.err.println("CANNOT RUN TESTS - please look at it.tidalwave.image.BaseTestSupport! - " + imageFolder);
-            System.exit(0);
+            imageFolder = new File(tmp, "MistralTestFolder");
+
+            System.err.printf("it.tidalwave.image.test.folder not defined, using %s\n", imageFolder);
+
+            if (!imageFolder.exists())
+              {
+                imageFolder.mkdirs();
+                System.err.printf("%s does not exist, creating it...\n", imageFolder);
+              }
+//            // if you see this error message running tests, read the comments above
+//            System.err.println("CANNOT RUN TESTS - please look at it.tidalwave.image.BaseTestSupport! - " + imageFolder);
+//            System.exit(0);
           }
         
         file_20030701_0043_jpg = downloadFile("https://mistral.dev.java.net/images/20030701-0043.jpg"); 
