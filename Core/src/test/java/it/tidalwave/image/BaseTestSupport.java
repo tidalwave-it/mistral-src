@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: BaseTestSupport.java 1022 2009-07-06 13:08:20Z fabriziogiudici $
+ * $Id: BaseTestSupport.java 1024 2009-07-06 15:31:02Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image;
@@ -50,7 +50,7 @@ import org.junit.BeforeClass;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: BaseTestSupport.java 1022 2009-07-06 13:08:20Z fabriziogiudici $
+ * @version $Id: BaseTestSupport.java 1024 2009-07-06 15:31:02Z fabriziogiudici $
  *
  ******************************************************************************/
 public abstract class BaseTestSupport extends TestCase 
@@ -195,7 +195,8 @@ public abstract class BaseTestSupport extends TestCase
     protected void setUp() 
       throws Exception 
       {
-        assertEquals("Must set -Xmx512M", 532742144, Runtime.getRuntime().maxMemory());
+        final long maxMemory = Runtime.getRuntime().maxMemory();
+        assertTrue("Must set -Xmx512M: " + maxMemory, maxMemory >= 500000000);
         assertTrue(file_20030701_0043_jpg.exists());
         assertTrue(file_20060603_0002_jpg.exists());
         assertTrue(file_20030701_0043_nef.exists());
