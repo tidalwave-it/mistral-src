@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ReadOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: ReadOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
@@ -38,13 +38,13 @@ import java.util.Arrays;
 import java.util.Iterator;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ReadOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: ReadOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ReadOpTest extends BaseTestSupport
@@ -65,16 +65,7 @@ public class ReadOpTest extends BaseTestSupport
           }
       }
     
-    public ReadOpTest (final String testName) 
-      {
-        super(testName);
-      }
-
-    public static Test suite() 
-      {
-        return new TestSuite(ReadOpTest.class);
-      }
-    
+    @Test
     public void testReadJPG1() 
       throws FileNotFoundException, IOException
       {
@@ -85,6 +76,7 @@ public class ReadOpTest extends BaseTestSupport
         assertEquals("image/jpeg", image.getAttribute(EditableImage.PROP_MIME_TYPE));
       }
     
+    @Test
     public void testReadTIFF1() 
       throws FileNotFoundException, IOException
       {
@@ -95,6 +87,7 @@ public class ReadOpTest extends BaseTestSupport
         assertEquals("image/tiff", image.getAttribute(EditableImage.PROP_MIME_TYPE));
       }
     
+    @Test
     public void testReadTIFF2() 
       throws FileNotFoundException, IOException
       {

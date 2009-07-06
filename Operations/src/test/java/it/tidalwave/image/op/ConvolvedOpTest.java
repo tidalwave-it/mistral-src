@@ -24,38 +24,24 @@
  * 
  *******************************************************************************
  * 
- * $Id: ConvolvedOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: ConvolvedOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
 
-import it.tidalwave.image.op.ConvolveOp;
 import java.awt.image.Kernel;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ConvolvedOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: ConvolvedOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
-public class ConvolvedOpTest extends TestCase 
+public class ConvolvedOpTest 
   {
-    public ConvolvedOpTest (String testName) 
-      {
-        super(testName);
-      }
-
-    public static Test suite() 
-      {
-        return new TestSuite(ConvolvedOpTest.class);
-      }
-
-    /**
-     * Test of getKernel method, of class it.tidalwave.image.op.CreateConvolvedImageOp.
-     */
+    @Test
     public void testGetKernel() 
       {
         System.out.println("getKernel");
@@ -65,9 +51,7 @@ public class ConvolvedOpTest extends TestCase
         assertEquals(kernel, op.getKernel());
       }
 
-    /**
-     * Test of toString method, of class it.tidalwave.image.op.CreateConvolvedImageOp.
-     */
+    @Test
     public void testToString() 
       {
         System.out.println("toString");

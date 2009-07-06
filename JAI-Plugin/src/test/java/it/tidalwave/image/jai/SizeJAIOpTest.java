@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: SizeJAIOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: SizeJAIOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.jai;
@@ -36,30 +36,19 @@ import it.tidalwave.image.op.ForceRenderingOp;
 import it.tidalwave.image.op.ReadOp;
 import it.tidalwave.image.op.SizeOp;
 import it.tidalwave.image.op.WriteOp;
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
+import org.junit.Test;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: SizeJAIOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: SizeJAIOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
 public class SizeJAIOpTest extends BaseTestSupport
   {
-    public static Test suite() 
-      {
-        return new TestSuite(SizeJAIOpTest.class);
-      }
-
-    public SizeJAIOpTest (final String name)
-      {
-        super(name);  
-      }
-
-    public void testExecute ()
-        throws IOException
+    @Test
+    public void testExecute()
+      throws IOException
       {
 //        ImplementationFactoryJ2D.unregister(SizeOp.class);
         ImplementationFactoryJAI.getInstance();

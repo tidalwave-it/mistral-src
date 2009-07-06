@@ -24,36 +24,23 @@
  * 
  *******************************************************************************
  * 
- * $Id: RotateQuadrantOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: RotateQuadrantOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: RotateQuadrantOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: RotateQuadrantOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
-public class RotateQuadrantOpTest extends TestCase 
+public class RotateQuadrantOpTest
   {
-    public RotateQuadrantOpTest (String testName) 
-      {
-        super(testName);
-      }
-
-    public static Test suite()
-      {
-        return new TestSuite(RotateQuadrantOpTest.class);
-      }
-
-    /**
-     * Test of getDegrees method, of class it.tidalwave.image.op.RotateQuadrantOp.
-     */
+    @Test
     public void testGetDegrees1()
       {
         System.out.println("getDegrees1");
@@ -67,9 +54,7 @@ public class RotateQuadrantOpTest extends TestCase
         assertEquals(270, op.getDegrees());
       }
 
-    /**
-     * Test of getDegrees method, of class it.tidalwave.image.op.RotateQuadrantOp.
-     */
+    @Test
     public void testGetDegreesBadValues()
       {
         System.out.println("getDegreesBadValues");
@@ -91,9 +76,7 @@ public class RotateQuadrantOpTest extends TestCase
           }
       }
 
-    /**
-     * Test of toString method, of class it.tidalwave.image.op.RotateQuadrantOp.
-     */
+    @Test
     public void testToString() 
       {
         System.out.println("toString");

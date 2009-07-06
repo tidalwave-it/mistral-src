@@ -24,13 +24,11 @@
  * 
  *******************************************************************************
  * 
- * $Id: OptimizeJ2DOpPerformanceTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: OptimizeJ2DOpPerformanceTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.java2d.performance;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
 import it.tidalwave.image.op.OptimizeOp;
@@ -38,21 +36,11 @@ import it.tidalwave.image.op.OptimizeOp;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: OptimizeJ2DOpPerformanceTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: OptimizeJ2DOpPerformanceTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
 public class OptimizeJ2DOpPerformanceTest extends BasePerformanceTestSupport 
   {
-    public static Test suite()
-      {
-        return new TestSuite(OptimizeJ2DOpPerformanceTest.class);
-      }
-
-    public OptimizeJ2DOpPerformanceTest (final String name)
-      {
-        super(name);  
-      }
-    
     protected long runTest (EditableImage image)
       {
         long accTime = 0;

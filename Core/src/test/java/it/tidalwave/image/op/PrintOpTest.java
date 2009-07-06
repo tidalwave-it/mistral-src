@@ -24,34 +24,23 @@
  * 
  *******************************************************************************
  * 
- * $Id: PrintOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: PrintOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
 
 import it.tidalwave.image.BaseTestSupport;
-import junit.framework.Test;
-import junit.framework.TestSuite;
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: PrintOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: PrintOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
 public class PrintOpTest extends BaseTestSupport
   {
-    public PrintOpTest (final String testName) 
-      {
-        super(testName);
-      }
-
-    public static Test suite() 
-      {
-        return new TestSuite(PrintOpTest.class);
-      }
-
+    @Test
     public void testPrint()
       throws Exception
       {

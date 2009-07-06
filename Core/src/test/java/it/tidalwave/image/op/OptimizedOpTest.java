@@ -24,67 +24,48 @@
  * 
  *******************************************************************************
  * 
- * $Id: OptimizedOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: OptimizedOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import it.tidalwave.image.Quality;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: OptimizedOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: OptimizedOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
-public class OptimizedOpTest extends TestCase 
+public class OptimizedOpTest 
   {
-    public OptimizedOpTest (String testName) 
-      {
-        super(testName);
-      }
-
-    public static Test suite()
-      {
-        return new TestSuite(OptimizedOpTest.class);
-      }
-
-    /**
-     * Test of getScale method, of class it.tidalwave.image.op.CreateOptimizedImageOp.
-     */
+    @Test
     public void testGetScale1() 
       {
         System.out.println("getScale1");
         OptimizeOp op = new OptimizeOp();
-        assertEquals(1.0, op.getScale());
+        assertEquals(1.0, op.getScale(), 0.0);
       }
 
-    /**
-     * Test of getScale method, of class it.tidalwave.image.op.CreateOptimizedImageOp.
-     */
+    @Test
     public void testGetScale2() 
       {
         System.out.println("getScale2");
         OptimizeOp op = new OptimizeOp(17.0);
-        assertEquals(17.0, op.getScale());
+        assertEquals(17.0, op.getScale(), 0.0);
       }
 
-    /**
-     * Test of getScale method, of class it.tidalwave.image.op.CreateOptimizedImageOp.
-     */
+    @Test
     public void testGetScale3() 
       {
         System.out.println("getScale3");
         OptimizeOp op = new OptimizeOp(13.0, Quality.INTERMEDIATE);
-        assertEquals(13.0, op.getScale());
+        assertEquals(13.0, op.getScale(), 0.0);
       }
 
-    /**
-     * Test of getQuality method, of class it.tidalwave.image.op.CreateOptimizedImageOp.
-     */
+    @Test
     public void testGetQuality1() 
       {
         System.out.println("getQuality1");
@@ -92,9 +73,7 @@ public class OptimizedOpTest extends TestCase
         assertEquals(Quality.FASTEST, op.getQuality());
       }
 
-    /**
-     * Test of getQuality method, of class it.tidalwave.image.op.CreateOptimizedImageOp.
-     */
+    @Test
     public void testGetQuality2() 
       {
         System.out.println("getQuality2");
@@ -102,9 +81,7 @@ public class OptimizedOpTest extends TestCase
         assertEquals(Quality.FASTEST, op.getQuality());
       }
 
-    /**
-     * Test of getQuality method, of class it.tidalwave.image.op.CreateOptimizedImageOp.
-     */
+    @Test
     public void testGetQuality3() 
       {
         System.out.println("getQuality3");
@@ -112,9 +89,7 @@ public class OptimizedOpTest extends TestCase
         assertEquals(Quality.INTERMEDIATE, op.getQuality());
       }
 
-    /**
-     * Test of toString method, of class it.tidalwave.image.op.CreateOptimizedImageOp.
-     */
+    @Test
     public void testToString() 
       {
         System.out.println("toString");

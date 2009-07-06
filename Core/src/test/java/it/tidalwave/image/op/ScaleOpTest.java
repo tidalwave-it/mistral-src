@@ -24,117 +24,88 @@
  * 
  *******************************************************************************
  * 
- * $Id: ScaleOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: ScaleOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import it.tidalwave.image.Quality;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ScaleOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: ScaleOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
-public class ScaleOpTest extends TestCase 
+public class ScaleOpTest
   {
-    public ScaleOpTest(String testName) 
-      {
-        super(testName);
-      }
-
-    public static Test suite() 
-      {
-        return new TestSuite(ScaleOpTest.class);
-      }
-
-    /**
-     * Test of getXScale method, of class it.tidalwave.image.op.ScaleOp.
-     */
+    @Test
     public void testGetXScale1() 
       {
         System.out.println("getXScale1");
         ScaleOp op = new ScaleOp(17.0);
-        assertEquals(17.0, op.getXScale());
+        assertEquals(17.0, op.getXScale(), 0.0);
       }
 
-    /**
-     * Test of getXScale method, of class it.tidalwave.image.op.ScaleOp.
-     */
+    @Test
     public void testGetXScale2() 
       {
         System.out.println("getXScale2");
         ScaleOp op = new ScaleOp(17.0, 13.0);
-        assertEquals(17.0, op.getXScale());
+        assertEquals(17.0, op.getXScale(), 0.0);
       }
 
-    /**
-     * Test of getXScale method, of class it.tidalwave.image.op.ScaleOp.
-     */
+    @Test
     public void testGetXScale3() 
       {
         System.out.println("getXScale3");
         ScaleOp op = new ScaleOp(17.0, Quality.INTERMEDIATE);
-        assertEquals(17.0, op.getXScale());
+        assertEquals(17.0, op.getXScale(), 0.0);
       }
 
-    /**
-     * Test of getXScale method, of class it.tidalwave.image.op.ScaleOp.
-     */
+    @Test
     public void testGetXScale4() 
       {
         System.out.println("getXScale4");
         ScaleOp op = new ScaleOp(17.0, 13.0, Quality.INTERMEDIATE);
-        assertEquals(17.0, op.getXScale());
+        assertEquals(17.0, op.getXScale(), 0.0);
       }
 
-    /**
-     * Test of getYScale method, of class it.tidalwave.image.op.ScaleOp.
-     */
+    @Test
     public void testGetYScale1() 
       {
         System.out.println("getYScale1");
         ScaleOp op = new ScaleOp(17.0);
-        assertEquals(17.0, op.getYScale());
+        assertEquals(17.0, op.getYScale(), 0.0);
       }
 
-    /**
-     * Test of getYScale method, of class it.tidalwave.image.op.ScaleOp.
-     */
+    @Test
     public void testGetYScale2() 
       {
         System.out.println("getYScale2");
         ScaleOp op = new ScaleOp(17.0, 13.0);
-        assertEquals(13.0, op.getYScale());
+        assertEquals(13.0, op.getYScale(), 0.0);
       }
 
-    /**
-     * Test of getYScale method, of class it.tidalwave.image.op.ScaleOp.
-     */
+    @Test
     public void testGetYScale3() 
       {
         System.out.println("getYScale3");
         ScaleOp op = new ScaleOp(17.0, Quality.INTERMEDIATE);
-        assertEquals(17.0, op.getYScale());
+        assertEquals(17.0, op.getYScale(), 0.0);
       }
 
-    /**
-     * Test of getYScale method, of class it.tidalwave.image.op.ScaleOp.
-     */
+    @Test
     public void testGetYScale4() 
       {
         System.out.println("getYScale4");
         ScaleOp op = new ScaleOp(17.0, 13.0, Quality.INTERMEDIATE);
-        assertEquals(13.0, op.getYScale());
+        assertEquals(13.0, op.getYScale(), 0.0);
       }
 
-    /**
-     * Test of getQuality method, of class it.tidalwave.image.op.ScaleOp.
-     */
+    @Test
     public void testGetQuality1() 
       {
         System.out.println("getQuality1");
@@ -162,9 +133,7 @@ public class ScaleOpTest extends TestCase
         assertEquals(Quality.INTERMEDIATE, op.getQuality());
       }
 
-    /**
-     * Test of getQuality method, of class it.tidalwave.image.op.ScaleOp.
-     */
+    @Test
     public void testGetQuality4() 
       {
         System.out.println("getQuality4");
@@ -172,9 +141,7 @@ public class ScaleOpTest extends TestCase
         assertEquals(Quality.INTERMEDIATE, op.getQuality());
       }
 
-    /**
-     * Test of toString method, of class it.tidalwave.image.op.ScaleOp.
-     */
+    @Test
     public void testToString() 
       {
         System.out.println("toString");

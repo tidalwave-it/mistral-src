@@ -24,77 +24,76 @@
  * 
  *******************************************************************************
  * 
- * $Id: RotateQuadrantOpJ2DTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: RotateQuadrantOpJ2DTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.java2d;
 
 import java.io.File;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.RotateQuadrantOp;
 import it.tidalwave.image.op.WriteOp;
 import it.tidalwave.image.BaseTestSupport;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: RotateQuadrantOpJ2DTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: RotateQuadrantOpJ2DTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
 public class RotateQuadrantOpJ2DTest extends BaseTestSupport 
   {
-    public static Test suite()
-      {
-        return new TestSuite(RotateQuadrantOpJ2DTest.class);
-      }
-
-    public RotateQuadrantOpJ2DTest (final String name)
-      {
-        super(name);  
-      }
-    
+    @Test
     public void testRotate0a()
       {
         testRotate(img20030701_0043_jpg, 0, "img20030701_0043_jpg", "b49272bff3e945d32ad9b617a17829ae");
       }
     
+    @Test
     public void testRotate0b()
       {
         testRotate(fax1_tif, 0, "fax1_tif", "89530dab29cd3dea744020810a1f9dca");
       }
     
+    @Test
     public void testRotate90a()
       {
         testRotate(img20030701_0043_jpg, 90, "img20030701_0043_jpg", "b2b2432780aead324896a36882af272e");
       }
     
+    @Test
     public void testRotate90b()
       {
         testRotate(fax1_tif, 90, "fax1_tif", "7c46bab02429779a3f7a8dddccb303c1");
       }
     
+    @Test
     public void testRotate180a()
       {
         testRotate(img20030701_0043_jpg, 180, "img20030701_0043_jpg", "d0667cc17ba3b61f5885c212ab93117b");
       }
     
+    @Test
     public void testRotate180b()
       {
         testRotate(fax1_tif, 180, "fax1_tif", "54e51bf0ba8f6657a0d0bd702e12cd3c");
       }
     
+    @Test
     public void testRotate270a()
       {
         testRotate(img20030701_0043_jpg, 270, "img20030701_0043_jpg", "56a902cb6cf0bae7965a9f12b4104cf3");
       }
     
+    @Test
     public void testRotate270b()
       {
         testRotate(fax1_tif, 270, "fax1_tif", "945269cef6b91c25896167dd2a3f4fed");
       }
     
+    @Test
     public void testRotate (final EditableImage image, final int angle, final String prefix, final String hash)
       {
         EditableImage result = image.execute2(new RotateQuadrantOp(angle));

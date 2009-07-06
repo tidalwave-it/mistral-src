@@ -24,67 +24,47 @@
  * 
  *******************************************************************************
  * 
- * $Id: ApplyUnsharpMaskOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: ApplyUnsharpMaskOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
 
-import it.tidalwave.image.op.ApplyUnsharpMaskOp;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ApplyUnsharpMaskOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: ApplyUnsharpMaskOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
-public class ApplyUnsharpMaskOpTest extends TestCase 
+public class ApplyUnsharpMaskOpTest 
   {
-    public ApplyUnsharpMaskOpTest(String testName) 
-      {
-        super(testName);
-      }
-
-    public static Test suite()
-      {
-        return new TestSuite(ApplyUnsharpMaskOpTest.class);
-      }
-
-    /**
-     * Test of getIntensity method, of class it.tidalwave.image.op.ApplyUnsharpMaskOp.
-     */
+    @Test
     public void testGetIntensity() 
       {
         System.out.println("getIntensity");
         ApplyUnsharpMaskOp op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
-        assertEquals(12.34, op.getIntensity());
+        assertEquals(12.34, op.getIntensity(), 0.0);
       }
 
-    /**
-     * Test of getRadius method, of class it.tidalwave.image.op.ApplyUnsharpMaskOp.
-     */
+    @Test
     public void testGetRadius() 
       {
         System.out.println("getRadius");
         ApplyUnsharpMaskOp op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
-        assertEquals(56.78, op.getRadius());
+        assertEquals(56.78, op.getRadius(), 0.0);
       }  
 
-    /**
-     * Test of getThreshold method, of class it.tidalwave.image.op.ApplyUnsharpMaskOp.
-     */
+    @Test
     public void testGetThreshold() 
       {
         System.out.println("getThreshold");
         ApplyUnsharpMaskOp op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
-        assertEquals(90.12, op.getThreshold());
+        assertEquals(90.12, op.getThreshold(), 0.0);
       }
 
-    /**
-     * Test of toString method, of class it.tidalwave.image.op.ApplyUnsharpMaskOp.
-     */
+    @Test
     public void testToString() 
       {
         System.out.println("toString");

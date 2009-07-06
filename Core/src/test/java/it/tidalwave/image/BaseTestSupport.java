@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: BaseTestSupport.java 1024 2009-07-06 15:31:02Z fabriziogiudici $
+ * $Id: BaseTestSupport.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image;
@@ -42,18 +42,20 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.security.MessageDigest;
-import junit.framework.TestCase;
 import it.tidalwave.image.op.ReadOp;
+import it.tidalwave.openide.loggerconfiguration.SingleLineLogFormatter;
+import java.util.logging.Handler;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: BaseTestSupport.java 1024 2009-07-06 15:31:02Z fabriziogiudici $
+ * @version $Id: BaseTestSupport.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
-public abstract class BaseTestSupport extends TestCase 
+public abstract class BaseTestSupport
   {
     protected static final Logger logger = Logger.getLogger("TEST");
     protected static final String tmp = System.getProperty("java.io.tmpdir");
@@ -97,9 +99,6 @@ public abstract class BaseTestSupport extends TestCase
                 imageFolder.mkdirs();
                 System.err.printf("%s does not exist, creating it...\n", imageFolder);
               }
-//            // if you see this error message running tests, read the comments above
-//            System.err.println("CANNOT RUN TESTS - please look at it.tidalwave.image.BaseTestSupport! - " + imageFolder);
-//            System.exit(0);
           }
         
         file_20030701_0043_jpg = downloadFile("https://mistral.dev.java.net/images/20030701-0043.jpg"); 
@@ -130,12 +129,6 @@ public abstract class BaseTestSupport extends TestCase
       {
       }
 
-    /** @deprecated */
-    protected BaseTestSupport (final String testName) 
-      {
-        super(testName);
-      }
-    
     protected static File downloadFile (String urlString)
       {
         try
@@ -192,7 +185,7 @@ public abstract class BaseTestSupport extends TestCase
       }
     
     @Before
-    protected void setUp() 
+    public void setUp()
       throws Exception 
       {
         final long maxMemory = Runtime.getRuntime().maxMemory();
@@ -212,27 +205,27 @@ public abstract class BaseTestSupport extends TestCase
       {
         try
           {
-            final InputStream is = BaseTestSupport.class.getResourceAsStream("log.properties");
-            LogManager.getLogManager().readConfiguration(is);
-            is.close();
+//            final InputStream is = BaseTestSupport.class.getResourceAsStream("log.properties");
+//            LogManager.getLogManager().readConfiguration(is);
+//            is.close();
 
-//            //
-//            // The formatter must be set programmatically as the property in the log.properties won't
-//            // be honored. I suspect it is related with NetBeans module classloaders as the formatter
-//            // is loaded inside LogManager by using the SystemClassLoader, which only sees the classpath.
-//            //
-//            final SingleLineLogFormatter formatter = new SingleLineLogFormatter();
-//            Logger rootLogger = Logger.getLogger(BaseTestSupport.class.getName());
-//
-//            while (rootLogger.getParent() != null)
-//              {
-//                rootLogger = rootLogger.getParent();
-//              }
-//
-//            for (final Handler handler : rootLogger.getHandlers())
-//              {
-//                handler.setFormatter(formatter);
-//              }
+            //
+            // The formatter must be set programmatically as the property in the log.properties won't
+            // be honored. I suspect it is related with NetBeans module classloaders as the formatter
+            // is loaded inside LogManager by using the SystemClassLoader, which only sees the classpath.
+            //
+            final SingleLineLogFormatter formatter = new SingleLineLogFormatter();
+            Logger rootLogger = Logger.getLogger(BaseTestSupport.class.getName());
+
+            while (rootLogger.getParent() != null)
+              {
+                rootLogger = rootLogger.getParent();
+              }
+
+            for (final Handler handler : rootLogger.getHandlers())
+              {
+                handler.setFormatter(formatter);
+              }
           }
         catch (Exception e)
           {

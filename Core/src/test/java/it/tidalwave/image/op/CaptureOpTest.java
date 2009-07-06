@@ -24,35 +24,24 @@
  * 
  *******************************************************************************
  * 
- * $Id: CaptureOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: CaptureOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
 
 import javax.swing.JLabel;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.Test;
 import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: CaptureOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: CaptureOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
-public class CaptureOpTest extends TestCase 
+public class CaptureOpTest 
   {
-    public CaptureOpTest (final String testName) 
-      {
-        super(testName);
-      }
-
-    public static Test suite() 
-      {
-        return new TestSuite(CaptureOpTest.class);
-      }
-
+    @Test
     public void testGetComponent() 
       {
         final JLabel label = new JLabel("text");

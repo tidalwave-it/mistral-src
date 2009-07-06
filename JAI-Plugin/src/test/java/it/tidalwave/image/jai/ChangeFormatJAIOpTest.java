@@ -24,41 +24,29 @@
  * 
  *******************************************************************************
  * 
- * $Id: ChangeFormatJAIOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: ChangeFormatJAIOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.jai;
 
 import it.tidalwave.image.ImageUtils;
-import java.awt.image.RenderedImage;
 import java.io.IOException;
 import it.tidalwave.image.op.ChangeFormatOp;
 import it.tidalwave.image.op.CreateOp;
 import it.tidalwave.image.BaseTestSupport;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.EditableImage.DataType;
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
+import org.junit.Test;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ChangeFormatJAIOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: ChangeFormatJAIOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ChangeFormatJAIOpTest extends BaseTestSupport
   {
-    public static Test suite() 
-      {
-        return new TestSuite(ChangeFormatJAIOpTest.class);
-      }
-    
-    public ChangeFormatJAIOpTest (final String name)
-      {
-        super(name);  
-      }
-
+    @Test
     public void testConvert_FLOAT_USHORT ()
         throws IOException
       {
@@ -66,6 +54,7 @@ public class ChangeFormatJAIOpTest extends BaseTestSupport
       }
     
     // MST-103
+    @Test
     public void testConvert_FLOAT_SHORT ()
         throws IOException
       {

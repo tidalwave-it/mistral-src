@@ -24,26 +24,28 @@
  * 
  *******************************************************************************
  * 
- * $Id: BasePerformanceTestSupport.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: BasePerformanceTestSupport.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.java2d.performance;
 
+import java.net.UnknownHostException;
+import java.net.InetAddress;
 import java.awt.image.PixelInterleavedSampleModel;
 import java.awt.image.SinglePixelPackedSampleModel;
 import java.awt.image.SampleModel;
-import java.net.InetAddress;
 import it.tidalwave.image.BaseTestSupport;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
 import it.tidalwave.image.op.OptimizeOp;
 import it.tidalwave.image.util.Platform;
-import java.net.UnknownHostException;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: BasePerformanceTestSupport.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: BasePerformanceTestSupport.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
 public abstract class BasePerformanceTestSupport extends BaseTestSupport 
@@ -73,10 +75,6 @@ public abstract class BasePerformanceTestSupport extends BaseTestSupport
         host = h;
       }
     
-    public BasePerformanceTestSupport (final String name)
-      {
-        super(name);  
-      }
    
     private String getClassName()
       {
@@ -98,6 +96,7 @@ public abstract class BasePerformanceTestSupport extends BaseTestSupport
         return name;
       }
     
+    @Test
     public void testPerformance() 
       {
         for (Quality quality : Quality.values())
@@ -113,6 +112,7 @@ public abstract class BasePerformanceTestSupport extends BaseTestSupport
           }
       }    
     
+    @Test
     public void testOptimizedPerformance() 
       {
         for (Quality quality : Quality.values())

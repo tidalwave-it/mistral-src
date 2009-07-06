@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: CaptureJ2DOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: CaptureJ2DOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.java2d;
@@ -34,30 +34,20 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import javax.swing.JLabel;
 import javax.swing.JFrame;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 import it.tidalwave.image.BaseTestSupport;
 import it.tidalwave.image.op.CaptureOp;
+import org.junit.Test;
 import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: CaptureJ2DOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: CaptureJ2DOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
 public class CaptureJ2DOpTest extends BaseTestSupport 
   {
-    public static Test suite()
-      {
-        return new TestSuite(CaptureJ2DOpTest.class);
-      }
-    
-    public CaptureJ2DOpTest (final String name)
-      {
-        super(name);  
-      }
-    
+    @Test
     public void testOp() 
       throws Exception
       {

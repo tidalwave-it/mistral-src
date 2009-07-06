@@ -24,39 +24,28 @@
  *
  *******************************************************************************
  *
- * $Id: CreateJ2DOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: CreateJ2DOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.java2d;
 
-import it.tidalwave.image.op.testsupport.CreateOpTestSupport;
 import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.testsupport.CreateOpTestSupport;
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: CreateJ2DOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: CreateJ2DOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
 public class CreateJ2DOpTest extends CreateOpTestSupport
   {
-    public static Test suite ()
-      {
-        return new TestSuite(CreateJ2DOpTest.class);
-      }
-
-    public CreateJ2DOpTest (final String name)
-      {
-        super(name);  
-      }
-    
     @Override
+    @Test
     public void testCreateSingleBandIntBlack ()
       {
         try
@@ -71,6 +60,7 @@ public class CreateJ2DOpTest extends CreateOpTestSupport
       }
 
     @Override
+    @Test
     public void testCreateSingleBandFloatBlack ()
       {
         try
@@ -85,6 +75,7 @@ public class CreateJ2DOpTest extends CreateOpTestSupport
       }
 
     @Override
+    @Test
     public void testCreateSingleBandDoubleBlack ()
       {
         try
@@ -99,6 +90,7 @@ public class CreateJ2DOpTest extends CreateOpTestSupport
       }
 
     @Override
+    @Test
     public void testCreateSingleBandIntInitialValue ()
       {
         try
@@ -113,6 +105,7 @@ public class CreateJ2DOpTest extends CreateOpTestSupport
       }
 
     @Override
+    @Test
     public void testCreateSingleBandFloatInitialValue ()
       {
         try
@@ -127,6 +120,7 @@ public class CreateJ2DOpTest extends CreateOpTestSupport
       }
 
     @Override
+    @Test
     public void testCreateSingleBandDoubleInitialValue ()
       {
         try
@@ -141,6 +135,7 @@ public class CreateJ2DOpTest extends CreateOpTestSupport
       }
 
     @Override
+    @Test
     public void testCreateThreeBandsUnsignedShortInitialValue ()
       {
         try
@@ -156,6 +151,7 @@ public class CreateJ2DOpTest extends CreateOpTestSupport
       }
 
     @Override
+    @Test
     public void testCreateThreeBandsIntInitialValue ()
       {
         try
@@ -171,6 +167,7 @@ public class CreateJ2DOpTest extends CreateOpTestSupport
       }
 
     @Override
+    @Test
     public void testCreateThreeBandsFloatInitialValue ()
       {
         try
@@ -186,6 +183,7 @@ public class CreateJ2DOpTest extends CreateOpTestSupport
       }
 
     @Override
+    @Test
     public void testCreateThreeBandsDoubleInitialValue ()
       {
         try

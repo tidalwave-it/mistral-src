@@ -24,36 +24,23 @@
  * 
  *******************************************************************************
  * 
- * $Id: RotateJ2DOpPerformanceTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: RotateJ2DOpPerformanceTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.java2d.performance;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
 import it.tidalwave.image.op.RotateOp;
-import it.tidalwave.image.java2d.performance.BasePerformanceTestSupport;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: RotateJ2DOpPerformanceTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: RotateJ2DOpPerformanceTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
 public class RotateJ2DOpPerformanceTest extends BasePerformanceTestSupport 
   {
-    public static Test suite()
-      {
-        return new TestSuite(RotateJ2DOpPerformanceTest.class);
-      }
-
-    public RotateJ2DOpPerformanceTest (final String name)
-      {
-        super(name);  
-      }
-    
     protected long runTest (EditableImage image)
       {
         long accTime = 0;

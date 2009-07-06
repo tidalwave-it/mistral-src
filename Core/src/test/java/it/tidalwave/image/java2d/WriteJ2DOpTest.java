@@ -30,12 +30,11 @@
 package it.tidalwave.image.java2d;
 
 import java.io.File;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 import it.tidalwave.image.BaseTestSupport;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.WriteOp;
 import it.tidalwave.image.op.OptimizeOp;
+import org.junit.Test;
 
 /*******************************************************************************
  *
@@ -46,23 +45,15 @@ import it.tidalwave.image.op.OptimizeOp;
 public class WriteJ2DOpTest extends BaseTestSupport 
   {
     private final static String tmp = System.getProperty("java.io.tmpdir");
-    
-    public static Test suite()
-      {
-        return new TestSuite(WriteJ2DOpTest.class);
-      }
 
-    public WriteJ2DOpTest (final String name)
-      {
-        super(name);  
-      }
-    
+    @Test
     public void testWriteJPEG()
       {
         File f = (File)img20030701_0043_jpg.execute(new WriteOp("JPEG", tmp + "/written.jpg")).getOutput();
 //        assertChecksum("b49272bff3e945d32ad9b617a17829ae", f);
       }
-    
+
+    @Test
     public void testWriteOptimizedJPEG()
       {
         EditableImage result = img20030701_0043_jpg.execute2(new OptimizeOp(0.5));

@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: EditableImageTest.java 958 2008-10-09 13:37:26Z fabriziogiudici $
+ * $Id: EditableImageTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image;
@@ -44,11 +44,12 @@ import it.tidalwave.image.metadata.IPTC;
 import it.tidalwave.image.metadata.TIFF;
 import it.tidalwave.image.op.ReadOp;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: EditableImageTest.java 958 2008-10-09 13:37:26Z fabriziogiudici $
+ * @version $Id: EditableImageTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
 public class EditableImageTest extends BaseTestSupport

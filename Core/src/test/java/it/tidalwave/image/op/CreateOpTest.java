@@ -24,30 +24,25 @@
  * 
  *******************************************************************************
  * 
- * $Id: CreateOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: CreateOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
 
 import java.awt.Color;
 import it.tidalwave.image.EditableImage;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: CreateOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: CreateOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
-public class CreateOpTest extends TestCase
+public class CreateOpTest 
   {
-    public static Test suite ()
-      {
-        return new TestSuite(CreateOpTest.class);
-      }
-
+    @Test
     public void testGetWidth ()
       {
         for (int w = 1; w < 1000; w += 10)
@@ -63,6 +58,7 @@ public class CreateOpTest extends TestCase
           }
       }
 
+    @Test
     public void testGetHeight ()
       {
         for (int h = 1; h < 1000; h += 10)
@@ -78,6 +74,7 @@ public class CreateOpTest extends TestCase
           }
       }
 
+    @Test
     public void testGetDataType ()
       {
         for (EditableImage.DataType dataType : EditableImage.DataType.values())
@@ -98,14 +95,16 @@ public class CreateOpTest extends TestCase
           }
       }
 
+    @Test
     public void testGetFiller1 ()
       {
         final CreateOp createOp = new CreateOp(10, 10, EditableImage.DataType.BYTE);
         final double[] filler = createOp.getFiller();
         assertEquals(1, filler.length);
-        assertEquals(0.0, filler[0]);
+        assertEquals(0.0, filler[0], 0.0);
       }
 
+    @Test
     public void testGetFiller2 ()
       {
         final Color color = new Color(63, 127, 255);
@@ -117,26 +116,27 @@ public class CreateOpTest extends TestCase
         checkColor(new CreateOp(10, 10, EditableImage.DataType.DOUBLE, color), color, 1.0);
       }
 
+    @Test
     public void testGetFiller3 ()
       {
         final CreateOp createOp = new CreateOp(10, 10, EditableImage.DataType.BYTE, 1, 2, 3, 4, 5, 6, 7);
         final double[] filler = createOp.getFiller();
         assertEquals(7, filler.length);
-        assertEquals(1.0, filler[0]);
-        assertEquals(2.0, filler[1]);
-        assertEquals(3.0, filler[2]);
-        assertEquals(4.0, filler[3]);
-        assertEquals(5.0, filler[4]);
-        assertEquals(6.0, filler[5]);
-        assertEquals(7.0, filler[6]);
+        assertEquals(1.0, filler[0], 0.0);
+        assertEquals(2.0, filler[1], 0.0);
+        assertEquals(3.0, filler[2], 0.0);
+        assertEquals(4.0, filler[3], 0.0);
+        assertEquals(5.0, filler[4], 0.0);
+        assertEquals(6.0, filler[5], 0.0);
+        assertEquals(7.0, filler[6], 0.0);
       }
 
     private void checkColor (final CreateOp createOp, final Color color, final double max)
       {
         final double scale = max / 255.0;
         assertEquals(3, createOp.getFiller().length);
-        assertEquals(scale * color.getRed(), createOp.getFiller()[0]);
-        assertEquals(scale * color.getGreen(), createOp.getFiller()[1]);
-        assertEquals(scale * color.getBlue(), createOp.getFiller()[2]);
+        assertEquals(scale * color.getRed(), createOp.getFiller()[0], 0.0);
+        assertEquals(scale * color.getGreen(), createOp.getFiller()[1], 0.0);
+        assertEquals(scale * color.getBlue(), createOp.getFiller()[2], 0.0);
       }
   }

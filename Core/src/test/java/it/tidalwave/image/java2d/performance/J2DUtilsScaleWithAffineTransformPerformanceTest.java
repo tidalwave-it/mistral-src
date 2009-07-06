@@ -24,14 +24,12 @@
  * 
  *******************************************************************************
  * 
- * $Id: J2DUtilsScaleWithAffineTransformPerformanceTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: J2DUtilsScaleWithAffineTransformPerformanceTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.java2d.performance;
 
 import java.awt.image.BufferedImage;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
 import it.tidalwave.image.java2d.Java2DUtils;
@@ -39,21 +37,11 @@ import it.tidalwave.image.java2d.Java2DUtils;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: J2DUtilsScaleWithAffineTransformPerformanceTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: J2DUtilsScaleWithAffineTransformPerformanceTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
 public class J2DUtilsScaleWithAffineTransformPerformanceTest extends BasePerformanceTestSupport 
   {
-    public static Test suite()
-      {
-        return new TestSuite(J2DUtilsScaleWithAffineTransformPerformanceTest.class);
-      }
-
-    public J2DUtilsScaleWithAffineTransformPerformanceTest (final String name)
-      {
-        super(name);  
-      }
-    
     protected long runTest (EditableImage image)
       {
         long accTime = 0;

@@ -24,36 +24,23 @@
  * 
  *******************************************************************************
  * 
- * $Id: ScaleJ2DOpPerformanceTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: ScaleJ2DOpPerformanceTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.java2d.performance;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
 import it.tidalwave.image.op.ScaleOp;
-import it.tidalwave.image.java2d.performance.BasePerformanceTestSupport;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ScaleJ2DOpPerformanceTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: ScaleJ2DOpPerformanceTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ScaleJ2DOpPerformanceTest extends BasePerformanceTestSupport 
   {
-    public static Test suite()
-      {
-        return new TestSuite(ScaleJ2DOpPerformanceTest.class);
-      }
-
-    public ScaleJ2DOpPerformanceTest (final String name)
-      {
-        super(name);  
-      }
-    
     protected long runTest (EditableImage image)
       {
         long accTime = 0;

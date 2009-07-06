@@ -24,14 +24,12 @@
  * 
  *******************************************************************************
  * 
- * $Id: ScaleJ2DOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: ScaleJ2DOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.java2d;
 
 import java.io.File;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 import java.awt.image.SampleModel;
 import it.tidalwave.image.BaseTestSupport;
 import it.tidalwave.image.EditableImage;
@@ -39,29 +37,23 @@ import it.tidalwave.image.op.OptimizeOp;
 import it.tidalwave.image.op.ScaleOp;
 import it.tidalwave.image.op.WriteOp;
 import it.tidalwave.image.util.Platform;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ScaleJ2DOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: ScaleJ2DOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ScaleJ2DOpTest extends BaseTestSupport 
   {
     private EditableImage notOptimized;
     private EditableImage optimized;
-    
-    public static Test suite()
-      {
-        return new TestSuite(ScaleJ2DOpTest.class);
-      }
-    
-    public ScaleJ2DOpTest (final String name)
-      {
-        super(name);  
-      }
-    
-    protected void setUp() 
+
+    @Before
+    public void setUp()
       throws Exception 
       {
         super.setUp();
@@ -70,30 +62,35 @@ public class ScaleJ2DOpTest extends BaseTestSupport
         optimized = img20030701_0043_jpg.execute2(new OptimizeOp());
       }
     
+    @Test
     public void testScale10()
       {
         runTest(notOptimized, 0.10, "ac0fe6d76a306a1a40592e507b42bc7d", 300, 200);
         runTest(optimized,    0.10, "49be2bb4ea4f1bf6918495f9fac3234f", 300, 200);
       }
     
+    @Test
     public void testScale30()
       {
         runTest(notOptimized, 0.30, "df3c61d0aa182bc20e693e68b18015c4", 900, 599);
         runTest(optimized,    0.30, "4edb72a50bd41fc7fe68d0ede3dd3fe8", 900, 599);
       }
     
+    @Test
     public void testScale50()
       {
         runTest(notOptimized, 0.50, "1542dabc6802b7216aaae6273e37f240", 1500, 998);
         runTest(optimized,    0.50, "78f7f3bac7d4684f51776d687fe42c6f", 1500, 998);
       }
     
+    @Test
     public void testScale90()
       {
         runTest(notOptimized, 0.90, "4e0e331a5a4ecd7c9c9380bce7f10f2f", 2700, 1796);
         runTest(optimized,    0.90, "503be63f91ad6117e254b507b91bf035", 2700, 1796);
       }
     
+    @Test
     public void testScale135()
       {
         runTest(notOptimized, 1.35, "c9b070063633e7250ec790630b5b0d3c", 4050, 2693);

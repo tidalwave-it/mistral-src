@@ -24,14 +24,12 @@
  * 
  *******************************************************************************
  * 
- * $Id: LoggerPerformanceTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: LoggerPerformanceTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.java2d.performance;
 
 import java.util.logging.Level;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.java2d.Java2DUtils;
 import java.awt.image.BufferedImage;
@@ -40,21 +38,11 @@ import java.util.logging.Logger;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: LoggerPerformanceTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: LoggerPerformanceTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
 public class LoggerPerformanceTest extends BasePerformanceTestSupport
   {
-    public static Test suite()
-      {
-        return new TestSuite(LoggerPerformanceTest.class);
-      }
-
-    public LoggerPerformanceTest (final String name)
-      {
-        super(name);  
-      }
-    
     protected long runTest (EditableImage image)
       {
         Logger testLogger = Logger.getLogger("test");

@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ChangeBufferTypeJ2DOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: ChangeBufferTypeJ2DOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
@@ -37,22 +37,18 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
 import it.tidalwave.image.java2d.ChangeBufferTypeJ2DOp;
 import it.tidalwave.image.java2d.ImplementationFactoryJ2D;
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ChangeBufferTypeJ2DOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: ChangeBufferTypeJ2DOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ChangeBufferTypeJ2DOpTest extends BaseTestSupport
   {    
-    public static Test suite()
-      {
-        return new TestSuite(ChangeBufferTypeJ2DOpTest.class);
-      }
-
+    @Test
     public void test1()
       throws IOException
       {

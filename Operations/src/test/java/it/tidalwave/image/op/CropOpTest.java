@@ -24,37 +24,23 @@
  * 
  *******************************************************************************
  * 
- * $Id: CropOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: CropOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
 
-import it.tidalwave.image.op.CropOp;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: CropOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: CropOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
-public class CropOpTest extends TestCase 
+public class CropOpTest  
   {
-    public CropOpTest (String testName) 
-      {
-        super(testName);
-      }
-
-    public static Test suite() 
-      {
-        return new TestSuite(CropOpTest.class);
-      }
-
-    /**
-     * Test of getX method, of class it.tidalwave.image.op.CropOp.
-     */
+    @Test
     public void testGetX()  
       {
         System.out.println("getX");
@@ -62,9 +48,7 @@ public class CropOpTest extends TestCase
         assertEquals(1, op.getX());
       }
 
-    /**
-     * Test of getY method, of class it.tidalwave.image.op.CropOp.
-     */
+    @Test
     public void testGetY()   
       {
         System.out.println("getY");
@@ -72,9 +56,7 @@ public class CropOpTest extends TestCase
         assertEquals(2, op.getY());
       }
 
-    /**
-     * Test of getW method, of class it.tidalwave.image.op.CropOp.
-     */
+    @Test
     public void testGetW() 
       {
         System.out.println("getW");
@@ -82,9 +64,7 @@ public class CropOpTest extends TestCase
         assertEquals(3, op.getW());
       }
 
-    /**
-     * Test of getH method, of class it.tidalwave.image.op.CropOp.
-     */
+    @Test
     public void testGetH() 
       {
         System.out.println("getH");
@@ -92,9 +72,7 @@ public class CropOpTest extends TestCase
         assertEquals(4, op.getH());
       }
 
-    /**
-     * Test of toString method, of class it.tidalwave.image.op.CropOp.
-     */
+    @Test
     public void testToString() 
       {
         System.out.println("toString");

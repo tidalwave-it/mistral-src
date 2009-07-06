@@ -24,37 +24,29 @@
  * 
  *******************************************************************************
  * 
- * $Id: PaintOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: PaintOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
 
 import java.awt.Graphics2D;
 import javax.swing.JLabel;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: PaintOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: PaintOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
-public class PaintOpTest extends TestCase 
+public class PaintOpTest 
   {
     private final static JLabel c = new JLabel();
     
     private final static Graphics2D g = (Graphics2D)c.getGraphics();
             
-    public static Test suite() 
-      {
-        return new TestSuite(PaintOpTest.class);
-      }
-
-    /**
-     * Test of getX method, of class it.tidalwave.image.op.PaintOp.
-     */
+    @Test
     public void testGetX1()  
       {
         System.out.println("getX1");
@@ -62,9 +54,7 @@ public class PaintOpTest extends TestCase
         assertEquals(1, op.getX());
       }
 
-    /**
-     * Test of getX method, of class it.tidalwave.image.op.PaintOp.
-     */
+    @Test
     public void testGetX2()  
       {
         System.out.println("getX2");
@@ -72,9 +62,7 @@ public class PaintOpTest extends TestCase
         assertEquals(1, op.getX());
       }
 
-    /**
-     * Test of getY method, of class it.tidalwave.image.op.PaintOp.
-     */
+    @Test
     public void testGetY1() 
       {
         System.out.println("getY1");
@@ -82,9 +70,7 @@ public class PaintOpTest extends TestCase
         assertEquals(2, op.getY());
       }
 
-    /**
-     * Test of getY method, of class it.tidalwave.image.op.PaintOp.
-     */
+    @Test
     public void testGetY2() 
       {
         System.out.println("getY2");
@@ -92,9 +78,7 @@ public class PaintOpTest extends TestCase
         assertEquals(2, op.getY());
       }
 
-    /**
-     * Test of getW method, of class it.tidalwave.image.op.PaintOp.
-     */
+    @Test
     public void testGetW1() 
       {
         System.out.println("getW1");
@@ -102,9 +86,7 @@ public class PaintOpTest extends TestCase
         assertEquals(3, op.getW());
       }
 
-    /**
-     * Test of getW method, of class it.tidalwave.image.op.PaintOp.
-     */
+    @Test
     public void testGetW2() 
       {
         System.out.println("getW2");
@@ -112,9 +94,7 @@ public class PaintOpTest extends TestCase
         assertEquals(0, op.getW());
       }
 
-    /**
-     * Test of getH method, of class it.tidalwave.image.op.PaintOp.
-     */
+    @Test
     public void testGetH1() 
       {
         System.out.println("getH");
@@ -122,9 +102,7 @@ public class PaintOpTest extends TestCase
         assertEquals(4, op.getH());
       }
 
-    /**
-     * Test of getH method, of class it.tidalwave.image.op.PaintOp.
-     */
+    @Test
     public void testGetH2() 
       {
         System.out.println("getH");
@@ -132,9 +110,7 @@ public class PaintOpTest extends TestCase
         assertEquals(0, op.getH());
       }
 
-    /**
-     * Test of getGraphics2D method, of class it.tidalwave.image.op.PaintOp.
-     */
+    @Test
     public void testGetGraphics2D1() 
       {
         System.out.println("getGraphics2D1");
@@ -142,9 +118,7 @@ public class PaintOpTest extends TestCase
         assertEquals(g, op.getGraphics2D());
       }
 
-    /**
-     * Test of getGraphics2D method, of class it.tidalwave.image.op.PaintOp.
-     */
+    @Test
     public void testGetGraphics2D2() 
       {
         System.out.println("getGraphics2D2");
@@ -161,9 +135,7 @@ public class PaintOpTest extends TestCase
         fail("The test case is a prototype.");
       }*/
 
-    /**
-     * Test of toString method, of class it.tidalwave.image.op.PaintOp.
-     */
+    @Test
     public void testToString1()   
       {
         System.out.println("toString1");
@@ -171,9 +143,7 @@ public class PaintOpTest extends TestCase
         op.toString();
       } 
     
-    /**
-     * Test of toString method, of class it.tidalwave.image.op.PaintOp.
-     */
+    @Test
     public void testToString2()   
       {
         System.out.println("toString2");

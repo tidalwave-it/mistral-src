@@ -24,39 +24,25 @@
  * 
  *******************************************************************************
  * 
- * $Id: AssignColorProfileOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: AssignColorProfileOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.op;
 
-import it.tidalwave.image.op.AssignColorProfileOp;
 import java.awt.color.ColorSpace;
 import java.awt.color.ICC_Profile;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: AssignColorProfileOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: AssignColorProfileOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
  *
  ******************************************************************************/
-public class AssignColorProfileOpTest extends TestCase 
+public class AssignColorProfileOpTest 
   {
-    public AssignColorProfileOpTest (String testName) 
-      {
-        super(testName);
-      }
-
-    public static Test suite() 
-      {
-        return new TestSuite(AssignColorProfileOpTest.class);
-      }
-
-    /**
-     * Test of getICCProfile method, of class it.tidalwave.image.op.AssignColorProfileOp.
-     */
+    @Test
     public void testGetICCProfile()   
       {
         System.out.println("getICCProfile");
@@ -66,9 +52,7 @@ public class AssignColorProfileOpTest extends TestCase
         assertEquals(iccProfile, op.getICCProfile());
       }
 
-    /**
-     * Test of toString method, of class it.tidalwave.image.op.AssignColorProfileOp.
-     */
+    @Test
     public void testToString() 
       {
         System.out.println("toString");
