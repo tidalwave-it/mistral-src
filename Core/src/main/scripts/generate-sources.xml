@@ -9,8 +9,8 @@
         <echo message="Auto-generating some sources..."/>
         <mkdir dir="${metadata.dest}"/>
  
-        <ant dir="../MetadataGenerator" target="clean" inheritAll="false"/>
-        <ant dir="../MetadataGenerator" target="jar" inheritAll="false"/>
+        <ant dir="../MetadataGenerator" target="clean" inheritAll="true"/>
+        <ant dir="../MetadataGenerator" target="jar" inheritAll="true"/>
 
         <java classname="it.tidalwave.image.tools.MetadataGenerator">
             <classpath>
