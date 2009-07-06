@@ -24,19 +24,24 @@
  *
  *******************************************************************************
  *
- * $Id: EXIFTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: EXIFTest.java 1026 2009-07-06 15:35:57Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image.metadata;
 
 import it.tidalwave.image.BaseTestSupport;
+import org.junit.Test;
 
 /*******************************************************************************
  *
  * @author  fritz
- * @version $Id: EXIFTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: EXIFTest.java 1026 2009-07-06 15:35:57Z fabriziogiudici $
  *
  ******************************************************************************/
 public class EXIFTest extends BaseTestSupport
   {
+    @Test
+    public void dummy() // TODO
+      {
+      }
   }
