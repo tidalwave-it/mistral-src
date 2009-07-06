@@ -1,15 +1,24 @@
-$Id: README.txt 1018 2009-06-29 16:59:49Z fabriziogiudici $
+$Id: README.txt 1032 2009-07-06 17:42:17Z fabriziogiudici $
 ----
 
 
 COMPILE SOURCES
 ===============
 
-If you downloaded the sources, first compile everything by running 
+The first operation you have to perform is to install some files in your local Maven repository.
+Unfortunately this operation is needed because the files are not available in any public Maven
+repository. You need to do this only once:
 
-	mvn install
+	mvn install:install-file -DgroupId=com.sun.media -DartifactId=jai_imageio -Dversion=1.1 -Dpackaging=jar -Dfile=lib/jai_imageio-1_1/lib/jai_imageio.jar
+	mvn install:install-file -DgroupId=javax.media -DartifactId=jai_core -Dversion=1.1.3 -Dpackaging=jar -Dfile=lib/jai-1_1_3/lib/jai_core.jar
+	mvn install:install-file -DgroupId=ij -DartifactId=ij -Dversion=1.37 -Dpackaging=jar -Dfile=lib/ImageJ-1.37/ij.jar
 
-from the command line (you need Apache Ant 1.6.5 or later). See "Compiling the sources" below.
+
+At this point you can compile Mistral by running:
+
+	mvn -Dmaven.test.skip=true clean install
+
+You need Maven 2.0.10 or later.
 
 
 
@@ -30,5 +39,5 @@ Examples/CustomOperationExample   example about custom operations
 Examples/Miscellaneous            miscellaneous examples
 
 lib				  contains third party libraries needed for compiling
-settings			  contains Jalopy settings for formatting sources and other stuff
+etc				  contains Jalopy settings for formatting sources and other stuff
 
