@@ -1,3 +1,3 @@
-@REM #$Id; ViewerExample.sh 450 2007-02-02 12;02;52Z fabriziogiudici $
+@REM #$Id; runViewerExample.bat 450 2007-02-02 12;02;52Z fabriziogiudici $
 
-@java -Xmx512M -cp EditableImage\dist\EditableImage.jar;Metadata\dist\Metadata.jar;Renderer\dist\Renderer.jar;Examples\ViewerExample\dist\ViewerExample.jar;lib\metadata-extractor\metadata-extractor-2.3.1.jar;lib\swing-layout\swing-layout-1.0.1.jar it.tidalwave.mistral.example.viewer.Main
+mvn -f Examples/ViewerExample/pom.xml -Dmaven.test.skip=true install exec:java -Dexec.mainClass=it.tidalwave.mistral.example.viewer.Main
