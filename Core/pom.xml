@@ -57,8 +57,8 @@
                         <phase>generate-sources</phase>
                         <configuration>
                             <tasks>
-                                <property name="java.home" value="${java.home}"/>
-                                <echo message="java.home passed to Ant is ${java.home}"/>
+                                <ant dir="../MetadataGenerator" target="clean" inheritAll="true"/>
+                                <ant dir="../MetadataGenerator" target="jar" inheritAll="true"/>
                                 <ant antfile="src/main/scripts/generate-sources.xml" target="generate-sources" inheritAll="true"/>
                             </tasks>
                         </configuration>
