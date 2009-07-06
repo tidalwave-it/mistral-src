@@ -445,13 +445,11 @@
         <module>JAI-Plugin</module>
         <module>ImageJ-Plugin</module>
 
-<!--
         <module>Examples/CustomOperationExample</module>
         <module>Examples/ViewerExample</module>
         <module>Examples/HistogramViewerExample</module>
         <module>Examples/MiscellaneousExample</module>
         <module>Examples/FaxManagerExample</module>
--->
     </modules>
 
 </project>
