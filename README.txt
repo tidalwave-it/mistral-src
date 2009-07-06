@@ -1,4 +1,4 @@
-$Id: README.txt 1032 2009-07-06 17:42:17Z fabriziogiudici $
+$Id: README.txt 1039 2009-07-06 20:24:23Z fabriziogiudici $
 ----
 
 
@@ -20,6 +20,16 @@ At this point you can compile Mistral by running:
 
 You need Maven 2.0.10 or later.
 
+
+RUNNING EXAMPLES
+================
+
+A few scripts for U*ix and Windows systems are provided to quickly run examples:
+
++ runViewerExample.sh
++ runHistogramViewerExample.sh 
++ runViewerExample.bat 
++ runHistogramViewerExample.bat 
 
 
 DIRECTORY TREE
