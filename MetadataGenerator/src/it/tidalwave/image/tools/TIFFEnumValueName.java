@@ -25,7 +25,12 @@ public class TIFFEnumValueName
       {
         if (name != null)
           {
-            return name.replace(' ', '_').replace('-', '_').toUpperCase();
+            return name.replace(' ', ' ').
+                        replace('-', ' ').
+                        replace('(', ' ').
+                        replace(')', ' ').
+                        replace('/', ' ').
+                        trim().replace(' ', '_').toUpperCase();
           }
         
         return "";

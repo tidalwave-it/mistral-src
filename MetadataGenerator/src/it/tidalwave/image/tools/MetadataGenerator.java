@@ -14,6 +14,7 @@ import org.antlr.stringtemplate.StringTemplate;
 import org.antlr.stringtemplate.StringTemplateGroup;
 import it.tidalwave.image.tools.grammar.TIFFLexer;
 import it.tidalwave.image.tools.grammar.TIFFParser;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
@@ -29,7 +30,9 @@ public class MetadataGenerator
         final MetadataGenerator exifGenerator = new MetadataGenerator(input);
         final String className = args[1];
         final String path = args[2];
-        final PrintWriter output = new PrintWriter(new FileWriter(String.format("%s/%s.java", path, className)));
+        final File file = new File(String.format("%s/%s.java", path, className));
+        file.getParentFile().mkdirs();
+        final PrintWriter output = new PrintWriter(new FileWriter(file));
         exifGenerator.generate(output, className);
         output.close();
       }
