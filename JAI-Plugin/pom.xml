@@ -25,6 +25,13 @@
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
+            <artifactId>MistralCore</artifactId>
+            <version>0.9.8-SNAPSHOT</version>
+            <classifier>tests</classifier>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>it.tidalwave.image</groupId>
             <artifactId>MistralOperations</artifactId>
             <version>0.9.8-SNAPSHOT</version>
         </dependency>
