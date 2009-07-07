@@ -21,8 +21,16 @@
         <delete dir="${metadata.dest}"/>
         <delete dir="${tools.build.classes.dir}"/>
         <mkdir dir="${tools.build.classes.dir}"/>
+        <mkdir dir="${basedir}/target/tool-src-generated/it/tidalwave/image/tools/grammar"/>
 
-        <javac srcdir="${tool.src.dir}"
+        <java classname="org.antlr.Tool">
+            <classpath refid="metadatagenerator.path"/>
+            <arg value="${basedir}/src/tool/resources/TIFF.g" />
+            <arg value="-fo" />
+            <arg value="${basedir}/target/tool-src-generated/it/tidalwave/image/tools/grammar"/>
+        </java>
+
+        <javac srcdir="${tool.src.dir}:${basedir}/target/tool-src-generated"
                destdir="${tools.build.classes.dir}"
                source="1.5"
                target="1.5"
