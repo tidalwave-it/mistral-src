@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ScaleJ2DOpPerformanceTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
+ * $Id: ScaleJ2DOpPerformanceTest.java 1051 2009-07-07 21:24:40Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.java2d.performance;
@@ -32,17 +32,19 @@ package it.tidalwave.image.java2d.performance;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
 import it.tidalwave.image.op.ScaleOp;
+import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ScaleJ2DOpPerformanceTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
+ * @version $Id: ScaleJ2DOpPerformanceTest.java 1051 2009-07-07 21:24:40Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ScaleJ2DOpPerformanceTest extends BasePerformanceTestSupport 
   {
     protected long runTest (EditableImage image)
       {
+        fail("disabled because it takes forever");
         long accTime = 0;
         
         for (double scale = 0.1; scale <= 1; scale += 0.1)
