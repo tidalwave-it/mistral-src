@@ -4,29 +4,47 @@
     <description>Builds, tests, and runs the project mistral.</description>
    
     <property name="metadata.dest" value="${basedir}/target/src-generated"/>
+    <property name="tool.src.dir" value="../MetadataGenerator/src"/>
+    <property name="build.classes.dir" value="target/tool-classes"/>
 
     <target name="generate-sources">
         <echo message="Auto-generating some sources..."/>
         <mkdir dir="${metadata.dest}"/>
- 
-        <java classname="it.tidalwave.image.tools.MetadataGenerator">
-            <classpath>
-                <pathelement location="../MetadataGenerator/build/classes"/>
+
+        <path id="metadatagenerator.path">
+                <pathelement location="${build.classes.dir}"/>
                 <pathelement location="../MetadataGenerator/lib/antlr/antlr-2.7.6.jar"/>
                 <pathelement location="../MetadataGenerator/lib/antlr/antlr-3.0.1.jar"/>
                 <pathelement location="../MetadataGenerator/lib/antlr/stringtemplate-3.0.jar"/>
-            </classpath>
+        </path>
+
+        <delete dir="${metadata.dest}"/>
+        <delete dir="${build.classes.dir}"/>
+        <mkdir dir="${build.classes.dir}"/>
+
+        <javac srcdir="${tool.src.dir}"
+               destdir="${build.classes.dir}"
+               source="1.5"
+               target="1.5"
+               fork="true"
+               optimize="yes"
+               deprecation="on"
+               debug="on">
+            <!-- classpath refid="javac.classpath"/ -->
+            <classpath refid="metadatagenerator.path"/>
+        </javac>
+	<copy todir="${build.classes.dir}">
+            <fileset dir="${tool.src.dir}" excludes="**/*.java"/>
+        </copy>
+ 
+        <java classname="it.tidalwave.image.tools.MetadataGenerator">
+            <classpath refid="metadatagenerator.path"/>
             <arg value="TIFF.properties" />
             <arg value="EXIFDirectoryGenerated" />
             <arg value="${metadata.dest}/it/tidalwave/image/metadata/" />
         </java>
         <java classname="it.tidalwave.image.tools.MetadataGenerator">
-            <classpath>
-                <pathelement location="../MetadataGenerator/build/classes"/>
-                <pathelement location="../MetadataGenerator/lib/antlr/antlr-2.7.6.jar"/>
-                <pathelement location="../MetadataGenerator/lib/antlr/antlr-3.0.1.jar"/>
-                <pathelement location="../MetadataGenerator/lib/antlr/stringtemplate-3.0.jar"/>
-            </classpath>
+            <classpath refid="metadatagenerator.path"/>
             <arg value="IPTC.properties" />
             <arg value="IPTCDirectoryGenerated" />
             <arg value="${metadata.dest}/it/tidalwave/image/metadata/" />
