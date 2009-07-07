@@ -3,13 +3,12 @@
 <project name="mistral-generate-sources" default="generate-sources" basedir=".">
     <description>Builds, tests, and runs the project mistral.</description>
    
+    <property name="tool.src.dir" value="${basedir}/src/tool"/>
+    <property name="tools.build.classes.dir" value="${basedir}/target/tool-classes"/>
     <property name="metadata.dest" value="${basedir}/target/src-generated"/>
-    <property name="tool.src.dir" value="src/tool"/>
-    <property name="tools.build.classes.dir" value="target/tool-classes"/>
 
     <target name="generate-sources">
         <echo message="Auto-generating some sources..."/>
-        <mkdir dir="${metadata.dest}"/>
 
         <path id="metadatagenerator.path">
                 <pathelement location="${tools.build.classes.dir}"/>
@@ -18,10 +17,11 @@
                 <pathelement location="lib/antlr/stringtemplate-3.0.jar"/>
         </path>
 
-        <delete dir="${metadata.dest}"/>
         <delete dir="${tools.build.classes.dir}"/>
+        <delete dir="${metadata.dest}"/>
         <mkdir dir="${tools.build.classes.dir}"/>
         <mkdir dir="${basedir}/target/tool-src-generated/it/tidalwave/image/tools/grammar"/>
+        <mkdir dir="${metadata.dest}"/>
 
         <java classname="org.antlr.Tool">
             <classpath refid="metadatagenerator.path"/>
