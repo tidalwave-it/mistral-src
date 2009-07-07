@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- You may freely edit this file. See commented blocks below for -->
-<!-- some examples of how to customize the build. -->
-<!-- (If you delete it and reopen the project it will be recreated.) -->
+
 <project name="MetadataGenerator" default="default" basedir=".">
     <description>Builds, tests, and runs the project MetadataGenerator.</description>
     <import file="nbproject/build-impl.xml"/>
     
     <target name="-pre-compile">
+        <echo message="JAVA_HOME = ${java.home}"/>
         <java classname="org.antlr.Tool">
             <classpath>
                 <pathelement location="lib/antlr/antlr-2.7.6.jar"/>
                 <pathelement location="lib/antlr/antlr-3.0.1.jar"/>
                 <pathelement location="lib/antlr/stringtemplate-3.0.jar"/>
             </classpath>
-            <arg value="src/resources/TIFF.g" />
+            <arg value="${basedir}/src/resources/TIFF.g" />
             <arg value="-fo" />
-            <arg value="src/it/tidalwave/image/tools/grammar"/>
+            <arg value="${basedir}/src/it/tidalwave/image/tools/grammar"/>
         </java>
     </target>
         
