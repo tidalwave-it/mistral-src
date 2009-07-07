@@ -4,36 +4,35 @@
     <description>Builds, tests, and runs the project mistral.</description>
    
     <property name="metadata.dest" value="${basedir}/target/src-generated"/>
-    <property name="tool.src.dir" value="../MetadataGenerator/src"/>
-    <property name="build.classes.dir" value="target/tool-classes"/>
+    <property name="tool.src.dir" value="src/tool"/>
+    <property name="tools.build.classes.dir" value="target/tool-classes"/>
 
     <target name="generate-sources">
         <echo message="Auto-generating some sources..."/>
         <mkdir dir="${metadata.dest}"/>
 
         <path id="metadatagenerator.path">
-                <pathelement location="${build.classes.dir}"/>
-                <pathelement location="../MetadataGenerator/lib/antlr/antlr-2.7.6.jar"/>
-                <pathelement location="../MetadataGenerator/lib/antlr/antlr-3.0.1.jar"/>
-                <pathelement location="../MetadataGenerator/lib/antlr/stringtemplate-3.0.jar"/>
+                <pathelement location="${tools.build.classes.dir}"/>
+                <pathelement location="lib/antlr/antlr-2.7.6.jar"/>
+                <pathelement location="lib/antlr/antlr-3.0.1.jar"/>
+                <pathelement location="lib/antlr/stringtemplate-3.0.jar"/>
         </path>
 
         <delete dir="${metadata.dest}"/>
-        <delete dir="${build.classes.dir}"/>
-        <mkdir dir="${build.classes.dir}"/>
+        <delete dir="${tools.build.classes.dir}"/>
+        <mkdir dir="${tools.build.classes.dir}"/>
 
         <javac srcdir="${tool.src.dir}"
-               destdir="${build.classes.dir}"
+               destdir="${tools.build.classes.dir}"
                source="1.5"
                target="1.5"
                fork="true"
                optimize="yes"
                deprecation="on"
                debug="on">
-            <!-- classpath refid="javac.classpath"/ -->
             <classpath refid="metadatagenerator.path"/>
         </javac>
-	<copy todir="${build.classes.dir}">
+	<copy todir="${tools.build.classes.dir}">
             <fileset dir="${tool.src.dir}" excludes="**/*.java"/>
         </copy>
  
