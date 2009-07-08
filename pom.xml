@@ -11,7 +11,7 @@
     *
     **************************************************************************************************************** -->
     <groupId>it.tidalwave.image</groupId>
-    <artifactId>Mistral</artifactId>
+    <artifactId>mistral</artifactId>
     <packaging>pom</packaging>
     <version>0.9.8-SNAPSHOT</version>
     <name>Mistral</name>
