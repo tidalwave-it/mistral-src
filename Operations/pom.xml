@@ -11,7 +11,7 @@
         <version>0.9.8-SNAPSHOT</version>
     </parent>
 
-    <artifactId>MistralOperations</artifactId>
+    <artifactId>mistral-operations</artifactId>
     <version>0.9.8-SNAPSHOT</version>
     <packaging>jar</packaging>
     <!-- packaging>nbm</packaging FIXME -->
@@ -20,12 +20,12 @@
     <dependencies>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>MistralCore</artifactId>
+            <artifactId>mistral-core</artifactId>
             <version>0.9.8-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>MistralCore</artifactId>
+            <artifactId>mistral-core</artifactId>
             <version>0.9.8-SNAPSHOT</version>
             <classifier>tests</classifier>
             <scope>test</scope>

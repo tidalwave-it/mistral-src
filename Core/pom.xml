@@ -11,7 +11,7 @@
         <version>0.9.8-SNAPSHOT</version>
     </parent>
 
-    <artifactId>MistralCore</artifactId>
+    <artifactId>mistral-core</artifactId>
     <version>0.9.8-SNAPSHOT</version>
     <packaging>jar</packaging>
     <!-- packaging>nbm</packaging FIXME -->
