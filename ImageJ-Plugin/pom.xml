@@ -12,7 +12,6 @@
     </parent>
 
     <artifactId>mistral-imagej-plugin</artifactId>
-    <version>0.9.8-SNAPSHOT</version>
     <packaging>jar</packaging>
     <!-- packaging>nbm</packaging FIXME -->
     <name>Mistral ImageJ Plugin</name>
@@ -21,17 +20,17 @@
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>mistral-core</artifactId>
-            <version>0.9.8-SNAPSHOT</version>
+            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>mistral-operations</artifactId>
-            <version>0.9.8-SNAPSHOT</version>
+            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>mistral-contributions</artifactId>
-            <version>0.9.8-SNAPSHOT</version>
+            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>ij</groupId>

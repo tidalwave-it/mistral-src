@@ -72,6 +72,7 @@
     </licenses>
 
     <properties>
+        <jrawio.version>1.5.0</jrawio.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <bundle.namespace>${pom.groupId}.${pom.artifactId}</bundle.namespace>
     </properties>
@@ -114,13 +115,13 @@
         <dependency>
             <groupId>it.tidalwave.imageio</groupId>
             <artifactId>jrawio</artifactId>
-            <version>1.5.0-SNAPSHOT</version>
+            <version>${jrawio.version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.imageio</groupId>
             <artifactId>reajent</artifactId>
-            <version>1.5.0-SNAPSHOT</version>
+            <version>${jrawio.version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>

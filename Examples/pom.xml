@@ -12,7 +12,6 @@
     </parent>
 
     <artifactId>Examples</artifactId>
-    <version>0.9.8-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Mistral Examples</name>
 

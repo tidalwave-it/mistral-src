@@ -12,7 +12,6 @@
     </parent>
 
     <artifactId>ExampleCustomOperation</artifactId>
-    <version>0.9.8-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Mistral Examples CustomOperation</name>
 
@@ -20,17 +19,17 @@
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>mistral-core</artifactId>
-            <version>0.9.8-SNAPSHOT</version>
+            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>mistral-operations</artifactId>
-            <version>0.9.8-SNAPSHOT</version>
+            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>mistral-contributions</artifactId>
-            <version>0.9.8-SNAPSHOT</version>
+            <version>${version}</version>
         </dependency>
     </dependencies>
 

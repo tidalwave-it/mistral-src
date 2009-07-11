@@ -12,7 +12,6 @@
     </parent>
 
     <artifactId>mistral-jai-plugin</artifactId>
-    <version>0.9.8-SNAPSHOT</version>
     <packaging>jar</packaging>
     <!-- packaging>nbm</packaging FIXME -->
     <name>Mistral JAI Plugin</name>
@@ -21,24 +20,24 @@
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>mistral-core</artifactId>
-            <version>0.9.8-SNAPSHOT</version>
+            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>mistral-core</artifactId>
-            <version>0.9.8-SNAPSHOT</version>
+            <version>${version}</version>
             <classifier>tests</classifier>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>mistral-operations</artifactId>
-            <version>0.9.8-SNAPSHOT</version>
+            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>mistral-contributions</artifactId>
-            <version>0.9.8-SNAPSHOT</version>
+            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>javax.media</groupId>
