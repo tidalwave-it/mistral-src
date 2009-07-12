@@ -11,13 +11,8 @@
         <version>0.9.9-SNAPSHOT</version>
     </parent>
 
-    <artifactId>Examples</artifactId>
+    <artifactId>mistral-examples</artifactId>
     <packaging>pom</packaging>
     <name>Mistral Examples</name>
-
 </project>
-
-
-
-
 

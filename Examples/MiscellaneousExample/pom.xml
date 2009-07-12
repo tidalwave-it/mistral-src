@@ -11,7 +11,7 @@
         <version>0.9.9-SNAPSHOT</version>
     </parent>
 
-    <artifactId>ExampleMiscellaneous</artifactId>
+    <artifactId>mistral-examples-miscellaneous</artifactId>
     <packaging>jar</packaging>
     <name>Mistral Examples Miscellaneous</name>
 
@@ -32,8 +32,5 @@
             <version>${version}</version>
         </dependency>
     </dependencies>
-
 </project>
-
-
 

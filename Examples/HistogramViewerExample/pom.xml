@@ -11,7 +11,7 @@
         <version>0.9.9-SNAPSHOT</version>
     </parent>
 
-    <artifactId>ExampleHistogramViewer</artifactId>
+    <artifactId>mistral-examples-histogramviewer</artifactId>
     <packaging>jar</packaging>
     <name>Mistral Examples HistogramViewer</name>
 
@@ -42,8 +42,5 @@
             <version>${version}</version>
         </dependency>
     </dependencies>
-
 </project>
-
-
 

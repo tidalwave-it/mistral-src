@@ -11,7 +11,7 @@
         <version>0.9.9-SNAPSHOT</version>
     </parent>
 
-    <artifactId>ExampleViewer</artifactId>
+    <artifactId>mistral-examples-viewer</artifactId>
     <packaging>jar</packaging>
     <name>Mistral Examples Viewer</name>
 
@@ -42,10 +42,5 @@
             <version>${version}</version>
         </dependency>
     </dependencies>
-
 </project>
-
-
-
-
 

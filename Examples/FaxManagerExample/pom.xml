@@ -11,7 +11,7 @@
         <version>0.9.9-SNAPSHOT</version>
     </parent>
 
-    <artifactId>ExampleFaxManager</artifactId>
+    <artifactId>mistral-examples-faxmanager</artifactId>
     <packaging>jar</packaging>
     <name>Mistral Examples FaxManager</name>
 
@@ -49,6 +49,4 @@
     </dependencies>
 
 </project>
-
-
 
