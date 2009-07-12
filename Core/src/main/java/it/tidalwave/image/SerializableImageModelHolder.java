@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: SerializableImageModelHolder.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: SerializableImageModelHolder.java 1058 2009-07-12 21:00:56Z fabriziogiudici $
  *
  ******************************************************************************/
 package it.tidalwave.image;
@@ -32,20 +32,27 @@ package it.tidalwave.image;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: SerializableImageModelHolder.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: SerializableImageModelHolder.java 1058 2009-07-12 21:00:56Z fabriziogiudici $
  *
  ******************************************************************************/
 public class SerializableImageModelHolder extends ImageModelHolder
   {
     private ImageModel imageModel;
 
-    public void set (ImageModel imageModel)
+    public void set (final ImageModel imageModel)
       {
         this.imageModel = imageModel;
       }
 
-    public ImageModel get ()
+    public ImageModel get()
       {
         return imageModel;
+      }
+
+    @Override
+    public String toString()
+      {
+        final ImageModel model = get();
+        return String.format("SerializableImageModelHolder[%s]", (model != null) ? model.getId() : "null");
       }
   }

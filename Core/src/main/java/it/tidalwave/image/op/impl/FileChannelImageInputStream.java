@@ -430,4 +430,10 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         super.setByteOrder(networkByteOrder);
         mappedBuffer.order(networkByteOrder);
     }
-}
+
+    @Override
+    public String toString()
+      {
+        return String.format("FileChannelImageInputStream@%x", System.identityHashCode(this));
+      }
+  }
