@@ -7,7 +7,7 @@
 
     <parent>
         <groupId>it.tidalwave.image</groupId>
-        <artifactId>mistral</artifactId>
+        <artifactId>mistral-examples</artifactId>
         <version>0.9.9-SNAPSHOT</version>
     </parent>
 

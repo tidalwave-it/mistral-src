@@ -14,5 +14,19 @@
     <artifactId>mistral-examples</artifactId>
     <packaging>pom</packaging>
     <name>Mistral Examples</name>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <configuration>
+                       <skip>true</skip>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
 </project>
 
