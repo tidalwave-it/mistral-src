@@ -24,13 +24,13 @@
  * 
  *******************************************************************************
  * 
- * $Id: BaseTestSupport.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
+ * $Id: BaseTestSupport.java 1062 2009-07-13 17:57:22Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image;
 
 import java.util.logging.Logger;
-import java.util.logging.LogManager;
+import java.util.logging.Handler;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.BufferedInputStream;
@@ -43,8 +43,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.security.MessageDigest;
 import it.tidalwave.image.op.ReadOp;
-import it.tidalwave.openide.loggerconfiguration.SingleLineLogFormatter;
-import java.util.logging.Handler;
+import it.tidalwave.util.logging.SingleLineLogFormatter;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import static org.junit.Assert.*;
@@ -52,7 +51,7 @@ import static org.junit.Assert.*;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: BaseTestSupport.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
+ * @version $Id: BaseTestSupport.java 1062 2009-07-13 17:57:22Z fabriziogiudici $
  *
  ******************************************************************************/
 public abstract class BaseTestSupport
