@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: CreateJAIOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id: CreateJAIOpTest.java 1060 2009-07-13 12:01:32Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.jai;
@@ -33,29 +33,18 @@ import javax.media.jai.PlanarImage;
 import java.awt.image.Raster;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.testsupport.CreateOpTestSupport;
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import org.junit.Before;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: CreateJAIOpTest.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id: CreateJAIOpTest.java 1060 2009-07-13 12:01:32Z fabriziogiudici $
  *
  ******************************************************************************/
 public class CreateJAIOpTest extends CreateOpTestSupport
   {
-    public static Test suite() 
-      {
-        return new TestSuite(CreateJAIOpTest.class);
-      }
-    
-    public CreateJAIOpTest (final String name)
-      {
-        super(name);  
-      }
-
-    public void setUp ()
-        throws Exception
+    @Before
+    public void installJAIPlugin()
       {
         ImplementationFactoryJAI.getInstance();
       }

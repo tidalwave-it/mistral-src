@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ChangeFormatJAIOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
+ * $Id: ChangeFormatJAIOpTest.java 1060 2009-07-13 12:01:32Z fabriziogiudici $
  * 
  ******************************************************************************/
 package it.tidalwave.image.jai;
@@ -37,11 +37,12 @@ import it.tidalwave.image.BaseTestSupport;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.EditableImage.DataType;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ChangeFormatJAIOpTest.java 1028 2009-07-06 16:46:00Z fabriziogiudici $
+ * @version $Id: ChangeFormatJAIOpTest.java 1060 2009-07-13 12:01:32Z fabriziogiudici $
  *
  ******************************************************************************/
 public class ChangeFormatJAIOpTest extends BaseTestSupport
