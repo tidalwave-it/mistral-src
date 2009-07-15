@@ -329,7 +329,7 @@
                             <value>${testset.folder}</value>
                         </property>
                     </systemProperties>
-                    <argLine>-Xmx512M</argLine>
+                    <argLine>-Xmx600M</argLine>
                 </configuration>
             </plugin>
 
