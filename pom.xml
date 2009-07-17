@@ -84,6 +84,13 @@
             <url>http://download.java.net/maven/2</url>
             <layout>default</layout>
         </repository>
+        <!-- This provides the required versions of JAI-ImageIO, JAI and IJ
+        <repository>
+            <id>maven2-repository.tidalwave.kenai.com</id>
+            <name>Tidalwave Maven Repository</name>
+            <url>https://kenai.com/svn/tidalwave~maven-repo/2</url>
+            <layout>default</layout>
+        </repository>
     </repositories>
 
     <distributionManagement>
