@@ -95,8 +95,10 @@
 
     <distributionManagement>
         <repository>
-            <id>java.net-m2-repository</id>
-            <url>java-net:/maven2-repository/trunk/repository/</url>
+            <id>maven2-repository.tidalwave.kenai.com</id>
+            <name>Tidalwave Maven Repository</name>
+            <url>svn:https://kenai.com/svn/tidalwave~maven-repo/2</url>
+            <uniqueVersion>true</uniqueVersion>
         </repository>
     </distributionManagement>
 
@@ -234,12 +236,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>buildnumber-maven-plugin</artifactId>
-                    <version>1.0-beta-1</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>buildnumber-maven-plugin</artifactId>
-                    <version>1.0-beta-1</version>
+                    <version>1.0-beta-3</version>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -408,6 +405,14 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <arguments>-Dmaven.test.skip</arguments>
+                </configuration>
             </plugin>
         </plugins>
     </build>
