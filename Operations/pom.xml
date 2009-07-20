@@ -7,11 +7,11 @@
 
     <parent>
         <groupId>it.tidalwave.image</groupId>
-        <artifactId>mistral</artifactId>
+        <artifactId>it.tidalwave.imageio</artifactId>
         <version>0.9.9-SNAPSHOT</version>
     </parent>
 
-    <artifactId>operations</artifactId>
+    <artifactId>it.tidalwave.imageio.operations</artifactId>
     <packaging>jar</packaging>
     <!-- packaging>nbm</packaging FIXME -->
     <name>Mistral Operations</name>
@@ -19,12 +19,12 @@
     <dependencies>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>it.tidalwave.imageio.core</artifactId>
             <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>it.tidalwave.imageio.core</artifactId>
             <version>${version}</version>
             <classifier>tests</classifier>
             <scope>test</scope>

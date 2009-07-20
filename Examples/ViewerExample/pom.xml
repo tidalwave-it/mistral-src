@@ -7,28 +7,28 @@
 
     <parent>
         <groupId>it.tidalwave.image</groupId>
-        <artifactId>examples</artifactId>
+        <artifactId>it.tidalwave.imageio.examples</artifactId>
         <version>0.9.9-SNAPSHOT</version>
     </parent>
 
-    <artifactId>examples-viewer</artifactId>
+    <artifactId>it.tidalwave.imageio.examples.viewer</artifactId>
     <packaging>jar</packaging>
     <name>Mistral Examples Viewer</name>
 
     <dependencies>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>it.tidalwave.imageio.core</artifactId>
             <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>operations</artifactId>
+            <artifactId>it.tidalwave.imageio.operations</artifactId>
             <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>contributions</artifactId>
+            <artifactId>it.tidalwave.imageio.contributions</artifactId>
             <version>${version}</version>
         </dependency>
         <dependency>
@@ -38,7 +38,7 @@
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>renderer</artifactId>
+            <artifactId>it.tidalwave.imageio.renderer</artifactId>
             <version>${version}</version>
         </dependency>
     </dependencies>

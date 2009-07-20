@@ -11,7 +11,7 @@
     *
     **************************************************************************************************************** -->
     <groupId>it.tidalwave.image</groupId>
-    <artifactId>main</artifactId>
+    <artifactId>it.tidalwave.imageio</artifactId>
     <packaging>pom</packaging>
     <version>0.9.9-SNAPSHOT</version>
     <name>Mistral</name>
@@ -160,7 +160,7 @@
     **************************************************************************************************************** -->
     <build>
         <!-- For buildNumber to be properly evaluated by assembly:assembly, use also the validate goal -->
-        <finalName>mistral-${project.artifactId}-${project.version}.${buildNumber}</finalName>
+        <finalName>${project.artifactId}-${project.version}.${buildNumber}</finalName>
 
         <extensions>
             <extension>
