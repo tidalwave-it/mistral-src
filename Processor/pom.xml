@@ -11,7 +11,7 @@
         <version>0.9.9-SNAPSHOT</version>
     </parent>
 
-    <artifactId>mistral-processor</artifactId>
+    <artifactId>processor</artifactId>
     <packaging>jar</packaging>
     <!-- packaging>nbm</packaging FIXME -->
     <name>Mistral Processor</name>
@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>mistral-core</artifactId>
+            <artifactId>core</artifactId>
             <version>${version}</version>
         </dependency>
     </dependencies>

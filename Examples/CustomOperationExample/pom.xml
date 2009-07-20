@@ -7,28 +7,28 @@
 
     <parent>
         <groupId>it.tidalwave.image</groupId>
-        <artifactId>mistral-examples</artifactId>
+        <artifactId>examples</artifactId>
         <version>0.9.9-SNAPSHOT</version>
     </parent>
 
-    <artifactId>mistral-examples-customoperation</artifactId>
+    <artifactId>examples-customoperation</artifactId>
     <packaging>jar</packaging>
     <name>Mistral Examples CustomOperation</name>
 
     <dependencies>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>mistral-core</artifactId>
+            <artifactId>core</artifactId>
             <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>mistral-operations</artifactId>
+            <artifactId>operations</artifactId>
             <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>mistral-contributions</artifactId>
+            <artifactId>contributions</artifactId>
             <version>${version}</version>
         </dependency>
     </dependencies>
