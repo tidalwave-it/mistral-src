@@ -83,7 +83,6 @@
             <id>maven2-repository.tidalwave.kenai.com</id>
             <name>Tidalwave Maven Aux Repository</name>
             <url>svn:https://kenai.com/svn/tidalwave~maven-repo/aux/2</url>
-            <uniqueVersion>false</uniqueVersion>
         </repository>
     </repositories>
 
