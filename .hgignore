@@ -1,0 +1,13 @@
+Contributions/target
+Core/target
+Examples/CustomOperationExample/target
+Examples/FaxManagerExample/target
+Examples/HistogramViewerExample/target
+Examples/MiscellaneousExample/target
+Examples/ViewerExample/target
+ImageJ-Plugin/target
+JAI-Plugin/target
+Operations/target
+Processor/target
+Renderer/target
+target
