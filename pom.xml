@@ -157,6 +157,18 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>default</id>
+            <properties>
+                <buildNumber>unknown</buildNumber>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+
     <!-- ***************************************************************************************************************
     *
     *
@@ -237,11 +249,13 @@
                     <version>1.2.1</version>
                 </plugin>
 
+<!--
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>buildnumber-maven-plugin</artifactId>
                     <version>1.0-beta-3</version>
                 </plugin>
+-->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>nbm-maven-plugin</artifactId>
@@ -303,6 +317,7 @@
             </plugin>
 
             <!-- Retrieves the 4th build number from Subversion revision. -->
+<!--
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>buildnumber-maven-plugin</artifactId>
@@ -319,7 +334,7 @@
                     <doUpdate>false</doUpdate>
                 </configuration>
             </plugin>
-
+-->
             <!-- Executes tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
