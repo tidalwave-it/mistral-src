@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: ScaleController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id$
  *
  ******************************************************************************/
 package it.tidalwave.image.render;
@@ -47,7 +47,7 @@ import java.awt.Point;
  * </pre>
  *
  * @author  Fabrizio Giudici
- * @version $Id: ScaleController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id$
  *
  ******************************************************************************/
 public class ScaleController

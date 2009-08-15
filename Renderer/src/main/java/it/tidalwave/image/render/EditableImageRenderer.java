@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: EditableImageRenderer.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id$
  *
  ******************************************************************************/
 package it.tidalwave.image.render;
@@ -60,7 +60,7 @@ import it.tidalwave.image.util.Platform;
  * capabilities and a fit-to-size feature.
  *
  * @author  Fabrizio Giudici
- * @version $Id: EditableImageRenderer.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id$
  *
  ******************************************************************************/
 public class EditableImageRenderer extends JComponent

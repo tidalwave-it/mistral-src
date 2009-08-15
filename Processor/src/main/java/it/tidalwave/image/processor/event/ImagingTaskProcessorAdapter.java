@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ImagingTaskProcessorAdapter.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id$
  * 
  ******************************************************************************/
 package it.tidalwave.image.processor.event;
@@ -35,7 +35,7 @@ package it.tidalwave.image.processor.event;
  * <code>ImagingTaskProcessor</code>.
  *
  * @author  Fabrizio Giudici
- * @version $Id: ImagingTaskProcessorAdapter.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id$
  *
  ******************************************************************************/
 public class ImagingTaskProcessorAdapter implements ImagingTaskProcessorListener

@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: Statistics.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id$
  * 
  ******************************************************************************/
 package it.tidalwave.image.processor;
@@ -45,7 +45,7 @@ import it.tidalwave.image.processor.Statistics.Item;
  * of type <code>long</code>.
  *
  * @author  Fabrizio Giudici
- * @version $Id: Statistics.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id$
  *
  ******************************************************************************/
 public class Statistics implements Serializable, Iterable<Item>

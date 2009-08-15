@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: MouseWheelZoomingController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id$
  * 
  ******************************************************************************/
 package it.tidalwave.image.render;
@@ -37,7 +37,7 @@ import java.awt.event.MouseWheelListener;
  * This class zooms listening to the mouse wheel.
  *
  * @author  Fabrizio Giudici
- * @version $Id: MouseWheelZoomingController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id$
  *
  ******************************************************************************/
 public class MouseWheelZoomingController 

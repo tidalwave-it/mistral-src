@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: MouseClickZoomingController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id$
  *
  ******************************************************************************/
 package it.tidalwave.image.render;
@@ -46,7 +46,7 @@ import it.tidalwave.image.render.event.EditableImageRendererEvent;
  * plug different implementations (e.g. animations).
  *
  * @author  Fabrizio Giudici
- * @version $Id: MouseClickZoomingController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id$
  *
  ******************************************************************************/
 public class MouseClickZoomingController

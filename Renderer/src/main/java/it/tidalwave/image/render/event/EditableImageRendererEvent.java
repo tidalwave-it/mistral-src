@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: EditableImageRendererEvent.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id$
  * 
  ******************************************************************************/
 package it.tidalwave.image.render.event;
@@ -36,7 +36,7 @@ import it.tidalwave.image.render.EditingTool;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: EditableImageRendererEvent.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id$
  *
  ******************************************************************************/
 public class EditableImageRendererEvent extends EventObject

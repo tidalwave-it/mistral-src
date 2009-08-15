@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: ImagingTaskProcessorEvent.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id$
  * 
  ******************************************************************************/
 package it.tidalwave.image.processor.event;
@@ -37,7 +37,7 @@ import it.tidalwave.image.processor.ImagingTaskProcessor;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: ImagingTaskProcessorEvent.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id$
  *
  ******************************************************************************/
 public class ImagingTaskProcessorEvent extends EventObject

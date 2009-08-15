@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: AnimatedScaleController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id$
  *
  ******************************************************************************/
 package it.tidalwave.image.render;
@@ -43,7 +43,7 @@ import it.tidalwave.image.Quality;
  * A special <code>ScaleController</code> which performs smooth scale transictions.
  *
  * @author  Fabrizio Giudici
- * @version $Id: AnimatedScaleController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id$
  *
  ******************************************************************************/
 public class AnimatedScaleController extends ScaleController

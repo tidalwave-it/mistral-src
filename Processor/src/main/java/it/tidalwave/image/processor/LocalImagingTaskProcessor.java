@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: LocalImagingTaskProcessor.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id$
  * 
  ******************************************************************************/
 package it.tidalwave.image.processor;
@@ -37,7 +37,7 @@ import java.util.logging.Logger;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: LocalImagingTaskProcessor.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id$
  *
  ******************************************************************************/
 public class LocalImagingTaskProcessor extends ImagingTaskProcessor

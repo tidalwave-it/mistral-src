@@ -24,7 +24,7 @@
  *
  *******************************************************************************
  *
- * $Id: DragPanningController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id$
  *
  ******************************************************************************/
 package it.tidalwave.image.render;
@@ -43,7 +43,7 @@ import java.awt.event.MouseMotionListener;
  * photo in the viewport by dragging with the mouse.
  *
  * @author  Fabrizio Giudici
- * @version $Id: DragPanningController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id$
  *
  ******************************************************************************/
 public class DragPanningController
