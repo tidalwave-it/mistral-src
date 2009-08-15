@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: RotationController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id$
  * 
  ******************************************************************************/
 package it.tidalwave.image.render;
@@ -32,7 +32,7 @@ package it.tidalwave.image.render;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: RotationController.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id$
  *
  ******************************************************************************/
 public class RotationController

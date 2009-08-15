@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: EditableImageRenderer.java 324 2006-12-21 22:22:23Z fabriziogiudici $
+ * $Id$
  * 
  ******************************************************************************/
 package it.tidalwave.image.render;
@@ -51,7 +51,7 @@ import javax.swing.JToggleButton;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: EditableImageRenderer.java 324 2006-12-21 22:22:23Z fabriziogiudici $
+ * @version $Id$
  *
  ******************************************************************************/
 public class EditingTool implements MouseListener, MouseMotionListener, KeyListener, Overlay

@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: EditableImageRendererListener.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id$
  * 
  ******************************************************************************/
 package it.tidalwave.image.render.event;
@@ -34,7 +34,7 @@ import java.util.EventListener;
 /*******************************************************************************
  *
  * @author  Fabrizio Giudici
- * @version $Id: EditableImageRendererListener.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id$
  *
  ******************************************************************************/
 public interface EditableImageRendererListener extends EventListener

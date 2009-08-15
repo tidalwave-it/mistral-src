@@ -24,7 +24,7 @@
  * 
  *******************************************************************************
  * 
- * $Id: Overlay.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * $Id$
  * 
  ******************************************************************************/
 package it.tidalwave.image.render;
@@ -36,7 +36,7 @@ import java.awt.Graphics2D;
  * An Overlay is something that is drawn over a rendered image.
  *
  * @author  Fabrizio Giudici
- * @version $Id: Overlay.java 946 2008-09-07 09:45:55Z fabriziogiudici $
+ * @version $Id$
  *
  ******************************************************************************/
 public interface Overlay

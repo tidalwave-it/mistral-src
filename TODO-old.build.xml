@@ -24,7 +24,7 @@ limitations under the License.
  
 ==============================================================================
  
-$Id: TODO-old.build.xml 1019 2009-07-06 12:37:12Z fabriziogiudici $
+$Id$
 -->
 
 <project name="Mistral" default="jar" basedir=".">
