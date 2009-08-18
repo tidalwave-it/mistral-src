@@ -11,3 +11,6 @@ Operations/target
 Processor/target
 Renderer/target
 target
+.repository
+hudson.env
+
