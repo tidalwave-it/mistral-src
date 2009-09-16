@@ -11,7 +11,7 @@
     *
     **************************************************************************************************************** -->
     <groupId>it.tidalwave.image</groupId>
-    <artifactId>it.tidalwave.imageio</artifactId>
+    <artifactId>it.tidalwave.image</artifactId>
     <packaging>pom</packaging>
     <version>0.9.9-SNAPSHOT</version>
     <name>Mistral</name>
@@ -72,7 +72,7 @@
     </licenses>
 
     <properties>
-        <jrawio.version>1.5.0</jrawio.version>
+        <jrawio.version>1.6.0-SNAPSHOT</jrawio.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <bundle.namespace>${pom.groupId}.${pom.artifactId}</bundle.namespace>
     </properties>
@@ -133,13 +133,7 @@
         </dependency>
         <dependency>
             <groupId>it.tidalwave.imageio</groupId>
-            <artifactId>jrawio</artifactId>
-            <version>${jrawio.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>it.tidalwave.imageio</groupId>
-            <artifactId>reajent</artifactId>
+            <artifactId>jrawio-all</artifactId>
             <version>${jrawio.version}</version>
             <scope>runtime</scope>
         </dependency>

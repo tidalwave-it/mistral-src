@@ -7,24 +7,18 @@
 
     <parent>
         <groupId>it.tidalwave.image</groupId>
-        <artifactId>it.tidalwave.imageio</artifactId>
+        <artifactId>it.tidalwave.image</artifactId>
         <version>0.9.9-SNAPSHOT</version>
     </parent>
 
-    <artifactId>it.tidalwave.imageio.core</artifactId>
+    <artifactId>it.tidalwave.image.core</artifactId>
     <packaging>jar</packaging>
-    <!-- packaging>nbm</packaging FIXME -->
     <name>Mistral Core</name>
 
     <dependencies>
         <dependency>
             <groupId>it.tidalwave.imageio</groupId>
-            <artifactId>jrawio</artifactId>
-            <version>${jrawio.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>it.tidalwave.imageio</groupId>
-            <artifactId>reajent</artifactId>
+            <artifactId>jrawio-all</artifactId>
             <version>${jrawio.version}</version>
         </dependency>
         <dependency>

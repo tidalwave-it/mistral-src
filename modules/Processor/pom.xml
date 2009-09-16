@@ -7,11 +7,11 @@
 
     <parent>
         <groupId>it.tidalwave.image</groupId>
-        <artifactId>it.tidalwave.imageio</artifactId>
+        <artifactId>it.tidalwave.image</artifactId>
         <version>0.9.9-SNAPSHOT</version>
     </parent>
 
-    <artifactId>it.tidalwave.imageio.processor</artifactId>
+    <artifactId>it.tidalwave.image.processor</artifactId>
     <packaging>jar</packaging>
     <!-- packaging>nbm</packaging FIXME -->
     <name>Mistral Processor</name>
@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>it.tidalwave.imageio.core</artifactId>
+            <artifactId>it.tidalwave.image.core</artifactId>
             <version>${version}</version>
         </dependency>
     </dependencies>
@@ -33,7 +33,7 @@
                     <instructions>
                         <Export-Package>it.tidalwave.image.*</Export-Package>
                         <!-- FIXME: some packages are needed by reajent - how to do friends?
-                        <Private-Package>it.tidalwave.imageio.*</Private-Package>
+                        <Private-Package>it.tidalwave.image.*</Private-Package>
                         <Export-Package>it.tidalwave.image
                         </Export-Package>
                         -->
