@@ -482,13 +482,13 @@
     *
     **************************************************************************************************************** -->
     <modules>
-        <module>Core</module>
-        <module>Operations</module>
-        <module>Contributions</module>
-        <module>Processor</module>
-        <module>Renderer</module>
-        <module>JAI-Plugin</module>
-        <module>ImageJ-Plugin</module>
+        <module>modules/Core</module>
+        <module>modules/Operations</module>
+        <module>modules/Contributions</module>
+        <module>modules/Processor</module>
+        <module>modules/Renderer</module>
+        <module>modules/JAI-Plugin</module>
+        <module>modules/ImageJ-Plugin</module>
 
         <module>Examples/CustomOperationExample</module>
         <module>Examples/ViewerExample</module>
