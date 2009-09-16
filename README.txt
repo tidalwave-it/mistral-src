@@ -26,12 +26,12 @@ A few scripts for U*ix and Windows systems are provided to quickly run examples:
 DIRECTORY TREE
 ==============
 
-Core                              sources for the core component
-ImageJ-Plugin                     sources for the ImageJ plugin
-JAI-Plugin                        sources for the JAI plugin
-Metadata                          sources for the Metadata component
-Processor                         sources for the imaging processor
-Renderer                          sources for the renderer
+modules/Core                      sources for the core component
+modules/ImageJ-Plugin             sources for the ImageJ plugin
+modules/JAI-Plugin                sources for the JAI plugin
+modules/Metadata                  sources for the Metadata component
+modules/Processor                 sources for the imaging processor
+modules/Renderer                  sources for the renderer
 
 Examples/ViewerExample            example about the renderer
 Examples/HistogramViewerExample   example about histogram computation
