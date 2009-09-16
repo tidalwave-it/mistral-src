@@ -7,34 +7,34 @@
 
     <parent>
         <groupId>it.tidalwave.image</groupId>
-        <artifactId>it.tidalwave.imageio.examples</artifactId>
+        <artifactId>it.tidalwave.image.examples</artifactId>
         <version>0.9.9-SNAPSHOT</version>
     </parent>
 
-    <artifactId>it.tidalwave.imageio.examples.miscellaneous</artifactId>
+    <artifactId>it.tidalwave.image.examples.miscellaneous</artifactId>
     <packaging>jar</packaging>
     <name>Mistral Examples Miscellaneous</name>
 
     <dependencies>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>it.tidalwave.imageio.core</artifactId>
+            <artifactId>it.tidalwave.image.core</artifactId>
             <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>it.tidalwave.imageio.operations</artifactId>
+            <artifactId>it.tidalwave.image.operations</artifactId>
             <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
-            <artifactId>it.tidalwave.imageio.contributions</artifactId>
+            <artifactId>it.tidalwave.image.contributions</artifactId>
             <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>javax.media</groupId>
             <artifactId>jai_core</artifactId>
-            <version>1.1.3</version>
+            <version>${jai.version}</version>
         </dependency>
     </dependencies>
 </project>

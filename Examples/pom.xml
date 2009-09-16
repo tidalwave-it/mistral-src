@@ -7,11 +7,11 @@
 
     <parent>
         <groupId>it.tidalwave.image</groupId>
-        <artifactId>it.tidalwave.imageio</artifactId>
+        <artifactId>it.tidalwave.image</artifactId>
         <version>0.9.9-SNAPSHOT</version>
     </parent>
 
-    <artifactId>it.tidalwave.imageio.examples</artifactId>
+    <artifactId>it.tidalwave.image.examples</artifactId>
     <packaging>pom</packaging>
     <name>Mistral Examples</name>
 
@@ -27,6 +27,14 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <modules>
+        <module>CustomOperationExample</module>
+        <module>ViewerExample</module>
+        <module>HistogramViewerExample</module>
+        <module>MiscellaneousExample</module>
+        <module>FaxManagerExample</module>
+    </modules>
 
 </project>
 
