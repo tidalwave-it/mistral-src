@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>it.tidalwave.image</groupId>
+        <artifactId>it.tidalwave.image</artifactId>
+        <version>0.9.9-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>it-tidalwave-image</artifactId>
+    <packaging>nbm</packaging>
+    <name>Mistral NBM artifact</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>it.tidalwave.image</groupId>
+            <artifactId>it.tidalwave.image.core</artifactId>
+            <version>0.9.9-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>it.tidalwave.image</groupId>
+            <artifactId>it.tidalwave.image.operations</artifactId>
+            <version>0.9.9-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>it.tidalwave.image</groupId>
+            <artifactId>it.tidalwave.image.contributions</artifactId>
+            <version>0.9.9-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>it.tidalwave.image</groupId>
+            <artifactId>it.tidalwave.image.plugin.jai</artifactId>
+            <version>0.9.9-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>it.tidalwave.image</groupId>
+            <artifactId>it.tidalwave.image.processor</artifactId>
+            <version>0.9.9-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>it.tidalwave.image</groupId>
+            <artifactId>it.tidalwave.image.renderer</artifactId>
+            <version>0.9.9-SNAPSHOT</version>
+        </dependency>
+        <!-- These dependencies with 'provided' scope won't be embedded in the .nbm -->
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>1.3.7</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>it.tidalwave.imageio</groupId>
+            <artifactId>jrawio-all</artifactId>
+            <version>${jrawio.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.drewnoakes</groupId>
+            <artifactId>metadata-extractor</artifactId>
+            <version>2.4.0-beta-1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.media</groupId>
+            <artifactId>jai_imageio</artifactId>
+            <version>1.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.media</groupId>
+            <artifactId>jai_core</artifactId>
+            <version>1.1.3</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>nbm-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <publicPackages>
+                        <publicPackage>it.tidalwave.image</publicPackage>
+                        <publicPackage>it.tidalwave.image.ij</publicPackage>
+                        <publicPackage>it.tidalwave.image.jai</publicPackage>
+                        <publicPackage>it.tidalwave.image.java2d</publicPackage>
+                        <publicPackage>it.tidalwave.image.metadata</publicPackage>
+                        <publicPackage>it.tidalwave.image.metadata.loader</publicPackage>
+                        <publicPackage>it.tidalwave.image.op</publicPackage>
+                        <publicPackage>it.tidalwave.image.processor</publicPackage>
+                        <publicPackage>it.tidalwave.image.processor.event</publicPackage>
+                        <publicPackage>it.tidalwave.image.render</publicPackage>
+                        <publicPackage>it.tidalwave.image.render.event</publicPackage>
+                        <publicPackage>it.tidalwave.image.util</publicPackage>
+                        <publicPackage>it.tidalwave.mistral.customoperation</publicPackage>
+                    </publicPackages>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+

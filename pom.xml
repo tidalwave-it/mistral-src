@@ -483,6 +483,7 @@
         <module>modules/Renderer</module>
         <module>modules/JAI-Plugin</module>
         <module>modules/ImageJ-Plugin</module>
+        <module>modules/NBM</module>
 
         <module>Examples/CustomOperationExample</module>
         <module>Examples/ViewerExample</module>
