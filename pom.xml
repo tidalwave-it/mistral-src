@@ -84,7 +84,7 @@
     <repositories>
         <repository>
             <id>maven2-repository.tidalwave.kenai.com</id>
-            <name>Tidalwave Maven Snapshot Repository</name>
+            <name>Tidalwave Maven Release Repository</name>
             <url>https://kenai.com/svn/tidalwave~maven-repo/release/2</url>
         </repository>
         <!-- This provides the required versions of JAI-ImageIO, JAI and IJ -->
