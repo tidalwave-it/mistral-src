@@ -370,10 +370,6 @@
                 <configuration>
                     <useDefaultManifestFile>true</useDefaultManifestFile> <!-- required since nbm-plugin 3.0-->
                     <archive>
-                        <!-- Needed to put the OSGi stuff -->
-<!--
-                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
--->
                         <manifestEntries>
                             <Implementation-Build>${buildNumber}</Implementation-Build>
                         </manifestEntries>
@@ -388,13 +384,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-
-            <!-- Produces the NBMs for the NetBeans Platform -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>nbm-maven-plugin</artifactId>
-                <extensions>true</extensions>
             </plugin>
 
             <!-- Produces the OSGi bundle information. -->
