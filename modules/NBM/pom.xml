@@ -54,15 +54,32 @@
         </dependency>
         <dependency>
             <groupId>it.tidalwave.imageio</groupId>
+            <artifactId>it.tidalwave.imageio.raw</artifactId>
+            <version>${jrawio.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>it.tidalwave.imageio</groupId>
             <artifactId>jrawio-all</artifactId>
             <version>${jrawio.version}</version>
             <scope>provided</scope>
         </dependency>
-        
+        <dependency>
+            <groupId>it.tidalwave.imageio</groupId>
+            <artifactId>codec</artifactId>
+            <version>${jrawio.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>it.tidalwave.imageio</groupId>
+            <artifactId>processor</artifactId>
+            <version>${jrawio.version}</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>nbm</groupId>
             <artifactId>com-drew-metadata</artifactId>
-            <version>${drewMetadata.version}</version>
+            <version>${drewMetadata.version}.1</version>
             <type>nbm</type>
         </dependency>
         <dependency>
@@ -75,7 +92,7 @@
         <dependency>
             <groupId>nbm</groupId>
             <artifactId>com-sun-media-imageio</artifactId>
-            <version>${jaiImageIO.version}</version>
+            <version>${jaiImageIO.version}.1</version>
             <type>nbm</type>
         </dependency>
         <dependency>
@@ -94,7 +111,7 @@
         <dependency>
             <groupId>nbm</groupId>
             <artifactId>javax-media-jai</artifactId>
-            <version>${jai.version}</version>
+            <version>${jai.version}.1</version>
         </dependency>
         <dependency>
             <groupId>javax.media</groupId>
