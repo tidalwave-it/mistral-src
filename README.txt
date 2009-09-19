@@ -7,7 +7,7 @@ COMPILE SOURCES
 
 You can compile Mistral by running:
 
-	mvn -Dmaven.test.skip=true clean install
+	mvn -DskipTests=true clean install
 
 You need Maven 2.0.10 or later.
 
