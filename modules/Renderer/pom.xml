@@ -13,7 +13,6 @@
 
     <artifactId>it.tidalwave.image.renderer</artifactId>
     <packaging>jar</packaging>
-    <!-- packaging>nbm</packaging FIXME -->
     <name>Mistral Renderer</name>
 
     <dependencies>

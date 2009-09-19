@@ -13,7 +13,6 @@
 
     <artifactId>it.tidalwave.image.processor</artifactId>
     <packaging>jar</packaging>
-    <!-- packaging>nbm</packaging FIXME -->
     <name>Mistral Processor</name>
 
     <dependencies>
