@@ -60,7 +60,7 @@
         </dependency>
         <dependency>
             <groupId>it.tidalwave.imageio</groupId>
-            <artifactId>jrawio-all</artifactId>
+            <artifactId>it.tidalwave.imageio.raw</artifactId>
             <version>${jrawio.version}</version>
             <scope>provided</scope>
         </dependency>
