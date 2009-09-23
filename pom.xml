@@ -110,13 +110,12 @@
             <id>maven2-repository.tidalwave.kenai.com</id>
             <name>Tidalwave Maven Release Repository</name>
             <url>svn:https://kenai.com/svn/tidalwave~maven-repo/release/2</url>
-            <uniqueVersion>false</uniqueVersion>
+            <uniqueVersion>true</uniqueVersion>
         </repository>
         <snapshotRepository>
-            <id>maven2-snapshot-repository.tidalwave.kenai.com</id>
+            <id>maven2-snapshot.tidalwave.it</id>
             <name>Tidalwave Maven Snapshot Repository</name>
-            <url>svn:https://kenai.com/svn/tidalwave~maven-repo/snapshot/2</url>
-            <uniqueVersion>true</uniqueVersion>
+            <url>https://services.tidalwave.it/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
