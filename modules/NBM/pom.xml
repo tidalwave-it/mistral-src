@@ -6,7 +6,7 @@
     <parent>
         <groupId>it.tidalwave.image</groupId>
         <artifactId>it.tidalwave.image</artifactId>
-        <version>0.9.9</version>
+        <version>0.9.10-SNAPSHOT</version>
     </parent>
 
     <artifactId>it-tidalwave-image</artifactId>
@@ -17,32 +17,32 @@
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.core</artifactId>
-            <version>0.9.9</version>
+            <version>0.9.10-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.operations</artifactId>
-            <version>0.9.9</version>
+            <version>0.9.10-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.contributions</artifactId>
-            <version>0.9.9</version>
+            <version>0.9.10-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.plugin.jai</artifactId>
-            <version>0.9.9</version>
+            <version>0.9.10-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.processor</artifactId>
-            <version>0.9.9</version>
+            <version>0.9.10-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.renderer</artifactId>
-            <version>0.9.9</version>
+            <version>0.9.10-SNAPSHOT</version>
         </dependency>
         
         <!-- The dependencies with 'provided' scope won't be embedded in the .nbm -->

@@ -11,7 +11,7 @@
     <groupId>it.tidalwave.image</groupId>
     <artifactId>it.tidalwave.image</artifactId>
     <packaging>pom</packaging>
-    <version>0.9.9</version>
+    <version>0.9.10-SNAPSHOT</version>
     <name>Mistral</name>
 
     <url>http://mistral.tidalwave.it</url>
