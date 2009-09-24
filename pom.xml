@@ -11,11 +11,11 @@
     <groupId>it.tidalwave.image</groupId>
     <artifactId>it.tidalwave.image</artifactId>
     <packaging>pom</packaging>
-    <version>0.9.9-SNAPSHOT</version>
+    <version>0.9.9</version>
     <name>Mistral</name>
 
     <url>http://mistral.tidalwave.it</url>
-    <description></description>
+    <description />
     <organization>
         <name>Tidalwave s.a.s.</name>
         <url>http://www.tidalwave.it</url>
