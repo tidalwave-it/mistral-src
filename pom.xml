@@ -30,9 +30,9 @@
     </issueManagement>
 
     <scm>
-        <connection>scm:svn:https://mistral.dev.java.net/svn/mistral/trunk/src</connection>
-        <developerConnection>scm:svn:https://mistral.dev.java.net/svn/mistral/trunk/src</developerConnection>
-        <url>https://mistral.dev.java.net/svn/mistral/trunk/src</url>
+        <connection>scm:http://kenai.com/hg/mistral~src</connection>
+        <developerConnection>scm:svn:https://kenai.com/hg/mistral~src</developerConnection>
+        <url>http://kenai.com/hg/mistral~src</url>
     </scm>
 
     <developers>
@@ -53,13 +53,11 @@
     <mailingLists>
         <mailingList>
             <name>Commits</name>
-            <post>commits@mistral.dev.java.net</post>
-            <archive>https://mistral.dev.java.net/servlets/SummarizeList?listName=commits</archive>
+            <post>commits@kenai.com</post>
         </mailingList>
         <mailingList>
             <name>Dev</name>
-            <post>dev@mistral.dev.java.net</post>
-            <archive>https://mistral.dev.java.net/servlets/SummarizeList?listName=dev</archive>
+            <post>dev@kenai.com</post>
         </mailingList>
     </mailingLists>
 
@@ -82,16 +80,6 @@
     </properties>
 
     <repositories>
-        <repository>
-            <id>maven2-repository.tidalwave.kenai.com</id>
-            <name>Tidalwave Maven Release Repository</name>
-            <url>https://kenai.com/svn/tidalwave~maven-repo/release/2</url>
-        </repository>
-        <repository>
-            <id>maven2-snapshot-repository.tidalwave.kenai.com</id>
-            <name>Tidalwave Maven Snapshot Repository</name>
-            <url>https://kenai.com/svn/tidalwave~maven-repo/snapshot/2</url>
-        </repository>
         <!-- This provides the required versions of JAI-ImageIO, JAI and IJ -->
         <repository>
             <id>maven2-aux-repository.tidalwave.kenai.com</id>
@@ -99,17 +87,17 @@
             <url>https://kenai.com/svn/tidalwave~maven-repo/aux/2</url>
         </repository>
         <repository>
-            <id>maven2-repository.nbpwr.kenai.com</id>
+            <id>nbpwr-release.tidalwave.it</id>
             <name>NBPWR Maven Release Repository</name>
-            <url>https://kenai.com/svn/nbpwr~maven-repo/release/2</url>
+            <url>http://services.tidalwave.it/nexus/content/repositories/nbpwr-release</url>
         </repository>
     </repositories>
 
     <distributionManagement>
         <repository>
-            <id>maven2-repository.tidalwave.kenai.com</id>
+            <id>maven2-release.tidalwave.it</id>
             <name>Tidalwave Maven Release Repository</name>
-            <url>svn:https://kenai.com/svn/tidalwave~maven-repo/release/2</url>
+            <url>https://services.tidalwave.it/nexus/content/repositories/releases</url>
             <uniqueVersion>true</uniqueVersion>
         </repository>
         <snapshotRepository>
@@ -125,6 +113,20 @@
             <artifactId>jsr305</artifactId>
             <version>${jsr305.version}</version>
             <!-- WARNING: don't use 1.3.8, it has got a broken pom which brings is tons of useless stuff! -->
+        </dependency>
+        <dependency>
+            <groupId>com.drewnoakes</groupId>
+            <artifactId>metadata-extractor</artifactId>
+            <version>${drewMetadata.version}</version>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.media</groupId>
+            <artifactId>jai_imageio</artifactId>
+            <version>${jaiImageIO.version}</version>
+            <scope>runtime</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -150,18 +152,6 @@
             <version>${jrawio.version}</version>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>com.drewnoakes</groupId>
-            <artifactId>metadata-extractor</artifactId>
-            <version>${drewMetadata.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.media</groupId>
-            <artifactId>jai_imageio</artifactId>
-            <version>${jaiImageIO.version}</version>
-            <scope>runtime</scope>
-        </dependency>
     </dependencies>
 
     <profiles>
@@ -185,14 +175,6 @@
     <build>
         <!-- For buildNumber to be properly evaluated by assembly:assembly, use also the validate goal -->
         <finalName>${project.artifactId}-${project.version}.${buildNumber}</finalName>
-
-        <extensions>
-            <extension>
-                <groupId>org.jvnet.wagon-svn</groupId>
-                <artifactId>wagon-svn</artifactId>
-                <version>1.9</version>
-            </extension>
-        </extensions>
 
         <resources>
             <resource>
@@ -267,8 +249,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>nbm-maven-plugin</artifactId>
-                    <version>3.0</version>
-                    <extensions>true</extensions>
+                    <version>3.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
