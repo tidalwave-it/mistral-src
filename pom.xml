@@ -102,6 +102,16 @@
             <name>NBPWR Maven Release Repository</name>
             <url>http://services.tidalwave.it/nexus/content/repositories/nbpwr-release</url>
         </repository>
+        <repository>
+            <id>maven2-snapshot.tidalwave.it</id>
+            <name>Tidalwave Maven Snapshot Repository</name>
+            <url>http://services.tidalwave.it/nexus/content/repositories/snapshots</url>
+        </repository>
+        <repository>
+            <id>maven2-release.tidalwave.it</id>
+            <name>Tidalwave Maven Release Repository</name>
+            <url>http://services.tidalwave.it/nexus/content/repositories/releases</url>
+        </repository>
     </repositories>
 
     <distributionManagement>
