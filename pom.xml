@@ -29,7 +29,7 @@
 
     <scm>
         <connection>scm:hg:http://kenai.com/hg/mistral~src</connection>
-        <developerConnection>scm:svn:https://kenai.com/hg/mistral~src</developerConnection>
+        <developerConnection>scm:hg:https://kenai.com/hg/mistral~src</developerConnection>
         <url>http://kenai.com/projects/mistral/sources/src/show</url>
     </scm>
 
