@@ -45,7 +45,7 @@
             <version>0.9.9-SNAPSHOT</version>
         </dependency>
         
-        <!-- These dependencies with 'provided' scope won't be embedded in the .nbm -->
+        <!-- The dependencies with 'provided' scope won't be embedded in the .nbm -->
         <dependency>
             <groupId>it.tidalwave.imageio</groupId>
             <artifactId>it-tidalwave-imageio-raw</artifactId>
@@ -58,28 +58,11 @@
             <version>${jrawio.version}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>it.tidalwave.imageio</groupId>
-            <artifactId>it.tidalwave.imageio.raw</artifactId>
-            <version>${jrawio.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>it.tidalwave.imageio</groupId>
-            <artifactId>codec</artifactId>
-            <version>${jrawio.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>it.tidalwave.imageio</groupId>
-            <artifactId>processor</artifactId>
-            <version>${jrawio.version}</version>
-            <scope>provided</scope>
-        </dependency>
+
         <dependency>
             <groupId>nbm</groupId>
             <artifactId>com-drew-metadata</artifactId>
-            <version>${drewMetadata.version}.1</version>
+            <version>${drewMetadata.version}.4</version>
             <type>nbm</type>
         </dependency>
         <dependency>
@@ -88,11 +71,12 @@
             <version>${drewMetadata.version}</version>
             <scope>provided</scope>
         </dependency>
+
         <!-- JAI ImageIO -->
         <dependency>
             <groupId>nbm</groupId>
             <artifactId>com-sun-media-imageio</artifactId>
-            <version>${jaiImageIO.version}.1</version>
+            <version>${jaiImageIO.version}.2</version>
             <type>nbm</type>
         </dependency>
         <dependency>
@@ -101,33 +85,17 @@
             <version>${jaiImageIO.version}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>com.sun.media</groupId>
-            <artifactId>clibwrapper_jiio</artifactId>
-            <version>${jaiImageIO.version}</version>
-            <scope>provided</scope>
-        </dependency>
+
         <!-- JAI -->
         <dependency>
             <groupId>nbm</groupId>
             <artifactId>javax-media-jai</artifactId>
-            <version>${jai.version}.1</version>
+            <version>${jai.version}.2</version>
+            <type>nbm</type>
         </dependency>
         <dependency>
             <groupId>javax.media</groupId>
             <artifactId>jai_core</artifactId>
-            <version>${jai.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.media</groupId>
-            <artifactId>jai_codec</artifactId>
-            <version>${jai.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.media</groupId>
-            <artifactId>mlibwrapper_jai</artifactId>
             <version>${jai.version}</version>
             <scope>provided</scope>
         </dependency>
