@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -30,9 +28,9 @@
     </issueManagement>
 
     <scm>
-        <connection>scm:http://kenai.com/hg/mistral~src</connection>
+        <connection>scm:hg:http://kenai.com/hg/mistral~src</connection>
         <developerConnection>scm:svn:https://kenai.com/hg/mistral~src</developerConnection>
-        <url>http://kenai.com/hg/mistral~src</url>
+        <url>http://kenai.com/projects/mistral/sources/src/show</url>
     </scm>
 
     <developers>
@@ -52,12 +50,24 @@
 
     <mailingLists>
         <mailingList>
-            <name>Commits</name>
-            <post>commits@kenai.com</post>
+            <name>Continuous Integration</name>
+            <post>ci@mistral.kenai.com</post>
+            <archive>http://kenai.com/projects/mistral/lists/ci/archive</archive>
         </mailingList>
         <mailingList>
-            <name>Dev</name>
-            <post>dev@kenai.com</post>
+            <name>Commits</name>
+            <post>commits@mistral.kenai.com</post>
+            <archive>http://kenai.com/projects/mistral/lists/commits/archive</archive>
+        </mailingList>
+        <mailingList>
+            <name>Developers</name>
+            <post>dev@mistral.kenai.com</post>
+            <archive>http://kenai.com/projects/mistral/lists/dev/archive</archive>
+        </mailingList>
+        <mailingList>
+            <name>Users</name>
+            <post>users@mistral.kenai.com</post>
+            <archive>http://kenai.com/projects/mistral/lists/users/archive</archive>
         </mailingList>
     </mailingLists>
 
@@ -75,6 +85,7 @@
         <jaiImageIO.version>1.1</jaiImageIO.version>
         <jai.version>1.1.3</jai.version>
         <jsr305.version>1.3.7</jsr305.version>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <bundle.namespace>${pom.groupId}.${pom.artifactId}</bundle.namespace>
     </properties>
@@ -98,7 +109,6 @@
             <id>maven2-release.tidalwave.it</id>
             <name>Tidalwave Maven Release Repository</name>
             <url>https://services.tidalwave.it/nexus/content/repositories/releases</url>
-            <uniqueVersion>true</uniqueVersion>
         </repository>
         <snapshotRepository>
             <id>maven2-snapshot.tidalwave.it</id>
@@ -238,6 +248,11 @@
                     <artifactId>maven-shade-plugin</artifactId>
                     <version>1.2.1</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.0-beta-8</version>
+                </plugin>
 
 <!--
                 <plugin>
@@ -270,7 +285,7 @@
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
-                    <version>1.4.0</version>
+                    <version>2.0.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -366,22 +381,6 @@
                 </executions>
             </plugin>
 
-            <!-- Produces the OSGi bundle information. -->
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <extensions>true</extensions>
-                <executions>
-                    <execution>
-                        <id>bundle-manifest</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>manifest</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
             <!-- Cobertura support -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -406,7 +405,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
                 <configuration>
-                    <arguments>-Dmaven.test.skip</arguments>
+                    <arguments>-DskipTests=true</arguments>
                 </configuration>
             </plugin>
         </plugins>
