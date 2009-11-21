@@ -6,7 +6,7 @@
     <parent>
         <groupId>it.tidalwave.image</groupId>
         <artifactId>it.tidalwave.image.examples</artifactId>
-        <version>0.9.10-SNAPSHOT</version>
+        <version>0.9.10</version>
     </parent>
 
     <artifactId>it.tidalwave.image.examples.histogramviewer</artifactId>
