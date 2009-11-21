@@ -17,32 +17,26 @@
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.core</artifactId>
-            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.operations</artifactId>
-            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.contributions</artifactId>
-            <version>${version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.swinglabs</groupId>
-            <artifactId>swing-layout</artifactId>
-            <version>1.0.3</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.renderer</artifactId>
-            <version>${version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.swinglabs</groupId>
+            <artifactId>swing-layout</artifactId>
         </dependency>
         <dependency>
             <groupId>com.sun.media</groupId>
             <artifactId>jai_imageio</artifactId>
-            <version>${jaiImageIO.version}</version>
         </dependency>
     </dependencies>
 

@@ -17,93 +17,78 @@
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.core</artifactId>
-            <version>0.9.10-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.operations</artifactId>
-            <version>0.9.10-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.contributions</artifactId>
-            <version>0.9.10-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.plugin.jai</artifactId>
-            <version>0.9.10-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.processor</artifactId>
-            <version>0.9.10-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.renderer</artifactId>
-            <version>0.9.10-SNAPSHOT</version>
         </dependency>
         
         <!-- The dependencies with 'provided' scope won't be embedded in the .nbm -->
         <dependency>
             <groupId>it.tidalwave.imageio</groupId>
             <artifactId>it-tidalwave-imageio-raw</artifactId>
-            <version>${jrawio.version}</version>
             <type>nbm</type>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.imageio</groupId>
             <artifactId>it.tidalwave.imageio.raw</artifactId>
-            <version>${jrawio.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
-            <groupId>nbm</groupId>
+            <groupId>com.kenai.nbpwr</groupId>
             <artifactId>com-drew-metadata</artifactId>
-            <version>${drewMetadata.version}.4</version>
             <type>nbm</type>
         </dependency>
         <dependency>
             <groupId>com.drewnoakes</groupId>
             <artifactId>metadata-extractor</artifactId>
-            <version>${drewMetadata.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <!-- JAI ImageIO -->
         <dependency>
-            <groupId>nbm</groupId>
+            <groupId>com.kenai.nbpwr</groupId>
             <artifactId>com-sun-media-imageio</artifactId>
-            <version>${jaiImageIO.version}.2</version>
             <type>nbm</type>
         </dependency>
         <dependency>
             <groupId>com.sun.media</groupId>
             <artifactId>jai_imageio</artifactId>
-            <version>${jaiImageIO.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <!-- JAI -->
         <dependency>
-            <groupId>nbm</groupId>
+            <groupId>com.kenai.nbpwr</groupId>
             <artifactId>javax-media-jai</artifactId>
-            <version>${jai.version}.2</version>
             <type>nbm</type>
         </dependency>
         <dependency>
             <groupId>javax.media</groupId>
             <artifactId>jai_core</artifactId>
-            <version>${jai.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>jsr305</artifactId>
-            <version>${jsr305.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

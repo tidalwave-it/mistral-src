@@ -18,22 +18,18 @@
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.core</artifactId>
-            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.operations</artifactId>
-            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.contributions</artifactId>
-            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>ij</groupId>
             <artifactId>ij</artifactId>
-            <version>1.37</version>
         </dependency>
     </dependencies>
 

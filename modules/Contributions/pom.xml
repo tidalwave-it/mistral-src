@@ -18,12 +18,10 @@
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.core</artifactId>
-            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>it.tidalwave.image.core</artifactId>
-            <version>${version}</version>
             <classifier>tests</classifier>
             <scope>test</scope>
         </dependency>

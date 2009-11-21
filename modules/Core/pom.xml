@@ -17,17 +17,14 @@
         <dependency>
             <groupId>it.tidalwave.imageio</groupId>
             <artifactId>it.tidalwave.imageio.raw</artifactId>
-            <version>${jrawio.version}</version>
         </dependency>
         <dependency>
             <groupId>com.drewnoakes</groupId>
             <artifactId>metadata-extractor</artifactId>
-            <version>${drewMetadata.version}</version>
         </dependency>
         <dependency>
             <groupId>com.sun.media</groupId>
             <artifactId>jai_imageio</artifactId>
-            <version>${jaiImageIO.version}</version>
         </dependency>
     </dependencies>
 
