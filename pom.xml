@@ -97,11 +97,6 @@
             <url>https://kenai.com/svn/tidalwave~maven-repo/aux/2</url>
         </repository>
         <repository>
-            <id>nbpwr-release.tidalwave.it</id>
-            <name>NBPWR Maven Release Repository</name>
-            <url>http://services.tidalwave.it/nexus/content/repositories/nbpwr-release</url>
-        </repository>
-        <repository>
             <id>maven2-snapshot.tidalwave.it</id>
             <name>Tidalwave Maven Snapshot Repository</name>
             <url>http://services.tidalwave.it/nexus/content/repositories/snapshots</url>
@@ -114,7 +109,7 @@
         <repository>
             <id>maven2-release-repository.nbpwr.kenai.com</id>
             <name>NBPWR Maven Release Repository</name>
-            <url>https://kenai.com/website/nbpwr/maven-repository/releases</url>
+            <url>http://nbpwr.kenai.com/maven-repository/releases</url>
         </repository>
     </repositories>
 
