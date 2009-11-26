@@ -87,6 +87,7 @@
         <staging.mvn.repo.url>file://${project.build.directory}/target-maven-repo</staging.mvn.repo.url>
         <buildNumber>unknown</buildNumber>
         <buildNumberSep>.</buildNumberSep>
+        <testFailureIgnore>false</testFailureIgnore>
     </properties>
 
     <repositories>
@@ -435,6 +436,7 @@
                         </property>
                     </systemProperties -->
                     <argLine>-Xmx768M</argLine>
+                    <testFailureIgnore>${testFailureIgnore}</testFailureIgnore>
                 </configuration>
             </plugin>
 
