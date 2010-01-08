@@ -12,7 +12,7 @@
     <artifactId>it.tidalwave.image</artifactId>
     <packaging>pom</packaging>
     <version>0.9.11-SNAPSHOT</version>
-    <name>Mistral</name>
+    <name>Mistral (master)</name>
 
     <url>http://mistral.tidalwave.it</url>
     <description />
@@ -565,12 +565,7 @@
         </profile>
 
         <profile>
-            <id>hg</id>
-            <activation>
-                <file>
-                    <exists>.hg</exists>
-                </file>
-            </activation>
+            <id>hudson</id>
             <build>
                 <plugins>
                     <plugin>
