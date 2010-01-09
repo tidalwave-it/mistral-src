@@ -12,5 +12,10 @@ Processor/target
 Renderer/target
 target
 .repository
-hudson.env
-
+.revision
+.DS_Store
+\.orig\..*$
+\.orig$
+\.chg\..*$
+\.rej$
+\.conflict\~$

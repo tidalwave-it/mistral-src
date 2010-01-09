@@ -88,6 +88,7 @@
         <buildNumber>unknown</buildNumber>
         <buildNumberSep>.</buildNumberSep>
         <testFailureIgnore>false</testFailureIgnore>
+        <revision.stamp>.revision</revision.stamp>
     </properties>
 
     <repositories>
@@ -223,12 +224,12 @@
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.5</version>
+                <version>4.7</version>
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-all</artifactId>
-                <version>1.7</version>
+                <version>1.8.1</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.thesefoolishthings</groupId>
@@ -565,7 +566,7 @@
         </profile>
 
         <profile>
-            <id>hudson</id>
+            <id>generate-revision-id</id>
             <build>
                 <plugins>
                     <plugin>
@@ -573,7 +574,7 @@
                         <artifactId>exec-maven-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>create-hudson-env</id>
+                                <id>create-id</id>
                                 <phase>initialize</phase>
                                 <goals>
                                     <goal>exec</goal>
@@ -585,9 +586,9 @@
                                         <argument>--limit</argument>
                                         <argument>1</argument>
                                         <argument>--template</argument>
-                                        <argument>#!bin/sh\nexport REVISION="{tags} {node|short}"\n</argument>
+                                        <argument>REVISION: {tags} {node|short}\n</argument>
                                     </arguments>
-                                    <outputFile>hudson.env</outputFile>
+                                    <outputFile>${revision.stamp}</outputFile>
                                 </configuration>
                             </execution>
                             <execution>
@@ -603,7 +604,34 @@
                                         <argument>--limit</argument>
                                         <argument>1</argument>
                                         <argument>--template</argument>
-                                        <argument>REVISION {tags} {node|short}\n</argument>
+                                        <argument>REVISION: {tags} {node|short}\n</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>show-revision-id</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>show-revision</id>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>cat</executable>
+                                    <arguments>
+                                        <argument>${revision.stamp}</argument>
                                     </arguments>
                                 </configuration>
                             </execution>
