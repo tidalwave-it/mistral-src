@@ -139,14 +139,14 @@
 
     <distributionManagement>
         <repository>
-            <id>maven2-release-repository.tidalwave.it</id>
-            <name>Tidalwave Maven Release Repository</name>
-            <url>https://services.tidalwave.it/nexus/content/repositories/releases</url>
+            <id>maven2-release-repository.mistral.kenai.com</id>
+            <name>Mistral Maven Release Repository</name>
+            <url>dav:https://kenai.com/website/mistral/maven-repository/releases</url>
         </repository>
         <snapshotRepository>
             <id>maven2-snapshot-repository.tidalwave.it</id>
             <name>Tidalwave Maven Snapshot Repository</name>
-            <url>https://services.tidalwave.it/nexus/content/repositories/snapshots</url>
+            <url>https://services.tidalwave.it/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
