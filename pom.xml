@@ -11,7 +11,7 @@
     <groupId>it.tidalwave.image</groupId>
     <artifactId>it.tidalwave.image</artifactId>
     <packaging>pom</packaging>
-    <version>0.9.11-SNAPSHOT</version>
+    <version>0.9.11</version>
     <name>Mistral (master)</name>
 
     <url>http://mistral.tidalwave.it</url>
@@ -155,38 +155,38 @@
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>it.tidalwave.image.core</artifactId>
-                <version>0.9.11-SNAPSHOT</version>
+                <version>0.9.11</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>it.tidalwave.image.core</artifactId>
-                <version>0.9.11-SNAPSHOT</version>
+                <version>0.9.11</version>
                 <classifier>tests</classifier>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>it.tidalwave.image.operations</artifactId>
-                <version>0.9.11-SNAPSHOT</version>
+                <version>0.9.11</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>it.tidalwave.image.contributions</artifactId>
-                <version>0.9.11-SNAPSHOT</version>
+                <version>0.9.11</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>it.tidalwave.image.plugin.jai</artifactId>
-                <version>0.9.11-SNAPSHOT</version>
+                <version>0.9.11</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>it.tidalwave.image.processor</artifactId>
-                <version>0.9.11-SNAPSHOT</version>
+                <version>0.9.11</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>it.tidalwave.image.renderer</artifactId>
-                <version>0.9.11-SNAPSHOT</version>
+                <version>0.9.11</version>
             </dependency>
 
             <dependency>
