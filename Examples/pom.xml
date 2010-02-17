@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>it.tidalwave.image</groupId>
-        <artifactId>it.tidalwave.image</artifactId>
+        <groupId>org.imajine</groupId>
+        <artifactId>org.imajine.image</artifactId>
         <version>0.9.11-SNAPSHOT</version>
     </parent>
 
-    <artifactId>it.tidalwave.image.examples</artifactId>
+    <artifactId>org.imajine.image.examples</artifactId>
     <packaging>pom</packaging>
     <name>Mistral Examples</name>
 

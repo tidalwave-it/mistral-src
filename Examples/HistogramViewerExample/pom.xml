@@ -4,31 +4,31 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>it.tidalwave.image</groupId>
-        <artifactId>it.tidalwave.image.examples</artifactId>
+        <groupId>org.imajine</groupId>
+        <artifactId>org.imajine.image.examples</artifactId>
         <version>0.9.11-SNAPSHOT</version>
     </parent>
 
-    <artifactId>it.tidalwave.image.examples.histogramviewer</artifactId>
+    <artifactId>org.imajine.image.examples.histogramviewer</artifactId>
     <packaging>jar</packaging>
     <name>Mistral Examples HistogramViewer</name>
 
     <dependencies>
         <dependency>
-            <groupId>it.tidalwave.image</groupId>
-            <artifactId>it.tidalwave.image.core</artifactId>
+            <groupId>org.imajine</groupId>
+            <artifactId>org.imajine.image.core</artifactId>
         </dependency>
         <dependency>
-            <groupId>it.tidalwave.image</groupId>
-            <artifactId>it.tidalwave.image.operations</artifactId>
+            <groupId>org.imajine</groupId>
+            <artifactId>org.imajine.image.operations</artifactId>
         </dependency>
         <dependency>
-            <groupId>it.tidalwave.image</groupId>
-            <artifactId>it.tidalwave.image.contributions</artifactId>
+            <groupId>org.imajine</groupId>
+            <artifactId>org.imajine.image.contributions</artifactId>
         </dependency>
         <dependency>
-            <groupId>it.tidalwave.image</groupId>
-            <artifactId>it.tidalwave.image.renderer</artifactId>
+            <groupId>org.imajine</groupId>
+            <artifactId>org.imajine.image.renderer</artifactId>
         </dependency>
         <dependency>
             <groupId>org.swinglabs</groupId>

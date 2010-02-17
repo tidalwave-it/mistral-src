@@ -4,19 +4,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>it.tidalwave.image</groupId>
-        <artifactId>it.tidalwave.image</artifactId>
+        <groupId>org.imajine</groupId>
+        <artifactId>org.imajine.image</artifactId>
         <version>0.9.11-SNAPSHOT</version>
     </parent>
 
-    <artifactId>it.tidalwave.image.processor</artifactId>
+    <artifactId>org.imajine.image.processor</artifactId>
     <packaging>jar</packaging>
     <name>Mistral Processor</name>
 
     <dependencies>
         <dependency>
-            <groupId>it.tidalwave.image</groupId>
-            <artifactId>it.tidalwave.image.core</artifactId>
+            <groupId>org.imajine</groupId>
+            <artifactId>org.imajine.image.core</artifactId>
         </dependency>
     </dependencies>
 

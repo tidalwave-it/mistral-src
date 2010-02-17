@@ -4,28 +4,28 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>it.tidalwave.image</groupId>
-        <artifactId>it.tidalwave.image</artifactId>
+        <groupId>org.imajine</groupId>
+        <artifactId>org.imajine.image</artifactId>
         <version>0.9.11-SNAPSHOT</version>
     </parent>
 
-    <artifactId>it.tidalwave.image.plugin.imagej</artifactId>
+    <artifactId>org.imajine.image.plugin.imagej</artifactId>
     <packaging>jar</packaging>
     <!-- packaging>nbm</packaging FIXME -->
     <name>Mistral ImageJ Plugin</name>
 
     <dependencies>
         <dependency>
-            <groupId>it.tidalwave.image</groupId>
-            <artifactId>it.tidalwave.image.core</artifactId>
+            <groupId>org.imajine</groupId>
+            <artifactId>org.imajine.image.core</artifactId>
         </dependency>
         <dependency>
-            <groupId>it.tidalwave.image</groupId>
-            <artifactId>it.tidalwave.image.operations</artifactId>
+            <groupId>org.imajine</groupId>
+            <artifactId>org.imajine.image.operations</artifactId>
         </dependency>
         <dependency>
-            <groupId>it.tidalwave.image</groupId>
-            <artifactId>it.tidalwave.image.contributions</artifactId>
+            <groupId>org.imajine</groupId>
+            <artifactId>org.imajine.image.contributions</artifactId>
         </dependency>
         <dependency>
             <groupId>ij</groupId>

@@ -4,24 +4,24 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>it.tidalwave.image</groupId>
-        <artifactId>it.tidalwave.image</artifactId>
+        <groupId>org.imajine</groupId>
+        <artifactId>org.imajine.image</artifactId>
         <version>0.9.11-SNAPSHOT</version>
     </parent>
 
-    <artifactId>it.tidalwave.image.contributions</artifactId>
+    <artifactId>org.imajine.image.contributions</artifactId>
     <packaging>jar</packaging>
     <!-- packaging>nbm</packaging FIXME -->
     <name>Mistral Contributions</name>
 
     <dependencies>
         <dependency>
-            <groupId>it.tidalwave.image</groupId>
-            <artifactId>it.tidalwave.image.core</artifactId>
+            <groupId>org.imajine</groupId>
+            <artifactId>org.imajine.image.core</artifactId>
         </dependency>
         <dependency>
-            <groupId>it.tidalwave.image</groupId>
-            <artifactId>it.tidalwave.image.core</artifactId>
+            <groupId>org.imajine</groupId>
+            <artifactId>org.imajine.image.core</artifactId>
             <classifier>tests</classifier>
             <scope>test</scope>
         </dependency>
