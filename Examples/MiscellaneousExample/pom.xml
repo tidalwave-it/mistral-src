@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.imajine</groupId>
         <artifactId>org.imajine.image.examples</artifactId>
-        <version>0.9.11-SNAPSHOT</version>
+        <version>0.9.11</version>
     </parent>
 
     <artifactId>org.imajine.image.examples.miscellaneous</artifactId>
