@@ -9,7 +9,7 @@
         <version>0.9.11-SNAPSHOT</version>
     </parent>
 
-    <artifactId>it-tidalwave-image</artifactId>
+    <artifactId>org-imajine-image</artifactId>
     <packaging>nbm</packaging>
     <name>Mistral NBM artifact</name>
 
