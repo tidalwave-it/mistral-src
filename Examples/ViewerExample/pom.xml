@@ -7,6 +7,7 @@
         <groupId>org.imajine</groupId>
         <artifactId>org.imajine.image.examples</artifactId>
         <version>0.9.12-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>org.imajine.image.examples.viewer</artifactId>
