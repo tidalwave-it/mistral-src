@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.imajine</groupId>
+        <artifactId>org.imajine.image</artifactId>
+        <version>0.9.12-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>org.imajine.image.plugin.imagej</artifactId>
+    <packaging>jar</packaging>
+    <!-- packaging>nbm</packaging FIXME -->
+    <name>Mistral ImageJ Plugin</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.imajine</groupId>
+            <artifactId>org.imajine.image.core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.imajine</groupId>
+            <artifactId>org.imajine.image.operations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.imajine</groupId>
+            <artifactId>org.imajine.image.contributions</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ij</groupId>
+            <artifactId>ij</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Export-Package>it.tidalwave.image.*</Export-Package>
+                        <!-- FIXME: some packages are needed by reajent - how to do friends?
+                        <Private-Package>it.tidalwave.image.*</Private-Package>
+                        <Export-Package>it.tidalwave.image
+                        </Export-Package>
+                        -->
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+
+

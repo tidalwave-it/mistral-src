@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.imajine</groupId>
+        <artifactId>org.imajine.image.examples</artifactId>
+        <version>0.9.12-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>org.imajine.image.examples.histogramviewer</artifactId>
+    <packaging>jar</packaging>
+    <name>Mistral Examples HistogramViewer</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.imajine</groupId>
+            <artifactId>org.imajine.image.core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.imajine</groupId>
+            <artifactId>org.imajine.image.operations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.imajine</groupId>
+            <artifactId>org.imajine.image.contributions</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.imajine</groupId>
+            <artifactId>org.imajine.image.renderer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.swinglabs</groupId>
+            <artifactId>swing-layout</artifactId>
+        </dependency>
+    </dependencies>
+</project>
+
