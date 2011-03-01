@@ -242,6 +242,13 @@
                     <target>1.5</target>
                 </configuration>
             </plugin>
+
+            <!-- Needed for setting that inherited = false -->
+            <plugin>
+                <groupId>com.mycila.maven-license-plugin</groupId>
+                <artifactId>maven-license-plugin</artifactId>
+                <inherited>false</inherited>
+            </plugin>
         </plugins>
     </build>
 
