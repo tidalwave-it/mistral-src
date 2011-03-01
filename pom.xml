@@ -14,9 +14,8 @@
     <packaging>pom</packaging>
     <version>0.9.12-SNAPSHOT</version>
     <name>Mistral (master)</name>
-
     <url>http://mistral.tidalwave.it</url>
-    <description />
+    <description>Mistral - open source imaging engine</description>
     <inceptionYear>2003</inceptionYear>
 
     <!-- Repeated because of http://jira.codehaus.org/browse/SCM-442 -->
