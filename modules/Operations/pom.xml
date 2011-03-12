@@ -10,7 +10,7 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>org.imajine.image.operations</artifactId>
+    <artifactId>org-imajine-image-operations</artifactId>
     <packaging>jar</packaging>
     <!-- packaging>nbm</packaging FIXME -->
     <name>Mistral Operations</name>
@@ -18,11 +18,11 @@
     <dependencies>
         <dependency>
             <groupId>org.imajine</groupId>
-            <artifactId>org.imajine.image.core</artifactId>
+            <artifactId>org-imajine-image-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.imajine</groupId>
-            <artifactId>org.imajine.image.core</artifactId>
+            <artifactId>org-imajine-image-core</artifactId>
             <classifier>tests</classifier>
             <scope>test</scope>
         </dependency>
