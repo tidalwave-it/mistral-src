@@ -5,12 +5,12 @@
 
     <parent>
         <groupId>org.imajine</groupId>
-        <artifactId>org.imajine.image</artifactId>
+        <artifactId>org-imajine-image-modules</artifactId>
         <version>0.9.12-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
+        <relativePath>..</relativePath>
     </parent>
 
-    <artifactId>org.imajine.image.core</artifactId>
+    <artifactId>org-imajine-image-core</artifactId>
     <packaging>jar</packaging>
     <name>Mistral Core</name>
 
@@ -72,21 +72,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <configuration>
-                    <instructions>
-                        <Export-Package>it.tidalwave.image.*</Export-Package>
-                        <!-- FIXME: some packages are needed by reajent - how to do friends?
-                        <Private-Package>it.tidalwave.imageio.*</Private-Package>
-                        <Export-Package>it.tidalwave.image
-                        </Export-Package>
-                        -->
-                    </instructions>
-                </configuration>
             </plugin>
         </plugins>
     </build>

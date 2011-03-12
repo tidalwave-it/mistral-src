@@ -5,27 +5,27 @@
 
     <parent>
         <groupId>org.imajine</groupId>
-        <artifactId>org.imajine.image.examples</artifactId>
+        <artifactId>org-imajine-image-examples</artifactId>
         <version>0.9.12-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>..</relativePath>
     </parent>
 
-    <artifactId>org.imajine.image.examples.customoperation</artifactId>
+    <artifactId>org-imajine-image-examples-customoperation</artifactId>
     <packaging>jar</packaging>
     <name>Mistral Examples CustomOperation</name>
 
     <dependencies>
         <dependency>
             <groupId>org.imajine</groupId>
-            <artifactId>org.imajine.image.core</artifactId>
+            <artifactId>org-imajine-image-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.imajine</groupId>
-            <artifactId>org.imajine.image.operations</artifactId>
+            <artifactId>org-imajine-image-operations</artifactId>
         </dependency>
         <dependency>
             <groupId>org.imajine</groupId>
-            <artifactId>org.imajine.image.contributions</artifactId>
+            <artifactId>org-imajine-image-contributions</artifactId>
         </dependency>
     </dependencies>
 </project>

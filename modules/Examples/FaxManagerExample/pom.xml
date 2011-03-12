@@ -3,14 +3,15 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+
     <parent>
         <groupId>org.imajine</groupId>
         <artifactId>org-imajine-image-examples</artifactId>
         <version>0.9.12-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>..</relativePath>
     </parent>
 
-    <artifactId>org-imajine-image-examples.faxmanager</artifactId>
+    <artifactId>org-imajine-image-examples-faxmanager</artifactId>
     <packaging>jar</packaging>
     <name>Mistral Examples FaxManager</name>
 

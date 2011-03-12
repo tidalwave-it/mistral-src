@@ -5,12 +5,12 @@
 
     <parent>
         <groupId>org.imajine</groupId>
-        <artifactId>org.imajine.image</artifactId>
+        <artifactId>org-imajine-image-modules</artifactId>
         <version>0.9.12-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
+        <relativePath>..</relativePath>
     </parent>
 
-    <artifactId>org.imajine.image.plugin.imagej</artifactId>
+    <artifactId>org-imajine-image-plugin-imagej</artifactId>
     <packaging>jar</packaging>
     <!-- packaging>nbm</packaging FIXME -->
     <name>Mistral ImageJ Plugin</name>
@@ -18,41 +18,20 @@
     <dependencies>
         <dependency>
             <groupId>org.imajine</groupId>
-            <artifactId>org.imajine.image.core</artifactId>
+            <artifactId>org-imajine-image-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.imajine</groupId>
-            <artifactId>org.imajine.image.operations</artifactId>
+            <artifactId>org-imajine-image-operations</artifactId>
         </dependency>
         <dependency>
             <groupId>org.imajine</groupId>
-            <artifactId>org.imajine.image.contributions</artifactId>
+            <artifactId>org-imajine-image-contributions</artifactId>
         </dependency>
         <dependency>
             <groupId>ij</groupId>
             <artifactId>ij</artifactId>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <configuration>
-                    <instructions>
-                        <Export-Package>it.tidalwave.image.*</Export-Package>
-                        <!-- FIXME: some packages are needed by reajent - how to do friends?
-                        <Private-Package>it.tidalwave.image.*</Private-Package>
-                        <Export-Package>it.tidalwave.image
-                        </Export-Package>
-                        -->
-                    </instructions>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>
-
-
 

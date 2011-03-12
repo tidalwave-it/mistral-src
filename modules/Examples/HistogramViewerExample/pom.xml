@@ -7,10 +7,10 @@
         <groupId>org.imajine</groupId>
         <artifactId>org-imajine-image-examples</artifactId>
         <version>0.9.12-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>..</relativePath>
     </parent>
 
-    <artifactId>org-imajine-image-examples.histogramviewer</artifactId>
+    <artifactId>org-imajine-image-examples-histogramviewer</artifactId>
     <packaging>jar</packaging>
     <name>Mistral Examples HistogramViewer</name>
 

@@ -3,16 +3,17 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+
     <parent>
         <groupId>org.imajine</groupId>
         <artifactId>org-imajine-image-examples</artifactId>
         <version>0.9.12-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>..</relativePath>
     </parent>
 
-    <artifactId>org-imajine-image-examples.viewer</artifactId>
+    <artifactId>org-imajine-image-examples-miscellaneous</artifactId>
     <packaging>jar</packaging>
-    <name>Mistral Examples Viewer</name>
+    <name>Mistral Examples Miscellaneous</name>
 
     <dependencies>
         <dependency>
@@ -28,12 +29,8 @@
             <artifactId>org-imajine-image-contributions</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.imajine</groupId>
-            <artifactId>org-imajine-image-renderer</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.swinglabs</groupId>
-            <artifactId>swing-layout</artifactId>
+            <groupId>javax.media</groupId>
+            <artifactId>jai_core</artifactId>
         </dependency>
     </dependencies>
 </project>

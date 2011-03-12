@@ -5,27 +5,14 @@
 
     <parent>
         <groupId>org.imajine</groupId>
-        <artifactId>org.imajine.image</artifactId>
+        <artifactId>org-imajine-image-modules</artifactId>
         <version>0.9.12-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>..</relativePath>
     </parent>
 
-    <artifactId>org.imajine.image.examples</artifactId>
+    <artifactId>org-imajine-image-examples</artifactId>
     <packaging>pom</packaging>
-    <name>Mistral Examples</name>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <configuration>
-                       <skip>true</skip>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
+    <name>Mistral Examples (master)</name>
 
     <modules>
         <module>CustomOperationExample</module>

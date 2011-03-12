@@ -5,39 +5,39 @@
 
     <parent>
         <groupId>org.imajine</groupId>
-        <artifactId>org.imajine.image</artifactId>
+        <artifactId>org-imajine-image-modules</artifactId>
         <version>0.9.12-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
+        <relativePath>..</relativePath>
     </parent>
 
-    <artifactId>org-imajine-image</artifactId>
+    <artifactId>org-imajine-image-nbm</artifactId>
     <packaging>nbm</packaging>
     <name>Mistral NBM artifact</name>
 
     <dependencies>
         <dependency>
             <groupId>org.imajine</groupId>
-            <artifactId>org.imajine.image.core</artifactId>
+            <artifactId>org-imajine-image-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.imajine</groupId>
-            <artifactId>org.imajine.image.operations</artifactId>
+            <artifactId>org-imajine-image-operations</artifactId>
         </dependency>
         <dependency>
             <groupId>org.imajine</groupId>
-            <artifactId>org.imajine.image.contributions</artifactId>
+            <artifactId>org-imajine-image-contributions</artifactId>
         </dependency>
         <dependency>
             <groupId>org.imajine</groupId>
-            <artifactId>org.imajine.image.plugin.jai</artifactId>
+            <artifactId>org-imajine-image-plugin-jai</artifactId>
         </dependency>
         <dependency>
             <groupId>org.imajine</groupId>
-            <artifactId>org.imajine.image.processor</artifactId>
+            <artifactId>org-imajine-image-processor</artifactId>
         </dependency>
         <dependency>
             <groupId>org.imajine</groupId>
-            <artifactId>org.imajine.image.renderer</artifactId>
+            <artifactId>org-imajine-image-renderer</artifactId>
         </dependency>
         
         <!-- The dependencies with 'provided' scope won't be embedded in the .nbm -->
