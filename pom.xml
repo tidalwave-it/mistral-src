@@ -50,9 +50,9 @@
     </mailingLists>
 
     <properties>
-        <scm.repo.url>ssh://hg@bitbucket.org/tidalwave/jrawio-src</scm.repo.url>
-        <scm.repo.readonly.url>https://bitbucket.org/tidalwave/jrawio-src</scm.repo.readonly.url>
-        <scm.repo.browse.url>https://bitbucket.org/tidalwave/jrawio-src/src</scm.repo.browse.url>
+        <scm.repo.url>ssh://hg@bitbucket.org/tidalwave/mistral-src</scm.repo.url>
+        <scm.repo.readonly.url>https://bitbucket.org/tidalwave/mistral-src</scm.repo.readonly.url>
+        <scm.repo.browse.url>https://bitbucket.org/tidalwave/mistral-src/src</scm.repo.browse.url>
     </properties>
 
     <repositories>
