@@ -12,7 +12,7 @@ Processor/target
 Renderer/target
 target
 .repository
-.revision
+.description
 .DS_Store
 \.orig\..*$
 \.orig$
