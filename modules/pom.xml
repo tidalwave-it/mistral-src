@@ -6,13 +6,13 @@
     <parent>
         <groupId>org.imajine</groupId>
         <artifactId>org-imajine-image</artifactId>
-        <version>0.9.12-SNAPSHOT</version>
+        <version>0.9.12</version>
     </parent>
 
     <groupId>org.imajine</groupId>
     <artifactId>org-imajine-image-modules</artifactId>
     <packaging>pom</packaging>
-    <version>0.9.12-SNAPSHOT</version>
+    <version>0.9.12</version>
     <name>Mistral (modules)</name>
 
     <dependencyManagement>
