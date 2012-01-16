@@ -31,6 +31,7 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.EditableImage.DataType;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.openide.util.Lookup;
 
 /*******************************************************************************
  *
@@ -57,7 +58,7 @@ public class ChangeFormatJAIOpTest extends BaseTestSupport
     
     private void convert (final DataType fromType, final DataType toType)
       {
-        ImplementationFactoryJAI.getInstance();
+        Lookup.getDefault().lookup(ImplementationFactoryJAI.class);
         final EditableImage image = EditableImage.create(new CreateOp(640, 480, fromType));
         assertEquals(fromType, image.getDataType());
         assertEquals("KODAK Grayscale Conversion - Gamma 1.0", ImageUtils.getICCProfileName(image.getICCProfile()));

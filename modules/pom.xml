@@ -19,6 +19,13 @@
         <dependencies>
             <dependency>
                 <groupId>it.tidalwave.superpom</groupId>
+                <artifactId>platform13</artifactId>
+                <version>${netbeans.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>it.tidalwave.superpom</groupId>
                 <artifactId>libraries</artifactId>
                 <version>${libraries.version}</version>
                 <type>pom</type>

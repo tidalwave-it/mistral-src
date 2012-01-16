@@ -30,6 +30,7 @@ import it.tidalwave.image.op.ReadOp;
 import it.tidalwave.image.op.SizeOp;
 import it.tidalwave.image.op.WriteOp;
 import org.junit.Test;
+import org.openide.util.Lookup;
 
 /*******************************************************************************
  *
@@ -44,7 +45,7 @@ public class SizeJAIOpTest extends BaseTestSupport
       throws IOException
       {
 //        ImplementationFactoryJ2D.unregister(SizeOp.class);
-        ImplementationFactoryJAI.getInstance();
+        Lookup.getDefault().lookup(ImplementationFactoryJAI.class);
         final EditableImage image = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
         
         for (float scale = 0.1f; scale <= 1.0f; scale += 0.1f)

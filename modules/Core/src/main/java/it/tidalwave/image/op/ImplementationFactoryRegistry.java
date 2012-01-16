@@ -23,11 +23,9 @@
 package it.tidalwave.image.op;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import it.tidalwave.image.ImageModel;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import org.openide.util.lookup.ServiceProvider;
 import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
@@ -36,41 +34,9 @@ import lombok.extern.slf4j.Slf4j;
  * @version $Id$
  *
  **********************************************************************************************************************/
-@NoArgsConstructor(access=AccessLevel.PRIVATE) @Slf4j
+@ServiceProvider(service=ImplementationFactoryRegistry.class) @Slf4j
 public class ImplementationFactoryRegistry
   {
-    private static ImplementationFactoryRegistry instance;
-    
-    private final List<ImplementationFactory> factoryList = new ArrayList<ImplementationFactory>();
-
-    /*******************************************************************************************************************
-     *
-     * Gets the singleton instance.
-     *
-     ******************************************************************************************************************/
-    @Nonnull
-    public static ImplementationFactoryRegistry getInstance ()
-      {
-        if (instance == null)
-          {
-            instance = new ImplementationFactoryRegistry();
-          }
-
-        return instance;
-      }
-
-    /*******************************************************************************************************************
-     *
-     * Registers a new ImplementationFactory.
-     *
-     * @param  factory  the factory to register
-     *
-     ******************************************************************************************************************/
-    public void registerFactory (final @Nonnull ImplementationFactory factory)
-      {
-        factoryList.add(factory);
-      }
-
     /*******************************************************************************************************************
      *
      *
@@ -78,7 +44,7 @@ public class ImplementationFactoryRegistry
     @Nonnull
     public ImageModel createImageModel (final @Nonnull Object image)
       {
-        for (final ImplementationFactory factory : factoryList)
+        for (final ImplementationFactory factory : getFactories())
           {
             if (factory.canConvertFrom(image.getClass()))
               {
@@ -110,8 +76,9 @@ public class ImplementationFactoryRegistry
         log.trace("findImplementation({}, {}, canConvert: {})", new Object[] { operation, imageModel, canConvert });
 
         final Object image = (imageModel != null) ? imageModel.getImage() : null;
+        final Collection<? extends ImplementationFactory> factories = getFactories();
 
-        for (final ImplementationFactory factory : factoryList)
+        for (final ImplementationFactory factory : factories)
           {
             final OperationImplementation implementation = factory.findImplementation(operation);
 
@@ -138,8 +105,7 @@ public class ImplementationFactoryRegistry
                   }
 
                 if (canConvert
-                        && (factory.canConvertFrom(image.getClass())
-                        || imageModel.getFactory().canConvertTo(factory.getModelClass())))
+                    && (factory.canConvertFrom(image.getClass()) || imageModel.getFactory().canConvertTo(factory.getModelClass())))
                   {
                     return implementation;
                   }
@@ -149,6 +115,12 @@ public class ImplementationFactoryRegistry
           }
 
         throw new UnsupportedOperationException("Not implemented " + operation + ", imageModel: " + imageModel
-                                                + " factoryList: " + factoryList);
+                                                + " factoryList: " + factories);
+      }
+
+    @Nonnull
+    private Collection<? extends ImplementationFactory> getFactories() 
+      {
+        return org.openide.util.Lookup.getDefault().lookupAll(ImplementationFactory.class);
       }
   }

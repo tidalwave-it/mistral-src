@@ -31,6 +31,7 @@ import javax.media.jai.TiledImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.ImageModel;
 import it.tidalwave.image.op.ImplementationFactory;
+import org.openide.util.Lookup;
 
 /*******************************************************************************
  *
@@ -92,7 +93,7 @@ public class ImageModelJAI extends ImageModel
      ******************************************************************************/
     public ImplementationFactory getFactory()
       {
-        return ImplementationFactoryJAI.getInstance();
+        return Lookup.getDefault().lookup(ImplementationFactoryJAI.class);
       }
 
     /* FIXME: this is probably not the best way of working. You're reading a BufferedImage

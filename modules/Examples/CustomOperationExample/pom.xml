@@ -27,6 +27,10 @@
             <groupId>org.imajine</groupId>
             <artifactId>org-imajine-image-contributions</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-openide-util-lookup</artifactId>
+        </dependency>
     </dependencies>
 </project>
 

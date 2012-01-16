@@ -25,6 +25,7 @@ package it.tidalwave.image.op;
 import java.io.File;
 import java.io.IOException;
 import java.awt.image.BufferedImage;
+import org.openide.util.Lookup;
 import it.tidalwave.image.BaseTestSupport;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
@@ -45,7 +46,7 @@ public class ChangeBufferTypeJ2DOpTest extends BaseTestSupport
     public void test1()
       throws IOException
       {
-        ImplementationFactoryJ2D.getInstance().registerImplementation(ChangeBufferTypeOp.class, ChangeBufferTypeJ2DOp.class);
+        Lookup.getDefault().lookup(ImplementationFactoryJ2D.class).registerImplementation(ChangeBufferTypeOp.class, ChangeBufferTypeJ2DOp.class);
         
         EditableImage image = EditableImage.create(new ReadOp(file_timezones32_png));
         assertEquals(4, image.getBandCount());

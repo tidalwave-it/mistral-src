@@ -27,6 +27,7 @@ import java.awt.image.Raster;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.testsupport.CreateOpTestSupport;
 import org.junit.Before;
+import org.openide.util.Lookup;
 
 /*******************************************************************************
  *
@@ -39,7 +40,7 @@ public class CreateJAIOpTest extends CreateOpTestSupport
     @Before
     public void installJAIPlugin()
       {
-        ImplementationFactoryJAI.getInstance();
+        Lookup.getDefault().lookup(ImplementationFactoryJAI.class);
       }
 
     /***************************************************************************

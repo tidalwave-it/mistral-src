@@ -48,6 +48,7 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.java2d.ImplementationFactoryJ2D;
 import it.tidalwave.image.java2d.Java2DUtils;
 import it.tidalwave.image.op.impl.FileChannelImageInputStream;
+import org.openide.util.Lookup;
 
 /*******************************************************************************
  *
@@ -300,7 +301,7 @@ public class ReadOp extends Operation
          **********************************************************************/
         private static EditableImage create (final BufferedImage image)
           {
-            return new EditableImage(ImplementationFactoryJ2D.getInstance().createImageModel(image));
+            return new EditableImage(Lookup.getDefault().lookup(ImplementationFactoryJ2D.class).createImageModel(image));
           }
         
         /***********************************************************************

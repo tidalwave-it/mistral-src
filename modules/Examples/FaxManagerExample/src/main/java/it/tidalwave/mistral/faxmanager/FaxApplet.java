@@ -20,35 +20,6 @@
  * SCM: https://bitbucket.org/tidalwave/mistral-src
  *
  **********************************************************************************************************************/
-/*******************************************************************************
-*
-* Mistral - open source imaging engine
-* ====================================
-*
-* Project home page: http://mistral.tidalwave.it
-* 
-*******************************************************************************
-*
-* Copyright (C) 2003-2008 by Fabrizio Giudici
-*                        and Emmanuele Sordini
-*
-* Licensed under the Apache License, Version 2.0 (the "License"); 
-* you may not use this file except in compliance with the License. 
-* You may obtain a copy of the License at 
-* 
-*     http://www.apache.org/licenses/LICENSE-2.0 
-* 
-* Unless required by applicable law or agreed to in writing, software 
-* distributed under the License is distributed on an "AS IS" BASIS, 
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
-* See the License for the specific language governing permissions and 
-* limitations under the License. 
-* 
-*******************************************************************************
-* 
-* $Id$
-* 
-******************************************************************************/
 package it.tidalwave.mistral.faxmanager;
 
 import java.awt.event.MouseEvent;
@@ -108,6 +79,7 @@ import javax.print.attribute.standard.MediaPrintableArea;
 import javax.print.attribute.standard.MediaSize;
 import javax.print.attribute.standard.MediaSizeName;
 import javax.print.attribute.standard.OrientationRequested;
+import org.openide.util.Lookup;
 
 /*******************************************************************************
 *
@@ -426,7 +398,7 @@ public class FaxApplet extends JApplet
      {
        setupLog();
        addMouseListener(mouseListener);
-       ImplementationFactoryJ2D.getInstance().registerImplementation(ChangeBufferTypeOp.class, ChangeBufferTypeJ2DOp.class);
+       Lookup.getDefault().lookup(ImplementationFactoryJ2D.class).registerImplementation(ChangeBufferTypeOp.class, ChangeBufferTypeJ2DOp.class);
 
        try
          {

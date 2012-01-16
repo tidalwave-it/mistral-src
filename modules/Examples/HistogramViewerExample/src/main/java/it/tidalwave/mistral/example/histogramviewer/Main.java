@@ -37,6 +37,7 @@ import it.tidalwave.image.java2d.ImplementationFactoryJ2D;
 import it.tidalwave.image.op.HistogramOp;
 import it.tidalwave.image.util.Platform;
 import it.tidalwave.mistral.example.AbstractViewerPanel;
+import org.openide.util.Lookup;
 
 /*******************************************************************************
  *
@@ -127,7 +128,7 @@ public class Main
         try 
           {
             Class.forName("it.tidalwave.image.jai.ImplementationFactoryJAI");
-            ImplementationFactoryJ2D.getInstance().unregisterImplementation(HistogramOp.class);
+            Lookup.getDefault().lookup(ImplementationFactoryJ2D.class).unregisterImplementation(HistogramOp.class);
             jai = true;
           } 
         catch (Throwable e) 

@@ -27,7 +27,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 import java.awt.image.BufferedImage;
 import it.tidalwave.image.ImageModel;
-
+import lombok.ToString;
 
 /*******************************************************************************
  *
@@ -35,6 +35,7 @@ import it.tidalwave.image.ImageModel;
  * @version $Id$
  *
  ******************************************************************************/
+@ToString(of="modelClass")
 public abstract class ImplementationFactory
   {
     private static final String CLASS = ImplementationFactory.class.getName();
@@ -149,13 +150,4 @@ public abstract class ImplementationFactory
      *
      ******************************************************************************/
     public abstract Object convertTo (Object image);
-
-    /*******************************************************************************
-     *
-     *
-     ******************************************************************************/
-    public String toString ()
-      {
-        return "ImplementationFactory[" + modelClass + "]";
-      }
   }

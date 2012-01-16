@@ -37,6 +37,8 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.ImageModel;
 import it.tidalwave.image.InterpolationType;
 import it.tidalwave.image.op.ImplementationFactory;
+import it.tidalwave.image.op.ImplementationFactoryRegistry;
+import org.openide.util.Lookup;
 
 /*******************************************************************************
  *
@@ -112,9 +114,9 @@ public class ImageModelJ2D extends ImageModel
      * @inheritDoc
      *
      ******************************************************************************/
-    public ImplementationFactory getFactory ()
+    public ImplementationFactory getFactory()
       {
-        return ImplementationFactoryJ2D.getInstance();
+        return Lookup.getDefault().lookup(ImplementationFactoryJ2D.class);
       }
 
     /*******************************************************************************

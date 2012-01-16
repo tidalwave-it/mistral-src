@@ -65,6 +65,7 @@ import it.tidalwave.image.metadata.loader.DrewMetadataLoader;
 import it.tidalwave.image.metadata.loader.MetadataLoader;
 import it.tidalwave.image.metadata.loader.RAWMetadataLoader;
 import it.tidalwave.image.metadata.loader.TIFFMetadataLoader;
+import org.openide.util.Lookup;
 
 /***************************************************************************
  *
@@ -172,7 +173,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      **************************************************************************/
     static
       {
-        ImplementationFactoryJ2D.getInstance();
+//        ImplementationFactoryJ2D.getInstance();
 
         try
           {
@@ -245,7 +246,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
 
         final EditableImage editableImage = new EditableImage(null);
         final Object image = editableImage.internalExecute(createOp);
-        final ImageModel imageModel = ImplementationFactoryRegistry.getInstance().createImageModel(image);
+        final ImageModel imageModel = Lookup.getDefault().lookup(ImplementationFactoryRegistry.class).createImageModel(image);
         editableImage.imageModelHolder = ImageModelHolder.wrap(imageModel);
 
         return editableImage;
@@ -847,7 +848,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
     private Object internalExecute (final Operation operation)
         throws UnsupportedOperationException
       {
-        final ImplementationFactoryRegistry implementationFactoryRegistry = ImplementationFactoryRegistry.getInstance();
+        final ImplementationFactoryRegistry implementationFactoryRegistry = Lookup.getDefault().lookup(ImplementationFactoryRegistry.class);
         final ImageModel imageModel = imageModelHolder.get();
         Object image = (imageModel != null) ? imageModel.getImage() : null;
         OperationImplementation implementation = null;

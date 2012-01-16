@@ -56,11 +56,10 @@ import it.tidalwave.image.op.PadPeriodicOp;
 import it.tidalwave.image.op.PadPeriodicPlanarOp;
 import it.tidalwave.image.op.PaintOp;
 import it.tidalwave.image.op.RotateQuadrantOp;
-import it.tidalwave.image.op.WriteOp;
 import it.tidalwave.image.op.ScaleOp;
 import it.tidalwave.image.op.SizeOp;
 import it.tidalwave.image.op.TranslateOp;
-
+import org.openide.util.lookup.ServiceProvider;
 
 /*******************************************************************************
  *
@@ -68,30 +67,9 @@ import it.tidalwave.image.op.TranslateOp;
  * @version $Id$
  *
  ******************************************************************************/
+@ServiceProvider(service=ImplementationFactory.class)
 public class ImplementationFactoryJAI extends ImplementationFactory
   {
-    private static ImplementationFactoryJAI instance;
-
-    static
-      {
-        getInstance();
-      }
-
-    /*******************************************************************************
-     *
-     *
-     ******************************************************************************/
-    public synchronized static ImplementationFactoryJAI getInstance ()
-      {
-        if (instance == null)
-          {
-            instance = new ImplementationFactoryJAI();
-            ImplementationFactoryRegistry.getInstance().registerFactory(instance);
-          }
-
-        return instance;
-      }
-
     /*******************************************************************************
      *
      *

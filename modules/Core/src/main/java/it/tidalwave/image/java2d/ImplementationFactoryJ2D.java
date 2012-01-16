@@ -33,7 +33,6 @@ import it.tidalwave.image.op.CreateOp;
 import it.tidalwave.image.op.CropOp;
 import it.tidalwave.image.op.DrawOp;
 import it.tidalwave.image.op.ImplementationFactory;
-import it.tidalwave.image.op.ImplementationFactoryRegistry;
 import it.tidalwave.image.op.OptimizeOp;
 import it.tidalwave.image.op.PaintOp;
 import it.tidalwave.image.op.PrintOp;
@@ -42,6 +41,7 @@ import it.tidalwave.image.op.RotateQuadrantOp;
 import it.tidalwave.image.op.ScaleOp;
 import it.tidalwave.image.op.WrapOp;
 import it.tidalwave.image.op.WriteOp;
+import org.openide.util.lookup.ServiceProvider;
 
 /*******************************************************************************
  *
@@ -49,33 +49,19 @@ import it.tidalwave.image.op.WriteOp;
  * @version $Id$
  *
  ******************************************************************************/
+@ServiceProvider(service=ImplementationFactory.class)
 public class ImplementationFactoryJ2D extends ImplementationFactory
   {
     private static final String CLASS = ImplementationFactoryJ2D.class.getName();
     private static final Logger logger = Logger.getLogger(CLASS);
-    private static ImplementationFactoryJ2D instance;
+
     private Class planarImageClass;
 
     /*******************************************************************************
      *
      *
      ******************************************************************************/
-    public synchronized static ImplementationFactoryJ2D getInstance ()
-      {
-        if (instance == null)
-          {
-            instance = new ImplementationFactoryJ2D();
-            ImplementationFactoryRegistry.getInstance().registerFactory(instance);
-          }
-
-        return instance;
-      }
-
-    /*******************************************************************************
-     *
-     *
-     ******************************************************************************/
-    public ImplementationFactoryJ2D ()
+    public ImplementationFactoryJ2D()
       {
         super(BufferedImage.class);
         registerImplementation(CaptureOp.class, CaptureJ2DOp.class);
@@ -92,10 +78,12 @@ public class ImplementationFactoryJ2D extends ImplementationFactory
         registerImplementation(ScaleOp.class, ScaleJ2DOp.class);
         registerImplementation(WrapOp.class, WrapJ2DOp.class);
         registerImplementation(WriteOp.class, WriteJ2DOp.class);
+        
+        final ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
 
         try
           {
-            planarImageClass = Class.forName("javax.media.jai.PlanarImage");
+            planarImageClass = contextClassLoader.loadClass("javax.media.jai.PlanarImage"); 
           }
         catch (Throwable e)
           {
@@ -104,7 +92,7 @@ public class ImplementationFactoryJ2D extends ImplementationFactory
 
         try
           {
-            Class clazz = Class.forName("it.tidalwave.image.java2d.AdditionalOperations");
+            Class clazz = contextClassLoader.loadClass("it.tidalwave.image.java2d.AdditionalOperations"); 
             Method method = clazz.getMethod("register", ImplementationFactoryJ2D.class);
             method.invoke(null, this);
           }
