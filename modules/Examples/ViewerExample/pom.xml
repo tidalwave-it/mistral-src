@@ -14,6 +14,10 @@
     <packaging>jar</packaging>
     <name>Mistral Examples Viewer</name>
 
+    <properties>
+        <tft.mainClass>it.tidalwave.mistral.example.viewer.Main</tft.mainClass>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.imajine</groupId>
