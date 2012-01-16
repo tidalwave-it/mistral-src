@@ -410,6 +410,39 @@ public class Java2DUtils
           }
       }
 
+    /*******************************************************************************************************************
+     *
+     *
+     ******************************************************************************************************************/
+    public static void logImage (final org.slf4j.Logger log, final String prefix, final RenderedImage image)
+      {
+        if (log.isDebugEnabled())
+          {
+            if (image == null)
+              {
+                log.debug(prefix + "null image");
+              }
+            
+            else
+              {
+//            image.getData(); THIS IS SLOW SLOW SLOW!!
+                ColorModel colorModel = image.getColorModel();
+                log.debug(prefix + ".size:           " + image.getWidth() + ", " + image.getHeight());
+                log.debug(prefix + ".tiles:          " + image.getNumXTiles() + " " + image.getNumYTiles());
+                log.debug(prefix + ".class:          " + image.getClass().getName());
+                log.debug(prefix + ".sampleModel:    " + toString(image.getSampleModel()));
+
+                if (colorModel != null)
+                  {
+                    log.debug(prefix + ".colorModel:     " + colorModel.getClass().getName() + " : " + colorModel);
+                    log.debug(prefix + ".colorSpace:     " + toString(colorModel.getColorSpace()));
+                  }
+              }
+
+            //      log.debug(">>>> iccProfile is now: " + getICCProfileName(bufferedImage));
+          }
+      }
+
     /*******************************************************************************
      *
      *
