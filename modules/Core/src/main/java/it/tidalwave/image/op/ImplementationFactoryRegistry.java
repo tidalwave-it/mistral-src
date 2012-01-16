@@ -22,10 +22,13 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.op;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import it.tidalwave.image.ImageModel;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 /***********************************************************************************************************************
  *
@@ -33,26 +36,22 @@ import it.tidalwave.image.ImageModel;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@NoArgsConstructor(access= AccessLevel.PRIVATE)
 public class ImplementationFactoryRegistry
   {
     private static final String CLASS = ImplementationFactoryRegistry.class.getName();
     private static final Logger logger = Logger.getLogger(CLASS);
+    
     private static ImplementationFactoryRegistry instance;
-    private List<ImplementationFactory> factoryList = new ArrayList<ImplementationFactory>();
-
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    private ImplementationFactoryRegistry ()
-      {
-      }
+    
+    private final List<ImplementationFactory> factoryList = new ArrayList<ImplementationFactory>();
 
     /*******************************************************************************************************************
      *
      * Gets the singleton instance.
      *
      ******************************************************************************************************************/
+    @Nonnull
     public static ImplementationFactoryRegistry getInstance ()
       {
         if (instance == null)
@@ -70,7 +69,7 @@ public class ImplementationFactoryRegistry
      * @param  factory  the factory to register
      *
      ******************************************************************************************************************/
-    public void registerFactory (ImplementationFactory factory)
+    public void registerFactory (final @Nonnull ImplementationFactory factory)
       {
         factoryList.add(factory);
       }
@@ -79,7 +78,8 @@ public class ImplementationFactoryRegistry
      *
      *
      ******************************************************************************************************************/
-    public ImageModel createImageModel (final Object image)
+    @Nonnull
+    public ImageModel createImageModel (final @Nonnull Object image)
       {
         for (final ImplementationFactory factory : factoryList)
           {
@@ -105,7 +105,10 @@ public class ImplementationFactoryRegistry
      * @throws UnsupportedOperationException  if no implementation has been found
      *
      ******************************************************************************************************************/
-    public OperationImplementation findImplementation (final Operation operation, final ImageModel imageModel, final boolean canConvert)
+    @Nonnull
+    public OperationImplementation findImplementation (final @Nonnull Operation operation,
+                                                       final @Nonnull ImageModel imageModel,
+                                                       final boolean canConvert)
       {
         logger.finer("findImplementation(" + operation + ", " + imageModel + " , canConvert: " + canConvert + ")");
 
