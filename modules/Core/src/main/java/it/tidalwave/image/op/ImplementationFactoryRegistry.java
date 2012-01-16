@@ -25,10 +25,10 @@ package it.tidalwave.image.op;
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import it.tidalwave.image.ImageModel;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -36,12 +36,9 @@ import lombok.NoArgsConstructor;
  * @version $Id$
  *
  **********************************************************************************************************************/
-@NoArgsConstructor(access= AccessLevel.PRIVATE)
+@NoArgsConstructor(access=AccessLevel.PRIVATE) @Slf4j
 public class ImplementationFactoryRegistry
   {
-    private static final String CLASS = ImplementationFactoryRegistry.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-    
     private static ImplementationFactoryRegistry instance;
     
     private final List<ImplementationFactory> factoryList = new ArrayList<ImplementationFactory>();
@@ -110,7 +107,7 @@ public class ImplementationFactoryRegistry
                                                        final @Nonnull ImageModel imageModel,
                                                        final boolean canConvert)
       {
-        logger.finer("findImplementation(" + operation + ", " + imageModel + " , canConvert: " + canConvert + ")");
+        log.trace("findImplementation({}, {}, canConvert: {})", new Object[] { operation, imageModel, canConvert });
 
         final Object image = (imageModel != null) ? imageModel.getImage() : null;
 
@@ -120,11 +117,11 @@ public class ImplementationFactoryRegistry
 
             if (implementation != null)
               {
-                logger.finest(">>>> found implementation from " + factory);
+                log.trace(">>>> found implementation from {}", factory);
                 
                 if (!implementation.canHandle(operation))
                   {
-                    logger.finest(">>>> but can't handle this specific op, discarded");
+                    log.trace(">>>> but can't handle this specific op, discarded");
                     continue;  
                   }  
 
@@ -133,8 +130,7 @@ public class ImplementationFactoryRegistry
                     return implementation;
                   }
 
-                logger.finest(">>>> image class: " + image.getClass() + ", factory model class: "
-                    + factory.getModelClass());
+                log.trace(">>>> image class: {}, factory model class: {}",  image.getClass(), factory.getModelClass());
 
                 if (factory.getModelClass().isAssignableFrom(image.getClass()))
                   {
@@ -148,11 +144,11 @@ public class ImplementationFactoryRegistry
                     return implementation;
                   }
 
-                logger.finest(">>>> but has been discarded");
+                log.trace(">>>> but has been discarded");
               }
           }
 
         throw new UnsupportedOperationException("Not implemented " + operation + ", imageModel: " + imageModel
-            + " factoryList: " + factoryList);
+                                                + " factoryList: " + factoryList);
       }
   }
