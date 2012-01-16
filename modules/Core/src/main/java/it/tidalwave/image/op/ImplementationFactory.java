@@ -22,81 +22,69 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.op;
 
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 import java.awt.image.BufferedImage;
 import it.tidalwave.image.ImageModel;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
-@ToString(of="modelClass")
+ **********************************************************************************************************************/
+@RequiredArgsConstructor @ToString(of="modelClass") @Slf4j
 public abstract class ImplementationFactory
   {
-    private static final String CLASS = ImplementationFactory.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-    private Class modelClass;
-    private Map<Class, Class> implementationMapping = new HashMap<Class, Class>();
+    @Getter @Nonnull
+    private final Class modelClass;
+    
+    private final Map<Class<? extends Operation>, Class<? extends OperationImplementation>> implementationMapping =
+            new HashMap<Class<? extends Operation>, Class<? extends OperationImplementation>>();
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
-    public ImplementationFactory (Class modelClass)
-      {
-        this.modelClass = modelClass;
-      }
-
-    /***************************************************************************
-     *
-     *
-     **************************************************************************/
-    public Class getModelClass ()
-      {
-        return modelClass;
-      }
-
-    /***************************************************************************
-     *
-     *
-     **************************************************************************/
-    public void registerImplementation (Class operationClass, Class implementationClass)
+     ******************************************************************************************************************/
+    public void registerImplementation (final @Nonnull Class<? extends Operation> operationClass,
+                                        final @Nonnull Class<? extends OperationImplementation> implementationClass)
       {
         implementationMapping.put(operationClass, implementationClass);
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
-    public void unregisterImplementation (Class operationClass)
+     ******************************************************************************************************************/
+    public void unregisterImplementation (final @Nonnull Class<? extends Operation> operationClass)
       {
         implementationMapping.remove(operationClass);
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Finds the concrete implementation for a given operation.
      *
      * @param  operation  operation
      * @return            the implementation (null if not supported)
      *
-     **************************************************************************/
-    public OperationImplementation findImplementation (Operation operation)
+     ******************************************************************************************************************/
+    @Nonnull 
+    public OperationImplementation<Operation, Object> findImplementation (final @Nonnull Operation operation)
       {
-        Class<OperationImplementation<Operation, Object>> clazz = implementationMapping.get(operation.getClass());
+        final Class<OperationImplementation<Operation, Object>> implementationClass = 
+                (Class<OperationImplementation<Operation, Object>>) implementationMapping.get(operation.getClass());
 
-        if (clazz != null)
+        if (implementationClass != null)
           {
             try
               {
-                OperationImplementation<Operation, Object> implementation = (OperationImplementation<Operation, Object>)clazz
-                    .newInstance();
+                final OperationImplementation<Operation, Object> implementation = implementationClass.newInstance();
                 implementation.setFactory(this);
                 implementation.bind(operation);
 
@@ -104,50 +92,53 @@ public abstract class ImplementationFactory
               }
             catch (IllegalAccessException e)
               {
-                logger.throwing(CLASS, "findImplementation()", e);
+                log.error("findImplementation()", e);
               }
             catch (InstantiationException e)
               {
-                logger.throwing(CLASS, "findImplementation()", e);
+                log.error("findImplementation()", e);
               }
           }
 
         return null;
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
-    public ImageModel createImageModel (BufferedImage image)
+     ******************************************************************************************************************/
+    @Nonnull 
+    public ImageModel createImageModel (final @Nonnull BufferedImage image)
       {
         throw new UnsupportedOperationException();
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Return true if we can convert the given imageClass into our specific image
      * class.
      *
-     **************************************************************************/
-    public abstract boolean canConvertFrom (Class imageClass);
+     ******************************************************************************************************************/
+    public abstract boolean canConvertFrom (@Nonnull Class imageClass);
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Converts the given image into our specific image representation.
      *
-     **************************************************************************/
-    public abstract ImageModel convertFrom (Object image);
+     ******************************************************************************************************************/
+    @Nonnull 
+    public abstract ImageModel convertFrom (@Nonnull Object image);
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
-    public abstract boolean canConvertTo (Class imageClass);
+     ******************************************************************************************************************/
+    public abstract boolean canConvertTo (@Nonnull Class<?> imageClass);
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
-    public abstract Object convertTo (Object image);
+     ******************************************************************************************************************/
+    @Nonnull 
+    public abstract Object convertTo (@Nonnull Object image);
   }

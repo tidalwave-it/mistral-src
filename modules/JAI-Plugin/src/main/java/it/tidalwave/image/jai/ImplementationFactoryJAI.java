@@ -22,6 +22,7 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.jai;
 
+import javax.annotation.Nonnull;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import javax.media.jai.PlanarImage;
@@ -47,7 +48,6 @@ import it.tidalwave.image.op.DivideComplexOp;
 import it.tidalwave.image.op.HistogramOp;
 import it.tidalwave.image.op.IDFTOp;
 import it.tidalwave.image.op.ImplementationFactory;
-import it.tidalwave.image.op.ImplementationFactoryRegistry;
 import it.tidalwave.image.op.MagnitudeOp;
 import it.tidalwave.image.op.MultiplyComplexOp;
 import it.tidalwave.image.op.MultiplyOp;
@@ -61,20 +61,20 @@ import it.tidalwave.image.op.SizeOp;
 import it.tidalwave.image.op.TranslateOp;
 import org.openide.util.lookup.ServiceProvider;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 @ServiceProvider(service=ImplementationFactory.class)
 public class ImplementationFactoryJAI extends ImplementationFactory
   {
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
-    public ImplementationFactoryJAI ()
+     ******************************************************************************************************************/
+    public ImplementationFactoryJAI()
       {
         super(PlanarImage.class);
         registerImplementation(AddOp.class, AddJAIOp.class);
@@ -111,29 +111,34 @@ public class ImplementationFactoryJAI extends ImplementationFactory
 //        registerImplementation(WriteOp.class, WriteJAIOp.class);
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
+     * {@inheritDoc}
      *
-     **************************************************************************/
-    public ImageModel createImageModel (BufferedImage bufferedImage)
+     ******************************************************************************************************************/
+    @Override @Nonnull
+    public ImageModel createImageModel (final @Nonnull BufferedImage bufferedImage)
       {
         return new ImageModelJAI(bufferedImage);
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
+     * {@inheritDoc}
      *
-     ******************************************************************************/
-    public boolean canConvertFrom (Class imageClass)
+     ******************************************************************************************************************/
+    public boolean canConvertFrom (final @Nonnull Class imageClass)
       {
         return RenderedImage.class.isAssignableFrom(imageClass);
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
+     * {@inheritDoc}
      *
-     ******************************************************************************/
-    public ImageModel convertFrom (Object image)
+     ******************************************************************************************************************/
+    @Nonnull
+    public ImageModel convertFrom (final @Nonnull Object image)
       {
         if (image instanceof RenderedImage)
           {
@@ -143,26 +148,29 @@ public class ImplementationFactoryJAI extends ImplementationFactory
         throw new UnsupportedOperationException("");
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
+     * {@inheritDoc}
      *
-     ******************************************************************************/
-    public boolean canConvertTo (Class imageClass)
+     ******************************************************************************************************************/
+    public boolean canConvertTo (final @Nonnull Class imageClass)
       {
         return BufferedImage.class.isAssignableFrom(imageClass);
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
+     * {@inheritDoc}
      *
-     ******************************************************************************/
-    public Object convertTo (Object image)
+     ******************************************************************************************************************/
+    @Nonnull
+    public Object convertTo (final @Nonnull Object image)
       {
         if (image instanceof BufferedImage)
           {
             return image;
           }
 
-        throw new UnsupportedOperationException("");
+        throw new UnsupportedOperationException("Only BufferedImage is supported");
       }
   }

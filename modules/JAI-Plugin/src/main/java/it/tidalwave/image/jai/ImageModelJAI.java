@@ -22,44 +22,36 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.jai;
 
-import java.util.logging.Logger;
+import javax.annotation.Nonnegative;
+import javax.annotation.Nonnull;
 import java.awt.image.ColorModel;
 import java.awt.image.RenderedImage;
 import java.awt.image.SampleModel;
 import javax.media.jai.PlanarImage;
 import javax.media.jai.TiledImage;
+import org.openide.util.Lookup;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.ImageModel;
 import it.tidalwave.image.op.ImplementationFactory;
-import org.openide.util.Lookup;
+import lombok.NoArgsConstructor;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
+@NoArgsConstructor // for serialization
 public class ImageModelJAI extends ImageModel
   {
-    private static final String CLASS = ImageModelJAI.class.getName();
+    private static final long serialVersionUID = 4039150448239203504L;
     
-    private static final Logger logger = Logger.getLogger(CLASS);
-
-    static final long serialVersionUID = 4039150448239203504L;
-    
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * Default constructor for serialization.
-     *
-     ******************************************************************************/
-    public ImageModelJAI()
-      {
-      }
-    
-    /*******************************************************************************
-     *
-     ******************************************************************************/
-    public ImageModelJAI (Object planarImage)
+     * 
+     * 
+     ******************************************************************************************************************/
+    public ImageModelJAI (final @Nonnull Object planarImage)
       {
         super(get(planarImage));
         
@@ -71,88 +63,91 @@ public class ImageModelJAI extends ImageModel
 //        System.err.println("CREATED PlanarImage, id: " + getId() + ", planarImage: " + planarImage);
       }
     
+    /*******************************************************************************************************************
+     *
+     * 
+     * 
+     ******************************************************************************************************************/
+    @Nonnull
     private PlanarImage getPlanarImage()
       {
         return (PlanarImage)model;  
       }
 
-    private static Object get (Object planarImage)
-      {
-        if (planarImage instanceof RenderedImage)
-          {
-            planarImage = PlanarImage.wrapRenderedImage((RenderedImage)planarImage);
-          }
-          
-        return planarImage;
-      }
-
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
+    @Nonnull
     public ImplementationFactory getFactory()
       {
         return Lookup.getDefault().lookup(ImplementationFactoryJAI.class);
       }
 
-    /* FIXME: this is probably not the best way of working. You're reading a BufferedImage
-     * by means of an ImageReader and later converting it to a PlanarImage. But
-     * JAI has its own way to read images which is probably more efficient. You need
-     * to change EditableImage read() methods to incapsulate ImageReaders and find a
-     * way to preferably use JAI readers for supported file types, and ImageReaders
-     * for other types.
-     */
-    public static EditableImage createImage (RenderedImage renderedImage)
+    /*******************************************************************************************************************
+     *
+     * FIXME: this is probably not the best way of working. You're reading a BufferedImage by means of an ImageReader 
+     * and later converting it to a PlanarImage. But JAI has its own way to read images which is probably more 
+     * efficient. You need to change EditableImage read() methods to incapsulate ImageReaders and find a way to 
+     * preferably use JAI readers for supported file types, and ImageReaders for other types.
+     *
+     ******************************************************************************************************************/
+    @Nonnull
+    public static EditableImage createImage (final @Nonnull RenderedImage renderedImage)
       {
         return new EditableImage(new ImageModelJAI(renderedImage));
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
+    @Nonnegative
     public int getWidth()
       {
         return getPlanarImage().getWidth();
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
+    @Nonnegative
     public int getHeight()
       {
         return getPlanarImage().getHeight();
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
+    @Nonnegative
     public int getBandCount()
       {
         return getPlanarImage().getSampleModel().getNumBands();
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
+    @Nonnull
     public EditableImage.DataType getDataType()
       {
         return (getPlanarImage() == null) ? null : EditableImage.DataType.valueOf(getPlanarImage().getSampleModel().getDataType());
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     @Override
     public void dispose()
       {
@@ -160,24 +155,26 @@ public class ImageModelJAI extends ImageModel
         super.dispose();
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
+    @Nonnull
     public ColorModel getColorModel()
       {
         return getPlanarImage().getColorModel();
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
-    public EditableImage createCopy (boolean copyContents)
+     ******************************************************************************************************************/
+    @Nonnull
+    public EditableImage createCopy (final boolean copyContents)
       {
-        TiledImage image2 = new TiledImage(getPlanarImage(), false);
+        final TiledImage image2 = new TiledImage(getPlanarImage(), false);
 
         if (copyContents)
           {
@@ -187,10 +184,10 @@ public class ImageModelJAI extends ImageModel
         return createImage(image2);
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
 /*    public void takeSnapshot ()
       {
         logger.fine("takeSnapshot()");
@@ -202,11 +199,13 @@ public class ImageModelJAI extends ImageModel
       }
 */
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
+     * {@inheritDoc}
      *
-     ******************************************************************************/
-    public <T> T getInnerProperty (Class<T> propertyClass) 
+     ******************************************************************************************************************/
+    @Nonnull
+    public <T> T getInnerProperty (final @Nonnull Class<T> propertyClass) 
       {
         if (propertyClass.equals(PlanarImage.class))
           {
@@ -226,28 +225,50 @@ public class ImageModelJAI extends ImageModel
         throw new IllegalArgumentException(propertyClass.getName());
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
+     * {@inheritDoc}
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
+    @Nonnull
     protected RenderedImage toRenderedImageForSerialization()
       {
         return getPlanarImage().getAsBufferedImage();    
       }
     
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
+     * {@inheritDoc}
      *
-     ******************************************************************************/
-    protected Object toObjectForDeserialization (final RenderedImage renderedImage)
+     ******************************************************************************************************************/
+    @Nonnull
+    protected Object toObjectForDeserialization (final @Nonnull RenderedImage renderedImage)
       {
         return PlanarImage.wrapRenderedImage(renderedImage);
       }
+
+    /*******************************************************************************************************************
+     *
+     * 
+     * 
+     ******************************************************************************************************************/
+    @Nonnull
+    private static Object get (final @Nonnull Object planarImage)
+      {
+        Object result = planarImage;
+        
+        if (planarImage instanceof RenderedImage)
+          {
+            result = PlanarImage.wrapRenderedImage((RenderedImage)planarImage);
+          }
+          
+        return result;
+      }
     
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
 //    public String toString ()
 //      {
 //        return "ImageModelJAI[id: " + getId() + ", model: " + model + "]";

@@ -22,8 +22,8 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.jai;
 
-import it.tidalwave.image.ImageUtils;
 import java.io.IOException;
+import it.tidalwave.image.ImageUtils;
 import it.tidalwave.image.op.ChangeFormatOp;
 import it.tidalwave.image.op.CreateOp;
 import it.tidalwave.image.BaseTestSupport;
@@ -33,17 +33,17 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.openide.util.Lookup;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class ChangeFormatJAIOpTest extends BaseTestSupport
   {
     @Test
     public void testConvert_FLOAT_USHORT ()
-        throws IOException
+      throws IOException
       {
         convert(DataType.FLOAT, DataType.UNSIGNED_SHORT);
       }
@@ -51,7 +51,7 @@ public class ChangeFormatJAIOpTest extends BaseTestSupport
     // MST-103
     @Test
     public void testConvert_FLOAT_SHORT ()
-        throws IOException
+      throws IOException
       {
         convert(DataType.FLOAT, DataType.SHORT);
       }

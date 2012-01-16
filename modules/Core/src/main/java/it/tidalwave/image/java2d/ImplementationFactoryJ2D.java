@@ -22,9 +22,10 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
+import javax.annotation.Nonnull;
 import java.lang.reflect.Method;
-import java.util.logging.Logger;
 import java.awt.image.BufferedImage;
+import org.openide.util.lookup.ServiceProvider;
 import it.tidalwave.image.ImageModel;
 import it.tidalwave.image.op.CaptureOp;
 import it.tidalwave.image.op.ConvertToBufferedImageOp;
@@ -41,26 +42,23 @@ import it.tidalwave.image.op.RotateQuadrantOp;
 import it.tidalwave.image.op.ScaleOp;
 import it.tidalwave.image.op.WrapOp;
 import it.tidalwave.image.op.WriteOp;
-import org.openide.util.lookup.ServiceProvider;
+import lombok.extern.slf4j.Slf4j;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
-@ServiceProvider(service=ImplementationFactory.class)
+ **********************************************************************************************************************/
+@ServiceProvider(service=ImplementationFactory.class) @Slf4j
 public class ImplementationFactoryJ2D extends ImplementationFactory
   {
-    private static final String CLASS = ImplementationFactoryJ2D.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
+    private Class<?> planarImageClass;
 
-    private Class planarImageClass;
-
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public ImplementationFactoryJ2D()
       {
         super(BufferedImage.class);
@@ -87,46 +85,50 @@ public class ImplementationFactoryJ2D extends ImplementationFactory
           }
         catch (Throwable e)
           {
-            logger.warning("JAI not available: " + e);
+            log.warn("JAI not available: ", e.toString());
           }
 
         try
           {
-            Class clazz = contextClassLoader.loadClass("it.tidalwave.image.java2d.AdditionalOperations"); 
-            Method method = clazz.getMethod("register", ImplementationFactoryJ2D.class);
+            final Class<?> clazz = contextClassLoader.loadClass("it.tidalwave.image.java2d.AdditionalOperations"); 
+            final Method method = clazz.getMethod("register", ImplementationFactoryJ2D.class);
             method.invoke(null, this);
           }
         catch (Throwable e)
           {
-            logger.warning("Additional Java2D operations not available: " + e);
+            log.warn("Additional Java2D operations not available: {}", e.toString());
           }
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
+     * {@inheritDoc}
      *
-     **************************************************************************/
-    @Override
-    public ImageModel createImageModel (BufferedImage bufferedImage)
+     ******************************************************************************************************************/
+    @Override @Nonnull
+    public ImageModel createImageModel (final @Nonnull BufferedImage bufferedImage)
       {
         return new ImageModelJ2D(bufferedImage);
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
+     * {@inheritDoc}
      *
-     ******************************************************************************/
-    public boolean canConvertFrom (Class imageClass)
+     ******************************************************************************************************************/
+    public boolean canConvertFrom (final @Nonnull Class imageClass)
       {
         return imageClass.equals(BufferedImage.class) ||
         ((planarImageClass != null) && planarImageClass.isAssignableFrom(imageClass));
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
+     * {@inheritDoc}
      *
-     ******************************************************************************/
-    public ImageModel convertFrom (Object image)
+     ******************************************************************************************************************/
+    @Nonnull
+    public ImageModel convertFrom (final @Nonnull Object image)
       {
 //        if ((planarImageClass != null) && planarImageClass.isAssignableFrom(image.getClass())) // image instanceof PlanarImage
         if (canConvertFrom(image.getClass()))
@@ -138,8 +140,8 @@ public class ImplementationFactoryJ2D extends ImplementationFactory
 
             try
               {
-                Method method = planarImageClass.getMethod("getAsBufferedImage");
-                Object bufferedImage = method.invoke(image);
+                final Method method = planarImageClass.getMethod("getAsBufferedImage");
+                final Object bufferedImage = method.invoke(image);
 
                 return new ImageModelJ2D(bufferedImage);
               }
@@ -152,20 +154,23 @@ public class ImplementationFactoryJ2D extends ImplementationFactory
         throw new UnsupportedOperationException("convertFrom " + image.getClass());
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
+     * {@inheritDoc}
      *
-     ******************************************************************************/
-    public boolean canConvertTo (Class imageClass)
+     ******************************************************************************************************************/
+    public boolean canConvertTo (final @Nonnull Class imageClass)
       {
         return (planarImageClass != null) && planarImageClass.isAssignableFrom(imageClass); // image instanceof PlanarImage
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
+     * {@inheritDoc}
      *
-     ******************************************************************************/
-    public Object convertTo (Object image)
+     ******************************************************************************************************************/
+    @Nonnull
+    public Object convertTo (final @Nonnull Object image)
       {
         if (image.getClass().getName().equals("javax.media.jai.PlanarImage"))
           {

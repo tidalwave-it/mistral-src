@@ -24,8 +24,8 @@ package it.tidalwave.image.op;
 
 import javax.annotation.Nonnull;
 import java.util.Collection;
-import it.tidalwave.image.ImageModel;
 import org.openide.util.lookup.ServiceProvider;
+import it.tidalwave.image.ImageModel;
 import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
@@ -118,6 +118,10 @@ public class ImplementationFactoryRegistry
                                                 + " factoryList: " + factories);
       }
 
+    /*******************************************************************************************************************
+     *
+     *
+     ******************************************************************************************************************/
     @Nonnull
     private Collection<? extends ImplementationFactory> getFactories() 
       {

@@ -23,6 +23,7 @@
 package it.tidalwave.image.jai;
 
 import java.io.IOException;
+import org.openide.util.Lookup;
 import it.tidalwave.image.BaseTestSupport;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.ForceRenderingOp;
@@ -30,14 +31,13 @@ import it.tidalwave.image.op.ReadOp;
 import it.tidalwave.image.op.SizeOp;
 import it.tidalwave.image.op.WriteOp;
 import org.junit.Test;
-import org.openide.util.Lookup;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class SizeJAIOpTest extends BaseTestSupport
   {
     @Test

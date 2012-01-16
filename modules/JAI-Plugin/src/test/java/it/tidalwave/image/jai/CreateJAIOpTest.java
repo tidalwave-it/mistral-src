@@ -22,19 +22,20 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.jai;
 
+import javax.annotation.Nonnull;
 import javax.media.jai.PlanarImage;
 import java.awt.image.Raster;
+import org.openide.util.Lookup;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.testsupport.CreateOpTestSupport;
 import org.junit.Before;
-import org.openide.util.Lookup;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class CreateJAIOpTest extends CreateOpTestSupport
   {
     @Before
@@ -43,11 +44,8 @@ public class CreateJAIOpTest extends CreateOpTestSupport
         Lookup.getDefault().lookup(ImplementationFactoryJAI.class);
       }
 
-    /***************************************************************************
-     *
-     *
-     **************************************************************************/
-    protected Raster getRaster (final EditableImage image)
+    @Override @Nonnull
+    protected Raster getRaster (final @Nonnull EditableImage image)
       {
         return image.getInnerProperty(PlanarImage.class).getData();
       }

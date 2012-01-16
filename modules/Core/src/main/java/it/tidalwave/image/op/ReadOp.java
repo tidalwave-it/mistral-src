@@ -29,7 +29,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
 import java.util.Arrays;
 import java.io.ByteArrayInputStream;
@@ -39,42 +38,45 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
-import java.awt.image.BufferedImage;
+import org.openide.util.Lookup;
 import it.tidalwave.image.util.Parameters;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.java2d.ImplementationFactoryJ2D;
 import it.tidalwave.image.java2d.Java2DUtils;
 import it.tidalwave.image.op.impl.FileChannelImageInputStream;
-import org.openide.util.Lookup;
+import lombok.Cleanup;
+import lombok.Getter;
+import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
+@ToString(of={"input", "imageIndex", "thumbnailIndex"}) @Slf4j
 public class ReadOp extends Operation
   {
-    private static final String CLASS = ReadOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-    
-    /***************************************************************************
-     * 
+    /*******************************************************************************************************************
+     *
      * A marker interface for allowable options for {@link ReadOp} constructor.
-     * 
-     **************************************************************************/
+     *
+     ******************************************************************************************************************/
     public static interface Options
       {
       }
     
-    /***************************************************************************
-     * 
+    /*******************************************************************************************************************
+     *
      * A container of plugin names that should not be used to load an image.
-     * 
-     **************************************************************************/
+     *
+     ******************************************************************************************************************/
+    @ToString
     public static class PluginBlackList implements Options 
       {
         public final static PluginBlackList DEFAULT = new PluginBlackList(
@@ -89,54 +91,49 @@ public class ReadOp extends Operation
         
         private final Set<String> plugins;
         
-        public PluginBlackList (@Nonnull final String ... plugins)
+        public PluginBlackList (final @Nonnull String ... plugins)
           {
             this.plugins = new HashSet<String>(Arrays.asList(plugins)); 
           }
         
-        public boolean contains (@Nonnull final String pluginName)
+        public boolean contains (final @Nonnull String pluginName)
           {
             return plugins.contains(pluginName);  
           }
-
-        @Override
-        public String toString() 
-          {
-            return String.format("PluginBlackList%s", plugins);
-          }
       }
     
-    @Nonnull
+    @Getter @Nonnull
     private final Object input;
     
-    @Nonnull
+    @Getter @Nonnull
     private final PluginBlackList pluginBlackList;
     
-    @Nonnull
+    @Getter @Nonnull
     private final Type type;
 
-    @Nonnegative
+    @Getter @Nonnegative
     private final int imageIndex;
     
-    @Nonnegative
+    @Getter @Nonnegative
     private final int thumbnailIndex;
 
+    /*******************************************************************************************************************
+     *
+     *
+     ******************************************************************************************************************/
     private static abstract class Reader
       {
-        public static EditableImage read (final Object input, 
-                                          final Reader reader,
-                                          final PluginBlackList pluginBlackList)
+        public static EditableImage read (final @Nonnull Object input, 
+                                          final @Nonnull Reader reader,
+                                          final @Nonnull PluginBlackList pluginBlackList)
           throws IOException
           {
-            if (input == null)
-              {
-                throw new IOException("Cannot read object, input is null");
-              }
-            
             return reader.run(input, pluginBlackList);
           }
         
-        private EditableImage run (final Object input, final PluginBlackList pluginBlackList)
+        @Nonnull 
+        private EditableImage run (final @Nonnull Object input, 
+                                   final @Nonnull PluginBlackList pluginBlackList)
           throws IOException
           {
             if (input instanceof File)
@@ -189,10 +186,10 @@ public class ReadOp extends Operation
               }
           }
 
-        protected abstract EditableImage read (ImageReader imageReader)
+        protected abstract EditableImage read (@Nonnull ImageReader imageReader)
           throws IOException;
         
-        private final void setProperties (final EditableImage image, final ImageReader imageReader)
+        private final void setProperties (final @Nonnull EditableImage image, final @Nonnull ImageReader imageReader)
           throws IOException
           {
             image.setAttribute(EditableImage.PROP_FORMAT, imageReader.getFormatName());
@@ -200,24 +197,25 @@ public class ReadOp extends Operation
           }
       }
 
-    /***************************************************************************
-     * 
-     * 
-     **************************************************************************/
+    /*******************************************************************************************************************
+     *
+     *
+     ******************************************************************************************************************/
     public static enum Type implements Options
       {
-        /***********************************************************************
-         * 
-         * 
-         **********************************************************************/
+        /***************************************************************************************************************
+         *
+         *
+         **************************************************************************************************************/
         IMAGE
           {
-            protected EditableImage read (final ReadOp readOp)
+            @Nonnull 
+            protected EditableImage read (final @Nonnull ReadOp readOp)
               throws IOException
               {
                 final Object input = readOp.getInput();
                 final int imageIndex = readOp.getImageIndex();
-                logger.info("read(" + input + ", " + imageIndex + ")");
+                log.info("read({}, {})", input, imageIndex);
                 
                 return Reader.read(input, new Reader()
                   {
@@ -228,7 +226,7 @@ public class ReadOp extends Operation
                         final BufferedImage image = imageReader.read(imageIndex);
                         final EditableImage editableImage = create(image);
                         editableImage.loadMetadata(imageReader, imageIndex);
-                        Java2DUtils.logImage(logger, ">>>> Loaded image: ", image);
+                        Java2DUtils.logImage(log, ">>>> Loaded image: ", image);
                         editableImage.latestOperationTime = System.currentTimeMillis() - time;
                         return editableImage;
                       }
@@ -236,23 +234,25 @@ public class ReadOp extends Operation
               }
           },
           
-        /***********************************************************************
-         * 
-         * 
-         **********************************************************************/
+        /***************************************************************************************************************
+         *
+         *
+         **************************************************************************************************************/
         THUMBNAIL
           {
-            protected EditableImage read (final ReadOp readOp)
+            @Nonnull 
+            protected EditableImage read (final @Nonnull ReadOp readOp)
               throws IOException
               {
                 final Object input = readOp.getInput();
                 final int imageIndex = readOp.getImageIndex();
                 final int thumbnailIndex = readOp.getThumbnailIndex();
-                logger.info("readThumbnail(" + input + ", " + imageIndex + ", " + thumbnailIndex + ")");
+                log.info("read({}, {}, {})", new Object[] { input , imageIndex, thumbnailIndex });
 
                 return Reader.read(input, new Reader()
                   {
-                    protected EditableImage read (final ImageReader imageReader)
+                    @Nonnull 
+                    protected EditableImage read (final @Nonnull ImageReader imageReader)
                       throws IOException
                       {
                         long time = System.currentTimeMillis();
@@ -262,22 +262,24 @@ public class ReadOp extends Operation
               }
           },
           
-        /***********************************************************************
-         * 
-         * 
-         **********************************************************************/
+        /***************************************************************************************************************
+         *
+         *
+         **************************************************************************************************************/
         METADATA
           {
-            protected EditableImage read (final ReadOp readOp)
+            @Nonnull 
+            protected EditableImage read (final @Nonnull ReadOp readOp)
               throws IOException
               {
                 final Object input = readOp.getInput();
                 final int imageIndex = readOp.getImageIndex();
-                logger.info("readMetadata(" + input + ", " + imageIndex + ")");
+                log.info("read({}, {})", input, imageIndex);
 
                 return Reader.read(input, new Reader()
                   {
-                    protected EditableImage read (final ImageReader imageReader)
+                    @Nonnull 
+                    protected EditableImage read (final @Nonnull ImageReader imageReader)
                       throws IOException
                       {
                         final EditableImage editableImage = new EditableImage(null);
@@ -288,27 +290,30 @@ public class ReadOp extends Operation
               }
           };
           
-        /***********************************************************************
-         * 
-         * 
-         **********************************************************************/
-        protected abstract EditableImage read (ReadOp readOp)
+        /***************************************************************************************************************
+         *
+         *
+         **************************************************************************************************************/
+        @Nonnull 
+        protected abstract EditableImage read (@Nonnull ReadOp readOp)
           throws IOException;
         
-        /***********************************************************************
-         * 
-         * 
-         **********************************************************************/
-        private static EditableImage create (final BufferedImage image)
+        /***************************************************************************************************************
+         *
+         *
+         **************************************************************************************************************/
+        @Nonnull 
+        private static EditableImage create (final @Nonnull BufferedImage image)
           {
             return new EditableImage(Lookup.getDefault().lookup(ImplementationFactoryJ2D.class).createImageModel(image));
           }
         
-        /***********************************************************************
-         * 
-         * 
-         **********************************************************************/
-        private static EditableImage create (final BufferedImage image, final long time)
+        /***************************************************************************************************************
+         *
+         *
+         **************************************************************************************************************/
+        @Nonnull 
+        private static EditableImage create (final @Nonnull BufferedImage image, final long time)
           {
             final EditableImage editableImage = create(image);
             editableImage.latestOperationTime = time;
@@ -316,105 +321,74 @@ public class ReadOp extends Operation
           }
       }
 
-    /***************************************************************************
-     * 
+    /*******************************************************************************************************************
+     *
      * @param  input          the input (an ImageReader or a File)
      *
-     **************************************************************************/
-    public ReadOp (@Nonnull final Object input)
+     ******************************************************************************************************************/
+    public ReadOp (final @Nonnull Object input)
       {
         this(input, 0, 0);  
       }
     
-    /***************************************************************************
-     * 
+    /*******************************************************************************************************************
+     *
      * @param  input          the input (an ImageReader or a File)
      * @param  type           the type of read
      *
-     **************************************************************************/
-    public ReadOp (@Nonnull final Object input, @Nonnull final Options ... options)
+     ******************************************************************************************************************/
+    public ReadOp (final @Nonnull Object input, final @Nonnull Options ... options)
       {
         this(input, 0, 0, options);  
       }
     
-    /***************************************************************************
-     * 
+    /*******************************************************************************************************************
+     *
      * @param  input          the input (an ImageReader or a File)
      * @param  type           the type of read
      * @param  imageIndex     the index of the image to read
      *
-     **************************************************************************/
-    public ReadOp (@Nonnull final Object input,
-                   @Nonnegative final int imageIndex,
-                   @Nonnull final Options ... options)
+     ******************************************************************************************************************/
+    public ReadOp (final @Nonnull Object input,
+                   final @Nonnegative int imageIndex,
+                   final @Nonnull Options ... options)
       {
         this(input, imageIndex, 0, options);  
       }
     
-    /***************************************************************************
-     * 
+    /*******************************************************************************************************************
+     *
      * @param  input          the input (an ImageReader or a File)
      * @param  type           the type of read
      * @param  imageIndex     the index of the image to read
      * @param  thumbnailIndex the index of the thumbnail to read
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public ReadOp (final @Nonnull Object input, 
                    final @Nonnegative int imageIndex, 
                    final @Nonnegative int thumbnailIndex,
                    final @Nonnull Options ... options)
       {
-        if (input == null)
-          {
-            throw new IllegalArgumentException("null input");    
-          }
-        
         this.input = input;
         this.type = Parameters.find (Type.class, Type.IMAGE, options);
         this.pluginBlackList = Parameters.find(PluginBlackList.class, PluginBlackList.DEFAULT, options);
         this.imageIndex = imageIndex;
         this.thumbnailIndex = thumbnailIndex;
-        logger.fine(String.format("ReadOp(%s, %d, %d, %s)", input, imageIndex, thumbnailIndex, Arrays.asList(options)));
+        log.trace("ReadOp({}, {}, {}, {})", new Object[] { input, imageIndex, thumbnailIndex, options });
       }
     
-    /***************************************************************************
-     * 
-     * 
-     **************************************************************************/
-    public Object getInput()
-      {
-        return input;  
-      }
-    
-    /***************************************************************************
-     * 
-     * 
-     **************************************************************************/
-    public int getImageIndex()
-      {
-        return imageIndex;  
-      }
-
-    /***************************************************************************
-     * 
-     * 
-     **************************************************************************/
-    public int getThumbnailIndex()
-      {
-        return thumbnailIndex;  
-      }
-
-    /***************************************************************************
-     * 
-     * 
-     **************************************************************************/
+    /*******************************************************************************************************************
+     *
+     *
+     ******************************************************************************************************************/
+    @Nonnull 
     public EditableImage execute()
       throws IOException
       {
         return type.read(this);
       }
      
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Creates an ImageReader for the given File. Using a File as argument is 
      * important for photos that are stored in multiple files (e.g. Canon .CRW format).
@@ -423,11 +397,13 @@ public class ReadOp extends Operation
      *
      * @throws  IOException  if it is not possible
      *
-     **************************************************************************/
-    public static ImageReader createImageReader (final File file, final PluginBlackList pluginBlackList) 
+     ******************************************************************************************************************/
+    @Nonnull 
+    public static ImageReader createImageReader (final @Nonnull File file,
+                                                 final @Nonnull PluginBlackList pluginBlackList) 
       throws FileNotFoundException, IOException
       {
-        logger.fine("createImageReader(" + file + ")");
+        log.trace("createImageReader({}, {})", file, pluginBlackList);
 
         if (!file.exists())
           {
@@ -455,40 +431,31 @@ public class ReadOp extends Operation
             suffix = fileName.substring(i + 1);
           }
 
-        logger.finer(">>>> suffix is " + suffix);
-        ImageInputStream imageInputStream = null;
+        log.trace(">>>> suffix is {}", suffix);
+        @Cleanup ImageInputStream imageInputStream = null;
 
-        try
+        //
+        // For reasons stated in the javadoc comment of this method, it's better
+        // to create the ImageInputStream by passing a File.
+        //
+        if (!gzipCompression)
           {
-            //
-            // For reasons stated in the javadoc comment of this method, it's better
-            // to create the ImageInputStream by passing a File.
-            //
-            if (!gzipCompression)
-              {
-                imageInputStream = new FileChannelImageInputStream(file);
+            imageInputStream = new FileChannelImageInputStream(file);
 //                imageInputStream = ImageIO.createImageInputStream(file);
-              }
-            //
-            // This will not work with multiple-file formats such as Canon .CRW.
-            //
-            else
-              {
-                InputStream inputStream = new GZIPInputStream(new FileInputStream(file));
-                imageInputStream = ImageIO.createImageInputStream(inputStream);
-              }
-
-            return createImageReader(imageInputStream, gzipCompression, suffix, pluginBlackList);
           }
-        catch (IOException e)
+        //
+        // This will not work with multiple-file formats such as Canon .CRW.
+        //
+        else
           {
-            logger.throwing(CLASS, "getImageReader()", e);
-            safeClose(imageInputStream);
-            throw e;
+            InputStream inputStream = new GZIPInputStream(new FileInputStream(file));
+            imageInputStream = ImageIO.createImageInputStream(inputStream);
           }
+
+        return createImageReader(imageInputStream, gzipCompression, suffix, pluginBlackList);
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns a valid <code>ImageReader</code> for the given URL, or throw an
      * <code>IOException</code> if it's not possible.
@@ -496,11 +463,12 @@ public class ReadOp extends Operation
      * @param   url          the URL
      * @throws  IOException  if it is not possible
      *
-     **************************************************************************/
-    public static ImageReader createImageReader (final URL url, final PluginBlackList pluginBlackList) 
+     ******************************************************************************************************************/
+    @Nonnull 
+    public static ImageReader createImageReader (final @Nonnull URL url, final @Nonnull PluginBlackList pluginBlackList) 
       throws IOException
       {
-        logger.fine("createImageReader(" + url + ")");
+        log.trace("createImageReader({})", url);
 
         String fileName = url.getPath();
         String suffix = "";
@@ -513,33 +481,17 @@ public class ReadOp extends Operation
             suffix = fileName.substring(i + 1);
           }
 
-        logger.finer(">>>> suffix is " + suffix);
-        ImageInputStream imageInputStream = null;
-
-        try
-          {
-            //
-            // This will not work with multiple-file formats such as Canon .CRW.
-            //
-            InputStream inputStream = gzipCompression ? new GZIPInputStream(url.openStream()) : url.openStream();
-            imageInputStream = ImageIO.createImageInputStream(inputStream);
-            return createImageReader(imageInputStream, gzipCompression, suffix, pluginBlackList);
-          }
-        catch (IOException e)
-          {
-            logger.throwing(CLASS, "createImageReader()", e);
-            safeClose(imageInputStream);
-            throw e;
-          }
+        log.trace(">>>> suffix is {}", suffix);
+        @Cleanup ImageInputStream imageInputStream = null;
+        //
+        // This will not work with multiple-file formats such as Canon .CRW.
+        //
+        final InputStream inputStream = gzipCompression ? new GZIPInputStream(url.openStream()) : url.openStream();
+        imageInputStream = ImageIO.createImageInputStream(inputStream);
+        return createImageReader(imageInputStream, gzipCompression, suffix, pluginBlackList);
       }
 
-    @Nonnull
-    private PluginBlackList getPluginBlackList() 
-      {
-        return pluginBlackList;
-      }
-    
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns a valid <code>ImageReader</code> for the given stream, or throw 
      * an <code>IOException</code> if it's not possible.
@@ -547,18 +499,19 @@ public class ReadOp extends Operation
      * @param   inputStream       the input stream
      * @throws  IOException       if it is not possible
      *
-     **************************************************************************/
-    private static ImageReader createImageReader (final InputStream inputStream,
-                                                  final PluginBlackList pluginBlackList) 
+     ******************************************************************************************************************/
+    @Nonnull 
+    private static ImageReader createImageReader (final @Nonnull InputStream inputStream,
+                                                  final @Nonnull PluginBlackList pluginBlackList) 
       throws IOException 
       {
-        logger.info("createImageReader(" + inputStream + ")");       
-        final ImageInputStream imageInputStream = ImageIO.createImageInputStream(inputStream);
+        log.info("createImageReader({})", inputStream);       
+        final @Cleanup ImageInputStream imageInputStream = ImageIO.createImageInputStream(inputStream);
         final Iterator <ImageReader> iterator = ImageIO.getImageReaders(imageInputStream);
         return createImageReader(imageInputStream, iterator, pluginBlackList);
       }
         
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns a valid <code>ImageReader</code> for the given stream, or throw 
      * an <code>IOException</code> if it's not possible.
@@ -568,20 +521,20 @@ public class ReadOp extends Operation
      * @param   suffix            the file format suffix (e.g. jpg, tiff,...)
      * @throws  IOException       if it is not possible
      *
-     **************************************************************************/
-    private static ImageReader createImageReader (final ImageInputStream imageInputStream, 
+     ******************************************************************************************************************/
+    private static ImageReader createImageReader (final @Nonnull ImageInputStream imageInputStream, 
                                                   final boolean gzipCompression, 
-                                                  final String suffix,
-                                                  final PluginBlackList pluginBlackList) 
+                                                  final @Nonnull String suffix,
+                                                  final @Nonnull PluginBlackList pluginBlackList) 
       throws IOException                                                  
       {
-        logger.info("createImageReader(" + imageInputStream + ", " + gzipCompression + ", " + suffix + ")");       
+        log.info("createImageReader({}, {}, {})", new Object[] { imageInputStream, gzipCompression, suffix });       
 //        logger.finest(">>>> Suffixes: " + Arrays.asList(ImageIO.getReaderFileSuffixes()));
         final Iterator<ImageReader> iterator = ImageIO.getImageReaders(imageInputStream);
         return createImageReader(imageInputStream, iterator, pluginBlackList);
       }
     
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns a valid <code>ImageReader</code> for the given stream, or throw 
      * an <code>IOException</code> if it's not possible.
@@ -589,100 +542,61 @@ public class ReadOp extends Operation
      * @param   imageInputStream  the input stream
      * @throws  IOException       if it is not possible
      *
-     **************************************************************************/
-    private static ImageReader createImageReader (final ImageInputStream imageInputStream, 
-                                                  final Iterator<ImageReader> iterator,
-                                                  final PluginBlackList pluginBlackList) 
+     ******************************************************************************************************************/
+    @Nonnull 
+    private static ImageReader createImageReader (final @Nonnull ImageInputStream imageInputStream, 
+                                                  final @Nonnull Iterator<ImageReader> iterator,
+                                                  final @Nonnull PluginBlackList pluginBlackList) 
       throws IOException                                                  
       {
-        logger.info("createImageReader(" + imageInputStream + ", " + iterator + ")");
+        log.info("createImageReader({}, {})", imageInputStream, iterator);
         
-        try
+        // See http://bluemarine.tidalwave.it/issues/browse/MST-137
+        final List<ImageReader> readers = new ArrayList<ImageReader>();
+        final List<ImageReader> tiffReaders = new ArrayList<ImageReader>();
+
+        while (iterator.hasNext())
           {
-            // See http://bluemarine.tidalwave.it/issues/browse/MST-137
-            final List<ImageReader> readers = new ArrayList<ImageReader>();
-            final List<ImageReader> tiffReaders = new ArrayList<ImageReader>();
-            
-            while (iterator.hasNext())
-              {
-                final ImageReader reader = iterator.next();
-                final String pluginClassName = reader.getOriginatingProvider().getPluginClassName();
+            final ImageReader reader = iterator.next();
+            final String pluginClassName = reader.getOriginatingProvider().getPluginClassName();
 
-                if (reader != null)
-                  {
-                    logger.finer(">>>> pre-testing reader: " + reader + ", vendor: " + reader.getOriginatingProvider().getVendorName());
-                    
-                    if (pluginBlackList.contains(pluginClassName))
-                      {
-                        logger.finest(String.format(">>>> %s discarded because it's in the black list", reader));
-                        continue;  
-                      }
-                    else if (pluginClassName.indexOf("TIFF") < 0) // TODO: maybe is it better to test for supported extension or mime?
-                      {
-                        readers.add(reader);  
-                      }
-                    else
-                      {
-                        tiffReaders.add(reader);  
-                      }
-                  }
-              }
-            
-            readers.addAll(tiffReaders);
-            
-            for (final ImageReader reader : readers)
+            if (reader != null)
               {
-                logger.finer(">>>> testing reader: " + reader + ", vendor: " + reader.getOriginatingProvider().getVendorName());
+                log.trace(">>>> pre-testing reader: {}, vendor: {}", reader, reader.getOriginatingProvider().getVendorName());
 
-                if (!reader.getOriginatingProvider().canDecodeInput(imageInputStream))
+                if (pluginBlackList.contains(pluginClassName))
                   {
-                    logger.finest(">>>> discarded because it can't decode the input");
+                    log.trace(">>>> {} discarded because it's in the black list", reader);
                     continue;  
                   }
+                else if (pluginClassName.indexOf("TIFF") < 0) // TODO: maybe is it better to test for supported extension or mime?
+                  {
+                    readers.add(reader);  
+                  }
+                else
+                  {
+                    tiffReaders.add(reader);  
+                  }
+              }
+          }
 
-                reader.setInput(imageInputStream);
-                logger.finer(">>>> returning reader: " + reader);
-                return reader;
-              }
-                
-            throw new IOException("No ImageReader");
-          }
-        catch (IOException e)
+        readers.addAll(tiffReaders);
+
+        for (final ImageReader reader : readers)
           {
-            logger.throwing(CLASS, "getImageReader()", e);
-            logger.finer(">>>> returning null");
-            safeClose(imageInputStream);
-            throw e;
-          }
-      }
-    
-    /***************************************************************************
-     *
-     *
-     **************************************************************************/
-    private static void safeClose (final ImageInputStream imageInputStream)
-      {
-        try
-          {
-            if (imageInputStream != null)
+            log.trace(">>>> testing reader: {}, vendor: {}", reader, reader.getOriginatingProvider().getVendorName());
+
+            if (!reader.getOriginatingProvider().canDecodeInput(imageInputStream))
               {
-                imageInputStream.close();
+                log.trace(">>>> discarded because it can't decode the input");
+                continue;  
               }
+
+            reader.setInput(imageInputStream);
+            log.trace(">>>> returning reader: {}", reader);
+            return reader;
           }
-        catch (IOException e)
-          {
-            logger.throwing(CLASS, "safeClose()", e);
-          }
-      }
-    
-    /***************************************************************************
-     * 
-     * @inheritDoc
-     * 
-     **************************************************************************/
-    @Override
-    public String toString()
-      {
-        return "ReadOp(" + input + ", " + imageIndex + ", " + thumbnailIndex + ")";
+
+        throw new IOException("No ImageReader");
       }
   }

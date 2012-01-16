@@ -22,6 +22,7 @@
  **********************************************************************************************************************/
 package it.tidalwave.image;
 
+import javax.annotation.Nonnull;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,7 +33,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.logging.Logger;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.imageio.ImageIO;
@@ -44,13 +44,13 @@ import java.awt.color.ICC_ColorSpace;
 import java.awt.color.ICC_Profile;
 import java.awt.image.ColorModel;
 import java.awt.image.DataBuffer;
+import org.openide.util.Lookup;
 import it.tidalwave.image.op.AbstractCreateOp;
 import it.tidalwave.image.op.ImplementationFactoryRegistry;
 import it.tidalwave.image.op.Operation;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.ReadOp;
 import it.tidalwave.image.op.ScaleOp;
-import it.tidalwave.image.java2d.ImplementationFactoryJ2D;
 import it.tidalwave.image.metadata.Directory;
 import it.tidalwave.image.metadata.EXIF;
 import it.tidalwave.image.metadata.IPTC;
@@ -65,22 +65,22 @@ import it.tidalwave.image.metadata.loader.DrewMetadataLoader;
 import it.tidalwave.image.metadata.loader.MetadataLoader;
 import it.tidalwave.image.metadata.loader.RAWMetadataLoader;
 import it.tidalwave.image.metadata.loader.TIFFMetadataLoader;
-import org.openide.util.Lookup;
+import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
-/***************************************************************************
+/***********************************************************************************************************************
  *
- * An opaque class which encapsulates all the image manipulation logics,
- * and allows the implementation of these logics to be trasparently changed
- * (e.g. by using or not JAI, etc...)
+ * An opaque class which encapsulates all the image manipulation logics, and allows the implementation of these logics 
+ * to be transparently changed (e.g. by using or not JAI, etc...)
  *
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
+@ToString(of={"imageModelHolder", "attributeMapByName"}) @Slf4j
 public class EditableImage implements Cloneable, Serializable // Externalizable
   {
     private static final String CLASS = EditableImage.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
     private static final long serialVersionUID = -4527258052032240717L;
     
     private static WorkaroundBM25 workaroundBM25;
@@ -104,10 +104,10 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
 
     private int latestSerializationSize;
 
-   /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public static enum DataType
       {
         BYTE(DataBuffer.TYPE_BYTE),
@@ -167,10 +167,10 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
           }
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     static
       {
 //        ImplementationFactoryJ2D.getInstance();
@@ -181,15 +181,15 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
           }
         catch (Throwable e)
           {
-            logger.warning("Workaround for BM25 not enabled because of: " + e);
+            log.warn("Workaround for BM25 not enabled because of: {}", e.toString());
           }
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * For serialization only. Do not use.
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public EditableImage()
       {
         // By default put empty objects for which isAvailable() returns false
@@ -199,11 +199,11 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
         metadataMapByClass.put(MakerNote.class, Arrays.asList(new MakerNote()));
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * For inner implementation only. Do not use.
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public EditableImage (final ImageModel imageModel) // FIXME: try to make it protected
       {
         this();
@@ -211,10 +211,10 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
         imageModelHolder = ImageModelHolder.wrap(imageModel);
       }
     
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public void setNickName (final String nickName)
       {
         if (imageModelHolder != null)
@@ -223,27 +223,26 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
           }
       }
     
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public String getNickName()
       {
         return (imageModelHolder != null) ? imageModelHolder.getNickName() : null;  
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Creates a new EditableImage as specified by the parameter
      *
      * @param   createOp  the way the image should be created
      * @return            the image
      *
-     **************************************************************************/
-    public static EditableImage create (final AbstractCreateOp createOp)
+     ******************************************************************************************************************/
+    @Nonnull
+    public static EditableImage create (final @Nonnull AbstractCreateOp createOp)
       {
-        checkNotNull(createOp, "createOp");
-
         final EditableImage editableImage = new EditableImage(null);
         final Object image = editableImage.internalExecute(createOp);
         final ImageModel imageModel = Lookup.getDefault().lookup(ImplementationFactoryRegistry.class).createImageModel(image);
@@ -252,40 +251,40 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
         return editableImage;
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Reads a new EditableImage as specified by the parameter
      *
      * @param   readOp    the way the image should be read
      * @return            the image
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     // FIXME: merge with create(AbstractCreateOp), introduce ReadJ2DOp
-    public static EditableImage create (final ReadOp readOp)
+    @Nonnull
+    public static EditableImage create (final @Nonnull ReadOp readOp)
         throws IOException
       {
-        checkNotNull(readOp, "readOp");
         return readOp.execute();
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns true if the image has a raster (EditableImages can be loaded with
      * metadata only).
      *
      * @return  true if the image has a raster
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public final boolean hasRaster()
       {
         return imageModelHolder.get() != null;
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * DO NOT USE THIS. This method is only used by the module implementation.
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public final ImageModel getImageModel()
       {
         return imageModelHolder.get();
@@ -293,7 +292,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
 
     private static boolean availableExtensionsLogged;
     
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns all the file extensions of file formats that can be read into an
      * EditableImage. The <code>ImageIO</code> registry is called to retrieve the
@@ -301,7 +300,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      *
      * @return  an array of all file extensions
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public static Collection<String> getAvailableExtensions()
       {
         boolean logExtensions;
@@ -314,7 +313,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
 
         if (logExtensions)
           {
-            logger.info("getAvailableExtensions()");
+            log.info("getAvailableExtensions()");
           }
 
         Set<String> suffixList = new TreeSet<String>();
@@ -331,146 +330,146 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
                 
                 if (logExtensions)
                   {
-                    logger.info(">>>> reader - format name: " + formatName + " provider: "
-                        + originatingProvider.getPluginClassName() + " supports " + suffixesAsList);
+                    log.info(">>>> reader - format name: {} provider: {} supports {}", 
+                             new Object[] { formatName, originatingProvider.getPluginClassName(), suffixesAsList });
                   }
               }
           }
 
         if (logExtensions)
           {
-            logger.info(">>>> returning " + suffixList);
+            log.info(">>>> returning {}", suffixList);
           }
 
         return suffixList;
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public final <T> T getMetadata (final Class<T> metadataClass)
       {
         return getMetadata(metadataClass, 0);
       }
     
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public final <T> T getMetadata (final Class<T> metadataClass, final int index)
       {
         final List<T> objects = (List<T>)metadataMapByClass.get(metadataClass);
         return objects.get(index);
       }
     
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public final int getMetadataCount (final Class<?> metadataClass)
       {
         final List<?> objects = metadataMapByClass.get(metadataClass);
         return objects.size();
       }
     
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * @deprecated Use getMetadata(EXIF.class) instead.
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     @Deprecated
     public final EXIF getEXIFDirectory()
       {
         return getMetadata(EXIF.class);
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * @deprecated Use getMetadata(MakerNote.class) instead.
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     @Deprecated
     public final MakerNote getMakerNote()
       {
         return getMetadata(MakerNote.class);
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns the width of this image.
      *
      * @return  the width
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final int getWidth()
       {
         return imageModelHolder.get().getWidth();
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns the height of this image.
      *
      * @return  the height
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final int getHeight()
       {
         return imageModelHolder.get().getHeight();
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns the dataType used by this image.
      *
      * @return  the data type
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final DataType getDataType()
       {
         return imageModelHolder.get().getDataType();
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns the number of bands this EditableImage is composed of.
      *
      * @return  the band count
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final int getBandCount()
       {
         return imageModelHolder.get().getBandCount();
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns the number of sample bits for each band this EditableImage is
      * composed of.
      *
      * @return  the number of bits
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final int getBitsPerBand()
       {
         return getDataType().getSize();
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns the number of sample bits for each pixel this EditableImage is
      * composed of.
      *
      * @return  the number of bits
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final int getBitsPerPixel()
       {
         return getBandCount() * getBitsPerBand();
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Executes an operation. The original image is lost and replaced by results.
      *
@@ -478,11 +477,10 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      * @return                the operation (as a convenience in case it carries
      *                        results)
      *
-     ******************************************************************************/
-    public final <T extends Operation> T execute (final T operation)
+     ******************************************************************************************************************/
+    @Nonnull
+    public final <T extends Operation> T execute (final @Nonnull T operation)
       {
-        checkNotNull(operation, "operation");
-
         long time = System.currentTimeMillis();
         Object image = internalExecute(operation);
         imageModelHolder.get().setImage(image);
@@ -491,7 +489,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
         return operation;
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Executes an operation. The original image is untouched as the results are
      * placed in a brand new instance of EditableImage.
@@ -499,13 +497,12 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      * @param  operation  the operation to perform
      * @return            the result
      *
-     ******************************************************************************/
-    public final EditableImage execute2 (final Operation operation)
+     ******************************************************************************************************************/
+    @Nonnull
+    public final EditableImage execute2 (final @Nonnull Operation operation)
       {
         try
           {
-            checkNotNull(operation, "operation");
-
             long time = System.currentTimeMillis();
             Object image = internalExecute(operation);
             Class modelClass = imageModelHolder.get().getClass();
@@ -523,7 +520,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
           }
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns the elapsed time of the latest operation performed. Note that for
      * execute2() this value is available on the result. When an image is
@@ -532,13 +529,13 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      *
      * @return  the latest operation elapsed time
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final long getLatestOperationTime ()
       {
         return latestOperationTime;
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Creates a similar image, that is a blank image with the same characteristics
      * of this image (width, height, data type, color model).
@@ -546,7 +543,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      *
      * @return  a new, similar image
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final EditableImage createSimilarImage()
       {
         final EditableImage imageCopy = imageModelHolder.get().createCopy(false);
@@ -555,11 +552,11 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
         return imageCopy;
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Clones this image.
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final EditableImage cloneImage()
       {
         final EditableImage imageCopy = imageModelHolder.get().createCopy(true);
@@ -568,32 +565,32 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
         return imageCopy;
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     @Override
     public Object clone()
       {
         return cloneImage();
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Creates a resized image. - FIXME should be removed
      * @deprecated
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final EditableImage createResizedImage (final int width, final int height)
       {
         return createResizedImage(width, height, Quality.FASTEST);
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Creates a resized image. - FIXME should be removed
      * @deprecated
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final EditableImage createResizedImage (final int width, final int height, final Quality quality)
       {
         double hScale = (double)width / (double)getWidth();
@@ -604,46 +601,46 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
         return this;
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Sets an attribute of this image. Attributes are user-specific name-value pairs.
      *
      * @param  name   the attribute name
      * @param  value  the attribute value
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final void setAttribute (final String name, final Object value)
       {
         attributeMapByName.put(name, value);
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns an attribute of this image.
      *
      * @param  name   the attribute name
      * @return        the attribute value
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final Object getAttribute (final String name)
       {
         return attributeMapByName.get(name);
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final void setAttributes (final Map<String, Object> attributes)
       {
         attributeMapByName.clear();
         attributeMapByName.putAll(attributes);
       }
     
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final Map<String, Object> getAttributes()
       {
         // FIXME: no such a thing as CopyOnWriteHashMap
@@ -652,24 +649,24 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
         return result;
       }
                 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Removes an attribute from this image.
      *
      * @param  name   the attribute name
      * @return        the attribute value
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final Object removeAttribute (final String name)
       {
         return attributeMapByName.remove(name);
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Removes all the resources bound to this image.
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final void dispose()
       {
         imageModelHolder.get().dispose();
@@ -677,32 +674,32 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
         attributeMapByName.clear();
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns an estimate of the memory allocated by this image.
      * 
      * @return  the memory allocated for this image
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final long getMemorySize()
       {
         final ImageModel imageModel = imageModelHolder.get();
         return (imageModel != null) ? imageModel.getMemorySize() : 0;
       }
     
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns the ColorModel of this image.
      *
      * @return  the color model
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final ColorModel getColorModel() // FIXME: to be removed
       {
         return imageModelHolder.get().getColorModel();
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns the ICC_Profile of this image (null will be returned if the
      * ColorModel is not ICC-based). <i>Note that this is the profile of the image as
@@ -711,7 +708,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      *
      * @return  the color profile
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public final ICC_Profile getICCProfile() // FIXME: to be removed
       {
         final ColorModel colorModel = getColorModel();
@@ -731,10 +728,10 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
         return null;
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
 
     /*
     private final static int COMPRESSED = 1;
@@ -758,10 +755,10 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
         out.flush();
       }*/
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
 
     /*
     public void readExternal (ObjectInput in)
@@ -800,28 +797,17 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
         dis.close();
         latestSerializationSize = bufferSize;
       }*/
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public int getLatestSerializationSize ()
       {
         return latestSerializationSize;
       }
 
-    /***************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
-    @Override
-    public String toString()
-      {
-        return "EditableImage[imageModel: " + imageModelHolder + ", attributeMap: " + attributeMapByName + "]";
-      }
-
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * This is only for testing purposes.
      *
@@ -836,7 +822,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
         return imageModelHolder.get().getInnerProperty(propertyClass);
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Executes an operation and return the raw result (the object to be wrapped by
      * the ImageModel).
@@ -864,22 +850,22 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
           }
         catch (UnsupportedOperationException e)
           {
-            logger.warning("No default implementation of " + operation + " for model: " + image);
+            log.warn("No default implementation of {} for model: {}", operation, image);
             implementation = implementationFactoryRegistry.findImplementation(operation, imageModelHolder.get(), true);
-            logger.info("Found alternate implementation: " + implementation);
+            log.info("Found alternate implementation: {}", implementation);
 
             if (!(operation instanceof AbstractCreateOp))
               {
                 if (implementation.getFactory().canConvertFrom(image.getClass()))
                   {
-                    logger.info(">>>> CONVERT FROM using " + implementation.getFactory());
+                    log.info(">>>> CONVERT FROM using {}", implementation.getFactory());
                     imageModelHolder = ImageModelHolder.wrap(implementation.getFactory().convertFrom(image));
                     image = imageModelHolder.get().getImage();
                   }
 
                 else if (imageModelHolder.get().getFactory().canConvertTo(implementation.getFactory().getModelClass()))
                   {
-                    logger.info(">>>> CONVERT TO " + implementation.getFactory().getModelClass());
+                    log.info(">>>> CONVERT TO {}", implementation.getFactory().getModelClass());
                     image = imageModelHolder.get().getFactory().convertTo(implementation.getFactory().getModelClass());
                   }
 
@@ -888,7 +874,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
                     throw new RuntimeException("Shouldn't get here");
                   }
 
-                logger.info(">>>> NEW IMAGE " + image + " NEW IMAGE MODEL " + imageModelHolder);
+                log.info(">>>> NEW IMAGE {} NEW IMAGE MODEL {}", image, imageModelHolder);
               }
           }
 
@@ -898,19 +884,19 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
           }
         catch (RuntimeException e)
           {
-            logger.severe("Operation failed, offending image: " + image);
+            log.error("Operation failed, offending image: {}", image);
             throw e;
           }
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Don't use it. Only for internal implementation.
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public /*FIXME*/ void loadMetadata (final ImageReader reader, final int imageIndex)
       {
-        logger.fine(String.format("loadMetadata(%s, %d)", reader, imageIndex));
+        log.trace("loadMetadata({}, {})", reader, imageIndex);
 
         try
           {
@@ -926,24 +912,22 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
                   }
                 catch (Exception e1)
                   {
-                    logger.severe("Cannot load EXIF metadata: " + e1);
-                    logger.throwing(CLASS, "loadDirectories()", e1);
+                    log.error("Cannot load EXIF metadata: ", e1);
                   }
               }
             else
               {
-                logger.severe("Cannot load EXIF metadata: " + e);
-                logger.throwing(CLASS, "loadDirectories()", e);
+                log.error("Cannot load EXIF metadata: ", e);
               }
           }
 
         if (iioMetadata == null)
           {
-            logger.fine(">>>> null imagemetadata");
+            log.trace(">>>> null imagemetadata");
             return;
           }
 
-        logger.finer(">>>> metadata class: " + iioMetadata.getClass());
+        log.trace(">>>> metadata class: {}", iioMetadata.getClass());
         MetadataLoader metadataLoader = null;
 
         if (isSubClass(iioMetadata.getClass(), "com.sun.media.imageioimpl.plugins.tiff.TIFFImageMetadata"))
@@ -970,15 +954,15 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
               }
             catch (Exception e)
               {
-                logger.throwing(CLASS, "loadMetadata()", e);
+                log.error("loadMetadata()", e);
               }
           }
       }
     
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     private <T extends Directory> void loadItem (final MetadataLoader metadataLoader, final Class<T> itemClass)
       throws InstantiationException, IllegalAccessException 
       {
@@ -1025,10 +1009,10 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
           }
       }
     
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     private DirectoryAdapter findAdapter (final Object object)
       {
         DirectoryAdapter adapter = null;
@@ -1057,10 +1041,10 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
         return adapter;
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     private static boolean isSubClass (Class<?> aClass, final String ancestorClassName)
       {
         for (; aClass != null; aClass = aClass.getSuperclass())
@@ -1072,17 +1056,5 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
           }
 
         return false;
-      }
-
-    /***************************************************************************
-     *
-     *
-     **************************************************************************/
-    private static void checkNotNull (final Object object, final String name)
-      {
-        if (object == null)
-          {
-            throw new IllegalArgumentException("null " + name);
-          }
       }
   }

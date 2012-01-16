@@ -22,25 +22,25 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
-import java.util.Arrays;
+import javax.annotation.Nonnegative;
+import javax.annotation.Nonnull;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 import java.awt.RenderingHints;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.RenderedImage;
 import java.awt.image.SampleModel;
+import org.openide.util.Lookup;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.ImageModel;
 import it.tidalwave.image.InterpolationType;
 import it.tidalwave.image.op.ImplementationFactory;
-import it.tidalwave.image.op.ImplementationFactoryRegistry;
-import org.openide.util.Lookup;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * An opaque class which encapsulates all the image manipulation logics,
  * and allows the implementation of these logics to be transparently changed
@@ -49,19 +49,18 @@ import org.openide.util.Lookup;
  * @author Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ ***********************************************************************************************************************/
+@NoArgsConstructor /* for serialization */ @Slf4j
 public class ImageModelJ2D extends ImageModel
   {
-    private static final String CLASS = ImageModelJ2D.class.getName();
+    private static final Map<InterpolationType, Object> interpolationMap = new HashMap<InterpolationType, Object>();
     
-    private static final Logger logger = Logger.getLogger(CLASS);
+    private static final Map<InterpolationType, Integer> interpolationMap2 = new HashMap<InterpolationType, Integer>();
     
-    private static Map<InterpolationType, Object> interpolationMap = new HashMap<InterpolationType, Object>();
-    private static Map<InterpolationType, Integer> interpolationMap2 = new HashMap<InterpolationType, Integer>();
-    private static final List<String> ICC_PROFILES_WORKAROUND = Arrays.asList(new String[]
-            {
-                "sRGB IEC61966-2.1", "Nikon sRGB 4.0.0.3000", "Nikon sRGB 4.0.0.3001"
-            });
+//    private static final List<String> ICC_PROFILES_WORKAROUND = Arrays.asList(new String[]
+//      {
+//        "sRGB IEC61966-2.1", "Nikon sRGB 4.0.0.3000", "Nikon sRGB 4.0.0.3001"
+//      });
 
     static
       {
@@ -78,23 +77,14 @@ public class ImageModelJ2D extends ImageModel
         interpolationMap2.put(InterpolationType.BEST, new Integer(AffineTransformOp.TYPE_BILINEAR));
       }
 
-    /*******************************************************************************
-     *
-     * Default constructor for serialization. DO NOT USE
-     *
-     ******************************************************************************/
-    public ImageModelJ2D()
-      {
-      }
-
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Creates a new EditableImage given a BufferedImage
      *
      * @param  bufferedImage  the buffered image
      *
-     ******************************************************************************/
-    public ImageModelJ2D (final Object bufferedImage)
+     ******************************************************************************************************************/
+    public ImageModelJ2D (final @Nonnull Object bufferedImage)
       {
         super(bufferedImage);
         
@@ -104,113 +94,109 @@ public class ImageModelJ2D extends ImageModel
           }
       }
     
-    private BufferedImage getBufferedImage()
-      {
-        return (BufferedImage)model;  
-      }
-
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
+    @Nonnull 
     public ImplementationFactory getFactory()
       {
         return Lookup.getDefault().lookup(ImplementationFactoryJ2D.class);
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
+     * 
      *
-     ******************************************************************************/
-    public static EditableImage createImage (final BufferedImage bufferedImage) // FIXME: try to remove this
+     ******************************************************************************************************************/
+    @Nonnull 
+    public static EditableImage createImage (final @Nonnull BufferedImage bufferedImage) // FIXME: try to remove this
       {
-        assert bufferedImage != null : "bufferedImage is null";
-
         return new EditableImage(new ImageModelJ2D(bufferedImage));
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * Returns the width of this image.
+     * {@inheritDoc}
      *
-     * @return  the width
-     *
-     ******************************************************************************/
+     ******************************************************************************************************************/
+    @Nonnegative
     public int getWidth()
       {
         return getBufferedImage().getWidth();
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * Returns the height of this image.
+     * {@inheritDoc}
      *
-     * @return  the height
-     *
-     ******************************************************************************/
+     ******************************************************************************************************************/
+    @Nonnegative
     public int getHeight()
       {
         return getBufferedImage().getHeight();
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
+    @Nonnull
     public EditableImage.DataType getDataType()
       {
         return EditableImage.DataType.valueOf(getBufferedImage().getRaster().getDataBuffer().getDataType());
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
+    @Nonnegative
     public int getBandCount()
       {
         return getBufferedImage().getRaster().getNumBands();
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * Returns the ColorModel of this image.
+     * {@inheritDoc}
      *
-     * @return  the color model
-     *
-     ******************************************************************************/
+     ******************************************************************************************************************/
+    @Nonnull
     public ColorModel getColorModel()
       {
         return getBufferedImage().getColorModel();
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
-    @Override
+     ******************************************************************************************************************/
+    @Override @Nonnegative
     public long getMemorySize()
       {
         return (getBufferedImage() == null) ? 0 : getBufferedImage().getRaster().getDataBuffer().getSize();
       }
     
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
-    public EditableImage createCopy (boolean copyContents)
+     ******************************************************************************************************************/
+    @Nonnull
+    public EditableImage createCopy (final boolean copyContents)
       {
-        logger.fine("createCopy(" + copyContents + ")");
+        log.trace("createCopy({})", copyContents);
 
         long time = System.currentTimeMillis();
-        logger.warning(">>>> **** WARNING CREATECOPY DISABLED");
+        log.warn(">>>> **** WARNING CREATECOPY DISABLED");
 
         BufferedImage result = getBufferedImage(); // createCopy2(copyContents);
-        logger.fine(">>>> createCopy() completed ok in " + (System.currentTimeMillis() - time) + " msec");
+        log.trace(">>>> createCopy() completed ok in {} msec", (System.currentTimeMillis() - time));
 
         return createImage(result);
       }
@@ -228,12 +214,13 @@ public class ImageModelJ2D extends ImageModel
      return result;
      }*/
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
+     * {@inheritDoc}
      *
-     ******************************************************************************/
-    @SuppressWarnings("unchecked")
-    public <T> T getInnerProperty (Class<T> propertyClass)
+     ******************************************************************************************************************/
+    @SuppressWarnings("unchecked") @Nonnull
+    public <T> T getInnerProperty (final @Nonnull Class<T> propertyClass)
       {
         if (propertyClass.equals(BufferedImage.class))
           {
@@ -253,28 +240,33 @@ public class ImageModelJ2D extends ImageModel
         throw new IllegalArgumentException(propertyClass.getName());
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
+     * {@inheritDoc}
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
+    @Nonnull
     protected RenderedImage toRenderedImageForSerialization()
       {
         return getBufferedImage();    
       }
     
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
+     * {@inheritDoc}
      *
-     ******************************************************************************/
-    protected Object toObjectForDeserialization (final RenderedImage renderedImage)
+     ******************************************************************************************************************/
+    @Nonnull
+    protected Object toObjectForDeserialization (final @Nonnull RenderedImage renderedImage)
       {
         return renderedImage;
       }
     
-    /*******************************************************************************
-     *
-     *
-     ******************************************************************************/
+    @Nonnull 
+    private BufferedImage getBufferedImage()
+      {
+        return (BufferedImage)model;  
+      }
 
     /*
      private void copyDataBuffer (WritableRaster raster, WritableRaster newRaster)
