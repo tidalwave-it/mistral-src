@@ -32,7 +32,7 @@ You can compile Mistral by running:
 
 	mvn -DskipTests=true clean install
 
-You need Maven 2.0.10 or later.
+You need Maven 3.0.3 or later.
 
 
 RUNNING EXAMPLES
@@ -49,12 +49,12 @@ A few scripts for U*ix and Windows systems are provided to quickly run examples:
 DIRECTORY TREE
 ==============
 
-modules/Core                      sources for the core component
-modules/ImageJ-Plugin             sources for the ImageJ plugin
-modules/JAI-Plugin                sources for the JAI plugin
-modules/Metadata                  sources for the Metadata component
-modules/Processor                 sources for the imaging processor
-modules/Renderer                  sources for the renderer
+modules/Core                              sources for the core component
+modules/ImageJ-Plugin                     sources for the ImageJ plugin
+modules/JAI-Plugin                        sources for the JAI plugin
+modules/Metadata                          sources for the Metadata component
+modules/Processor                         sources for the imaging processor
+modules/Renderer                          sources for the renderer
 
 modules/Examples/ViewerExample            example about the renderer
 modules/Examples/HistogramViewerExample   example about histogram computation
