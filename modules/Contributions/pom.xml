@@ -6,13 +6,12 @@
     <parent>
         <groupId>org.imajine</groupId>
         <artifactId>org-imajine-image-modules</artifactId>
-        <version>0.9.13-SNAPSHOT</version>
-        <relativePath>..</relativePath>
+        <version>0.10-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>org-imajine-image-contributions</artifactId>
-    <packaging>jar</packaging>
-    <!-- packaging>nbm</packaging FIXME -->
+    <packaging>nbm</packaging>
     <name>Mistral Contributions</name>
 
     <dependencies>
@@ -28,6 +27,21 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>nbm-maven-plugin</artifactId>
+                <configuration>
+                    <publicPackages>
+                        <publicPackage>it.tidalwave.image.java2d</publicPackage>
+                        <publicPackage>it.tidalwave.image.op</publicPackage>
+                    </publicPackages>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
 </project>
 
 

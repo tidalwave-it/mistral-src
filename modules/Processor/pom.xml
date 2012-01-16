@@ -6,12 +6,12 @@
     <parent>
         <groupId>org.imajine</groupId>
         <artifactId>org-imajine-image-modules</artifactId>
-        <version>0.9.13-SNAPSHOT</version>
-        <relativePath>..</relativePath>
+        <version>0.10-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>org-imajine-image-processor</artifactId>
-    <packaging>jar</packaging>
+    <packaging>nbm</packaging>
     <name>Mistral Processor</name>
 
     <dependencies>

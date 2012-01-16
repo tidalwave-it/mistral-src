@@ -7,8 +7,8 @@
     <parent>
         <groupId>org.imajine</groupId>
         <artifactId>org-imajine-image-examples</artifactId>
-        <version>0.9.13-SNAPSHOT</version>
-        <relativePath>..</relativePath>
+        <version>0.10-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>org-imajine-image-examples-faxmanager</artifactId>
@@ -37,8 +37,8 @@
             <artifactId>swing-layout</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.sun.media</groupId>
-            <artifactId>jai_imageio</artifactId>
+            <groupId>com.kenai.nbpwr</groupId>
+            <artifactId>com-sun-media-imageio</artifactId>
         </dependency>
     </dependencies>
 

@@ -6,43 +6,25 @@
     <parent>
         <groupId>org.imajine</groupId>
         <artifactId>org-imajine-image</artifactId>
-        <version>0.9.13-SNAPSHOT</version>
+        <version>0.10-SNAPSHOT</version>
     </parent>
 
     <groupId>org.imajine</groupId>
     <artifactId>org-imajine-image-modules</artifactId>
     <packaging>pom</packaging>
-    <version>0.9.13-SNAPSHOT</version>
+    <version>0.10-SNAPSHOT</version>
     <name>Mistral (modules)</name>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.google.code.findbugs</groupId>
-                <artifactId>jsr305</artifactId>
-                <!-- WARNING: don't use 1.3.8, it has got a broken pom which brings is tons of useless stuff! -->
-                <version>1.3.7</version>
+                <groupId>it.tidalwave.superpom</groupId>
+                <artifactId>libraries</artifactId>
+                <version>${libraries.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>com.drewnoakes</groupId>
-                <artifactId>metadata-extractor</artifactId>
-                <version>2.4.0-beta-1</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sun.media</groupId>
-                <artifactId>jai_imageio</artifactId>
-                <version>1.1</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.media</groupId>
-                <artifactId>jai_core</artifactId>
-                <version>1.1.3</version>
-            </dependency>
-            <dependency>
-                <groupId>ij</groupId>
-                <artifactId>ij</artifactId>
-                <version>1.37</version>
-            </dependency>
+            
             <dependency>
                 <groupId>org.swinglabs</groupId>
                 <artifactId>swing-layout</artifactId>
@@ -63,31 +45,53 @@
                 <groupId>it.tidalwave.imageio</groupId>
                 <artifactId>it-tidalwave-imageio-raw</artifactId>
                 <version>1.6.0</version>
-                <type>nbm</type>
             </dependency>
 
             <dependency>
                 <groupId>com.kenai.nbpwr</groupId>
                 <artifactId>com-drew-metadata</artifactId>
-                <version>2.4.0beta1-201003102038</version>
-                <type>nbm</type>
+                <version>2.4.0beta1-201201161630</version>
             </dependency>
             <dependency>
                 <groupId>com.kenai.nbpwr</groupId>
                 <artifactId>com-sun-media-imageio</artifactId>
                 <version>1.1-201007271250</version>
-                <type>nbm</type>
             </dependency>
             <dependency>
                 <groupId>com.kenai.nbpwr</groupId>
                 <artifactId>javax-media-jai</artifactId>
                 <version>1.1.3-201007271250</version>
-                <type>nbm</type>
+            </dependency>
+           <dependency>
+                <groupId>com.kenai.nbpwr</groupId>
+                <artifactId>org-slf4j-jdk14</artifactId>
+                <version>1.6.1-201106101300</version>
+            </dependency>
+             
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${tft.lombok.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>com.kenai.nbpwr</groupId>
+            <artifactId>javax-annotation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kenai.nbpwr</groupId>
+            <artifactId>org-slf4j-jdk14</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -107,8 +111,6 @@
         <module>Processor</module>
         <module>Renderer</module>
         <module>JAI-Plugin</module>
-        <module>ImageJ-Plugin</module>
-        <module>NBM</module>
         <module>Examples</module>
     </modules>
 

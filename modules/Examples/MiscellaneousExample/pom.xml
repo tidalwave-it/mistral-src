@@ -7,8 +7,8 @@
     <parent>
         <groupId>org.imajine</groupId>
         <artifactId>org-imajine-image-examples</artifactId>
-        <version>0.9.13-SNAPSHOT</version>
-        <relativePath>..</relativePath>
+        <version>0.10-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>org-imajine-image-examples-miscellaneous</artifactId>
@@ -29,9 +29,13 @@
             <artifactId>org-imajine-image-contributions</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.kenai.nbpwr</groupId>
+            <artifactId>javax-media-jai</artifactId>
+        </dependency>
+<!--        <dependency>
             <groupId>javax.media</groupId>
             <artifactId>jai_core</artifactId>
-        </dependency>
+        </dependency>-->
     </dependencies>
 </project>
 

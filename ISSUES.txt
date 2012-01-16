@@ -1,0 +1,2 @@
+MST-145:	Dropped IJ plugin
+MST-146:	Better NBM integration.

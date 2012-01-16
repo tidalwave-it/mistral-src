@@ -1,4 +1,0 @@
-OpenIDE-Module-Java-Dependencies: Java > 1.5
-OpenIDE-Module-Display-Category: Libraries
-OpenIDE-Module-Name: Libraries - Mistral
-AutoUpdate-Show-In-Client: true

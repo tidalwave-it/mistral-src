@@ -56,12 +56,8 @@ modules/Metadata                  sources for the Metadata component
 modules/Processor                 sources for the imaging processor
 modules/Renderer                  sources for the renderer
 
-Examples/ViewerExample            example about the renderer
-Examples/HistogramViewerExample   example about histogram computation
-Examples/FaxManagerExample        example about a simple editing tool
-Examples/CustomOperationExample   example about custom operations
-Examples/Miscellaneous            miscellaneous examples
-
-lib				  contains third party libraries needed for compiling
-etc				  contains Jalopy settings for formatting sources and other stuff
-
+modules/Examples/ViewerExample            example about the renderer
+modules/Examples/HistogramViewerExample   example about histogram computation
+modules/Examples/FaxManagerExample        example about a simple editing tool
+modules/Examples/CustomOperationExample   example about custom operations
+modules/Examples/Miscellaneous            miscellaneous examples

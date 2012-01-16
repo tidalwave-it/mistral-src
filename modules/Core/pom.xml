@@ -6,12 +6,12 @@
     <parent>
         <groupId>org.imajine</groupId>
         <artifactId>org-imajine-image-modules</artifactId>
-        <version>0.9.13-SNAPSHOT</version>
-        <relativePath>..</relativePath>
+        <version>0.10-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>org-imajine-image-core</artifactId>
-    <packaging>jar</packaging>
+    <packaging>nbm</packaging>
     <name>Mistral Core</name>
 
     <dependencies>
@@ -19,13 +19,18 @@
             <groupId>it.tidalwave.imageio</groupId>
             <artifactId>it.tidalwave.imageio.raw</artifactId>
         </dependency>
+        
         <dependency>
-            <groupId>com.drewnoakes</groupId>
-            <artifactId>metadata-extractor</artifactId>
+            <groupId>com.kenai.nbpwr</groupId>
+            <artifactId>com-drew-metadata</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.sun.media</groupId>
-            <artifactId>jai_imageio</artifactId>
+            <groupId>com.kenai.nbpwr</groupId>
+            <artifactId>com-sun-media-imageio</artifactId>
+        </dependency>        
+        <dependency>
+            <groupId>com.kenai.nbpwr</groupId>
+            <artifactId>org-slf4j-jdk14</artifactId>
         </dependency>
     </dependencies>
 
@@ -72,6 +77,23 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>nbm-maven-plugin</artifactId>
+                <configuration>
+                    <publicPackages>
+                        <publicPackage>it.tidalwave.image</publicPackage>
+                        <publicPackage>it.tidalwave.image.java2d</publicPackage>
+                        <publicPackage>it.tidalwave.image.metadata</publicPackage>
+                        <publicPackage>it.tidalwave.image.metadata.loader</publicPackage>
+                        <publicPackage>it.tidalwave.image.op</publicPackage>
+                        <publicPackage>it.tidalwave.image.render</publicPackage>
+                        <publicPackage>it.tidalwave.image.tools</publicPackage>
+                        <publicPackage>it.tidalwave.image.util</publicPackage>
+                    </publicPackages>
+                </configuration>
             </plugin>
         </plugins>
     </build>
