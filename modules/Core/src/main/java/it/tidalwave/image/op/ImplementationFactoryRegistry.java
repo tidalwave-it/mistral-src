@@ -27,13 +27,12 @@ import java.util.List;
 import java.util.logging.Logger;
 import it.tidalwave.image.ImageModel;
 
-
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class ImplementationFactoryRegistry
   {
     private static final String CLASS = ImplementationFactoryRegistry.class.getName();
@@ -41,19 +40,19 @@ public class ImplementationFactoryRegistry
     private static ImplementationFactoryRegistry instance;
     private List<ImplementationFactory> factoryList = new ArrayList<ImplementationFactory>();
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     private ImplementationFactoryRegistry ()
       {
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Gets the singleton instance.
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public static ImplementationFactoryRegistry getInstance ()
       {
         if (instance == null)
@@ -64,22 +63,22 @@ public class ImplementationFactoryRegistry
         return instance;
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Registers a new ImplementationFactory.
      *
      * @param  factory  the factory to register
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public void registerFactory (ImplementationFactory factory)
       {
         factoryList.add(factory);
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public ImageModel createImageModel (final Object image)
       {
         for (final ImplementationFactory factory : factoryList)
@@ -93,11 +92,11 @@ public class ImplementationFactoryRegistry
         throw new IllegalArgumentException("Cannot create image model from " + image.getClass());
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
-     * Finds the concrete implementation for a given operation. If canConvert is
-     * false, only the first strictly compatible implementations is returned; otherwise
-     * the first implementation that is compatible through a conversion is returned.
+     * Finds the concrete implementation for a given operation. If canConvert is false, only the first strictly 
+     * compatible implementations is returned; otherwise the first implementation that is compatible through a 
+     * conversion is returned.
      *
      * @param operation   operation
      * @param imageModel  the imageModel
@@ -105,7 +104,7 @@ public class ImplementationFactoryRegistry
      * @return            the implementation
      * @throws UnsupportedOperationException  if no implementation has been found
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public OperationImplementation findImplementation (final Operation operation, final ImageModel imageModel, final boolean canConvert)
       {
         logger.finer("findImplementation(" + operation + ", " + imageModel + " , canConvert: " + canConvert + ")");
