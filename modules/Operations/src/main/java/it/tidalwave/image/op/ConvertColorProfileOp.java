@@ -22,50 +22,32 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.op;
 
-import it.tidalwave.image.op.*;
-import it.tidalwave.image.ImageUtils;
+import javax.annotation.Nonnull;
+import javax.annotation.concurrent.Immutable;
 import java.awt.color.ICC_Profile;
+import it.tidalwave.image.ImageUtils;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-
-/*******************************************************************************
+/***********************************************************************************************************************
  *
+ * Converts to a color profile. This means that the new color profile of this image will be the given one, and pixel 
+ * data will be converted.
+ * 
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
+@Immutable @RequiredArgsConstructor @EqualsAndHashCode(callSuper=false)
 public class ConvertColorProfileOp extends Operation
   {
-    private ICC_Profile iccProfile;
-
-    /*******************************************************************************
-     *
-     * Converts to a color profile. This means that the new color profile of this image
-     * will be the given one, and pixel data will be converted.
-     *
-     * @param  colorProfile  the new ColorProfile
-     *
-     ******************************************************************************/
-    public ConvertColorProfileOp (ICC_Profile iccProfile)
+    @Getter @Nonnull
+    private final ICC_Profile iccProfile;
+    
+    @Override @Nonnull
+    public String toString()
       {
-        this.iccProfile = iccProfile;
-      }
-
-    /*******************************************************************************
-     *
-     *
-     ******************************************************************************/
-    public ICC_Profile getICCProfile ()
-      {
-        return iccProfile;
-      }
-
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
-    public String toString ()
-      {
-        return "ConvertColorProfileOp(" + ImageUtils.getICCProfileName(iccProfile) + ")";
+        return String.format("ConvertColorProfileOp(%s)", ImageUtils.getICCProfileName(iccProfile));
       }
   }
