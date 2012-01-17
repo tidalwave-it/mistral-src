@@ -22,61 +22,46 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.op;
 
+import javax.annotation.Nonnull;
 import it.tidalwave.image.EditableImage;
-import java.util.logging.Logger;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
-
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
-public abstract class OperationImplementation<O extends Operation, M extends Object>
+ **********************************************************************************************************************/
+@Slf4j
+public abstract class OperationImplementation<Op extends Operation, Model extends Object>
   {
-    private static final String CLASS = OperationImplementation.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     /** The operation we are implementing. */
-    private O operation;
+    private Op operation;
+    
+    @Getter @Setter
     private ImplementationFactory factory;
 
-    /***************************************************************************
-     *
-     *
-     **************************************************************************/
-    public void setFactory (ImplementationFactory factory)
-      {
-        this.factory = factory;
-      }
-
-    /***************************************************************************
-     *
-     *
-     **************************************************************************/
-    public ImplementationFactory getFactory ()
-      {
-        return factory;
-      }
-
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Executes this operation on the given model.
      *
      * @param  model      the image representation
      *
-     **************************************************************************/
-    public final Object execute (final EditableImage image, Object model)
+     ******************************************************************************************************************/
+    @Nonnull
+    public final Object execute (final @Nonnull EditableImage image, final @Nonnull Object model)
       {
-        long now = System.currentTimeMillis();
-        logger.fine("executing " + operation);
-        model = execute(operation, image, (M)model);
-        logger.finer(">>>> " + operation + " done in " + (System.currentTimeMillis() - now) + " msec");
+        final long now = System.currentTimeMillis();
+        log.trace("executing {}", operation);
+        final Object result = execute(operation, image, (Model)model);
+        log.trace(">>>> {} done in {} msec", operation, (System.currentTimeMillis() - now));
 
-        return model;
+        return result;
       }
     
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Sometimes an implementation can't handle a specific set of parameters.
      * In this case, this method must return false, so this implementation will
@@ -84,13 +69,22 @@ public abstract class OperationImplementation<O extends Operation, M extends Obj
      * This method returns true by default, so subclasses with different
      * behaviours should override it.
      *
-     **************************************************************************/
-    public boolean canHandle (final O operation)
+     ******************************************************************************************************************/
+    public boolean canHandle (final @Nonnull Op operation)
       {
         return true;  
       }
     
-    /***************************************************************************
+    /*******************************************************************************************************************
+     *
+     *
+     ******************************************************************************************************************/
+    protected void bind (final @Nonnull Op operation)
+      {
+        this.operation = operation;
+      }
+    
+    /*******************************************************************************************************************
      *
      * The concrete implementation of this operation should be provided by
      * overriding this method.
@@ -98,15 +92,9 @@ public abstract class OperationImplementation<O extends Operation, M extends Obj
      * @param  operation  the operation to implement
      * @param  model      the image representation
      *
-     **************************************************************************/
-    protected abstract M execute (O operation, EditableImage image, M model);
-    
-    /***************************************************************************
-     *
-     *
-     **************************************************************************/
-    protected void bind (O operation)
-      {
-        this.operation = operation;
-      }
+     ******************************************************************************************************************/
+    @Nonnull
+    protected abstract Model execute (final @Nonnull Op operation, 
+                                      final @Nonnull EditableImage image, 
+                                      final @Nonnull Model model);
   }
