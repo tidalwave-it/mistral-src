@@ -50,7 +50,7 @@ public class ConvertColorProfileJAIOp extends OperationImplementation<ConvertCol
      ******************************************************************************/
     protected PlanarImage execute (ConvertColorProfileOp operation, final EditableImage image, PlanarImage planarImage)
       {
-        ICC_Profile iccProfile = operation.getICCProfile();      
+        ICC_Profile iccProfile = operation.getIccProfile();      
         logger.fine("convertColorProfile(" + ImageUtils.getICCProfileName(iccProfile) + ") - " + planarImage.getSampleModel());
         planarImage = ColorConvertDescriptor.create(planarImage, JAIUtils.getColorModel(planarImage, iccProfile), null); // FIXME: RenderingHints
         JAIUtils.logImage(logger, ">>>>   convertColorProfile() returning", planarImage);

@@ -49,7 +49,7 @@ public class AssignColorProfileJAIOp extends OperationImplementation<AssignColor
      ******************************************************************************/
     protected PlanarImage execute (AssignColorProfileOp operation, final EditableImage image, PlanarImage planarImage)
       {
-        ICC_Profile iccProfile = operation.getICCProfile();
+        ICC_Profile iccProfile = operation.getIccProfile();
         TiledImage tiledImage = new TiledImage(planarImage, true);
 
         int[] bandSelect = new int[planarImage.getSampleModel().getNumBands()];
