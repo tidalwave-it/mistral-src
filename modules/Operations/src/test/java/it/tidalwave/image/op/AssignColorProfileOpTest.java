@@ -42,7 +42,7 @@ public class AssignColorProfileOpTest
         
         ICC_Profile iccProfile = ICC_Profile.getInstance(ColorSpace.CS_sRGB);
         AssignColorProfileOp op = new AssignColorProfileOp(iccProfile);
-        assertEquals(iccProfile, op.getICCProfile());
+        assertEquals(iccProfile, op.getIccProfile());
       }
 
     @Test

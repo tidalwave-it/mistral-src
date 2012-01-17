@@ -22,50 +22,29 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.op;
 
-import it.tidalwave.image.op.*;
+import javax.annotation.Nonnull;
+import javax.annotation.concurrent.Immutable;
 import java.awt.color.ICC_Profile;
 import it.tidalwave.image.ImageUtils;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
+@Immutable @RequiredArgsConstructor @EqualsAndHashCode(callSuper=false)
 public class AssignColorProfileOp extends Operation
   {
-    private ICC_Profile iccProfile;
-
-    /*******************************************************************************
-     *
-     * Assigns a color profile. This means that the new color profile of this image
-     * will be the given one, and no pixel data conversion will be performed.
-     *
-     * @param  iccProfile  the new ColorProfile
-     *
-     ******************************************************************************/
-    public AssignColorProfileOp (ICC_Profile iccProfile)
+    @Getter @Nonnull
+    private final ICC_Profile iccProfile;
+    
+    @Override @Nonnull
+    public String toString()
       {
-        this.iccProfile = iccProfile;
-      }
-
-    /*******************************************************************************
-     *
-     *
-     ******************************************************************************/
-    public ICC_Profile getICCProfile ()
-      {
-        return iccProfile;
-      }
-
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
-    public String toString ()
-      {
-        return "AssignColorProfileOp(" + ImageUtils.getICCProfileName(iccProfile) + ")";
+        return String.format("AssignColorProfileOp(%s)", ImageUtils.getICCProfileName(iccProfile));
       }
   }

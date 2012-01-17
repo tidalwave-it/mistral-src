@@ -23,6 +23,8 @@
 package it.tidalwave.image.java2d;
 
 import javax.annotation.Nonnull;
+import javax.annotation.concurrent.Immutable;
+import java.util.Collections;
 import java.awt.RenderingHints;
 import java.awt.color.ColorSpace;
 import java.awt.color.ICC_ColorSpace;
@@ -46,31 +48,25 @@ import lombok.extern.slf4j.Slf4j;
  * @version $Id$
  *
  **********************************************************************************************************************/
-@Slf4j
+@Immutable @Slf4j
 public class ConvertColorProfileJ2DOp extends OperationImplementation<ConvertColorProfileOp, BufferedImage>
   {
-    /*******************************************************************************************************************
-     *
-     * {@inheritDoc}
-     *
-     ******************************************************************************************************************/
-
-    // FIXME: pass another parameter to specify the quality of the operation
     @Nonnull
     protected BufferedImage execute (final @Nonnull ConvertColorProfileOp operation,
                                      final @Nonnull EditableImage image, 
                                      final @Nonnull BufferedImage bufferedImage)
       {
-        final ICC_Profile colorProfile = operation.getICCProfile();
-        log.debug("convertColorProfile({})", ImageUtils.getICCProfileName(colorProfile));
+        final ICC_Profile targetProfile = operation.getIccProfile();
+        log.debug("convertColorProfile({})", ImageUtils.getICCProfileName(targetProfile));
         Java2DUtils.logImage(log, ">>>> source bufferedImage", bufferedImage);
 
         final ICC_Profile sourceProfile = ImageUtils.getICCProfile(bufferedImage);
         final String sourceProfileName = ImageUtils.getICCProfileName(sourceProfile);
-        log.debug(">>>> Converting profile from {}  to {}", sourceProfileName, ImageUtils.getICCProfileName(colorProfile));
+        log.debug(">>>> Converting profile from {}  to {}", sourceProfileName, ImageUtils.getICCProfileName(targetProfile));
 
-        final RenderingHints hints = null; // FIXME
-        final ColorConvertOp ccOp = new ColorConvertOp(new ICC_Profile[] { colorProfile }, hints);
+        final RenderingHints hints = new RenderingHints(Collections.<RenderingHints.Key, Object>emptyMap());
+        hints.put(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
+        final ColorConvertOp ccOp = new ColorConvertOp(new ICC_Profile[] { targetProfile }, hints);
 
         // Strategy 1: it would be the best, but reduces depth to 8 bit and converts to PixelInterleavedRaster, which is SLOW!
         //        image = ccOp.filter(image, null); // - produce PixelInt BYTE
@@ -79,7 +75,7 @@ public class ConvertColorProfileJ2DOp extends OperationImplementation<ConvertCol
         log.warn(">>>> **** WARNING: convertColorProfile() is reducing depth to 8 bit!");
 
         final WritableRaster raster = Raster.createPackedRaster(DataBuffer.TYPE_INT, bufferedImage.getWidth(), bufferedImage.getHeight(), 3, 8, null);
-        final ColorSpace colorSpace = new ICC_ColorSpace(colorProfile);
+        final ColorSpace colorSpace = new ICC_ColorSpace(targetProfile);
         final ColorModel colorModel = new DirectColorModel(colorSpace, 24, 0x00ff0000, 0x0000ff00, 0x000000ff, 0, false, DataBuffer.TYPE_INT);
 
         final BufferedImage image2 = new BufferedImage(colorModel, raster, false, Java2DUtils.getProperties(bufferedImage));

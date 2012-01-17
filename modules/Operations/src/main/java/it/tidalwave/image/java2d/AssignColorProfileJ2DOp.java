@@ -22,7 +22,8 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
-import java.util.logging.Logger;
+import javax.annotation.Nonnull;
+import javax.annotation.concurrent.Immutable;
 import java.awt.color.ColorSpace;
 import java.awt.color.ICC_ColorSpace;
 import java.awt.color.ICC_Profile;
@@ -33,37 +34,32 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.ImageUtils;
 import it.tidalwave.image.op.AssignColorProfileOp;
 import it.tidalwave.image.op.OperationImplementation;
+import lombok.extern.slf4j.Slf4j;
 
-
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
+@Immutable @Slf4j
 public class AssignColorProfileJ2DOp extends OperationImplementation<AssignColorProfileOp, BufferedImage>
   {
-    private static final String CLASS = AssignColorProfileJ2DOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
-    protected BufferedImage execute (AssignColorProfileOp operation, final EditableImage image, BufferedImage bufferedImage)
+    @Nonnull
+    protected BufferedImage execute (final @Nonnull AssignColorProfileOp operation,
+                                     final @Nonnull EditableImage image,
+                                     final @Nonnull BufferedImage bufferedImage)
       {
-        ICC_Profile colorProfile = operation.getICCProfile();
-        logger.fine("assignColorProfile(" + ImageUtils.getICCProfileName(colorProfile) + ")");
-        Java2DUtils.logImage(logger, ">>>> source bufferedImage", bufferedImage);
+        final ICC_Profile targetProfile = operation.getIccProfile();
+        log.trace("assignColorProfile({})", ImageUtils.getICCProfileName(targetProfile));
+        Java2DUtils.logImage(log, ">>>> source bufferedImage", bufferedImage);
 
-        ColorSpace colorSpace = new ICC_ColorSpace(colorProfile);
-        ColorModel colorModel = new ComponentColorModel(colorSpace, false, false, ColorModel.OPAQUE,
-                bufferedImage.getRaster().getDataBuffer().getDataType());
-        bufferedImage = new BufferedImage(colorModel, bufferedImage.getRaster(), false,
-                Java2DUtils.getProperties(bufferedImage));
-        Java2DUtils.logImage(logger, ">>>> assignColorProfile() returning ", bufferedImage);
+        final ColorSpace colorSpace = new ICC_ColorSpace(targetProfile);
+        final ColorModel colorModel = new ComponentColorModel(colorSpace, false, false, ColorModel.OPAQUE,
+                                                              bufferedImage.getRaster().getDataBuffer().getDataType());
+        final BufferedImage result = new BufferedImage(colorModel, bufferedImage.getRaster(), false, Java2DUtils.getProperties(bufferedImage));
+        Java2DUtils.logImage(log, ">>>> assignColorProfile() returning ", bufferedImage);
 
-        return bufferedImage;
+        return result;
       }
   }
