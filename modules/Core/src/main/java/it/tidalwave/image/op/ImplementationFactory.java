@@ -85,6 +85,7 @@ public abstract class ImplementationFactory
             try
               {
                 final OperationImplementation<Operation, Object> implementation = implementationClass.newInstance();
+                // FIXME: drop these setters and pass to the constructor, so the object is truly immutable
                 implementation.setFactory(this);
                 implementation.bind(operation);
 
