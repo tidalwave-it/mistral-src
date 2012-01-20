@@ -23,13 +23,17 @@
 package it.tidalwave.image.jai;
 
 import javax.annotation.Nonnull;
+import java.util.Collections;
 import java.awt.color.ICC_Profile;
+import java.awt.RenderingHints;
 import javax.media.jai.PlanarImage;
 import javax.media.jai.operator.ColorConvertDescriptor;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.ConvertColorProfileOp;
 import it.tidalwave.image.op.OperationImplementation;
 import lombok.extern.slf4j.Slf4j;
+import static java.awt.RenderingHints.*;
+import static it.tidalwave.image.op.ConvertColorProfileOp.RenderingIntent.*;
 
 /***********************************************************************************************************************
  *
@@ -47,8 +51,15 @@ public class ConvertColorProfileJAIOp extends OperationImplementation<ConvertCol
       {
         log.info("execute({}) - {} ", operation, planarImage.getSampleModel());
         
+        if (operation.getRenderingIntent() != PERCEPTUAL)
+          {
+            throw new IllegalArgumentException("Can only use PERCEPTUAL intent, was " + operation.getRenderingIntent());  
+          }
+        
         final ICC_Profile iccProfile = operation.getIccProfile();      
-        final PlanarImage result = ColorConvertDescriptor.create(planarImage, JAIUtils.getColorModel(planarImage, iccProfile), null); // FIXME: RenderingHints
+        final RenderingHints hints = new RenderingHints(Collections.<RenderingHints.Key, Object>emptyMap());
+        hints.put(KEY_COLOR_RENDERING, VALUE_COLOR_RENDER_QUALITY);
+        final PlanarImage result = ColorConvertDescriptor.create(planarImage, JAIUtils.getColorModel(planarImage, iccProfile), hints); 
         JAIUtils.logImage(log, ">>>> returning", planarImage);
         
         return result;

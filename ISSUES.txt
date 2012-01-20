@@ -24,3 +24,5 @@
 MST-145:	Dropped IJ plugin
 MST-146:	Better NBM integration.
 MST-147:	There are singletons around.
+MST-148:	Hints for ConvertColorProfile operations.
+MST-149:	Added RenderingIntent.

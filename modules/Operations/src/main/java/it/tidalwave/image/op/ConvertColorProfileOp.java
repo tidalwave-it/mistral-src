@@ -42,12 +42,28 @@ import lombok.RequiredArgsConstructor;
 @Immutable @RequiredArgsConstructor @EqualsAndHashCode(callSuper=false)
 public class ConvertColorProfileOp extends Operation
   {
+    public static enum RenderingIntent
+      {  
+        ABSOLUTE,
+        RELATIVE_COLORIMETRIC,
+        PERCEPTUAL,
+        SATURATION
+      }
+    
     @Getter @Nonnull
     private final ICC_Profile iccProfile;
+    
+    @Getter @Nonnull
+    private final RenderingIntent renderingIntent;
+    
+    public ConvertColorProfileOp (final @Nonnull ICC_Profile iccProfile)
+      {
+        this(iccProfile, RenderingIntent.PERCEPTUAL);
+      }
     
     @Override @Nonnull
     public String toString()
       {
-        return String.format("ConvertColorProfileOp(%s)", ImageUtils.getICCProfileName(iccProfile));
+        return String.format("ConvertColorProfileOp(%s, %s)", ImageUtils.getICCProfileName(iccProfile), renderingIntent);
       }
   }
