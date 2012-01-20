@@ -22,39 +22,35 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.jai;
 
-import java.util.logging.Logger;
+import javax.annotation.Nonnull;
 import java.awt.color.ICC_Profile;
 import javax.media.jai.PlanarImage;
 import javax.media.jai.operator.ColorConvertDescriptor;
 import it.tidalwave.image.EditableImage;
-import it.tidalwave.image.ImageUtils;
 import it.tidalwave.image.op.ConvertColorProfileOp;
 import it.tidalwave.image.op.OperationImplementation;
+import lombok.extern.slf4j.Slf4j;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
+@Slf4j
 public class ConvertColorProfileJAIOp extends OperationImplementation<ConvertColorProfileOp, PlanarImage>
   {
-    private static final String CLASS = ConvertColorProfileJAIOp.class.getName();
-    
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
-    protected PlanarImage execute (ConvertColorProfileOp operation, final EditableImage image, PlanarImage planarImage)
+    @Nonnull
+    protected PlanarImage execute (final @Nonnull ConvertColorProfileOp operation, 
+                                   final @Nonnull EditableImage image,
+                                   final @Nonnull PlanarImage planarImage)
       {
-        ICC_Profile iccProfile = operation.getIccProfile();      
-        logger.fine("convertColorProfile(" + ImageUtils.getICCProfileName(iccProfile) + ") - " + planarImage.getSampleModel());
-        planarImage = ColorConvertDescriptor.create(planarImage, JAIUtils.getColorModel(planarImage, iccProfile), null); // FIXME: RenderingHints
-        JAIUtils.logImage(logger, ">>>>   convertColorProfile() returning", planarImage);
+        log.info("execute({}) - {} ", operation, planarImage.getSampleModel());
         
-        return planarImage;
+        final ICC_Profile iccProfile = operation.getIccProfile();      
+        final PlanarImage result = ColorConvertDescriptor.create(planarImage, JAIUtils.getColorModel(planarImage, iccProfile), null); // FIXME: RenderingHints
+        JAIUtils.logImage(log, ">>>> returning", planarImage);
+        
+        return result;
       }
   }

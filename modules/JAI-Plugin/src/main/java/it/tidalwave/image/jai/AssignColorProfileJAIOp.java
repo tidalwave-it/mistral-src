@@ -22,43 +22,42 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.jai;
 
-import java.util.logging.Logger;
+import javax.annotation.Nonnull;
 import java.awt.color.ICC_Profile;
 import javax.media.jai.PlanarImage;
 import javax.media.jai.TiledImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.AssignColorProfileOp;
+import lombok.extern.slf4j.Slf4j;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
+@Slf4j
 public class AssignColorProfileJAIOp extends OperationImplementation<AssignColorProfileOp, PlanarImage>
   {
-    private static final String CLASS = AssignColorProfileJAIOp.class.getName();
-    
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
-    protected PlanarImage execute (AssignColorProfileOp operation, final EditableImage image, PlanarImage planarImage)
+    protected PlanarImage execute (final @Nonnull AssignColorProfileOp operation,   
+                                   final @Nonnull EditableImage image, 
+                                   final @Nonnull PlanarImage planarImage)
       {
-        ICC_Profile iccProfile = operation.getIccProfile();
-        TiledImage tiledImage = new TiledImage(planarImage, true);
-
-        int[] bandSelect = new int[planarImage.getSampleModel().getNumBands()];
+        log.info("execute({}) - {} ", operation, planarImage.getSampleModel());
+        
+        final ICC_Profile iccProfile = operation.getIccProfile();
+        final TiledImage tiledImage = new TiledImage(planarImage, true);
+        final int[] bandSelect = new int[planarImage.getSampleModel().getNumBands()];
 
         for (int i = 0; i < bandSelect.length; i++)
           {
             bandSelect[i] = i;
           }
+        
+        final TiledImage result = tiledImage.getSubImage(bandSelect, JAIUtils.getColorModel(planarImage, iccProfile));
+        JAIUtils.logImage(log, ">>>> returning", planarImage);
 
-        return tiledImage.getSubImage(bandSelect, JAIUtils.getColorModel(planarImage, iccProfile));
+        return result;
       }
   }
