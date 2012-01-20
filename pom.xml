@@ -13,18 +13,41 @@
     <artifactId>org-imajine-image</artifactId>
     <packaging>pom</packaging>
     <version>0.10-SNAPSHOT</version>
-
     <name>Mistral (master)</name>
-    <url>http://mistral.tidalwave.it</url>
     <description>Mistral - open source imaging engine</description>
+
+    <url>http://mistral.imajine.org</url>
     <inceptionYear>2003</inceptionYear>
 
-    <!-- Repeated because of http://jira.codehaus.org/browse/SCM-442 -->
-    <scm>
-        <connection>scm:hg:${scm.repo.readonly.url}</connection>
-        <developerConnection>scm:hg:${scm.repo.effective.url}</developerConnection>
-        <url>${scm.repo.browse.url}</url>
-    </scm>
+    <properties>
+        <scm.repo.url>ssh://hg@bitbucket.org/tidalwave/mistral-src</scm.repo.url>
+        <scm.repo.readonly.url>https://bitbucket.org/tidalwave/mistral-src</scm.repo.readonly.url>
+        <scm.repo.browse.url>https://bitbucket.org/tidalwave/mistral-src/src</scm.repo.browse.url>
+        <tidalwave.ci.view>Mistral</tidalwave.ci.view>
+        <tidalwave.issues>MST</tidalwave.issues>
+        
+        <libraries.version>1.1.5</libraries.version>
+        <netbeans.version>RELEASE70</netbeans.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>releases-oss.sonatype.org</id>
+            <name>Sonatype Releases Repository</name>
+            <url>http://oss.sonatype.org/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>snapshots-oss.sonatype.org</id>
+            <name>Sonatype Snapshots Repository</name>
+            <url>http://oss.sonatype.org/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <mailingLists>
         <mailingList>
@@ -48,51 +71,6 @@
             <archive>http://kenai.com/projects/mistral/lists/users/archive</archive>
         </mailingList>
     </mailingLists>
-
-    <properties>
-        <scm.repo.url>ssh://hg@bitbucket.org/tidalwave/mistral-src</scm.repo.url>
-        <scm.repo.readonly.url>https://bitbucket.org/tidalwave/mistral-src</scm.repo.readonly.url>
-        <scm.repo.browse.url>https://bitbucket.org/tidalwave/mistral-src/src</scm.repo.browse.url>
-        
-        <libraries.version>1.1.5</libraries.version>
-        <netbeans.version>RELEASE70</netbeans.version>
-    </properties>
-
-    <repositories>
-        <repository>
-            <id>releases-oss.sonatype.org</id>
-            <name>Sonatype Releases Repository</name>
-            <url>http://oss.sonatype.org/content/repositories/releases/</url>
-        </repository>
-        <repository>
-            <id>snapshots-oss.sonatype.org</id>
-            <name>Sonatype Snapshots Repository</name>
-            <url>http://oss.sonatype.org/content/repositories/snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-
-        <!-- This provides the required versions of JAI-ImageIO, JAI and IJ -->
-        <!-- repository>
-            <id>maven2-aux-repository.tidalwave.kenai.com</id>
-            <name>Tidalwave Maven Aux Repository</name>
-            <url>https://kenai.com/svn/tidalwave~maven-repo/aux/2</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository -->
-    </repositories>
-
-    <distributionManagement>
-        <site>
-            <id>website-mistral.kenai.com</id>
-            <url>dav:https://kenai.com/website/mistral/site/${project.version}</url>
-        </site>
-    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
@@ -135,16 +113,15 @@
         </dependencies>
     </dependencyManagement>
 
+    <!-- Repeated because of http://jira.codehaus.org/browse/SCM-442 -->
+    <scm>
+        <connection>scm:hg:${scm.repo.readonly.url}</connection>
+        <developerConnection>scm:hg:${scm.repo.effective.url}</developerConnection>
+        <url>${scm.repo.browse.url}</url>
+    </scm>
+
     <build>
         <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
-                </configuration>
-            </plugin>
-
             <!-- Needed for setting that inherited = false -->
             <plugin>
                 <groupId>com.mycila.maven-license-plugin</groupId>
