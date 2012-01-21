@@ -28,6 +28,8 @@
         
         <libraries.version>1.1.5</libraries.version>
         <netbeans.version>RELEASE70</netbeans.version>
+
+        <netbeans.hint.license>Tidalwave-ASF</netbeans.hint.license>
     </properties>
 
     <repositories>
