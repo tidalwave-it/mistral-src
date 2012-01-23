@@ -26,6 +26,7 @@
         <tidalwave.ci.view>Mistral</tidalwave.ci.view>
         <tidalwave.issues>MST</tidalwave.issues>
         
+        <jrawio.version>1.6.2-SNAPSHOT</jrawio.version>
         <libraries.version>1.1.5</libraries.version>
         <netbeans.version>RELEASE71</netbeans.version>
 

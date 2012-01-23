@@ -16,8 +16,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>it.tidalwave.imageio</groupId>
-            <artifactId>it.tidalwave.imageio.raw</artifactId>
+            <groupId>org.rawdarkroom</groupId>
+            <artifactId>codec</artifactId>
         </dependency>
         
         <dependency>

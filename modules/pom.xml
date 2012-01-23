@@ -31,8 +31,15 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            
             <dependency>
+                <groupId>org.rawdarkroom</groupId>
+                <artifactId>jrawio</artifactId>
+                <version>${jrawio.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            
+            <dependency> <!-- FIXME: drop it -->
                 <groupId>org.swinglabs</groupId>
                 <artifactId>swing-layout</artifactId>
                 <version>1.0.3</version>
@@ -41,17 +48,6 @@
                 <groupId>it.tidalwave.thesefoolishthings</groupId>
                 <artifactId>it.tidalwave.singlelinelogformatter</artifactId>
                 <version>1.0.6</version>
-            </dependency>
-            <dependency>
-                <groupId>it.tidalwave.imageio</groupId>
-                <artifactId>it.tidalwave.imageio.raw</artifactId>
-                <version>1.6.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>it.tidalwave.imageio</groupId>
-                <artifactId>it-tidalwave-imageio-raw</artifactId>
-                <version>1.6.0</version>
             </dependency>
 
             <dependency>
