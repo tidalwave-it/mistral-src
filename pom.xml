@@ -12,7 +12,7 @@
     <groupId>org.imajine</groupId>
     <artifactId>org-imajine-image</artifactId>
     <packaging>pom</packaging>
-    <version>0.10-SNAPSHOT</version>
+    <version>0.11-ALPHA-1-SNAPSHOT</version>
     <name>Mistral (master)</name>
     <description>Mistral - open source imaging engine</description>
 
@@ -26,7 +26,7 @@
         <tidalwave.ci.view>Mistral</tidalwave.ci.view>
         <tidalwave.issues>MST</tidalwave.issues>
         
-        <jrawio.version>1.6.2-SNAPSHOT</jrawio.version>
+        <jrawio.version>1.7-ALPHA-1</jrawio.version>
         <libraries.version>1.1.5</libraries.version>
         <netbeans.version>RELEASE71</netbeans.version>
 
@@ -80,38 +80,38 @@
             <dependency>
                 <groupId>org.imajine</groupId>
                 <artifactId>org-imajine-image-core</artifactId>
-                <version>0.10-SNAPSHOT</version>
+                <version>0.11-ALPHA-1-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.imajine</groupId>
                 <artifactId>org-imajine-image-core</artifactId>
-                <version>0.10-SNAPSHOT</version>
+                <version>0.11-ALPHA-1-SNAPSHOT</version>
                 <classifier>tests</classifier>
             </dependency>
             <dependency>
                 <groupId>org.imajine</groupId>
                 <artifactId>org-imajine-image-operations</artifactId>
-                <version>0.10-SNAPSHOT</version>
+                <version>0.11-ALPHA-1-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.imajine</groupId>
                 <artifactId>org-imajine-image-contributions</artifactId>
-                <version>0.10-SNAPSHOT</version>
+                <version>0.11-ALPHA-1-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.imajine</groupId>
                 <artifactId>org-imajine-image-plugin-jai</artifactId>
-                <version>0.10-SNAPSHOT</version>
+                <version>0.11-ALPHA-1-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.imajine</groupId>
                 <artifactId>org-imajine-image-processor</artifactId>
-                <version>0.10-SNAPSHOT</version>
+                <version>0.11-ALPHA-1-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.imajine</groupId>
                 <artifactId>org-imajine-image-renderer</artifactId>
-                <version>0.10-SNAPSHOT</version>
+                <version>0.11-ALPHA-1-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
