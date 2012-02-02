@@ -22,7 +22,6 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.jai;
 
-import java.util.logging.Logger;
 import java.io.File;
 import java.awt.image.renderable.ParameterBlock;
 import javax.media.jai.PlanarImage;

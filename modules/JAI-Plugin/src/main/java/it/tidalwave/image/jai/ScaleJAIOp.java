@@ -22,7 +22,6 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.jai;
 
-import java.util.logging.Logger;
 import java.awt.RenderingHints;
 import javax.media.jai.PlanarImage;
 import javax.media.jai.Interpolation;

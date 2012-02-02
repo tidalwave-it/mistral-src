@@ -22,7 +22,6 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.jai;
 
-import java.util.logging.Logger;
 import java.awt.GraphicsConfiguration;
 import java.awt.RenderingHints;
 import java.awt.color.ColorSpace;

@@ -22,14 +22,10 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.jai;
 
-import java.util.logging.Logger;
-import java.awt.RenderingHints;
 import java.awt.image.renderable.ParameterBlock;
 import javax.media.jai.PlanarImage;
 import javax.media.jai.JAI;
-import javax.media.jai.operator.DFTDataNature;
 import javax.media.jai.operator.DFTDescriptor;
-import javax.media.jai.operator.DFTScalingType;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.DFTOp;
