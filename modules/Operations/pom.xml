@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.imajine</groupId>
+        <groupId>org.imajine.image</groupId>
         <artifactId>org-imajine-image-modules</artifactId>
-        <version>0.11-ALPHA-2-SNAPSHOT</version>
+        <version>1.0-ALPHA-1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -16,12 +16,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.imajine</groupId>
+            <groupId>org.imajine.image</groupId>
             <artifactId>org-imajine-image-core</artifactId>
         </dependency>
         
         <dependency>
-            <groupId>org.imajine</groupId>
+            <groupId>org.imajine.image</groupId>
             <artifactId>org-imajine-image-core</artifactId>
             <classifier>tests</classifier>
             <scope>test</scope>
