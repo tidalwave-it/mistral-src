@@ -34,30 +34,24 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.DFTOp;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Emmanuele Sordini
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class DFTJAIOp extends OperationImplementation<DFTOp, PlanarImage>
   {
     private static final String CLASS = DFTJAIOp.class.getName();
-    
     private static final Logger logger = Logger.getLogger(CLASS);
     
-    private DFTScalingType scalingType;
-    
-    private DFTDataNature dataNature;
-    
-    private RenderingHints renderingHints;
+//    private DFTScalingType scalingType;
+//    
+//    private DFTDataNature dataNature;
+//    
+//    private RenderingHints renderingHints;
             
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
     protected PlanarImage execute (DFTOp operation, final EditableImage image, PlanarImage planarImage)
       {
 //        planarImage = DFTDescriptor.create(planarImage, scalingType, dataNature, renderingHints);

@@ -30,24 +30,18 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.DivideByConstOp;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Emmanuele Sordini
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class DivideByConstJAIOp extends OperationImplementation<DivideByConstOp, PlanarImage>
   {
     private static final String CLASS = DivideByConstJAIOp.class.getName();
-    
     private static final Logger logger = Logger.getLogger(CLASS);
             
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
     protected PlanarImage execute (DivideByConstOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();

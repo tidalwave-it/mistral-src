@@ -32,23 +32,18 @@ import it.tidalwave.image.render.PreviewSettings;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.PaintOp;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
+ * @author  Emmanuele Sordini
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class PaintJAIOp extends OperationImplementation<PaintOp, PlanarImage>
   {
     private static final String CLASS = PaintJAIOp.class.getName();
-    
     private static final Logger logger = Logger.getLogger(CLASS);
             
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
     protected PlanarImage execute (PaintOp operation, final EditableImage image, PlanarImage planarImage)
       {
         int x = operation.getX();

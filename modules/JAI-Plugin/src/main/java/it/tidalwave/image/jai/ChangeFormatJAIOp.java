@@ -32,24 +32,18 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.ChangeFormatOp;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Emmanuele Sordini
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class ChangeFormatJAIOp extends OperationImplementation<ChangeFormatOp, PlanarImage>
   {
     private static final String CLASS = ChangeFormatJAIOp.class.getName();
-    
     private static final Logger logger = Logger.getLogger(CLASS);
             
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
     protected PlanarImage execute (final ChangeFormatOp operation, final EditableImage image, PlanarImage planarImage)
       {
         logger.info("execute(" + operation + ", " + image + ", " + planarImage);

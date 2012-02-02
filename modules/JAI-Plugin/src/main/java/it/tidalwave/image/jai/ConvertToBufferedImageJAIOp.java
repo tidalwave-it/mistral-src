@@ -28,23 +28,18 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.ConvertToBufferedImageOp;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
+ * @author  Emmanuele Sordini
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class ConvertToBufferedImageJAIOp extends OperationImplementation<ConvertToBufferedImageOp, PlanarImage>
   {
     private static final String CLASS = ConvertToBufferedImageJAIOp.class.getName();
-    
     private static final Logger logger = Logger.getLogger(CLASS);
             
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
     protected PlanarImage execute (final ConvertToBufferedImageOp operation, final EditableImage image, final PlanarImage planarImage)
       {
         operation.setBufferedImage(planarImage.getAsBufferedImage());

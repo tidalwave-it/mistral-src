@@ -35,24 +35,18 @@ import it.tidalwave.image.Quality;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.SizeOp;
 
-
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
+ * @author  Emmanuele Sordini
  * @author  Luca Forni
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class SizeJAIOp extends OperationImplementation<SizeOp, PlanarImage>
   {
     private static final String CLASS = ScaleJAIOp.class.getName();
     private static final Logger logger = Logger.getLogger(CLASS);
 
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
     protected PlanarImage execute (final SizeOp operation, final EditableImage image, final PlanarImage planarImage)
       {
         final RenderingHints hints = null; // FIXME

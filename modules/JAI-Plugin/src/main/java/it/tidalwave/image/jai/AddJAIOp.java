@@ -30,24 +30,18 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.AddOp;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Emmanuele Sordini
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class AddJAIOp extends OperationImplementation<AddOp, PlanarImage>
   {
     private static final String CLASS = AddJAIOp.class.getName();
-    
     private static final Logger logger = Logger.getLogger(CLASS);
             
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
     protected PlanarImage execute (final AddOp operation, final EditableImage image, final PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();

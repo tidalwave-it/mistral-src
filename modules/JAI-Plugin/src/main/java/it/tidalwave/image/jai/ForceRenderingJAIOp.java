@@ -28,24 +28,18 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.ForceRenderingOp;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Emmanuele Sordini
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class ForceRenderingJAIOp extends OperationImplementation<ForceRenderingOp, PlanarImage>
   {
     private static final String CLASS = ForceRenderingJAIOp.class.getName();
-    
     private static final Logger logger = Logger.getLogger(CLASS);
             
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
     protected PlanarImage execute (ForceRenderingOp operation, final EditableImage image, PlanarImage planarImage)
       {
         planarImage.getData();

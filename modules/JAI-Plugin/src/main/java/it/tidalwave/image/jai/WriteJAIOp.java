@@ -31,23 +31,19 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.WriteOp;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
+ * @author  Emmanuele Sordini
+ * @author  Luca Forni
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class WriteJAIOp extends OperationImplementation<WriteOp, PlanarImage>
   {
     private static final String CLASS = WriteJAIOp.class.getName();
     
     private static final Logger logger = Logger.getLogger(CLASS);
             
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
     protected PlanarImage execute (WriteOp operation, final EditableImage image, PlanarImage planarImage)
       {
         Object output = operation.getOutput();

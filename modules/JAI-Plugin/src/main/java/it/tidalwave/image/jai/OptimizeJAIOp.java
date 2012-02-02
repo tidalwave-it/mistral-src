@@ -40,23 +40,17 @@ import it.tidalwave.image.java2d.Java2DUtils;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.OptimizeOp;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class OptimizeJAIOp extends OperationImplementation<OptimizeOp, PlanarImage>
   {
     private static final String CLASS = OptimizeJAIOp.class.getName();
-    
     private static final Logger logger = Logger.getLogger(CLASS);
             
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
     protected PlanarImage execute (OptimizeOp operation, final EditableImage image, PlanarImage planarImage)
       {
         Java2DUtils.logImage(logger, ">>>> source planarImage", planarImage);

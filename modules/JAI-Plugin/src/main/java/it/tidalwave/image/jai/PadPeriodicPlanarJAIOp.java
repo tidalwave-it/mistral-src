@@ -32,24 +32,18 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.PadPeriodicPlanarOp;
 
-
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Emmanuele Sordini
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class PadPeriodicPlanarJAIOp extends OperationImplementation<PadPeriodicPlanarOp, PlanarImage>
   {
     private static final String CLASS = PadPeriodicPlanarJAIOp.class.getName();
     private static final Logger logger = Logger.getLogger(CLASS);
 
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
     protected PlanarImage execute (PadPeriodicPlanarOp operation, final EditableImage image, PlanarImage planarImage)
       {
         /*

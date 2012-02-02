@@ -33,16 +33,16 @@ import javax.media.jai.RenderedOp;
 import javax.media.jai.operator.HistogramDescriptor;
 import it.tidalwave.image.render.PreviewSettings;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
+ * @author  Emmanuele Sordini
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class HistogramJAI extends it.tidalwave.image.Histogram
   {
     private final static String CLASS = HistogramJAI.class.getName();
-    
     private final static Logger logger = Logger.getLogger(CLASS);
 
     private RenderedImage renderedImage;

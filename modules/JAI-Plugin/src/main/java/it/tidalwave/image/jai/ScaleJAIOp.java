@@ -31,23 +31,18 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.ScaleOp;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
+ * @author  Emmanuele Sordini
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class ScaleJAIOp extends OperationImplementation<ScaleOp, PlanarImage>
   {
-    private static final String CLASS = ScaleJAIOp.class.getName();
-    
+    private static final String CLASS = ScaleJAIOp.class.getName();    
     private static final Logger logger = Logger.getLogger(CLASS);
             
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
     protected PlanarImage execute (ScaleOp operation, final EditableImage image, PlanarImage planarImage)
       {
         RenderingHints hints = null; // FIXME

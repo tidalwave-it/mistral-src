@@ -33,6 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
+ * @author  Emmanuele Sordini
  * @author  Fabrizio Giudici
  * @version $Id$
  *

@@ -30,23 +30,18 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.RotateQuadrantOp;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
+ * @author  Emmanuele Sordini
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class RotateQuadrantJAIOp extends OperationImplementation<RotateQuadrantOp, PlanarImage>
   {
     private static final String CLASS = RotateQuadrantJAIOp.class.getName();
-    
     private static final Logger logger = Logger.getLogger(CLASS);
             
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
     protected PlanarImage execute (RotateQuadrantOp operation, final EditableImage image, PlanarImage planarImage)
       {
         int degrees = operation.getDegrees();

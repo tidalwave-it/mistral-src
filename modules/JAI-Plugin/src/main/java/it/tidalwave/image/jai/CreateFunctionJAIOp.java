@@ -31,17 +31,16 @@ import it.tidalwave.image.ImageFunction;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.CreateFunctionOp;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Emmanuele Sordini
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class CreateFunctionJAIOp extends OperationImplementation<CreateFunctionOp, PlanarImage>
   {
     private static final String CLASS = CreateJAIOp.class.getName();
-    
     private static final Logger logger = Logger.getLogger(CLASS);
     
     class JAIImageFunctionAdapter implements javax.media.jai.ImageFunction

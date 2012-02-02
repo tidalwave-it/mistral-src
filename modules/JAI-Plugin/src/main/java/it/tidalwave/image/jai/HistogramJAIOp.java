@@ -28,23 +28,18 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.HistogramOp;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
+ * @author  Emmanuele Sordini
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class HistogramJAIOp extends OperationImplementation<HistogramOp, PlanarImage>
   {
     private static final String CLASS = HistogramJAIOp.class.getName();
-    
     private static final Logger logger = Logger.getLogger(CLASS);
             
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
     protected PlanarImage execute (HistogramOp operation, final EditableImage image, PlanarImage planarImage)
       {
         operation.setHistogram(new HistogramJAI(planarImage));

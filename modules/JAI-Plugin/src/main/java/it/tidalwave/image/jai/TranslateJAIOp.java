@@ -31,24 +31,18 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.TranslateOp;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Emmanuele Sordini
- * @author  Fabrizio Giudici
+ * @author  Luca Forni
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class TranslateJAIOp extends OperationImplementation<TranslateOp, PlanarImage>
   {
     private static final String CLASS = TranslateJAIOp.class.getName();
-    
     private static final Logger logger = Logger.getLogger(CLASS);
             
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
     protected PlanarImage execute (TranslateOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();

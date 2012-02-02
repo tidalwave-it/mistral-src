@@ -32,23 +32,18 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.ConvolveOp;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
+ * @author  Emmanuele Sordini
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class ConvolveJAIOp extends OperationImplementation<ConvolveOp, PlanarImage>
   {
     private static final String CLASS = ConvolveJAIOp.class.getName();
-    
     private static final Logger logger = Logger.getLogger(CLASS);
             
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
     protected PlanarImage execute (ConvolveOp operation, final EditableImage image, PlanarImage planarImage)
       {
         RenderingHints hints = null; // FIXME
