@@ -15,7 +15,7 @@
     <name>Mistral Examples Viewer</name>
 
     <properties>
-        <tft.mainClass>it.tidalwave.mistral.example.viewer.Main</tft.mainClass>
+        <tft.mainClass>org.imajine.mistral.example.viewer.Main</tft.mainClass>
     </properties>
 
     <dependencies>

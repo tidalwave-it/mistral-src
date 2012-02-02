@@ -39,7 +39,7 @@
         <% request.setAttribute("path", request.getRequestURL()); %> 
         <applet width="800" height="600" 
                 archive="lib/FaxManager.jar,lib/EditableImage.jar,lib/Operations.jar,lib/Contributions.jar,lib/Renderer.jar,lib/metadata-extractor-2.3.1.jar,lib/swing-layout-1.0.1.jar,lib/jai_imageio.jar,lib/clibwrapper_jiio.jar"
-                code="it.tidalwave.mistral.faxmanager.FaxApplet">
+                code="org.imajine.mistral.faxmanager.FaxApplet">
             <param name="getFaxURL" value="${path}/../GetFax?name=${param.name}"/>
             <param name="putFaxURL" value="${path}/../PutFax"/>
             <param name="getStampURL" value="${path}/../Stamp"/>

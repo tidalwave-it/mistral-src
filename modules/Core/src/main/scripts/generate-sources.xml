@@ -41,14 +41,14 @@
         <delete dir="${tools.build.classes.dir}"/>
         <delete dir="${metadata.dest}"/>
         <mkdir dir="${tools.build.classes.dir}"/>
-        <mkdir dir="${basedir}/target/tool-src-generated/it/tidalwave/image/tools/grammar"/>
+        <mkdir dir="${basedir}/target/tool-src-generated/org/imajine/image/tools/grammar"/>
         <mkdir dir="${metadata.dest}"/>
 
         <java classname="org.antlr.Tool">
             <classpath refid="metadatagenerator.path"/>
             <arg value="${basedir}/src/tool/resources/TIFF.g" />
             <arg value="-fo" />
-            <arg value="${basedir}/target/tool-src-generated/it/tidalwave/image/tools/grammar"/>
+            <arg value="${basedir}/target/tool-src-generated/org/imajine/image/tools/grammar"/>
         </java>
 
         <javac srcdir="${tool.src.dir}:${basedir}/target/tool-src-generated"
@@ -65,17 +65,17 @@
             <fileset dir="${tool.src.dir}" excludes="**/*.java"/>
         </copy>
  
-        <java classname="it.tidalwave.image.tools.MetadataGenerator">
+        <java classname="org.imajine.image.tools.MetadataGenerator">
             <classpath refid="metadatagenerator.path"/>
             <arg value="TIFF.properties" />
             <arg value="EXIFDirectoryGenerated" />
-            <arg value="${metadata.dest}/it/tidalwave/image/metadata/" />
+            <arg value="${metadata.dest}/org/imajine/image/metadata/" />
         </java>
-        <java classname="it.tidalwave.image.tools.MetadataGenerator">
+        <java classname="org.imajine.image.tools.MetadataGenerator">
             <classpath refid="metadatagenerator.path"/>
             <arg value="IPTC.properties" />
             <arg value="IPTCDirectoryGenerated" />
-            <arg value="${metadata.dest}/it/tidalwave/image/metadata/" />
+            <arg value="${metadata.dest}/org/imajine/image/metadata/" />
         </java>
     </target>
     

@@ -24,19 +24,19 @@
 <web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <servlet>
         <servlet-name>GetFaxServlet</servlet-name>
-        <servlet-class>it.tidalwave.mistral.faxserver.GetFaxServlet</servlet-class>
+        <servlet-class>org.imajine.mistral.faxserver.GetFaxServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PutFaxServlet</servlet-name>
-        <servlet-class>it.tidalwave.mistral.faxserver.PutFaxServlet</servlet-class>
+        <servlet-class>org.imajine.mistral.faxserver.PutFaxServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>StampServlet</servlet-name>
-        <servlet-class>it.tidalwave.mistral.faxserver.StampServlet</servlet-class>
+        <servlet-class>org.imajine.mistral.faxserver.StampServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Pack200Servlet</servlet-name>
-        <servlet-class>it.tidalwave.mistral.faxserver.Pack200Servlet</servlet-class>
+        <servlet-class>org.imajine.mistral.faxserver.Pack200Servlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetFaxServlet</servlet-name>

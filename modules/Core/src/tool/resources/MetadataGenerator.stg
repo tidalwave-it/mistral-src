@@ -112,12 +112,12 @@ printIsAvailable(records)::=<<
 >>
 
 generator(creation_date, class_name, records)::=<<
-package it.tidalwave.image.metadata;
+package org.imajine.image.metadata;
 
 import java.util.Date;
 import java.util.Map;
 import java.util.HashMap;
-import it.tidalwave.image.Rational;
+import org.imajine.image.Rational;
 
 /* Automatically generated on <creation_date> - DO NOT EDIT! */
 

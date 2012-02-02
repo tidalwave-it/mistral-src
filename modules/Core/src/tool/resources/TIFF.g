@@ -1,11 +1,11 @@
 grammar TIFF;
-@lexer::header{ package it.tidalwave.image.tools.grammar; } 
+@lexer::header{ package org.imajine.image.tools.grammar; } 
 
 @header {
-package it.tidalwave.image.tools.grammar;
+package org.imajine.image.tools.grammar;
 
-import it.tidalwave.image.tools.TIFFRecord;
-import it.tidalwave.image.tools.TIFFEnumValueName;
+import org.imajine.image.tools.TIFFRecord;
+import org.imajine.image.tools.TIFFEnumValueName;
 }
 
 prog returns [List<TIFFRecord> result = new ArrayList<TIFFRecord>()]

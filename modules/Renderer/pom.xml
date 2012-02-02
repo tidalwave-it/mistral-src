@@ -28,8 +28,8 @@
                 <artifactId>nbm-maven-plugin</artifactId>
                 <configuration>
                     <publicPackages>
-                        <publicPackage>it.tidalwave.image.render</publicPackage>
-                        <publicPackage>it.tidalwave.image.render.event</publicPackage>
+                        <publicPackage>org.imajine.image.render</publicPackage>
+                        <publicPackage>org.imajine.image.render.event</publicPackage>
                     </publicPackages>
                 </configuration>
             </plugin>

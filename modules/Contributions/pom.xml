@@ -39,8 +39,8 @@
                 <artifactId>nbm-maven-plugin</artifactId>
                 <configuration>
                     <publicPackages>
-                        <publicPackage>it.tidalwave.image.java2d</publicPackage>
-                        <publicPackage>it.tidalwave.image.op</publicPackage>
+                        <publicPackage>org.imajine.image.java2d</publicPackage>
+                        <publicPackage>org.imajine.image.op</publicPackage>
                     </publicPackages>
                 </configuration>
             </plugin>

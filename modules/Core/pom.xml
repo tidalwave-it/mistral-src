@@ -89,14 +89,14 @@
                 <artifactId>nbm-maven-plugin</artifactId>
                 <configuration>
                     <publicPackages>
-                        <publicPackage>it.tidalwave.image</publicPackage>
-                        <publicPackage>it.tidalwave.image.java2d</publicPackage>
-                        <publicPackage>it.tidalwave.image.metadata</publicPackage>
-                        <publicPackage>it.tidalwave.image.metadata.loader</publicPackage>
-                        <publicPackage>it.tidalwave.image.op</publicPackage>
-                        <publicPackage>it.tidalwave.image.render</publicPackage>
-                        <publicPackage>it.tidalwave.image.tools</publicPackage>
-                        <publicPackage>it.tidalwave.image.util</publicPackage>
+                        <publicPackage>org.imajine.image</publicPackage>
+                        <publicPackage>org.imajine.image.java2d</publicPackage>
+                        <publicPackage>org.imajine.image.metadata</publicPackage>
+                        <publicPackage>org.imajine.image.metadata.loader</publicPackage>
+                        <publicPackage>org.imajine.image.op</publicPackage>
+                        <publicPackage>org.imajine.image.render</publicPackage>
+                        <publicPackage>org.imajine.image.tools</publicPackage>
+                        <publicPackage>org.imajine.image.util</publicPackage>
                     </publicPackages>
                 </configuration>
             </plugin>
