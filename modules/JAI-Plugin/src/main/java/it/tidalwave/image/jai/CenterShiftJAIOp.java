@@ -22,41 +22,37 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.jai;
 
-import java.util.logging.Logger;
+import javax.annotation.Nonnull;
 import java.awt.image.renderable.ParameterBlock;
 import javax.media.jai.PlanarImage;
 import javax.media.jai.JAI;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.CenterShiftOp;
+import lombok.extern.slf4j.Slf4j;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Emmanuele Sordini
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
+@Slf4j
 public class CenterShiftJAIOp extends OperationImplementation<CenterShiftOp, PlanarImage>
   {
-    private static final String CLASS = CenterShiftJAIOp.class.getName();
-    
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
-    /*******************************************************************************
-     *
-     * @inheritDoc
-     *
-     ******************************************************************************/
-    protected PlanarImage execute (CenterShiftOp operation, final EditableImage image, PlanarImage planarImage)
+    @Override @Nonnull
+    protected PlanarImage execute (final @Nonnull CenterShiftOp operation, 
+                                   final @Nonnull EditableImage image, 
+                                   final @Nonnull PlanarImage planarImage)
       {
-        ParameterBlock pb = new ParameterBlock();
+        final ParameterBlock pb = new ParameterBlock();
         pb.addSource(planarImage);
         pb.addSource(planarImage.getWidth() / 2);
         pb.addSource(planarImage.getHeight() / 2);
-        planarImage = JAI.create("periodicshift", pb);
-        JAIUtils.logImage(logger, ">>>> CenterShiftJAIOp returning", planarImage);
+        final PlanarImage result = JAI.create("periodicshift", pb);
+        JAIUtils.logImage(log, ">>>> CenterShiftJAIOp returning", result);
         
-        return planarImage;
+        return result;
       }
   }
