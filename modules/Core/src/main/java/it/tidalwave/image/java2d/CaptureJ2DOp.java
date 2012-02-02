@@ -46,6 +46,7 @@ public class CaptureJ2DOp extends OperationImplementation<CaptureOp, BufferedIma
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     protected BufferedImage execute (final CaptureOp operation, final EditableImage image, BufferedImage bufferedImage) 
       {
         logger.info("CaptureJ2DOp.execute(" + operation + ")");

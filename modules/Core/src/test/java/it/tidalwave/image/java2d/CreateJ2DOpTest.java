@@ -191,6 +191,7 @@ public class CreateJ2DOpTest extends CreateOpTestSupport
           }
       }
 
+    @Override
     protected Raster getRaster (final EditableImage image)
       {
         return image.getInnerProperty(BufferedImage.class).getRaster();

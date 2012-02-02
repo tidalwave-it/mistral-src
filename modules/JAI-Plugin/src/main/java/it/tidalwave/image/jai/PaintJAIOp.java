@@ -42,6 +42,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PaintJAIOp extends OperationImplementation<PaintOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (PaintOp operation, final EditableImage image, PlanarImage planarImage)
       {
         int x = operation.getX();

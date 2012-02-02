@@ -75,6 +75,7 @@ public class CutterTool extends EditingTool
      **************************************************************************/
     private final Action endCutterAction = new AbstractAction() 
       {
+        @Override
         public void actionPerformed (final ActionEvent event) 
           {
             final String title = "Conferma";

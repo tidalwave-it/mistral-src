@@ -195,6 +195,7 @@ public class PaintOp extends Operation
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     public String toString ()
       {
         return "PaintOp(x:" + x + ", y:" + y + ", w:" + w + ", h:" + h + ", " + quality + ")";

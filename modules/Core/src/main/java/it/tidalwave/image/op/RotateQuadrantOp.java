@@ -73,6 +73,7 @@ public class RotateQuadrantOp extends Operation
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     public String toString ()
       {
         return "RotateQuadrantOp(" + degrees + ")";

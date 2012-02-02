@@ -126,6 +126,7 @@ public class HistogramRenderer extends JPanel
 
         SwingUtilities.invokeLater(new Runnable()
           {
+            @Override
             public void run ()
               {
                 logger.finer(">>>> histogram ready...");

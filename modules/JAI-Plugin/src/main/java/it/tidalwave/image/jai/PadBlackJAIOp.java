@@ -41,6 +41,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PadBlackJAIOp extends OperationImplementation<PadBlackOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (PadBlackOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();

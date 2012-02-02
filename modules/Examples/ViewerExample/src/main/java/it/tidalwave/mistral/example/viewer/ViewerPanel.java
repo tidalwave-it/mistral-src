@@ -78,6 +78,7 @@ public class ViewerPanel extends AbstractViewerPanel
         
         private final static String SCALE_PATTERN = "{0,number,percent}";
         
+        @Override
         public void scaleChanged (final EditableImageRendererEvent event)
           {
             final EditableImage image = imageRenderer.getImage();
@@ -88,6 +89,7 @@ public class ViewerPanel extends AbstractViewerPanel
             lbScaleValue.setText(MessageFormat.format(SCALE_PATTERN, imageRenderer.getScale())); 
           }
         
+        @Override
         public void angleChanged (final EditableImageRendererEvent event)
           {
             lbAngleValue.setText("" + imageRenderer.getAngle());
@@ -121,6 +123,7 @@ public class ViewerPanel extends AbstractViewerPanel
      * 
      *
      **************************************************************************/
+    @Override
     protected void onImageLoaded (final EditableImage image)
       {
         final Directory exifDirectory = image.getEXIFDirectory();

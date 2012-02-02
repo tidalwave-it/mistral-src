@@ -201,6 +201,7 @@ public class XYPlotter extends JComponent
      * @inheritDoc
      * 
      *******************************************************************************/
+    @Override
     public void paint (Graphics g)
       {
         if ((buffer == null) || (buffer.getWidth() != getWidth()) || (buffer.getHeight() != getHeight()))

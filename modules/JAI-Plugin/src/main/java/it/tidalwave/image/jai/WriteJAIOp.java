@@ -41,6 +41,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class WriteJAIOp extends OperationImplementation<WriteOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (WriteOp operation, final EditableImage image, PlanarImage planarImage)
       {
         Object output = operation.getOutput();

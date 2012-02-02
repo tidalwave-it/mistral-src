@@ -63,6 +63,7 @@ public class ConvertToBufferedImageOp extends Operation
      * @inheritDoc
      *
      *******************************************************************************/
+    @Override
     public String toString ()
       {
         return "ConvertToBufferedImageOp()";

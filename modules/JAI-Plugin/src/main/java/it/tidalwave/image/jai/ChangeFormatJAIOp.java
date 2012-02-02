@@ -42,6 +42,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ChangeFormatJAIOp extends OperationImplementation<ChangeFormatOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (final ChangeFormatOp operation, final EditableImage image, PlanarImage planarImage)
       {
         final ParameterBlock pb = new ParameterBlock();

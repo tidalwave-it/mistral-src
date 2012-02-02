@@ -69,6 +69,7 @@ public class TextTool extends EditingTool
      **************************************************************************/
     private final KeyListener keyListener = new KeyListener() 
       {
+        @Override
         public void keyTyped (final KeyEvent event) 
           {
             final State state = getCurrentState();
@@ -79,6 +80,7 @@ public class TextTool extends EditingTool
               }
           }  
 
+        @Override
         public void keyPressed (final KeyEvent event) 
           {
             final State state = getCurrentState();
@@ -89,6 +91,7 @@ public class TextTool extends EditingTool
               }
           }
 
+        @Override
         public void keyReleased (final KeyEvent event)
           {
             final State state = getCurrentState();
@@ -193,6 +196,7 @@ public class TextTool extends EditingTool
             System.err.println("KEY TYPED END ");
           }
         
+        @Override
         public void actionPerformed (final ActionEvent event)
           {
             commitChanges();
@@ -305,6 +309,7 @@ public class TextTool extends EditingTool
             final String text = textField.getText();
             image.execute(new DrawOp(new DrawOp.Executor()
               {
+                @Override
                 public void draw (final Graphics2D g, final EditableImage image) 
                   {
                     g.setColor(Color.BLACK);

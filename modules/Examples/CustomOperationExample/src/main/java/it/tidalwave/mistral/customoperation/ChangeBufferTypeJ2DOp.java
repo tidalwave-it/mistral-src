@@ -35,6 +35,7 @@ import it.tidalwave.image.op.OperationImplementation;
  ******************************************************************************/
 public class ChangeBufferTypeJ2DOp extends OperationImplementation<ChangeBufferTypeOp, BufferedImage>
   {
+    @Override
     protected BufferedImage execute (final ChangeBufferTypeOp operation, final EditableImage image, final BufferedImage bufferedImage) 
       {
         final int width = image.getWidth();

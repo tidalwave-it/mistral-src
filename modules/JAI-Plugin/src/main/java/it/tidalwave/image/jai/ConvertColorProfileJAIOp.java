@@ -45,6 +45,7 @@ import static it.tidalwave.image.op.ConvertColorProfileOp.RenderingIntent.*;
 public class ConvertColorProfileJAIOp extends OperationImplementation<ConvertColorProfileOp, PlanarImage>
   {
     @Nonnull
+    @Override
     protected PlanarImage execute (final @Nonnull ConvertColorProfileOp operation, 
                                    final @Nonnull EditableImage image,
                                    final @Nonnull PlanarImage planarImage)

@@ -65,6 +65,7 @@ public class MultiplyOp extends Operation
      * @inheritDoc
      *
      *******************************************************************************/
+    @Override
     public String toString ()
       {
         return "MultiplyOp(" + operand + ")";

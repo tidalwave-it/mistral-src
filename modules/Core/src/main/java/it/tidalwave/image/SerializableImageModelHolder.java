@@ -32,11 +32,13 @@ public class SerializableImageModelHolder extends ImageModelHolder
   {
     private ImageModel imageModel;
 
+    @Override
     public void set (final ImageModel imageModel)
       {
         this.imageModel = imageModel;
       }
 
+    @Override
     public ImageModel get()
       {
         return imageModel;

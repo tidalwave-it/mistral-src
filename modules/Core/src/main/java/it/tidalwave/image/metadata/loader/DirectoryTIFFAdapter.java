@@ -49,6 +49,7 @@ public class DirectoryTIFFAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public int[] getTags ()
       {
         TIFFField[] fields = ifd.getTIFFFields();
@@ -66,6 +67,7 @@ public class DirectoryTIFFAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public String[] getSubDirectoryNames ()
       {
         return new String[0];
@@ -75,6 +77,7 @@ public class DirectoryTIFFAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public DirectoryAdapter getSubDirectory (final String name)
       {
         return null;
@@ -84,6 +87,7 @@ public class DirectoryTIFFAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public String getTagName (final int tag)
       {
         return "TIFF#" + tag;
@@ -93,6 +97,7 @@ public class DirectoryTIFFAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public boolean containsTag (final int tag)
       {
         return ifd.getTIFFField(tag) != null;
@@ -102,6 +107,7 @@ public class DirectoryTIFFAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public boolean hasNext() 
       {
         return false;
@@ -111,6 +117,7 @@ public class DirectoryTIFFAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public DirectoryAdapter next() 
       {
         throw new NoSuchElementException();
@@ -120,6 +127,7 @@ public class DirectoryTIFFAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public Object getObject (final int tag)
       {
         return ifd.getTIFFField(tag).getData();

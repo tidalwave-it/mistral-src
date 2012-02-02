@@ -70,6 +70,7 @@ public class HistogramOp extends Operation
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     public String toString ()
       {
         return "HistogramOp()";

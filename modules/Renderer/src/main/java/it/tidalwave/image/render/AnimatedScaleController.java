@@ -124,6 +124,7 @@ public class AnimatedScaleController extends ScaleController
                 timer = new Timer(1000 / framesPerSecond,
                         new ActionListener()
                           {
+                    @Override
                             public void actionPerformed (final ActionEvent e)
                               {
                                 changeScale();
@@ -168,6 +169,7 @@ public class AnimatedScaleController extends ScaleController
                 //
                 SwingUtilities.invokeLater(new Runnable()
                       {
+                    @Override
                         public void run ()
                           {
                             imageRenderer.setScaleQuality(scaleQualitySave);

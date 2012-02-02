@@ -83,6 +83,7 @@ abstract class Task<T>
          {
            SwingUtilities.invokeAndWait(new Runnable() 
              {
+                @Override
                public void run() 
                  {
                    progressBar.setIndeterminate(indeterminate);
@@ -105,6 +106,7 @@ abstract class Task<T>
          {
            SwingUtilities.invokeLater(new Runnable() 
              {
+                @Override
                public void run() 
                  {
                    progressBar.setVisible(false);
@@ -121,6 +123,7 @@ abstract class Task<T>
          {
            SwingUtilities.invokeLater(new Runnable() 
              {
+                @Override
                public void run() 
                  {
                    progressBar.setValue(value);  
@@ -635,6 +638,7 @@ public class PageManager
 
        final Task<Void> task = new Task<Void>(progressBar, false, pageNumbers.size(), "Stampa fax in corso...")
          {
+            @Override
            protected Void run()
              throws PrinterException, InterruptedException, InvocationTargetException
              {
@@ -709,6 +713,7 @@ public class PageManager
 
        final Task<String> task = new Task<String>(progressBar, false, compressedImageList.size(), "Salvataggio fax in corso...")
          {
+            @Override
            protected String run()
              throws MalformedURLException, IOException, InterruptedException, InvocationTargetException
              {

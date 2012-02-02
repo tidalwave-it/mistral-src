@@ -64,6 +64,7 @@ public class BandMergeOp extends Operation
      * @inheritDoc
      *
      *******************************************************************************/
+    @Override
     public String toString ()
       {
         return "BandMergeOp(" + operand + ")";

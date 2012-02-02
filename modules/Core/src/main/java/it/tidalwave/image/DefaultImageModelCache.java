@@ -33,26 +33,31 @@ import java.io.Serializable;
  ******************************************************************************/
 public class DefaultImageModelCache extends ImageModelCache
   {
+    @Override
     public void store (ImageModel imageModel)
       {
         // does nothing 
       }
 
+    @Override
     public void update (ImageModel imageModel)
       {
         // does nothing 
       }
 
+    @Override
     public void remove (final Serializable ic, final boolean remote)
       {
         // does nothing 
       }
 
+    @Override
     public ImageModel retrieve (final Serializable id, final boolean remote)
       {
         throw new RuntimeException("Shouldn't get there");
       }
 
+    @Override
     public boolean contains (final Serializable id) 
       {
         throw new RuntimeException("Shouldn't get there");

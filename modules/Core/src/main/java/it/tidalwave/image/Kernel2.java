@@ -52,6 +52,7 @@ public class Kernel2 extends Kernel
      *
      *
      ******************************************************************************/
+    @Override
     public String toString ()
       {
         StringBuffer buffer = new StringBuffer("Kernel2[");

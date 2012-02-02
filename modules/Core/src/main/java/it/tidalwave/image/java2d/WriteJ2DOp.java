@@ -56,6 +56,7 @@ public class WriteJ2DOp extends OperationImplementation<WriteOp, BufferedImage>
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     protected BufferedImage execute (final WriteOp operation, final EditableImage image, final BufferedImage bufferedImage)
       {
         final String format = operation.getFormat();

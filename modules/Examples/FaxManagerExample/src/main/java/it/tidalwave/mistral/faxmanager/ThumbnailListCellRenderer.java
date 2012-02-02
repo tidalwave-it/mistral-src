@@ -49,6 +49,7 @@ public class ThumbnailListCellRenderer extends DefaultListCellRenderer
       {
         WITH_THUMBNAILS
           {
+            @Override
             public void setListItem (final JList list, final int pageNumber, final JLabel label, final EditableImage page, final Map<EditableImage, Icon> thumbnailCache)
               {
                 Icon thumbnail = thumbnailCache.get(page);
@@ -60,6 +61,7 @@ public class ThumbnailListCellRenderer extends DefaultListCellRenderer
                     final EditableImage temp = page.execute2(new ScaleOp(scale));
                     temp.execute(new DrawOp(new DrawOp.Executor()
                       {
+                        @Override
                         public void draw (final Graphics2D g, final EditableImage image) 
                           {
                             g.setColor(Color.RED);
@@ -77,6 +79,7 @@ public class ThumbnailListCellRenderer extends DefaultListCellRenderer
           },
         WITHOUT_THUMBNAILS
           {
+            @Override
             public void setListItem (final JList list, final int pageNumber, final JLabel label, final EditableImage page, final Map<EditableImage, Icon> thumbnailCache)
               {
                 label.setText("Pag. " + pageNumber);

@@ -35,6 +35,7 @@ import static org.junit.Assert.*;
  ******************************************************************************/
 public class ScaleJ2DOpPerformanceTest extends BasePerformanceTestSupport 
   {
+    @Override
     protected long runTest (EditableImage image)
       {
         fail("disabled because it takes forever");

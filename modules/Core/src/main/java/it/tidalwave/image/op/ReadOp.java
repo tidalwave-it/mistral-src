@@ -210,6 +210,7 @@ public class ReadOp extends Operation
         IMAGE
           {
             @Nonnull 
+            @Override
             protected EditableImage read (final @Nonnull ReadOp readOp)
               throws IOException
               {
@@ -219,6 +220,7 @@ public class ReadOp extends Operation
                 
                 return Reader.read(input, new Reader()
                   {
+                    @Override
                     protected EditableImage read (final ImageReader imageReader)
                       throws IOException
                       {
@@ -241,6 +243,7 @@ public class ReadOp extends Operation
         THUMBNAIL
           {
             @Nonnull 
+            @Override
             protected EditableImage read (final @Nonnull ReadOp readOp)
               throws IOException
               {
@@ -252,6 +255,7 @@ public class ReadOp extends Operation
                 return Reader.read(input, new Reader()
                   {
                     @Nonnull 
+                    @Override
                     protected EditableImage read (final @Nonnull ImageReader imageReader)
                       throws IOException
                       {
@@ -269,6 +273,7 @@ public class ReadOp extends Operation
         METADATA
           {
             @Nonnull 
+            @Override
             protected EditableImage read (final @Nonnull ReadOp readOp)
               throws IOException
               {
@@ -279,6 +284,7 @@ public class ReadOp extends Operation
                 return Reader.read(input, new Reader()
                   {
                     @Nonnull 
+                    @Override
                     protected EditableImage read (final @Nonnull ImageReader imageReader)
                       throws IOException
                       {

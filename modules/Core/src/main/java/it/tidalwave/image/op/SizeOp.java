@@ -59,6 +59,7 @@ public class SizeOp extends Operation
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     public String toString ()
       {
         return "SizeOp(scale:" + scale + ")";

@@ -45,6 +45,7 @@ public class ConvertToBufferedImageJ2DOp extends OperationImplementation<Convert
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     protected BufferedImage execute (final ConvertToBufferedImageOp operation, final EditableImage image, final BufferedImage bufferedImage)
       {
         operation.setBufferedImage(bufferedImage);

@@ -45,6 +45,7 @@ public class ConvolveJ2DOp extends OperationImplementation<ConvolveOp, BufferedI
      *
      *
      ******************************************************************************/
+    @Override
     protected BufferedImage execute (ConvolveOp operation, final EditableImage image, BufferedImage bufferedImage)
       {
         Kernel kernel = operation.getKernel();

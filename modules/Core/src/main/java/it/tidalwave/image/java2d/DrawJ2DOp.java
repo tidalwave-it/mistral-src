@@ -49,6 +49,7 @@ public class DrawJ2DOp extends OperationImplementation<DrawOp, BufferedImage>
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     protected BufferedImage execute (final DrawOp operation, final EditableImage image, final BufferedImage bufferedImage)
       {
         Graphics2D g = null;

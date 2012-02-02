@@ -49,6 +49,7 @@ public class OverlaidPanel extends JPanel implements Overlay
         setVisible(true);
       }
     
+    @Override
     public final void paint (final Graphics2D g, final EditableImageRenderer imageRenderer) 
       {
         setBounds(imageRenderer.getBounds());

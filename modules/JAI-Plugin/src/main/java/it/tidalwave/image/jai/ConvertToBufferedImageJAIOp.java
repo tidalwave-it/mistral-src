@@ -38,6 +38,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ConvertToBufferedImageJAIOp extends OperationImplementation<ConvertToBufferedImageOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (final ConvertToBufferedImageOp operation, final EditableImage image, final PlanarImage planarImage)
       {
         operation.setBufferedImage(planarImage.getAsBufferedImage());

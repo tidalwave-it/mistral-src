@@ -53,10 +53,12 @@ public class MarkerTool extends SelectRectangleTool
      *
      *
      **************************************************************************/
+    @Override
     public void execute (final EditableImageRenderer imageRenderer, final EditableImage image) 
       {
         image.execute(new DrawOp(new DrawOp.Executor() 
           {
+            @Override
             public void draw (final Graphics2D g, final EditableImage image) 
               {
                 final Rectangle bounds = getBounds();

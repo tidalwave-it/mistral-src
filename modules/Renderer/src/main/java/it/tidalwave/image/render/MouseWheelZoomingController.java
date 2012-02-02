@@ -54,6 +54,7 @@ public class MouseWheelZoomingController
      **************************************************************************/
     private final MouseWheelListener mouseWheelListener = new MouseWheelListener() 
       {
+        @Override
         public void mouseWheelMoved (MouseWheelEvent event) 
           {
             final double changeScale = Math.pow(2, zoomFactor * event.getWheelRotation());

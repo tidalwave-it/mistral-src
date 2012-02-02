@@ -80,6 +80,7 @@ public class ImageModelJAI extends ImageModel
      *
      ******************************************************************************************************************/
     @Nonnull
+    @Override
     public ImplementationFactory getFactory()
       {
         return Lookup.getDefault().lookup(ImplementationFactoryJAI.class);
@@ -105,6 +106,7 @@ public class ImageModelJAI extends ImageModel
      *
      ******************************************************************************************************************/
     @Nonnegative
+    @Override
     public int getWidth()
       {
         return getPlanarImage().getWidth();
@@ -116,6 +118,7 @@ public class ImageModelJAI extends ImageModel
      *
      ******************************************************************************************************************/
     @Nonnegative
+    @Override
     public int getHeight()
       {
         return getPlanarImage().getHeight();
@@ -127,6 +130,7 @@ public class ImageModelJAI extends ImageModel
      *
      ******************************************************************************************************************/
     @Nonnegative
+    @Override
     public int getBandCount()
       {
         return getPlanarImage().getSampleModel().getNumBands();
@@ -138,6 +142,7 @@ public class ImageModelJAI extends ImageModel
      *
      ******************************************************************************************************************/
     @Nonnull
+    @Override
     public EditableImage.DataType getDataType()
       {
         return (getPlanarImage() == null) ? null : EditableImage.DataType.valueOf(getPlanarImage().getSampleModel().getDataType());
@@ -161,6 +166,7 @@ public class ImageModelJAI extends ImageModel
      *
      ******************************************************************************************************************/
     @Nonnull
+    @Override
     public ColorModel getColorModel()
       {
         return getPlanarImage().getColorModel();
@@ -172,6 +178,7 @@ public class ImageModelJAI extends ImageModel
      *
      ******************************************************************************************************************/
     @Nonnull
+    @Override
     public EditableImage createCopy (final boolean copyContents)
       {
         final TiledImage image2 = new TiledImage(getPlanarImage(), false);
@@ -205,6 +212,7 @@ public class ImageModelJAI extends ImageModel
      *
      ******************************************************************************************************************/
     @Nonnull
+    @Override
     public <T> T getInnerProperty (final @Nonnull Class<T> propertyClass) 
       {
         if (propertyClass.equals(PlanarImage.class))
@@ -231,6 +239,7 @@ public class ImageModelJAI extends ImageModel
      *
      ******************************************************************************************************************/
     @Nonnull
+    @Override
     protected RenderedImage toRenderedImageForSerialization()
       {
         return getPlanarImage().getAsBufferedImage();    
@@ -242,6 +251,7 @@ public class ImageModelJAI extends ImageModel
      *
      ******************************************************************************************************************/
     @Nonnull
+    @Override
     protected Object toObjectForDeserialization (final @Nonnull RenderedImage renderedImage)
       {
         return PlanarImage.wrapRenderedImage(renderedImage);

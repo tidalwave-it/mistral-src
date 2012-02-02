@@ -41,6 +41,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ScaleJAIOp extends OperationImplementation<ScaleOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (ScaleOp operation, final EditableImage image, PlanarImage planarImage)
       {
         RenderingHints hints = null; // FIXME

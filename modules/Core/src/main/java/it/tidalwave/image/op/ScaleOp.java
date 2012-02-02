@@ -128,6 +128,7 @@ public class ScaleOp extends Operation
      * @inheritDoc
      *
      *******************************************************************************/
+    @Override
     public String toString ()
       {
         return "ScaleOp(xScale:" + xScale + ", yScale:" + yScale + ", quality:" + quality + ")";

@@ -46,6 +46,7 @@ public class ScaleJ2DOpTest extends BaseTestSupport
     private EditableImage optimized;
 
     @Before
+    @Override
     public void setUp()
       throws Exception 
       {

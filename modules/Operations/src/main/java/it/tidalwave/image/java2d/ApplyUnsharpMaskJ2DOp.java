@@ -45,6 +45,7 @@ public class ApplyUnsharpMaskJ2DOp extends OperationImplementation<ApplyUnsharpM
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     protected BufferedImage execute (ApplyUnsharpMaskOp operation, final EditableImage image, BufferedImage model)
       {
         double intensity = operation.getIntensity();

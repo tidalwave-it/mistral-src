@@ -39,6 +39,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CreateJAIOp extends OperationImplementation<CreateOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (final CreateOp operation, final EditableImage image, final PlanarImage planarImage)
       {
         final double[] filler = operation.getFiller();

@@ -40,6 +40,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class BandMergeJAIOp extends OperationImplementation<BandMergeOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (BandMergeOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();

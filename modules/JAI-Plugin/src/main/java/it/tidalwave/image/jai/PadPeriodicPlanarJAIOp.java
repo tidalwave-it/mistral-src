@@ -42,6 +42,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PadPeriodicPlanarJAIOp extends OperationImplementation<PadPeriodicPlanarOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (PadPeriodicPlanarOp operation, final EditableImage image, PlanarImage planarImage)
       {
         /*

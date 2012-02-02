@@ -35,12 +35,14 @@ import javax.swing.JApplet;
  ******************************************************************************/
 public class ViewerApplet extends JApplet 
   {
+    @Override
     public void init() 
       {
         try 
           {
             EventQueue.invokeAndWait(new Runnable() 
               {
+                @Override
                 public void run() 
                   {
                     try 

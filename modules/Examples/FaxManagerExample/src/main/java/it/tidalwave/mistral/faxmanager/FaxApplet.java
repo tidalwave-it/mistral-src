@@ -172,6 +172,7 @@ public class FaxApplet extends JApplet
     **************************************************************************/
    abstract class GuardedAction extends AbstractAction
      {
+        @Override
        public final void actionPerformed (final ActionEvent event)
          {
            try
@@ -195,6 +196,7 @@ public class FaxApplet extends JApplet
     **************************************************************************/
    private Action reloadAction = new GuardedAction()
      {
+        @Override
        protected void performAction (final ActionEvent event)
          {
            if (JOptionPane.showConfirmDialog(FaxApplet.this, "Vuoi veramente ricaricare il fax annullando tutte le modifiche?", "Conferma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
@@ -208,6 +210,7 @@ public class FaxApplet extends JApplet
      {
        DIALOG
          {
+            @Override
            public PrintSelectionDialog.Selection getSelection()
              {
                final PrintSelectionDialog psDialog = new PrintSelectionDialog();
@@ -219,6 +222,7 @@ public class FaxApplet extends JApplet
                return psDialog.getSelection();
              }
 
+            @Override
            public void notifyCompleted (final Component component)
              {
                JOptionPane.showMessageDialog(component, "Completata.", "Stampa", JOptionPane.WARNING_MESSAGE);
@@ -227,11 +231,13 @@ public class FaxApplet extends JApplet
 
        NO_DIALOG
          {
+            @Override
            public PrintSelectionDialog.Selection getSelection()
              {
                return PrintSelectionDialog.Selection.ALL;
              }
 
+            @Override
            public void notifyCompleted (final Component component)
              {
              }
@@ -261,6 +267,7 @@ public class FaxApplet extends JApplet
     **************************************************************************/
    private Action printAction = new GuardedAction()
      {
+        @Override
        protected void performAction (final ActionEvent event)
          throws PrinterException
          {
@@ -270,6 +277,7 @@ public class FaxApplet extends JApplet
 
    private Action fastPrintAction = new GuardedAction()
      {
+        @Override
        protected void performAction (final ActionEvent event)
          throws PrinterException
          {
@@ -283,6 +291,7 @@ public class FaxApplet extends JApplet
     **************************************************************************/
    private Action rotateLeftAction = new GuardedAction()
      {
+        @Override
        protected void performAction (final ActionEvent event)
          {
            EditableImage image = imageRenderer.getImage();
@@ -300,6 +309,7 @@ public class FaxApplet extends JApplet
     **************************************************************************/
    private Action rotateRightAction = new GuardedAction()
      {
+        @Override
        protected void performAction (final ActionEvent event)
          {
            EditableImage image = imageRenderer.getImage();
@@ -317,6 +327,7 @@ public class FaxApplet extends JApplet
     **************************************************************************/
    private Action saveAction = new GuardedAction()
      {
+        @Override
        protected void performAction (final ActionEvent event)
          {
            final EditingTool editingTool = imageRenderer.getEditingTool();
@@ -342,6 +353,7 @@ public class FaxApplet extends JApplet
 
            final Thread thread = new Thread(new Runnable()
              {
+                @Override
                public void run()
                  {
                    try
@@ -404,6 +416,7 @@ public class FaxApplet extends JApplet
          {
            EventQueue.invokeAndWait(new Runnable()
              {
+                @Override
                public void run()
                  {
                    initComponents();
@@ -586,18 +599,21 @@ public class FaxApplet extends JApplet
          {
            private boolean first = true;
 
+            @Override
            public void run()
              {
                try
                  {
                    pageManager.load(pages, getFaxURL, new PageManager.Listener()
                      {
+                        @Override
                        public void notifyPageLoaded (final int index)
                          {
                            if (first)
                              {
                                SwingUtilities.invokeLater(new Runnable()
                                  {
+                                    @Override
                                    public void run()
                                      {
                                        loadImage(pageManager.selectImage(index));
@@ -611,6 +627,7 @@ public class FaxApplet extends JApplet
 
                    SwingUtilities.invokeLater(new Runnable()
                      {
+                        @Override
                        public void run()
                          {
                            pbProgressBar.setVisible(false);
@@ -855,6 +872,7 @@ public class FaxApplet extends JApplet
 
            final Thread thread = new Thread(new Runnable()
              {
+                @Override
                public void run()
                  {
                    try

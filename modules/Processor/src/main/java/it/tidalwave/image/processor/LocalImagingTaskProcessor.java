@@ -54,6 +54,7 @@ public class LocalImagingTaskProcessor extends ImagingTaskProcessor
             setDaemon(true);
           }
         
+        @Override
         public void run()
           {
             for (;;) // TODO: add a smart way to terminate
@@ -101,6 +102,7 @@ public class LocalImagingTaskProcessor extends ImagingTaskProcessor
      * @inheritDoc
      *
      **************************************************************************/
+    @Override
     public boolean isDistributed() 
       {
         return false;
@@ -111,6 +113,7 @@ public class LocalImagingTaskProcessor extends ImagingTaskProcessor
      * @inheritDoc
      *
      **************************************************************************/
+    @Override
     public boolean hasFileAccess() 
       {
         return true;
@@ -120,6 +123,7 @@ public class LocalImagingTaskProcessor extends ImagingTaskProcessor
      *
      *
      **************************************************************************/
+    @Override
     public int getWorkerCount()
       {
         return workers.size();
@@ -129,6 +133,7 @@ public class LocalImagingTaskProcessor extends ImagingTaskProcessor
      *
      *
      **************************************************************************/
+    @Override
     public Collection<Serializable> getWorkerIds()
       {
         Collection<Serializable> result = new ArrayList<Serializable>();

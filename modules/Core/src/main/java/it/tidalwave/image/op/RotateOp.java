@@ -97,6 +97,7 @@ public class RotateOp extends Operation
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     public String toString ()
       {
         return "RotateOp(" + degrees + ")";

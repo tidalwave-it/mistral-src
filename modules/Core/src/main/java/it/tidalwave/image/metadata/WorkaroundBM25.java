@@ -83,6 +83,7 @@ public class WorkaroundBM25
                 return (int)l;
               }
 
+            @Override
             public int read ()
                 throws IOException
               {

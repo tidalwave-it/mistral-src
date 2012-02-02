@@ -49,6 +49,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class OptimizeJAIOp extends OperationImplementation<OptimizeOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (OptimizeOp operation, final EditableImage image, PlanarImage planarImage)
       {
         Java2DUtils.logImage(log, ">>>> source planarImage", planarImage);

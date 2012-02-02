@@ -59,6 +59,7 @@ public class DirectoryRawAdapter implements DirectoryAdapter
      *
      **************************************************************************/
     @SuppressWarnings("unchecked")
+    @Override
     public int[] getTags()
       {
         final Collection<AbstractTag> tags = directory.getTags();
@@ -77,6 +78,7 @@ public class DirectoryRawAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public String[] getSubDirectoryNames()
       {
         return directory.getSubDirectoryNames();
@@ -86,6 +88,7 @@ public class DirectoryRawAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public DirectoryAdapter getSubDirectory (final String name)
       {
         final Directory subDirectory = directory.getNamedDirectory(name);
@@ -96,6 +99,7 @@ public class DirectoryRawAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public boolean hasNext() 
       {
         try
@@ -112,6 +116,7 @@ public class DirectoryRawAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public DirectoryAdapter next() 
       {
         if (nextDirectory == null)
@@ -126,6 +131,7 @@ public class DirectoryRawAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public Object getObject (final int tag)
       throws NoSuchElementException
       {
@@ -150,6 +156,7 @@ public class DirectoryRawAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public String getTagName (final int tag)
       {
         checkIfTagExists(tag);
@@ -160,6 +167,7 @@ public class DirectoryRawAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public boolean containsTag (final int tag)
       {
         return (directory != null) ? directory.containsTag(Integer.valueOf(tag)) : false;

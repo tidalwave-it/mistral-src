@@ -40,6 +40,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ConjugateJAIOp extends OperationImplementation<ConjugateOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (ConjugateOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();

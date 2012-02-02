@@ -127,6 +127,7 @@ public class ImplementationFactoryJAI extends ImplementationFactory
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
+    @Override
     public boolean canConvertFrom (final @Nonnull Class imageClass)
       {
         return RenderedImage.class.isAssignableFrom(imageClass);
@@ -138,6 +139,7 @@ public class ImplementationFactoryJAI extends ImplementationFactory
      *
      ******************************************************************************************************************/
     @Nonnull
+    @Override
     public ImageModel convertFrom (final @Nonnull Object image)
       {
         if (image instanceof RenderedImage)
@@ -153,6 +155,7 @@ public class ImplementationFactoryJAI extends ImplementationFactory
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
+    @Override
     public boolean canConvertTo (final @Nonnull Class imageClass)
       {
         return BufferedImage.class.isAssignableFrom(imageClass);
@@ -164,6 +167,7 @@ public class ImplementationFactoryJAI extends ImplementationFactory
      *
      ******************************************************************************************************************/
     @Nonnull
+    @Override
     public Object convertTo (final @Nonnull Object image)
       {
         if (image instanceof BufferedImage)

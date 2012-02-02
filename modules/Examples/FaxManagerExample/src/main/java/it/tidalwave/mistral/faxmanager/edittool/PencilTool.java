@@ -113,6 +113,7 @@ public class PencilTool extends EditingTool
                 imageRenderer.getImage().setAttribute(CHANGED_ATTRIBUTE, true);
                 imageRenderer.getImage().execute(new DrawOp(new DrawOp.Executor()
                   {
+                    @Override
                     public void draw (final Graphics2D g, final EditableImage image) 
                       {
                         g.setColor(color);

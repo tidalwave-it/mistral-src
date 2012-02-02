@@ -224,6 +224,7 @@ public abstract class ImageModel implements Externalizable
      *
      *
      ******************************************************************************/
+    @Override
     public final void writeExternal (final ObjectOutput out)
         throws IOException
       {
@@ -256,6 +257,7 @@ public abstract class ImageModel implements Externalizable
      *
      *
      ******************************************************************************/
+    @Override
     public final void readExternal (final ObjectInput in)
         throws IOException, ClassNotFoundException
       {
@@ -370,6 +372,7 @@ public abstract class ImageModel implements Externalizable
      *
      *
      ******************************************************************************/
+    @Override
     protected void finalize()
       {
         // FIXME: not sure about this - for sure should only remove from the local cache

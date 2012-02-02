@@ -86,6 +86,7 @@ public class TranslateOp extends Operation
      * @inheritDoc
      *
      *******************************************************************************/
+    @Override
     public String toString ()
       {
         return "TranslateOp(" + deltaX + ", " + deltaY + ", " + interpolationType + ")";

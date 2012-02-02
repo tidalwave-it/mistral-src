@@ -40,6 +40,7 @@ public class TIFFMetadataLoader implements MetadataLoader
      *
      *
      **************************************************************************/
+    @Override
     public Object findEXIF (final IIOMetadata iioMetadata)
       {
         final TIFFIFD rootIFD = ((TIFFImageMetadata)iioMetadata).getRootIFD();
@@ -53,6 +54,7 @@ public class TIFFMetadataLoader implements MetadataLoader
      *
      *
      **************************************************************************/
+    @Override
     public Object findIPTC (final IIOMetadata iioMetadata) 
       { 
         return null;
@@ -62,6 +64,7 @@ public class TIFFMetadataLoader implements MetadataLoader
      *
      *
      **************************************************************************/
+    @Override
     public Object findTIFF (final IIOMetadata iioMetadata) 
       {
         return ((TIFFImageMetadata)iioMetadata).getRootIFD();
@@ -71,6 +74,7 @@ public class TIFFMetadataLoader implements MetadataLoader
      *
      *
      **************************************************************************/
+    @Override
     public Object findMakerNote (final IIOMetadata iioMetadata) 
       {
         return null;
@@ -80,6 +84,7 @@ public class TIFFMetadataLoader implements MetadataLoader
      *
      *
      **************************************************************************/
+    @Override
     public Object findDNG (final IIOMetadata iioMetadata) 
       {
         return null;

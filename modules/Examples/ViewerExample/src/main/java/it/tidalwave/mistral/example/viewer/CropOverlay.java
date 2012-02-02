@@ -49,6 +49,7 @@ public class CropOverlay implements Overlay
     
     private int height = 800;
 
+    @Override
     public void paint (Graphics2D g, EditableImageRenderer imageRenderer) 
       {
         Rectangle bounds = imageRenderer.getBounds();
@@ -73,6 +74,7 @@ public class CropOverlay implements Overlay
         this.visible = visible;
       }
 
+    @Override
     public boolean isVisible() 
       {
         return visible;

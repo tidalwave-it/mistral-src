@@ -44,6 +44,7 @@ public class PrintSelectionDialog extends JPanel
       {
         NONE
           {
+            @Override
             public List<Integer> getPageList (final PageManager pageManager)
               {
                 return Collections.emptyList();
@@ -52,6 +53,7 @@ public class PrintSelectionDialog extends JPanel
           
         CURRENT
           {
+            @Override
             public List<Integer> getPageList (final PageManager pageManager)
               {
                 return Collections.singletonList(pageManager.getPageNumber());
@@ -60,6 +62,7 @@ public class PrintSelectionDialog extends JPanel
           
         ALL
           {
+            @Override
             public List<Integer> getPageList (final PageManager pageManager)
               {
                 return pageManager.getVisiblePageNumbers();

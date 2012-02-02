@@ -58,6 +58,7 @@ public class Rational extends Number
      *
      *
      **************************************************************************/
+    @Override
     public final double doubleValue()
       {
         return (double)numerator / (double)denominator;
@@ -67,6 +68,7 @@ public class Rational extends Number
      *
      *
      **************************************************************************/
+    @Override
     public final float floatValue()
       {
         return (float)numerator / (float)denominator;
@@ -86,6 +88,7 @@ public class Rational extends Number
      *
      *
      **************************************************************************/
+    @Override
     public final int intValue()
       {
         return (int)doubleValue();
@@ -95,6 +98,7 @@ public class Rational extends Number
      *
      *
      **************************************************************************/
+    @Override
     public final long longValue()
       {
         return (long)doubleValue();

@@ -177,6 +177,7 @@ public class EditableImageRenderer extends JComponent
      **************************************************************************/
     private final AdjustmentListener scrollbarListener = new AdjustmentListener()
       {
+        @Override
         public void adjustmentValueChanged (final AdjustmentEvent event)
           {
             setOrigin(new Point(horizontalScrollBar.getValue(), verticalScrollBar.getValue()));

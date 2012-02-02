@@ -52,6 +52,7 @@ public class DirectoryDrewAdapter implements DirectoryAdapter
      *
      **************************************************************************/
     @SuppressWarnings("unchecked")
+    @Override
     public int[] getTags ()
       {
         final int[] result = new int[directory.getTagCount()];
@@ -70,6 +71,7 @@ public class DirectoryDrewAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public String[] getSubDirectoryNames()
       {
         // TODO Auto-generated method stub
@@ -80,6 +82,7 @@ public class DirectoryDrewAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public DirectoryAdapter getSubDirectory (final String name)
       {
         // TODO Auto-generated method stub
@@ -90,6 +93,7 @@ public class DirectoryDrewAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public boolean hasNext() 
       {
         return false;
@@ -99,6 +103,7 @@ public class DirectoryDrewAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public DirectoryAdapter next() 
       {
         throw new NoSuchElementException();
@@ -108,6 +113,7 @@ public class DirectoryDrewAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public Object getObject (final int tag)
         throws NoSuchElementException
       {
@@ -133,6 +139,7 @@ public class DirectoryDrewAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public String getTagName (final int tag)
       {
         checkIfTagExists(tag);
@@ -143,6 +150,7 @@ public class DirectoryDrewAdapter implements DirectoryAdapter
      *
      *
      **************************************************************************/
+    @Override
     public boolean containsTag (final int tag)
       {
         return (directory != null) ? directory.containsTag(tag) : false;

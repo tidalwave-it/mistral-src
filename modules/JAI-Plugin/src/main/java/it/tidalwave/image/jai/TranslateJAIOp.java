@@ -41,6 +41,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TranslateJAIOp extends OperationImplementation<TranslateOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (TranslateOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();

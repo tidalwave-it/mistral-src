@@ -46,6 +46,7 @@ public class MagnitudeOp extends Operation
      * @inheritDoc
      *
      *******************************************************************************/
+    @Override
     public String toString ()
       {
         return "MagnitudeOp()";

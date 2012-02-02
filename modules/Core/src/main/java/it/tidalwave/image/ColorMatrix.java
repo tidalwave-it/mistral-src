@@ -164,6 +164,7 @@ public class ColorMatrix
      * @inheritDoc
      *
      *******************************************************************************/
+    @Override
     public final String toString ()
       {
         StringBuffer buffer = new StringBuffer("[");

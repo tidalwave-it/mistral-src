@@ -46,6 +46,7 @@ public class DFTOp extends Operation
      * @inheritDoc
      *
      *******************************************************************************/
+    @Override
     public String toString ()
       {
         return "DFTOp()";

@@ -140,6 +140,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
     }
 
     // --- Implementation of superclass abstract methods. ---
+    @Override
     public int read() throws IOException {
         checkClosed();
         bitOffset = 0;
@@ -164,6 +165,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         return value;
     }
 
+    @Override
     public int read(byte[] b, int off, int len) throws IOException {
         if (off < 0 || len < 0 || off + len > b.length) {
             // NullPointerException will be thrown before this if b is null.
@@ -251,6 +253,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         seek(streamPos + byteLen);
     }
 
+    @Override
     public void readFully(short[] s, int off, int len)
             throws IOException {
         if (off < 0 || len < 0 || off + len > s.length) {
@@ -282,6 +285,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         seek(streamPos + byteLen);
     }
 
+    @Override
     public void readFully(int[] i, int off, int len) throws IOException {
         if (off < 0 || len < 0 || off + len > i.length) {
             // NullPointerException will be thrown before this if i is null.
@@ -312,6 +316,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         seek(streamPos + byteLen);
     }
 
+    @Override
     public void readFully(long[] l, int off, int len)
             throws IOException {
         if (off < 0 || len < 0 || off + len > l.length) {
@@ -343,6 +348,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         seek(streamPos + byteLen);
     }
 
+    @Override
     public void readFully(float[] f, int off, int len)
             throws IOException {
         if (off < 0 || len < 0 || off + len > f.length) {
@@ -374,6 +380,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         seek(streamPos + byteLen);
     }
 
+    @Override
     public void readFully(double[] d, int off, int len)
             throws IOException {
         if (off < 0 || len < 0 || off + len > d.length) {
@@ -413,6 +420,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
      * @return The number of bytes in the channel
      * -1L to indicate unknown length.
      */
+    @Override
     public long length() {
         // Initialize to value indicating unknown length.
         long length = -1L;
@@ -433,6 +441,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
      * position of the source <code>FileChannel</code> is not changed, i.e.,
      * {@link java.nio.channels.FileChannel#position(long)} is not invoked.
      */
+    @Override
     public void seek(long pos) throws IOException {
         super.seek(pos);
 
@@ -448,6 +457,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         }
     }
 
+    @Override
     public void setByteOrder(ByteOrder networkByteOrder) {
         super.setByteOrder(networkByteOrder);
         mappedBuffer.order(networkByteOrder);

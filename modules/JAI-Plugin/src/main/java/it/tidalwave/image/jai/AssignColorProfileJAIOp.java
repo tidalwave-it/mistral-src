@@ -41,6 +41,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AssignColorProfileJAIOp extends OperationImplementation<AssignColorProfileOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (final @Nonnull AssignColorProfileOp operation,   
                                    final @Nonnull EditableImage image, 
                                    final @Nonnull PlanarImage planarImage)

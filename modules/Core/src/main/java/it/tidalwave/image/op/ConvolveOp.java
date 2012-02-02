@@ -63,6 +63,7 @@ public class ConvolveOp extends Operation
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     public String toString ()
       {
         return "ConvolveOp(" + kernel + ")";

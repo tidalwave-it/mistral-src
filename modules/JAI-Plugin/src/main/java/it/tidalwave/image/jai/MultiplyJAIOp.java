@@ -40,6 +40,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MultiplyJAIOp extends OperationImplementation<MultiplyOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (MultiplyOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();   

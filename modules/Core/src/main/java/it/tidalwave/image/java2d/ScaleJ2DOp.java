@@ -57,6 +57,7 @@ public class ScaleJ2DOp extends OperationImplementation<ScaleOp, BufferedImage>
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     protected BufferedImage execute (final ScaleOp operation, final EditableImage image, final BufferedImage bufferedImage)
       {
         final double xScale = operation.getXScale();

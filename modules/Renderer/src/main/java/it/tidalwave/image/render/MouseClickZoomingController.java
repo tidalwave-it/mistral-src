@@ -65,6 +65,7 @@ public class MouseClickZoomingController
      **************************************************************************/
     private final EditableImageRendererAdapter scaleListener = new EditableImageRendererAdapter()
           {
+        @Override
             public void scaleChanged (EditableImageRendererEvent editableImageRendererEvent)
               {
                 double scale = imageRenderer.getScale();

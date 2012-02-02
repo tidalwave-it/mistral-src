@@ -37,6 +37,7 @@ import static org.junit.Assert.*;
  *
  */
 public class RotateJ2DOpPerformanceTest extends BasePerformanceTestSupport {
+    @Override
     protected long runTest(EditableImage image) {
         fail("disabled because it takes forever");
 

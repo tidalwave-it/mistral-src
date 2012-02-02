@@ -42,6 +42,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ConvolveJAIOp extends OperationImplementation<ConvolveOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (ConvolveOp operation, final EditableImage image, PlanarImage planarImage)
       {
         RenderingHints hints = null; // FIXME

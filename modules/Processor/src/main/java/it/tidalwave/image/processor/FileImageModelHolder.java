@@ -60,6 +60,7 @@ import it.tidalwave.image.ImageModelHolder;
      *
      *
      ******************************************************************************/
+    @Override
     public synchronized ImageModel get()
       {
         if (imageModel == null)
@@ -83,6 +84,7 @@ import it.tidalwave.image.ImageModelHolder;
      *
      *
      ******************************************************************************/
+    @Override
     public void set (ImageModel imageModel) 
       {
         this.imageModel = imageModel;

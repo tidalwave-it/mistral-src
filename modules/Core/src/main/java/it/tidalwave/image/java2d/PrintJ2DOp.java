@@ -51,10 +51,12 @@ public class PrintJ2DOp extends OperationImplementation<PrintOp, BufferedImage>
       {
       }
 
+    @Override
     protected BufferedImage execute (final PrintOp operation, final EditableImage image, final BufferedImage model) 
       {
         final Printable printable = new Printable()
           {
+            @Override
             public int print (final Graphics graphics, final PageFormat pageFormat, final int pageIndex) 
               throws PrinterException 
               {

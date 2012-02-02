@@ -45,6 +45,7 @@ public class CropJAIOp extends OperationImplementation<CropOp, PlanarImage>
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     protected PlanarImage execute (CropOp operation, final EditableImage image, PlanarImage planarImage)
       {
         int x = operation.getX();

@@ -45,6 +45,7 @@ public class HistogramJ2DOp extends OperationImplementation<HistogramOp, Buffere
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     protected BufferedImage execute (HistogramOp operation, final EditableImage image, BufferedImage bufferedImage)
       {
         operation.setHistogram(new HistogramJava2D(bufferedImage));

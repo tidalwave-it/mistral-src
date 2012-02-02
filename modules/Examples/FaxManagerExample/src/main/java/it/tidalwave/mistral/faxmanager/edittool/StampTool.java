@@ -82,6 +82,7 @@ public class StampTool extends EditingTool
                 imageRenderer.getImage().setAttribute(CHANGED_ATTRIBUTE, true);
                 imageRenderer.getImage().execute(new DrawOp(new DrawOp.Executor()
                       {
+                    @Override
                         public void draw (final Graphics2D g, final EditableImage image)
                           {
                             paintStamp(g, point.x, point.y, 1.0);

@@ -54,9 +54,9 @@ public abstract class OperationImplementation<Op extends Operation, Model extend
     public final Object execute (final @Nonnull EditableImage image, final @Nonnull Object model)
       {
         final long now = System.currentTimeMillis();
-        log.trace("executing {}", operation);
+        log.debug("executing {}", operation);
         final Object result = execute(operation, image, (Model)model);
-        log.trace(">>>> {} done in {} msec", operation, (System.currentTimeMillis() - now));
+        log.debug(">>>> {} done in {} msec", operation, (System.currentTimeMillis() - now));
 
         return result;
       }

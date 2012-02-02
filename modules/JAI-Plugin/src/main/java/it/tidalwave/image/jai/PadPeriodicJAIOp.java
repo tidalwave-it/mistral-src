@@ -42,6 +42,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PadPeriodicJAIOp extends OperationImplementation<PadPeriodicOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (PadPeriodicOp operation, final EditableImage image, PlanarImage planarImage)
       {
         int oldWidth = planarImage.getData().getWidth();

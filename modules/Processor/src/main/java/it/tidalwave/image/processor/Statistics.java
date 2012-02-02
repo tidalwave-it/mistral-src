@@ -162,6 +162,7 @@ public class Statistics implements Serializable, Iterable<Item>
          *
          *
          **********************************************************************/
+        @Override
         public int compareTo (Statistics.Item o) 
           {
             return this.name.compareTo(o.name);
@@ -187,6 +188,7 @@ public class Statistics implements Serializable, Iterable<Item>
          *
          *
          **********************************************************************/
+        @Override
         public String toString()
           {
             return "Statistics.Item[" + name + " min:" + minimum + " max:" + maximum + " avg:" + getAverage() + "]";   
@@ -281,6 +283,7 @@ public class Statistics implements Serializable, Iterable<Item>
      * @inheritDoc
      *
      **************************************************************************/
+    @Override
     public Iterator<Statistics.Item> iterator() 
       {
         return map.values().iterator();

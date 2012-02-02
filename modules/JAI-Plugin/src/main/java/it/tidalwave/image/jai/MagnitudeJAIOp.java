@@ -40,6 +40,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MagnitudeJAIOp extends OperationImplementation<MagnitudeOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (MagnitudeOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();

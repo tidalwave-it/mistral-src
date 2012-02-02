@@ -37,6 +37,7 @@ public class RAWMetadataLoader implements MetadataLoader
      *
      *
      **************************************************************************/
+    @Override
     public Object findEXIF (final IIOMetadata metadata)
       {
         return ((TIFFMetadataSupport)metadata).getExifIFD();
@@ -65,6 +66,7 @@ public class RAWMetadataLoader implements MetadataLoader
      *
      *
      **************************************************************************/
+    @Override
     public Object findIPTC (final IIOMetadata iioMetadata) 
       { 
         return null;
@@ -74,6 +76,7 @@ public class RAWMetadataLoader implements MetadataLoader
      *
      *
      **************************************************************************/
+    @Override
     public Object findTIFF (final IIOMetadata metadata) 
       {
         return ((TIFFMetadataSupport)metadata).getPrimaryIFD();
@@ -83,6 +86,7 @@ public class RAWMetadataLoader implements MetadataLoader
      *
      *
      **************************************************************************/
+    @Override
     public Object findMakerNote (final IIOMetadata metadata) 
       {
         return ((TIFFMetadataSupport)metadata).getMakerNote();
@@ -92,6 +96,7 @@ public class RAWMetadataLoader implements MetadataLoader
      *
      *
      **************************************************************************/
+    @Override
     public Object findDNG (final IIOMetadata metadata)  
       {
         return null;

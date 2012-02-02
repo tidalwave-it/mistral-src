@@ -36,6 +36,7 @@ import java.util.logging.Logger;
  ******************************************************************************/
 public class LoggerPerformanceTest extends BasePerformanceTestSupport
   {
+    @Override
     protected long runTest (EditableImage image)
       {
         Logger testLogger = Logger.getLogger("test");

@@ -68,6 +68,7 @@ public class HistogramJAI extends it.tidalwave.image.Histogram
      * @inheritDoc
      * 
      *******************************************************************************/
+    @Override
     public int[] getFrequencies (int band)
       {
         validateBand(band);
@@ -81,6 +82,7 @@ public class HistogramJAI extends it.tidalwave.image.Histogram
      * @inheritDoc
      * 
      *******************************************************************************/
+    @Override
     public int getMin (int band)
       {
         validateBand(band);
@@ -94,6 +96,7 @@ public class HistogramJAI extends it.tidalwave.image.Histogram
      * @inheritDoc
      * 
      *******************************************************************************/
+    @Override
     public int getMax (int band)
       {
         validateBand(band);
@@ -155,6 +158,7 @@ public class HistogramJAI extends it.tidalwave.image.Histogram
      * @inheritDoc
      * 
      *******************************************************************************/
+    @Override
     public it.tidalwave.image.Histogram getPreview (PreviewSettings previewSetting)
       {
         throw new RuntimeException("NOT IMPLEMENTED YET!");

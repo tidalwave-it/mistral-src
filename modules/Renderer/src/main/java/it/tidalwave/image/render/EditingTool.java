@@ -139,6 +139,7 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
      **************************************************************************/
     private final Action action = new AbstractAction() 
       {
+        @Override
         public void actionPerformed (ActionEvent event) 
           {
             if (!active)
@@ -295,6 +296,7 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
      *
      *
      **************************************************************************/
+    @Override
     public final boolean isVisible() 
       {
         return true;
@@ -383,56 +385,67 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
     
     //// The following methods just delegate to the current State
 
+    @Override
     public final void mouseClicked (MouseEvent event) 
       {
         state.mouseClicked(event);
       }
 
+    @Override
     public final void mousePressed (MouseEvent event) 
       {
         state.mousePressed(event);
       }
 
+    @Override
     public final void mouseReleased (MouseEvent event) 
       {
         state.mouseReleased(event);
       }
 
+    @Override
     public final void mouseEntered (MouseEvent event) 
       {
         state.mouseEntered(event);
       }
 
+    @Override
     public final void mouseExited (MouseEvent event)  
       {
         state.mouseExited(event);
       }
 
+    @Override
     public final void mouseDragged (MouseEvent event) 
       {
         state.mouseDragged(event);
       }
 
+    @Override
     public final void mouseMoved (MouseEvent event) 
       {
         state.mouseMoved(event);
       }
 
+    @Override
     public final void keyTyped (KeyEvent event)
       {
         state.keyTyped(event);
       }
 
+    @Override
     public final void keyPressed (KeyEvent event) 
       {
         state.keyPressed(event);
       }
 
+    @Override
     public final void keyReleased (KeyEvent event)
       {
         state.keyReleased(event);
       }
 
+    @Override
     public final void paint (Graphics2D g, EditableImageRenderer imageRenderer) 
       {
         state.paint(g, imageRenderer);

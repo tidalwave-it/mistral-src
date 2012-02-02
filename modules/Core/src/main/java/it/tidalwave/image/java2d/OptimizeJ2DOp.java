@@ -47,6 +47,7 @@ public class OptimizeJ2DOp extends OperationImplementation<OptimizeOp, BufferedI
      *
      *
      ******************************************************************************/
+    @Override
     protected BufferedImage execute (OptimizeOp operation, final EditableImage image, BufferedImage bufferedImage)
       {
         Java2DUtils.logImage(logger, ">>>> source bufferedImage", bufferedImage);

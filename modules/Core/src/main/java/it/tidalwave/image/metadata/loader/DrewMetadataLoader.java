@@ -46,6 +46,7 @@ public class DrewMetadataLoader implements MetadataLoader
      *
      *
      **************************************************************************/
+    @Override
     public Object findEXIF (final IIOMetadata metadata)
       {
         final Node node = metadata.getAsTree(metadata.getNativeMetadataFormatName());
@@ -56,6 +57,7 @@ public class DrewMetadataLoader implements MetadataLoader
      *
      *
      **************************************************************************/
+    @Override
     public Object findIPTC (final IIOMetadata metadata)
       {
         final Node node = metadata.getAsTree(metadata.getNativeMetadataFormatName());
@@ -66,6 +68,7 @@ public class DrewMetadataLoader implements MetadataLoader
      *
      *
      **************************************************************************/
+    @Override
     public Object findTIFF (final IIOMetadata metadata)   
       {
         return null;
@@ -75,6 +78,7 @@ public class DrewMetadataLoader implements MetadataLoader
      *
      *
      **************************************************************************/
+    @Override
     public Object findMakerNote (final IIOMetadata metadata) 
       {
         return null;
@@ -84,6 +88,7 @@ public class DrewMetadataLoader implements MetadataLoader
      *
      *
      **************************************************************************/
+    @Override
     public Object findDNG (final IIOMetadata metadata) 
       {
         return null;

@@ -100,6 +100,7 @@ public class OptimizeOp extends Operation
      * @inheritdocs
      *
      ******************************************************************************/
+    @Override
     public String toString ()
       {
         return "OptimizeOp(scale:" + scale + ", quality:" + quality + ")";

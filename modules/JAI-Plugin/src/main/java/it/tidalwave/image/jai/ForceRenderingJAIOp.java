@@ -38,6 +38,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ForceRenderingJAIOp extends OperationImplementation<ForceRenderingOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (ForceRenderingOp operation, final EditableImage image, PlanarImage planarImage)
       {
         planarImage.getData();

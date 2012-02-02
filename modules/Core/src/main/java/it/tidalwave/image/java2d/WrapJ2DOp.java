@@ -45,6 +45,7 @@ public class WrapJ2DOp extends OperationImplementation<WrapOp, BufferedImage>
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     protected BufferedImage execute (final WrapOp operation, final EditableImage image, final BufferedImage bufferedImage)
       {
         logger.info(String.format("WrapJ2DOp.execute(%s)", operation));

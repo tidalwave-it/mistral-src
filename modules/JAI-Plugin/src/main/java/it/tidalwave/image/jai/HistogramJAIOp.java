@@ -38,6 +38,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class HistogramJAIOp extends OperationImplementation<HistogramOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (HistogramOp operation, final EditableImage image, PlanarImage planarImage)
       {
         operation.setHistogram(new HistogramJAI(planarImage));

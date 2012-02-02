@@ -46,6 +46,7 @@ public class RotateJ2DOp extends OperationImplementation<RotateOp, BufferedImage
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     protected BufferedImage execute (RotateOp operation, final EditableImage image, BufferedImage bufferedImage)
       {
         double degrees = operation.getDegrees();

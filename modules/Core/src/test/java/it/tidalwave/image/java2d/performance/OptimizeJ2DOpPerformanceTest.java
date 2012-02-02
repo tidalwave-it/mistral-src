@@ -34,6 +34,7 @@ import it.tidalwave.image.op.OptimizeOp;
  ******************************************************************************/
 public class OptimizeJ2DOpPerformanceTest extends BasePerformanceTestSupport 
   {
+    @Override
     protected long runTest (EditableImage image)
       {
         long accTime = 0;

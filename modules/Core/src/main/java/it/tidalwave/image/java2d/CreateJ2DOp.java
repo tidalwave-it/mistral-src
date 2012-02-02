@@ -83,6 +83,7 @@ public class CreateJ2DOp extends OperationImplementation<CreateOp, BufferedImage
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     protected BufferedImage execute (final CreateOp operation, final EditableImage image, final BufferedImage bufferedImage)
       {
         logger.info("CreateJ2DOp.execute(" + operation + ", " + image + ")");

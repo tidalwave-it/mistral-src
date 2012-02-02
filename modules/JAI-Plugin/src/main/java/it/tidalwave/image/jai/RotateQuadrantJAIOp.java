@@ -40,6 +40,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class RotateQuadrantJAIOp extends OperationImplementation<RotateQuadrantOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (RotateQuadrantOp operation, final EditableImage image, PlanarImage planarImage)
       {
         int degrees = operation.getDegrees();

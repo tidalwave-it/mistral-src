@@ -38,6 +38,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ApplyUnsharpMaskJAIOp extends OperationImplementation<ApplyUnsharpMaskOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (ApplyUnsharpMaskOp operation, final EditableImage image,  PlanarImage planarImage)
       {
         double intensity = operation.getIntensity();

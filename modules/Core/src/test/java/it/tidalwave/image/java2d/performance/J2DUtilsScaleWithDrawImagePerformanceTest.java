@@ -36,6 +36,7 @@ import static org.junit.Assert.*;
  ******************************************************************************/
 public class J2DUtilsScaleWithDrawImagePerformanceTest extends BasePerformanceTestSupport 
   {
+    @Override
     protected long runTest (EditableImage image)
       {
         fail("disabled because it takes forever");

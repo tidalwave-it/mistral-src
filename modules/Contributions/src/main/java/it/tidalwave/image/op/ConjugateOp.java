@@ -46,6 +46,7 @@ public class ConjugateOp extends Operation
      * @inheritDoc
      *
      *******************************************************************************/
+    @Override
     public String toString ()
       {
         return "ConjugateOp()";

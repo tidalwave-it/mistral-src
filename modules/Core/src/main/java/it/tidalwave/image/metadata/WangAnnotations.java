@@ -213,10 +213,12 @@ public class WangAnnotations
             iis.close();
           }
         
+        @Override
         public void render (final EditableImage image)
           {
             image.execute2(new DrawOp(new DrawOp.Executor() 
               {
+                @Override
                 public void draw (final Graphics2D g, final EditableImage image) 
                   {
                     attributes.drawString(g, image, text);
@@ -239,10 +241,12 @@ public class WangAnnotations
             System.err.println(String.format("OiHilite"));
           }
         
+        @Override
         public void render (final EditableImage image)
           {
             image.execute2(new DrawOp(new DrawOp.Executor() 
               {
+                @Override
                 public void draw (final Graphics2D g, final EditableImage image) 
                   {
                     attributes.drawRectangle(g, image);

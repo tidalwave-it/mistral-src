@@ -89,6 +89,7 @@ public class Main
         final ViewerPanel viewerPanel = new ViewerPanel();
         SwingUtilities.invokeAndWait(new Runnable()
               {
+            @Override
                 public void run ()
                   {
                     JFrame frame = new JFrame("Mistral Viewer example");

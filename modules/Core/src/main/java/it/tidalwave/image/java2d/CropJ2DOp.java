@@ -45,6 +45,7 @@ public class CropJ2DOp extends OperationImplementation<CropOp, BufferedImage>
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     protected BufferedImage execute (CropOp operation, final EditableImage image, BufferedImage bufferedImage)
       {
         int x = operation.getX();

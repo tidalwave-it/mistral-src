@@ -47,6 +47,7 @@ public class DFTJAIOp extends OperationImplementation<DFTOp, PlanarImage>
 //    
 //    private RenderingHints renderingHints;
             
+    @Override
     protected PlanarImage execute (DFTOp operation, final EditableImage image, PlanarImage planarImage)
       {
 //        planarImage = DFTDescriptor.create(planarImage, scalingType, dataNature, renderingHints);

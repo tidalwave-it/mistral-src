@@ -40,6 +40,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DivideByConstJAIOp extends OperationImplementation<DivideByConstOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (DivideByConstOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();

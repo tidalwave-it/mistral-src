@@ -64,6 +64,7 @@ public class HistogramJava2D extends Histogram
      * @inheritDoc
      *
      *******************************************************************************/
+    @Override
     public int[] getFrequencies (int band)
       {
         validateBand(band);
@@ -84,6 +85,7 @@ public class HistogramJava2D extends Histogram
      * @inheritDoc
      *
      *******************************************************************************/
+    @Override
     public int getMin (int band)
       {
         validateBand(band);
@@ -96,6 +98,7 @@ public class HistogramJava2D extends Histogram
      * @inheritDoc
      *
      *******************************************************************************/
+    @Override
     public int getMax (int band)
       {
         validateBand(band);
@@ -139,6 +142,7 @@ public class HistogramJava2D extends Histogram
      * @inheritDoc
      *
      *******************************************************************************/
+    @Override
     public it.tidalwave.image.Histogram getPreview (PreviewSettings previewSetting)
       {
         HistogramJava2D previewHistogram = new HistogramJava2D(null);

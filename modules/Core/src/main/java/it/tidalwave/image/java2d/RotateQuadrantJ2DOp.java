@@ -51,6 +51,7 @@ public class RotateQuadrantJ2DOp extends OperationImplementation<RotateQuadrantO
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     protected BufferedImage execute (RotateQuadrantOp operation, final EditableImage image, BufferedImage bufferedImage)
       {
         int degrees = operation.getDegrees();

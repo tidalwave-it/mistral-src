@@ -117,6 +117,7 @@ class TestInfo implements Comparable<TestInfo>
         pw.println("</tr>");
       }
 
+    @Override
     public int compareTo (TestInfo o)
       {
         int r = test.compareTo(o.test);
@@ -161,6 +162,7 @@ class TestInfo implements Comparable<TestInfo>
         return r;
       }
 
+    @Override
     public boolean equals (Object o)
       {
         if (!(o instanceof TestInfo))
@@ -192,6 +194,7 @@ class TestResults implements Comparable<TestResults>
         this.value = value;
       }
 
+    @Override
     public int compareTo (TestResults o)
       {
         int r = host.compareTo(o.host);

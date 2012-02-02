@@ -40,6 +40,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DivideComplexJAIOp extends OperationImplementation<DivideComplexOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (DivideComplexOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();

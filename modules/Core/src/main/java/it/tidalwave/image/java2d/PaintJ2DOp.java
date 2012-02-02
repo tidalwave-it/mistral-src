@@ -53,6 +53,7 @@ public class PaintJ2DOp extends OperationImplementation<PaintOp, BufferedImage>
      * @inheritDoc
      *
      ******************************************************************************/
+    @Override
     protected BufferedImage execute (final PaintOp operation, final EditableImage image, final BufferedImage bufferedImage)
       {
         int x = operation.getX();

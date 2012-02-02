@@ -55,6 +55,7 @@ class RealFaxServerBD extends FaxServerBD
      *
      *
      **************************************************************************/
+    @Override
     public byte[] getData() 
       throws IOException 
       {
@@ -72,6 +73,7 @@ class RealFaxServerBD extends FaxServerBD
      *
      *
      **************************************************************************/
+    @Override
     public String retrieveStampCode ()
       {
         try

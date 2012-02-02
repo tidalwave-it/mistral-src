@@ -91,6 +91,7 @@ public class Main
               add(imageRenderer, BorderLayout.CENTER);
             }
             
+            @Override
             protected void onImageLoaded (final EditableImage image)
               {
                 imageRenderer.setFitToDisplaySize(true);
@@ -99,6 +100,7 @@ public class Main
                 //
                 Thread thread = new Thread()
                   {
+                    @Override
                     public void run()
                       {
                         histogramRenderer.start();

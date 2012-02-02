@@ -91,11 +91,13 @@ public class AbstractViewerPanel extends JPanel
         
         final Overlay overlay = new Overlay() 
           {
+            @Override
             public boolean isVisible()  
               {
                 return true;
               }
             
+            @Override
             public void paint (final Graphics2D g, final EditableImageRenderer imageRenderer) 
               {
                 label.setBounds(imageRenderer.getBounds());
@@ -113,6 +115,7 @@ public class AbstractViewerPanel extends JPanel
         // A SwingWorker would be good here
         Thread loaderThread = new Thread()
           {
+            @Override
             public void run()
               {
                 try
@@ -121,6 +124,7 @@ public class AbstractViewerPanel extends JPanel
                     
                     SwingUtilities.invokeLater(new Runnable()
                       {
+                        @Override
                         public void run()
                           {
                             imageRenderer.setImage(image);
@@ -136,6 +140,7 @@ public class AbstractViewerPanel extends JPanel
                   {
                     SwingUtilities.invokeLater(new Runnable()
                       {
+                        @Override
                         public void run()
                           {
                             label.setText(e.toString());

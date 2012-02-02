@@ -41,6 +41,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class IDFTJAIOp extends OperationImplementation<IDFTOp, PlanarImage>
   {
+    @Override
     protected PlanarImage execute (IDFTOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();

@@ -36,6 +36,7 @@ import java.io.InputStream;
  ******************************************************************************/
 class TestFaxServerBD extends FaxServerBD
   {
+    @Override
     public byte[] getData() 
       throws IOException 
       {        
@@ -55,6 +56,7 @@ class TestFaxServerBD extends FaxServerBD
         return buffer;
       }
 
+    @Override
     public String retrieveStampCode() 
       {
         return "DUMMY";
