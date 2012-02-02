@@ -30,6 +30,7 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.ImageFunction;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.CreateFunctionOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -38,11 +39,9 @@ import it.tidalwave.image.op.CreateFunctionOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class CreateFunctionJAIOp extends OperationImplementation<CreateFunctionOp, PlanarImage>
   {
-    private static final String CLASS = CreateJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-    
     class JAIImageFunctionAdapter implements javax.media.jai.ImageFunction
       {
         private ImageFunction imageFunction;
@@ -92,7 +91,7 @@ public class CreateFunctionJAIOp extends OperationImplementation<CreateFunctionO
         pb.add(0.0f);
 
         planarImage = JAI.create("imagefunction", pb);
-        JAIUtils.logImage(logger, ">>>> CreateFunctionJAIOp returning", planarImage);    
+        JAIUtils.logImage(log, ">>>> CreateFunctionJAIOp returning", planarImage);    
         
         return planarImage;
       }

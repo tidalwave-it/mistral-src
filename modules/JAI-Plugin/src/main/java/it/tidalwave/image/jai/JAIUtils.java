@@ -47,6 +47,7 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
 import it.tidalwave.image.java2d.Java2DUtils;
 import java.awt.image.Raster;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -55,12 +56,9 @@ import java.awt.image.Raster;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class JAIUtils extends Java2DUtils
   {
-    private static final String CLASS = JAIUtils.class.getName();
-    
-    private static final Logger logger = Logger.getLogger(CLASS);
-    
     private static final int[] POWER2_SIZES = 
       {
         32, 64, 128, 256, 512, 1024, 2048, 4096, 8192
@@ -86,7 +84,7 @@ public class JAIUtils extends Java2DUtils
 
         if (scale != 1)
           {
-            logger.finer(">>>> jaiMagnification(" + scale + ", " + quality + ")");
+            log.debug(">>>> jaiMagnification({}, {})", scale, quality);
 
             final Float fScale = new Float(scale);
             final Float fZero = new Float(0);
@@ -106,10 +104,10 @@ public class JAIUtils extends Java2DUtils
                     throw new IllegalArgumentException(quality.toString());
               }
             
-            logger.finer(">>>> Scale(" + scale + ", " + interpolation + ")");
+            log.debug(">>>> Scale({}, {}", scale, interpolation);
 
             result = ScaleDescriptor.create(source, fScale, fScale, fZero, fZero, interpolation, hints);
-            logImage(logger, ">>>>>>>>    planarImage", result);
+            logImage(log, ">>>>>>>>    planarImage", result);
           }
 
         return result;
@@ -156,18 +154,18 @@ public class JAIUtils extends Java2DUtils
         if (scale != 1)
           {
             Float fScale = new Float(scale);
-            logger.finer(">>>> jaiReduction(" + scale + ")");
+            log.debug(">>>> jaiReduction({})", scale);
 
             Integer iPad = new Integer(10); // FIXME
             BorderExtender borderExtender = BorderExtender.createInstance(BorderExtender.BORDER_COPY);
-            logger.finer(">>>>>>>> Border(" + iPad + ")");
+            log.debug(">>>>>>>> Border({})", iPad);
             result = BorderDescriptor.create(result, iPad, iPad, iPad, iPad, borderExtender, hints);
 
             switch (quality)
               {
                 case FASTEST:
                     Interpolation interpolation = Interpolation.getInstance(Interpolation.INTERP_NEAREST);
-                    logger.finer(">>>>>>>> Scale(" + scale + ", " + interpolation + ")");
+                    log.debug(">>>>>>>> Scale({}, {})", scale, interpolation);
                     result = ScaleDescriptor.create(result, fScale, fScale, ZERO, ZERO, interpolation, hints);
                     break;
                   
@@ -175,18 +173,18 @@ public class JAIUtils extends Java2DUtils
                     if (scale > 0.5)
                       {
                         interpolation = Interpolation.getInstance(Interpolation.INTERP_BILINEAR);
-                        logger.finer(">>>>>>>> Scale(" + scale + ", " + interpolation + ")");
+                        log.debug(">>>>>>>> Scale({}, {})", scale, interpolation);
                         result = ScaleDescriptor.create(result, fScale, fScale, ZERO, ZERO, interpolation, hints);
                       }
 
                     else // scale <= 0.5
                       {
                         final Kernel averagingKernel = getAveragingKernel((int)Math.round(1.0 / scale));
-                        logger.finer(">>>>>>>> Convolve() with averaging kernel: " + averagingKernel);
+                        log.debug(">>>>>>>> Convolve() with averaging kernel: {}", averagingKernel);
                         result = ConvolveDescriptor.create(result, new KernelJAI(averagingKernel), hints);
 
                         interpolation = Interpolation.getInstance(Interpolation.INTERP_NEAREST);
-                        logger.finer(">>>>>>>> Scale(" + scale + ", " + interpolation + ")");
+                        log.debug(">>>>>>>> Scale({}, {})", scale, interpolation);
                         result = ScaleDescriptor.create(result, fScale, fScale, ZERO, ZERO, interpolation, hints);
                       }
                     
@@ -200,7 +198,7 @@ public class JAIUtils extends Java2DUtils
                 //                Double dScale = new Double(scale);
                 //                planarImage = SubsampleAverageDescriptor.create(planarImage, dScale, dScale, hints);
 
-            logImage(logger, ">>>>>>>> jaiReduction returning planarImage", result);
+            logImage(log, ">>>>>>>> jaiReduction returning planarImage", result);
           }
 
         return result;
@@ -223,7 +221,7 @@ public class JAIUtils extends Java2DUtils
     public static void jaiCopyToBufferedImage (final PlanarImage source,
                                                final BufferedImage destination)
       {
-        logger.finer(">>>> jaiCopyToBufferedImage()");
+        log.debug(">>>> jaiCopyToBufferedImage()");
 
         long now = System.currentTimeMillis();
 
@@ -241,8 +239,8 @@ public class JAIUtils extends Java2DUtils
             destination.getRaster().setRect(getRaster(source));
           }
 
-        logger.finer(">>>> bufferedImage:     " + destination.getColorModel());
-        logger.finer(">>>> jaiCopyToBufferedImage() done in " + (System.currentTimeMillis() - now) + " msec");
+        log.debug(">>>> bufferedImage:     {}", destination.getColorModel());
+        log.debug(">>>> jaiCopyToBufferedImage() done in {} msec", (System.currentTimeMillis() - now));
       }
 
     /*******************************************************************************
@@ -259,15 +257,15 @@ public class JAIUtils extends Java2DUtils
                                                             final RenderingHints hints)
       {
         boolean is_sRGB = source.getColorModel().getColorSpace().isCS_sRGB();
-        logger.finer(">>>> planarImage.is_sRGB: " + is_sRGB);
+        log.debug(">>>> planarImage.is_sRGB: {}", is_sRGB);
 
         if (!is_sRGB)
           {
             // Convert color as last, since if the image has been scaled there are less pixels to convert
-            logger.finer(">>>> Applying ColorConvertDescriptor");
+            log.debug(">>>> Applying ColorConvertDescriptor");
 
             PlanarImage result = ColorConvertDescriptor.create(source, colorModel, hints);
-            logImage(logger, ">>>>>>>>    planarImage", result);
+            logImage(log, ">>>>>>>>    planarImage", result);
 
             return result;
           }
@@ -294,7 +292,7 @@ public class JAIUtils extends Java2DUtils
         final int TARGET_BIT_COUNT = 8;
 
         int bitsPerPixel = source.getSampleModel().getSampleSize(0);
-        logger.finer(">>>> planarImage.bitsPerPixel: " + bitsPerPixel);
+        log.debug(">>>> planarImage.bitsPerPixel: {}", bitsPerPixel);
 
         if (bitsPerPixel > TARGET_BIT_COUNT)
           {
@@ -305,11 +303,11 @@ public class JAIUtils extends Java2DUtils
                 tableData[i] = (byte)(i >> (bitsPerPixel - 8));
               }
 
-            logger.finer(">>>> Applying LookupDescriptor");
+            log.debug(">>>> Applying LookupDescriptor");
 
             LookupTableJAI lut = new LookupTableJAI(tableData);
             PlanarImage result = LookupDescriptor.create(source, lut, hints);
-            logImage(logger, ">>>>>>>>    planarImage", result);
+            logImage(log, ">>>>>>>>    planarImage", result);
 
             return result;
           }

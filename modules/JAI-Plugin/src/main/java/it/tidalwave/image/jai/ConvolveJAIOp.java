@@ -31,6 +31,7 @@ import javax.media.jai.operator.ConvolveDescriptor;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.ConvolveOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -39,11 +40,9 @@ import it.tidalwave.image.op.ConvolveOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class ConvolveJAIOp extends OperationImplementation<ConvolveOp, PlanarImage>
   {
-    private static final String CLASS = ConvolveJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (ConvolveOp operation, final EditableImage image, PlanarImage planarImage)
       {
         RenderingHints hints = null; // FIXME

@@ -27,6 +27,7 @@ import javax.media.jai.PlanarImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.ApplyUnsharpMaskOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -35,18 +36,16 @@ import it.tidalwave.image.op.ApplyUnsharpMaskOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class ApplyUnsharpMaskJAIOp extends OperationImplementation<ApplyUnsharpMaskOp, PlanarImage>
   {
-    private static final String CLASS = ApplyUnsharpMaskJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     protected PlanarImage execute (ApplyUnsharpMaskOp operation, final EditableImage image,  PlanarImage planarImage)
       {
         double intensity = operation.getIntensity();
         double radius = operation.getRadius();
         double threshold = operation.getThreshold();
 //        planarImage = UnsharpMaskDescriptor.create(planarImage, kernel, gain, renderingHints);
-        logger.warning(">>>> unsharpMask not implemented yet!");
+        log.warn(">>>> unsharpMask not implemented yet!");
 
         return planarImage;
       }

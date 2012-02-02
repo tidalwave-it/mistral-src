@@ -30,6 +30,7 @@ import javax.media.jai.operator.DFTDescriptor;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.IDFTOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -38,11 +39,9 @@ import it.tidalwave.image.op.IDFTOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class IDFTJAIOp extends OperationImplementation<IDFTOp, PlanarImage>
   {
-    private static final String CLASS = IDFTJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (IDFTOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();
@@ -50,7 +49,7 @@ public class IDFTJAIOp extends OperationImplementation<IDFTOp, PlanarImage>
         pb.addSource(DFTDescriptor.SCALING_UNITARY); // FIXME: get from parameters!
         pb.addSource(DFTDescriptor.COMPLEX_TO_REAL); // FIXME: get from parameters!
         planarImage = JAI.create("idft", pb);               
-        JAIUtils.logImage(logger, ">>>> IDFTOp returning", planarImage);
+        JAIUtils.logImage(log, ">>>> IDFTOp returning", planarImage);
         
         return planarImage;
       }

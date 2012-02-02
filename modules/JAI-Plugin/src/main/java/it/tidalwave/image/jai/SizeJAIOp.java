@@ -34,6 +34,7 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.SizeOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -42,11 +43,9 @@ import it.tidalwave.image.op.SizeOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class SizeJAIOp extends OperationImplementation<SizeOp, PlanarImage>
   {
-    private static final String CLASS = ScaleJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     protected PlanarImage execute (final SizeOp operation, final EditableImage image, final PlanarImage planarImage)
       {
         final RenderingHints hints = null; // FIXME
@@ -77,7 +76,7 @@ public class SizeJAIOp extends OperationImplementation<SizeOp, PlanarImage>
             if (scale > 0.5)
               {
                 final Interpolation interpolation = Interpolation.getInstance(Interpolation.INTERP_BILINEAR);
-                logger.finer(">>>>>>>> Scale(" + scale + ", " + interpolation + ")");
+                log.debug(">>>>>>>> Scale({}, {})", scale, interpolation);
                 result = ScaleDescriptor.create(planarImage, scaleX, scaleY, ZERO, ZERO, interpolation, hints);
               }
 
@@ -86,17 +85,16 @@ public class SizeJAIOp extends OperationImplementation<SizeOp, PlanarImage>
             	int n = (int)Math.round(1.0 / scale);
             	n = (n > 3) ? 3 : n; //max valore per kernel = 3
                 final Kernel averagingKernel = JAIUtils.getAveragingKernel(n);
-                logger.finer(">>>>>>>> Convolve() with averaging kernel: " + averagingKernel);
+                log.debug(">>>>>>>> Convolve() with averaging kernel: {}", averagingKernel);
                 result = ConvolveDescriptor.create(planarImage, new KernelJAI(averagingKernel), hints);
 
                 final Interpolation interpolation = Interpolation.getInstance(Interpolation.INTERP_NEAREST);
-                logger.finer(">>>>>>>> Scale(" + scale + ", " + interpolation + ")");
+                log.debug(">>>>>>>> Scale({}, {})", scale, interpolation);
                 result = ScaleDescriptor.create(result, scaleX, scaleY, ZERO, ZERO, interpolation, hints);
               }
-
           }
 
-        JAIUtils.logImage(logger, ">>>> SizeJAIOp returning", result);
+        JAIUtils.logImage(log, ">>>> SizeJAIOp returning", result);
 
         return result;
       }

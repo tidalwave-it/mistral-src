@@ -29,6 +29,7 @@ import javax.media.jai.PlanarImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.MultiplyOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -37,11 +38,9 @@ import it.tidalwave.image.op.MultiplyOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class MultiplyJAIOp extends OperationImplementation<MultiplyOp, PlanarImage>
   {
-    private static final String CLASS = MultiplyJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (MultiplyOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();   
@@ -49,7 +48,7 @@ public class MultiplyJAIOp extends OperationImplementation<MultiplyOp, PlanarIma
         pb.addSource(JAIUtils.getPlanarImage(operation.getOperand()));
         planarImage = JAI.create("multiply", pb);
 
-        JAIUtils.logImage(logger, ">>>> MultiplyJAIOp returning", planarImage);
+        JAIUtils.logImage(log, ">>>> MultiplyJAIOp returning", planarImage);
         
         return planarImage;
       }

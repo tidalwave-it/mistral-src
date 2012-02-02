@@ -29,6 +29,7 @@ import javax.media.jai.PlanarImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.CropOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -37,11 +38,9 @@ import it.tidalwave.image.op.CropOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class CropJAIOp extends OperationImplementation<CropOp, PlanarImage>
   {
-    private static final String CLASS = CropJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     /*******************************************************************************
      *
      * @inheritDoc
@@ -72,8 +71,7 @@ public class CropJAIOp extends OperationImplementation<CropOp, PlanarImage>
         pb.add((float)h);
         planarImage = JAI.create("crop", pb);
 
-
-        JAIUtils.logImage(logger, ">>>> crop() returning", planarImage);
+        JAIUtils.logImage(log, ">>>> crop() returning", planarImage);
         
         return planarImage;
       }

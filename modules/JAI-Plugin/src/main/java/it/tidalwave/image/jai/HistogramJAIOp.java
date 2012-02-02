@@ -27,6 +27,7 @@ import javax.media.jai.PlanarImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.HistogramOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -35,11 +36,9 @@ import it.tidalwave.image.op.HistogramOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class HistogramJAIOp extends OperationImplementation<HistogramOp, PlanarImage>
   {
-    private static final String CLASS = HistogramJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (HistogramOp operation, final EditableImage image, PlanarImage planarImage)
       {
         operation.setHistogram(new HistogramJAI(planarImage));

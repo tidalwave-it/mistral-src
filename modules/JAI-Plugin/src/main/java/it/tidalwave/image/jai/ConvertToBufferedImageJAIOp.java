@@ -27,6 +27,7 @@ import javax.media.jai.PlanarImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.ConvertToBufferedImageOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -35,11 +36,9 @@ import it.tidalwave.image.op.ConvertToBufferedImageOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class ConvertToBufferedImageJAIOp extends OperationImplementation<ConvertToBufferedImageOp, PlanarImage>
   {
-    private static final String CLASS = ConvertToBufferedImageJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (final ConvertToBufferedImageOp operation, final EditableImage image, final PlanarImage planarImage)
       {
         operation.setBufferedImage(planarImage.getAsBufferedImage());

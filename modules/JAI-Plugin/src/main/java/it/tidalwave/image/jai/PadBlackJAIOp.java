@@ -30,6 +30,7 @@ import javax.media.jai.JAI;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.PadBlackOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -38,11 +39,9 @@ import it.tidalwave.image.op.PadBlackOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class PadBlackJAIOp extends OperationImplementation<PadBlackOp, PlanarImage>
   {
-    private static final String CLASS = PadBlackJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (PadBlackOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();
@@ -60,7 +59,7 @@ public class PadBlackJAIOp extends OperationImplementation<PadBlackOp, PlanarIma
         pb.add(pady);
         pb.add(BorderExtender.createInstance(BorderExtender.BORDER_ZERO));    
         planarImage = JAI.create("border", pb);    
-        JAIUtils.logImage(logger, ">>>> PadBlackOp returning", planarImage);
+        JAIUtils.logImage(log, ">>>> PadBlackOp returning", planarImage);
         
         return planarImage;
       }

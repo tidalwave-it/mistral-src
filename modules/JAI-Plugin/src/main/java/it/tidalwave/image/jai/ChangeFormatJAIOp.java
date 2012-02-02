@@ -31,6 +31,7 @@ import javax.media.jai.JAI;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.ChangeFormatOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -39,14 +40,11 @@ import it.tidalwave.image.op.ChangeFormatOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class ChangeFormatJAIOp extends OperationImplementation<ChangeFormatOp, PlanarImage>
   {
-    private static final String CLASS = ChangeFormatJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (final ChangeFormatOp operation, final EditableImage image, PlanarImage planarImage)
       {
-        logger.info("execute(" + operation + ", " + image + ", " + planarImage);
         final ParameterBlock pb = new ParameterBlock();
         pb.addSource(planarImage);
         pb.add(operation.getType().value());
@@ -59,11 +57,11 @@ public class ChangeFormatJAIOp extends OperationImplementation<ChangeFormatOp, P
             final ImageLayout imageLayout = new ImageLayout();
             imageLayout.setColorModel(planarImage.getColorModel());
             hints = new RenderingHints(JAI.KEY_IMAGE_LAYOUT, imageLayout);   
-            logger.info(">>>> using hints: " + hints);
+            log.info(">>>> using hints: {}", hints);
           }
         
         planarImage = JAI.create("format", pb, hints);
-        JAIUtils.logImage(logger, ">>>> ChangeFormatJAIOp returning", planarImage);
+        JAIUtils.logImage(log, ">>>> ChangeFormatJAIOp returning {}", planarImage);
         
         return planarImage;
       }

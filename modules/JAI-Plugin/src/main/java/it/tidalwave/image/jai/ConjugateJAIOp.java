@@ -29,6 +29,7 @@ import javax.media.jai.JAI;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.ConjugateOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -37,17 +38,15 @@ import it.tidalwave.image.op.ConjugateOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class ConjugateJAIOp extends OperationImplementation<ConjugateOp, PlanarImage>
   {
-    private static final String CLASS = ConjugateJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (ConjugateOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();
         pb.addSource(planarImage);
         planarImage = JAI.create("conjugate", pb);
-        JAIUtils.logImage(logger, ">>>> ConjugateOp returning", planarImage);
+        JAIUtils.logImage(log, ">>>> ConjugateOp returning", planarImage);
         
         return planarImage;
       }

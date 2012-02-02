@@ -33,6 +33,7 @@ import javax.media.jai.operator.DFTScalingType;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.DFTOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -41,11 +42,9 @@ import it.tidalwave.image.op.DFTOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class DFTJAIOp extends OperationImplementation<DFTOp, PlanarImage>
   {
-    private static final String CLASS = DFTJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-    
 //    private DFTScalingType scalingType;
 //    
 //    private DFTDataNature dataNature;
@@ -60,7 +59,7 @@ public class DFTJAIOp extends OperationImplementation<DFTOp, PlanarImage>
         pb.add(DFTDescriptor.SCALING_UNITARY); // FIXME: get from parameters
         pb.add(DFTDescriptor.REAL_TO_COMPLEX); // FIXME: get from parameters
         planarImage = JAI.create("dft", pb);
-        JAIUtils.logImage(logger, ">>>> DFTJAIOp returning", planarImage);    
+        JAIUtils.logImage(log, ">>>> DFTJAIOp returning", planarImage);    
         
         return planarImage;
       }

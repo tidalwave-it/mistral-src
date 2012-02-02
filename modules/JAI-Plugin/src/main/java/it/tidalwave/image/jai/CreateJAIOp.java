@@ -22,12 +22,12 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.jai;
 
-import java.util.logging.Logger;
 import javax.media.jai.PlanarImage;
 import javax.media.jai.operator.ConstantDescriptor;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.CreateOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -36,11 +36,9 @@ import it.tidalwave.image.op.CreateOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class CreateJAIOp extends OperationImplementation<CreateOp, PlanarImage>
   {
-    private static final String CLASS = CreateJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     protected PlanarImage execute (final CreateOp operation, final EditableImage image, final PlanarImage planarImage)
       {
         final double[] filler = operation.getFiller();
@@ -113,7 +111,7 @@ public class CreateJAIOp extends OperationImplementation<CreateOp, PlanarImage>
           }
 
         final PlanarImage result = ConstantDescriptor.create((float)operation.getWidth(), (float)operation.getHeight(), dims, null).createInstance();
-        JAIUtils.logImage(logger, ">>>> CreateJAIOp returning", result);
+        JAIUtils.logImage(log, ">>>> CreateJAIOp returning", result);
 
         return result;
       }

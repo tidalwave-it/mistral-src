@@ -31,6 +31,7 @@ import javax.media.jai.RenderedOp;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.PadPeriodicOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -39,11 +40,9 @@ import it.tidalwave.image.op.PadPeriodicOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class PadPeriodicJAIOp extends OperationImplementation<PadPeriodicOp, PlanarImage>
   {
-    private static final String CLASS = PadPeriodicJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (PadPeriodicOp operation, final EditableImage image, PlanarImage planarImage)
       {
         int oldWidth = planarImage.getData().getWidth();
@@ -53,7 +52,7 @@ public class PadPeriodicJAIOp extends OperationImplementation<PadPeriodicOp, Pla
         int newHeight = JAIUtils.closestPower2Size(oldHeight);
         int padx = (newWidth - oldWidth) / 2;
         int pady = (newHeight - oldHeight) / 2;
-        logger.info(">>>> pad: " + padx + ", " + pady);
+        log.debug(">>>> pad: {}, {}", padx, pady);
 
         ParameterBlock pb = new ParameterBlock();
         pb.addSource(planarImage);
@@ -70,7 +69,7 @@ public class PadPeriodicJAIOp extends OperationImplementation<PadPeriodicOp, Pla
         pb.add(BorderExtender.createInstance(BorderExtender.BORDER_WRAP));
         planarImage = JAI.create("border", pb);
         
-        JAIUtils.logImage(logger, ">>>> PadPeriodicJAIOp returning", planarImage);
+        JAIUtils.logImage(log, ">>>> PadPeriodicJAIOp returning", planarImage);
         
         return planarImage;
       }

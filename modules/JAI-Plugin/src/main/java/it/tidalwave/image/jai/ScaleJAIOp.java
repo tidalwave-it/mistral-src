@@ -30,6 +30,7 @@ import javax.media.jai.operator.ScaleDescriptor;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.ScaleOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -38,17 +39,15 @@ import it.tidalwave.image.op.ScaleOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class ScaleJAIOp extends OperationImplementation<ScaleOp, PlanarImage>
   {
-    private static final String CLASS = ScaleJAIOp.class.getName();    
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (ScaleOp operation, final EditableImage image, PlanarImage planarImage)
       {
         RenderingHints hints = null; // FIXME
         Interpolation interpolation = Interpolation.getInstance(Interpolation.INTERP_BILINEAR);
-        logger.warning(">>>> ScaleJAIOp is not optimized");
-        logger.finer(">>>> interpolation: " + interpolation);
+        log.warn(">>>> ScaleJAIOp is not optimized");
+        log.debug(">>>> interpolation: {}", interpolation);
 
         double xScale = operation.getXScale();
         double yScale = operation.getYScale();
@@ -56,7 +55,7 @@ public class ScaleJAIOp extends OperationImplementation<ScaleOp, PlanarImage>
                                              new Float(xScale), new Float(yScale),
                                              new Float(0), new Float(0), 
                                              interpolation, hints);
-        JAIUtils.logImage(logger, ">>>> ScaleJAIOp returning", planarImage);
+        JAIUtils.logImage(log, ">>>> ScaleJAIOp returning", planarImage);
         
         return planarImage;
       }

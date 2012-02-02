@@ -30,6 +30,7 @@ import javax.media.jai.JAI;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.WriteOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -38,12 +39,9 @@ import it.tidalwave.image.op.WriteOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class WriteJAIOp extends OperationImplementation<WriteOp, PlanarImage>
   {
-    private static final String CLASS = WriteJAIOp.class.getName();
-    
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (WriteOp operation, final EditableImage image, PlanarImage planarImage)
       {
         Object output = operation.getOutput();
@@ -61,7 +59,7 @@ public class WriteJAIOp extends OperationImplementation<WriteOp, PlanarImage>
         pb.add(file.getAbsolutePath());
         // FIXME: file format?
         JAI.create("filestore", pb);
-        JAIUtils.logImage(logger, ">>>> WriteJAIOp returning", planarImage);
+        JAIUtils.logImage(log, ">>>> WriteJAIOp returning", planarImage);
         
         return planarImage;
       }

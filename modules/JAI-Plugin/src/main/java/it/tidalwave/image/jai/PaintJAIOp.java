@@ -31,6 +31,7 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.render.PreviewSettings;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.PaintOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -39,11 +40,9 @@ import it.tidalwave.image.op.PaintOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class PaintJAIOp extends OperationImplementation<PaintOp, PlanarImage>
   {
-    private static final String CLASS = PaintJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (PaintOp operation, final EditableImage image, PlanarImage planarImage)
       {
         int x = operation.getX();

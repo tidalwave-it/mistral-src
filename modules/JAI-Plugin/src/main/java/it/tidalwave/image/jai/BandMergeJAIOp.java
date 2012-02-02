@@ -29,6 +29,7 @@ import javax.media.jai.JAI;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.BandMergeOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -37,18 +38,16 @@ import it.tidalwave.image.op.BandMergeOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class BandMergeJAIOp extends OperationImplementation<BandMergeOp, PlanarImage>
   {
-    private static final String CLASS = BandMergeJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (BandMergeOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();
         pb.addSource(planarImage);
         pb.addSource(JAIUtils.getPlanarImage(operation.getOperand()));
         planarImage = JAI.create("bandmerge", pb);
-        JAIUtils.logImage(logger, ">>>> BandMergeOp returning", planarImage);
+        JAIUtils.logImage(log, ">>>> BandMergeOp returning", planarImage);
         
         return planarImage;
       }

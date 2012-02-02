@@ -29,6 +29,7 @@ import javax.media.jai.operator.TransposeType;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.RotateQuadrantOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -37,15 +38,13 @@ import it.tidalwave.image.op.RotateQuadrantOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class RotateQuadrantJAIOp extends OperationImplementation<RotateQuadrantOp, PlanarImage>
   {
-    private static final String CLASS = RotateQuadrantJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (RotateQuadrantOp operation, final EditableImage image, PlanarImage planarImage)
       {
         int degrees = operation.getDegrees();
-        logger.fine("rotateQuadrant(" + degrees + ") - " + planarImage.getSampleModel());
+        log.debug("rotateQuadrant({}) - {}", degrees, planarImage.getSampleModel());
 
         if (degrees != 0)
           {
@@ -72,7 +71,7 @@ public class RotateQuadrantJAIOp extends OperationImplementation<RotateQuadrantO
               }
 
             planarImage = TransposeDescriptor.create(planarImage, transposeType, null); // FIXME: hints
-            JAIUtils.logImage(logger, ">>>>   rotateQuadrant() returning", planarImage);
+            JAIUtils.logImage(log, ">>>>   rotateQuadrant() returning", planarImage);
           }
 
         return planarImage;

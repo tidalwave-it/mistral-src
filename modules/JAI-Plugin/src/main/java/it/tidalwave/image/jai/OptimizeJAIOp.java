@@ -39,6 +39,7 @@ import it.tidalwave.image.Quality;
 import it.tidalwave.image.java2d.Java2DUtils;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.OptimizeOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -46,14 +47,12 @@ import it.tidalwave.image.op.OptimizeOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class OptimizeJAIOp extends OperationImplementation<OptimizeOp, PlanarImage>
   {
-    private static final String CLASS = OptimizeJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (OptimizeOp operation, final EditableImage image, PlanarImage planarImage)
       {
-        Java2DUtils.logImage(logger, ">>>> source planarImage", planarImage);
+        Java2DUtils.logImage(log, ">>>> source planarImage", planarImage);
         double scale = operation.getScale();
         Quality quality = operation.getQuality();
 
@@ -63,7 +62,7 @@ public class OptimizeJAIOp extends OperationImplementation<OptimizeOp, PlanarIma
         int width = (int)Math.round(scale * planarImage.getWidth()); // FIXME: round(), ceil() or floor()?
         int height = (int)Math.round(scale * planarImage.getHeight());
         BufferedImage targetBufferedImage = gc.createCompatibleImage(width, height);
-        Java2DUtils.logImage(logger, ">>>>  targetBufferedImage", targetBufferedImage);
+        Java2DUtils.logImage(log, ">>>>  targetBufferedImage", targetBufferedImage);
 
         ColorModel colorModel = targetBufferedImage.getColorModel();
         SampleModel sampleModel = targetBufferedImage.getSampleModel();
@@ -105,7 +104,7 @@ public class OptimizeJAIOp extends OperationImplementation<OptimizeOp, PlanarIma
             // In facts, it takes several seconds to paint and this method returns too quickly, so it appears that
             // the snapshot does not work
             planarImage = pImage.createSnapshot();
-            JAIUtils.logImage(logger, ">>>> optimizeJAIOp() returning", planarImage);
+            JAIUtils.logImage(log, ">>>> optimizeJAIOp() returning", planarImage);
           }
 
         /*

@@ -29,6 +29,7 @@ import javax.media.jai.JAI;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.DivideComplexOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -37,11 +38,9 @@ import it.tidalwave.image.op.DivideComplexOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class DivideComplexJAIOp extends OperationImplementation<DivideComplexOp, PlanarImage>
   {
-    private static final String CLASS = DivideComplexJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (DivideComplexOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();
@@ -49,7 +48,7 @@ public class DivideComplexJAIOp extends OperationImplementation<DivideComplexOp,
         pb.addSource(JAIUtils.getPlanarImage(operation.getOperand()));
         planarImage = JAI.create("dividecomplex", pb);
 
-        JAIUtils.logImage(logger, ">>>> DivideComplexJAIOp returning", planarImage);
+        JAIUtils.logImage(log, ">>>> DivideComplexJAIOp returning", planarImage);
         
         return planarImage;
       }

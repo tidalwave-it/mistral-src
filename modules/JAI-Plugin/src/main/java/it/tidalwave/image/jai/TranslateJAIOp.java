@@ -30,6 +30,7 @@ import javax.media.jai.JAI;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.TranslateOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -38,11 +39,9 @@ import it.tidalwave.image.op.TranslateOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class TranslateJAIOp extends OperationImplementation<TranslateOp, PlanarImage>
   {
-    private static final String CLASS = TranslateJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (TranslateOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();
@@ -56,7 +55,7 @@ public class TranslateJAIOp extends OperationImplementation<TranslateOp, PlanarI
           }
 
         planarImage = JAI.create("translate", pb);
-        JAIUtils.logImage(logger, ">>>> TranslateJAIOp() returning", planarImage);
+        JAIUtils.logImage(log, ">>>> TranslateJAIOp() returning", planarImage);
         
         return planarImage;
       }

@@ -29,6 +29,7 @@ import javax.media.jai.JAI;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.MagnitudeOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -37,18 +38,16 @@ import it.tidalwave.image.op.MagnitudeOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class MagnitudeJAIOp extends OperationImplementation<MagnitudeOp, PlanarImage>
   {
-    private static final String CLASS = MagnitudeJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     protected PlanarImage execute (MagnitudeOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();
         pb.addSource(planarImage);
         planarImage = JAI.create("magnitude", pb);
 
-        JAIUtils.logImage(logger, ">>>> MagnitudeOp returning", planarImage);
+        JAIUtils.logImage(log, ">>>> MagnitudeOp returning", planarImage);
 
         return planarImage;
       }

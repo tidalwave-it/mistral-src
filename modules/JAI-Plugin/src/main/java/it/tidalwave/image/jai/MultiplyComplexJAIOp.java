@@ -29,6 +29,7 @@ import javax.media.jai.JAI;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.MultiplyComplexOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -37,18 +38,16 @@ import it.tidalwave.image.op.MultiplyComplexOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class MultiplyComplexJAIOp extends OperationImplementation<MultiplyComplexOp, PlanarImage>
   {
-    private static final String CLASS = MultiplyComplexJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (MultiplyComplexOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();
         pb.addSource(planarImage);
         pb.addSource(JAIUtils.getPlanarImage(operation.getOperand()));
         planarImage = JAI.create("multiplycomplex", pb);
-        JAIUtils.logImage(logger, ">>>> MultiplyComplexJAIOp returning", planarImage);
+        JAIUtils.logImage(log, ">>>> MultiplyComplexJAIOp returning", planarImage);
         
         return planarImage;
       }

@@ -22,13 +22,13 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.jai;
 
-import java.util.logging.Logger;
 import java.awt.image.renderable.ParameterBlock;
 import javax.media.jai.PlanarImage;
 import javax.media.jai.JAI;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.DivideByConstOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -37,11 +37,9 @@ import it.tidalwave.image.op.DivideByConstOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class DivideByConstJAIOp extends OperationImplementation<DivideByConstOp, PlanarImage>
   {
-    private static final String CLASS = DivideByConstJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (DivideByConstOp operation, final EditableImage image, PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();
@@ -50,7 +48,7 @@ public class DivideByConstJAIOp extends OperationImplementation<DivideByConstOp,
         cst[0] = operation.getDivider();   
         pb.add(cst);
         planarImage = JAI.create("dividebyconst", pb);
-        JAIUtils.logImage(logger, ">>>> DivideByConstOp returning", planarImage);
+        JAIUtils.logImage(log, ">>>> DivideByConstOp returning", planarImage);
         
         return planarImage;
       }

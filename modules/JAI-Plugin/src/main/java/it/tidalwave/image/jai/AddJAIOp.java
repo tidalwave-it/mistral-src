@@ -29,6 +29,7 @@ import javax.media.jai.JAI;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.AddOp;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -37,18 +38,16 @@ import it.tidalwave.image.op.AddOp;
  * @version $Id$
  *
  **********************************************************************************************************************/
+@Slf4j
 public class AddJAIOp extends OperationImplementation<AddOp, PlanarImage>
   {
-    private static final String CLASS = AddJAIOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-            
     protected PlanarImage execute (final AddOp operation, final EditableImage image, final PlanarImage planarImage)
       {
         ParameterBlock pb = new ParameterBlock();
         pb.addSource(planarImage);
         pb.addSource(JAIUtils.getPlanarImage(operation.getOperand()));
         final PlanarImage result = JAI.create("add", pb);
-        JAIUtils.logImage(logger, ">>>> AddOp returning", result);
+        JAIUtils.logImage(log, ">>>> AddOp returning", result);
         return result;
       }
   }
