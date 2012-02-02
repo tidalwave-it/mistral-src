@@ -16,7 +16,7 @@
 @REM
 @REM **********************************************************************************************************************
 @REM
-@REM  WWW: http://mistral.tidalwave.it
+@REM  WWW: http://mistral.imajine.org
 @REM  SCM: https://bitbucket.org/tidalwave/mistral-src
 @REM
 @REM
