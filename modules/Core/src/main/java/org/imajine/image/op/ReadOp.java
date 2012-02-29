@@ -438,7 +438,7 @@ public class ReadOp extends Operation
           }
 
         log.trace(">>>> suffix is {}", suffix);
-        @Cleanup ImageInputStream imageInputStream = null;
+        ImageInputStream imageInputStream = null;
 
         //
         // For reasons stated in the javadoc comment of this method, it's better
@@ -488,7 +488,7 @@ public class ReadOp extends Operation
           }
 
         log.trace(">>>> suffix is {}", suffix);
-        @Cleanup ImageInputStream imageInputStream = null;
+        ImageInputStream imageInputStream = null;
         //
         // This will not work with multiple-file formats such as Canon .CRW.
         //
@@ -512,7 +512,7 @@ public class ReadOp extends Operation
       throws IOException 
       {
         log.info("createImageReader({})", inputStream);       
-        final @Cleanup ImageInputStream imageInputStream = ImageIO.createImageInputStream(inputStream);
+        final ImageInputStream imageInputStream = ImageIO.createImageInputStream(inputStream);
         final Iterator <ImageReader> iterator = ImageIO.getImageReaders(imageInputStream);
         return createImageReader(imageInputStream, iterator, pluginBlackList);
       }
