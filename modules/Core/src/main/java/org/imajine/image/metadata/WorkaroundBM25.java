@@ -22,7 +22,7 @@
  **********************************************************************************************************************/
 package org.imajine.image.metadata;
 
-import java.util.logging.Logger;
+import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.imageio.ImageReader;
@@ -31,37 +31,31 @@ import com.drew.imaging.jpeg.JpegMetadataReader;
 import com.drew.imaging.jpeg.JpegProcessingException;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.exif.ExifDirectory;
+import com.drew.metadata.iptc.IptcDirectory;
+import lombok.extern.slf4j.Slf4j;
 import org.imajine.image.metadata.loader.DirectoryDrewAdapter;
-import org.imajine.image.metadata.loader.DrewMetadataLoader;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
+@Slf4j
 public class WorkaroundBM25
   {
-    private static final String CLASS = WorkaroundBM25.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     public WorkaroundBM25()
       {
         JpegMetadataReader.class.getName(); // Check if Drew stuff is in the classpath 
       }
 
-    /*******************************************************************************
-     *
-     * @param reader
-     * @throws IOException
-     * @throws JpegProcessingException
-     *
-     *******************************************************************************/
-    public void loadEXIFFromJPEGFile (final ImageReader reader, final EXIF exif)
-        throws IOException, JpegProcessingException
+    public void loadExifAndIptcFromJpeg (final @Nonnull ImageReader reader, 
+                                         final @Nonnull EXIF exif, 
+                                         final @Nonnull IPTC iptc)
+      throws IOException, JpegProcessingException
       {
-        // See http://bluemarine.tidalwave.it/issues/browse/BM-25
-        logger.warning("Workaround for bug BM-25");
+        // See http://bluemarine.tidalwave.it/issues/browse/BM-25 and http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4924909
+        log.info("Workaround for bug BM-25");
 
         final ImageInputStream iis = (ImageInputStream)reader.getInput();
         final long pos = iis.getStreamPosition();
@@ -70,7 +64,7 @@ public class WorkaroundBM25
         final InputStream is = new InputStream()
           {
             @Override
-            public int available ()
+            public int available()
               throws IOException
               {
                 long l = iis.length();
@@ -84,17 +78,20 @@ public class WorkaroundBM25
               }
 
             @Override
-            public int read ()
-                throws IOException
+            public int read()
+              throws IOException
               {
                 return iis.read();
               }
           };
 
         final Metadata metadata = JpegMetadataReader.readMetadata(is);
-        final DirectoryDrewAdapter adapter = new DirectoryDrewAdapter(metadata.getDirectory(ExifDirectory.class));
-        exif.loadFromAdapter(adapter);
-        logger.fine(">>>> EXIF metadata: " + exif);
+        final DirectoryDrewAdapter exifAdatpter = new DirectoryDrewAdapter(metadata.getDirectory(ExifDirectory.class));
+        exif.loadFromAdapter(exifAdatpter);
+        final DirectoryDrewAdapter iptcAdatpter = new DirectoryDrewAdapter(metadata.getDirectory(IptcDirectory.class));
+        iptc.loadFromAdapter(iptcAdatpter);
+        log.debug(">>>> EXIF metadata: {}", exif);
+        log.debug(">>>> IPTC metadata: {}", iptc);
         is.close();
         iis.seek(pos);
       }

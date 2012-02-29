@@ -908,16 +908,16 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
               {
                 try
                   {
-                    workaroundBM25.loadEXIFFromJPEGFile(reader, getMetadata(EXIF.class));
+                    workaroundBM25.loadExifAndIptcFromJpeg(reader, getMetadata(EXIF.class), getMetadata(IPTC.class));
                   }
                 catch (Exception e1)
                   {
-                    log.error("Cannot load EXIF metadata: ", e1);
+                    log.error("Cannot load EXIF/IPTC metadata: ", e1);
                   }
               }
             else
               {
-                log.error("Cannot load EXIF metadata: ", e);
+                log.error("Cannot load EXIF/IPTC metadata: ", e);
               }
           }
 
