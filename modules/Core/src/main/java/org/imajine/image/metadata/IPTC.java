@@ -24,70 +24,73 @@ package org.imajine.image.metadata;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import java.util.logging.Logger;
+import javax.annotation.Nonnull;
+import lombok.extern.slf4j.Slf4j;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * @author  Fabrizio Giudici
  * @version $Id$
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
+@Slf4j
 public class IPTC extends IPTCDirectoryGenerated
   {
     private final static long serialVersionUID = 3033068666726854799L;
-    private final static String CLASS = IPTC.class.getName();
-    private final static Logger logger = Logger.getLogger(CLASS);
 
     // Not static since they are not thread safe
     private final SimpleDateFormat exifDateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
     private final SimpleDateFormat exifDateFormat2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
     
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public IPTC()
       {
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
-    public IPTC (final Date latestModificationTime)
+     ******************************************************************************************************************/
+    public IPTC (final @Nonnull Date latestModificationTime)
       {
         super(latestModificationTime);
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
-     * @return
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
+    @Nonnull 
     public Date getDateCreatedAsDate()
       {
         return parseDate(getDateCreated());
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
-     **************************************************************************/
-    public void setDateCreatedAsDate (final Date date)
+     *
+     ******************************************************************************************************************/
+    public void setDateCreatedAsDate (final @Nonnull Date date)
       {
         setDateCreated((date == null) ? null : formatDate(date));
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
-     **************************************************************************/
+     *
+     ******************************************************************************************************************/
     public boolean isDateCreatedAsDateAvailable()
       {
         return isDateCreatedAvailable();
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
-     **************************************************************************/
+     *
+     ******************************************************************************************************************/
     public void setDateCreatedAsDateAvailable (final boolean available)
       {
         final Date oldValue = getDateCreatedAsDate();
@@ -97,12 +100,12 @@ public class IPTC extends IPTCDirectoryGenerated
         propertyChangeSupport.firePropertyChange("dateCreatedAsDateAvailable", oldAvailable, isDateCreatedAsDateAvailable());
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * synchronized since SimpleDateFormat is not thread-safe.
      *
-     **************************************************************************/
-    private synchronized String formatDate (final Date date)
+     ******************************************************************************************************************/
+    private synchronized String formatDate (final @Nonnull Date date)
       {
         if (date == null)
           {
@@ -112,12 +115,13 @@ public class IPTC extends IPTCDirectoryGenerated
         return exifDateFormat.format(date);
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * synchronized since SimpleDateFormat is not thread-safe.
      *
-     **************************************************************************/
-    private synchronized Date parseDate (final String string)
+     ******************************************************************************************************************/
+    @Nonnull 
+    private synchronized Date parseDate (final @Nonnull String string)
       {
         if (string == null)
           {
@@ -138,7 +142,7 @@ public class IPTC extends IPTCDirectoryGenerated
 
             catch (Exception e1)
               {
-                logger.warning("*** BAD DATE " + string);
+                log.warn("*** BAD DATE {}", string);
                 return null;
               }
           }
