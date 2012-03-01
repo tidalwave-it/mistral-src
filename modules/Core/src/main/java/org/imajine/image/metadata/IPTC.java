@@ -22,9 +22,9 @@
  **********************************************************************************************************************/
 package org.imajine.image.metadata;
 
+import javax.annotation.Nonnull;
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import javax.annotation.Nonnull;
 import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
