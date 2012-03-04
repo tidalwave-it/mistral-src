@@ -30,10 +30,11 @@ import javax.imageio.stream.ImageInputStream;
 import com.drew.imaging.jpeg.JpegMetadataReader;
 import com.drew.imaging.jpeg.JpegProcessingException;
 import com.drew.metadata.Metadata;
-import com.drew.metadata.exif.ExifDirectory;
+import com.drew.metadata.exif.ExifSubIFDDirectory;
 import com.drew.metadata.iptc.IptcDirectory;
-import lombok.extern.slf4j.Slf4j;
+import com.drew.metadata.xmp.XmpDirectory;
 import org.imajine.image.metadata.loader.DirectoryDrewAdapter;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -51,7 +52,8 @@ public class WorkaroundBM25
 
     public void loadExifAndIptcFromJpeg (final @Nonnull ImageReader reader, 
                                          final @Nonnull EXIF exif, 
-                                         final @Nonnull IPTC iptc)
+                                         final @Nonnull IPTC iptc,
+                                         final @Nonnull XMP xmp)
       throws IOException, JpegProcessingException
       {
         // See http://bluemarine.tidalwave.it/issues/browse/BM-25 and http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4924909
@@ -86,12 +88,19 @@ public class WorkaroundBM25
           };
 
         final Metadata metadata = JpegMetadataReader.readMetadata(is);
-        final DirectoryDrewAdapter exifAdatpter = new DirectoryDrewAdapter(metadata.getDirectory(ExifDirectory.class));
+        final DirectoryDrewAdapter exifAdatpter = new DirectoryDrewAdapter(metadata.getDirectory(ExifSubIFDDirectory.class));
         exif.loadFromAdapter(exifAdatpter);
         final DirectoryDrewAdapter iptcAdatpter = new DirectoryDrewAdapter(metadata.getDirectory(IptcDirectory.class));
         iptc.loadFromAdapter(iptcAdatpter);
+
+        final XmpDirectory xmpDirectory = metadata.getDirectory(XmpDirectory.class);
+        final DirectoryDrewAdapter xmpAdatpter = new DirectoryDrewAdapter(xmpDirectory);
+        xmp.loadFromAdapter(xmpAdatpter);
+        xmp._setProperties(xmpDirectory.getXmpProperties());
+        
         log.debug(">>>> EXIF metadata: {}", exif);
         log.debug(">>>> IPTC metadata: {}", iptc);
+        log.debug(">>>> XMP metadata:  {}", xmp);
         is.close();
         iis.seek(pos);
       }

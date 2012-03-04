@@ -77,6 +77,16 @@ public class RAWMetadataLoader implements MetadataLoader
      *
      **************************************************************************/
     @Override
+    public Object findXMP (final IIOMetadata iioMetadata) 
+      { 
+        return null;
+      }
+    
+    /***************************************************************************
+     *
+     *
+     **************************************************************************/
+    @Override
     public Object findTIFF (final IIOMetadata metadata) 
       {
         return ((TIFFMetadataSupport)metadata).getPrimaryIFD();

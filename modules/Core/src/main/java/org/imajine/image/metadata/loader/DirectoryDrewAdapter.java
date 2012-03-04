@@ -53,14 +53,13 @@ public class DirectoryDrewAdapter implements DirectoryAdapter
      **************************************************************************/
     @SuppressWarnings("unchecked")
     @Override
-    public int[] getTags ()
+    public int[] getTags()
       {
         final int[] result = new int[directory.getTagCount()];
         int j = 0;
 
-        for (final Iterator<Tag> i = directory.getTagIterator(); i.hasNext();)
+        for (final Tag tag: directory.getTags())
           {
-            final Tag tag = i.next();
             result[j++] = tag.getTagType();
           }
 
@@ -124,7 +123,7 @@ public class DirectoryDrewAdapter implements DirectoryAdapter
         if (value instanceof com.drew.lang.Rational)
           {
             final com.drew.lang.Rational drewRational = (com.drew.lang.Rational) value;
-            value = new Rational(drewRational.getNumerator(), drewRational.getDenominator());
+            value = new Rational((int)drewRational.getNumerator(), (int)drewRational.getDenominator());
           }
 
         else if (value instanceof com.drew.lang.Rational[])
@@ -179,7 +178,7 @@ public class DirectoryDrewAdapter implements DirectoryAdapter
 
         for (int i = 0; i < r.length; i++)
           {
-            r[i] = new Rational(temp[i].getNumerator(), temp[i].getDenominator());
+            r[i] = new Rational((int)temp[i].getNumerator(), (int)temp[i].getDenominator());
           }
 
         return r;

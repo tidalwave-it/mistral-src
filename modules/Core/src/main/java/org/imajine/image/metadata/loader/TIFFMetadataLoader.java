@@ -65,6 +65,16 @@ public class TIFFMetadataLoader implements MetadataLoader
      *
      **************************************************************************/
     @Override
+    public Object findXMP (final IIOMetadata iioMetadata) 
+      { 
+        return null;
+      }
+    
+    /***************************************************************************
+     *
+     *
+     **************************************************************************/
+    @Override
     public Object findTIFF (final IIOMetadata iioMetadata) 
       {
         return ((TIFFImageMetadata)iioMetadata).getRootIFD();

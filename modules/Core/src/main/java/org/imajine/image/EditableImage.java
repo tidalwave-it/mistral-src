@@ -56,6 +56,7 @@ import org.imajine.image.metadata.EXIF;
 import org.imajine.image.metadata.IPTC;
 import org.imajine.image.metadata.MakerNote;
 import org.imajine.image.metadata.TIFF;
+import org.imajine.image.metadata.XMP;
 import org.imajine.image.metadata.WorkaroundBM25;
 import org.imajine.image.metadata.loader.DirectoryAdapter;
 import org.imajine.image.metadata.loader.DirectoryDrewAdapter;
@@ -196,6 +197,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
         metadataMapByClass.put(TIFF.class, Arrays.asList(new TIFF()));
         metadataMapByClass.put(EXIF.class, Arrays.asList(new EXIF()));
         metadataMapByClass.put(IPTC.class, Arrays.asList(new IPTC()));
+        metadataMapByClass.put(XMP.class, Arrays.asList(new XMP()));
         metadataMapByClass.put(MakerNote.class, Arrays.asList(new MakerNote()));
       }
 
@@ -908,7 +910,9 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
               {
                 try
                   {
-                    workaroundBM25.loadExifAndIptcFromJpeg(reader, getMetadata(EXIF.class), getMetadata(IPTC.class));
+                    workaroundBM25.loadExifAndIptcFromJpeg(reader, getMetadata(EXIF.class), 
+                                                                   getMetadata(IPTC.class),
+                                                                   getMetadata(XMP.class));
                   }
                 catch (Exception e1)
                   {
@@ -951,6 +955,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
                 loadItem(metadataLoader, EXIF.class);
                 loadItem(metadataLoader, MakerNote.class);
                 loadItem(metadataLoader, IPTC.class);
+                loadItem(metadataLoader, XMP.class);
               }
             catch (Exception e)
               {
@@ -981,6 +986,10 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
         else if (IPTC.class.equals(itemClass))
           {
             node = metadataLoader.findIPTC(iioMetadata);
+          }
+        else if (XMP.class.equals(itemClass))
+          {
+            node = metadataLoader.findXMP(iioMetadata);
           }
         else if (MakerNote.class.equals(itemClass))
           {

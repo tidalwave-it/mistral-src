@@ -26,10 +26,10 @@ import javax.imageio.metadata.IIOMetadata;
 import javax.imageio.metadata.IIOMetadataNode;
 import org.w3c.dom.Node;
 import com.drew.metadata.Directory;
-import com.drew.metadata.exif.ExifDirectory;
+import com.drew.metadata.Metadata;
 import com.drew.metadata.exif.ExifReader;
+import com.drew.metadata.exif.ExifSubIFDDirectory;
 import com.drew.metadata.iptc.IptcDirectory;
-import com.drew.metadata.iptc.IptcReader;
 
 /*******************************************************************************
  *
@@ -62,6 +62,16 @@ public class DrewMetadataLoader implements MetadataLoader
       {
         final Node node = metadata.getAsTree(metadata.getNativeMetadataFormatName());
         return getIPTCDirectory(node);
+      }
+
+    /***************************************************************************
+     *
+     *
+     **************************************************************************/
+    @Override
+    public Object findXMP (final IIOMetadata metadata)
+      {
+        return null;
       }
 
     /***************************************************************************
@@ -105,7 +115,9 @@ public class DrewMetadataLoader implements MetadataLoader
             if (Integer.parseInt(node.getAttributes().getNamedItem("MarkerTag").getNodeValue()) == EXIF)
               {
                 final byte[] data = (byte[])((IIOMetadataNode)node).getUserObject();
-                return new ExifReader(data).extract().getDirectory(ExifDirectory.class);
+                final Metadata metadata = new Metadata();
+                new ExifReader().extract(data, metadata);
+                return metadata.getDirectory(ExifSubIFDDirectory.class);
               }
           }
 
@@ -137,7 +149,9 @@ public class DrewMetadataLoader implements MetadataLoader
             if (Integer.parseInt(node.getAttributes().getNamedItem("MarkerTag").getNodeValue()) == IPTC)
               {
                 final byte[] data = (byte[])((IIOMetadataNode)node).getUserObject();
-                return new IptcReader(data).extract().getDirectory(IptcDirectory.class);
+                final Metadata metadata = new Metadata();
+                new ExifReader().extract(data, metadata);
+                return metadata.getDirectory(IptcDirectory.class);
               }
           }
 
