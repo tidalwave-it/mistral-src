@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<jnlp 
+  spec="1.0+" 
+  codebase="https://mistral.dev.java.net/jnlp/ViewerExample"
+  href="ViewerExample.jnlp">
+  <information>
+    <title>Mistral Viewer Example</title>
+    <vendor>Tidalwave</vendor>
+    <homepage href="http://mistral.tidalwave.it" />
+    <description>Example of Mistral rendering components</description>
+    <description kind="short">Demos the functionality of the Mistral rendering components</description>
+    <description kind="tooltip">Mistral Viewer Example</description>
+    <offline-allowed />
+  </information>
+  <resources>
+    <j2se version="1.5+" max-heap-size="512M"/>
+    <jar href="ViewerExample.jar"/>
+    <jar href="lib/EditableImage.jar"/>
+    <jar href="lib/Renderer.jar"/>
+    <jar href="lib/metadata-extractor-2.3.1.jar"/>
+    <jar href="lib/swing-layout-1.0.1.jar"/>
+  </resources>
+  <application-desc main-class="org.imajine.mistral.example.viewer.Main" />
+</jnlp>

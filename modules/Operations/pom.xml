@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.imajine.image</groupId>
+        <artifactId>org-imajine-image-modules</artifactId>
+        <version>1.0-ALPHA-3-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>org-imajine-image-operations</artifactId>
+    <packaging>nbm</packaging>
+    <name>Mistral Operations</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.imajine.image</groupId>
+            <artifactId>org-imajine-image-core</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.imajine.image</groupId>
+            <artifactId>org-imajine-image-core</artifactId>
+            <classifier>tests</classifier>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>nbm-maven-plugin</artifactId>
+                <configuration>
+                    <publicPackages>
+                        <publicPackage>org.imajine.image.java2d</publicPackage>
+                        <publicPackage>org.imajine.image.op</publicPackage>
+                    </publicPackages>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+</project>
+
+
+

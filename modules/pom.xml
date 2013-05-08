@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.imajine.image</groupId>
+        <artifactId>org-imajine-image</artifactId>
+        <version>1.0-ALPHA-3-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.imajine.image</groupId>
+    <artifactId>org-imajine-image-modules</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-ALPHA-3-SNAPSHOT</version>
+    <name>Mistral (modules)</name>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>it.tidalwave.superpom</groupId>
+                <artifactId>platform</artifactId>
+                <version>${netbeans.version}-1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>it.tidalwave.superpom</groupId>
+                <artifactId>libraries</artifactId>
+                <version>${libraries.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.rawdarkroom</groupId>
+                <artifactId>jrawio</artifactId>
+                <version>${jrawio.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            
+            <dependency> <!-- FIXME: drop it -->
+                <groupId>org.swinglabs</groupId>
+                <artifactId>swing-layout</artifactId>
+                <version>1.0.3</version>
+            </dependency>
+            <dependency>
+                <groupId>it.tidalwave.thesefoolishthings</groupId>
+                <artifactId>it.tidalwave.singlelinelogformatter</artifactId>
+                <version>1.0.6</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.kenai.nbpwr</groupId>
+                <artifactId>com-drew-metadata</artifactId>
+                <version>2.5.0rc3-201203012000</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kenai.nbpwr</groupId>
+                <artifactId>com-sun-media-imageio</artifactId>
+                <version>1.1-201007271250</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kenai.nbpwr</groupId>
+                <artifactId>javax-media-jai</artifactId>
+                <version>1.1.3-201007271250</version>
+            </dependency>
+           <dependency>
+                <groupId>com.kenai.nbpwr</groupId>
+                <artifactId>org-slf4j-jdk14</artifactId>
+                <version>1.6.1-201106101300</version>
+            </dependency>
+             
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${tft.lombok.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.kenai.nbpwr</groupId>
+            <artifactId>javax-annotation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kenai.nbpwr</groupId>
+            <artifactId>org-slf4j-jdk14</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>it.tidalwave.thesefoolishthings</groupId>
+            <artifactId>it.tidalwave.singlelinelogformatter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <module>Core</module>
+        <module>Operations</module>
+        <module>Contributions</module>
+        <module>Processor</module>
+        <module>Renderer</module>
+        <module>JAI-Plugin</module>
+        <module>Examples</module>
+    </modules>
+
+</project>
+

@@ -1,0 +1,144 @@
+group bluemarine;
+
+enumDecl()::=<<
+         <it.identifierName>(<it.value>, "<it.name>"),<\n>
+>>
+
+enumIf(type)::=<<
+             if (value == <it.value>) return <it.identifierName>;<\n>
+>>
+
+printDescriptionTags(records)::=<<
+    @Override
+    public String getTagName (int tag)
+      {
+        return (String)descriptionMapByTag.get(tag);
+      }
+    static
+      {
+        <records: {record | descriptionMapByTag.put(<record.id>, "<record.tagName>");<\n>}>
+      }
+>>
+
+printMemberDecl(records)::=<<
+    <records: {record | public final static int <record.constTagName> = <record.id>;<\n>}>
+>>
+
+printEnumRecord(record)::=<<
+    public static enum <record.capitalizedTagName>
+       {
+<record.enums:enumDecl()>         _UNKNOWN(-1, "_unknown_");
+         private final static long serialVersionUID = 3059468666726854749L;
+         private int value;
+         private String name;
+
+         private <record.capitalizedTagName> (final int value, final String name)
+           {
+             this.value = value;
+             this.name = name;
+           }
+
+         public int getValue()
+           {
+             return value;
+           }
+
+         public static <record.capitalizedTagName> fromInteger (int value)
+           {
+<record.enums:enumIf(type = record.type)>
+             return _UNKNOWN;
+           }
+       }
+>>
+
+printRecord(record)::=<<
+<if(record.hasEnums)><printEnumRecord(record = record)><endif>
+    public void set<record.capitalizedTagName> (final <record.javaType> <record.uncapitalizedTagName>)
+      {
+        final <record.javaType> oldValue = get<record.capitalizedTagName>();
+        final boolean oldPropAvailable = is<record.capitalizedTagName>Available();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+        setObject(<class_name>.<record.constTagName>, <record.uncapitalizedTagName>);
+        propertyChangeSupport.firePropertyChange("<record.uncapitalizedTagName>", oldValue, <record.uncapitalizedTagName>);
+        propertyChangeSupport.firePropertyChange("<record.uncapitalizedTagName>Available", oldPropAvailable, is<record.capitalizedTagName>Available());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public <record.javaType> get<record.capitalizedTagName>()
+      {
+        return getObject(<record.constTagName>, <record.javaType>.class);
+      }
+
+    public void set<record.capitalizedTagName>Available (final boolean available)
+      {
+        final <record.javaType> oldValue = get<record.capitalizedTagName>();
+        final boolean oldPropAvailable = is<record.capitalizedTagName>Available();
+        final boolean oldAvailable = isAvailable();
+        final Date oldLatestModificationTime = getLatestModificationTime();
+
+        if (available && !containsTag(<record.constTagName>))
+          {
+            setObject(<record.constTagName>, null);
+          }
+        else if (!available)
+          {
+            removeTag(<record.constTagName>);
+          }
+
+        propertyChangeSupport.firePropertyChange("<record.uncapitalizedTagName>Available", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("<record.uncapitalizedTagName>", oldValue, get<record.capitalizedTagName>());
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    public boolean is<record.capitalizedTagName>Available()
+      {
+        return containsTag(<record.constTagName>);
+      }
+
+>>
+
+testIsAvailable(record)::=<<
+is<record.capitalizedTagName>Available()<\n>
+>>
+
+printIsAvailable(records)::=<<
+    public boolean isAvailable()
+      {
+        return <testIsAvailable(first(records))><rest(records):{ record |              | <testIsAvailable(record)>}>;
+      }
+>>
+
+generator(creation_date, class_name, records)::=<<
+package org.imajine.image.metadata;
+
+import java.util.Date;
+import java.util.Map;
+import java.util.HashMap;
+import org.imajine.image.Rational;
+
+/* Automatically generated on <creation_date> - DO NOT EDIT! */
+
+public class <class_name> extends Directory
+  {
+    private final static long serialVersionUID = 2056233055989339523L;
+    private final static Map\<Integer, String\> descriptionMapByTag = new HashMap\<Integer, String\>();
+
+    public <class_name>()
+      {
+      }
+
+    public <class_name> (final Date latestModificationTime)
+      {
+        super(latestModificationTime);
+      }
+
+<printMemberDecl(records)>
+<printDescriptionTags(records)>
+<printRecord(first(records))><rest(records):{record|<\n><printRecord(record)>}>
+<printIsAvailable(records)>
+  }
+
+>>

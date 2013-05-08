@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.imajine.image</groupId>
+        <artifactId>org-imajine-image-modules</artifactId>
+        <version>1.0-ALPHA-3-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>org-imajine-image-core</artifactId>
+    <packaging>nbm</packaging>
+    <name>Mistral Core</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.rawdarkroom</groupId>
+            <artifactId>codec</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-openide-util-lookup</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.kenai.nbpwr</groupId>
+            <artifactId>com-drew-metadata</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kenai.nbpwr</groupId>
+            <artifactId>com-sun-media-imageio</artifactId>
+        </dependency>        
+        <dependency>
+            <groupId>com.kenai.nbpwr</groupId>
+            <artifactId>org-slf4j-jdk14</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>ant</groupId>
+                        <artifactId>ant-trax</artifactId>
+                        <version>1.6.5</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <tasks>
+                                <ant antfile="src/main/scripts/generate-sources.xml" target="generate-sources" inheritAll="true" />
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>target/src-generated</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>nbm-maven-plugin</artifactId>
+                <configuration>
+                    <publicPackages>
+                        <publicPackage>org.imajine.image</publicPackage>
+                        <publicPackage>org.imajine.image.java2d</publicPackage>
+                        <publicPackage>org.imajine.image.metadata</publicPackage>
+                        <publicPackage>org.imajine.image.metadata.loader</publicPackage>
+                        <publicPackage>org.imajine.image.op</publicPackage>
+                        <publicPackage>org.imajine.image.render</publicPackage>
+                        <publicPackage>org.imajine.image.tools</publicPackage>
+                        <publicPackage>org.imajine.image.util</publicPackage>
+                    </publicPackages>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+
+
