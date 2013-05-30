@@ -18,6 +18,13 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>it.tidalwave.thesefoolishthings</groupId>
+                <artifactId>thesefoolishthings</artifactId>
+                <version>${thesefoolishthings.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
                 <groupId>it.tidalwave.superpom</groupId>
                 <artifactId>platform</artifactId>
                 <version>${netbeans.version}-1</version>

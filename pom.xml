@@ -28,6 +28,7 @@
         
         <jrawio.version>1.7-ALPHA-1</jrawio.version>
         <libraries.version>1.1.5</libraries.version>
+        <thesefoolishthings.version>1.28</thesefoolishthings.version>
         <netbeans.version>RELEASE71</netbeans.version>
 
         <netbeans.hint.license>Tidalwave-ASF</netbeans.hint.license>
