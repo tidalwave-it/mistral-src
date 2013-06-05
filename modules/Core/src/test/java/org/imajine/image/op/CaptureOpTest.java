@@ -22,9 +22,9 @@
  **********************************************************************************************************************/
 package org.imajine.image.op;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import javax.swing.JLabel;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
@@ -39,6 +39,6 @@ public class CaptureOpTest
       {
         final JLabel label = new JLabel("text");
         final CaptureOp captureOp = new CaptureOp(label);
-        assertEquals(label, captureOp.getComponent());
+        AssertJUnit.assertEquals(label, captureOp.getComponent());
       } 
   }

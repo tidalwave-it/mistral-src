@@ -22,6 +22,9 @@
  **********************************************************************************************************************/
 package org.imajine.image;
 
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.AssertJUnit;
 import java.util.logging.Logger;
 import java.util.logging.Handler;
 import java.io.BufferedOutputStream;
@@ -37,9 +40,6 @@ import java.net.URLConnection;
 import java.security.MessageDigest;
 import org.imajine.image.op.ReadOp;
 import it.tidalwave.util.logging.SingleLineLogFormatter;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
@@ -176,15 +176,15 @@ public abstract class BaseTestSupport
           }
       }
     
-    @Before
-    public void setUp()
+    @BeforeMethod
+	public void setUp()
       throws Exception 
       {
         final long maxMemory = Runtime.getRuntime().maxMemory();
-        assertTrue("Must set -Xmx512M: " + maxMemory, maxMemory >= 500000000);
-        assertTrue(file_20030701_0043_jpg.exists());
-        assertTrue(file_20060603_0002_jpg.exists());
-        assertTrue(file_20030701_0043_nef.exists());
+        AssertJUnit.assertTrue("Must set -Xmx512M: " + maxMemory, maxMemory >= 500000000);
+        AssertJUnit.assertTrue(file_20030701_0043_jpg.exists());
+        AssertJUnit.assertTrue(file_20060603_0002_jpg.exists());
+        AssertJUnit.assertTrue(file_20030701_0043_nef.exists());
         img20030701_0043_jpg = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
         img20060603_0002_jpg = EditableImage.create(new ReadOp(file_20060603_0002_jpg));
         imgIPTC1_jpg = EditableImage.create(new ReadOp(file_IPTC1_jpg));
@@ -248,7 +248,7 @@ public abstract class BaseTestSupport
             is.close();
             byte[] digest = messageDigest.digest();
             String checksum = toString(digest);
-            assertEquals("Unxepected checksum for file " + file, expectedChecksum, checksum);
+            AssertJUnit.assertEquals("Unxepected checksum for file " + file, expectedChecksum, checksum);
           } 
         catch (Exception e) 
           {

@@ -22,12 +22,12 @@
  **********************************************************************************************************************/
 package org.imajine.image.op.testsupport;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import java.awt.image.Raster;
 import org.imajine.image.BaseTestSupport;
 import org.imajine.image.EditableImage;
 import org.imajine.image.op.CreateOp;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
@@ -325,7 +325,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
                 for (int x = 0; x < image.getWidth(); x++)
                   {
                     int sample = raster.getSample(x, y, b);
-                    assertEquals(filler[b], sample);
+                    AssertJUnit.assertEquals(filler[b], sample);
                   }
               }
           }
@@ -346,7 +346,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
                 for (int x = 0; x < image.getWidth(); x++)
                   {
                     float sample = raster.getSampleFloat(x, y, b);
-                    assertEquals(filler[b], sample);
+                    AssertJUnit.assertEquals(filler[b], sample);
                   }
               }
           }
@@ -367,7 +367,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
                 for (int x = 0; x < image.getWidth(); x++)
                   {
                     double sample = raster.getSampleDouble(x, y, b);
-                    assertEquals(filler[b], sample);
+                    AssertJUnit.assertEquals(filler[b], sample);
                   }
               }
           }
@@ -380,11 +380,11 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
     private void assertImage (final EditableImage image, final int bandCount, final int bitsPerBand, final int bitsPerPixel,
         final EditableImage.DataType dataType)
       {
-        assertEquals(WIDTH, image.getWidth());
-        assertEquals(HEIGHT, image.getHeight());
-        assertEquals(bandCount, image.getBandCount());
-        assertEquals(bitsPerBand, image.getBitsPerBand());
-        assertEquals(bitsPerPixel, image.getBitsPerPixel());
-        assertEquals(dataType, image.getDataType());
+        AssertJUnit.assertEquals(WIDTH, image.getWidth());
+        AssertJUnit.assertEquals(HEIGHT, image.getHeight());
+        AssertJUnit.assertEquals(bandCount, image.getBandCount());
+        AssertJUnit.assertEquals(bitsPerBand, image.getBitsPerBand());
+        AssertJUnit.assertEquals(bitsPerPixel, image.getBitsPerPixel());
+        AssertJUnit.assertEquals(dataType, image.getDataType());
       }
   }

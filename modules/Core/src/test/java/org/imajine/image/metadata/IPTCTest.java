@@ -22,11 +22,11 @@
  **********************************************************************************************************************/
 package org.imajine.image.metadata;
 
+import org.testng.annotations.Test;
 import org.imajine.image.BaseTestSupport;
 import org.imajine.image.EditableImage;
 import org.imajine.image.op.ReadOp;
 import java.io.File;
-import org.junit.Test;
 
 /*******************************************************************************
  *

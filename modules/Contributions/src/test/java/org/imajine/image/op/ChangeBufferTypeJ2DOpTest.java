@@ -22,6 +22,8 @@
  **********************************************************************************************************************/
 package org.imajine.image.op;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import java.io.File;
 import java.io.IOException;
 import java.awt.image.BufferedImage;
@@ -31,8 +33,6 @@ import org.imajine.image.EditableImage;
 import org.imajine.image.Quality;
 import org.imajine.image.java2d.ChangeBufferTypeJ2DOp;
 import org.imajine.image.java2d.ImplementationFactoryJ2D;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /***********************************************************************************************************************
  *
@@ -49,11 +49,11 @@ public class ChangeBufferTypeJ2DOpTest extends BaseTestSupport
         Lookup.getDefault().lookup(ImplementationFactoryJ2D.class).registerImplementation(ChangeBufferTypeOp.class, ChangeBufferTypeJ2DOp.class);
         
         EditableImage image = EditableImage.create(new ReadOp(file_timezones32_png));
-        assertEquals(4, image.getBandCount());
+        AssertJUnit.assertEquals(4, image.getBandCount());
         image.execute(new ScaleOp(0.5, Quality.BEST));
-        assertEquals(4, image.getBandCount());
+        AssertJUnit.assertEquals(4, image.getBandCount());
         image.execute(new ChangeBufferTypeOp(BufferedImage.TYPE_3BYTE_BGR));
-        assertEquals(3, image.getBandCount());
+        AssertJUnit.assertEquals(3, image.getBandCount());
         File file = new File(tmp + "/result.jpg");
         image.execute(new WriteOp("JPEG", file));
         assertChecksum("ec0149544e522dbbb441b4f83a358425", file);

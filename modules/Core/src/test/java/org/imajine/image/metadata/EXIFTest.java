@@ -22,8 +22,8 @@
  **********************************************************************************************************************/
 package org.imajine.image.metadata;
 
+import org.testng.annotations.Test;
 import org.imajine.image.BaseTestSupport;
-import org.junit.Test;
 
 /*******************************************************************************
  *

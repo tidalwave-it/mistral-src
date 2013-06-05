@@ -22,8 +22,8 @@
  **********************************************************************************************************************/
 package org.imajine.image.op;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 
 /*******************************************************************************
  *
@@ -38,7 +38,7 @@ public class CropOpTest
       {
         System.out.println("getX");
         CropOp op = new CropOp(1, 2, 3, 4);
-        assertEquals(1, op.getX());
+        AssertJUnit.assertEquals(1, op.getX());
       }
 
     @Test
@@ -46,7 +46,7 @@ public class CropOpTest
       {
         System.out.println("getY");
         CropOp op = new CropOp(1, 2, 3, 4);
-        assertEquals(2, op.getY());
+        AssertJUnit.assertEquals(2, op.getY());
       }
 
     @Test
@@ -54,7 +54,7 @@ public class CropOpTest
       {
         System.out.println("getW");
         CropOp op = new CropOp(1, 2, 3, 4);
-        assertEquals(3, op.getW());
+        AssertJUnit.assertEquals(3, op.getW());
       }
 
     @Test
@@ -62,7 +62,7 @@ public class CropOpTest
       {
         System.out.println("getH");
         CropOp op = new CropOp(1, 2, 3, 4);
-        assertEquals(4, op.getH());
+        AssertJUnit.assertEquals(4, op.getH());
       }
 
     @Test

@@ -22,8 +22,8 @@
  **********************************************************************************************************************/
 package org.imajine.image.op;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 
 /*******************************************************************************
  *
@@ -38,7 +38,7 @@ public class ApplyUnsharpMaskOpTest
       {
         System.out.println("getIntensity");
         ApplyUnsharpMaskOp op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
-        assertEquals(12.34, op.getIntensity(), 0.0);
+        AssertJUnit.assertEquals(12.34, op.getIntensity(), 0.0);
       }
 
     @Test
@@ -46,7 +46,7 @@ public class ApplyUnsharpMaskOpTest
       {
         System.out.println("getRadius");
         ApplyUnsharpMaskOp op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
-        assertEquals(56.78, op.getRadius(), 0.0);
+        AssertJUnit.assertEquals(56.78, op.getRadius(), 0.0);
       }  
 
     @Test
@@ -54,7 +54,7 @@ public class ApplyUnsharpMaskOpTest
       {
         System.out.println("getThreshold");
         ApplyUnsharpMaskOp op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
-        assertEquals(90.12, op.getThreshold(), 0.0);
+        AssertJUnit.assertEquals(90.12, op.getThreshold(), 0.0);
       }
 
     @Test

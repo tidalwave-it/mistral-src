@@ -22,6 +22,8 @@
  **********************************************************************************************************************/
 package org.imajine.image.java2d.performance;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import java.net.UnknownHostException;
 import java.net.InetAddress;
 import java.awt.image.PixelInterleavedSampleModel;
@@ -32,8 +34,6 @@ import org.imajine.image.EditableImage;
 import org.imajine.image.Quality;
 import org.imajine.image.op.OptimizeOp;
 import org.imajine.image.util.Platform;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
@@ -97,7 +97,7 @@ public abstract class BasePerformanceTestSupport extends BaseTestSupport
             String name = getClassName();
             log(name  + " running");
 
-            assertEquals(PixelInterleavedSampleModel.class, 
+            AssertJUnit.assertEquals(PixelInterleavedSampleModel.class, 
                          img20030701_0043_jpg.getInnerProperty(SampleModel.class).getClass());
             long time = runTest(img20030701_0043_jpg);
             log(name + img20030701_0043_jpg);
@@ -114,7 +114,7 @@ public abstract class BasePerformanceTestSupport extends BaseTestSupport
             log(name  + " running");
 
             EditableImage optimizedImage = img20030701_0043_jpg.execute2(new OptimizeOp());
-            assertEquals(SinglePixelPackedSampleModel.class, 
+            AssertJUnit.assertEquals(SinglePixelPackedSampleModel.class, 
                          optimizedImage.getInnerProperty(SampleModel.class).getClass());
             long time = runTest(optimizedImage);
             log(name + optimizedImage);

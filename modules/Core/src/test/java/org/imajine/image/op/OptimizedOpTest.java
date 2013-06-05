@@ -22,9 +22,9 @@
  **********************************************************************************************************************/
 package org.imajine.image.op;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import org.imajine.image.Quality;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
@@ -39,7 +39,7 @@ public class OptimizedOpTest
       {
         System.out.println("getScale1");
         OptimizeOp op = new OptimizeOp();
-        assertEquals(1.0, op.getScale(), 0.0);
+        AssertJUnit.assertEquals(1.0, op.getScale(), 0.0);
       }
 
     @Test
@@ -47,7 +47,7 @@ public class OptimizedOpTest
       {
         System.out.println("getScale2");
         OptimizeOp op = new OptimizeOp(17.0);
-        assertEquals(17.0, op.getScale(), 0.0);
+        AssertJUnit.assertEquals(17.0, op.getScale(), 0.0);
       }
 
     @Test
@@ -55,7 +55,7 @@ public class OptimizedOpTest
       {
         System.out.println("getScale3");
         OptimizeOp op = new OptimizeOp(13.0, Quality.INTERMEDIATE);
-        assertEquals(13.0, op.getScale(), 0.0);
+        AssertJUnit.assertEquals(13.0, op.getScale(), 0.0);
       }
 
     @Test
@@ -63,7 +63,7 @@ public class OptimizedOpTest
       {
         System.out.println("getQuality1");
         OptimizeOp op = new OptimizeOp();
-        assertEquals(Quality.FASTEST, op.getQuality());
+        AssertJUnit.assertEquals(Quality.FASTEST, op.getQuality());
       }
 
     @Test
@@ -71,7 +71,7 @@ public class OptimizedOpTest
       {
         System.out.println("getQuality2");
         OptimizeOp op = new OptimizeOp(17.0);
-        assertEquals(Quality.FASTEST, op.getQuality());
+        AssertJUnit.assertEquals(Quality.FASTEST, op.getQuality());
       }
 
     @Test
@@ -79,7 +79,7 @@ public class OptimizedOpTest
       {
         System.out.println("getQuality3");
         OptimizeOp op = new OptimizeOp(13.0, Quality.INTERMEDIATE);
-        assertEquals(Quality.INTERMEDIATE, op.getQuality());
+        AssertJUnit.assertEquals(Quality.INTERMEDIATE, op.getQuality());
       }
 
     @Test

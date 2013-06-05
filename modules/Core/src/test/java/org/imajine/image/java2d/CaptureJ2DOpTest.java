@@ -22,6 +22,8 @@
  **********************************************************************************************************************/
 package org.imajine.image.java2d;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import java.io.File;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -29,8 +31,6 @@ import javax.swing.JLabel;
 import javax.swing.JFrame;
 import org.imajine.image.BaseTestSupport;
 import org.imajine.image.op.CaptureOp;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
@@ -57,8 +57,8 @@ public class CaptureJ2DOpTest extends BaseTestSupport
         
         final File f = new File(tmp + "/CaptureOp.tif");
         ImageIO.write(result, "TIFF", f);
-        assertEquals(label.getWidth(),  result.getWidth());
-        assertEquals(label.getHeight(), result.getHeight());
+        AssertJUnit.assertEquals(label.getWidth(),  result.getWidth());
+        AssertJUnit.assertEquals(label.getHeight(), result.getHeight());
         assertChecksum("5bd101c6e9b6d3901b1eb7a0e5f98d64", f);
       }     
   }

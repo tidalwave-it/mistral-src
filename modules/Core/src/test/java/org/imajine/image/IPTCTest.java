@@ -27,11 +27,11 @@
 
 package org.imajine.image;
 
+import org.testng.annotations.Test;
 import org.imajine.image.metadata.IPTC;
 import org.imajine.image.op.ReadOp;
 import java.io.File;
 import java.io.IOException;
-import org.junit.Test;
 
 /**
  *

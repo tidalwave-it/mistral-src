@@ -22,9 +22,9 @@
  **********************************************************************************************************************/
 package org.imajine.image.op;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import org.imajine.image.Quality;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
@@ -39,7 +39,7 @@ public class ScaleOpTest
       {
         System.out.println("getXScale1");
         ScaleOp op = new ScaleOp(17.0);
-        assertEquals(17.0, op.getXScale(), 0.0);
+        AssertJUnit.assertEquals(17.0, op.getXScale(), 0.0);
       }
 
     @Test
@@ -47,7 +47,7 @@ public class ScaleOpTest
       {
         System.out.println("getXScale2");
         ScaleOp op = new ScaleOp(17.0, 13.0);
-        assertEquals(17.0, op.getXScale(), 0.0);
+        AssertJUnit.assertEquals(17.0, op.getXScale(), 0.0);
       }
 
     @Test
@@ -55,7 +55,7 @@ public class ScaleOpTest
       {
         System.out.println("getXScale3");
         ScaleOp op = new ScaleOp(17.0, Quality.INTERMEDIATE);
-        assertEquals(17.0, op.getXScale(), 0.0);
+        AssertJUnit.assertEquals(17.0, op.getXScale(), 0.0);
       }
 
     @Test
@@ -63,7 +63,7 @@ public class ScaleOpTest
       {
         System.out.println("getXScale4");
         ScaleOp op = new ScaleOp(17.0, 13.0, Quality.INTERMEDIATE);
-        assertEquals(17.0, op.getXScale(), 0.0);
+        AssertJUnit.assertEquals(17.0, op.getXScale(), 0.0);
       }
 
     @Test
@@ -71,7 +71,7 @@ public class ScaleOpTest
       {
         System.out.println("getYScale1");
         ScaleOp op = new ScaleOp(17.0);
-        assertEquals(17.0, op.getYScale(), 0.0);
+        AssertJUnit.assertEquals(17.0, op.getYScale(), 0.0);
       }
 
     @Test
@@ -79,7 +79,7 @@ public class ScaleOpTest
       {
         System.out.println("getYScale2");
         ScaleOp op = new ScaleOp(17.0, 13.0);
-        assertEquals(13.0, op.getYScale(), 0.0);
+        AssertJUnit.assertEquals(13.0, op.getYScale(), 0.0);
       }
 
     @Test
@@ -87,7 +87,7 @@ public class ScaleOpTest
       {
         System.out.println("getYScale3");
         ScaleOp op = new ScaleOp(17.0, Quality.INTERMEDIATE);
-        assertEquals(17.0, op.getYScale(), 0.0);
+        AssertJUnit.assertEquals(17.0, op.getYScale(), 0.0);
       }
 
     @Test
@@ -95,7 +95,7 @@ public class ScaleOpTest
       {
         System.out.println("getYScale4");
         ScaleOp op = new ScaleOp(17.0, 13.0, Quality.INTERMEDIATE);
-        assertEquals(13.0, op.getYScale(), 0.0);
+        AssertJUnit.assertEquals(13.0, op.getYScale(), 0.0);
       }
 
     @Test
@@ -103,27 +103,29 @@ public class ScaleOpTest
       {
         System.out.println("getQuality1");
         ScaleOp op = new ScaleOp(17.0);
-        assertEquals(Quality.FASTEST, op.getQuality());
+        AssertJUnit.assertEquals(Quality.FASTEST, op.getQuality());
       }
 
     /**
      * Test of getQuality method, of class org.imajine.image.op.ScaleOp.
      */
-    public void testGetQuality2() 
+    @Test
+	public void testGetQuality2() 
       {
         System.out.println("getQuality2");
         ScaleOp op = new ScaleOp(17.0, 13.0);
-        assertEquals(Quality.FASTEST, op.getQuality());
+        AssertJUnit.assertEquals(Quality.FASTEST, op.getQuality());
       }
 
     /**
      * Test of getQuality method, of class org.imajine.image.op.ScaleOp.
      */
-    public void testGetQuality3() 
+    @Test
+	public void testGetQuality3() 
       {
         System.out.println("getQuality3");
         ScaleOp op = new ScaleOp(17.0, Quality.INTERMEDIATE);
-        assertEquals(Quality.INTERMEDIATE, op.getQuality());
+        AssertJUnit.assertEquals(Quality.INTERMEDIATE, op.getQuality());
       }
 
     @Test
@@ -131,7 +133,7 @@ public class ScaleOpTest
       {
         System.out.println("getQuality4");
         ScaleOp op = new ScaleOp(17.0, 13.0, Quality.INTERMEDIATE);
-        assertEquals(Quality.INTERMEDIATE, op.getQuality());
+        AssertJUnit.assertEquals(Quality.INTERMEDIATE, op.getQuality());
       }
 
     @Test

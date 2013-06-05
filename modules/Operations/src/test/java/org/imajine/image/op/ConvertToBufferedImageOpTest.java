@@ -22,10 +22,9 @@
  **********************************************************************************************************************/
 package org.imajine.image.op;
 
+import org.testng.annotations.Test;
 import org.imajine.image.EditableImage;
 import java.awt.image.BufferedImage;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /*******************************************************************************
  *

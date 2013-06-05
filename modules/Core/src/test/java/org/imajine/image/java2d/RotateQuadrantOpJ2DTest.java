@@ -22,13 +22,13 @@
  **********************************************************************************************************************/
 package org.imajine.image.java2d;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import java.io.File;
 import org.imajine.image.EditableImage;
 import org.imajine.image.op.RotateQuadrantOp;
 import org.imajine.image.op.WriteOp;
 import org.imajine.image.BaseTestSupport;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
@@ -95,13 +95,13 @@ public class RotateQuadrantOpJ2DTest extends BaseTestSupport
         
         if ((angle / 90) % 2 == 0)
           {
-            assertEquals(image.getWidth(), result.getWidth());
-            assertEquals(image.getHeight(), result.getHeight());
+            AssertJUnit.assertEquals(image.getWidth(), result.getWidth());
+            AssertJUnit.assertEquals(image.getHeight(), result.getHeight());
           }
         else
           {
-            assertEquals(image.getWidth(), result.getHeight());
-            assertEquals(image.getHeight(), result.getWidth());
+            AssertJUnit.assertEquals(image.getWidth(), result.getHeight());
+            AssertJUnit.assertEquals(image.getHeight(), result.getWidth());
           }
       }
   }
