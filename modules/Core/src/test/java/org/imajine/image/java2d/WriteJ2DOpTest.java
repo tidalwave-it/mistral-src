@@ -22,12 +22,12 @@
  **********************************************************************************************************************/
 package org.imajine.image.java2d;
 
+import org.testng.annotations.Test;
 import java.io.File;
 import org.imajine.image.BaseTestSupport;
 import org.imajine.image.EditableImage;
 import org.imajine.image.op.WriteOp;
 import org.imajine.image.op.OptimizeOp;
-import org.junit.Test;
 
 /*******************************************************************************
  *

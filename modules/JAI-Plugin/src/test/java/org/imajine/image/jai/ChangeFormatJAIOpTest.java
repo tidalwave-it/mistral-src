@@ -22,6 +22,8 @@
  **********************************************************************************************************************/
 package org.imajine.image.jai;
 
+import org.testng.annotations.Test;
+import static org.testng.AssertJUnit.*;
 import java.io.IOException;
 import org.imajine.image.ImageUtils;
 import org.imajine.image.op.ChangeFormatOp;
@@ -29,8 +31,6 @@ import org.imajine.image.op.CreateOp;
 import org.imajine.image.BaseTestSupport;
 import org.imajine.image.EditableImage;
 import org.imajine.image.EditableImage.DataType;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import org.openide.util.Lookup;
 
 /***********************************************************************************************************************

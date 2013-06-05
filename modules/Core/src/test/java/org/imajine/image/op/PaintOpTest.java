@@ -22,10 +22,10 @@
  **********************************************************************************************************************/
 package org.imajine.image.op;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import java.awt.Graphics2D;
 import javax.swing.JLabel;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
@@ -44,7 +44,7 @@ public class PaintOpTest
       {
         System.out.println("getX1");
         PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
-        assertEquals(1, op.getX());
+        AssertJUnit.assertEquals(1, op.getX());
       }
 
     @Test
@@ -52,7 +52,7 @@ public class PaintOpTest
       {
         System.out.println("getX2");
         PaintOp op = new PaintOp(g, 1, 2, null, null);
-        assertEquals(1, op.getX());
+        AssertJUnit.assertEquals(1, op.getX());
       }
 
     @Test
@@ -60,7 +60,7 @@ public class PaintOpTest
       {
         System.out.println("getY1");
         PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
-        assertEquals(2, op.getY());
+        AssertJUnit.assertEquals(2, op.getY());
       }
 
     @Test
@@ -68,7 +68,7 @@ public class PaintOpTest
       {
         System.out.println("getY2");
         PaintOp op = new PaintOp(g, 1, 2, null, null);
-        assertEquals(2, op.getY());
+        AssertJUnit.assertEquals(2, op.getY());
       }
 
     @Test
@@ -76,7 +76,7 @@ public class PaintOpTest
       {
         System.out.println("getW1");
         PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
-        assertEquals(3, op.getW());
+        AssertJUnit.assertEquals(3, op.getW());
       }
 
     @Test
@@ -84,7 +84,7 @@ public class PaintOpTest
       {
         System.out.println("getW2");
         PaintOp op = new PaintOp(g, 1, 2, null, null);
-        assertEquals(0, op.getW());
+        AssertJUnit.assertEquals(0, op.getW());
       }
 
     @Test
@@ -92,7 +92,7 @@ public class PaintOpTest
       {
         System.out.println("getH");
         PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
-        assertEquals(4, op.getH());
+        AssertJUnit.assertEquals(4, op.getH());
       }
 
     @Test
@@ -100,7 +100,7 @@ public class PaintOpTest
       {
         System.out.println("getH");
         PaintOp op = new PaintOp(g, 1, 2, null, null);
-        assertEquals(0, op.getH());
+        AssertJUnit.assertEquals(0, op.getH());
       }
 
     @Test
@@ -108,7 +108,7 @@ public class PaintOpTest
       {
         System.out.println("getGraphics2D1");
         PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
-        assertEquals(g, op.getGraphics2D());
+        AssertJUnit.assertEquals(g, op.getGraphics2D());
       }
 
     @Test
@@ -116,7 +116,7 @@ public class PaintOpTest
       {
         System.out.println("getGraphics2D2");
         PaintOp op = new PaintOp(g, 1, 2, null, null);
-        assertEquals(g, op.getGraphics2D());
+        AssertJUnit.assertEquals(g, op.getGraphics2D());
       }
 
     /**

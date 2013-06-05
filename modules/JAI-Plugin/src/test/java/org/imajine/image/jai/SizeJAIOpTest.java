@@ -22,6 +22,7 @@
  **********************************************************************************************************************/
 package org.imajine.image.jai;
 
+import org.testng.annotations.Test;
 import java.io.IOException;
 import org.openide.util.Lookup;
 import org.imajine.image.BaseTestSupport;
@@ -30,7 +31,6 @@ import org.imajine.image.op.ForceRenderingOp;
 import org.imajine.image.op.ReadOp;
 import org.imajine.image.op.SizeOp;
 import org.imajine.image.op.WriteOp;
-import org.junit.Test;
 
 /***********************************************************************************************************************
  *

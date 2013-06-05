@@ -27,14 +27,14 @@
 
 package org.imajine.image.metadata;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import org.imajine.image.BaseTestSupport;
 import org.imajine.image.EditableImage;
 import org.imajine.image.op.ReadOp;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -48,14 +48,14 @@ public class WangAnnotationsTest extends BaseTestSupport
       {
         final String fax = "/Users/fritz/Business/Tidalwave/Projects/Mistral/Nextre/Fax_Image_1.tif";
         final EditableImage image = EditableImage.create(new ReadOp(new File(fax)));
-        assertNotNull(image);
+        AssertJUnit.assertNotNull(image);
         final TIFF tiff = image.getMetadata(TIFF.class);
-        assertNotNull(tiff);
+        AssertJUnit.assertNotNull(tiff);
 //        final EXIF exif = image.getMetadata(EXIF.class);
 //        assertNotNull(exif);
         System.err.println("TAGS: " + Arrays.toString(tiff.getTagCodes()));
 //        assertTrue(tiff.containsTag(32934));
-        assertTrue(tiff.isWangAnnotationAvailable());
+        AssertJUnit.assertTrue(tiff.isWangAnnotationAvailable());
         final WangAnnotations wangAnnotations = tiff.getWangAnnotations2();
       }
   }

@@ -22,6 +22,8 @@
  **********************************************************************************************************************/
 package org.imajine.image.op;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import org.imajine.image.BaseTestSupport;
 import org.imajine.image.EditableImage;
 import java.io.File;
@@ -31,8 +33,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
@@ -63,10 +63,10 @@ public class ReadOpTest extends BaseTestSupport
       throws FileNotFoundException, IOException
       {
         File file = file_20030701_0043_jpg;
-        assertTrue(file.exists());
+        AssertJUnit.assertTrue(file.exists());
         final EditableImage image = EditableImage.create(new ReadOp(file));
-        assertEquals("JPEG", image.getAttribute(EditableImage.PROP_FORMAT));
-        assertEquals("image/jpeg", image.getAttribute(EditableImage.PROP_MIME_TYPE));
+        AssertJUnit.assertEquals("JPEG", image.getAttribute(EditableImage.PROP_FORMAT));
+        AssertJUnit.assertEquals("image/jpeg", image.getAttribute(EditableImage.PROP_MIME_TYPE));
       }
     
     @Test
@@ -74,10 +74,10 @@ public class ReadOpTest extends BaseTestSupport
       throws FileNotFoundException, IOException
       {
         File file = file_uncompressed_tiff;
-        assertTrue(file.exists());
+        AssertJUnit.assertTrue(file.exists());
         final EditableImage image = EditableImage.create(new ReadOp(file));
-        assertEquals("tif", image.getAttribute(EditableImage.PROP_FORMAT));
-        assertEquals("image/tiff", image.getAttribute(EditableImage.PROP_MIME_TYPE));
+        AssertJUnit.assertEquals("tif", image.getAttribute(EditableImage.PROP_FORMAT));
+        AssertJUnit.assertEquals("image/tiff", image.getAttribute(EditableImage.PROP_MIME_TYPE));
       }
     
     @Test
@@ -85,9 +85,9 @@ public class ReadOpTest extends BaseTestSupport
       throws FileNotFoundException, IOException
       {
         File file = file_w1_tiff;
-        assertTrue(file.exists());
+        AssertJUnit.assertTrue(file.exists());
         final EditableImage image = EditableImage.create(new ReadOp(file));
-        assertEquals("tif", image.getAttribute(EditableImage.PROP_FORMAT));
-        assertEquals("image/tiff", image.getAttribute(EditableImage.PROP_MIME_TYPE));
+        AssertJUnit.assertEquals("tif", image.getAttribute(EditableImage.PROP_FORMAT));
+        AssertJUnit.assertEquals("image/tiff", image.getAttribute(EditableImage.PROP_MIME_TYPE));
       }
   }

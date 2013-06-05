@@ -22,12 +22,12 @@
  **********************************************************************************************************************/
 package org.imajine.image.java2d;
 
+import org.testng.annotations.Test;
 import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
 import org.imajine.image.EditableImage;
 import org.imajine.image.op.testsupport.CreateOpTestSupport;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.testng.Assert.*;
 
 /*******************************************************************************
  *

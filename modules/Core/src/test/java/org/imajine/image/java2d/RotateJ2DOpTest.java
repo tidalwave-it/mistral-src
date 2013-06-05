@@ -22,6 +22,9 @@
  **********************************************************************************************************************/
 package org.imajine.image.java2d;
 
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.AssertJUnit;
 import java.awt.image.SampleModel;
 import java.io.File;
 import org.imajine.image.BaseTestSupport;
@@ -29,9 +32,6 @@ import org.imajine.image.EditableImage;
 import org.imajine.image.op.OptimizeOp;
 import org.imajine.image.op.RotateOp;
 import org.imajine.image.op.WriteOp;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
@@ -44,8 +44,8 @@ public class RotateJ2DOpTest extends BaseTestSupport
     private EditableImage notOptimized;
     private EditableImage optimized;
 
-    @Before
-    @Override
+    @BeforeMethod
+	@Override
     public void setUp()
       throws Exception 
       {
@@ -98,8 +98,8 @@ public class RotateJ2DOpTest extends BaseTestSupport
             String suffix = image.getInnerProperty(SampleModel.class).getClass().getName();
             File f = (File)result.execute(new WriteOp("TIFF", tmp + "/" + angle + suffix + ".tif")).getOutput();
             assertChecksum(checksum, f);
-            assertEquals(width,  result.getWidth());
-            assertEquals(height, result.getHeight());
+            AssertJUnit.assertEquals(width,  result.getWidth());
+            AssertJUnit.assertEquals(height, result.getHeight());
           }
       }
   }

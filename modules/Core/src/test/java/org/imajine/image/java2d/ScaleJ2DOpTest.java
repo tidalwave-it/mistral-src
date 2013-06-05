@@ -22,6 +22,9 @@
  **********************************************************************************************************************/
 package org.imajine.image.java2d;
 
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.AssertJUnit;
 import java.io.File;
 import java.awt.image.SampleModel;
 import org.imajine.image.BaseTestSupport;
@@ -30,9 +33,6 @@ import org.imajine.image.op.OptimizeOp;
 import org.imajine.image.op.ScaleOp;
 import org.imajine.image.op.WriteOp;
 import org.imajine.image.util.Platform;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
@@ -45,8 +45,8 @@ public class ScaleJ2DOpTest extends BaseTestSupport
     private EditableImage notOptimized;
     private EditableImage optimized;
 
-    @Before
-    @Override
+    @BeforeMethod
+	@Override
     public void setUp()
       throws Exception 
       {
@@ -99,8 +99,8 @@ public class ScaleJ2DOpTest extends BaseTestSupport
             EditableImage result = image.execute2(new ScaleOp(scale));
             File f = (File)result.execute(new WriteOp("TIFF", tmp + "/" + scale + suffix + ".tif")).getOutput();
             assertChecksum(checksum, f);
-            assertEquals(width,  result.getWidth());
-            assertEquals(height, result.getHeight());
+            AssertJUnit.assertEquals(width,  result.getWidth());
+            AssertJUnit.assertEquals(height, result.getHeight());
           } 
       }
   }

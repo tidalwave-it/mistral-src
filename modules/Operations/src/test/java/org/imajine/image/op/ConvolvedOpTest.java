@@ -22,9 +22,9 @@
  **********************************************************************************************************************/
 package org.imajine.image.op;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import java.awt.image.Kernel;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
@@ -41,7 +41,7 @@ public class ConvolvedOpTest
         
         Kernel kernel = new Kernel(3, 3, new float[]{1,2,3,4,5,6,7,8,9});
         ConvolveOp op = new ConvolveOp(kernel);
-        assertEquals(kernel, op.getKernel());
+        AssertJUnit.assertEquals(kernel, op.getKernel());
       }
 
     @Test

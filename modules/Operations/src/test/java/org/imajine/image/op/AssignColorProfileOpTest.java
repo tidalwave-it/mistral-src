@@ -22,10 +22,10 @@
  **********************************************************************************************************************/
 package org.imajine.image.op;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import java.awt.color.ColorSpace;
 import java.awt.color.ICC_Profile;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
@@ -42,7 +42,7 @@ public class AssignColorProfileOpTest
         
         ICC_Profile iccProfile = ICC_Profile.getInstance(ColorSpace.CS_sRGB);
         AssignColorProfileOp op = new AssignColorProfileOp(iccProfile);
-        assertEquals(iccProfile, op.getIccProfile());
+        AssertJUnit.assertEquals(iccProfile, op.getIccProfile());
       }
 
     @Test

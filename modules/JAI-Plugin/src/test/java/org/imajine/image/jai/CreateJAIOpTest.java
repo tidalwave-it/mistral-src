@@ -22,13 +22,13 @@
  **********************************************************************************************************************/
 package org.imajine.image.jai;
 
+import org.testng.annotations.BeforeMethod;
 import javax.annotation.Nonnull;
 import javax.media.jai.PlanarImage;
 import java.awt.image.Raster;
 import org.openide.util.Lookup;
 import org.imajine.image.EditableImage;
 import org.imajine.image.op.testsupport.CreateOpTestSupport;
-import org.junit.Before;
 
 /***********************************************************************************************************************
  *
@@ -38,8 +38,8 @@ import org.junit.Before;
  **********************************************************************************************************************/
 public class CreateJAIOpTest extends CreateOpTestSupport
   {
-    @Before
-    public void installJAIPlugin()
+    @BeforeMethod
+	public void installJAIPlugin()
       {
         Lookup.getDefault().lookup(ImplementationFactoryJAI.class);
       }

@@ -22,10 +22,10 @@
  **********************************************************************************************************************/
 package org.imajine.image.op;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import java.awt.Color;
 import org.imajine.image.EditableImage;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /*******************************************************************************
  *
@@ -41,13 +41,13 @@ public class CreateOpTest
         for (int w = 1; w < 1000; w += 10)
           {
             final CreateOp createOp1 = new CreateOp(w, 10, EditableImage.DataType.BYTE);
-            assertEquals(w, createOp1.getWidth());
+            AssertJUnit.assertEquals(w, createOp1.getWidth());
 
             final CreateOp createOp2 = new CreateOp(w, 10, EditableImage.DataType.BYTE, Color.BLACK);
-            assertEquals(w, createOp2.getWidth());
+            AssertJUnit.assertEquals(w, createOp2.getWidth());
 
             final CreateOp createOp3 = new CreateOp(w, 10, EditableImage.DataType.BYTE, 0);
-            assertEquals(w, createOp3.getWidth());
+            AssertJUnit.assertEquals(w, createOp3.getWidth());
           }
       }
 
@@ -57,13 +57,13 @@ public class CreateOpTest
         for (int h = 1; h < 1000; h += 10)
           {
             final CreateOp createOp1 = new CreateOp(10, h, EditableImage.DataType.BYTE);
-            assertEquals(h, createOp1.getHeight());
+            AssertJUnit.assertEquals(h, createOp1.getHeight());
 
             final CreateOp createOp2 = new CreateOp(10, h, EditableImage.DataType.BYTE, Color.BLACK);
-            assertEquals(h, createOp2.getHeight());
+            AssertJUnit.assertEquals(h, createOp2.getHeight());
 
             final CreateOp createOp3 = new CreateOp(10, h, EditableImage.DataType.BYTE, 0);
-            assertEquals(h, createOp3.getHeight());
+            AssertJUnit.assertEquals(h, createOp3.getHeight());
           }
       }
 
@@ -78,13 +78,13 @@ public class CreateOpTest
               }
 
             final CreateOp createOp1 = new CreateOp(10, 10, dataType);
-            assertEquals(dataType, createOp1.getDataType());
+            AssertJUnit.assertEquals(dataType, createOp1.getDataType());
 
             final CreateOp createOp2 = new CreateOp(10, 10, dataType, Color.BLACK);
-            assertEquals(dataType, createOp2.getDataType());
+            AssertJUnit.assertEquals(dataType, createOp2.getDataType());
 
             final CreateOp createOp3 = new CreateOp(10, 10, dataType, 0);
-            assertEquals(dataType, createOp3.getDataType());
+            AssertJUnit.assertEquals(dataType, createOp3.getDataType());
           }
       }
 
@@ -93,8 +93,8 @@ public class CreateOpTest
       {
         final CreateOp createOp = new CreateOp(10, 10, EditableImage.DataType.BYTE);
         final double[] filler = createOp.getFiller();
-        assertEquals(1, filler.length);
-        assertEquals(0.0, filler[0], 0.0);
+        AssertJUnit.assertEquals(1, filler.length);
+        AssertJUnit.assertEquals(0.0, filler[0], 0.0);
       }
 
     @Test
@@ -114,22 +114,22 @@ public class CreateOpTest
       {
         final CreateOp createOp = new CreateOp(10, 10, EditableImage.DataType.BYTE, 1, 2, 3, 4, 5, 6, 7);
         final double[] filler = createOp.getFiller();
-        assertEquals(7, filler.length);
-        assertEquals(1.0, filler[0], 0.0);
-        assertEquals(2.0, filler[1], 0.0);
-        assertEquals(3.0, filler[2], 0.0);
-        assertEquals(4.0, filler[3], 0.0);
-        assertEquals(5.0, filler[4], 0.0);
-        assertEquals(6.0, filler[5], 0.0);
-        assertEquals(7.0, filler[6], 0.0);
+        AssertJUnit.assertEquals(7, filler.length);
+        AssertJUnit.assertEquals(1.0, filler[0], 0.0);
+        AssertJUnit.assertEquals(2.0, filler[1], 0.0);
+        AssertJUnit.assertEquals(3.0, filler[2], 0.0);
+        AssertJUnit.assertEquals(4.0, filler[3], 0.0);
+        AssertJUnit.assertEquals(5.0, filler[4], 0.0);
+        AssertJUnit.assertEquals(6.0, filler[5], 0.0);
+        AssertJUnit.assertEquals(7.0, filler[6], 0.0);
       }
 
     private void checkColor (final CreateOp createOp, final Color color, final double max)
       {
         final double scale = max / 255.0;
-        assertEquals(3, createOp.getFiller().length);
-        assertEquals(scale * color.getRed(), createOp.getFiller()[0], 0.0);
-        assertEquals(scale * color.getGreen(), createOp.getFiller()[1], 0.0);
-        assertEquals(scale * color.getBlue(), createOp.getFiller()[2], 0.0);
+        AssertJUnit.assertEquals(3, createOp.getFiller().length);
+        AssertJUnit.assertEquals(scale * color.getRed(), createOp.getFiller()[0], 0.0);
+        AssertJUnit.assertEquals(scale * color.getGreen(), createOp.getFiller()[1], 0.0);
+        AssertJUnit.assertEquals(scale * color.getBlue(), createOp.getFiller()[2], 0.0);
       }
   }

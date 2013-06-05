@@ -22,8 +22,9 @@
  **********************************************************************************************************************/
 package org.imajine.image.op;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.testng.annotations.Test;
+import org.testng.Assert;
+import org.testng.AssertJUnit;
 
 /*******************************************************************************
  *
@@ -38,13 +39,13 @@ public class RotateQuadrantOpTest
       {
         System.out.println("getDegrees1");
         RotateQuadrantOp op = new RotateQuadrantOp(0);
-        assertEquals(0, op.getDegrees());
+        AssertJUnit.assertEquals(0, op.getDegrees());
         op = new RotateQuadrantOp(90);
-        assertEquals(90, op.getDegrees());
+        AssertJUnit.assertEquals(90, op.getDegrees());
         op = new RotateQuadrantOp(180);
-        assertEquals(180, op.getDegrees());
+        AssertJUnit.assertEquals(180, op.getDegrees());
         op = new RotateQuadrantOp(270);
-        assertEquals(270, op.getDegrees());
+        AssertJUnit.assertEquals(270, op.getDegrees());
       }
 
     @Test
@@ -64,7 +65,7 @@ public class RotateQuadrantOpTest
                   {
                     continue;
                   }
-                fail("IllegalArgumentException expected for degrees=" + degrees);
+                Assert.fail("IllegalArgumentException expected for degrees=" + degrees);
               }
           }
       }
