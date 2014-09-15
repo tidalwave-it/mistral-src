@@ -924,7 +924,8 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
                 log.error("Cannot load EXIF/IPTC metadata: ", e);
               }
           }
-
+        
+        
         if (iioMetadata == null)
           {
             log.trace(">>>> null imagemetadata");
@@ -934,33 +935,48 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
         log.trace(">>>> metadata class: {}", iioMetadata.getClass());
         MetadataLoader metadataLoader = null;
 
-        if (isSubClass(iioMetadata.getClass(), "com.sun.media.imageioimpl.plugins.tiff.TIFFImageMetadata"))
+        if (isSubClass(iioMetadata.getClass(), "com.sun.imageio.plugins.jpeg.JPEGMetadata"))
           {
+            try
+              {
+                log.trace(">>>> using special treatment for JPEG");
+                workaroundBM25.loadExifAndIptcFromJpeg(reader, getMetadata(EXIF.class), 
+                                                               getMetadata(IPTC.class),
+                                                               getMetadata(XMP.class));
+                return;
+              }
+            catch (Exception e1)
+              {
+                log.warn("Cannot load EXIF/IPTC metadata:at first attempt ", e1);
+              }
+          }
+        else if (isSubClass(iioMetadata.getClass(), "com.sun.media.imageioimpl.plugins.tiff.TIFFImageMetadata"))
+          {
+            log.trace(">>>> using TIFFMetadataLoader");
             metadataLoader = new TIFFMetadataLoader();
           }
         else if (isSubClass(iioMetadata.getClass(), "it.tidalwave.imageio.raw.RAWMetadataSupport"))
           {
+            log.trace(">>>> using RAWMetadataLoader");
             metadataLoader = new RAWMetadataLoader();
           }
         else
           {
+            log.trace(">>>> using DrewMetadataLoader");
             metadataLoader = new DrewMetadataLoader();
           }
 
-        if (metadataLoader != null)
+        try
           {
-            try
-              {
-                loadItem(metadataLoader, TIFF.class);
-                loadItem(metadataLoader, EXIF.class);
-                loadItem(metadataLoader, MakerNote.class);
-                loadItem(metadataLoader, IPTC.class);
-                loadItem(metadataLoader, XMP.class);
-              }
-            catch (Exception e)
-              {
-                log.error("loadMetadata()", e);
-              }
+            loadItem(metadataLoader, TIFF.class);
+            loadItem(metadataLoader, EXIF.class);
+            loadItem(metadataLoader, MakerNote.class);
+            loadItem(metadataLoader, IPTC.class);
+            loadItem(metadataLoader, XMP.class);
+          }
+        catch (Exception e)
+          {
+            log.error("loadMetadata()", e);
           }
       }
     
