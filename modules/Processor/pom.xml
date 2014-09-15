@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.imajine.image</groupId>
         <artifactId>org-imajine-image-modules</artifactId>
-        <version>1.0-ALPHA-3</version>
+        <version>1.0-ALPHA-4-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
