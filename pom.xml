@@ -6,7 +6,7 @@
     <parent>
         <groupId>it.tidalwave.superpom</groupId>
         <artifactId>superpom</artifactId>
-        <version>2.16</version>
+        <version>3.3</version>
         <relativePath />
     </parent>
 
@@ -21,9 +21,10 @@
     <inceptionYear>2003</inceptionYear>
 
     <properties>
-        <scm.repo.url>ssh://hg@bitbucket.org/tidalwave/mistral-src</scm.repo.url>
-        <scm.repo.readonly.url>https://bitbucket.org/tidalwave/mistral-src</scm.repo.readonly.url>
+        <scm.repo.url>git@bitbucket.org:tidalwave/mistral-src.git</scm.repo.url>
+        <scm.repo.readonly.url>https://bitbucket.org/tidalwave/mistral-src.git</scm.repo.readonly.url>
         <scm.repo.browse.url>https://bitbucket.org/tidalwave/mistral-src/src</scm.repo.browse.url>
+
         <tidalwave.ci.view>Mistral</tidalwave.ci.view>
         <tidalwave.issues>MST</tidalwave.issues>
         
@@ -53,29 +54,6 @@
             </snapshots>
         </repository>
     </repositories>
-
-    <mailingLists>
-        <mailingList>
-            <name>Continuous Integration</name>
-            <post>ci@mistral.kenai.com</post>
-            <archive>http://kenai.com/projects/mistral/lists/ci/archive</archive>
-        </mailingList>
-        <mailingList>
-            <name>Commits</name>
-            <post>commits@mistral.kenai.com</post>
-            <archive>http://kenai.com/projects/mistral/lists/commits/archive</archive>
-        </mailingList>
-        <mailingList>
-            <name>Developers</name>
-            <post>dev@mistral.kenai.com</post>
-            <archive>http://kenai.com/projects/mistral/lists/dev/archive</archive>
-        </mailingList>
-        <mailingList>
-            <name>Users</name>
-            <post>users@mistral.kenai.com</post>
-            <archive>http://kenai.com/projects/mistral/lists/users/archive</archive>
-        </mailingList>
-    </mailingLists>
 
     <dependencyManagement>
         <dependencies>
@@ -120,11 +98,11 @@
 
     <!-- Repeated because of http://jira.codehaus.org/browse/SCM-442 -->
     <scm>
-        <connection>scm:hg:${scm.repo.readonly.url}</connection>
-        <developerConnection>scm:hg:${scm.repo.effective.url}</developerConnection>
+        <connection>scm:git:${scm.repo.readonly.url}</connection>
+        <developerConnection>scm:git:${scm.repo.effective.url}</developerConnection>
         <url>${scm.repo.browse.url}</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <build>
         <plugins>
