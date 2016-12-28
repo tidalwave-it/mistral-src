@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.imajine.image</groupId>
-        <artifactId>org-imajine-image</artifactId>
+        <groupId>it.tidalwave.image</groupId>
+        <artifactId>image</artifactId>
         <version>1.0-ALPHA-4-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.imajine.image</groupId>
-    <artifactId>org-imajine-image-modules</artifactId>
+    <groupId>it.tidalwave.image</groupId>
+    <artifactId>image-modules</artifactId>
     <packaging>pom</packaging>
     <version>1.0-ALPHA-4-SNAPSHOT</version>
     <name>Mistral (modules)</name>

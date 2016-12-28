@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<jnlp 
-  spec="1.0+" 
+<jnlp
+  spec="1.0+"
   codebase="https://mistral.dev.java.net/jnlp/HistogramViewerExampleJAI"
   href="HistogramViewerExampleJAI.jnlp">
   <information>
@@ -20,5 +20,5 @@
     <jar href="lib/EditableImage.jar"/>
     <jar href="lib/Renderer.jar"/>
   </resources>
-  <application-desc main-class="org.imajine.mistral.example.histogramviewer.Main" />
+  <application-desc main-class="it.tidalwave.mistral.example.histogramviewer.Main" />
 </jnlp>

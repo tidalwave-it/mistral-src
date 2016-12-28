@@ -16,11 +16,11 @@
  *
  ***********************************************************************************************************************
  *
- * WWW: http://mistral.imajine.org
+ * WWW: http://mistral.tidalwave.it
  * SCM: https://bitbucket.org/tidalwave/mistral-src
  *
  **********************************************************************************************************************/
-package org.imajine.image.tools;
+package it.tidalwave.image.tools;
 
 import java.util.Date;
 import java.util.List;
@@ -34,17 +34,17 @@ import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.stringtemplate.StringTemplate;
 import org.antlr.stringtemplate.StringTemplateGroup;
-import org.imajine.image.tools.grammar.TIFFLexer;
-import org.imajine.image.tools.grammar.TIFFParser;
+import it.tidalwave.image.tools.grammar.TIFFLexer;
+import it.tidalwave.image.tools.grammar.TIFFParser;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
-public class MetadataGenerator 
+public class MetadataGenerator
   {
     private List<TIFFRecord> records;
-    
-    public static void main (final String ... args) 
+
+    public static void main (final String ... args)
       throws Exception
       {
         final ClassLoader loader = MetadataGenerator.class.getClassLoader();
@@ -59,7 +59,7 @@ public class MetadataGenerator
         output.close();
       }
 
-    public MetadataGenerator (final Reader input) 
+    public MetadataGenerator (final Reader input)
       throws IOException, RecognitionException
       {
         final ANTLRReaderStream reader = new ANTLRReaderStream(input);
@@ -69,14 +69,14 @@ public class MetadataGenerator
         records = parser.prog();
       }
 
-    private StringTemplateGroup getGroup() 
+    private StringTemplateGroup getGroup()
       {
         InputStream templateStream = this.getClass().getClassLoader().getResourceAsStream("resources/MetadataGenerator.stg");
         Reader templateReader = new InputStreamReader(templateStream);
         return new StringTemplateGroup(templateReader);
-      }  
+      }
 
-    public void generate (final Writer output, final String className) 
+    public void generate (final Writer output, final String className)
       throws IOException
       {
         final StringTemplateGroup group = getGroup();

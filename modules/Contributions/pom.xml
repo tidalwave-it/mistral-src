@@ -4,24 +4,24 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.imajine.image</groupId>
-        <artifactId>org-imajine-image-modules</artifactId>
+        <groupId>it.tidalwave.image</groupId>
+        <artifactId>image-modules</artifactId>
         <version>1.0-ALPHA-4-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>org-imajine-image-contributions</artifactId>
-    <packaging>nbm</packaging>
+    <artifactId>image-contributions</artifactId>
+    <packaging>jar</packaging>
     <name>Mistral Contributions</name>
 
     <dependencies>
         <dependency>
-            <groupId>org.imajine.image</groupId>
-            <artifactId>org-imajine-image-core</artifactId>
+            <groupId>it.tidalwave.image</groupId>
+            <artifactId>image-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.imajine.image</groupId>
-            <artifactId>org-imajine-image-core</artifactId>
+            <groupId>it.tidalwave.image</groupId>
+            <artifactId>image-core</artifactId>
             <classifier>tests</classifier>
             <scope>test</scope>
         </dependency>
@@ -32,21 +32,6 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>nbm-maven-plugin</artifactId>
-                <configuration>
-                    <publicPackages>
-                        <publicPackage>org.imajine.image.java2d</publicPackage>
-                        <publicPackage>org.imajine.image.op</publicPackage>
-                    </publicPackages>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-    
 </project>
 
 

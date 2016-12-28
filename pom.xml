@@ -6,27 +6,52 @@
     <parent>
         <groupId>it.tidalwave.superpom</groupId>
         <artifactId>superpom</artifactId>
-        <version>2.16</version>
+        <version>3.3</version>
         <relativePath />
     </parent>
 
-    <groupId>org.imajine.image</groupId>
-    <artifactId>org-imajine-image</artifactId>
+    <groupId>it.tidalwave.image</groupId>
+    <artifactId>image</artifactId>
     <packaging>pom</packaging>
     <version>1.0-ALPHA-4-SNAPSHOT</version>
-    <name>Mistral (master)</name>
-    <description>Mistral - open source imaging engine</description>
+    <name>Mistral</name>
+    <description>
 
-    <url>http://mistral.imajine.org</url>
+A few scripts for U*ix and Windows systems are provided to quickly run examples:
+
++ runViewerExample.sh
++ runHistogramViewerExample.sh
++ runViewerExample.bat
++ runHistogramViewerExample.bat
+
+
+Directory tree
+==============
+
+* modules/Core                              sources for the core component
+* modules/ImageJ-Plugin                     sources for the ImageJ plugin
+* modules/JAI-Plugin                        sources for the JAI plugin
+* modules/Metadata                          sources for the Metadata component
+* modules/Processor                         sources for the imaging processor
+* modules/Renderer                          sources for the renderer
+
+* modules/Examples/ViewerExample            example about the renderer
+* modules/Examples/HistogramViewerExample   example about histogram computation
+* modules/Examples/CustomOperationExample   example about custom operations
+* modules/Examples/Miscellaneous            miscellaneous examples
+    </description>
+
+    <url>http://mistral.tidalwave.it</url>
     <inceptionYear>2003</inceptionYear>
 
     <properties>
-        <scm.repo.url>ssh://hg@bitbucket.org/tidalwave/mistral-src</scm.repo.url>
-        <scm.repo.readonly.url>https://bitbucket.org/tidalwave/mistral-src</scm.repo.readonly.url>
+        <scm.repo.url>git@bitbucket.org:tidalwave/mistral-src.git</scm.repo.url>
+        <scm.repo.readonly.url>https://bitbucket.org/tidalwave/mistral-src.git</scm.repo.readonly.url>
         <scm.repo.browse.url>https://bitbucket.org/tidalwave/mistral-src/src</scm.repo.browse.url>
+
         <tidalwave.ci.view>Mistral</tidalwave.ci.view>
         <tidalwave.issues>MST</tidalwave.issues>
-        
+
         <jrawio.version>1.7-ALPHA-1</jrawio.version>
         <libraries.version>1.1.5</libraries.version>
         <thesefoolishthings.version>1.28</thesefoolishthings.version>
@@ -54,65 +79,42 @@
         </repository>
     </repositories>
 
-    <mailingLists>
-        <mailingList>
-            <name>Continuous Integration</name>
-            <post>ci@mistral.kenai.com</post>
-            <archive>http://kenai.com/projects/mistral/lists/ci/archive</archive>
-        </mailingList>
-        <mailingList>
-            <name>Commits</name>
-            <post>commits@mistral.kenai.com</post>
-            <archive>http://kenai.com/projects/mistral/lists/commits/archive</archive>
-        </mailingList>
-        <mailingList>
-            <name>Developers</name>
-            <post>dev@mistral.kenai.com</post>
-            <archive>http://kenai.com/projects/mistral/lists/dev/archive</archive>
-        </mailingList>
-        <mailingList>
-            <name>Users</name>
-            <post>users@mistral.kenai.com</post>
-            <archive>http://kenai.com/projects/mistral/lists/users/archive</archive>
-        </mailingList>
-    </mailingLists>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.imajine.image</groupId>
-                <artifactId>org-imajine-image-core</artifactId>
+                <groupId>it.tidalwave.image</groupId>
+                <artifactId>image-core</artifactId>
                 <version>1.0-ALPHA-4-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>org.imajine.image</groupId>
-                <artifactId>org-imajine-image-core</artifactId>
+                <groupId>it.tidalwave.image</groupId>
+                <artifactId>image-core</artifactId>
                 <version>1.0-ALPHA-4-SNAPSHOT</version>
                 <classifier>tests</classifier>
             </dependency>
             <dependency>
-                <groupId>org.imajine.image</groupId>
-                <artifactId>org-imajine-image-operations</artifactId>
+                <groupId>it.tidalwave.image</groupId>
+                <artifactId>image-operations</artifactId>
                 <version>1.0-ALPHA-4-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>org.imajine.image</groupId>
-                <artifactId>org-imajine-image-contributions</artifactId>
+                <groupId>it.tidalwave.image</groupId>
+                <artifactId>image-contributions</artifactId>
                 <version>1.0-ALPHA-4-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>org.imajine.image</groupId>
-                <artifactId>org-imajine-image-plugin-jai</artifactId>
+                <groupId>it.tidalwave.image</groupId>
+                <artifactId>image-plugin-jai</artifactId>
                 <version>1.0-ALPHA-4-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>org.imajine.image</groupId>
-                <artifactId>org-imajine-image-processor</artifactId>
+                <groupId>it.tidalwave.image</groupId>
+                <artifactId>image-processor</artifactId>
                 <version>1.0-ALPHA-4-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>org.imajine.image</groupId>
-                <artifactId>org-imajine-image-renderer</artifactId>
+                <groupId>it.tidalwave.image</groupId>
+                <artifactId>image-renderer</artifactId>
                 <version>1.0-ALPHA-4-SNAPSHOT</version>
             </dependency>
         </dependencies>
@@ -120,11 +122,11 @@
 
     <!-- Repeated because of http://jira.codehaus.org/browse/SCM-442 -->
     <scm>
-        <connection>scm:hg:${scm.repo.readonly.url}</connection>
-        <developerConnection>scm:hg:${scm.repo.effective.url}</developerConnection>
+        <connection>scm:git:${scm.repo.readonly.url}</connection>
+        <developerConnection>scm:git:${scm.repo.effective.url}</developerConnection>
         <url>${scm.repo.browse.url}</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <build>
         <plugins>

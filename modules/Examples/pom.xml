@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.imajine.image</groupId>
-        <artifactId>org-imajine-image-modules</artifactId>
+        <groupId>it.tidalwave.image</groupId>
+        <artifactId>image-modules</artifactId>
         <version>1.0-ALPHA-4-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>org-imajine-image-examples</artifactId>
+    <artifactId>image-examples</artifactId>
     <packaging>pom</packaging>
     <name>Mistral Examples (master)</name>
 
@@ -19,7 +19,6 @@
         <module>ViewerExample</module>
         <module>HistogramViewerExample</module>
         <module>MiscellaneousExample</module>
-        <module>FaxManagerExample</module>
     </modules>
 
 </project>

@@ -1,24 +1,24 @@
 grammar TIFF;
-@lexer::header{ package org.imajine.image.tools.grammar; } 
+@lexer::header{ package it.tidalwave.image.tools.grammar; }
 
 @header {
-package org.imajine.image.tools.grammar;
+package it.tidalwave.image.tools.grammar;
 
-import org.imajine.image.tools.TIFFRecord;
-import org.imajine.image.tools.TIFFEnumValueName;
+import it.tidalwave.image.tools.TIFFRecord;
+import it.tidalwave.image.tools.TIFFEnumValueName;
 }
 
 prog returns [List<TIFFRecord> result = new ArrayList<TIFFRecord>()]
 	:	(stat {if ($stat.result != null) result.add($stat.result);})+ ;
 
-stat returns [TIFFRecord result]	
+stat returns [TIFFRecord result]
 	:	tiffRecord=expr NEWLINE {result = tiffRecord;}
 	|	NEWLINE
 	;
 
 expr returns [TIFFRecord result = null]
 	:	id=INT name type=TYPE enums=enumSet? {result = new TIFFRecord($id.text, $name.text, $type.text, $enums.result);};
-	
+
 enumSet	returns [List<TIFFEnumValueName> result = new ArrayList<TIFFEnumValueName>()]
 	:	ENUM enumv1=enumV {result.add($enumv1.result);} (COMMA enumvX=enumV {result.add($enumvX.result);})*;
 

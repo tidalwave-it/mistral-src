@@ -16,16 +16,16 @@
 
     **********************************************************************************************************************
 
-     WWW: http://mistral.imajine.org
+     WWW: http://mistral.tidalwave.it
      SCM: https://bitbucket.org/tidalwave/mistral-src
 
 ====
 
-package org.imajine.image.metadata;
+package it.tidalwave.image.metadata;
 
 import java.util.Map;
 import java.util.HashMap;
-import org.imajine.image.tools.Rational;
+import it.tidalwave.image.tools.Rational;
 
 /* Automatically generated on Thu Jan 01 01:00:00 CET 1970*/
 

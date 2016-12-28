@@ -17,7 +17,7 @@
 
   **********************************************************************************************************************
 
-   WWW: http://mistral.imajine.org
+   WWW: http://mistral.tidalwave.it
    SCM: https://bitbucket.org/tidalwave/mistral-src
 
 *********************************************************************************************************************-->
@@ -64,7 +64,7 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.1.1:exec</goal>
             </goals>
             <properties>
-                <exec.args>-classpath %classpath org.imajine.mistral.example.histogramviewer.Main</exec.args>
+                <exec.args>-classpath %classpath it.tidalwave.mistral.example.histogramviewer.Main</exec.args>
                 <exec.executable>java</exec.executable>
             </properties>
         </action>
@@ -75,7 +75,7 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.1.1:exec</goal>
             </goals>
             <properties>
-                <exec.args>-classpath %classpath org.imajine.mistral.example.histogramviewer.Main</exec.args>
+                <exec.args>-classpath %classpath it.tidalwave.mistral.example.histogramviewer.Main</exec.args>
                 <exec.executable>java</exec.executable>
             </properties>
         </action>
@@ -86,7 +86,7 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.1.1:exec</goal>
             </goals>
             <properties>
-                <exec.args>-classpath %classpath org.imajine.mistral.example.histogramviewer.Main</exec.args>
+                <exec.args>-classpath %classpath it.tidalwave.mistral.example.histogramviewer.Main</exec.args>
                 <exec.executable>java</exec.executable>
             </properties>
         </action>
