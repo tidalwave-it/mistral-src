@@ -33,32 +33,18 @@
             <groupId>it.tidalwave.image</groupId>
             <artifactId>image-contributions</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-util-lookup</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>com.kenai.nbpwr</groupId>
             <artifactId>javax-media-jai</artifactId>
         </dependency>
     </dependencies>
     
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>nbm-maven-plugin</artifactId>
-                <configuration>
-                    <publicPackages>
-                        <publicPackage>org.imajine.image.jai</publicPackage>
-                    </publicPackages>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>
 
 

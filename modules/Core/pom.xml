@@ -19,12 +19,12 @@
             <groupId>org.rawdarkroom</groupId>
             <artifactId>codec</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-util-lookup</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>com.kenai.nbpwr</groupId>
             <artifactId>com-drew-metadata</artifactId>
@@ -32,7 +32,7 @@
         <dependency>
             <groupId>com.kenai.nbpwr</groupId>
             <artifactId>com-sun-media-imageio</artifactId>
-        </dependency>        
+        </dependency>
         <dependency>
             <groupId>com.kenai.nbpwr</groupId>
             <artifactId>org-slf4j-jdk14</artifactId>
@@ -82,23 +82,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>nbm-maven-plugin</artifactId>
-                <configuration>
-                    <publicPackages>
-                        <publicPackage>org.imajine.image</publicPackage>
-                        <publicPackage>org.imajine.image.java2d</publicPackage>
-                        <publicPackage>org.imajine.image.metadata</publicPackage>
-                        <publicPackage>org.imajine.image.metadata.loader</publicPackage>
-                        <publicPackage>org.imajine.image.op</publicPackage>
-                        <publicPackage>org.imajine.image.render</publicPackage>
-                        <publicPackage>org.imajine.image.tools</publicPackage>
-                        <publicPackage>org.imajine.image.util</publicPackage>
-                    </publicPackages>
-                </configuration>
             </plugin>
         </plugins>
     </build>
