@@ -16,18 +16,18 @@
  *
  ***********************************************************************************************************************
  *
- * WWW: http://mistral.imajine.org
+ * WWW: http://mistral.tidalwave.it
  * SCM: https://bitbucket.org/tidalwave/mistral-src
  *
  **********************************************************************************************************************/
-package org.imajine.image.tools;
+package it.tidalwave.image.tools;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-public class TIFFRecord 
+public class TIFFRecord
   {
     private String id;
     private String tagName;
@@ -36,102 +36,102 @@ public class TIFFRecord
     private static ResourceBundle javaTypeDict = ResourceBundle.getBundle("resources/TIFFRecord_JavaType");
     private static final String UNDEFINED = "undefined";
 
-    public TIFFRecord (final String id, final String tagName, final String type, final List<TIFFEnumValueName> enums) 
+    public TIFFRecord (final String id, final String tagName, final String type, final List<TIFFEnumValueName> enums)
       {
         this.id = id;
         this.tagName = tagName;
         this.type = type.toLowerCase();
-        
-        if (enums != null && !enums.isEmpty()) 
+
+        if (enums != null && !enums.isEmpty())
           {
             this.enums.addAll(enums);
-          }  
+          }
       }
 
-    public int getId() 
+    public int getId()
       {
-        try 
+        try
           {
             return Integer.parseInt(id);
           }
-        catch (NumberFormatException e) 
+        catch (NumberFormatException e)
           {
             return -1;
           }
       }
 
-    public String getTagName() 
+    public String getTagName()
       {
         return tagName;
       }
 
-    public String getType() 
+    public String getType()
       {
-        if (type.equals(UNDEFINED)) 
+        if (type.equals(UNDEFINED))
           {
             return "byte";
           }
-        
+
         return type;
       }
 
-    public String getJavaType() 
+    public String getJavaType()
       {
-        if (this.isHasEnums()) 
+        if (this.isHasEnums())
           {
             return this.getCapitalizedTagName();
           }
 
         String type = getType();
-        
-        try 
+
+        try
           {
             return javaTypeDict.getString(type);
-          } 
-        catch (MissingResourceException e) 
+          }
+        catch (MissingResourceException e)
           {
             return type;
           }
       }
 
-    public String getJavaTypeToString() 
+    public String getJavaTypeToString()
       {
         String result = "get" + this.getCapitalizedTagName() + "()";
-        
-        if (this.getJavaType().endsWith("[]")) 
+
+        if (this.getJavaType().endsWith("[]"))
           {
             result = "toString(" + result + ")";
           }
-        
+
         return result;
       }
 
-    public String getUncapitalizedTagName() 
+    public String getUncapitalizedTagName()
       {
         return Utils.uncapitalized(getStrippedTagName());
       }
 
-    public String getCapitalizedTagName() 
+    public String getCapitalizedTagName()
       {
         return Utils.capitalized(getStrippedTagName());
-      }  
+      }
 
-    public String getConstTagName() 
+    public String getConstTagName()
       {
         return Utils.strip(tagName.toUpperCase().replace(' ', '_'));
       }
 
-    public boolean isHasEnums() 
+    public boolean isHasEnums()
       {
         return !enums.isEmpty();
       }
 
-    public List<TIFFEnumValueName> getEnums() 
+    public List<TIFFEnumValueName> getEnums()
       {
         return new ArrayList<TIFFEnumValueName>(enums);
       }
 
-    private String getStrippedTagName() 
+    private String getStrippedTagName()
       {
         return Utils.strip(tagName).replace('/', '_').replace('(', '_').replace(')', '_');
       }

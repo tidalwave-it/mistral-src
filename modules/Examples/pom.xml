@@ -19,7 +19,6 @@
         <module>ViewerExample</module>
         <module>HistogramViewerExample</module>
         <module>MiscellaneousExample</module>
-        <module>FaxManagerExample</module>
     </modules>
 
 </project>

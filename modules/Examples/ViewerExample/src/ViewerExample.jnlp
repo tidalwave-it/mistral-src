@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<jnlp 
-  spec="1.0+" 
+<jnlp
+  spec="1.0+"
   codebase="https://mistral.dev.java.net/jnlp/ViewerExample"
   href="ViewerExample.jnlp">
   <information>
@@ -21,5 +21,5 @@
     <jar href="lib/metadata-extractor-2.3.1.jar"/>
     <jar href="lib/swing-layout-1.0.1.jar"/>
   </resources>
-  <application-desc main-class="org.imajine.mistral.example.viewer.Main" />
+  <application-desc main-class="it.tidalwave.mistral.example.viewer.Main" />
 </jnlp>

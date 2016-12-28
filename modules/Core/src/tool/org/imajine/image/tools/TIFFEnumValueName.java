@@ -16,34 +16,34 @@
  *
  ***********************************************************************************************************************
  *
- * WWW: http://mistral.imajine.org
+ * WWW: http://mistral.tidalwave.it
  * SCM: https://bitbucket.org/tidalwave/mistral-src
  *
  **********************************************************************************************************************/
-package org.imajine.image.tools;
+package it.tidalwave.image.tools;
 
-public class TIFFEnumValueName 
+public class TIFFEnumValueName
   {
     private String value;
     private String name;
 
-    public TIFFEnumValueName (final String value, String name) 
+    public TIFFEnumValueName (final String value, String name)
       {
         this.value = value;
         this.name = name;
       }
 
-    public String getValue() 
+    public String getValue()
       {
         return value;
       }
 
-    public String getName() 
+    public String getName()
       {
         return name;
       }
 
-    public String getIdentifierName() 
+    public String getIdentifierName()
       {
         if (name != null)
           {
@@ -54,12 +54,12 @@ public class TIFFEnumValueName
                         replace('/', ' ').
                         trim().replace(' ', '_').toUpperCase();
           }
-        
+
         return "";
       }
 
     @Override
-    public String toString() 
+    public String toString()
       {
         return value + "=" + name;
       }
