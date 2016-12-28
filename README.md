@@ -1,13 +1,10 @@
 ![Maven Central](https://img.shields.io/maven-central/v/it.tidalwave.image/image.svg)
-[![Build Status](https://img.shields.io/jenkins/s/http/services.tidalwave.it/ci/Mistral (master)_Build_from_Scratch.svg)](http://services.tidalwave.it/ci/view/Mistral)
-[![Test Status](https://img.shields.io/jenkins/t/http/services.tidalwave.it/ci/Mistral (master).svg)](http://services.tidalwave.it/ci/view/Mistral)
-[![Coverage](https://img.shields.io/jenkins/c/http/services.tidalwave.it/ci/Mistral (master).svg)](http://services.tidalwave.it/ci/view/Mistral)
+[![Build Status](https://img.shields.io/jenkins/s/http/services.tidalwave.it/ci/Mistral_Build_from_Scratch.svg)](http://services.tidalwave.it/ci/view/Mistral)
+[![Test Status](https://img.shields.io/jenkins/t/http/services.tidalwave.it/ci/Mistral.svg)](http://services.tidalwave.it/ci/view/Mistral)
+[![Coverage](https://img.shields.io/jenkins/c/http/services.tidalwave.it/ci/Mistral.svg)](http://services.tidalwave.it/ci/view/Mistral)
 
-Mistral (master)
+Mistral
 ================================
-
-RUNNING EXAMPLES
-================
 
 A few scripts for U*ix and Windows systems are provided to quickly run examples:
 
@@ -20,17 +17,17 @@ A few scripts for U*ix and Windows systems are provided to quickly run examples:
 DIRECTORY TREE
 ==============
 
-modules/Core                              sources for the core component
-modules/ImageJ-Plugin                     sources for the ImageJ plugin
-modules/JAI-Plugin                        sources for the JAI plugin
-modules/Metadata                          sources for the Metadata component
-modules/Processor                         sources for the imaging processor
-modules/Renderer                          sources for the renderer
+* modules/Core                              sources for the core component
+* modules/ImageJ-Plugin                     sources for the ImageJ plugin
+* modules/JAI-Plugin                        sources for the JAI plugin
+* modules/Metadata                          sources for the Metadata component
+* modules/Processor                         sources for the imaging processor
+* modules/Renderer                          sources for the renderer
 
-modules/Examples/ViewerExample            example about the renderer
-modules/Examples/HistogramViewerExample   example about histogram computation
-modules/Examples/CustomOperationExample   example about custom operations
-modules/Examples/Miscellaneous            miscellaneous examples
+* modules/Examples/ViewerExample            example about the renderer
+* modules/Examples/HistogramViewerExample   example about histogram computation
+* modules/Examples/CustomOperationExample   example about custom operations
+* modules/Examples/Miscellaneous            miscellaneous examples
 
 
 Bootstrapping
