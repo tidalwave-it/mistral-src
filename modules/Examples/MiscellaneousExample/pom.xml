@@ -5,28 +5,28 @@
 
 
     <parent>
-        <groupId>org.imajine.image</groupId>
-        <artifactId>org-imajine-image-examples</artifactId>
+        <groupId>it.tidalwave.image</groupId>
+        <artifactId>image-examples</artifactId>
         <version>1.0-ALPHA-4-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>org-imajine-image-examples-miscellaneous</artifactId>
+    <artifactId>image-examples-miscellaneous</artifactId>
     <packaging>jar</packaging>
     <name>Mistral Examples Miscellaneous</name>
 
     <dependencies>
         <dependency>
-            <groupId>org.imajine.image</groupId>
-            <artifactId>org-imajine-image-core</artifactId>
+            <groupId>it.tidalwave.image</groupId>
+            <artifactId>image-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.imajine.image</groupId>
-            <artifactId>org-imajine-image-operations</artifactId>
+            <groupId>it.tidalwave.image</groupId>
+            <artifactId>image-operations</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.imajine.image</groupId>
-            <artifactId>org-imajine-image-contributions</artifactId>
+            <groupId>it.tidalwave.image</groupId>
+            <artifactId>image-contributions</artifactId>
         </dependency>
         <dependency>
             <groupId>com.kenai.nbpwr</groupId>

@@ -10,8 +10,8 @@
         <relativePath />
     </parent>
 
-    <groupId>org.imajine.image</groupId>
-    <artifactId>org-imajine-image</artifactId>
+    <groupId>it.tidalwave.image</groupId>
+    <artifactId>image</artifactId>
     <packaging>pom</packaging>
     <version>1.0-ALPHA-4-SNAPSHOT</version>
     <name>Mistral (master)</name>
@@ -58,39 +58,39 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.imajine.image</groupId>
-                <artifactId>org-imajine-image-core</artifactId>
+                <groupId>it.tidalwave.image</groupId>
+                <artifactId>image-core</artifactId>
                 <version>1.0-ALPHA-4-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>org.imajine.image</groupId>
-                <artifactId>org-imajine-image-core</artifactId>
+                <groupId>it.tidalwave.image</groupId>
+                <artifactId>image-core</artifactId>
                 <version>1.0-ALPHA-4-SNAPSHOT</version>
                 <classifier>tests</classifier>
             </dependency>
             <dependency>
-                <groupId>org.imajine.image</groupId>
-                <artifactId>org-imajine-image-operations</artifactId>
+                <groupId>it.tidalwave.image</groupId>
+                <artifactId>image-operations</artifactId>
                 <version>1.0-ALPHA-4-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>org.imajine.image</groupId>
-                <artifactId>org-imajine-image-contributions</artifactId>
+                <groupId>it.tidalwave.image</groupId>
+                <artifactId>image-contributions</artifactId>
                 <version>1.0-ALPHA-4-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>org.imajine.image</groupId>
-                <artifactId>org-imajine-image-plugin-jai</artifactId>
+                <groupId>it.tidalwave.image</groupId>
+                <artifactId>image-plugin-jai</artifactId>
                 <version>1.0-ALPHA-4-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>org.imajine.image</groupId>
-                <artifactId>org-imajine-image-processor</artifactId>
+                <groupId>it.tidalwave.image</groupId>
+                <artifactId>image-processor</artifactId>
                 <version>1.0-ALPHA-4-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>org.imajine.image</groupId>
-                <artifactId>org-imajine-image-renderer</artifactId>
+                <groupId>it.tidalwave.image</groupId>
+                <artifactId>image-renderer</artifactId>
                 <version>1.0-ALPHA-4-SNAPSHOT</version>
             </dependency>
         </dependencies>

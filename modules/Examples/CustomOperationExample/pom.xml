@@ -4,28 +4,28 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.imajine.image</groupId>
-        <artifactId>org-imajine-image-examples</artifactId>
+        <groupId>it.tidalwave.image</groupId>
+        <artifactId>image-examples</artifactId>
         <version>1.0-ALPHA-4-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>org-imajine-image-examples-customoperation</artifactId>
+    <artifactId>image-examples-customoperation</artifactId>
     <packaging>jar</packaging>
     <name>Mistral Examples CustomOperation</name>
 
     <dependencies>
         <dependency>
-            <groupId>org.imajine.image</groupId>
-            <artifactId>org-imajine-image-core</artifactId>
+            <groupId>it.tidalwave.image</groupId>
+            <artifactId>image-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.imajine.image</groupId>
-            <artifactId>org-imajine-image-operations</artifactId>
+            <groupId>it.tidalwave.image</groupId>
+            <artifactId>image-operations</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.imajine.image</groupId>
-            <artifactId>org-imajine-image-contributions</artifactId>
+            <groupId>it.tidalwave.image</groupId>
+            <artifactId>image-contributions</artifactId>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
