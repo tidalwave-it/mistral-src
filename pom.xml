@@ -13,7 +13,7 @@
     <groupId>it.tidalwave.image</groupId>
     <artifactId>image</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-ALPHA-4-SNAPSHOT</version>
+    <version>1.0-ALPHA-5-SNAPSHOT</version>
     <name>Mistral</name>
     <description>
 
@@ -84,38 +84,38 @@ Directory tree
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-core</artifactId>
-                <version>1.0-ALPHA-4-SNAPSHOT</version>
+                <version>1.0-ALPHA-5-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-core</artifactId>
-                <version>1.0-ALPHA-4-SNAPSHOT</version>
+                <version>1.0-ALPHA-5-SNAPSHOT</version>
                 <classifier>tests</classifier>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-operations</artifactId>
-                <version>1.0-ALPHA-4-SNAPSHOT</version>
+                <version>1.0-ALPHA-5-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-contributions</artifactId>
-                <version>1.0-ALPHA-4-SNAPSHOT</version>
+                <version>1.0-ALPHA-5-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-plugin-jai</artifactId>
-                <version>1.0-ALPHA-4-SNAPSHOT</version>
+                <version>1.0-ALPHA-5-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-processor</artifactId>
-                <version>1.0-ALPHA-4-SNAPSHOT</version>
+                <version>1.0-ALPHA-5-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-renderer</artifactId>
-                <version>1.0-ALPHA-4-SNAPSHOT</version>
+                <version>1.0-ALPHA-5-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
