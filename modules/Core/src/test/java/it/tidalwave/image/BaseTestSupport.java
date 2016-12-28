@@ -172,8 +172,7 @@ public abstract class BaseTestSupport
         catch (IOException e)
           {
             e.printStackTrace();
-            System.exit(0);
-            return null; // never reached
+            throw new RuntimeException(e);
           }
       }
 
