@@ -16,7 +16,7 @@
 
     **********************************************************************************************************************
 
-     WWW: http://mistral.imajine.org
+     WWW: http://mistral.tidalwave.it
      SCM: https://bitbucket.org/tidalwave/mistral-src
 
 ====
