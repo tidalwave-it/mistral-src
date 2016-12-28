@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>image-core</artifactId>
-    <packaging>nbm</packaging>
+    <packaging>jar</packaging>
     <name>Mistral Core</name>
 
     <dependencies>

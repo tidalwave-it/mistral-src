@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>image-processor</artifactId>
-    <packaging>nbm</packaging>
+    <packaging>jar</packaging>
     <name>Mistral Processor</name>
 
     <dependencies>

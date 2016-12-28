@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>image-operations</artifactId>
-    <packaging>nbm</packaging>
+    <packaging>jar</packaging>
     <name>Mistral Operations</name>
 
     <dependencies>

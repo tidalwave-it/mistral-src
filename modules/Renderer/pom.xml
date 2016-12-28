@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>image-renderer</artifactId>
-    <packaging>nbm</packaging>
+    <packaging>jar</packaging>
     <name>Mistral Renderer</name>
 
     <dependencies>

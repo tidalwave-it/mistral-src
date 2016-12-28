@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>image-contributions</artifactId>
-    <packaging>nbm</packaging>
+    <packaging>jar</packaging>
     <name>Mistral Contributions</name>
 
     <dependencies>
