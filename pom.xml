@@ -58,6 +58,8 @@ Directory tree
         <netbeans.version>RELEASE71</netbeans.version>
 
         <netbeans.hint.license>Tidalwave-ASF</netbeans.hint.license>
+
+        <tft.clirr.skip>true</tft.clirr.skip> <!-- Clirr is not compatible with JDK 8 -->
     </properties>
 
     <repositories>
