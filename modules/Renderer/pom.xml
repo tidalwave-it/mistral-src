@@ -18,9 +18,15 @@
         <dependency>
             <groupId>it.tidalwave.image</groupId>
             <artifactId>image-core</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.kenai.nbpwr</groupId>
+                    <artifactId>org-slf4j-jdk14</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
-    
+
 </project>
 
 

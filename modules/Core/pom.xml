@@ -33,10 +33,6 @@
             <groupId>com.kenai.nbpwr</groupId>
             <artifactId>com-sun-media-imageio</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.kenai.nbpwr</groupId>
-            <artifactId>org-slf4j-jdk14</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
