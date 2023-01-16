@@ -22,13 +22,12 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
-import java.util.logging.Logger;
 import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
 import java.awt.image.RenderedImage;
 import it.tidalwave.image.Histogram;
 import it.tidalwave.image.render.PreviewSettings;
-
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -36,10 +35,9 @@ import it.tidalwave.image.render.PreviewSettings;
  * @version CVS $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class HistogramJava2D extends Histogram
   {
-    private final static String CLASS = HistogramJava2D.class.getName();
-    private final static Logger logger = Logger.getLogger(CLASS);
     private RenderedImage renderedImage;
     private int[][] bandData;
     private int[] max;
@@ -111,7 +109,7 @@ public class HistogramJava2D extends Histogram
      *******************************************************************************/
     private void compute ()
       {
-        logger.info("compute()");
+        log.info("compute()");
         bandCount = renderedImage.getSampleModel().getNumBands();
         bitsPerBand = renderedImage.getSampleModel().getSampleSize(0);
         shift = 0;
@@ -124,7 +122,7 @@ public class HistogramJava2D extends Histogram
         bandData = new int[bandCount][1 << (bitsPerBand - shift)];
         min = new int[bandCount];
         max = new int[bandCount];
-        logger.info(">>>> Allocated bandData[" + bandData.length + "][" + bandData[0].length + "]");
+        log.info(">>>> Allocated bandData[" + bandData.length + "][" + bandData[0].length + "]");
         genericCompute();
 
         //DataBuffer dataBuffer = raster.getDataBuffer();
@@ -132,7 +130,7 @@ public class HistogramJava2D extends Histogram
         //        if (dataBuffer instanceof DataBufferInt)
         //            DataBufferInt dbs = (DataBufferInt)dataBuffer;
         //            int[][] bankData = dbs.getBankData();
-        //            logger.info(">>>> bankData[" + bankData.length + "][" + bankData[0].length + "]");
+        //            log.info(">>>> bankData[" + bankData.length + "][" + bankData[0].length + "]");
         //            int[] offsets = dbs.getOffsets();
         //            int scanStride = w;
       }

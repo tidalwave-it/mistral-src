@@ -23,13 +23,13 @@
 package it.tidalwave.mistral.example.histogram;
 
 import it.tidalwave.image.op.ReadOp;
-import java.util.logging.Logger;
 import java.io.File;
 import java.io.IOException;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Histogram;
 import it.tidalwave.image.op.CropOp;
 import it.tidalwave.image.op.HistogramOp;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -37,12 +37,9 @@ import it.tidalwave.image.op.HistogramOp;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class HistogramExample 
   {
-    private static final String CLASS = HistogramExample.class.getName();
-    
-    private static final Logger logger = Logger.getLogger(CLASS);
-    
     public static void main (String[] args)
       throws IOException
       {
@@ -58,17 +55,17 @@ public class HistogramExample
         //
         File file = new File("../images/20030701-0043.NEF");
         EditableImage image = EditableImage.create(new ReadOp(file));
-        logger.info("Image loaded in " + image.getLatestOperationTime() + " msec");
+        log.info("Image loaded in " + image.getLatestOperationTime() + " msec");
         //
         // Crops the image
         //
         image.execute(new CropOp(10, 10, 600, 400));
-        logger.info("Image cropped in " + image.getLatestOperationTime() + " msec");
+        log.info("Image cropped in " + image.getLatestOperationTime() + " msec");
         //
         // Computes the histogram
         //
         Histogram histogram = image.execute(new HistogramOp()).getHistogram();  
-        logger.info("Histogram computed in " + image.getLatestOperationTime() + " msec");
+        log.info("Histogram computed in " + image.getLatestOperationTime() + " msec");
         //
         // Prints some information item from the histogram
         //
@@ -77,7 +74,7 @@ public class HistogramExample
             int min = histogram.getMin(band);
             int max = histogram.getMax(band);
             int[] frequencies = histogram.getFrequencies(band);            
-            logger.info("band #" + band + ": min=" + min + " max=" + max + " " + frequencies.length + " samples");
+            log.info("band #" + band + ": min=" + min + " max=" + max + " " + frequencies.length + " samples");
           }
       }
   }

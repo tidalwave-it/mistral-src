@@ -24,9 +24,9 @@ package it.tidalwave.image.metadata;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Logger;
 import java.text.SimpleDateFormat;
 import java.awt.color.ICC_Profile;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -34,10 +34,9 @@ import java.awt.color.ICC_Profile;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class EXIF extends EXIFDirectoryGenerated
   {
-    private final static String CLASS = EXIF.class.getName();
-    private final static Logger logger = Logger.getLogger(CLASS);
     private final static long serialVersionUID = 3088068666726854799L;
 
     private final static String ASCII_PREFIX = "ASCII\u0000\u0000\u0000";
@@ -493,7 +492,7 @@ public class EXIF extends EXIFDirectoryGenerated
 
             catch (Exception e1)
               {
-                logger.warning("*** BAD DATE " + string);
+                log.warn("*** BAD DATE " + string);
                 return null;
               }
           }

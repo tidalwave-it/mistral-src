@@ -22,11 +22,11 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
-import java.util.logging.Logger;
 import java.awt.image.BufferedImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.WrapOp;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -35,11 +35,9 @@ import it.tidalwave.image.op.WrapOp;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class WrapJ2DOp extends OperationImplementation<WrapOp, BufferedImage>
   {
-    private static final String CLASS = WrapJ2DOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     /*******************************************************************************
      *
      * @inheritDoc
@@ -48,7 +46,7 @@ public class WrapJ2DOp extends OperationImplementation<WrapOp, BufferedImage>
     @Override
     protected BufferedImage execute (final WrapOp operation, final EditableImage image, final BufferedImage bufferedImage)
       {
-        logger.info(String.format("WrapJ2DOp.execute(%s)", operation));
+        log.info(String.format("WrapJ2DOp.execute(%s)", operation));
         return operation.getSourceImage();
       }
   }

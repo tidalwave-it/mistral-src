@@ -34,6 +34,7 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
 import it.tidalwave.image.op.OptimizeOp;
 import it.tidalwave.image.util.Platform;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -41,7 +42,8 @@ import it.tidalwave.image.util.Platform;
  * @version $Id$
  *
  ******************************************************************************/
-public abstract class BasePerformanceTestSupport extends BaseTestSupport 
+@Slf4j
+public abstract class BasePerformanceTestSupport extends BaseTestSupport
   {
     private final static String host;
     private final static String os;
@@ -95,13 +97,13 @@ public abstract class BasePerformanceTestSupport extends BaseTestSupport
         for (Quality quality : Quality.values())
           {
             String name = getClassName();
-            log(name  + " running");
+            log.info(name  + " running");
 
             AssertJUnit.assertEquals(PixelInterleavedSampleModel.class, 
                          img20030701_0043_jpg.getInnerProperty(SampleModel.class).getClass());
             long time = runTest(img20030701_0043_jpg);
-            log(name + img20030701_0043_jpg);
-            log("STATS: " + "VERSION" + "::" + host + "::" + os + "::" + name + "::" + quality + "::" + file_20030701_0043_jpg.getName() + "=" + time);
+            log.info(name + img20030701_0043_jpg);
+            log.info("STATS: " + "VERSION" + "::" + host + "::" + os + "::" + name + "::" + quality + "::" + file_20030701_0043_jpg.getName() + "=" + time);
           }
       }    
     
@@ -111,14 +113,14 @@ public abstract class BasePerformanceTestSupport extends BaseTestSupport
         for (Quality quality : Quality.values())
           {
             String name = getClassName() + " (opt)";
-            log(name  + " running");
+            log.info(name  + " running");
 
             EditableImage optimizedImage = img20030701_0043_jpg.execute2(new OptimizeOp());
             AssertJUnit.assertEquals(SinglePixelPackedSampleModel.class, 
                          optimizedImage.getInnerProperty(SampleModel.class).getClass());
             long time = runTest(optimizedImage);
-            log(name + optimizedImage);
-            log("STATS: " + "VERSION" + "::" + host + "::" + os + "::" + name + "::" + quality + "::" + file_20030701_0043_jpg.getName() + "=" + time);
+            log.info(name + optimizedImage);
+            log.info("STATS: " + "VERSION" + "::" + host + "::" + os + "::" + name + "::" + quality + "::" + file_20030701_0043_jpg.getName() + "=" + time);
           }
       }    
     

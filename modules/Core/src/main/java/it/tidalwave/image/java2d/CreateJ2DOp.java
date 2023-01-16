@@ -22,13 +22,13 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
-import java.util.logging.Logger;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.CreateOp;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -37,11 +37,9 @@ import it.tidalwave.image.op.CreateOp;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class CreateJ2DOp extends OperationImplementation<CreateOp, BufferedImage>
   {
-    private static final String CLASS = CreateJ2DOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     /*******************************************************************************
      *
      * @inheritDoc
@@ -86,8 +84,8 @@ public class CreateJ2DOp extends OperationImplementation<CreateOp, BufferedImage
     @Override
     protected BufferedImage execute (final CreateOp operation, final EditableImage image, final BufferedImage bufferedImage)
       {
-        logger.info("CreateJ2DOp.execute(" + operation + ", " + image + ")");
-        Java2DUtils.logImage(logger, ">>>> bufferedImage: ", bufferedImage);
+        log.info("CreateJ2DOp.execute(" + operation + ", " + image + ")");
+        Java2DUtils.logImage(log, ">>>> bufferedImage: ", bufferedImage);
 
         final double[] filler = operation.getFiller();
         final int[] dims = new int[filler.length];
@@ -178,7 +176,7 @@ public class CreateJ2DOp extends OperationImplementation<CreateOp, BufferedImage
               }
           }
 
-        Java2DUtils.logImage(logger, ">>>> CreateJ2DOp returning", result);
+        Java2DUtils.logImage(log, ">>>> CreateJ2DOp returning", result);
 
         return result;
       }

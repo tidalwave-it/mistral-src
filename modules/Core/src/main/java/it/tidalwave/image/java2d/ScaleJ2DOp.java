@@ -22,7 +22,6 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
-import java.util.logging.Logger;
 import java.awt.image.BufferedImage;
 import java.awt.image.SampleModel;
 import java.awt.image.SinglePixelPackedSampleModel;
@@ -33,7 +32,7 @@ import it.tidalwave.image.op.ScaleOp;
 import it.tidalwave.image.util.Platform;
 import java.util.Arrays;
 import java.util.List;
-
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -41,11 +40,9 @@ import java.util.List;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class ScaleJ2DOp extends OperationImplementation<ScaleOp, BufferedImage>
   {
-    private static final String CLASS = ScaleJ2DOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     private static final List<String> BROKEN_LINUX_CLASSNAMES = Arrays.asList
       (
         "sun.awt.motif.X11RemoteOffScreenImage",
@@ -64,8 +61,8 @@ public class ScaleJ2DOp extends OperationImplementation<ScaleOp, BufferedImage>
         final double yScale = operation.getYScale();
         final Quality quality = operation.getQuality();
         final SampleModel sampleModel = bufferedImage.getSampleModel();
-        logger.fine("execute(" + xScale + ", " + yScale + ", " + quality);
-        Java2DUtils.logImage(logger, ">>>> ", bufferedImage);
+        log.debug("execute(" + xScale + ", " + yScale + ", " + quality);
+        Java2DUtils.logImage(log, ">>>> ", bufferedImage);
         final boolean optimizedImage = sampleModel.getClass().equals(SinglePixelPackedSampleModel.class);
         final BufferedImage result;
         //
@@ -89,7 +86,7 @@ public class ScaleJ2DOp extends OperationImplementation<ScaleOp, BufferedImage>
             result = Java2DUtils.scaleWithAffineTransform(bufferedImage, xScale, yScale, quality);
           }
 
-        logger.fine(">>>> Scaled image size is: w=" + result.getWidth() + " h=" + result.getHeight());
+        log.debug(">>>> Scaled image size is: w=" + result.getWidth() + " h=" + result.getHeight());
 
         return result;
       }

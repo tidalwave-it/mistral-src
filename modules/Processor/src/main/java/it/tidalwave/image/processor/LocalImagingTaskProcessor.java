@@ -25,7 +25,7 @@ package it.tidalwave.image.processor;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.logging.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -33,12 +33,9 @@ import java.util.logging.Logger;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class LocalImagingTaskProcessor extends ImagingTaskProcessor
   {
-    private static final String CLASS = LocalImagingTaskProcessor.class.getName();
-    
-    private static final Logger logger = Logger.getLogger(CLASS);
-    
     private final Collection<PoolThread> workers = new ArrayList<PoolThread>();
     
     /***************************************************************************
@@ -62,7 +59,7 @@ public class LocalImagingTaskProcessor extends ImagingTaskProcessor
                 changeFreeWorkerCount(+1);
                 ImagingTask task = getNextTask(getName(), false);
                 changeFreeWorkerCount(-1);
-                logger.fine(Thread.currentThread().getName() + " assigned to " + task.getName());
+                log.debug(Thread.currentThread().getName() + " assigned to " + task.getName());
                 
                 try
                   {
@@ -71,8 +68,8 @@ public class LocalImagingTaskProcessor extends ImagingTaskProcessor
                   }
                 catch (Throwable t) // prevents task errors to disrupt the worker
                   {
-                    logger.severe("Exception while running task: " + t);
-                    logger.throwing(CLASS, "run()", t);  
+                    log.error("Exception while running task: " + t);
+                    log.error("run()", t);  
                   }
                 
                 notifyTaskCompleted(task);
@@ -94,7 +91,7 @@ public class LocalImagingTaskProcessor extends ImagingTaskProcessor
             worker.start();   
           }
         
-        logger.info("Created " + workers.size() + " local workers");
+        log.info("Created " + workers.size() + " local workers");
       }
 
     /***************************************************************************

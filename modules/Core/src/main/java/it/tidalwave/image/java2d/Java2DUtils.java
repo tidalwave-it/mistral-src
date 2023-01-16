@@ -26,8 +26,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -55,7 +53,8 @@ import java.awt.image.WritableRaster;
 import it.tidalwave.image.Kernel2;
 import it.tidalwave.image.ImageUtils;
 import it.tidalwave.image.Quality;
-
+import org.slf4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -63,10 +62,9 @@ import it.tidalwave.image.Quality;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class Java2DUtils
   {
-    private static final String CLASS = Java2DUtils.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
     public static final Float ZERO = Float.valueOf(0);
     private static final Map<Quality, Object> renderingHintsQualityMap = Collections.unmodifiableMap(new HashMap<Quality, Object>()
               {
@@ -182,8 +180,8 @@ public class Java2DUtils
      ******************************************************************************/
     public static BufferedImage convertToSinglePixelPackedSampleModel (BufferedImage image)
       {
-        logger.fine("convertToSinglePixelPackedSampleModel(image: " + image + ")");
-        Java2DUtils.logImage(logger, ">>>> source bufferedImage", image);
+        log.debug("convertToSinglePixelPackedSampleModel(image: " + image + ")");
+        Java2DUtils.logImage(log, ">>>> source bufferedImage", image);
 
         long time = System.currentTimeMillis();
 
@@ -194,12 +192,12 @@ public class Java2DUtils
         
         if (colorSpace.getType() == ColorSpace.TYPE_GRAY)
           {
-            logger.fine(">>>> TYPE_GRAY, not converting");
+            log.debug(">>>> TYPE_GRAY, not converting");
           }
 
         else if (!(ssmd instanceof PixelInterleavedSampleModel))
           {
-            logger.fine(">>>> sourceSampleModel is " + ssmd.getClass() + ", not converting");
+            log.debug(">>>> sourceSampleModel is " + ssmd.getClass() + ", not converting");
           }
         
         else
@@ -242,7 +240,7 @@ public class Java2DUtils
 
             if (sourceProfileName.equals("Nikon sRGB 4.0.0.3001"))
               {
-                logger.warning(">>>> Workaround #1094403: using sRGB instead of " + sourceProfileName);
+                log.warn(">>>> Workaround #1094403: using sRGB instead of " + sourceProfileName);
                 colorSpace = new ICC_ColorSpace(ICC_Profile.getInstance(ColorSpace.CS_LINEAR_RGB));
               }
 
@@ -251,8 +249,8 @@ public class Java2DUtils
           }
 
         time = System.currentTimeMillis() - time;
-        Java2DUtils.logImage(logger, ">>>> convertToSinglePixelPackedSampleModel() returning", image);
-        logger.fine(">>>> convertToSinglePixelPackedSampleModel() completed ok in " + time + " msec");
+        Java2DUtils.logImage(log, ">>>> convertToSinglePixelPackedSampleModel() returning", image);
+        log.debug(">>>> convertToSinglePixelPackedSampleModel() completed ok in " + time + " msec");
 
         return image;
       }
@@ -272,11 +270,11 @@ public class Java2DUtils
         final Quality quality)
         throws IllegalArgumentException
       {
-        logger.fine("scaleWithAffineTransform(" + xScale + ", " + yScale + ", " + quality);
+        log.debug("scaleWithAffineTransform(" + xScale + ", " + yScale + ", " + quality);
 
         final AffineTransform transform = AffineTransform.getScaleInstance(xScale, yScale);
         final int interpolation = findAffineTransformInterpolation(quality);
-        logger.finer(">>>> AffineTransformOp(" + transform + ", " + interpolation + ")");
+        log.debug(">>>> AffineTransformOp(" + transform + ", " + interpolation + ")");
 
         final AffineTransformOp op = new AffineTransformOp(transform, interpolation);
 
@@ -297,7 +295,7 @@ public class Java2DUtils
         final Quality quality)
         throws IllegalArgumentException
       {
-        logger.fine("scaleWithDrawImage(" + xScale + ", " + yScale + ", " + quality);
+        log.debug("scaleWithDrawImage(" + xScale + ", " + yScale + ", " + quality);
 
         int newWidth = (int)Math.round(bufferedImage.getWidth() * xScale);
         int newHeight = (int)Math.round(bufferedImage.getHeight() * yScale);
@@ -381,61 +379,28 @@ public class Java2DUtils
      *
      *
      ******************************************************************************/
-    public static void logImage (final Logger logger, final String prefix, final RenderedImage image)
+    public static void logImage (Logger log, final String prefix, final RenderedImage image)
       {
-        if (logger.isLoggable(Level.FINE))
+        if (Java2DUtils.log.isDebugEnabled())
           {
             if (image == null)
               {
-                logger.fine(prefix + "null image");
+                Java2DUtils.log.debug(prefix + "null image");
               }
             
             else
               {
 //            image.getData(); THIS IS SLOW SLOW SLOW!!
                 ColorModel colorModel = image.getColorModel();
-                logger.fine(prefix + ".size:           " + image.getWidth() + ", " + image.getHeight());
-                logger.fine(prefix + ".tiles:          " + image.getNumXTiles() + " " + image.getNumYTiles());
-                logger.fine(prefix + ".class:          " + image.getClass().getName());
-                logger.fine(prefix + ".sampleModel:    " + toString(image.getSampleModel()));
+                Java2DUtils.log.debug(prefix + ".size:           " + image.getWidth() + ", " + image.getHeight());
+                Java2DUtils.log.debug(prefix + ".tiles:          " + image.getNumXTiles() + " " + image.getNumYTiles());
+                Java2DUtils.log.debug(prefix + ".class:          " + image.getClass().getName());
+                Java2DUtils.log.debug(prefix + ".sampleModel:    " + toString(image.getSampleModel()));
 
                 if (colorModel != null)
                   {
-                    logger.fine(prefix + ".colorModel:     " + colorModel.getClass().getName() + " : " + colorModel);
-                    logger.fine(prefix + ".colorSpace:     " + toString(colorModel.getColorSpace()));
-                  }
-              }
-
-            //      log.debug(">>>> iccProfile is now: " + getICCProfileName(bufferedImage));
-          }
-      }
-
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    public static void logImage (final org.slf4j.Logger log, final String prefix, final RenderedImage image)
-      {
-        if (log.isDebugEnabled())
-          {
-            if (image == null)
-              {
-                log.debug(prefix + "null image");
-              }
-            
-            else
-              {
-//            image.getData(); THIS IS SLOW SLOW SLOW!!
-                ColorModel colorModel = image.getColorModel();
-                log.debug(prefix + ".size:           " + image.getWidth() + ", " + image.getHeight());
-                log.debug(prefix + ".tiles:          " + image.getNumXTiles() + " " + image.getNumYTiles());
-                log.debug(prefix + ".class:          " + image.getClass().getName());
-                log.debug(prefix + ".sampleModel:    " + toString(image.getSampleModel()));
-
-                if (colorModel != null)
-                  {
-                    log.debug(prefix + ".colorModel:     " + colorModel.getClass().getName() + " : " + colorModel);
-                    log.debug(prefix + ".colorSpace:     " + toString(colorModel.getColorSpace()));
+                    Java2DUtils.log.debug(prefix + ".colorModel:     " + colorModel.getClass().getName() + " : " + colorModel);
+                    Java2DUtils.log.debug(prefix + ".colorSpace:     " + toString(colorModel.getColorSpace()));
                   }
               }
 
@@ -638,7 +603,7 @@ public class Java2DUtils
      ******************************************************************************/
     public static BufferedImage createOptimizedImage (BufferedImage bufferedImage, double xScale, double yScale, Quality quality)
       {
-        logger.fine("createOptimizedImage(" + xScale + ", " + yScale + ", " + quality + ")");
+        log.debug("createOptimizedImage(" + xScale + ", " + yScale + ", " + quality + ")");
 
         int iw = (int)Math.round(xScale * bufferedImage.getWidth());
         int ih = (int)Math.round(yScale * bufferedImage.getHeight());
@@ -674,7 +639,7 @@ public class Java2DUtils
              }
              }
              */
-            logger.finer(">>>> applying AffineTransform.getScaleInstance() with RenderingHint: " + interpolation);
+            log.debug(">>>> applying AffineTransform.getScaleInstance() with RenderingHint: " + interpolation);
 
             Object renderingHintSave = g.getRenderingHint(RenderingHints.KEY_INTERPOLATION);
             g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, interpolation);
@@ -687,7 +652,7 @@ public class Java2DUtils
                 g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, renderingHintSave);
               }
 
-            logger.finer(">>>>>>>> iccProfile is now: " + Java2DUtils.getICCProfileName(image2));
+            log.debug(">>>>>>>> iccProfile is now: " + Java2DUtils.getICCProfileName(image2));
           }
 
         finally

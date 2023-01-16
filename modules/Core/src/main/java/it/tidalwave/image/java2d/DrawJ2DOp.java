@@ -22,16 +22,11 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
-import java.io.IOException;
-import java.util.logging.Logger;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.DrawOp;
 import it.tidalwave.image.op.OperationImplementation;
-import java.io.File;
-import javax.imageio.ImageIO;
-
 
 /*******************************************************************************
  *
@@ -41,9 +36,6 @@ import javax.imageio.ImageIO;
  ******************************************************************************/
 public class DrawJ2DOp extends OperationImplementation<DrawOp, BufferedImage>
   {
-    private static final String CLASS = DrawJ2DOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     /*******************************************************************************
      *
      * @inheritDoc

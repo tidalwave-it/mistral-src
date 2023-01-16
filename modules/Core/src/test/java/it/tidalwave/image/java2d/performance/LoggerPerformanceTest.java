@@ -22,11 +22,10 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d.performance;
 
-import java.util.logging.Level;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.java2d.Java2DUtils;
 import java.awt.image.BufferedImage;
-import java.util.logging.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -34,20 +33,18 @@ import java.util.logging.Logger;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class LoggerPerformanceTest extends BasePerformanceTestSupport
   {
     @Override
     protected long runTest (EditableImage image)
       {
-        Logger testLogger = Logger.getLogger("test");
-        testLogger.setLevel(Level.FINEST);
-        
         long accTime = 0;
         
         for (int i = 0; i < 10; i++)
           {
             long time = System.currentTimeMillis();
-            Java2DUtils.logImage(testLogger, "test", image.getInnerProperty(BufferedImage.class));
+            Java2DUtils.logImage(log, "test", image.getInnerProperty(BufferedImage.class));
             accTime += System.currentTimeMillis() - time;
           }
         

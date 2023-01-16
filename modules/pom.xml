@@ -58,11 +58,6 @@
                 <artifactId>swing-layout</artifactId>
                 <version>1.0.3</version>
             </dependency>
-            <dependency>
-                <groupId>it.tidalwave.thesefoolishthings</groupId>
-                <artifactId>it.tidalwave.singlelinelogformatter</artifactId>
-                <version>1.0.6</version>
-            </dependency>
 
             <dependency>
                 <groupId>com.kenai.nbpwr</groupId>
@@ -73,11 +68,6 @@
                 <groupId>com.kenai.nbpwr</groupId>
                 <artifactId>com-sun-media-imageio</artifactId>
                 <version>1.1-201007271250</version>
-            </dependency>
-           <dependency>
-                <groupId>com.kenai.nbpwr</groupId>
-                <artifactId>org-slf4j-jdk14</artifactId>
-                <version>1.6.1-201106101300</version>
             </dependency>
 
             <dependency>
@@ -119,19 +109,20 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>it.tidalwave.thesefoolishthings</groupId>
-            <artifactId>it.tidalwave.singlelinelogformatter</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!-- TEST DEPENDENCIES -->
         <dependency>
             <groupId>it.tidalwave.thesefoolishthings</groupId>
             <artifactId>it-tidalwave-util-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

@@ -38,6 +38,7 @@ import it.tidalwave.image.metadata.EXIF;
 import it.tidalwave.image.metadata.IPTC;
 import it.tidalwave.image.metadata.TIFF;
 import it.tidalwave.image.op.ReadOp;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -45,6 +46,7 @@ import it.tidalwave.image.op.ReadOp;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class EditableImageTest extends BaseTestSupport
   {
     @Test
@@ -353,12 +355,12 @@ public class EditableImageTest extends BaseTestSupport
         EditableImage image1 = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
         oos.writeObject(image1);
         oos.close();
-        log("serialized" + image1);
+        log.info("serialized" + image1);
 
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
         EditableImage image2 = (EditableImage)ois.readObject();
         ois.close();
-        log("deserialized" + image2);
+        log.info("deserialized" + image2);
       }
 
     @Test(enabled = false)
@@ -386,12 +388,12 @@ public class EditableImageTest extends BaseTestSupport
         AssertJUnit.assertEquals(expectedBitsPerPixel, bitsPerPixel);
         AssertJUnit.assertEquals(expectedDataType, dataType);
 
-        log(">>>> File:           " + file);
-        log(">>>> Size:           " + width + " x " + height);
-        log(">>>> Bands:          " + bandCount);
-        log(">>>> Bits per bands: " + bitsPerBand);
-        log(">>>> Bits per pixel: " + bitsPerPixel);
-        log(">>>> Data type:      " + dataType);
+        log.info(">>>> File:           " + file);
+        log.info(">>>> Size:           " + width + " x " + height);
+        log.info(">>>> Bands:          " + bandCount);
+        log.info(">>>> Bits per bands: " + bitsPerBand);
+        log.info(">>>> Bits per pixel: " + bitsPerPixel);
+        log.info(">>>> Data type:      " + dataType);
       }
 
     private void dump (final Directory directory)

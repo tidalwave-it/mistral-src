@@ -25,6 +25,7 @@ package it.tidalwave.image.java2d.performance;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
 import it.tidalwave.image.op.OptimizeOp;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -32,6 +33,7 @@ import it.tidalwave.image.op.OptimizeOp;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class OptimizeJ2DOpPerformanceTest extends BasePerformanceTestSupport 
   {
     @Override
@@ -41,7 +43,7 @@ public class OptimizeJ2DOpPerformanceTest extends BasePerformanceTestSupport
         
         for (double scale = 0.1; scale <= 1; scale += 0.1)
           {
-            log(">>>> scale: " + scale);
+            log.info(">>>> scale: " + scale);
             EditableImage image2 = image.execute2(new OptimizeOp(scale, Quality.INTERMEDIATE));
             accTime += image2.getLatestOperationTime();
           }

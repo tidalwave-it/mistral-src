@@ -22,7 +22,6 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
-import java.util.logging.Logger;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
@@ -33,7 +32,7 @@ import java.awt.image.WritableRaster;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.RotateQuadrantOp;
-
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -41,11 +40,9 @@ import it.tidalwave.image.op.RotateQuadrantOp;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class RotateQuadrantJ2DOp extends OperationImplementation<RotateQuadrantOp, BufferedImage>
   {
-    private static final String CLASS = RotateQuadrantJ2DOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     /*******************************************************************************
      *
      * @inheritDoc
@@ -55,8 +52,8 @@ public class RotateQuadrantJ2DOp extends OperationImplementation<RotateQuadrantO
     protected BufferedImage execute (RotateQuadrantOp operation, final EditableImage image, BufferedImage bufferedImage)
       {
         int degrees = operation.getDegrees();
-        logger.fine("rotateQuadrant(" + degrees + ")");
-        Java2DUtils.logImage(logger, ">>>> source bufferedImage", bufferedImage);
+        log.debug("rotateQuadrant(" + degrees + ")");
+        Java2DUtils.logImage(log, ">>>> source bufferedImage", bufferedImage);
 
         if (degrees == 0)
           {
@@ -117,7 +114,7 @@ public class RotateQuadrantJ2DOp extends OperationImplementation<RotateQuadrantO
             g2d.dispose();
           }
 
-        Java2DUtils.logImage(logger, ">>>> rotateQuadrant() returning ", result);
+        Java2DUtils.logImage(log, ">>>> rotateQuadrant() returning ", result);
 
         return result;
       }

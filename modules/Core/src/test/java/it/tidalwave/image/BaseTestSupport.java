@@ -22,12 +22,8 @@
  **********************************************************************************************************************/
 package it.tidalwave.image;
 
-import it.tidalwave.image.EditableImage;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.AssertJUnit;
-import java.util.logging.Logger;
-import java.util.logging.Handler;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.BufferedInputStream;
@@ -40,7 +36,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.security.MessageDigest;
 import it.tidalwave.image.op.ReadOp;
-import it.tidalwave.util.logging.SingleLineLogFormatter;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -48,9 +44,9 @@ import it.tidalwave.util.logging.SingleLineLogFormatter;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public abstract class BaseTestSupport
   {
-    protected static final Logger logger = Logger.getLogger("TEST");
     protected static final String tmp = System.getProperty("java.io.tmpdir");
     protected static File imageFolder = new File(System.getProperty("it.tidalwave.image.test.folder", ""));
     protected static final File file_timezones32_png;
@@ -191,40 +187,6 @@ public abstract class BaseTestSupport
         fax1_tif = EditableImage.create(new ReadOp(file_fax1_tif));
       }
 
-    @BeforeClass
-    public static void setupLogging()
-      throws Exception
-      {
-        try
-          {
-//            final InputStream is = BaseTestSupport.class.getResourceAsStream("log.properties");
-//            LogManager.getLogManager().readConfiguration(is);
-//            is.close();
-
-            //
-            // The formatter must be set programmatically as the property in the log.properties won't
-            // be honored. I suspect it is related with NetBeans module classloaders as the formatter
-            // is loaded inside LogManager by using the SystemClassLoader, which only sees the classpath.
-            //
-            final SingleLineLogFormatter formatter = new SingleLineLogFormatter();
-            Logger rootLogger = Logger.getLogger(BaseTestSupport.class.getName());
-
-            while (rootLogger.getParent() != null)
-              {
-                rootLogger = rootLogger.getParent();
-              }
-
-            for (final Handler handler : rootLogger.getHandlers())
-              {
-                handler.setFormatter(formatter);
-              }
-          }
-        catch (Exception e)
-          {
-            e.printStackTrace();
-          }
-      }
-
     protected void assertChecksum (String expectedChecksum, File file)
       {
         try
@@ -254,11 +216,6 @@ public abstract class BaseTestSupport
           {
             throw new RuntimeException(e);
           }
-      }
-
-    protected void log (String message)
-      {
-        logger.info("**** " + message);
       }
 
     private static String toString (byte[] bytes)

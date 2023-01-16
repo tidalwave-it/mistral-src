@@ -28,6 +28,7 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
 import it.tidalwave.image.op.RotateOp;
 
+import lombok.extern.slf4j.Slf4j;
 import static org.junit.Assert.*;
 
 /**
@@ -36,6 +37,7 @@ import static org.junit.Assert.*;
  * @version $Id$
  *
  */
+@Slf4j
 public class RotateJ2DOpPerformanceTest extends BasePerformanceTestSupport {
     @Override
     protected long runTest(EditableImage image) {
@@ -44,7 +46,7 @@ public class RotateJ2DOpPerformanceTest extends BasePerformanceTestSupport {
         long accTime = 0;
 
         for (double angle = 0; angle < 360; angle += 10) {
-            log(">>>> angle: " + angle);
+            log.info(">>>> angle: " + angle);
 
             EditableImage image2 = image.execute2(new RotateOp(angle, Quality.INTERMEDIATE));
 

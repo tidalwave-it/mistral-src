@@ -24,10 +24,10 @@ package it.tidalwave.image.processor;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import java.io.Serializable;
 import it.tidalwave.image.processor.event.ImagingTaskProcessorEvent;
 import it.tidalwave.image.processor.event.ImagingTaskProcessorListener;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -35,12 +35,9 @@ import it.tidalwave.image.processor.event.ImagingTaskProcessorListener;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 /* package */ class ImagingTaskProcessorEventManager 
   {
-    private static final String CLASS = ImagingTaskProcessorEventManager.class.getName();
-    
-    private static final Logger logger = Logger.getLogger(CLASS);
-    
     private ImagingTaskProcessor processor;
  
     private List<ImagingTaskProcessorListener> listeners = new ArrayList<ImagingTaskProcessorListener>();
@@ -92,8 +89,8 @@ import it.tidalwave.image.processor.event.ImagingTaskProcessorListener;
                   }
                 catch (Throwable t)
                   {
-                    logger.warning("Exception in fireNotifyTaskPosted(): " + t);
-                    logger.throwing(CLASS, "fireNotifyTaskPosted()", t);
+                    log.warn("Exception in fireNotifyTaskPosted(): " + t);
+                    log.warn("fireNotifyTaskPosted()", t);
                   }
               }
           }
@@ -119,8 +116,8 @@ import it.tidalwave.image.processor.event.ImagingTaskProcessorListener;
                   }
                 catch (Throwable t)
                   {
-                    logger.warning("Exception in fireNotifyTaskStarted(): " + t);
-                    logger.throwing(CLASS, "fireNotifyTaskStarted()", t);
+                    log.warn("Exception in fireNotifyTaskStarted(): " + t);
+                    log.warn("fireNotifyTaskStarted()", t);
                   }
               }
           }
@@ -146,8 +143,8 @@ import it.tidalwave.image.processor.event.ImagingTaskProcessorListener;
                   }
                 catch (Throwable t)
                   {
-                    logger.warning("Exception in fireNotifyTaskCompleted(): " + t);
-                    logger.throwing(CLASS, "fireNotifyTaskCompleted()", t);
+                    log.warn("Exception in fireNotifyTaskCompleted(): " + t);
+                    log.warn("fireNotifyTaskCompleted()", t);
                   }
               }
           }
@@ -173,8 +170,8 @@ import it.tidalwave.image.processor.event.ImagingTaskProcessorListener;
                   }
                 catch (Throwable t)
                   {
-                    logger.warning("Exception in fireNotifyTaskPopped(): " + t);
-                    logger.throwing(CLASS, "fireNotifyTaskPopped()", t);
+                    log.warn("Exception in fireNotifyTaskPopped(): " + t);
+                    log.warn("fireNotifyTaskPopped()", t);
                   }
               }
           }

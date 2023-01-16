@@ -22,14 +22,13 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.render;
 
-import java.util.logging.Logger;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import it.tidalwave.image.Quality;
-
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -39,10 +38,9 @@ import it.tidalwave.image.Quality;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class AnimatedScaleController extends ScaleController
   {
-    private static final String CLASS = AnimatedScaleController.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
     private static final int DEFAULT_FRAMES_PER_SECOND = 20;
     private static final int DEFAULT_DURATION = 150;
     private int framesPerSecond = DEFAULT_FRAMES_PER_SECOND;
@@ -93,7 +91,7 @@ public class AnimatedScaleController extends ScaleController
     @Override
     public void setScale (final double scale, Point pivot)
       {
-        logger.fine("setScale(" + scale + ", " + pivot + ")");
+        log.debug("setScale(" + scale + ", " + pivot + ")");
 
         if (pivot == null)
           {
@@ -115,9 +113,9 @@ public class AnimatedScaleController extends ScaleController
                 //
                 scaleQualitySave = imageRenderer.getScaleQuality();
                 rotateQualitySave = imageRenderer.getRotateQuality();
-                logger.fine(">>>> scale quality:  " + imageRenderer.getScaleQuality());
-                logger.fine(">>>> rotate quality: " + imageRenderer.getRotateQuality());
-                logger.fine(">>>> temporarily setting quality to FASTEST");
+                log.debug(">>>> scale quality:  " + imageRenderer.getScaleQuality());
+                log.debug(">>>> rotate quality: " + imageRenderer.getRotateQuality());
+                log.debug(">>>> temporarily setting quality to FASTEST");
                 imageRenderer.setScaleQuality(Quality.FASTEST);
                 imageRenderer.setRotateQuality(Quality.FASTEST);
 
@@ -144,20 +142,20 @@ public class AnimatedScaleController extends ScaleController
      **************************************************************************/
     private void changeScale ()
       {
-        logger.fine("changeScale()");
+        log.debug("changeScale()");
 
         final long deltaTime = System.currentTimeMillis() - startTime;
         final double scale = bound(startScale + (((targetScale - startScale) * deltaTime) / duration));
         imageRenderer.setScale(Math.max(Math.min(scale, EditableImageRenderer.MAX_SCALE), EditableImageRenderer.MIN_SCALE), pivot);
-        logger.finest(">>>> scale: " + scale + ", targetScale: " + targetScale);
+        log.debug(">>>> scale: " + scale + ", targetScale: " + targetScale);
 
         if (Math.abs(scale - targetScale) < 1E-3)
           {
             //
             // If this is the last operation in the sequence, restore original quality.
             //
-            logger.fine(">>>> scale quality:  save: " + scaleQualitySave + " /// current: " + imageRenderer.getScaleQuality());
-            logger.fine(">>>> rotate quality: save: " + rotateQualitySave + " /// current: " + imageRenderer.getRotateQuality());
+            log.debug(">>>> scale quality:  save: " + scaleQualitySave + " /// current: " + imageRenderer.getScaleQuality());
+            log.debug(">>>> rotate quality: save: " + rotateQualitySave + " /// current: " + imageRenderer.getRotateQuality());
 
             if ((scaleQualitySave != imageRenderer.getScaleQuality()) || (rotateQualitySave != imageRenderer.getRotateQuality()))
               {
@@ -174,10 +172,10 @@ public class AnimatedScaleController extends ScaleController
                           {
                             imageRenderer.setScaleQuality(scaleQualitySave);
                             imageRenderer.setRotateQuality(rotateQualitySave);
-                            logger.fine(">>>> quality restored to " + scaleQualitySave + ", " + rotateQualitySave);
+                            log.debug(">>>> quality restored to " + scaleQualitySave + ", " + rotateQualitySave);
                             imageRenderer.flushScaledImageCache();
                             imageRenderer.repaint();
-                            logger.finest(">>>> scale: " + scale + ", targetScale: " + targetScale);
+                            log.debug(">>>> scale: " + scale + ", targetScale: " + targetScale);
                           }
                       });
               }
@@ -186,7 +184,7 @@ public class AnimatedScaleController extends ScaleController
               {
                 if (timer != null)
                   {
-                    logger.fine(">>>> timer stopped");
+                    log.debug(">>>> timer stopped");
                     timer.stop();
                     timer = null;
                     pivot = null;

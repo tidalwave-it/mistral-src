@@ -22,10 +22,10 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.processor;
 
-import java.util.logging.Logger;
 import java.io.Serializable;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.Operation;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -37,13 +37,10 @@ import it.tidalwave.image.op.Operation;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 abstract public class ImagingTask implements Serializable
   {
     static final long serialVersionUID = 8564150248239203504L;
-    
-    private static final String CLASS = ImagingTask.class.getName();
-    
-    private static final Logger logger = Logger.getLogger(CLASS);
     
     private final static long MEGA = 1024 * 1024;
         
@@ -275,7 +272,7 @@ abstract public class ImagingTask implements Serializable
       {
         try
           {
-            logger.info("Starting " + name);
+            log.info("Starting " + name);
             long time = System.currentTimeMillis();
 
             try
@@ -286,13 +283,13 @@ abstract public class ImagingTask implements Serializable
               {
                 time = System.currentTimeMillis() - time;
                 addStatisticsSample("TOTAL", time);    
-                logger.info("STATS: " + getName() + " completed in " + time + " msec");
+                log.info("STATS: " + getName() + " completed in " + time + " msec");
                 
                 Runtime runtime = Runtime.getRuntime();
                 long totalMemory = runtime.totalMemory();
                 long freeMemory = runtime.freeMemory();
                 long usedMemory = totalMemory - freeMemory;
-                logger.info("STATS: memory " + "used: " + mega(usedMemory) 
+                log.info("STATS: memory " + "used: " + mega(usedMemory) 
                                              + ", total: " + mega(totalMemory) 
                                              + ", max: " + mega(runtime.maxMemory()) 
                                              + ", free: " + mega(freeMemory));
@@ -301,12 +298,12 @@ abstract public class ImagingTask implements Serializable
         catch (Throwable e)
           {
             throwable = e;
-            logger.severe("Task failed: " + getName() + ", " + e);
-            logger.throwing(CLASS, "execute()", e);
+            log.error("Task failed: " + getName() + ", " + e);
+            log.error("execute()", e);
             e.printStackTrace(System.err);
           }
         
-        logger.info("Completed " + getName());
+        log.info("Completed " + getName());
       }
 
     /***************************************************************************

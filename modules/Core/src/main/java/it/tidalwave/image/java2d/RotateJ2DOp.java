@@ -22,13 +22,12 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
-import java.util.logging.Logger;
 import java.awt.image.BufferedImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.RotateOp;
-
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -36,11 +35,9 @@ import it.tidalwave.image.op.RotateOp;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class RotateJ2DOp extends OperationImplementation<RotateOp, BufferedImage>
   {
-    private static final String CLASS = RotateQuadrantJ2DOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     /*******************************************************************************
      *
      * @inheritDoc
@@ -51,8 +48,8 @@ public class RotateJ2DOp extends OperationImplementation<RotateOp, BufferedImage
       {
         double degrees = operation.getDegrees();
         Quality quality = operation.getQuality();
-        logger.fine("rotate(" + degrees + ", " + quality + ")");
-        Java2DUtils.logImage(logger, ">>>> source bufferedImage", bufferedImage);
+        log.debug("rotate(" + degrees + ", " + quality + ")");
+        Java2DUtils.logImage(log, ">>>> source bufferedImage", bufferedImage);
 
         BufferedImage result = bufferedImage;
 
@@ -61,7 +58,7 @@ public class RotateJ2DOp extends OperationImplementation<RotateOp, BufferedImage
             result = Java2DUtils.rotateWithDrawImage(bufferedImage, degrees, quality);
           }
 
-        Java2DUtils.logImage(logger, ">>>> rotate() returning ", result);
+        Java2DUtils.logImage(log, ">>>> rotate() returning ", result);
 
         return result;
       }

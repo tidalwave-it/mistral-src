@@ -22,13 +22,11 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
-import java.util.logging.Logger;
 import java.awt.image.BufferedImage;
 import java.awt.image.Kernel;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.ConvolveOp;
 import it.tidalwave.image.op.OperationImplementation;
-
 
 /*******************************************************************************
  *
@@ -38,9 +36,6 @@ import it.tidalwave.image.op.OperationImplementation;
  ******************************************************************************/
 public class ConvolveJ2DOp extends OperationImplementation<ConvolveOp, BufferedImage>
   {
-    private static final String CLASS = ConvolveJ2DOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     /*******************************************************************************
      *
      *

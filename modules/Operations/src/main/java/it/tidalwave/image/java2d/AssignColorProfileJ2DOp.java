@@ -22,7 +22,6 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
-import it.tidalwave.image.java2d.Java2DUtils;
 import javax.annotation.Nonnull;
 import javax.annotation.concurrent.Immutable;
 import java.awt.color.ColorSpace;

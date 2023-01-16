@@ -22,7 +22,6 @@
  **********************************************************************************************************************/
 package it.tidalwave.mistral.example.histogramviewer;
 
-import java.util.logging.Logger;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -30,6 +29,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import it.tidalwave.image.Histogram;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -37,12 +37,9 @@ import it.tidalwave.image.Histogram;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class HistogramRenderer extends JPanel
   {
-    private final static String CLASS = HistogramRenderer.class.getName();
-
-    private final static Logger logger = Logger.getLogger(CLASS);
-
     private static final String COMPUTING = "COMPUTING";
 
     private static final String EMPTY = "EMPTY";
@@ -129,7 +126,7 @@ public class HistogramRenderer extends JPanel
             @Override
             public void run ()
               {
-                logger.finer(">>>> histogram ready...");
+                log.trace(">>>> histogram ready...");
                 histogramPlotter.clearData();
                 //histogramPlotter.setXAxisLogarithmic(6);
                 histogramPlotter.setXAxisLinear();
@@ -150,7 +147,7 @@ public class HistogramRenderer extends JPanel
                   }
 
                 cardLayout.show(HistogramRenderer.this, HISTOGRAM);
-                logger.finer(">>>> showing histogram...");
+                log.trace(">>>> showing histogram...");
               }
           });
       }

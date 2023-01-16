@@ -22,13 +22,13 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
-import java.util.logging.Logger;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.CaptureOp;
 import it.tidalwave.image.op.OperationImplementation;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -36,11 +36,9 @@ import it.tidalwave.image.op.OperationImplementation;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class CaptureJ2DOp extends OperationImplementation<CaptureOp, BufferedImage>
   {
-    private static final String CLASS = CaptureJ2DOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     /*******************************************************************************
      *
      * @inheritDoc
@@ -49,8 +47,8 @@ public class CaptureJ2DOp extends OperationImplementation<CaptureOp, BufferedIma
     @Override
     protected BufferedImage execute (final CaptureOp operation, final EditableImage image, BufferedImage bufferedImage) 
       {
-        logger.info("CaptureJ2DOp.execute(" + operation + ")");
-        Java2DUtils.logImage(logger, ">>>> bufferedImage: ", bufferedImage);
+        log.info("CaptureJ2DOp.execute(" + operation + ")");
+        Java2DUtils.logImage(log, ">>>> bufferedImage: ", bufferedImage);
         final Component component = operation.getComponent();
         final int width = component.getWidth();
         final int height = component.getHeight();

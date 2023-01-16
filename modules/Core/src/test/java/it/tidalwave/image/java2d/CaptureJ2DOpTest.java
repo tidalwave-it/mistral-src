@@ -32,6 +32,7 @@ import javax.swing.JLabel;
 import javax.swing.JFrame;
 import it.tidalwave.image.BaseTestSupport;
 import it.tidalwave.image.op.CaptureOp;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -39,13 +40,14 @@ import it.tidalwave.image.op.CaptureOp;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class CaptureJ2DOpTest extends BaseTestSupport 
   {
     @Test
     public void testOp() 
       throws Exception
       {
-        log("CaptureJ2DOpTest");
+        log.info("CaptureJ2DOpTest");
         final JLabel label = new JLabel("text");
         JFrame frame = new JFrame();
         frame.getContentPane().add(label);

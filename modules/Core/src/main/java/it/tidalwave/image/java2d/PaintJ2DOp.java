@@ -22,7 +22,6 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
-import java.util.logging.Logger;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
@@ -35,7 +34,7 @@ import it.tidalwave.image.Quality;
 import it.tidalwave.image.render.PreviewSettings;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.PaintOp;
-
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -43,11 +42,9 @@ import it.tidalwave.image.op.PaintOp;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class PaintJ2DOp extends OperationImplementation<PaintOp, BufferedImage>
   {
-    private static final String CLASS = PaintJ2DOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     /*******************************************************************************
      *
      * @inheritDoc
@@ -64,7 +61,7 @@ public class PaintJ2DOp extends OperationImplementation<PaintOp, BufferedImage>
         PreviewSettings previewSettings = operation.getPreviewSettings();
         ImageObserver imageObserver = operation.getImageObserver();
         Quality quality = operation.getQuality();
-        logger.fine("execute(" + x + ", " + y + ", " + w + ", " + h + ", " + quality + ")");
+        log.debug("execute(" + x + ", " + y + ", " + w + ", " + h + ", " + quality + ")");
 
         if (w != 0)
           {
@@ -123,7 +120,7 @@ public class PaintJ2DOp extends OperationImplementation<PaintOp, BufferedImage>
             if (lookupTable != null)
               {
                 LookupOp lOp = new LookupOp(lookupTable, null); // FIXME: hints
-                Java2DUtils.logImage(logger, "applyPreviewSettings: ", image);
+                Java2DUtils.logImage(log, "applyPreviewSettings: ", image);
                 theImage = lOp.filter(image, null);
               }
           }

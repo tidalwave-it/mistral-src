@@ -22,7 +22,6 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
-import java.util.logging.Logger;
 import java.awt.image.BufferedImage;
 import java.awt.image.SampleModel;
 import java.awt.image.SinglePixelPackedSampleModel;
@@ -30,7 +29,7 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
 import it.tidalwave.image.op.OptimizeOp;
 import it.tidalwave.image.op.OperationImplementation;
-
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -38,11 +37,9 @@ import it.tidalwave.image.op.OperationImplementation;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class OptimizeJ2DOp extends OperationImplementation<OptimizeOp, BufferedImage>
   {
-    private static final String CLASS = OptimizeJ2DOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     /*******************************************************************************
      *
      *
@@ -50,7 +47,7 @@ public class OptimizeJ2DOp extends OperationImplementation<OptimizeOp, BufferedI
     @Override
     protected BufferedImage execute (OptimizeOp operation, final EditableImage image, BufferedImage bufferedImage)
       {
-        Java2DUtils.logImage(logger, ">>>> source bufferedImage", bufferedImage);
+        Java2DUtils.logImage(log, ">>>> source bufferedImage", bufferedImage);
 
         double scale = operation.getScale();
         Quality quality = operation.getQuality();
@@ -58,13 +55,13 @@ public class OptimizeJ2DOp extends OperationImplementation<OptimizeOp, BufferedI
 
         if (!(sampleModel instanceof SinglePixelPackedSampleModel))
           {
-            logger.finer(">>>> calling convertToSinglePixelPackedSampleModel()");
+            log.trace(">>>> calling convertToSinglePixelPackedSampleModel()");
             bufferedImage = Java2DUtils.convertToSinglePixelPackedSampleModel(bufferedImage);
-            logger.finer(">>>>>>>> iccProfile is now: " + Java2DUtils.getICCProfileName(bufferedImage));
+            log.trace(">>>>>>>> iccProfile is now: " + Java2DUtils.getICCProfileName(bufferedImage));
           }
 
         BufferedImage result = Java2DUtils.createOptimizedImage(bufferedImage, scale, scale, quality);
-        Java2DUtils.logImage(logger, ">>>> createOptimizedScaledImage() returning ", result);
+        Java2DUtils.logImage(log, ">>>> createOptimizedScaledImage() returning ", result);
 
         return result;
       }

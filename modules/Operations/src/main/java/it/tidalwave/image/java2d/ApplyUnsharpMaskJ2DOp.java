@@ -22,12 +22,11 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
-import java.util.logging.Logger;
 import java.awt.image.BufferedImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.ApplyUnsharpMaskOp;
 import it.tidalwave.image.op.OperationImplementation;
-
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -35,11 +34,9 @@ import it.tidalwave.image.op.OperationImplementation;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class ApplyUnsharpMaskJ2DOp extends OperationImplementation<ApplyUnsharpMaskOp, BufferedImage>
   {
-    private static final String CLASS = ApplyUnsharpMaskJ2DOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     /*******************************************************************************
      *
      * @inheritDoc
@@ -51,7 +48,7 @@ public class ApplyUnsharpMaskJ2DOp extends OperationImplementation<ApplyUnsharpM
         double intensity = operation.getIntensity();
         double radius = operation.getRadius();
         double threshold = operation.getThreshold();
-        logger.warning(">>>> unsharpMask not implemented yet!");
+        log.warn(">>>> unsharpMask not implemented yet!");
 
         return model;
       }

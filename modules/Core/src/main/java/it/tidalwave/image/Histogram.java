@@ -22,9 +22,8 @@
  **********************************************************************************************************************/
 package it.tidalwave.image;
 
-import java.util.logging.Logger;
 import it.tidalwave.image.render.PreviewSettings;
-
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -32,10 +31,9 @@ import it.tidalwave.image.render.PreviewSettings;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public abstract class Histogram
   {
-    private final static String CLASS = Histogram.class.getName();
-    private final static Logger logger = Logger.getLogger(CLASS);
     protected Object image;
     protected int bandCount;
     protected int bitsPerBand;

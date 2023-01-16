@@ -28,9 +28,9 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.logging.Logger;
 import java.io.Serializable;
 import it.tidalwave.image.processor.event.ImagingTaskProcessorListener;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -38,11 +38,9 @@ import it.tidalwave.image.processor.event.ImagingTaskProcessorListener;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public abstract class ImagingTaskProcessor // NOT Serializable
   {
-    private static final String CLASS = ImagingTaskProcessor.class.getName();    
-    private static final Logger logger = Logger.getLogger(CLASS);
-    
     /** The singleton instance. */
     private static ImagingTaskProcessor instance;
     
@@ -214,7 +212,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
      **************************************************************************/
     public void post (final Collection<? extends ImagingTask> tasks) 
       {
-        logger.info(String.format("post(%s) - free workers: %d", tasks, freeWorkers));
+        log.info(String.format("post(%s) - free workers: %d", tasks, freeWorkers));
         
         synchronized (lock)
           {
@@ -223,7 +221,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
             
             for (final ImagingTask task : tasks)
               {
-                logger.info(String.format(">>>> %s added to pending task list", task.getName()));
+                log.info(String.format(">>>> %s added to pending task list", task.getName()));
                 eventManager.fireNotifyTaskPosted(task);
               }
           }
@@ -249,7 +247,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
      **************************************************************************/
     public void postWithPriority (final Collection<? extends ImagingTask> tasks) 
       {
-        logger.info(String.format("postWithPriority(%s) - free workers: %d", tasks, freeWorkers));
+        log.info(String.format("postWithPriority(%s) - free workers: %d", tasks, freeWorkers));
         
         synchronized (lock)
           {
@@ -258,7 +256,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
             
             for (final ImagingTask task : tasks)
               {
-                logger.info(String.format(">>>> %s added to pending task list", task.getName()));
+                log.info(String.format(">>>> %s added to pending task list", task.getName()));
                 eventManager.fireNotifyTaskPosted(task);
               }
           }
@@ -285,7 +283,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
      **************************************************************************/
     public final <T extends ImagingTask> Collection<T> cancellPendingTasks (final Class<T> taskClass)
       {
-        logger.info("cancellPendingTasks(" + taskClass.getName() + ")");
+        log.info("cancellPendingTasks(" + taskClass.getName() + ")");
         final List<T> result = new ArrayList<T>();
         
         synchronized (lock)
@@ -499,7 +497,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
      **************************************************************************/
     protected final void notifyTaskCompleted (final ImagingTask task)
       {
-        logger.info("notifyTaskCompleted(" + task + ")");        
+        log.info("notifyTaskCompleted(" + task + ")");        
         boolean duplicate = false;
         
         synchronized (lock)
@@ -515,7 +513,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
         
         if (duplicate)
           {
-            logger.warning("Filtering out duplicated task: " + task);
+            log.warn("Filtering out duplicated task: " + task);
           }
         
         else

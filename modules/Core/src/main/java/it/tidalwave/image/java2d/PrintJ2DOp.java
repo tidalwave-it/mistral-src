@@ -22,11 +22,9 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
-import java.util.logging.Logger;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.awt.print.PrinterJob;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
@@ -44,9 +42,6 @@ import it.tidalwave.image.op.PrintOp;
  ******************************************************************************/
 public class PrintJ2DOp extends OperationImplementation<PrintOp, BufferedImage>
   {
-    private static final String CLASS = PrintJ2DOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-    
     public PrintJ2DOp()
       {
       }

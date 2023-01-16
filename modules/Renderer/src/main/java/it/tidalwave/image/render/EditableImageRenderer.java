@@ -22,10 +22,8 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.render;
 
-import it.tidalwave.image.render.PreviewSettings;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -47,6 +45,7 @@ import it.tidalwave.image.op.ScaleOp;
 import it.tidalwave.image.render.event.EditableImageRendererEvent;
 import it.tidalwave.image.render.event.EditableImageRendererListener;
 import it.tidalwave.image.util.Platform;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -57,11 +56,9 @@ import it.tidalwave.image.util.Platform;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class EditableImageRenderer extends JComponent
   {
-    private final static String CLASS = EditableImageRenderer.class.getName();
-    private final static Logger logger = Logger.getLogger(CLASS);
-
     /** The maximum allowed value for scale. */
     public final static double MAX_SCALE = 40;
 
@@ -199,7 +196,7 @@ public class EditableImageRenderer extends JComponent
 
         if (workaroundMST63)
           {
-            logger.warning("Enabled workaround for MST-63");
+            log.warn("Enabled workaround for MST-63");
           }
 
         setScaledImageCachingEnabled(workaroundMST63);
@@ -226,12 +223,12 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public void setImage (final EditableImage image)
       {
-        logger.info("setImage(" + image + ")");
+        log.info("setImage(" + image + ")");
         
         if (image == null)
           {
             this.image = null;
-            logger.warning("setImage(null)");
+            log.warn("setImage(null)");
           }
 
         else
@@ -294,7 +291,7 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public void setRepaintEnabled (final boolean repaintEnabled)
       {
-        logger.info("setRepaintEnabled(" + repaintEnabled + ")");
+        log.info("setRepaintEnabled(" + repaintEnabled + ")");
         this.repaintEnabled = repaintEnabled;
       }
 
@@ -320,7 +317,7 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public void setOrigin (final Point origin)
       {
-        logger.info("setOrigin(" + origin + ")");
+        log.info("setOrigin(" + origin + ")");
         
         if ((image != null) && (image.getWidth() > 0) && (image.getHeight() > 0))
           {
@@ -332,7 +329,7 @@ public class EditableImageRenderer extends JComponent
 
     private void internalSetOrigin (final Point origin) 
       {
-        logger.info("internalSetOrigin(" + origin + ")");
+        log.info("internalSetOrigin(" + origin + ")");
         //
         // No margin with the scroll bars.
         //
@@ -387,7 +384,7 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public void setAngle (final double angle)
       {
-        logger.info("setAngle(" + angle + ")");
+        log.info("setAngle(" + angle + ")");
         
         if (this.angle != angle)
           {
@@ -461,7 +458,7 @@ public class EditableImageRenderer extends JComponent
 
         if ((shownImageWidth == 0) || (shownImageHeight == 0))
           {
-            logger.severe("Image size: " + shownImageHeight + " x " + shownImageHeight);
+            log.error("Image size: " + shownImageHeight + " x " + shownImageHeight);
             return null;
           }
 
@@ -505,7 +502,7 @@ public class EditableImageRenderer extends JComponent
 
         if ((shownImageWidth == 0) || (shownImageHeight == 0))
           {
-            logger.severe("Image size: " + shownImageHeight + " x " + shownImageHeight);
+            log.error("Image size: " + shownImageHeight + " x " + shownImageHeight);
 
             return null;
           }
@@ -537,7 +534,7 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public void setPositionOverImage (final Point imagePoint, final Point componentPoint)
       {
-        logger.info("setPositionOverImage(" + imagePoint + ", " + componentPoint + ")");
+        log.info("setPositionOverImage(" + imagePoint + ", " + componentPoint + ")");
         Point newOrigin = computeOrigin(imagePoint, componentPoint, scale);
 
         if (newOrigin != null)
@@ -558,7 +555,7 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public void setMargin (final Insets margin)
       {
-        logger.info("setMargin(" + margin + ")");
+        log.info("setMargin(" + margin + ")");
         this.margin = (Insets)margin.clone();
       }
 
@@ -583,7 +580,7 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public void setScrollBarsVisible (final boolean scrollBarsVisible)
       {
-        logger.info("setScrollBarsVisible(" + scrollBarsVisible + ")");
+        log.info("setScrollBarsVisible(" + scrollBarsVisible + ")");
         
         if (this.scrollBarsVisible != scrollBarsVisible)
           {
@@ -654,7 +651,7 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public void setScaleQuality (final Quality scaleQuality)
       {
-        logger.info("setScaleQuality(" + scaleQuality + ")");
+        log.info("setScaleQuality(" + scaleQuality + ")");
         
         if (this.scaleQuality != scaleQuality)
           {
@@ -686,7 +683,7 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public void setRotateQuality (final Quality rotateQuality)
       {
-        logger.info("setRotateQuality(" + rotateQuality + ")");
+        log.info("setRotateQuality(" + rotateQuality + ")");
         
         if (this.rotateQuality != rotateQuality)
           {
@@ -716,7 +713,7 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public void setScaledImageCachingEnabled (final boolean scaledImageCachingEnabled)
       {
-        logger.info("setScaledImageCachingEnabled(" + scaledImageCachingEnabled + ")");
+        log.info("setScaledImageCachingEnabled(" + scaledImageCachingEnabled + ")");
         this.scaledImageCachingEnabled = scaledImageCachingEnabled;
 
         if (!scaledImageCachingEnabled)
@@ -746,7 +743,7 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public void setOptimizedImageEnabled (final boolean optimizedImageEnabled)
       {
-        logger.info("setOptimizedImageEnabled(" + optimizedImageEnabled + ")");
+        log.info("setOptimizedImageEnabled(" + optimizedImageEnabled + ")");
         this.optimizedImageEnabled = optimizedImageEnabled;
       }
 
@@ -834,7 +831,7 @@ public class EditableImageRenderer extends JComponent
     @Override
     public void paint (final Graphics g)
       {
-        logger.info("paint()");
+        log.info("paint()");
         
         if (!repaintEnabled)
           {
@@ -878,7 +875,7 @@ public class EditableImageRenderer extends JComponent
                   {
                     if (scaledImage == null)
                       {
-                        logger.fine(">>>> computing scaled image");
+                        log.debug(">>>> computing scaled image");
                         scaledImage = optimizedImage.execute2(new ScaleOp(scale, getScaleQuality()));
 
                         final int prevWidth = scaledImage.getWidth();
@@ -950,8 +947,8 @@ public class EditableImageRenderer extends JComponent
                       }
                     catch (Throwable t)
                       {
-                        logger.warning("Exception in Overlay: " + t);
-                        logger.throwing(CLASS, "paint()", t);
+                        log.warn("Exception in Overlay: " + t);
+                        log.warn("paint()", t);
                       }
 
                     g2Copy.dispose();
@@ -961,7 +958,7 @@ public class EditableImageRenderer extends JComponent
 
         catch (Throwable t)
           {
-            logger.throwing(CLASS, "paint()", t);
+            log.warn("paint()", t);
           }
 
         finally
@@ -982,8 +979,8 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public void flushAllCaches()
       {
-        logger.info("flushAllCaches()");
-        logger.info(">>>> all caches will be recomputed from: " + image);
+        log.info("flushAllCaches()");
+        log.info(">>>> all caches will be recomputed from: " + image);
         flushScaledImageCache();
         
         if (image != null)
@@ -1004,7 +1001,7 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public void flushScaledImageCache()
       {
-        logger.info("flushScaledImageCache()");
+        log.info("flushScaledImageCache()");
         scaledImage = null;
       }
 
@@ -1015,7 +1012,7 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public void moveOrigin (final int deltaX, final int deltaY)
       {
-        logger.info("moveOrigin(" + deltaX + "," + deltaY + ")");
+        log.info("moveOrigin(" + deltaX + "," + deltaY + ")");
         final Point position = getOrigin();
         position.setLocation(position.getX() + deltaX, position.getY() + deltaY);
         setOrigin(position);
@@ -1031,7 +1028,7 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public void setScale (final double scale)
       {
-        logger.info("setScale(" + scale + ")");
+        log.info("setScale(" + scale + ")");
         setScale(scale, null);
       }
 
@@ -1048,7 +1045,7 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public void setScale (double scale, final Point pivotPoint)
       {
-        logger.info("setScale(" + scale + ", " + pivotPoint + ")");
+        log.info("setScale(" + scale + ", " + pivotPoint + ")");
         scale = Math.min(Math.max(scale, minScale), maxScale);
         
 //        if ((scale < MIN_SCALE) || (scale > MAX_SCALE))
@@ -1134,7 +1131,7 @@ public class EditableImageRenderer extends JComponent
 
 //        if (this.scale < 0)
 //          {
-//            logger.info("SCALE < 0: w:" + w + " h:" + h + " iw:" + iw + " ih:" + ih);
+//            log.info("SCALE < 0: w:" + w + " h:" + h + " iw:" + iw + " ih:" + ih);
 //          }
       }
 
@@ -1145,7 +1142,7 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public void centerImage ()
       {
-        logger.info("centerImage()");
+        log.info("centerImage()");
         setOrigin(computeCenterPoint());
       }
     
@@ -1156,7 +1153,7 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public void fitToDisplaySize ()
       {
-        logger.info("fitToDisplaySize()");
+        log.info("fitToDisplaySize()");
         
         if (image != null)
           {
@@ -1176,7 +1173,7 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public void setFitToDisplaySize (final boolean fitToDisplaySize)
       {
-        logger.info("setFitToDisplaySize(" + fitToDisplaySize + ")");
+        log.info("setFitToDisplaySize(" + fitToDisplaySize + ")");
         this.fitToDisplaySize = fitToDisplaySize;
 
         if (fitToDisplaySize)
@@ -1250,8 +1247,8 @@ public class EditableImageRenderer extends JComponent
               }
             catch (Throwable t)
               {
-                logger.warning("Exception in listener: " + t);
-                logger.throwing(CLASS, "fireScaleChangedEvent()", t);
+                log.warn("Exception in listener: " + t);
+                log.warn("fireScaleChangedEvent()", t);
               }
           }
       }
@@ -1273,8 +1270,8 @@ public class EditableImageRenderer extends JComponent
               }
             catch (Throwable t)
               {
-                logger.warning("Exception in listener: " + t);
-                logger.throwing(CLASS, "fireAngleChangedEvent()", t);
+                log.warn("Exception in listener: " + t);
+                log.warn("fireAngleChangedEvent()", t);
               }
           }
       }
@@ -1296,8 +1293,8 @@ public class EditableImageRenderer extends JComponent
               }
             catch (Throwable t)
               {
-                logger.warning("Exception in listener: " + t);
-                logger.throwing(CLASS, "fireEditingToolActivated()", t);
+                log.warn("Exception in listener: " + t);
+                log.warn("fireEditingToolActivated()", t);
               }
           }
       }
@@ -1319,8 +1316,8 @@ public class EditableImageRenderer extends JComponent
               }
             catch (Throwable t)
               {
-                logger.warning("Exception in listener: " + t);
-                logger.throwing(CLASS, "fireEditingToolDeactivated()", t);
+                log.warn("Exception in listener: " + t);
+                log.warn("fireEditingToolDeactivated()", t);
               }
           }
       }

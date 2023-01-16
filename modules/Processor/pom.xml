@@ -23,10 +23,6 @@
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-jdk14</artifactId>
                 </exclusion>
-                <exclusion>
-                    <groupId>com.kenai.nbpwr</groupId>
-                    <artifactId>org-slf4j-jdk14</artifactId>
-                </exclusion>
             </exclusions>
         </dependency>
     </dependencies>

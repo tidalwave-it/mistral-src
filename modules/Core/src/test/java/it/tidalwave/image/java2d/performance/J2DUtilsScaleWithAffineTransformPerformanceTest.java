@@ -26,6 +26,7 @@ import java.awt.image.BufferedImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
 import it.tidalwave.image.java2d.Java2DUtils;
+import lombok.extern.slf4j.Slf4j;
 import static org.junit.Assert.*;
 
 /*******************************************************************************
@@ -34,6 +35,7 @@ import static org.junit.Assert.*;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class J2DUtilsScaleWithAffineTransformPerformanceTest extends BasePerformanceTestSupport 
   {
     @Override
@@ -44,7 +46,7 @@ public class J2DUtilsScaleWithAffineTransformPerformanceTest extends BasePerform
         
         for (double scale = 0.1; scale <= 1; scale += 0.1)
           {
-            log(">>>> scale: " + scale);
+            log.info(">>>> scale: " + scale);
             long time = System.currentTimeMillis();
             BufferedImage bufferedImage = image.getInnerProperty(BufferedImage.class);
             Java2DUtils.scaleWithAffineTransform(bufferedImage, scale, scale, Quality.INTERMEDIATE);

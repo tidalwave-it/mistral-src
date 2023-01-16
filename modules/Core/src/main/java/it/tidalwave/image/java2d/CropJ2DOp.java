@@ -22,12 +22,10 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
-import java.util.logging.Logger;
 import java.awt.image.BufferedImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.CropOp;
 import it.tidalwave.image.op.OperationImplementation;
-
 
 /*******************************************************************************
  *
@@ -37,9 +35,6 @@ import it.tidalwave.image.op.OperationImplementation;
  ******************************************************************************/
 public class CropJ2DOp extends OperationImplementation<CropOp, BufferedImage>
   {
-    private static final String CLASS = CropJ2DOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     /*******************************************************************************
      *
      * @inheritDoc

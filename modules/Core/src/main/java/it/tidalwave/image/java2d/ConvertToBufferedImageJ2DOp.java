@@ -22,12 +22,11 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
-import java.util.logging.Logger;
 import java.awt.image.BufferedImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.ConvertToBufferedImageOp;
-
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -35,11 +34,9 @@ import it.tidalwave.image.op.ConvertToBufferedImageOp;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class ConvertToBufferedImageJ2DOp extends OperationImplementation<ConvertToBufferedImageOp, BufferedImage>
   {
-    private static final String CLASS = ConvertToBufferedImageJ2DOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     /*******************************************************************************
      *
      * @inheritDoc

@@ -34,6 +34,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -41,20 +42,21 @@ import javax.imageio.ImageReader;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class ReadOpTest extends BaseTestSupport
   {
     static
       {
         
         final String[] mimeTypes = ImageIO.getReaderMIMETypes();
-        logger.info("MIME TYPES for PHOTODATALOADER: " + Arrays.asList(mimeTypes));
+        log.info("MIME TYPES for PHOTODATALOADER: " + Arrays.asList(mimeTypes));
         
         for (final String mimeType : mimeTypes)
           {
             for (final Iterator<ImageReader> i = ImageIO.getImageReadersByMIMEType(mimeType); i.hasNext(); )
               {
                 final ImageReader imageReader = i.next();
-                logger.info(">>>> " + mimeType + " -> " + imageReader.getOriginatingProvider().getClass().getName());
+                log.info(">>>> " + mimeType + " -> " + imageReader.getOriginatingProvider().getClass().getName());
               }
           }
       }

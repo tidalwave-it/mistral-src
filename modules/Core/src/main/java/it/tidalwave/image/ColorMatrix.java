@@ -22,8 +22,8 @@
  **********************************************************************************************************************/
 package it.tidalwave.image;
 
-import java.util.logging.Logger;
 import java.text.DecimalFormat;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -31,10 +31,9 @@ import java.text.DecimalFormat;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class ColorMatrix
   {
-    private final static String CLASS = ColorMatrix.class.getName();
-    private final static Logger logger = Logger.getLogger(CLASS);
     private final static DecimalFormat FORMAT = new DecimalFormat("+0.0000;-0.0000");
     private final static long SHORT_MASK = 0xffff;
     public final static ColorMatrix XYZ_TO_RGB = new ColorMatrix(new double[]
@@ -153,7 +152,7 @@ public class ColorMatrix
 
         ColorMatrix result = new ColorMatrix(nc);
 
-        logger.finest("inverse(" + this + ") = " + result);
+        log.trace("inverse(" + this + ") = " + result);
 
         //        logger.finest(">>>> det = " + det);
         return result;

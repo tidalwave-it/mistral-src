@@ -28,6 +28,7 @@ import java.awt.image.Raster;
 import it.tidalwave.image.BaseTestSupport;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.CreateOp;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -35,6 +36,7 @@ import it.tidalwave.image.op.CreateOp;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public abstract class CreateOpTestSupport extends BaseTestSupport
   {
     private static final int WIDTH = 128;
@@ -57,7 +59,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
     @Test
     public void testCreateSingleBandByteBlack ()
       {
-        log("testCreateSingleBandByteBlack");
+        log.info("testCreateSingleBandByteBlack");
 
         final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.BYTE));
         assertImage(image, 1, 8, 8, EditableImage.DataType.BYTE);
@@ -67,7 +69,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
 /*    @Test FAILS
     public void testCreateSingleBandShortBlack ()
       {
-        log("execute");
+        log.info("execute");
 
         final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.SHORT));
         assertImage(image, 1, 16, 16, EditableImage.DataType.SHORT);
@@ -75,7 +77,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
     @Test
     public void testCreateSingleBandUnsignedShortBlack ()
       {
-        log("testCreateSingleBandUnsignedShortBlack");
+        log.info("testCreateSingleBandUnsignedShortBlack");
 
         final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.UNSIGNED_SHORT));
         assertImage(image, 1, 16, 16, EditableImage.DataType.UNSIGNED_SHORT);
@@ -85,7 +87,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
     @Test
     public void testCreateSingleBandIntBlack ()
       {
-        log("testCreateSingleBandFloatBlack");
+        log.info("testCreateSingleBandFloatBlack");
 
         final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.INT));
         assertImage(image, 1, 32, 32, EditableImage.DataType.INT);
@@ -95,7 +97,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
     @Test
     public void testCreateSingleBandFloatBlack ()
       {
-        log("testCreateSingleBandFloatBlack");
+        log.info("testCreateSingleBandFloatBlack");
 
         final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.FLOAT));
         assertImage(image, 1, 32, 32, EditableImage.DataType.FLOAT);
@@ -105,7 +107,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
     @Test
     public void testCreateSingleBandDoubleBlack ()
       {
-        log("testCreateSingleBandDoubleBlack");
+        log.info("testCreateSingleBandDoubleBlack");
 
         final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.DOUBLE));
         assertImage(image, 1, 64, 64, EditableImage.DataType.DOUBLE);
@@ -120,7 +122,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
     @Test
     public void testCreateSingleBandByteInitialValue ()
       {
-        log("testCreateSingleBandByteInitialValue");
+        log.info("testCreateSingleBandByteInitialValue");
 
         for (int i = 0; i < byteValues.length; i++)
           {
@@ -133,7 +135,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
 /*    @Test FAILS
     public void testCreateSingleBandShortInitialValue ()
       {
-        log("execute");
+        log.info("execute");
 
         final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.SHORT, 32767));
         assertImage(image, 1, 16, 16, EditableImage.DataType.SHORT);
@@ -141,7 +143,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
     @Test
     public void testCreateSingleBandUnsignedShortInitialValue ()
       {
-        log("testCreateSingleBandUnsignedShortInitialValue");
+        log.info("testCreateSingleBandUnsignedShortInitialValue");
 
         for (int i = 0; i < shortValues.length; i++)
           {
@@ -155,7 +157,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
     @Test
     public void testCreateSingleBandIntInitialValue ()
       {
-        log("testCreateSingleBandIntInitialValue");
+        log.info("testCreateSingleBandIntInitialValue");
 
         for (int i = 0; i < intValues.length; i++)
           {
@@ -168,7 +170,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
     @Test
     public void testCreateSingleBandFloatInitialValue ()
       {
-        log("testCreateSingleBandFloatInitialValue");
+        log.info("testCreateSingleBandFloatInitialValue");
 
         for (int i = 0; i < floatValues.length; i++)
           {
@@ -181,7 +183,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
     @Test
     public void testCreateSingleBandDoubleInitialValue ()
       {
-        log("testCreateSingleBandDoubleInitialValue");
+        log.info("testCreateSingleBandDoubleInitialValue");
 
         for (int i = 0; i < doubleValues.length; i++)
           {
@@ -199,7 +201,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
     @Test
     public void testCreateThreeBandsByteInitialValue ()
       {
-        log("testCreateThreeBandsByteInitialValue");
+        log.info("testCreateThreeBandsByteInitialValue");
 
         for (int r = 0; r < byteValues.length; r++)
           {
@@ -219,7 +221,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
 /*    @Test FAILS
     public void testCreateSingleBandShortInitialValue ()
       {
-        log("execute");
+        log.info("execute");
 
         final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.SHORT, 32767));
         assertImage(image, 1, 16, 16, EditableImage.DataType.SHORT);
@@ -227,7 +229,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
     @Test
     public void testCreateThreeBandsUnsignedShortInitialValue ()
       {
-        log("testCreateThreeBandsUnsignedShortInitialValue");
+        log.info("testCreateThreeBandsUnsignedShortInitialValue");
 
         for (int r = 0; r < shortValues2.length; r++)
           {
@@ -247,7 +249,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
     @Test
     public void testCreateThreeBandsIntInitialValue ()
       {
-        log("testCreateThreeBandsIntInitialValue");
+        log.info("testCreateThreeBandsIntInitialValue");
 
         for (int r = 0; r < intValues2.length; r++)
           {
@@ -267,7 +269,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
     @Test
     public void testCreateThreeBandsFloatInitialValue ()
       {
-        log("testCreateThreeBandsFloatInitialValue");
+        log.info("testCreateThreeBandsFloatInitialValue");
 
         for (int r = 0; r < floatValues2.length; r++)
           {
@@ -287,7 +289,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
     @Test
     public void testCreateThreeBandsDoubleInitialValue ()
       {
-        log("testCreateThreeBandsDoubleInitialValue");
+        log.info("testCreateThreeBandsDoubleInitialValue");
 
         for (int r = 0; r < doubleValues2.length; r++)
           {

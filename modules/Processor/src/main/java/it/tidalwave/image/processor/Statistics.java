@@ -26,9 +26,9 @@ import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import java.util.logging.Logger;
 import java.io.Serializable;
 import it.tidalwave.image.processor.Statistics.Item;
+import lombok.extern.slf4j.Slf4j;
 
 /*******************************************************************************
  *
@@ -41,13 +41,10 @@ import it.tidalwave.image.processor.Statistics.Item;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class Statistics implements Serializable, Iterable<Item>
   {
     private static final long serialVersionUID = 6751339155167897162L;
-    
-    private static final String CLASS = Statistics.class.getName();
-    
-    private static final Logger logger = Logger.getLogger(CLASS);
     
     /** The map */
     private SortedMap<String, Item> map = new TreeMap<String, Item>();
@@ -250,7 +247,7 @@ public class Statistics implements Serializable, Iterable<Item>
       {
         for (Statistics.Item item : this)
           {
-            logger.info("STATS: >>>> " + 
+            log.info("STATS: >>>> " +
                         item.getName() + ": min/max/avg " +
                         item.getMinimum() + "/" + 
                         item.getMaximum() + "/" + 

@@ -23,7 +23,6 @@
 package it.tidalwave.image.java2d;
 
 import java.util.Iterator;
-import java.util.logging.Logger;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -38,6 +37,7 @@ import javax.imageio.stream.ImageOutputStream;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.WriteOp;
+import lombok.extern.slf4j.Slf4j;
 
 
 /*******************************************************************************
@@ -46,11 +46,9 @@ import it.tidalwave.image.op.WriteOp;
  * @version $Id$
  *
  ******************************************************************************/
+@Slf4j
 public class WriteJ2DOp extends OperationImplementation<WriteOp, BufferedImage>
   {
-    private static final String CLASS = WriteJ2DOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
     /*******************************************************************************
      *
      * @inheritDoc
@@ -63,7 +61,7 @@ public class WriteJ2DOp extends OperationImplementation<WriteOp, BufferedImage>
         final Object output = operation.getOutput();
         final Object outputForLog = (output instanceof OutputStream) ? output.getClass() : output;
         final ImageWriteParam imageWriteParam = operation.getImageWriteParam();
-        logger.info("Write2DOp(" + format + ", " + outputForLog + ", " + imageWriteParam + ")");
+        log.info("Write2DOp(" + format + ", " + outputForLog + ", " + imageWriteParam + ")");
 
         ImageOutputStream stream = null;
         boolean shouldClose = true;
@@ -89,12 +87,12 @@ public class WriteJ2DOp extends OperationImplementation<WriteOp, BufferedImage>
 
             final Iterator<ImageWriter> writers = ImageIO.getImageWritersByFormatName(format);
             ImageWriter selectedWriter = null;
-            logger.fine("Available writers for format: " + format);
+            log.debug("Available writers for format: " + format);
 
             while (writers.hasNext())
               {
                 final ImageWriter writer = writers.next();
-                logger.fine(">>>> writer: " + writer);
+                log.debug(">>>> writer: " + writer);
 
                 if (selectedWriter == null) // keep the first one, keep on logging the others
                   {
@@ -130,7 +128,7 @@ public class WriteJ2DOp extends OperationImplementation<WriteOp, BufferedImage>
                   }
                 catch (IOException e)
                   {
-                    logger.throwing(CLASS, "execute()", e);
+                    log.warn("execute()", e);
                   }
               }
           }
