@@ -40,9 +40,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EXIF extends EXIFDirectoryGenerated
   {
-    private final static long serialVersionUID = 3088068666726854799L;
+    private static final long serialVersionUID = 3088068666726854799L;
 
-    private final static String ASCII_PREFIX = "ASCII\u0000\u0000\u0000";
+    private static final String ASCII_PREFIX = "ASCII\u0000\u0000\u0000";
 
     // Not static since they are not thread safe
     private final SimpleDateFormat exifDateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");

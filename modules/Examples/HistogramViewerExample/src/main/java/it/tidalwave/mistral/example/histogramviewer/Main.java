@@ -101,19 +101,15 @@ public class Main
                 //
                 // HistogramOp can take some time to perform.
                 //
-                final Thread thread = new Thread()
-                  {
-                    @Override
-                    public void run()
-                      {
-                        histogramRenderer.start();
-                        long time = System.currentTimeMillis();
-                        final Histogram histogram = image.execute(new HistogramOp()).getHistogram();
-                        time = System.currentTimeMillis() - time;
-                        histogramRenderer.setHistogram(histogram);
-                        statusBar.setText("Computed in " + time + " msec " + (jai ? "with" : "without") + " JAI");
-                      }
-                  };
+                final Thread thread = new Thread(() ->
+                   {
+                     histogramRenderer.start();
+                     long time = System.currentTimeMillis();
+                     final Histogram histogram = image.execute(new HistogramOp()).getHistogram();
+                     time = System.currentTimeMillis() - time;
+                     histogramRenderer.setHistogram(histogram);
+                     statusBar.setText("Computed in " + time + " msec " + (jai ? "with" : "without") + " JAI");
+                   });
 
                 thread.start();
               }

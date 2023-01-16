@@ -56,7 +56,7 @@ public abstract class OperationImplementation<Op extends Operation, Model extend
      *
      ******************************************************************************************************************/
     @Nonnull
-    public final Object execute (final @Nonnull EditableImage image, final @Nonnull Object model)
+    public final Object execute (@Nonnull final EditableImage image, @Nonnull final Object model)
       {
         final long now = System.currentTimeMillis();
         log.debug("executing {}", operation);
@@ -75,7 +75,7 @@ public abstract class OperationImplementation<Op extends Operation, Model extend
      * behaviours should override it.
      *
      ******************************************************************************************************************/
-    public boolean canHandle (final @Nonnull Op operation)
+    public boolean canHandle (@Nonnull final Op operation)
       {
         return true;
       }
@@ -84,7 +84,7 @@ public abstract class OperationImplementation<Op extends Operation, Model extend
      *
      *
      ******************************************************************************************************************/
-    protected void bind (final @Nonnull Op operation)
+    protected void bind (@Nonnull final Op operation)
       {
         this.operation = operation;
       }
@@ -99,7 +99,7 @@ public abstract class OperationImplementation<Op extends Operation, Model extend
      *
      ******************************************************************************************************************/
     @Nonnull
-    protected abstract Model execute (final @Nonnull Op operation,
-                                      final @Nonnull EditableImage image,
-                                      final @Nonnull Model model);
+    protected abstract Model execute (@Nonnull final Op operation,
+                                      @Nonnull final EditableImage image,
+                                      @Nonnull final Model model);
   }

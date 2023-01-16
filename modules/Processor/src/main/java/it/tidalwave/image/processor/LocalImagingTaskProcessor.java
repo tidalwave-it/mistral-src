@@ -39,7 +39,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LocalImagingTaskProcessor extends ImagingTaskProcessor
   {
-    private final Collection<PoolThread> workers = new ArrayList<PoolThread>();
+    private final Collection<PoolThread> workers = new ArrayList<>();
 
     /*******************************************************************************************************************
      *
@@ -136,7 +136,7 @@ public class LocalImagingTaskProcessor extends ImagingTaskProcessor
     @Override
     public Collection<Serializable> getWorkerIds()
       {
-        final Collection<Serializable> result = new ArrayList<Serializable>();
+        final Collection<Serializable> result = new ArrayList<>();
 
         for (final PoolThread worker : workers)
           {

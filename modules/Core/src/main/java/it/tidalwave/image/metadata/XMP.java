@@ -34,12 +34,12 @@ import lombok.Getter;
  **********************************************************************************************************************/
 public class XMP extends Directory
   {
-    private final static long serialVersionUID = 84768464253462456L;
+    private static final long serialVersionUID = 84768464253462456L;
 
     @Getter
-    private final Map<String, String> xmpProperties = new HashMap<String, String>();
+    private final Map<String, String> xmpProperties = new HashMap<>();
 
-    void _setProperties (final @Nonnull Map<String, String> xmpProperties)
+    void _setProperties (@Nonnull final Map<String, String> xmpProperties)
       {
         this.xmpProperties.clear();
         this.xmpProperties.putAll(xmpProperties);

@@ -34,6 +34,7 @@ import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
 import it.tidalwave.image.metadata.Directory;
 import it.tidalwave.image.metadata.EXIF;
+import it.tidalwave.image.metadata.MakerNote;
 import it.tidalwave.image.render.AnimatedScaleController;
 import it.tidalwave.image.render.DragPanningController;
 import it.tidalwave.image.render.MouseClickZoomingController;
@@ -82,9 +83,9 @@ public class ViewerPanel extends AbstractViewerPanel
      ******************************************************************************************************************/
     private final EditableImageRendererListener scaleListener = new EditableImageRendererAdapter()
       {
-        private final static String PHOTO_SIZE_PATTERN = "{0,number,#####}x{1,number,#####}x{2,number,##}";
+        private static final String PHOTO_SIZE_PATTERN = "{0,number,#####}x{1,number,#####}x{2,number,##}";
 
-        private final static String SCALE_PATTERN = "{0,number,percent}";
+        private static final String SCALE_PATTERN = "{0,number,percent}";
 
         @Override
         public void scaleChanged (final EditableImageRendererEvent event)
@@ -135,7 +136,7 @@ public class ViewerPanel extends AbstractViewerPanel
     protected void onImageLoaded (final EditableImage image)
       {
         final Directory exifDirectory = image.getMetadata(EXIF.class);
-        final Directory makerNoteDirectory = image.getMakerNote();
+        final Directory makerNoteDirectory = image.getMetadata(MakerNote.class);
         final String exif = createTable(exifDirectory);
         final String makerNote = createTable(makerNoteDirectory);
         lbMetadata.setText(exif);
@@ -274,43 +275,19 @@ public class ViewerPanel extends AbstractViewerPanel
 
         btZoomIn.setIcon(new javax.swing.ImageIcon(getClass().getResource(
                 "/it/tidalwave/mistral/example/viewer/icons/viewmag+.png"))); // NOI18N
-        btZoomIn.addActionListener(new java.awt.event.ActionListener()
-          {
-            public void actionPerformed (final java.awt.event.ActionEvent evt)
-              {
-                btZoomInActionPerformed(evt);
-              }
-          });
+        btZoomIn.addActionListener(evt -> btZoomInActionPerformed(evt));
 
         btActualPixels.setIcon(new javax.swing.ImageIcon(getClass().getResource(
                 "/it/tidalwave/mistral/example/viewer/icons/viewmag1.png"))); // NOI18N
-        btActualPixels.addActionListener(new java.awt.event.ActionListener()
-          {
-            public void actionPerformed (final java.awt.event.ActionEvent evt)
-              {
-                btActualPixelsActionPerformed(evt);
-              }
-          });
+        btActualPixels.addActionListener(evt -> btActualPixelsActionPerformed(evt));
 
         btZoomOut.setIcon(new javax.swing.ImageIcon(getClass().getResource(
                 "/it/tidalwave/mistral/example/viewer/icons/viewmag-.png"))); // NOI18N
-        btZoomOut.addActionListener(new java.awt.event.ActionListener()
-          {
-            public void actionPerformed (final java.awt.event.ActionEvent evt)
-              {
-                btZoomOutActionPerformed(evt);
-              }
-          });
+        btZoomOut.addActionListener(evt -> btZoomOutActionPerformed(evt));
 
         btFitToWindow.setIcon(new javax.swing.ImageIcon(getClass().getResource(
                 "/it/tidalwave/mistral/example/viewer/icons/viewmagfit.png"))); // NOI18N
-        btFitToWindow.addActionListener(new java.awt.event.ActionListener()
-          {
-            public void actionPerformed (final java.awt.event.ActionEvent evt)
-              {
-                btFitToWindowActionPerformed(evt);
-              }
-          });
+        btFitToWindow.addActionListener(evt -> btFitToWindowActionPerformed(evt));
 
         slRotation.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
         slRotation.setMajorTickSpacing(90);
@@ -318,55 +295,25 @@ public class ViewerPanel extends AbstractViewerPanel
         slRotation.setMinimum(-180);
         slRotation.setMinorTickSpacing(10);
         slRotation.setPaintTicks(true);
-        slRotation.addChangeListener(new javax.swing.event.ChangeListener()
-          {
-            public void stateChanged (final javax.swing.event.ChangeEvent evt)
-              {
-                slRotationStateChanged(evt);
-              }
-          });
+        slRotation.addChangeListener(evt -> slRotationStateChanged(evt));
 
         cbCrop.setText("Crop");
         cbCrop.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         cbCrop.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        cbCrop.addChangeListener(new javax.swing.event.ChangeListener()
-          {
-            public void stateChanged (final javax.swing.event.ChangeEvent evt)
-              {
-                cbCropStateChanged(evt);
-              }
-          });
+        cbCrop.addChangeListener(evt -> cbCropStateChanged(evt));
 
         btResetRotation.setText("Level");
         btResetRotation.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btResetRotation.addActionListener(new java.awt.event.ActionListener()
-          {
-            public void actionPerformed (final java.awt.event.ActionEvent evt)
-              {
-                btResetRotationActionPerformed(evt);
-              }
-          });
+        btResetRotation.addActionListener(evt -> btResetRotationActionPerformed(evt));
 
         lbQuality.setText("Quality:");
 
-        cbQuality.addActionListener(new java.awt.event.ActionListener()
-          {
-            public void actionPerformed (final java.awt.event.ActionEvent evt)
-              {
-                cbQualityActionPerformed(evt);
-              }
-          });
+        cbQuality.addActionListener(evt -> cbQualityActionPerformed(evt));
 
         cbScrollBars.setText("Scroll bars");
         cbScrollBars.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         cbScrollBars.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        cbScrollBars.addActionListener(new java.awt.event.ActionListener()
-          {
-            public void actionPerformed (final java.awt.event.ActionEvent evt)
-              {
-                cbScrollBarsActionPerformed(evt);
-              }
-          });
+        cbScrollBars.addActionListener(evt -> cbScrollBarsActionPerformed(evt));
 
         final org.jdesktop.layout.GroupLayout pnToolBarLayout = new org.jdesktop.layout.GroupLayout(pnToolBar);
         pnToolBar.setLayout(pnToolBarLayout);

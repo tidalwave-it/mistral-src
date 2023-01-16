@@ -40,7 +40,7 @@ import org.testng.annotations.Test;
  **********************************************************************************************************************/
 public class WriteJ2DOpTest extends BaseTestSupport
   {
-    private final static String tmp = System.getProperty("java.io.tmpdir");
+    private static final String tmp = System.getProperty("java.io.tmpdir");
 
     @Test
     public void testWriteJPEG()

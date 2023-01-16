@@ -59,7 +59,7 @@ public class ConvertColorProfileOp extends Operation
     @Getter @Nonnull
     private final RenderingIntent renderingIntent;
 
-    public ConvertColorProfileOp (final @Nonnull ICC_Profile iccProfile)
+    public ConvertColorProfileOp (@Nonnull final ICC_Profile iccProfile)
       {
         this(iccProfile, RenderingIntent.PERCEPTUAL);
       }

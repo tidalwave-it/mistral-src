@@ -37,9 +37,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ColorMatrix
   {
-    private final static DecimalFormat FORMAT = new DecimalFormat("+0.0000;-0.0000");
-    private final static long SHORT_MASK = 0xffff;
-    public final static ColorMatrix XYZ_TO_RGB = new ColorMatrix(new double[]
+    private static final DecimalFormat FORMAT = new DecimalFormat("+0.0000;-0.0000");
+    private static final long SHORT_MASK = 0xffff;
+    public static final ColorMatrix XYZ_TO_RGB = new ColorMatrix(new double[]
                                                                          {
                                                                                  0.412453,
                                                                                  0.357580,
@@ -177,7 +177,7 @@ public class ColorMatrix
     @Override
     public final String toString()
       {
-        final StringBuffer buffer = new StringBuffer("[");
+        final StringBuilder buffer = new StringBuilder("[");
 
         for (int i = 0; i < c.length; i++)
           {

@@ -50,9 +50,9 @@ public class AssignColorProfileJ2DOp extends OperationImplementation<AssignColor
   {
     @Nonnull
     @Override
-    protected BufferedImage execute (final @Nonnull AssignColorProfileOp operation,
-                                     final @Nonnull EditableImage image,
-                                     final @Nonnull BufferedImage bufferedImage)
+    protected BufferedImage execute (@Nonnull final AssignColorProfileOp operation,
+                                     @Nonnull final EditableImage image,
+                                     @Nonnull final BufferedImage bufferedImage)
       {
         final ICC_Profile targetProfile = operation.getIccProfile();
         log.trace("assignColorProfile({})", ImageUtils.getICCProfileName(targetProfile));

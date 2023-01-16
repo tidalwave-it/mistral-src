@@ -101,7 +101,7 @@ public final class Parameters
     public static <T, O> Collection<T> find (@Nonnull final Class<T> parameterClass,
                                              @Nonnull final O... parameters)
       {
-        final Collection<T> result = new ArrayList<T>();
+        final Collection<T> result = new ArrayList<>();
 
         for (final Object parameter : parameters)
           {

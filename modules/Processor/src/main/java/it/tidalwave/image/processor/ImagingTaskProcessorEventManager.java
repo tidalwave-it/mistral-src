@@ -43,7 +43,7 @@ import lombok.extern.slf4j.Slf4j;
   {
     private ImagingTaskProcessor processor;
 
-    private List<ImagingTaskProcessorListener> listeners = new ArrayList<ImagingTaskProcessorListener>();
+    private List<ImagingTaskProcessorListener> listeners = new ArrayList<>();
 
     /*******************************************************************************************************************
      *
@@ -85,7 +85,7 @@ import lombok.extern.slf4j.Slf4j;
             final ImagingTaskProcessorEvent event =
                     new ImagingTaskProcessorEvent(processor, Thread.currentThread().getName(), task);
 
-            for (final ImagingTaskProcessorListener listener : new ArrayList<ImagingTaskProcessorListener>(listeners))
+            for (final ImagingTaskProcessorListener listener : new ArrayList<>(listeners))
               {
                 try
                   {
@@ -112,7 +112,7 @@ import lombok.extern.slf4j.Slf4j;
           {
             final ImagingTaskProcessorEvent event = new ImagingTaskProcessorEvent(processor, workerId, task);
 
-            for (final ImagingTaskProcessorListener listener : new ArrayList<ImagingTaskProcessorListener>(listeners))
+            for (final ImagingTaskProcessorListener listener : new ArrayList<>(listeners))
               {
                 try
                   {
@@ -140,7 +140,7 @@ import lombok.extern.slf4j.Slf4j;
             final ImagingTaskProcessorEvent event =
                     new ImagingTaskProcessorEvent(processor, Thread.currentThread().getName(), task);
 
-            for (final ImagingTaskProcessorListener listener : new ArrayList<ImagingTaskProcessorListener>(listeners))
+            for (final ImagingTaskProcessorListener listener : new ArrayList<>(listeners))
               {
                 try
                   {
@@ -168,7 +168,7 @@ import lombok.extern.slf4j.Slf4j;
             final ImagingTaskProcessorEvent event =
                     new ImagingTaskProcessorEvent(processor, Thread.currentThread().getName(), task);
 
-            for (final ImagingTaskProcessorListener listener : new ArrayList<ImagingTaskProcessorListener>(listeners))
+            for (final ImagingTaskProcessorListener listener : new ArrayList<>(listeners))
               {
                 try
                   {

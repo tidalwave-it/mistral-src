@@ -38,9 +38,9 @@ import org.testng.annotations.Test;
  **********************************************************************************************************************/
 public class PaintOpTest
   {
-    private final static JLabel c = new JLabel();
+    private static final JLabel c = new JLabel();
 
-    private final static Graphics2D g = (Graphics2D)c.getGraphics();
+    private static final Graphics2D g = (Graphics2D)c.getGraphics();
 
     @Test
     public void testGetX1()

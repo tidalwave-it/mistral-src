@@ -56,9 +56,9 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor /* for serialization */ @Slf4j
 public class ImageModelJ2D extends ImageModel
   {
-    private static final Map<InterpolationType, Object> interpolationMap = new HashMap<InterpolationType, Object>();
+    private static final Map<InterpolationType, Object> interpolationMap = new HashMap<>();
 
-    private static final Map<InterpolationType, Integer> interpolationMap2 = new HashMap<InterpolationType, Integer>();
+    private static final Map<InterpolationType, Integer> interpolationMap2 = new HashMap<>();
 
 //    private static final List<String> ICC_PROFILES_WORKAROUND = Arrays.asList(new String[]
 //      {
@@ -73,11 +73,11 @@ public class ImageModelJ2D extends ImageModel
         interpolationMap.put(InterpolationType.BICUBIC, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
         interpolationMap.put(InterpolationType.BEST, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 
-        interpolationMap2.put(InterpolationType.FASTEST, new Integer(AffineTransformOp.TYPE_NEAREST_NEIGHBOR));
-        interpolationMap2.put(InterpolationType.NEAREST_NEIGHBOR, new Integer(AffineTransformOp.TYPE_NEAREST_NEIGHBOR));
-        interpolationMap2.put(InterpolationType.BILINEAR, new Integer(AffineTransformOp.TYPE_BILINEAR));
-        interpolationMap2.put(InterpolationType.BICUBIC, new Integer(AffineTransformOp.TYPE_BILINEAR));
-        interpolationMap2.put(InterpolationType.BEST, new Integer(AffineTransformOp.TYPE_BILINEAR));
+        interpolationMap2.put(InterpolationType.FASTEST, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        interpolationMap2.put(InterpolationType.NEAREST_NEIGHBOR, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        interpolationMap2.put(InterpolationType.BILINEAR, AffineTransformOp.TYPE_BILINEAR);
+        interpolationMap2.put(InterpolationType.BICUBIC, AffineTransformOp.TYPE_BILINEAR);
+        interpolationMap2.put(InterpolationType.BEST, AffineTransformOp.TYPE_BILINEAR);
       }
 
     /*******************************************************************************************************************
@@ -87,7 +87,7 @@ public class ImageModelJ2D extends ImageModel
      * @param  bufferedImage  the buffered image
      *
      ******************************************************************************************************************/
-    public ImageModelJ2D (final @Nonnull Object bufferedImage)
+    public ImageModelJ2D (@Nonnull final Object bufferedImage)
       {
         super(bufferedImage);
 
@@ -115,7 +115,7 @@ public class ImageModelJ2D extends ImageModel
      *
      ******************************************************************************************************************/
     @Nonnull
-    public static EditableImage createImage (final @Nonnull BufferedImage bufferedImage) // FIXME: try to remove this
+    public static EditableImage createImage (@Nonnull final BufferedImage bufferedImage) // FIXME: try to remove this
       {
         return new EditableImage(new ImageModelJ2D(bufferedImage));
       }
@@ -233,7 +233,7 @@ public class ImageModelJ2D extends ImageModel
     @SuppressWarnings("unchecked")
     @Nonnull
     @Override
-    public <T> T getInnerProperty (final @Nonnull Class<T> propertyClass)
+    public <T> T getInnerProperty (@Nonnull final Class<T> propertyClass)
       {
         if (propertyClass.equals(BufferedImage.class))
           {
@@ -272,7 +272,7 @@ public class ImageModelJ2D extends ImageModel
      ******************************************************************************************************************/
     @Nonnull
     @Override
-    protected Object toObjectForDeserialization (final @Nonnull RenderedImage renderedImage)
+    protected Object toObjectForDeserialization (@Nonnull final RenderedImage renderedImage)
       {
         return renderedImage;
       }

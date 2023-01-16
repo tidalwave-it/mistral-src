@@ -231,7 +231,7 @@ public class EditableImageTest extends BaseTestSupport
         AssertJUnit.assertEquals("2003:07:01 12:29:36", tiff.getDateTimeOriginal());
         AssertJUnit.assertTrue(Arrays.equals(new byte[]{1, 0, 0, 0}, tiff.getTIFF_EPStandardID()));
 
-        AssertJUnit.assertEquals(Arrays.asList("EXIF"), new ArrayList<String>(tiff.getSubDirectoryNames()));
+        AssertJUnit.assertEquals(Arrays.asList("EXIF"), new ArrayList<>(tiff.getSubDirectoryNames()));
         AssertJUnit.assertEquals(1, image.getMetadataCount(EXIF.class));
         final EXIF exif = image.getMetadata(EXIF.class);
         AssertJUnit.assertNotNull(exif);
@@ -270,7 +270,6 @@ public class EditableImageTest extends BaseTestSupport
 
     @Test
     public void testReadMetadataFromAdobeLightroomJPEG()
-            throws Exception
       {
         AssertJUnit.assertEquals(1, img20060603_0002_jpg.getMetadataCount(TIFF.class));
         final TIFF tiff = img20060603_0002_jpg.getMetadata(TIFF.class);

@@ -81,9 +81,9 @@ public class XYPlotter extends JComponent
 
     private Overlay overlay;
 
-    public final static int LINEAR = 0;
+    public static final int LINEAR = 0;
 
-    public final static int LOG = 1;
+    public static final int LOG = 1;
 
     private int xMode = LINEAR;
 
@@ -183,9 +183,8 @@ public class XYPlotter extends JComponent
         final int[] myData = new int[data.length];
         System.arraycopy(data, 0, myData, 0, data.length);
 
-        for (int i = 0; i < myData.length; i++)
+        for (final int d : myData)
           {
-            final int d = myData[i];
             max = Math.max(max, d);
             min = Math.min(min, d);
           }
@@ -299,9 +298,8 @@ public class XYPlotter extends JComponent
 
             int yMax = Integer.MIN_VALUE;
 
-            for (final Iterator j = dataList.iterator(); j.hasNext(); )
+            for (final Object key : dataList)
               {
-                final Object key = j.next();
                 final DataBundle dataBundle = (DataBundle)dataMap.get(key);
                 final int[] data = dataBundle.getData();
 
@@ -313,9 +311,9 @@ public class XYPlotter extends JComponent
 
             final double yScale = (double)height / (double)yMax;
 
-            for (final Iterator j = dataMap.values().iterator(); j.hasNext(); )
+            for (Object o : dataMap.values())
               {
-                final DataBundle dataBundle = (DataBundle)j.next();
+                final DataBundle dataBundle = (DataBundle)o;
                 g.setColor(dataBundle.getColor());
                 final int[] data = dataBundle.getData();
                 final int mask = dataBundle.getColor().getRGB();

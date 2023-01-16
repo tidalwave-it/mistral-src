@@ -76,7 +76,7 @@ public abstract class ImageModelHolder implements Serializable
     public String toString()
       {
 
-        final StringBuffer buffer = new StringBuffer(getClass().getName() + "[");
+        final StringBuilder buffer = new StringBuilder(getClass().getName() + "[");
         final ImageModel model = get();
         buffer.append((model != null) ? model.getId() : "null");
 

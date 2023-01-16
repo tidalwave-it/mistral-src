@@ -56,9 +56,9 @@ public class ConvertColorProfileJ2DOp extends OperationImplementation<ConvertCol
   {
     @Nonnull
     @Override
-    protected BufferedImage execute (final @Nonnull ConvertColorProfileOp operation,
-                                     final @Nonnull EditableImage image,
-                                     final @Nonnull BufferedImage bufferedImage)
+    protected BufferedImage execute (@Nonnull final ConvertColorProfileOp operation,
+                                     @Nonnull final EditableImage image,
+                                     @Nonnull final BufferedImage bufferedImage)
       {
         final ICC_Profile targetProfile = operation.getIccProfile();
         log.debug("convertColorProfile({})", ImageUtils.getICCProfileName(targetProfile));

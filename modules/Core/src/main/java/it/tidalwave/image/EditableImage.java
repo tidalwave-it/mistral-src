@@ -103,12 +103,12 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
     private transient IIOMetadata iioMetadata; // TODO make it serializable
 
     private final Map<Class<? extends Directory>, List<? extends Directory>> metadataMapByClass =
-            new HashMap<Class<? extends Directory>, List<? extends Directory>>();
+            new HashMap<>();
 
     /**
      * The attributes,
      */
-    private Map<String, Object> attributeMapByName = new HashMap<String, Object>();
+    private Map<String, Object> attributeMapByName = new HashMap<>();
 
     public /*FIXME*/ long latestOperationTime;
 
@@ -252,7 +252,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      *
      ******************************************************************************************************************/
     @Nonnull
-    public static EditableImage create (final @Nonnull AbstractCreateOp createOp)
+    public static EditableImage create (@Nonnull final AbstractCreateOp createOp)
       {
         final EditableImage editableImage = new EditableImage(null);
         final Object image = editableImage.internalExecute(createOp);
@@ -273,7 +273,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      ******************************************************************************************************************/
     // FIXME: merge with create(AbstractCreateOp), introduce ReadJ2DOp
     @Nonnull
-    public static EditableImage create (final @Nonnull ReadOp readOp)
+    public static EditableImage create (@Nonnull final ReadOp readOp)
             throws IOException
       {
         return readOp.execute();
@@ -328,7 +328,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
             log.info("getAvailableExtensions()");
           }
 
-        final Set<String> suffixList = new TreeSet<String>();
+        final Set<String> suffixList = new TreeSet<>();
 
         for (final String formatName : ImageIO.getReaderFormatNames())
           {
@@ -383,17 +383,6 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
       {
         final List<?> objects = metadataMapByClass.get(metadataClass);
         return objects.size();
-      }
-
-    /*******************************************************************************************************************
-     *
-     * @deprecated Use getMetadata(MakerNote.class) instead.
-     *
-     ******************************************************************************************************************/
-    @Deprecated
-    public final MakerNote getMakerNote()
-      {
-        return getMetadata(MakerNote.class);
       }
 
     /*******************************************************************************************************************
@@ -480,7 +469,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      *
      ******************************************************************************************************************/
     @Nonnull
-    public final <T extends Operation> T execute (final @Nonnull T operation)
+    public final <T extends Operation> T execute (@Nonnull final T operation)
       {
         final long time = System.currentTimeMillis();
         final Object image = internalExecute(operation);
@@ -500,7 +489,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      *
      ******************************************************************************************************************/
     @Nonnull
-    public final EditableImage execute2 (final @Nonnull Operation operation)
+    public final EditableImage execute2 (@Nonnull final Operation operation)
       {
         try
           {
@@ -510,7 +499,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
             final Constructor constructor = modelClass.getConstructor(Object.class);
             final ImageModel newModel = (ImageModel)constructor.newInstance(image);
             final EditableImage result = new EditableImage(newModel);
-            result.attributeMapByName = new HashMap<String, Object>(attributeMapByName);
+            result.attributeMapByName = new HashMap<>(attributeMapByName);
             result.latestOperationTime = System.currentTimeMillis() - time;
 
             return result;
@@ -548,7 +537,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
     public final EditableImage createSimilarImage()
       {
         final EditableImage imageCopy = imageModelHolder.get().createCopy(false);
-        imageCopy.attributeMapByName = new HashMap<String, Object>(attributeMapByName);
+        imageCopy.attributeMapByName = new HashMap<>(attributeMapByName);
 
         return imageCopy;
       }
@@ -561,7 +550,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
     public final EditableImage cloneImage()
       {
         final EditableImage imageCopy = imageModelHolder.get().createCopy(true);
-        imageCopy.attributeMapByName = new HashMap<String, Object>(attributeMapByName);
+        imageCopy.attributeMapByName = new HashMap<>(attributeMapByName);
 
         return imageCopy;
       }
@@ -645,7 +634,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
     public final Map<String, Object> getAttributes()
       {
         // FIXME: no such a thing as CopyOnWriteHashMap
-        return new HashMap<String, Object>(attributeMapByName);
+        return new HashMap<>(attributeMapByName);
       }
 
     /*******************************************************************************************************************
@@ -988,7 +977,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
     private <T extends Directory> void loadItem (final MetadataLoader metadataLoader, final Class<T> itemClass)
             throws InstantiationException, IllegalAccessException
       {
-        final List<T> items = new ArrayList<T>();
+        final List<T> items = new ArrayList<>();
         Object node = null;
 
         // FIXME: get rid of the if chain

@@ -48,8 +48,8 @@ import org.testng.annotations.Test;
 @Slf4j
 public abstract class BasePerformanceTestSupport extends BaseTestSupport
   {
-    private final static String host;
-    private final static String os;
+    private static final String host;
+    private static final String os;
 
     static
       {

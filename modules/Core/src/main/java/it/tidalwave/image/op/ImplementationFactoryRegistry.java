@@ -45,7 +45,7 @@ public class ImplementationFactoryRegistry
      *
      ******************************************************************************************************************/
     @Nonnull
-    public ImageModel createImageModel (final @Nonnull Object image)
+    public ImageModel createImageModel (@Nonnull final Object image)
       {
         for (final ImplementationFactory factory : getFactories())
           {
@@ -72,8 +72,8 @@ public class ImplementationFactoryRegistry
      *
      ******************************************************************************************************************/
     @Nonnull
-    public OperationImplementation findImplementation (final @Nonnull Operation operation,
-                                                       final @Nonnull ImageModel imageModel,
+    public OperationImplementation findImplementation (@Nonnull final Operation operation,
+                                                       @Nonnull final ImageModel imageModel,
                                                        final boolean canConvert)
       {
         log.trace("findImplementation({}, {}, canConvert: {})", operation, imageModel, canConvert);

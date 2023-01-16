@@ -52,27 +52,22 @@ public class PrintJ2DOp extends OperationImplementation<PrintOp, BufferedImage>
     @Override
     protected BufferedImage execute (final PrintOp operation, final EditableImage image, final BufferedImage model)
       {
-        final Printable printable = new Printable()
+        final Printable printable = (graphics, pageFormat, pageIndex) ->
           {
-            @Override
-            public int print (final Graphics graphics, final PageFormat pageFormat, final int pageIndex)
-                    throws PrinterException
+            if (pageIndex > 0)
               {
-                if (pageIndex > 0)
-                  {
-                    return Printable.NO_SUCH_PAGE;
-                  }
-
-                final Graphics2D g2d = (Graphics2D)graphics;
-                g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
-                final double xScale = pageFormat.getImageableWidth() / image.getWidth();
-                final double yScale = pageFormat.getImageableHeight() / image.getHeight();
-                final double aspectScale = Math.min(xScale, yScale);
-                final int width = (int)Math.round(image.getWidth() * aspectScale);
-                final int height = (int)Math.round(image.getHeight() * aspectScale);
-                image.execute(new PaintOp(g2d, 0, 0, width, height, null, null));
-                return Printable.PAGE_EXISTS;
+                return Printable.NO_SUCH_PAGE;
               }
+
+            final Graphics2D g2d = (Graphics2D)graphics;
+            g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+            final double xScale = pageFormat.getImageableWidth() / image.getWidth();
+            final double yScale = pageFormat.getImageableHeight() / image.getHeight();
+            final double aspectScale = Math.min(xScale, yScale);
+            final int width = (int)Math.round(image.getWidth() * aspectScale);
+            final int height = (int)Math.round(image.getHeight() * aspectScale);
+            image.execute(new PaintOp(g2d, 0, 0, width, height, null, null));
+            return Printable.PAGE_EXISTS;
           };
 
         final PrinterJob pj = operation.getPrinterJob();

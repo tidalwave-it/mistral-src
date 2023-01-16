@@ -129,14 +129,7 @@ public class AnimatedScaleController extends ScaleController
                 imageRenderer.setRotateQuality(Quality.FASTEST);
 
                 timer = new Timer(1000 / framesPerSecond,
-                                  new ActionListener()
-                                    {
-                                      @Override
-                                      public void actionPerformed (final ActionEvent e)
-                                        {
-                                          changeScale();
-                                        }
-                                    });
+                                  e -> changeScale());
 
                 timer.setRepeats(true);
                 timer.setInitialDelay(0);
@@ -178,19 +171,15 @@ public class AnimatedScaleController extends ScaleController
                 // we schedule the final, high-quality rendering with invokeLater() - even though we already
                 // are in the Event Thread.
                 //
-                SwingUtilities.invokeLater(new Runnable()
-                  {
-                    @Override
-                    public void run()
-                      {
-                        imageRenderer.setScaleQuality(scaleQualitySave);
-                        imageRenderer.setRotateQuality(rotateQualitySave);
-                        log.debug(">>>> quality restored to " + scaleQualitySave + ", " + rotateQualitySave);
-                        imageRenderer.flushScaledImageCache();
-                        imageRenderer.repaint();
-                        log.debug(">>>> scale: " + scale + ", targetScale: " + targetScale);
-                      }
-                  });
+                SwingUtilities.invokeLater(() ->
+                                             {
+                                               imageRenderer.setScaleQuality(scaleQualitySave);
+                                               imageRenderer.setRotateQuality(rotateQualitySave);
+                                               log.debug(">>>> quality restored to " + scaleQualitySave + ", " + rotateQualitySave);
+                                               imageRenderer.flushScaledImageCache();
+                                               imageRenderer.repaint();
+                                               log.debug(">>>> scale: " + scale + ", targetScale: " + targetScale);
+                                             });
               }
 
             synchronized (this)

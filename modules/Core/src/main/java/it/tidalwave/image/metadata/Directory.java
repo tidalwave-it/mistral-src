@@ -50,15 +50,15 @@ import it.tidalwave.image.metadata.loader.DirectoryAdapter;
  **********************************************************************************************************************/
 public class Directory extends JavaBeanSupport implements Serializable
   {
-    private final static long serialVersionUID = 3088068666726854722L;
+    private static final long serialVersionUID = 3088068666726854722L;
 
     private static int nextId = 1;
 
     private transient int idForToString;
 
-    private final Map<Integer, Object> tagMap = new HashMap<Integer, Object>();
+    private final Map<Integer, Object> tagMap = new HashMap<>();
 
-    private final Map<String, Directory> directoryMap = new HashMap<String, Directory>();
+    private final Map<String, Directory> directoryMap = new HashMap<>();
 
     private Date latestModificationTime;
 
@@ -123,7 +123,7 @@ public class Directory extends JavaBeanSupport implements Serializable
      ******************************************************************************************************************/
     public Set<String> getSubDirectoryNames()
       {
-        return new CopyOnWriteArraySet<String>(directoryMap.keySet());
+        return new CopyOnWriteArraySet<>(directoryMap.keySet());
       }
 
     /*******************************************************************************************************************
@@ -191,12 +191,12 @@ public class Directory extends JavaBeanSupport implements Serializable
             // Handle promotions
             if (((value instanceof Short) || (value instanceof Byte)) && asType.equals(Integer.class))
               {
-                value = Integer.valueOf(((Number)value).intValue());
+                value = ((Number)value).intValue();
               }
             else if (((value instanceof Short) || (value instanceof Integer) || (value instanceof Byte)) &&
                      asType.equals(Long.class))
               {
-                value = Long.valueOf(((Number)value).intValue());
+                value = (long)((Number)value).intValue();
               }
           }
 
@@ -329,7 +329,7 @@ public class Directory extends JavaBeanSupport implements Serializable
             return "" + array.length + " bytes";
           }
 
-        final StringBuffer buffer = new StringBuffer();
+        final StringBuilder buffer = new StringBuilder();
 
         for (int i = 0; i < array.length; i++)
           {
@@ -454,7 +454,7 @@ public class Directory extends JavaBeanSupport implements Serializable
      ******************************************************************************************************************/
     public String toString (final Rational[] array)
       {
-        final StringBuffer buffer = new StringBuffer();
+        final StringBuilder buffer = new StringBuilder();
 
         for (int i = 0; i < array.length; i++)
           {

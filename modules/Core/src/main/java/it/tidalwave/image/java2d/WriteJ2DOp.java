@@ -74,7 +74,7 @@ public class WriteJ2DOp extends OperationImplementation<WriteOp, BufferedImage>
           {
             if (output instanceof OutputStream)
               {
-                stream = ImageIO.createImageOutputStream((OutputStream)output);
+                stream = ImageIO.createImageOutputStream(output);
                 shouldClose = false;
               }
 

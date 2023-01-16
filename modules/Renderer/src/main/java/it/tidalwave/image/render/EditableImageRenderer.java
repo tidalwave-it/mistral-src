@@ -65,22 +65,22 @@ public class EditableImageRenderer extends JComponent
     /**
      * The maximum allowed value for scale.
      */
-    public final static double MAX_SCALE = 40;
+    public static final double MAX_SCALE = 40;
 
     /**
      * The maximum allowed value for scale.
      */
-    public final static double MIN_SCALE = 0.01;
+    public static final double MIN_SCALE = 0.01;
 
     /**
      * Over this image size the scaled image caching is always disabled.
      */
-    private final static int MAX_SIZE_FOR_SCALED_CACHING = 8000;
+    private static final int MAX_SIZE_FOR_SCALED_CACHING = 8000;
 
     /**
      * The default background color for parts not covered by the image.
      */
-    private final static Color DEFAULT_BACKGROUND = Color.DARK_GRAY;
+    private static final Color DEFAULT_BACKGROUND = Color.DARK_GRAY;
 
     /**
      * An empty margin.
@@ -179,7 +179,7 @@ public class EditableImageRenderer extends JComponent
     /**
      * Overlays will be drawn over the image.
      */
-    private final List<Overlay> overlayList = new ArrayList<Overlay>();
+    private final List<Overlay> overlayList = new ArrayList<>();
 
     /**
      * If true, the image always fits the component size.
@@ -189,7 +189,7 @@ public class EditableImageRenderer extends JComponent
     /**
      * The list of listeners.
      */
-    private final List<EditableImageRendererListener> listenerList = new ArrayList<EditableImageRendererListener>();
+    private final List<EditableImageRendererListener> listenerList = new ArrayList<>();
 
     /**
      * True if repaint is currently enabled.
@@ -243,14 +243,8 @@ public class EditableImageRenderer extends JComponent
      * The scrollbar listener. 
      *
      ******************************************************************************************************************/
-    private final AdjustmentListener scrollbarListener = new AdjustmentListener()
-      {
-        @Override
-        public void adjustmentValueChanged (final AdjustmentEvent event)
-          {
-            setOrigin(new Point(horizontalScrollBar.getValue(), verticalScrollBar.getValue()));
-          }
-      };
+    private final AdjustmentListener scrollbarListener =
+            event -> setOrigin(new Point(horizontalScrollBar.getValue(), verticalScrollBar.getValue()));
 
     /*******************************************************************************************************************
      *
@@ -1320,7 +1314,7 @@ public class EditableImageRenderer extends JComponent
       {
         final EditableImageRendererEvent event = new EditableImageRendererEvent(this);
 
-        for (final EditableImageRendererListener listener : new ArrayList<EditableImageRendererListener>(listenerList))
+        for (final EditableImageRendererListener listener : new ArrayList<>(listenerList))
           {
             try
               {
@@ -1343,7 +1337,7 @@ public class EditableImageRenderer extends JComponent
       {
         final EditableImageRendererEvent event = new EditableImageRendererEvent(this);
 
-        for (final EditableImageRendererListener listener : new ArrayList<EditableImageRendererListener>(listenerList))
+        for (final EditableImageRendererListener listener : new ArrayList<>(listenerList))
           {
             try
               {
@@ -1366,7 +1360,7 @@ public class EditableImageRenderer extends JComponent
       {
         final EditableImageRendererEvent event = new EditableImageRendererEvent(this, editingTool);
 
-        for (final EditableImageRendererListener listener : new ArrayList<EditableImageRendererListener>(listenerList))
+        for (final EditableImageRendererListener listener : new ArrayList<>(listenerList))
           {
             try
               {
@@ -1389,7 +1383,7 @@ public class EditableImageRenderer extends JComponent
       {
         final EditableImageRendererEvent event = new EditableImageRendererEvent(this, editingTool);
 
-        for (final EditableImageRendererListener listener : new ArrayList<EditableImageRendererListener>(listenerList))
+        for (final EditableImageRendererListener listener : new ArrayList<>(listenerList))
           {
             try
               {

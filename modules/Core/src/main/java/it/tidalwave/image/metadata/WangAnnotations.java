@@ -187,7 +187,7 @@ public class WangAnnotations
           }
       }
 
-    public static abstract class Internal
+    public abstract static class Internal
       {
         protected final Attributes attributes;
 
@@ -225,14 +225,7 @@ public class WangAnnotations
         @Override
         public void render (final EditableImage image)
           {
-            image.execute2(new DrawOp(new DrawOp.Executor()
-              {
-                @Override
-                public void draw (final Graphics2D g, final EditableImage image)
-                  {
-                    attributes.drawString(g, image, text);
-                  }
-              }));
+            image.execute2(new DrawOp((g, image1) -> attributes.drawString(g, image1, text)));
           }
 
         @Override
@@ -257,14 +250,7 @@ public class WangAnnotations
         @Override
         public void render (final EditableImage image)
           {
-            image.execute2(new DrawOp(new DrawOp.Executor()
-              {
-                @Override
-                public void draw (final Graphics2D g, final EditableImage image)
-                  {
-                    attributes.drawRectangle(g, image);
-                  }
-              }));
+            image.execute2(new DrawOp((g, image1) -> attributes.drawRectangle(g, image1)));
           }
 
         @Override
@@ -274,7 +260,7 @@ public class WangAnnotations
           }
       }
 
-    private final List<Internal> internals = new ArrayList<Internal>();
+    private final List<Internal> internals = new ArrayList<>();
 
     public WangAnnotations (final byte[] buffer)
             throws IOException

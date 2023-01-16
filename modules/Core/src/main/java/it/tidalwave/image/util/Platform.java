@@ -33,8 +33,8 @@ package it.tidalwave.image.util;
  **********************************************************************************************************************/
 public final class Platform
   {
-    private final static boolean macOSX = System.getProperty("os.name").toLowerCase().indexOf("mac os") >= 0;
-    private final static boolean linux = System.getProperty("os.name").toLowerCase().indexOf("linux") >= 0;
+    private static final boolean macOSX = System.getProperty("os.name").toLowerCase().contains("mac os");
+    private static final boolean linux = System.getProperty("os.name").toLowerCase().contains("linux");
 
     private Platform()
       {

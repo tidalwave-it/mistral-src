@@ -139,7 +139,7 @@ public class DirectoryRawAdapter implements DirectoryAdapter
             throws NoSuchElementException
       {
         checkIfTagExists(tag);
-        final Object value = directory.getObject(Integer.valueOf(tag));
+        final Object value = directory.getObject(tag);
 
         if (value instanceof TagRational)
           {
@@ -163,7 +163,7 @@ public class DirectoryRawAdapter implements DirectoryAdapter
     public String getTagName (final int tag)
       {
         checkIfTagExists(tag);
-        return directory.getTagName(Integer.valueOf(tag));
+        return directory.getTagName(tag);
       }
 
     /*******************************************************************************************************************
@@ -173,7 +173,7 @@ public class DirectoryRawAdapter implements DirectoryAdapter
     @Override
     public boolean containsTag (final int tag)
       {
-        return (directory != null) ? directory.containsTag(Integer.valueOf(tag)) : false;
+        return (directory != null) ? directory.containsTag(tag) : false;
       }
 
     /*******************************************************************************************************************

@@ -186,9 +186,9 @@ public class CreateJ2DOp extends OperationImplementation<CreateOp, BufferedImage
 
     private boolean isZero (final int[] samples)
       {
-        for (int i = 0; i < samples.length; i++)
+        for (int sample : samples)
           {
-            if (samples[i] != 0)
+            if (sample != 0)
               {
                 return false;
               }

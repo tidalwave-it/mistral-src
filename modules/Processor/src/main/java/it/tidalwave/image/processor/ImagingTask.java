@@ -40,12 +40,11 @@ import lombok.extern.slf4j.Slf4j;
  * @author Fabrizio Giudici
  *
  **********************************************************************************************************************/
-@Slf4j
-abstract public class ImagingTask implements Serializable
+@Slf4j public abstract class ImagingTask implements Serializable
   {
     static final long serialVersionUID = 8564150248239203504L;
 
-    private final static long MEGA = 1024 * 1024;
+    private static final long MEGA = 1024 * 1024;
 
     private static int uniqueIdCounter;
 
@@ -159,7 +158,7 @@ abstract public class ImagingTask implements Serializable
      * This method is performed in a distributed context, if available.
      *
      ******************************************************************************************************************/
-    abstract protected void run()
+    protected abstract void run()
             throws Exception;
 
     /*******************************************************************************************************************

@@ -218,9 +218,9 @@ public abstract class BaseTestSupport
       {
         final StringBuilder stringBuilder = new StringBuilder();
 
-        for (int i = 0; i < bytes.length; i++)
+        for (byte aByte : bytes)
           {
-            final String s = Integer.toHexString(bytes[i] & 0xff);
+            final String s = Integer.toHexString(aByte & 0xff);
 
             if (s.length() < 2)
               {

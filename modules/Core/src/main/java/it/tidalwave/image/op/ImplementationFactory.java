@@ -48,14 +48,14 @@ public abstract class ImplementationFactory
     private final Class modelClass;
 
     private final Map<Class<? extends Operation>, Class<? extends OperationImplementation>> implementationMapping =
-            new HashMap<Class<? extends Operation>, Class<? extends OperationImplementation>>();
+            new HashMap<>();
 
     /*******************************************************************************************************************
      *
      *
      ******************************************************************************************************************/
-    public void registerImplementation (final @Nonnull Class<? extends Operation> operationClass,
-                                        final @Nonnull Class<? extends OperationImplementation> implementationClass)
+    public void registerImplementation (@Nonnull final Class<? extends Operation> operationClass,
+                                        @Nonnull final Class<? extends OperationImplementation> implementationClass)
       {
         implementationMapping.put(operationClass, implementationClass);
       }
@@ -64,7 +64,7 @@ public abstract class ImplementationFactory
      *
      *
      ******************************************************************************************************************/
-    public void unregisterImplementation (final @Nonnull Class<? extends Operation> operationClass)
+    public void unregisterImplementation (@Nonnull final Class<? extends Operation> operationClass)
       {
         implementationMapping.remove(operationClass);
       }
@@ -78,7 +78,7 @@ public abstract class ImplementationFactory
      *
      ******************************************************************************************************************/
     @Nonnull
-    public OperationImplementation<Operation, Object> findImplementation (final @Nonnull Operation operation)
+    public OperationImplementation<Operation, Object> findImplementation (@Nonnull final Operation operation)
       {
         final Class<OperationImplementation<Operation, Object>> implementationClass =
                 (Class<OperationImplementation<Operation, Object>>)implementationMapping.get(operation.getClass());
@@ -94,11 +94,7 @@ public abstract class ImplementationFactory
 
                 return implementation;
               }
-            catch (IllegalAccessException e)
-              {
-                log.error("findImplementation()", e);
-              }
-            catch (InstantiationException e)
+            catch (IllegalAccessException | InstantiationException e)
               {
                 log.error("findImplementation()", e);
               }
@@ -112,7 +108,7 @@ public abstract class ImplementationFactory
      *
      ******************************************************************************************************************/
     @Nonnull
-    public ImageModel createImageModel (final @Nonnull BufferedImage image)
+    public ImageModel createImageModel (@Nonnull final BufferedImage image)
       {
         throw new UnsupportedOperationException();
       }

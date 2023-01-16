@@ -124,35 +124,31 @@ public class HistogramRenderer extends JPanel
       {
         this.histogram = histogram;
 
-        SwingUtilities.invokeLater(new Runnable()
-          {
-            @Override
-            public void run()
-              {
-                log.trace(">>>> histogram ready...");
-                histogramPlotter.clearData();
-                //histogramPlotter.setXAxisLogarithmic(6);
-                histogramPlotter.setXAxisLinear();
-                grid.setHSteps(6);
+        SwingUtilities.invokeLater(() ->
+                                     {
+                                       log.trace(">>>> histogram ready...");
+                                       histogramPlotter.clearData();
+                                       //histogramPlotter.setXAxisLogarithmic(6);
+                                       histogramPlotter.setXAxisLinear();
+                                       grid.setHSteps(6);
 
-                final int bandCount = histogram.getBandCount();
+                                       final int bandCount = histogram.getBandCount();
 
-                if (bandCount == 1)
-                  {
-                    histogramPlotter.addData("GRAY", histogram.getFrequencies(0), Color.WHITE);
-                  }
+                                       if (bandCount == 1)
+                                         {
+                                           histogramPlotter.addData("GRAY", histogram.getFrequencies(0), Color.WHITE);
+                                         }
 
-                else if (bandCount == 3)
-                  {
-                    histogramPlotter.addData("RED", histogram.getFrequencies(0), Color.RED);
-                    histogramPlotter.addData("GREEN", histogram.getFrequencies(1), Color.GREEN);
-                    histogramPlotter.addData("BLUE", histogram.getFrequencies(2), Color.BLUE);
-                  }
+                                       else if (bandCount == 3)
+                                         {
+                                           histogramPlotter.addData("RED", histogram.getFrequencies(0), Color.RED);
+                                           histogramPlotter.addData("GREEN", histogram.getFrequencies(1), Color.GREEN);
+                                           histogramPlotter.addData("BLUE", histogram.getFrequencies(2), Color.BLUE);
+                                         }
 
-                cardLayout.show(HistogramRenderer.this, HISTOGRAM);
-                log.trace(">>>> showing histogram...");
-              }
-          });
+                                       cardLayout.show(HistogramRenderer.this, HISTOGRAM);
+                                       log.trace(">>>> showing histogram...");
+                                     });
       }
 
     /*******************************************************************************************************************

@@ -39,7 +39,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class IPTC extends IPTCDirectoryGenerated
   {
-    private final static long serialVersionUID = 3033068666726854799L;
+    private static final long serialVersionUID = 3033068666726854799L;
 
     // Not static since they are not thread safe
     private final SimpleDateFormat exifDateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
@@ -57,7 +57,7 @@ public class IPTC extends IPTCDirectoryGenerated
      *
      *
      ******************************************************************************************************************/
-    public IPTC (final @Nonnull Date latestModificationTime)
+    public IPTC (@Nonnull final Date latestModificationTime)
       {
         super(latestModificationTime);
       }
@@ -76,7 +76,7 @@ public class IPTC extends IPTCDirectoryGenerated
      *
      *
      ******************************************************************************************************************/
-    public void setDateCreatedAsDate (final @Nonnull Date date)
+    public void setDateCreatedAsDate (@Nonnull final Date date)
       {
         setDateCreated((date == null) ? null : formatDate(date));
       }
@@ -110,7 +110,7 @@ public class IPTC extends IPTCDirectoryGenerated
      * synchronized since SimpleDateFormat is not thread-safe.
      *
      ******************************************************************************************************************/
-    private synchronized String formatDate (final @Nonnull Date date)
+    private synchronized String formatDate (@Nonnull final Date date)
       {
         if (date == null)
           {
@@ -126,7 +126,7 @@ public class IPTC extends IPTCDirectoryGenerated
      *
      ******************************************************************************************************************/
     @Nonnull
-    private synchronized Date parseDate (final @Nonnull String string)
+    private synchronized Date parseDate (@Nonnull final String string)
       {
         if (string == null)
           {

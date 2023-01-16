@@ -53,11 +53,11 @@ public class WorkaroundBM25
         JpegMetadataReader.class.getName(); // Check if Drew stuff is in the classpath 
       }
 
-    public void loadExifAndIptcFromJpeg (final @Nonnull ImageReader reader,
-                                         final @Nonnull TIFF tiff,
-                                         final @Nonnull EXIF exif,
-                                         final @Nonnull IPTC iptc,
-                                         final @Nonnull XMP xmp)
+    public void loadExifAndIptcFromJpeg (@Nonnull final ImageReader reader,
+                                         @Nonnull final TIFF tiff,
+                                         @Nonnull final EXIF exif,
+                                         @Nonnull final IPTC iptc,
+                                         @Nonnull final XMP xmp)
             throws IOException, JpegProcessingException
       {
         // See http://bluemarine.tidalwave.it/issues/browse/BM-25 and http://bugs.sun.com/bugdatabase/view_bug

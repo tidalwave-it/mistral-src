@@ -43,8 +43,8 @@ import org.w3c.dom.Node;
  **********************************************************************************************************************/
 public class DrewMetadataLoader implements MetadataLoader
   {
-    public final static int EXIF = 0xE1;
-    public final static int IPTC = 0xED;
+    public static final int EXIF = 0xE1;
+    public static final int IPTC = 0xED;
 
     /*******************************************************************************************************************
      *

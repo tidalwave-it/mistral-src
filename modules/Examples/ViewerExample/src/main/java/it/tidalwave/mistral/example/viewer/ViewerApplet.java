@@ -43,22 +43,18 @@ public class ViewerApplet extends JApplet
       {
         try
           {
-            EventQueue.invokeAndWait(new Runnable()
-              {
-                @Override
-                public void run()
-                  {
-                    try
-                      {
-                        setLayout(new BorderLayout());
-                        add(new ViewerPanel(), BorderLayout.CENTER);
-                      }
-                    catch (IOException ex)
-                      {
-                        ex.printStackTrace();
-                      }
-                  }
-              });
+            EventQueue.invokeAndWait(() ->
+                                       {
+                                         try
+                                           {
+                                             setLayout(new BorderLayout());
+                                             add(new ViewerPanel(), BorderLayout.CENTER);
+                                           }
+                                         catch (IOException ex)
+                                           {
+                                             ex.printStackTrace();
+                                           }
+                                       });
           }
         catch (Exception e)
           {

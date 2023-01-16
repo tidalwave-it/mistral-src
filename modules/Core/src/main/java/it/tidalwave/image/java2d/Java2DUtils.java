@@ -26,6 +26,7 @@
  */
 package it.tidalwave.image.java2d;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -68,7 +69,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Java2DUtils
   {
-    public static final Float ZERO = Float.valueOf(0);
+    public static final Float ZERO = (float)0;
     private static final Map<Quality, Object> renderingHintsQualityMap =
             Collections.unmodifiableMap(new HashMap<Quality, Object>()
               {
@@ -102,9 +103,8 @@ public class Java2DUtils
 
         if (propertyNames != null)
           {
-            for (int i = 0; i < propertyNames.length; i++)
+            for (final String propertyName : propertyNames)
               {
-                final String propertyName = propertyNames[i];
                 final Object propertyValue = image.getProperty(propertyName);
                 properties.setProperty(propertyName, propertyValue.toString());
               }
@@ -385,7 +385,7 @@ public class Java2DUtils
      ******************************************************************************************************************/
     protected static String toString (final int[] array, final int radix)
       {
-        final StringBuffer buffer = new StringBuffer();
+        final StringBuilder buffer = new StringBuilder();
 
         for (int i = 0; i < array.length; i++)
           {
@@ -483,7 +483,7 @@ public class Java2DUtils
      ******************************************************************************************************************/
     private static String toString (final ICC_ColorSpace colorSpace)
       {
-        final StringBuffer buffer = new StringBuffer();
+        final StringBuilder buffer = new StringBuilder();
         buffer.append(colorSpace.getClass().getName());
         buffer.append("[type: ");
         buffer.append(colorSpace.getType());
@@ -500,7 +500,7 @@ public class Java2DUtils
      ******************************************************************************************************************/
     private static String toString (final SinglePixelPackedSampleModel sampleModel)
       {
-        final StringBuffer buffer = new StringBuffer();
+        final StringBuilder buffer = new StringBuilder();
         buffer.append(sampleModel.getClass().getName());
         buffer.append("[width: ");
         buffer.append(sampleModel.getWidth());
@@ -531,7 +531,7 @@ public class Java2DUtils
      ******************************************************************************************************************/
     private static String toString (final PixelInterleavedSampleModel sampleModel)
       {
-        final StringBuffer buffer = new StringBuffer();
+        final StringBuilder buffer = new StringBuilder();
         buffer.append(sampleModel.getClass().getName());
         buffer.append("[width: ");
         buffer.append(sampleModel.getWidth());
@@ -814,11 +814,7 @@ public class Java2DUtils
         final int totalCount = n * n;
         final float v = 1.0f / (totalCount);
         final float[] result = new float[totalCount];
-
-        for (int i = 0; i < result.length; i++)
-          {
-            result[i] = v;
-          }
+        Arrays.fill(result, v);
 
         return new Kernel2(n, n, result);
       }

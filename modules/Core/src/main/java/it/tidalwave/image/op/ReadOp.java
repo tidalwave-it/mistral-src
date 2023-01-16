@@ -83,7 +83,7 @@ public class ReadOp extends Operation
     @ToString
     public static class PluginBlackList implements Options
       {
-        public final static PluginBlackList DEFAULT = new PluginBlackList(
+        public static final PluginBlackList DEFAULT = new PluginBlackList(
                 // WRONG! These are the good ones! But keep for compability until you test everything.
                 "com.sun.media.imageioimpl.plugins.jpeg.CLibJPEGImageReader",
                 "com.sun.media.imageioimpl.plugins.jpeg.CLibJPEGImageWriter",
@@ -95,12 +95,12 @@ public class ReadOp extends Operation
 
         private final Set<String> plugins;
 
-        public PluginBlackList (final @Nonnull String... plugins)
+        public PluginBlackList (@Nonnull final String... plugins)
           {
-            this.plugins = new HashSet<String>(Arrays.asList(plugins));
+            this.plugins = new HashSet<>(Arrays.asList(plugins));
           }
 
-        public boolean contains (final @Nonnull String pluginName)
+        public boolean contains (@Nonnull final String pluginName)
           {
             return plugins.contains(pluginName);
           }
@@ -125,19 +125,19 @@ public class ReadOp extends Operation
      *
      *
      ******************************************************************************************************************/
-    private static abstract class Reader
+    private abstract static class Reader
       {
-        public static EditableImage read (final @Nonnull Object input,
-                                          final @Nonnull Reader reader,
-                                          final @Nonnull PluginBlackList pluginBlackList)
+        public static EditableImage read (@Nonnull final Object input,
+                                          @Nonnull final Reader reader,
+                                          @Nonnull final PluginBlackList pluginBlackList)
                 throws IOException
           {
             return reader.run(input, pluginBlackList);
           }
 
         @Nonnull
-        private EditableImage run (final @Nonnull Object input,
-                                   final @Nonnull PluginBlackList pluginBlackList)
+        private EditableImage run (@Nonnull final Object input,
+                                   @Nonnull final PluginBlackList pluginBlackList)
                 throws IOException
           {
             Objects.requireNonNull(input, "input");
@@ -205,7 +205,7 @@ public class ReadOp extends Operation
         protected abstract EditableImage read (@Nonnull ImageReader imageReader)
                 throws IOException;
 
-        private void setProperties (final @Nonnull EditableImage image, final @Nonnull ImageReader imageReader)
+        private void setProperties (@Nonnull final EditableImage image, @Nonnull final ImageReader imageReader)
                 throws IOException
           {
             image.setAttribute(EditableImage.PROP_FORMAT, imageReader.getFormatName());
@@ -227,7 +227,7 @@ public class ReadOp extends Operation
                   {
                     @Nonnull
                     @Override
-                    protected EditableImage read (final @Nonnull ReadOp readOp)
+                    protected EditableImage read (@Nonnull final ReadOp readOp)
                             throws IOException
                       {
                         final Object input = readOp.getInput();
@@ -260,7 +260,7 @@ public class ReadOp extends Operation
                   {
                     @Nonnull
                     @Override
-                    protected EditableImage read (final @Nonnull ReadOp readOp)
+                    protected EditableImage read (@Nonnull final ReadOp readOp)
                             throws IOException
                       {
                         final Object input = readOp.getInput();
@@ -272,7 +272,7 @@ public class ReadOp extends Operation
                           {
                             @Nonnull
                             @Override
-                            protected EditableImage read (final @Nonnull ImageReader imageReader)
+                            protected EditableImage read (@Nonnull final ImageReader imageReader)
                                     throws IOException
                               {
                                 final long time = System.currentTimeMillis();
@@ -291,7 +291,7 @@ public class ReadOp extends Operation
                   {
                     @Nonnull
                     @Override
-                    protected EditableImage read (final @Nonnull ReadOp readOp)
+                    protected EditableImage read (@Nonnull final ReadOp readOp)
                             throws IOException
                       {
                         final Object input = readOp.getInput();
@@ -302,8 +302,7 @@ public class ReadOp extends Operation
                           {
                             @Nonnull
                             @Override
-                            protected EditableImage read (final @Nonnull ImageReader imageReader)
-                                    throws IOException
+                            protected EditableImage read (@Nonnull final ImageReader imageReader)
                               {
                                 final EditableImage editableImage = new EditableImage(null);
                                 editableImage.loadMetadata(imageReader, imageIndex);
@@ -326,7 +325,7 @@ public class ReadOp extends Operation
          *
          **************************************************************************************************************/
         @Nonnull
-        private static EditableImage create (final @Nonnull BufferedImage image)
+        private static EditableImage create (@Nonnull final BufferedImage image)
           {
             return new EditableImage(Lookup.getDefault()
                                            .lookup(ImplementationFactoryJ2D.class)
@@ -338,7 +337,7 @@ public class ReadOp extends Operation
          *
          **************************************************************************************************************/
         @Nonnull
-        private static EditableImage create (final @Nonnull BufferedImage image, final long time)
+        private static EditableImage create (@Nonnull final BufferedImage image, final long time)
           {
             final EditableImage editableImage = create(image);
             editableImage.latestOperationTime = time;
@@ -351,7 +350,7 @@ public class ReadOp extends Operation
      * @param  input          the input (an ImageReader or a File)
      *
      ******************************************************************************************************************/
-    public ReadOp (final @Nonnull Object input)
+    public ReadOp (@Nonnull final Object input)
       {
         this(input, 0, 0);
       }
@@ -362,7 +361,7 @@ public class ReadOp extends Operation
      * @param  type           the type of read
      *
      ******************************************************************************************************************/
-    public ReadOp (final @Nonnull Object input, final @Nonnull Options... options)
+    public ReadOp (@Nonnull final Object input, @Nonnull final Options... options)
       {
         this(input, 0, 0, options);
       }
@@ -374,9 +373,9 @@ public class ReadOp extends Operation
      * @param  imageIndex     the index of the image to read
      *
      ******************************************************************************************************************/
-    public ReadOp (final @Nonnull Object input,
-                   final @Nonnegative int imageIndex,
-                   final @Nonnull Options... options)
+    public ReadOp (@Nonnull final Object input,
+                   @Nonnegative final int imageIndex,
+                   @Nonnull final Options... options)
       {
         this(input, imageIndex, 0, options);
       }
@@ -389,10 +388,10 @@ public class ReadOp extends Operation
      * @param  thumbnailIndex the index of the thumbnail to read
      *
      ******************************************************************************************************************/
-    public ReadOp (final @Nonnull Object input,
-                   final @Nonnegative int imageIndex,
-                   final @Nonnegative int thumbnailIndex,
-                   final @Nonnull Options... options)
+    public ReadOp (@Nonnull final Object input,
+                   @Nonnegative final int imageIndex,
+                   @Nonnegative final int thumbnailIndex,
+                   @Nonnull final Options... options)
       {
         this.input = input;
         this.type = Parameters.find(Type.class, Type.IMAGE, options);
@@ -424,8 +423,8 @@ public class ReadOp extends Operation
      *
      ******************************************************************************************************************/
     @Nonnull
-    public static ImageReader createImageReader (final @Nonnull File file,
-                                                 final @Nonnull PluginBlackList pluginBlackList)
+    public static ImageReader createImageReader (@Nonnull final File file,
+                                                 @Nonnull final PluginBlackList pluginBlackList)
             throws FileNotFoundException, IOException
       {
         log.trace("createImageReader({}, {})", file, pluginBlackList);
@@ -490,7 +489,7 @@ public class ReadOp extends Operation
      *
      ******************************************************************************************************************/
     @Nonnull
-    public static ImageReader createImageReader (final @Nonnull URL url, final @Nonnull PluginBlackList pluginBlackList)
+    public static ImageReader createImageReader (@Nonnull final URL url, @Nonnull final PluginBlackList pluginBlackList)
             throws IOException
       {
         log.trace("createImageReader({})", url);
@@ -526,8 +525,8 @@ public class ReadOp extends Operation
      *
      ******************************************************************************************************************/
     @Nonnull
-    private static ImageReader createImageReader (final @Nonnull InputStream inputStream,
-                                                  final @Nonnull PluginBlackList pluginBlackList)
+    private static ImageReader createImageReader (@Nonnull final InputStream inputStream,
+                                                  @Nonnull final PluginBlackList pluginBlackList)
             throws IOException
       {
         log.info("createImageReader({})", inputStream);
@@ -547,10 +546,10 @@ public class ReadOp extends Operation
      * @throws IOException       if it is not possible
      *
      ******************************************************************************************************************/
-    private static ImageReader createImageReader (final @Nonnull ImageInputStream imageInputStream,
+    private static ImageReader createImageReader (@Nonnull final ImageInputStream imageInputStream,
                                                   final boolean gzipCompression,
-                                                  final @Nonnull String suffix,
-                                                  final @Nonnull PluginBlackList pluginBlackList)
+                                                  @Nonnull final String suffix,
+                                                  @Nonnull final PluginBlackList pluginBlackList)
             throws IOException
       {
         log.info("createImageReader({}, {}, {})", imageInputStream, gzipCompression, suffix);
@@ -569,16 +568,16 @@ public class ReadOp extends Operation
      *
      ******************************************************************************************************************/
     @Nonnull
-    private static ImageReader createImageReader (final @Nonnull ImageInputStream imageInputStream,
-                                                  final @Nonnull Iterator<? extends ImageReader> iterator,
-                                                  final @Nonnull PluginBlackList pluginBlackList)
+    private static ImageReader createImageReader (@Nonnull final ImageInputStream imageInputStream,
+                                                  @Nonnull final Iterator<? extends ImageReader> iterator,
+                                                  @Nonnull final PluginBlackList pluginBlackList)
             throws IOException
       {
         log.info("createImageReader({}, {})", imageInputStream, iterator);
 
         // See http://bluemarine.tidalwave.it/issues/browse/MST-137
-        final List<ImageReader> readers = new ArrayList<ImageReader>();
-        final List<ImageReader> tiffReaders = new ArrayList<ImageReader>();
+        final List<ImageReader> readers = new ArrayList<>();
+        final List<ImageReader> tiffReaders = new ArrayList<>();
 
         if (!iterator.hasNext())
           {

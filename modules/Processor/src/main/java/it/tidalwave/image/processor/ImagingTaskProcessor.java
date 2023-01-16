@@ -74,17 +74,17 @@ public abstract class ImagingTaskProcessor // NOT Serializable
     /**
      * The list of pending tasks.
      */
-    private final List<ImagingTask> pendingTasks = Collections.synchronizedList(new ArrayList<ImagingTask>());
+    private final List<ImagingTask> pendingTasks = Collections.synchronizedList(new ArrayList<>());
 
     /**
      * The list of running tasks.
      */
-    private final List<ImagingTask> runningTasks = Collections.synchronizedList(new ArrayList<ImagingTask>());
+    private final List<ImagingTask> runningTasks = Collections.synchronizedList(new ArrayList<>());
 
     /**
      * The list of completed tasks.
      */
-    private final List<ImagingTask> completedTasks = Collections.synchronizedList(new ArrayList<ImagingTask>());
+    private final List<ImagingTask> completedTasks = Collections.synchronizedList(new ArrayList<>());
 
     private final Statistics statistics = new Statistics();
 
@@ -107,7 +107,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
      *
      ******************************************************************************************************************/
     // change getInstance()->getDefault() since this is no more a singleton
-    public synchronized static ImagingTaskProcessor getInstance()
+    public static synchronized ImagingTaskProcessor getInstance()
       {
         if (instance == null)
           {
@@ -303,7 +303,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
     public final <T extends ImagingTask> Collection<T> cancellPendingTasks (final Class<T> taskClass)
       {
         log.info("cancellPendingTasks(" + taskClass.getName() + ")");
-        final List<T> result = new ArrayList<T>();
+        final List<T> result = new ArrayList<>();
 
         synchronized (lock)
           {

@@ -56,7 +56,7 @@ class TestInfo implements Comparable<TestInfo>
     private final String test;
     private final String quality;
     private final String file;
-    private Set<TestResults> results = new TreeSet<TestResults>();
+    private Set<TestResults> results = new TreeSet<>();
 
     public TestInfo (final String body)
       {
@@ -231,7 +231,7 @@ public class TestReportFormatter
   {
     private final File reportFile;
     private final File htmlFile;
-    private List<TestInfo> tests = new ArrayList<TestInfo>();
+    private List<TestInfo> tests = new ArrayList<>();
 
     /**
      * Creates a new instance of TestReportFormatter

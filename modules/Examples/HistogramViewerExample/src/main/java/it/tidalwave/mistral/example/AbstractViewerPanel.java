@@ -116,52 +116,40 @@ public class AbstractViewerPanel extends JPanel
         imageRenderer.repaint(); // FIXME: should not be needed
 
         // A SwingWorker would be good here
-        final Thread loaderThread = new Thread()
+        final Thread loaderThread = new Thread(() ->
           {
-            @Override
-            public void run()
+            try
               {
-                try
-                  {
-                    final EditableImage image = EditableImage.create(new ReadOp(input));
+                final EditableImage image = EditableImage.create(new ReadOp(input));
 
-                    SwingUtilities.invokeLater(new Runnable()
-                      {
-                        @Override
-                        public void run()
-                          {
-                            imageRenderer.setImage(image);
-                            imageRenderer.removeOverlay(overlay);
-                            final int hMargin = image.getWidth() / 4;
-                            final int vMargin = image.getHeight() / 4;
-                            imageRenderer.setMargin(new Insets(vMargin, hMargin, vMargin, hMargin));
-                            onImageLoaded(image);
-                          }
-                      });
-                  }
-                catch (final Throwable e)
-                  {
-                    SwingUtilities.invokeLater(new Runnable()
-                      {
-                        @Override
-                        public void run()
-                          {
-                            label.setText(e.toString());
-                            imageRenderer.repaint(); // FIXME: should not be needed
-//                            imageRenderer.removeOverlay(overlay);
-                            e.printStackTrace();
-                            final String message =
-                                    "<html>Cannot load the image.<br>An Internet connection is required.</html>";
-                            final String title = "Error";
-                            JOptionPane.showMessageDialog(AbstractViewerPanel.this,
-                                                          message,
-                                                          title,
-                                                          JOptionPane.ERROR_MESSAGE);
-                          }
-                      });
-                  }
+                SwingUtilities.invokeLater(() ->
+                                            {
+                                              imageRenderer.setImage(image);
+                                              imageRenderer.removeOverlay(overlay);
+                                              final int hMargin = image.getWidth() / 4;
+                                              final int vMargin = image.getHeight() / 4;
+                                              imageRenderer.setMargin(new Insets(vMargin, hMargin, vMargin, hMargin));
+                                              onImageLoaded(image);
+                                            });
               }
-          };
+            catch (final Throwable e)
+              {
+                SwingUtilities.invokeLater(() ->
+                                            {
+                                              label.setText(e.toString());
+                                              imageRenderer.repaint(); // FIXME: should not be needed
+                  //                            imageRenderer.removeOverlay(overlay);
+                                              e.printStackTrace();
+                                              final String message =
+                                                      "<html>Cannot load the image.<br>An Internet connection is required.</html>";
+                                              final String title = "Error";
+                                              JOptionPane.showMessageDialog(AbstractViewerPanel.this,
+                                                                            message,
+                                                                            title,
+                                                                            JOptionPane.ERROR_MESSAGE);
+                                            });
+              }
+          });
 
         loaderThread.start();
       }

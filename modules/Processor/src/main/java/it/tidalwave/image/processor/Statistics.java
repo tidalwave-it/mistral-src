@@ -52,7 +52,7 @@ public class Statistics implements Serializable, Iterable<Item>
     /**
      * The map
      */
-    private SortedMap<String, Item> map = new TreeMap<String, Item>();
+    private SortedMap<String, Item> map = new TreeMap<>();
 
     /*******************************************************************************************************************
      *
@@ -60,7 +60,7 @@ public class Statistics implements Serializable, Iterable<Item>
      * value.
      *
      ******************************************************************************************************************/
-    static public class Item implements Serializable, Comparable<Item>
+    public static class Item implements Serializable, Comparable<Item>
       {
 //        private static final long serialVersionUID = 49503335739587897162L;
 

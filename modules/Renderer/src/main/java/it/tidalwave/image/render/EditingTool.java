@@ -120,7 +120,7 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
 
     protected final EditableImageRenderer imageRenderer;
 
-    private final Map<Class<? extends State>, State> stateMap = new HashMap<Class<? extends State>, State>();
+    private final Map<Class<? extends State>, State> stateMap = new HashMap<>();
 
     private final State NULL_STATE = new State();
 
