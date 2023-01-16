@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--********************************************************************************************************************
 
    Mistral - open source imaging engine
@@ -20,19 +21,27 @@
    SCM: https://bitbucket.org/tidalwave/mistral-src
 
 *********************************************************************************************************************-->
-    <assembly>
-        <id>project</id>
-        <formats>
-            <format>tar.gz</format>
-        </formats>
-        <fileSets>
-            <fileSet>
-                <directory>.</directory>
-                <outputDirectory>/</outputDirectory>
-                <useDefaultExcludes>true</useDefaultExcludes>
-                <excludes>
-                    <exclude>**/target/**</exclude>
-                </excludes>
-            </fileSet>
-        </fileSets>
-    </assembly>
+<assembly>
+    <id>project</id>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <fileSets>
+        <fileSet>
+            <directory>.</directory>
+            <outputDirectory>/</outputDirectory>
+            <useDefaultExcludes>true</useDefaultExcludes>
+            <excludes>
+                <exclude>bitbucket-pipelines.yml</exclude>
+                <exclude>.travis.yml</exclude>
+                <exclude>**/.maven-env</exclude>
+                <exclude>.git/**</exclude>
+                <exclude>**/.idea/**</exclude>
+                <exclude>**/*.iml</exclude>
+                <exclude>**/*.tar.gz</exclude>
+                <exclude>**/target/**</exclude>
+                <exclude>**/.description</exclude>
+            </excludes>
+        </fileSet>
+    </fileSets>
+</assembly>
