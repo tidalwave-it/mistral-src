@@ -18,6 +18,12 @@
         <dependency>
             <groupId>org.rawdarkroom</groupId>
             <artifactId>codec</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.code.findbugs</groupId>
+                    <artifactId>jsr305</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -51,9 +57,9 @@
                     <execution>
                         <phase>generate-sources</phase>
                         <configuration>
-                            <tasks>
+                            <target>
                                 <ant antfile="src/main/scripts/generate-sources.xml" target="generate-sources" inheritAll="true" />
-                            </tasks>
+                            </target>
                         </configuration>
                         <goals>
                             <goal>run</goal>

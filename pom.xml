@@ -6,7 +6,7 @@
     <parent>
         <groupId>it.tidalwave.superpom</groupId>
         <artifactId>superpom</artifactId>
-        <version>4.4</version>
+        <version>5.0-ALPHA-15</version>
         <relativePath />
     </parent>
 
@@ -51,13 +51,6 @@ Directory tree
 
         <tidalwave.ci.view>Mistral</tidalwave.ci.view>
         <tidalwave.issues>MST</tidalwave.issues>
-
-        <jrawio.version>1.7-ALPHA-1</jrawio.version>
-        <libraries.version>1.1.5</libraries.version>
-        <thesefoolishthings.version>1.28</thesefoolishthings.version>
-        <netbeans.version>RELEASE71</netbeans.version>
-
-        <netbeans.hint.license>Tidalwave-ASF</netbeans.hint.license>
 
         <tft.clirr.skip>true</tft.clirr.skip> <!-- Clirr is not compatible with JDK 8 -->
         <tft.checkstyle.skip>true</tft.checkstyle.skip> <!-- FIXME: breaks the build -->
@@ -135,17 +128,6 @@ Directory tree
         <url>${scm.repo.browse.url}</url>
         <tag>HEAD</tag>
     </scm>
-
-    <build>
-        <plugins>
-            <!-- Needed for setting that inherited = false -->
-            <plugin>
-                <groupId>com.mycila.maven-license-plugin</groupId>
-                <artifactId>maven-license-plugin</artifactId>
-                <inherited>false</inherited>
-            </plugin>
-        </plugins>
-    </build>
 
     <modules>
         <module>modules</module>

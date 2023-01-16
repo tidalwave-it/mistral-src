@@ -15,6 +15,13 @@
     <version>1.0-ALPHA-5-SNAPSHOT</version>
     <name>Mistral (modules)</name>
 
+    <properties>
+        <jrawio.version>1.7-ALPHA-1</jrawio.version>
+        <libraries.version>1.1.5</libraries.version>
+        <thesefoolishthings.version>3.2-ALPHA-13</thesefoolishthings.version>
+        <netbeans.version>RELEASE71</netbeans.version>
+    </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -88,8 +95,27 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.kenai.nbpwr</groupId>
-            <artifactId>javax-annotation</artifactId>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>
