@@ -39,7 +39,7 @@ import static org.junit.Assert.*;
 public class J2DUtilsScaleWithDrawImagePerformanceTest extends BasePerformanceTestSupport 
   {
     @Override
-    protected long runTest (EditableImage image)
+    protected long runTest (final EditableImage image)
       {
         fail("disabled because it takes forever");
         long accTime = 0;
@@ -47,8 +47,8 @@ public class J2DUtilsScaleWithDrawImagePerformanceTest extends BasePerformanceTe
         for (double scale = 0.1; scale <= 1; scale += 0.1)
           {
             log.info(">>>> scale: " + scale);
-            long time = System.currentTimeMillis();
-            BufferedImage bufferedImage = image.getInnerProperty(BufferedImage.class);
+            final long time = System.currentTimeMillis();
+            final BufferedImage bufferedImage = image.getInnerProperty(BufferedImage.class);
             Java2DUtils.scaleWithDrawImage(bufferedImage, scale, scale, Quality.INTERMEDIATE);
             accTime += System.currentTimeMillis() - time;
           }

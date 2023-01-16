@@ -233,7 +233,7 @@ public class WangAnnotations
           }
       }
     
-    public class OiHilite extends Internal
+    public static class OiHilite extends Internal
       {
         protected OiHilite (final Attributes attributes)
           {
@@ -270,8 +270,8 @@ public class WangAnnotations
         final ImageInputStream iis = ImageIO.createImageInputStream(bais);
         iis.setByteOrder(ByteOrder.LITTLE_ENDIAN);
         
-        int header = iis.readInt();
-        int intSize = iis.readInt();
+        final int header = iis.readInt();
+        final int intSize = iis.readInt();
         assert intSize == 1;
         Attributes attributes = null;
         
@@ -298,7 +298,7 @@ public class WangAnnotations
                   }
                 if (name.startsWith("OiHilite"))
                   {
-                    internals.add(new OiHilite(attributes));  
+                    internals.add(new OiHilite(attributes));
                   }
                 else
                   {

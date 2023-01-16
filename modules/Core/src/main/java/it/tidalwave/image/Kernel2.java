@@ -41,7 +41,7 @@ public class Kernel2 extends Kernel
      *
      *
      ******************************************************************************/
-    public Kernel2 (int width, int height, float[] data)
+    public Kernel2 (final int width, final int height, final float[] data)
       {
         super(width, height, data);
 //        this.data = new float[data.length];

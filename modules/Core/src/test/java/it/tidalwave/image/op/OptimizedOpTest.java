@@ -39,7 +39,7 @@ public class OptimizedOpTest
     public void testGetScale1() 
       {
         System.out.println("getScale1");
-        OptimizeOp op = new OptimizeOp();
+        final OptimizeOp op = new OptimizeOp();
         AssertJUnit.assertEquals(1.0, op.getScale(), 0.0);
       }
 
@@ -47,7 +47,7 @@ public class OptimizedOpTest
     public void testGetScale2() 
       {
         System.out.println("getScale2");
-        OptimizeOp op = new OptimizeOp(17.0);
+        final OptimizeOp op = new OptimizeOp(17.0);
         AssertJUnit.assertEquals(17.0, op.getScale(), 0.0);
       }
 
@@ -55,7 +55,7 @@ public class OptimizedOpTest
     public void testGetScale3() 
       {
         System.out.println("getScale3");
-        OptimizeOp op = new OptimizeOp(13.0, Quality.INTERMEDIATE);
+        final OptimizeOp op = new OptimizeOp(13.0, Quality.INTERMEDIATE);
         AssertJUnit.assertEquals(13.0, op.getScale(), 0.0);
       }
 
@@ -63,7 +63,7 @@ public class OptimizedOpTest
     public void testGetQuality1() 
       {
         System.out.println("getQuality1");
-        OptimizeOp op = new OptimizeOp();
+        final OptimizeOp op = new OptimizeOp();
         AssertJUnit.assertEquals(Quality.FASTEST, op.getQuality());
       }
 
@@ -71,7 +71,7 @@ public class OptimizedOpTest
     public void testGetQuality2() 
       {
         System.out.println("getQuality2");
-        OptimizeOp op = new OptimizeOp(17.0);
+        final OptimizeOp op = new OptimizeOp(17.0);
         AssertJUnit.assertEquals(Quality.FASTEST, op.getQuality());
       }
 
@@ -79,7 +79,7 @@ public class OptimizedOpTest
     public void testGetQuality3() 
       {
         System.out.println("getQuality3");
-        OptimizeOp op = new OptimizeOp(13.0, Quality.INTERMEDIATE);
+        final OptimizeOp op = new OptimizeOp(13.0, Quality.INTERMEDIATE);
         AssertJUnit.assertEquals(Quality.INTERMEDIATE, op.getQuality());
       }
 
@@ -87,7 +87,7 @@ public class OptimizedOpTest
     public void testToString() 
       {
         System.out.println("toString");
-        OptimizeOp op = new OptimizeOp(13.0, Quality.INTERMEDIATE);
+        final OptimizeOp op = new OptimizeOp(13.0, Quality.INTERMEDIATE);
         op.toString();
       }    
   }

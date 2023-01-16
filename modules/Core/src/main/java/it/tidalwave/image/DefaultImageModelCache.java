@@ -34,13 +34,13 @@ import java.io.Serializable;
 public class DefaultImageModelCache extends ImageModelCache
   {
     @Override
-    public void store (ImageModel imageModel)
+    public void store (final ImageModel imageModel)
       {
         // does nothing 
       }
 
     @Override
-    public void update (ImageModel imageModel)
+    public void update (final ImageModel imageModel)
       {
         // does nothing 
       }

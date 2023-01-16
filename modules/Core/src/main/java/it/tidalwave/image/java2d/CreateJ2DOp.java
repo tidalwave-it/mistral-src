@@ -22,6 +22,7 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.java2d;
 
+import java.util.Arrays;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -148,12 +149,7 @@ public class CreateJ2DOp extends OperationImplementation<CreateOp, BufferedImage
               {
                 final int[] buffer = new int[operation.getWidth() * operation.getHeight()];
                 final int value = dims[0];
-
-                for (int i = 0; i < buffer.length; i++)
-                  {
-                    buffer[i] = value;
-                  }
-
+                Arrays.fill(buffer, value);
                 result.getRaster().setPixels(0, 0, operation.getWidth(), operation.getHeight(), buffer);
               }
 

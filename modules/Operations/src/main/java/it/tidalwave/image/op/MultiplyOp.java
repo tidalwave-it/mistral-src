@@ -40,7 +40,7 @@ public class MultiplyOp extends Operation
      *
      *
      *******************************************************************************/
-    public MultiplyOp (EditableImage operand)
+    public MultiplyOp (final EditableImage operand)
       {
         if (operand == null)
           {

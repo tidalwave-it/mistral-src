@@ -71,7 +71,7 @@ public class CreateOpTest
     @Test
     public void testGetDataType ()
       {
-        for (EditableImage.DataType dataType : EditableImage.DataType.values())
+        for (final EditableImage.DataType dataType : EditableImage.DataType.values())
           {
             if (dataType == EditableImage.DataType.UNDEFINED)
               {

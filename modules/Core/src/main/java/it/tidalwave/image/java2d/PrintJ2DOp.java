@@ -60,7 +60,7 @@ public class PrintJ2DOp extends OperationImplementation<PrintOp, BufferedImage>
                     return Printable.NO_SUCH_PAGE;
                   }
 
-                Graphics2D g2d = (Graphics2D)graphics;
+                final Graphics2D g2d = (Graphics2D)graphics;
                 g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
                 final double xScale = pageFormat.getImageableWidth() / image.getWidth();
                 final double yScale = pageFormat.getImageableHeight() / image.getHeight();

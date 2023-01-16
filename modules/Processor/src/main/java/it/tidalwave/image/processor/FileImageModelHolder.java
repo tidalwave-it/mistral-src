@@ -31,6 +31,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
 import it.tidalwave.image.ImageModel;
 import it.tidalwave.image.ImageModelHolder;
 
@@ -67,7 +68,7 @@ import it.tidalwave.image.ImageModelHolder;
           {
             try 
               {
-                ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+                final ObjectInputStream ois = new ObjectInputStream(Files.newInputStream(file.toPath()));
                 imageModel = (ImageModel)ois.readObject();
                 ois.close();
               } 
@@ -85,7 +86,7 @@ import it.tidalwave.image.ImageModelHolder;
      *
      ******************************************************************************/
     @Override
-    public void set (ImageModel imageModel) 
+    public void set (final ImageModel imageModel)
       {
         this.imageModel = imageModel;
         this.id = imageModel.getId();
@@ -95,7 +96,7 @@ import it.tidalwave.image.ImageModelHolder;
      *
      *
      ******************************************************************************/
-    public void writeExternal (ObjectOutput out)
+    public void writeExternal (final ObjectOutput out)
       throws IOException 
       {
         if (file == null)
@@ -103,7 +104,7 @@ import it.tidalwave.image.ImageModelHolder;
             file = new File("HOLDER-" + id);
             // FIXME: be sure to create the file in a place where it will not be added in
             // the job result .zip. But I don't know if /tmp is shared among nodes in the grid.
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+            final ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(file.toPath()));
             oos.writeObject(imageModel);
             oos.close();
           }
@@ -116,7 +117,7 @@ import it.tidalwave.image.ImageModelHolder;
      *
      *
      ******************************************************************************/
-    public void readExternal (ObjectInput in) 
+    public void readExternal (final ObjectInput in)
       throws IOException, ClassNotFoundException 
       {
         id = (Serializable)in.readObject();

@@ -40,12 +40,12 @@ public abstract class JavaBeanSupport
     protected final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
     protected final VetoableChangeSupport vetoableChangeSupport = new VetoableChangeSupport(this);
     
-    public final void addPropertyChangeListener(PropertyChangeListener listener) 
+    public final void addPropertyChangeListener(final PropertyChangeListener listener)
       {
         propertyChangeSupport.addPropertyChangeListener(listener);
       }
 
-    public final void removePropertyChangeListener(PropertyChangeListener listener) 
+    public final void removePropertyChangeListener(final PropertyChangeListener listener)
       {
         propertyChangeSupport.removePropertyChangeListener(listener);
       }
@@ -55,27 +55,27 @@ public abstract class JavaBeanSupport
         return propertyChangeSupport.getPropertyChangeListeners();
       }
 
-    public final void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) 
+    public final void addPropertyChangeListener(final String propertyName, final PropertyChangeListener listener)
       {
         propertyChangeSupport.addPropertyChangeListener(propertyName, listener);
       }
 
-    public final void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) 
+    public final void removePropertyChangeListener(final String propertyName, final PropertyChangeListener listener)
       {
         propertyChangeSupport.removePropertyChangeListener(propertyName, listener);
       }
 
-    public final PropertyChangeListener[] getPropertyChangeListeners(String propertyName) 
+    public final PropertyChangeListener[] getPropertyChangeListeners(final String propertyName)
       {
         return propertyChangeSupport.getPropertyChangeListeners(propertyName);
       }
 
-    public final void addVetoableChangeListener(VetoableChangeListener listener) 
+    public final void addVetoableChangeListener(final VetoableChangeListener listener)
       {
         vetoableChangeSupport.addVetoableChangeListener(listener);
       }
 
-    public final void removeVetoableChangeListener(VetoableChangeListener listener) 
+    public final void removeVetoableChangeListener(final VetoableChangeListener listener)
       {
         vetoableChangeSupport.removeVetoableChangeListener(listener);
       }
@@ -85,17 +85,17 @@ public abstract class JavaBeanSupport
         return vetoableChangeSupport.getVetoableChangeListeners();
       }
 
-    public final void addVetoableChangeListener(String propertyName, VetoableChangeListener listener) 
+    public final void addVetoableChangeListener(final String propertyName, final VetoableChangeListener listener)
       {
         vetoableChangeSupport.addVetoableChangeListener(propertyName, listener);
       }
 
-    public final void removeVetoableChangeListener(String propertyName, VetoableChangeListener listener)
+    public final void removeVetoableChangeListener(final String propertyName, final VetoableChangeListener listener)
       {
         vetoableChangeSupport.removeVetoableChangeListener(propertyName, listener);
       }
 
-    public final VetoableChangeListener[] getVetoableChangeListeners(String propertyName) 
+    public final VetoableChangeListener[] getVetoableChangeListeners(final String propertyName)
       {
         return vetoableChangeSupport.getVetoableChangeListeners(propertyName);
       }

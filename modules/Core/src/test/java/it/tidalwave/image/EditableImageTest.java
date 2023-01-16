@@ -33,6 +33,7 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Stream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -73,7 +74,7 @@ public class EditableImageTest extends BaseTestSupport
       throws Exception
       {
         System.out.println("testLoadEXIFFromJPEGWithBM25");
-        EditableImage image = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
+        final EditableImage image = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
         AssertJUnit.assertEquals(3, image.getBandCount());
         AssertJUnit.assertEquals(8, image.getBitsPerBand());
         AssertJUnit.assertEquals(24, image.getBitsPerPixel());
@@ -362,15 +363,15 @@ public class EditableImageTest extends BaseTestSupport
     public void testSerialize()
       throws IOException, ClassNotFoundException
       {
-        File file = new File("Serialized");
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
-        EditableImage image1 = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
+        final File file = new File("Serialized");
+        final ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(file.toPath()));
+        final EditableImage image1 = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
         oos.writeObject(image1);
         oos.close();
         log.info("serialized" + image1);
 
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
-        EditableImage image2 = (EditableImage)ois.readObject();
+        final ObjectInputStream ois = new ObjectInputStream(Files.newInputStream(file.toPath()));
+        final EditableImage image2 = (EditableImage)ois.readObject();
         ois.close();
         log.info("deserialized" + image2);
       }
@@ -454,7 +455,7 @@ public class EditableImageTest extends BaseTestSupport
         log.info("EXIF: {}", exif);
         log.info("IPTC: {}", iptc);
         // log.info("XMP: {}", xmp);
-        final String resourceName = String.format(path.getFileName().toString().replaceAll("\\.jpg$", ".txt"));
+        final String resourceName = path.getFileName().toString().replaceAll("\\.jpg$", ".txt");
         final List<String> strings = new ArrayList<>();
         dumpTags(strings, "TIFF", tiff);
         dumpTags(strings, "EXIF", exif);
@@ -477,18 +478,20 @@ public class EditableImageTest extends BaseTestSupport
             return new Object[0][1];
           }
 
-        return Files.list(TEST_SD100_FOLDER)
-                    .filter(p -> p.getFileName().toString().endsWith(".jpg"))
+        try (final Stream<Path> s = Files.list(TEST_SD100_FOLDER))
+          {
+            return s.filter(p -> p.getFileName().toString().endsWith(".jpg"))
                     .sorted()
                     .limit(99999)
                     .map(p -> new Object[] { p })
                     .toArray(Object[][]::new);
+          }
       }
 
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-    private static void dumpTags (@Nonnull final List<String> strings,
+    private static void dumpTags (@Nonnull final List<? super String> strings,
                                   @Nonnull final String directoryName,
                                   @Nonnull final Directory directory)
       {

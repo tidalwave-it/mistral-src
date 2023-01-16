@@ -25,6 +25,7 @@ package it.tidalwave.mistral.example.viewer;
 import java.text.MessageFormat;
 import java.io.IOException;
 import java.awt.BorderLayout;
+import it.tidalwave.image.metadata.EXIF;
 import javax.swing.DefaultComboBoxModel;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
@@ -126,7 +127,7 @@ public class ViewerPanel extends AbstractViewerPanel
     @Override
     protected void onImageLoaded (final EditableImage image)
       {
-        final Directory exifDirectory = image.getEXIFDirectory();
+        final Directory exifDirectory = image.getMetadata(EXIF.class);
         final Directory makerNoteDirectory = image.getMakerNote();
         final String exif = createTable(exifDirectory);
         final String makerNote = createTable(makerNoteDirectory);
@@ -140,17 +141,17 @@ public class ViewerPanel extends AbstractViewerPanel
      **************************************************************************/
     private String createTable (final Directory directory)
       {
-        StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder();
         sb.append("<html>");
         
         if (directory != null)
           {
             sb.append("<table>");
             
-            for (int code : directory.getTagCodes())
+            for (final int code : directory.getTagCodes())
               {
-                String tagName = directory.getTagName(code);
-                Object tagValue = directory.getObject(code);
+                final String tagName = directory.getTagName(code);
+                final Object tagValue = directory.getObject(code);
                 sb.append("<tr><td>");
                 sb.append(Integer.toString(code));
                 sb.append("</td><td>");
@@ -212,7 +213,7 @@ public class ViewerPanel extends AbstractViewerPanel
 
         lbAngleValue.setText("0");
 
-        org.jdesktop.layout.GroupLayout pnStatusBarLayout = new org.jdesktop.layout.GroupLayout(pnStatusBar);
+        final org.jdesktop.layout.GroupLayout pnStatusBarLayout = new org.jdesktop.layout.GroupLayout(pnStatusBar);
         pnStatusBar.setLayout(pnStatusBarLayout);
         pnStatusBarLayout.setHorizontalGroup(
             pnStatusBarLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -238,7 +239,7 @@ public class ViewerPanel extends AbstractViewerPanel
                 .add(lbAngle))
         );
 
-        org.jdesktop.layout.GroupLayout pnViewerLayout = new org.jdesktop.layout.GroupLayout(pnViewer);
+        final org.jdesktop.layout.GroupLayout pnViewerLayout = new org.jdesktop.layout.GroupLayout(pnViewer);
         pnViewer.setLayout(pnViewerLayout);
         pnViewerLayout.setHorizontalGroup(
             pnViewerLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -259,28 +260,28 @@ public class ViewerPanel extends AbstractViewerPanel
 
         btZoomIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/it/tidalwave/mistral/example/viewer/icons/viewmag+.png"))); // NOI18N
         btZoomIn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(final java.awt.event.ActionEvent evt) {
                 btZoomInActionPerformed(evt);
             }
         });
 
         btActualPixels.setIcon(new javax.swing.ImageIcon(getClass().getResource("/it/tidalwave/mistral/example/viewer/icons/viewmag1.png"))); // NOI18N
         btActualPixels.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(final java.awt.event.ActionEvent evt) {
                 btActualPixelsActionPerformed(evt);
             }
         });
 
         btZoomOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/it/tidalwave/mistral/example/viewer/icons/viewmag-.png"))); // NOI18N
         btZoomOut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(final java.awt.event.ActionEvent evt) {
                 btZoomOutActionPerformed(evt);
             }
         });
 
         btFitToWindow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/it/tidalwave/mistral/example/viewer/icons/viewmagfit.png"))); // NOI18N
         btFitToWindow.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(final java.awt.event.ActionEvent evt) {
                 btFitToWindowActionPerformed(evt);
             }
         });
@@ -292,7 +293,7 @@ public class ViewerPanel extends AbstractViewerPanel
         slRotation.setMinorTickSpacing(10);
         slRotation.setPaintTicks(true);
         slRotation.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+            public void stateChanged(final javax.swing.event.ChangeEvent evt) {
                 slRotationStateChanged(evt);
             }
         });
@@ -301,7 +302,7 @@ public class ViewerPanel extends AbstractViewerPanel
         cbCrop.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         cbCrop.setMargin(new java.awt.Insets(0, 0, 0, 0));
         cbCrop.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+            public void stateChanged(final javax.swing.event.ChangeEvent evt) {
                 cbCropStateChanged(evt);
             }
         });
@@ -309,7 +310,7 @@ public class ViewerPanel extends AbstractViewerPanel
         btResetRotation.setText("Level");
         btResetRotation.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btResetRotation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(final java.awt.event.ActionEvent evt) {
                 btResetRotationActionPerformed(evt);
             }
         });
@@ -317,7 +318,7 @@ public class ViewerPanel extends AbstractViewerPanel
         lbQuality.setText("Quality:");
 
         cbQuality.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(final java.awt.event.ActionEvent evt) {
                 cbQualityActionPerformed(evt);
             }
         });
@@ -326,12 +327,12 @@ public class ViewerPanel extends AbstractViewerPanel
         cbScrollBars.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         cbScrollBars.setMargin(new java.awt.Insets(0, 0, 0, 0));
         cbScrollBars.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(final java.awt.event.ActionEvent evt) {
                 cbScrollBarsActionPerformed(evt);
             }
         });
 
-        org.jdesktop.layout.GroupLayout pnToolBarLayout = new org.jdesktop.layout.GroupLayout(pnToolBar);
+        final org.jdesktop.layout.GroupLayout pnToolBarLayout = new org.jdesktop.layout.GroupLayout(pnToolBar);
         pnToolBar.setLayout(pnToolBarLayout);
         pnToolBarLayout.setHorizontalGroup(
             pnToolBarLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -376,7 +377,7 @@ public class ViewerPanel extends AbstractViewerPanel
                 .addContainerGap())
         );
 
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
+        final org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -400,49 +401,49 @@ public class ViewerPanel extends AbstractViewerPanel
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void cbScrollBarsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbScrollBarsActionPerformed
+private void cbScrollBarsActionPerformed(final java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbScrollBarsActionPerformed
     imageRenderer.setScrollBarsVisible(cbScrollBars.isSelected());
 }//GEN-LAST:event_cbScrollBarsActionPerformed
 
-    private void cbQualityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbQualityActionPerformed
-        Quality quality = (Quality)cbQuality.getSelectedItem();
+    private void cbQualityActionPerformed(final java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbQualityActionPerformed
+        final Quality quality = (Quality)cbQuality.getSelectedItem();
         imageRenderer.setScaleQuality(quality);
         imageRenderer.setRotateQuality(quality);
         repaint();
     }//GEN-LAST:event_cbQualityActionPerformed
 
-    private void btResetRotationActionPerformed(java.awt.event.ActionEvent evt) 
+    private void btResetRotationActionPerformed(final java.awt.event.ActionEvent evt)
       {//GEN-FIRST:event_btResetRotationActionPerformed
         slRotation.setValue(0);
       }//GEN-LAST:event_btResetRotationActionPerformed
 
-    private void cbCropStateChanged(javax.swing.event.ChangeEvent evt) 
+    private void cbCropStateChanged(final javax.swing.event.ChangeEvent evt)
       {//GEN-FIRST:event_cbCropStateChanged
         cropOverlay.setVisible(cbCrop.isSelected());
         imageRenderer.repaint();
       }//GEN-LAST:event_cbCropStateChanged
 
-    private void slRotationStateChanged(javax.swing.event.ChangeEvent evt) 
+    private void slRotationStateChanged(final javax.swing.event.ChangeEvent evt)
       {//GEN-FIRST:event_slRotationStateChanged
         rotationController.setAngle(slRotation.getValue());
       }//GEN-LAST:event_slRotationStateChanged
 
-    private void btFitToWindowActionPerformed(java.awt.event.ActionEvent event)//GEN-FIRST:event_btFitToWindowActionPerformed
+    private void btFitToWindowActionPerformed(final java.awt.event.ActionEvent event)//GEN-FIRST:event_btFitToWindowActionPerformed
       {//GEN-HEADEREND:event_btFitToWindowActionPerformed
         scaleController.fitToView();
       }//GEN-LAST:event_btFitToWindowActionPerformed
 
-    private void btActualPixelsActionPerformed(java.awt.event.ActionEvent event)//GEN-FIRST:event_btActualPixelsActionPerformed
+    private void btActualPixelsActionPerformed(final java.awt.event.ActionEvent event)//GEN-FIRST:event_btActualPixelsActionPerformed
       {//GEN-HEADEREND:event_btActualPixelsActionPerformed
         scaleController.showActualPixels();
       }//GEN-LAST:event_btActualPixelsActionPerformed
 
-    private void btZoomOutActionPerformed(java.awt.event.ActionEvent event)//GEN-FIRST:event_btZoomOutActionPerformed
+    private void btZoomOutActionPerformed(final java.awt.event.ActionEvent event)//GEN-FIRST:event_btZoomOutActionPerformed
       {//GEN-HEADEREND:event_btZoomOutActionPerformed
         scaleController.zoomOut();
       }//GEN-LAST:event_btZoomOutActionPerformed
 
-    private void btZoomInActionPerformed(java.awt.event.ActionEvent event)//GEN-FIRST:event_btZoomInActionPerformed
+    private void btZoomInActionPerformed(final java.awt.event.ActionEvent event)//GEN-FIRST:event_btZoomInActionPerformed
       {//GEN-HEADEREND:event_btZoomInActionPerformed
         scaleController.zoomIn();
       }//GEN-LAST:event_btZoomInActionPerformed

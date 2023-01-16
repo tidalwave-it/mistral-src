@@ -326,7 +326,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
               {
                 for (int x = 0; x < image.getWidth(); x++)
                   {
-                    int sample = raster.getSample(x, y, b);
+                    final int sample = raster.getSample(x, y, b);
                     AssertJUnit.assertEquals(filler[b], sample);
                   }
               }
@@ -347,7 +347,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
               {
                 for (int x = 0; x < image.getWidth(); x++)
                   {
-                    float sample = raster.getSampleFloat(x, y, b);
+                    final float sample = raster.getSampleFloat(x, y, b);
                     AssertJUnit.assertEquals(filler[b], sample);
                   }
               }
@@ -368,7 +368,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
               {
                 for (int x = 0; x < image.getWidth(); x++)
                   {
-                    double sample = raster.getSampleDouble(x, y, b);
+                    final double sample = raster.getSampleDouble(x, y, b);
                     AssertJUnit.assertEquals(filler[b], sample);
                   }
               }

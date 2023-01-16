@@ -73,7 +73,7 @@ public class ImplementationFactoryRegistry
                                                        final @Nonnull ImageModel imageModel,
                                                        final boolean canConvert)
       {
-        log.trace("findImplementation({}, {}, canConvert: {})", new Object[] { operation, imageModel, canConvert });
+        log.trace("findImplementation({}, {}, canConvert: {})", operation, imageModel, canConvert);
 
         final Object image = (imageModel != null) ? imageModel.getImage() : null;
         final Collection<? extends ImplementationFactory> factories = getFactories();

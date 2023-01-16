@@ -53,20 +53,20 @@ public class PaintJ2DOp extends OperationImplementation<PaintOp, BufferedImage>
     @Override
     protected BufferedImage execute (final PaintOp operation, final EditableImage image, final BufferedImage bufferedImage)
       {
-        int x = operation.getX();
-        int y = operation.getY();
-        int w = operation.getW();
-        int h = operation.getH();
-        Graphics2D g2 = operation.getGraphics2D();
-        PreviewSettings previewSettings = operation.getPreviewSettings();
-        ImageObserver imageObserver = operation.getImageObserver();
-        Quality quality = operation.getQuality();
+        final int x = operation.getX();
+        final int y = operation.getY();
+        final int w = operation.getW();
+        final int h = operation.getH();
+        final Graphics2D g2 = operation.getGraphics2D();
+        final PreviewSettings previewSettings = operation.getPreviewSettings();
+        final ImageObserver imageObserver = operation.getImageObserver();
+        final Quality quality = operation.getQuality();
         log.debug("execute(" + x + ", " + y + ", " + w + ", " + h + ", " + quality + ")");
 
         if (w != 0)
           {
-            Object saveRenderingHints = g2.getRenderingHint(RenderingHints.KEY_INTERPOLATION);
-            Object interpolation = Java2DUtils.findRenderingHintsInterpolation(quality);
+            final Object saveRenderingHints = g2.getRenderingHint(RenderingHints.KEY_INTERPOLATION);
+            final Object interpolation = Java2DUtils.findRenderingHintsInterpolation(quality);
             g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, interpolation);
             g2.drawImage(applyPreviewSettings(bufferedImage, previewSettings), x, y, w, h, imageObserver);
 
@@ -91,13 +91,13 @@ public class PaintJ2DOp extends OperationImplementation<PaintOp, BufferedImage>
 
     // FIXME: ottimizzalo, fallo lavorare solo sulla subimage visualizzata
     // FIXME: aggiungi un parametro sulla qualita', da mettere dentro PreviewSettings
-    private BufferedImage applyPreviewSettings (BufferedImage image, PreviewSettings previewSettings)
+    private BufferedImage applyPreviewSettings (final BufferedImage image, final PreviewSettings previewSettings)
       {
         BufferedImage theImage = image;
 
         if (previewSettings != null)
           {
-            int size = DataBuffer.getDataTypeSize(image.getSampleModel().getDataType());
+            final int size = DataBuffer.getDataTypeSize(image.getSampleModel().getDataType());
             LookupTable lookupTable = null;
 
             switch (size)
@@ -119,7 +119,7 @@ public class PaintJ2DOp extends OperationImplementation<PaintOp, BufferedImage>
 
             if (lookupTable != null)
               {
-                LookupOp lOp = new LookupOp(lookupTable, null); // FIXME: hints
+                final LookupOp lOp = new LookupOp(lookupTable, null); // FIXME: hints
                 Java2DUtils.logImage(log, "applyPreviewSettings: ", image);
                 theImage = lOp.filter(image, null);
               }

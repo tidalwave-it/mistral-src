@@ -62,9 +62,9 @@ public class ColorMatrix
      *******************************************************************************/
     public final void process (final short[] data, final int index)
       {
-        short d0 = compute(0, data, index);
-        short d1 = compute(1, data, index);
-        short d2 = compute(2, data, index);
+        final short d0 = compute(0, data, index);
+        final short d1 = compute(1, data, index);
+        final short d2 = compute(2, data, index);
         data[index + 0] = d0;
         data[index + 1] = d1;
         data[index + 2] = d2;
@@ -82,7 +82,7 @@ public class ColorMatrix
      *******************************************************************************/
     public final ColorMatrix product (final ColorMatrix m)
       {
-        double[] r = new double[9];
+        final double[] r = new double[9];
 
         r[2] = (c[0] * m.c[2]) + (c[1] * m.c[5]) + (c[2] * m.c[8]);
         r[5] = (c[3] * m.c[2]) + (c[4] * m.c[5]) + (c[5] * m.c[8]);
@@ -127,19 +127,19 @@ public class ColorMatrix
      *******************************************************************************/
     public final ColorMatrix inverse ()
       {
-        double cof0 = +((c[4] * c[8]) - (c[7] * c[5]));
-        double cof1 = -((c[3] * c[8]) - (c[6] * c[5]));
-        double cof2 = +((c[3] * c[7]) - (c[6] * c[4]));
-        double cof3 = -((c[1] * c[8]) - (c[7] * c[2]));
-        double cof4 = +((c[0] * c[8]) - (c[6] * c[2]));
-        double cof5 = -((c[0] * c[7]) - (c[6] * c[1]));
-        double cof6 = +((c[1] * c[5]) - (c[4] * c[2]));
-        double cof7 = -((c[0] * c[5]) - (c[3] * c[2]));
-        double cof8 = +((c[0] * c[4]) - (c[3] * c[1]));
+        final double cof0 = +((c[4] * c[8]) - (c[7] * c[5]));
+        final double cof1 = -((c[3] * c[8]) - (c[6] * c[5]));
+        final double cof2 = +((c[3] * c[7]) - (c[6] * c[4]));
+        final double cof3 = -((c[1] * c[8]) - (c[7] * c[2]));
+        final double cof4 = +((c[0] * c[8]) - (c[6] * c[2]));
+        final double cof5 = -((c[0] * c[7]) - (c[6] * c[1]));
+        final double cof6 = +((c[1] * c[5]) - (c[4] * c[2]));
+        final double cof7 = -((c[0] * c[5]) - (c[3] * c[2]));
+        final double cof8 = +((c[0] * c[4]) - (c[3] * c[1]));
 
-        double det = (c[0] * cof0) + (c[1] * cof1) + (c[2] * cof2);
+        final double det = (c[0] * cof0) + (c[1] * cof1) + (c[2] * cof2);
 
-        double[] nc = new double[9];
+        final double[] nc = new double[9];
         nc[0] = cof0 / det;
         nc[1] = cof3 / det;
         nc[2] = cof6 / det;
@@ -150,7 +150,7 @@ public class ColorMatrix
         nc[7] = cof5 / det;
         nc[8] = cof8 / det;
 
-        ColorMatrix result = new ColorMatrix(nc);
+        final ColorMatrix result = new ColorMatrix(nc);
 
         log.trace("inverse(" + this + ") = " + result);
 
@@ -166,7 +166,7 @@ public class ColorMatrix
     @Override
     public final String toString ()
       {
-        StringBuffer buffer = new StringBuffer("[");
+        final StringBuffer buffer = new StringBuffer("[");
 
         for (int i = 0; i < c.length; i++)
           {
@@ -191,13 +191,13 @@ public class ColorMatrix
      *******************************************************************************/
     private short compute (final int channel, final short[] data, final int index)
       {
-        double c0 = c[(channel * 3) + 0];
-        double c1 = c[(channel * 3) + 1];
-        double c2 = c[(channel * 3) + 2];
+        final double c0 = c[(channel * 3) + 0];
+        final double c1 = c[(channel * 3) + 1];
+        final double c2 = c[(channel * 3) + 2];
 
-        double f = (c0 * (data[index + 0] & SHORT_MASK)) + (c1 * (data[index + 1] & SHORT_MASK))
-            + (c2 * (data[index + 2] & SHORT_MASK));
-        int x = (int)f;
+        final double f = (c0 * (data[index + 0] & SHORT_MASK)) + (c1 * (data[index + 1] & SHORT_MASK))
+                         + (c2 * (data[index + 2] & SHORT_MASK));
+        final int x = (int)f;
 
         if (x < 0)
           {

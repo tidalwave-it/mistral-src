@@ -38,7 +38,7 @@ public class ChangeFormatOp extends Operation
      *
      *
      *******************************************************************************/
-    public ChangeFormatOp (EditableImage.DataType type)
+    public ChangeFormatOp (final EditableImage.DataType type)
       {
         this.type = type;
       }

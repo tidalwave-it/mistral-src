@@ -192,7 +192,7 @@ public class EditableImageRenderer extends JComponent
         setLayout(null);
         setOpaque(false);
 
-        boolean workaroundMST63 = !Platform.isMacOSX();
+        final boolean workaroundMST63 = !Platform.isMacOSX();
 
         if (workaroundMST63)
           {
@@ -441,15 +441,15 @@ public class EditableImageRenderer extends JComponent
      * @return                 the image pixel coordinates (null if none)
      *
      ******************************************************************************/
-    public Point getPositionOverImage (Point componentPoint)
+    public Point getPositionOverImage (final Point componentPoint)
       {
         if (image == null)
           {
             return null;
           }
 
-        int imageWidth = image.getWidth();
-        int imageHeight = image.getHeight();
+        final int imageWidth = image.getWidth();
+        final int imageHeight = image.getHeight();
 
         if ((imageWidth == 0) || (imageHeight == 0)) // can happen if metadata is not loaded yet
           {
@@ -462,8 +462,8 @@ public class EditableImageRenderer extends JComponent
             return null;
           }
 
-        int x = ((componentPoint.x - shownImageX) * imageWidth) / shownImageWidth;
-        int y = ((componentPoint.y - shownImageY) * imageHeight) / shownImageHeight;
+        final int x = ((componentPoint.x - shownImageX) * imageWidth) / shownImageWidth;
+        final int y = ((componentPoint.y - shownImageY) * imageHeight) / shownImageHeight;
 
         if ((x >= 0) && (y >= 0) && (x < imageWidth) && (y < imageHeight))
           {
@@ -485,15 +485,15 @@ public class EditableImageRenderer extends JComponent
      * @return             the point coordinates
      *
      ******************************************************************************/
-    public Point convertImagePointToComponentPoint (Point imagePoint)
+    public Point convertImagePointToComponentPoint (final Point imagePoint)
       {
         if (image == null)
           {
             return null;
           }
 
-        int imageWidth = image.getWidth();
-        int imageHeight = image.getHeight();
+        final int imageWidth = image.getWidth();
+        final int imageHeight = image.getHeight();
 
         if ((imageWidth == 0) || (imageHeight == 0)) // can happen if metadata is not loaded yet
           {
@@ -507,8 +507,8 @@ public class EditableImageRenderer extends JComponent
             return null;
           }
 
-        int x = ((imagePoint.x * shownImageWidth) / imageWidth) + shownImageX;
-        int y = ((imagePoint.y * shownImageHeight) / imageHeight) + shownImageY;
+        final int x = ((imagePoint.x * shownImageWidth) / imageWidth) + shownImageX;
+        final int y = ((imagePoint.y * shownImageHeight) / imageHeight) + shownImageY;
 
         return new Point(x, y);
 
@@ -535,7 +535,7 @@ public class EditableImageRenderer extends JComponent
     public void setPositionOverImage (final Point imagePoint, final Point componentPoint)
       {
         log.info("setPositionOverImage(" + imagePoint + ", " + componentPoint + ")");
-        Point newOrigin = computeOrigin(imagePoint, componentPoint, scale);
+        final Point newOrigin = computeOrigin(imagePoint, componentPoint, scale);
 
         if (newOrigin != null)
           {
@@ -628,8 +628,8 @@ public class EditableImageRenderer extends JComponent
             return null;
           }
 
-        int imageWidth = image.getWidth();
-        int imageHeight = image.getHeight();
+        final int imageWidth = image.getWidth();
+        final int imageHeight = image.getHeight();
 
         if ((imageWidth == 0) || (imageHeight == 0)) // can happen if metadata is not loaded yet
           {
@@ -797,7 +797,7 @@ public class EditableImageRenderer extends JComponent
      * Sets the preview settings.
      *
      ******************************************************************************/
-    public void setPreviewSettings (PreviewSettings previewSettings)
+    public void setPreviewSettings (final PreviewSettings previewSettings)
       {
         this.previewSettings = previewSettings;
         repaint();
@@ -847,8 +847,8 @@ public class EditableImageRenderer extends JComponent
 
         layoutScrollBars();
 
-        int myWidth = getWidth();
-        int myHeight = getHeight();
+        final int myWidth = getWidth();
+        final int myHeight = getHeight();
         //if (image == null) // FIXME: this can be optimized
         {
             g.setColor(getBackground());
@@ -862,7 +862,7 @@ public class EditableImageRenderer extends JComponent
             if (image != null)
               {
                 EditableImage imageToDraw = null;
-                double maxSize = scale * Math.max(image.getWidth(), image.getHeight());
+                final double maxSize = scale * Math.max(image.getWidth(), image.getHeight());
                 boolean needScaling = true;
                 int rotationDeltaX = 0;
                 int rotationDeltaY = 0;
@@ -935,11 +935,11 @@ public class EditableImageRenderer extends JComponent
                 g2 = (Graphics2D)g;
               }
 
-            for (Overlay overlay : overlayList)
+            for (final Overlay overlay : overlayList)
               {
                 if (overlay.isVisible())
                   {
-                    Graphics2D g2Copy = (Graphics2D)g2.create();
+                    final Graphics2D g2Copy = (Graphics2D)g2.create();
 
                     try
                       {
@@ -1053,18 +1053,18 @@ public class EditableImageRenderer extends JComponent
 //            throw new IllegalArgumentException("scale: " + scale);
 //          }
 
-        boolean repaintEnabledSave = repaintEnabled;
+        final boolean repaintEnabledSave = repaintEnabled;
         repaintEnabled = false;
         setFitToDisplaySize(false);
         internalSetScale(scale);
 
         if (pivotPoint != null)
           {
-            Point imagePivotPoint = getPositionOverImage(pivotPoint);
+            final Point imagePivotPoint = getPositionOverImage(pivotPoint);
 
             if (imagePivotPoint != null)
               {
-                Point newOrigin = computeOrigin(imagePivotPoint, pivotPoint, scale);
+                final Point newOrigin = computeOrigin(imagePivotPoint, pivotPoint, scale);
 
                 if (newOrigin != null)
                   {
@@ -1124,8 +1124,8 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************/
     public double getFitScale ()
       {
-        double hScale = (double)getAvailableWidth() / image.getWidth();
-        double vScale = (double)getAvailableHeight() / image.getHeight();
+        final double hScale = (double)getAvailableWidth() / image.getWidth();
+        final double vScale = (double)getAvailableHeight() / image.getHeight();
 
         return Math.min(hScale, vScale);
 
@@ -1207,7 +1207,7 @@ public class EditableImageRenderer extends JComponent
      *
      *
      ******************************************************************************/
-    private void internalSetScale (double scale)
+    private void internalSetScale (final double scale)
       {
         if (this.scale != scale)
           {

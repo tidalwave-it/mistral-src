@@ -40,7 +40,7 @@ import static org.junit.Assert.*;
 @Slf4j
 public class RotateJ2DOpPerformanceTest extends BasePerformanceTestSupport {
     @Override
-    protected long runTest(EditableImage image) {
+    protected long runTest(final EditableImage image) {
         fail("disabled because it takes forever");
 
         long accTime = 0;
@@ -48,7 +48,7 @@ public class RotateJ2DOpPerformanceTest extends BasePerformanceTestSupport {
         for (double angle = 0; angle < 360; angle += 10) {
             log.info(">>>> angle: " + angle);
 
-            EditableImage image2 = image.execute2(new RotateOp(angle, Quality.INTERMEDIATE));
+            final EditableImage image2 = image.execute2(new RotateOp(angle, Quality.INTERMEDIATE));
 
             accTime += image2.getLatestOperationTime();
         }

@@ -120,7 +120,7 @@ public class DragPanningController
      * @param  enabled  true if must be enabled, false otherwise
      *
      **************************************************************************/
-    public void setEnabled (boolean enabled)
+    public void setEnabled (final boolean enabled)
       {
         if (this.enabled != enabled)
           {

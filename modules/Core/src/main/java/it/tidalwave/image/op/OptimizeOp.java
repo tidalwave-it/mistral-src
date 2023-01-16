@@ -47,7 +47,7 @@ public class OptimizeOp extends Operation
      * @param   quality   the quality
      *
      ******************************************************************************/
-    public OptimizeOp (double scale, Quality quality)
+    public OptimizeOp (final double scale, final Quality quality)
       {
         this.scale = scale;
         this.quality = quality;
@@ -72,7 +72,7 @@ public class OptimizeOp extends Operation
      * @param   scale the scale
      *
      ******************************************************************************/
-    public OptimizeOp (double scale)
+    public OptimizeOp (final double scale)
       {
         this(scale, Quality.FASTEST);
       }

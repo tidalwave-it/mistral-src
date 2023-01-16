@@ -39,7 +39,7 @@ public class BandMergeOp extends Operation
      *
      *
      *******************************************************************************/
-    public BandMergeOp (EditableImage operand)
+    public BandMergeOp (final EditableImage operand)
       {
         if (operand == null)
           {

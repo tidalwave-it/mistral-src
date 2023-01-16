@@ -47,7 +47,7 @@ public class ScaleOp extends Operation
      * @param   quality  the quality
      *
      *******************************************************************************/
-    public ScaleOp (double xScale, double yScale, Quality quality)
+    public ScaleOp (final double xScale, final double yScale, final Quality quality)
       {
         this.xScale = xScale;
         this.yScale = yScale;
@@ -62,7 +62,7 @@ public class ScaleOp extends Operation
      * @return  the scaled image
      *
      ******************************************************************************/
-    public ScaleOp (double scale)
+    public ScaleOp (final double scale)
       {
         this(scale, scale, Quality.FASTEST);
       }
@@ -76,7 +76,7 @@ public class ScaleOp extends Operation
      * @return  the scaled image
      *
      ******************************************************************************/
-    public ScaleOp (double hScale, double vScale)
+    public ScaleOp (final double hScale, final double vScale)
       {
         this(hScale, vScale, Quality.FASTEST);
       }
@@ -91,7 +91,7 @@ public class ScaleOp extends Operation
      * @return  the scaled image
      *
      ******************************************************************************/
-    public ScaleOp (double scale, Quality quality)
+    public ScaleOp (final double scale, final Quality quality)
       {
         this(scale, scale, quality);
       }

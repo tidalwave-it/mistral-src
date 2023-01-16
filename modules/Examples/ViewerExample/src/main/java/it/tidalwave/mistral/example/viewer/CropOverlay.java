@@ -50,18 +50,18 @@ public class CropOverlay implements Overlay
     private int height = 800;
 
     @Override
-    public void paint (Graphics2D g, EditableImageRenderer imageRenderer) 
+    public void paint (final Graphics2D g, final EditableImageRenderer imageRenderer)
       {
-        Rectangle bounds = imageRenderer.getBounds();
-        Color color = new Color(0,0,0, 128);
+        final Rectangle bounds = imageRenderer.getBounds();
+        final Color color = new Color(0, 0, 0, 128);
         g.setColor(color);
-        double scale = imageRenderer.getScale();
-        Point origin = imageRenderer.getOrigin();
+        final double scale = imageRenderer.getScale();
+        final Point origin = imageRenderer.getOrigin();
         
-        int x1 = bounds.x + (int)Math.round((left - origin.x) * scale);
-        int y1 = bounds.y + (int)Math.round((top - origin.y) * scale);
-        int x2 = bounds.x + (int)Math.round((left + width - origin.x) * scale);
-        int y2 = bounds.y + (int)Math.round((top + height - origin.y) * scale);
+        final int x1 = bounds.x + (int)Math.round((left - origin.x) * scale);
+        final int y1 = bounds.y + (int)Math.round((top - origin.y) * scale);
+        final int x2 = bounds.x + (int)Math.round((left + width - origin.x) * scale);
+        final int y2 = bounds.y + (int)Math.round((top + height - origin.y) * scale);
         
         fillRect(g, bounds.x, bounds.y, bounds.x + bounds.width - 1, y1 - 1); // top
         fillRect(g, bounds.x, y1, x1 - 1, y2); // left
@@ -69,7 +69,7 @@ public class CropOverlay implements Overlay
         fillRect(g, bounds.x, y2 + 1, bounds.x + bounds.width - 1, bounds.y + bounds.height - 1); // bottom
       }
     
-    public void setVisible (boolean visible)
+    public void setVisible (final boolean visible)
       {
         this.visible = visible;
       }
@@ -80,7 +80,7 @@ public class CropOverlay implements Overlay
         return visible;
       }
     
-    private void fillRect (Graphics2D g, int x1, int y1, int x2, int y2)
+    private void fillRect (final Graphics2D g, final int x1, final int y1, final int x2, final int y2)
       {
         g.fillRect(x1, y1, x2 - x1 + 1, y2 - y1 + 1);
       }

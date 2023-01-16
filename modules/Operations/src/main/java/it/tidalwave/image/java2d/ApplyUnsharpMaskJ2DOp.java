@@ -43,11 +43,11 @@ public class ApplyUnsharpMaskJ2DOp extends OperationImplementation<ApplyUnsharpM
      *
      ******************************************************************************/
     @Override
-    protected BufferedImage execute (ApplyUnsharpMaskOp operation, final EditableImage image, BufferedImage model)
+    protected BufferedImage execute (final ApplyUnsharpMaskOp operation, final EditableImage image, final BufferedImage model)
       {
-        double intensity = operation.getIntensity();
-        double radius = operation.getRadius();
-        double threshold = operation.getThreshold();
+        final double intensity = operation.getIntensity();
+        final double radius = operation.getRadius();
+        final double threshold = operation.getThreshold();
         log.warn(">>>> unsharpMask not implemented yet!");
 
         return model;

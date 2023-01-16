@@ -57,39 +57,39 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
      **************************************************************************/
     public class State // implements MouseListener, MouseMotionListener
       {
-        public void mouseClicked (MouseEvent event) 
+        public void mouseClicked (final MouseEvent event)
           {
           }
 
-        public void mousePressed (MouseEvent event) 
+        public void mousePressed (final MouseEvent event)
           {
           }
 
-        public void mouseReleased (MouseEvent event) 
+        public void mouseReleased (final MouseEvent event)
           {
           }
 
-        public void mouseEntered (MouseEvent event) 
+        public void mouseEntered (final MouseEvent event)
           {
           }
 
-        public void mouseExited (MouseEvent event)  
+        public void mouseExited (final MouseEvent event)
           {
           }
 
-        public void mouseDragged (MouseEvent event) 
+        public void mouseDragged (final MouseEvent event)
           {
           }
 
-        public void mouseMoved (MouseEvent event) 
+        public void mouseMoved (final MouseEvent event)
           {
           }
         
-        public void keyTyped (KeyEvent event)
+        public void keyTyped (final KeyEvent event)
           {
           }
 
-        public void keyPressed (KeyEvent event) 
+        public void keyPressed (final KeyEvent event)
           {
             if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
               {
@@ -97,12 +97,12 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
               }
           }
 
-        public void keyReleased (KeyEvent event)
+        public void keyReleased (final KeyEvent event)
           {
             System.err.println("EVENT " + event);
           }
 
-        public void paint (Graphics2D g, EditableImageRenderer imageRenderer) 
+        public void paint (final Graphics2D g, final EditableImageRenderer imageRenderer)
           {
           }
 
@@ -140,7 +140,7 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
     private final Action action = new AbstractAction() 
       {
         @Override
-        public void actionPerformed (ActionEvent event) 
+        public void actionPerformed (final ActionEvent event)
           {
             if (!active)
               {
@@ -158,7 +158,7 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
      *
      *
      **************************************************************************/
-    protected EditingTool (EditableImageRenderer imageRenderer)
+    protected EditingTool (final EditableImageRenderer imageRenderer)
       {
         this.imageRenderer = imageRenderer;
       }
@@ -286,7 +286,7 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
      *
      *
      **************************************************************************/
-    public void setIcon (Icon icon)
+    public void setIcon (final Icon icon)
       {
         this.icon = icon;  
         action.putValue(Action.SMALL_ICON, icon);
@@ -317,7 +317,7 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
      *
      *
      **************************************************************************/
-    protected void setInitialState (Class<? extends State> initialStateClass) 
+    protected void setInitialState (final Class<? extends State> initialStateClass)
       {
         this.initialState = initialStateClass;
       }
@@ -326,14 +326,14 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
      *
      *
      **************************************************************************/
-    protected void setState (Class<? extends State> newStateClass) 
+    protected void setState (final Class<? extends State> newStateClass)
       {
         if (state != null)
           {
             state.stop();     
           }
         
-        State newState = stateMap.get(newStateClass);
+        final State newState = stateMap.get(newStateClass);
         
         if (newState == null)
           {
@@ -358,7 +358,7 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
      *
      *
      **************************************************************************/
-    protected void registerState (State state)
+    protected void registerState (final State state)
       {
         stateMap.put(state.getClass(), state);
       }
@@ -376,77 +376,77 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
      *
      *
      **************************************************************************/
-    protected Cursor makeCursor (Icon icon, String name)
+    protected Cursor makeCursor (final Icon icon, final String name)
       {
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image image = ((ImageIcon)icon).getImage();
+        final Toolkit toolkit = Toolkit.getDefaultToolkit();
+        final Image image = ((ImageIcon)icon).getImage();
         return toolkit.createCustomCursor(image, new Point(0, 0), name);
       }
     
     //// The following methods just delegate to the current State
 
     @Override
-    public final void mouseClicked (MouseEvent event) 
+    public final void mouseClicked (final MouseEvent event)
       {
         state.mouseClicked(event);
       }
 
     @Override
-    public final void mousePressed (MouseEvent event) 
+    public final void mousePressed (final MouseEvent event)
       {
         state.mousePressed(event);
       }
 
     @Override
-    public final void mouseReleased (MouseEvent event) 
+    public final void mouseReleased (final MouseEvent event)
       {
         state.mouseReleased(event);
       }
 
     @Override
-    public final void mouseEntered (MouseEvent event) 
+    public final void mouseEntered (final MouseEvent event)
       {
         state.mouseEntered(event);
       }
 
     @Override
-    public final void mouseExited (MouseEvent event)  
+    public final void mouseExited (final MouseEvent event)
       {
         state.mouseExited(event);
       }
 
     @Override
-    public final void mouseDragged (MouseEvent event) 
+    public final void mouseDragged (final MouseEvent event)
       {
         state.mouseDragged(event);
       }
 
     @Override
-    public final void mouseMoved (MouseEvent event) 
+    public final void mouseMoved (final MouseEvent event)
       {
         state.mouseMoved(event);
       }
 
     @Override
-    public final void keyTyped (KeyEvent event)
+    public final void keyTyped (final KeyEvent event)
       {
         state.keyTyped(event);
       }
 
     @Override
-    public final void keyPressed (KeyEvent event) 
+    public final void keyPressed (final KeyEvent event)
       {
         state.keyPressed(event);
       }
 
     @Override
-    public final void keyReleased (KeyEvent event)
+    public final void keyReleased (final KeyEvent event)
       {
         state.keyReleased(event);
       }
 
     @Override
-    public final void paint (Graphics2D g, EditableImageRenderer imageRenderer) 
+    public final void paint (final Graphics2D g, final EditableImageRenderer imageRenderer)
       {
         state.paint(g, imageRenderer);
       }

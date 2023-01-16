@@ -39,7 +39,7 @@ public class DivideComplexOp extends Operation
      *
      *
      *******************************************************************************/
-    public DivideComplexOp (EditableImage operand)
+    public DivideComplexOp (final EditableImage operand)
       {
         if (operand == null)
           {

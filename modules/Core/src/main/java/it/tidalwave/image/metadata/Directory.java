@@ -82,7 +82,7 @@ public class Directory extends JavaBeanSupport implements Serializable
      **************************************************************************/
     public void loadFromAdapter (final DirectoryAdapter adapter)
       {
-        for (int tag : adapter.getTags())
+        for (final int tag : adapter.getTags())
           {
             tagMap.put(tag, adapter.getObject(tag));  
           }
@@ -104,7 +104,7 @@ public class Directory extends JavaBeanSupport implements Serializable
         final int[] result = new int[tagMap.size()];
         
         int i = 0;
-        for (int tag : tagMap.keySet())
+        for (final int tag : tagMap.keySet())
           {
             result[i++] = tag;
           }
@@ -325,7 +325,7 @@ public class Directory extends JavaBeanSupport implements Serializable
             return "" + array.length + " bytes";
           }
 
-        final StringBuffer buffer = new StringBuffer("");
+        final StringBuffer buffer = new StringBuffer();
 
         for (int i = 0; i < array.length; i++)
           {
@@ -361,7 +361,7 @@ public class Directory extends JavaBeanSupport implements Serializable
         final int[] myTags = getTagCodes();
         final int[] otherTags = other.getTagCodes();
         
-        if (!myTags.equals(otherTags))
+        if (!Arrays.equals(myTags, otherTags))
           {
             return false;
           }
@@ -427,7 +427,7 @@ public class Directory extends JavaBeanSupport implements Serializable
       {
         int hash = 5;
         
-        for (int tag : getTagCodes())
+        for (final int tag : getTagCodes())
           {
             final Object object = getObject(tag);
             hash = 67 * hash + (object != null ? object.hashCode() : 0);
@@ -448,7 +448,7 @@ public class Directory extends JavaBeanSupport implements Serializable
      **************************************************************************/
     public String toString (final Rational[] array)
       {
-        final StringBuffer buffer = new StringBuffer("");
+        final StringBuffer buffer = new StringBuffer();
 
         for (int i = 0; i < array.length; i++)
           {

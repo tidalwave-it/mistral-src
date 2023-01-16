@@ -34,22 +34,22 @@ package it.tidalwave.image.processor.event;
 public class ImagingTaskProcessorAdapter implements ImagingTaskProcessorListener
   {
     @Override
-    public void notifyTaskPosted (ImagingTaskProcessorEvent event)
+    public void notifyTaskPosted (final ImagingTaskProcessorEvent event)
       {
       }
     
     @Override
-    public void notifyTaskStarted (ImagingTaskProcessorEvent event)
+    public void notifyTaskStarted (final ImagingTaskProcessorEvent event)
       {
       }    
     
     @Override
-    public void notifyTaskCompleted (ImagingTaskProcessorEvent event)
+    public void notifyTaskCompleted (final ImagingTaskProcessorEvent event)
       {
       }    
     
     @Override
-    public void notifyTaskPopped (ImagingTaskProcessorEvent event)
+    public void notifyTaskPopped (final ImagingTaskProcessorEvent event)
       {
       }    
   }

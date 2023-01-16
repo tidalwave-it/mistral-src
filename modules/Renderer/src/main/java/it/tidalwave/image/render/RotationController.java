@@ -54,7 +54,7 @@ public class RotationController
      * 
      * 
      **************************************************************************/
-    public final void setAngle (double angle)
+    public final void setAngle (final double angle)
       {
         imageRenderer.setAngle(angle);  
       }

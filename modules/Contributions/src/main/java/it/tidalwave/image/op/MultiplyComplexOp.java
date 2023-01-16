@@ -39,7 +39,7 @@ public class MultiplyComplexOp extends Operation
      *
      *
      *******************************************************************************/
-    public MultiplyComplexOp (EditableImage operand)
+    public MultiplyComplexOp (final EditableImage operand)
       {
         if (operand == null)
           {

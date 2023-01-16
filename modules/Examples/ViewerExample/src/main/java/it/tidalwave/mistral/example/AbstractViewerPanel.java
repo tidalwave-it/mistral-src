@@ -59,7 +59,7 @@ public class AbstractViewerPanel extends JPanel
       {
         try // used during development
           {
-            File file = new File("../../../www/images/" + fileName);
+            final File file = new File("../../../www/images/" + fileName);
             
             if (file.exists() && file.canRead())
               {
@@ -113,7 +113,7 @@ public class AbstractViewerPanel extends JPanel
         imageRenderer.repaint(); // FIXME: should not be needed
           
         // A SwingWorker would be good here
-        Thread loaderThread = new Thread()
+        final Thread loaderThread = new Thread()
           {
             @Override
             public void run()

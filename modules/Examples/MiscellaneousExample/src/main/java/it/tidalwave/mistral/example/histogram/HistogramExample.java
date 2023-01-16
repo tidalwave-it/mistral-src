@@ -40,10 +40,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class HistogramExample 
   {
-    public static void main (String[] args)
+    public static void main (final String[] args)
       throws IOException
       {
-        HistogramExample e = new HistogramExample();
+        final HistogramExample e = new HistogramExample();
         e.process();
       }
     
@@ -53,8 +53,8 @@ public class HistogramExample
         //
         // Loads the image
         //
-        File file = new File("../images/20030701-0043.NEF");
-        EditableImage image = EditableImage.create(new ReadOp(file));
+        final File file = new File("../images/20030701-0043.NEF");
+        final EditableImage image = EditableImage.create(new ReadOp(file));
         log.info("Image loaded in " + image.getLatestOperationTime() + " msec");
         //
         // Crops the image
@@ -64,16 +64,16 @@ public class HistogramExample
         //
         // Computes the histogram
         //
-        Histogram histogram = image.execute(new HistogramOp()).getHistogram();  
+        final Histogram histogram = image.execute(new HistogramOp()).getHistogram();
         log.info("Histogram computed in " + image.getLatestOperationTime() + " msec");
         //
         // Prints some information item from the histogram
         //
         for (int band = 0; band < histogram.getBandCount(); band++)
           {
-            int min = histogram.getMin(band);
-            int max = histogram.getMax(band);
-            int[] frequencies = histogram.getFrequencies(band);            
+            final int min = histogram.getMin(band);
+            final int max = histogram.getMax(band);
+            final int[] frequencies = histogram.getFrequencies(band);
             log.info("band #" + band + ": min=" + min + " max=" + max + " " + frequencies.length + " samples");
           }
       }

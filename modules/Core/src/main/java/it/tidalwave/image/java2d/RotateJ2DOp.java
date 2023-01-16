@@ -44,10 +44,10 @@ public class RotateJ2DOp extends OperationImplementation<RotateOp, BufferedImage
      *
      ******************************************************************************/
     @Override
-    protected BufferedImage execute (RotateOp operation, final EditableImage image, BufferedImage bufferedImage)
+    protected BufferedImage execute (final RotateOp operation, final EditableImage image, final BufferedImage bufferedImage)
       {
-        double degrees = operation.getDegrees();
-        Quality quality = operation.getQuality();
+        final double degrees = operation.getDegrees();
+        final Quality quality = operation.getQuality();
         log.debug("rotate(" + degrees + ", " + quality + ")");
         Java2DUtils.logImage(log, ">>>> source bufferedImage", bufferedImage);
 

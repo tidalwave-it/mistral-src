@@ -49,7 +49,7 @@ public class CaptureJ2DOpTest extends BaseTestSupport
       {
         log.info("CaptureJ2DOpTest");
         final JLabel label = new JLabel("text");
-        JFrame frame = new JFrame();
+        final JFrame frame = new JFrame();
         frame.getContentPane().add(label);
         frame.pack();
         frame.setVisible(true);

@@ -76,7 +76,7 @@ public class Statistics implements Serializable, Iterable<Item>
          * @param  name  the item name
          *
          **********************************************************************/
-        public Item (String name)  
+        public Item (final String name)
           {
             this.name = name;
           }
@@ -146,7 +146,7 @@ public class Statistics implements Serializable, Iterable<Item>
          * @param  value  the value
          *
          **********************************************************************/
-        public void addSample (long value)
+        public void addSample (final long value)
           {
             minimum = Math.min(minimum, value);
             maximum = Math.max(maximum, value);
@@ -160,7 +160,7 @@ public class Statistics implements Serializable, Iterable<Item>
          *
          **********************************************************************/
         @Override
-        public int compareTo (Statistics.Item o) 
+        public int compareTo (final Statistics.Item o)
           {
             return this.name.compareTo(o.name);
           }
@@ -172,7 +172,7 @@ public class Statistics implements Serializable, Iterable<Item>
          * @param  otherItem  the other item
          *
          **********************************************************************/
-        protected void merge (Item otherItem)
+        protected void merge (final Item otherItem)
           {
             minimum = Math.min(minimum, otherItem.minimum);
             maximum = Math.max(maximum, otherItem.maximum);
@@ -200,7 +200,7 @@ public class Statistics implements Serializable, Iterable<Item>
      * @param  value  the value
      *
      **************************************************************************/
-    public synchronized void addSample (String name, long value)
+    public synchronized void addSample (final String name, final long value)
       {
         Item statItem = map.get(name);
         
@@ -220,11 +220,11 @@ public class Statistics implements Serializable, Iterable<Item>
      * @param  statistics  the other statistics
      *
      **************************************************************************/
-    public synchronized void merge (Statistics statistics)
+    public synchronized void merge (final Statistics statistics)
       {
-        for (Item statItem : statistics)
+        for (final Item statItem : statistics)
           {
-            Item here = map.get(statItem.getName());
+            final Item here = map.get(statItem.getName());
             
             if (here == null)
               {
@@ -245,7 +245,7 @@ public class Statistics implements Serializable, Iterable<Item>
      **************************************************************************/
     public void dump()
       {
-        for (Statistics.Item item : this)
+        for (final Statistics.Item item : this)
           {
             log.info("STATS: >>>> " +
                         item.getName() + ": min/max/avg " +
@@ -262,9 +262,9 @@ public class Statistics implements Serializable, Iterable<Item>
      *
      *
      **************************************************************************/
-    public void dump (PrintWriter pw)
+    public void dump (final PrintWriter pw)
       {
-        for (Statistics.Item item : this)
+        for (final Statistics.Item item : this)
           {
             pw.println(item.getName() + ": min/max/avg " +
                        item.getMinimum() + "/" + 

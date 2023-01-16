@@ -40,7 +40,7 @@ public class SizeOp extends Operation
      * @param   scale     the scale
      *
      ******************************************************************************/
-    public SizeOp (double scale)
+    public SizeOp (final double scale)
       {
         this.scale = scale;
       }

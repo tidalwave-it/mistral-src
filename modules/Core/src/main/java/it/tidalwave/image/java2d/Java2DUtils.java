@@ -90,17 +90,17 @@ public class Java2DUtils
      *
      *
      ******************************************************************************/
-    public static Properties getProperties (BufferedImage image)
+    public static Properties getProperties (final BufferedImage image)
       {
-        Properties properties = new Properties();
-        String[] propertyNames = image.getPropertyNames();
+        final Properties properties = new Properties();
+        final String[] propertyNames = image.getPropertyNames();
 
         if (propertyNames != null)
           {
             for (int i = 0; i < propertyNames.length; i++)
               {
-                String propertyName = propertyNames[i];
-                Object propertyValue = image.getProperty(propertyName);
+                final String propertyName = propertyNames[i];
+                final Object propertyValue = image.getProperty(propertyName);
                 properties.setProperty(propertyName, propertyValue.toString());
               }
           }
@@ -117,9 +117,9 @@ public class Java2DUtils
      ******************************************************************************/
     public static BufferedImage createOptimizedImage (final int width, final int height)
       {
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice gs = ge.getDefaultScreenDevice();
-        GraphicsConfiguration gc = gs.getDefaultConfiguration();
+        final GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        final GraphicsDevice gs = ge.getDefaultScreenDevice();
+        final GraphicsConfiguration gc = gs.getDefaultConfiguration();
 
         return gc.createCompatibleImage(width, height);
       }
@@ -130,10 +130,10 @@ public class Java2DUtils
      ******************************************************************************/
     public static GraphicsConfiguration getGraphicsConfiguration ()
       {
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice[] gs = ge.getScreenDevices();
-        GraphicsDevice gd = gs[0]; // FIXME
-        GraphicsConfiguration gc = gd.getDefaultConfiguration();
+        final GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        final GraphicsDevice[] gs = ge.getScreenDevices();
+        final GraphicsDevice gd = gs[0]; // FIXME
+        final GraphicsConfiguration gc = gd.getDefaultConfiguration();
 
         return gc;
       }
@@ -144,9 +144,9 @@ public class Java2DUtils
      ******************************************************************************/
     public static BufferedImage createSimilarImage (final BufferedImage bufferedImage, final int newWidth, final int newHeight)
       {
-        SampleModel sampleModel = bufferedImage.getSampleModel().createCompatibleSampleModel(newWidth, newHeight);
-        WritableRaster newRaster = Raster.createWritableRaster(sampleModel, null);
-        ColorModel colorModel = bufferedImage.getColorModel();
+        final SampleModel sampleModel = bufferedImage.getSampleModel().createCompatibleSampleModel(newWidth, newHeight);
+        final WritableRaster newRaster = Raster.createWritableRaster(sampleModel, null);
+        final ColorModel colorModel = bufferedImage.getColorModel();
 
         return new BufferedImage(colorModel, newRaster, false, Java2DUtils.getProperties(bufferedImage));
       }
@@ -155,9 +155,9 @@ public class Java2DUtils
      *
      *
      ******************************************************************************/
-    public static String getICCProfileName (RenderedImage image)
+    public static String getICCProfileName (final RenderedImage image)
       {
-        ICC_Profile iccProfile = ImageUtils.getICCProfile(image);
+        final ICC_Profile iccProfile = ImageUtils.getICCProfile(image);
 
         if (iccProfile != null)
           {
@@ -185,7 +185,7 @@ public class Java2DUtils
 
         long time = System.currentTimeMillis();
 
-        WritableRaster sourceRaster = image.getRaster();
+        final WritableRaster sourceRaster = image.getRaster();
         ColorModel colorModel = image.getColorModel();
         ICC_ColorSpace colorSpace = (ICC_ColorSpace)colorModel.getColorSpace();
         final SampleModel ssmd = sourceRaster.getSampleModel();
@@ -202,16 +202,16 @@ public class Java2DUtils
         
         else
           {
-            PixelInterleavedSampleModel sourceSampleModel = (PixelInterleavedSampleModel)ssmd;
-            int[] bitMasks = new int[] { 0x00ff0000, 0x0000ff00, 0x000000ff };
+            final PixelInterleavedSampleModel sourceSampleModel = (PixelInterleavedSampleModel)ssmd;
+            final int[] bitMasks = new int[] {0x00ff0000, 0x0000ff00, 0x000000ff };
 
-            SinglePixelPackedSampleModel sampleModel = new SinglePixelPackedSampleModel(DataBuffer.TYPE_INT, image.getWidth(),
-                    image.getHeight(), bitMasks);
+            final SinglePixelPackedSampleModel sampleModel = new SinglePixelPackedSampleModel(DataBuffer.TYPE_INT, image.getWidth(),
+                                                                                              image.getHeight(), bitMasks);
 
-            WritableRaster destRaster = Raster.createWritableRaster(sampleModel, null);
-            DataBufferInt destDataBuffer = (DataBufferInt)destRaster.getDataBuffer();
-            int[] destBuffer = destDataBuffer.getData();
-            int[] bandOffsets = sourceSampleModel.getBandOffsets();
+            final WritableRaster destRaster = Raster.createWritableRaster(sampleModel, null);
+            final DataBufferInt destDataBuffer = (DataBufferInt)destRaster.getDataBuffer();
+            final int[] destBuffer = destDataBuffer.getData();
+            final int[] bandOffsets = sourceSampleModel.getBandOffsets();
 
             for (int i = 0; i < bandOffsets.length; i++)
               {
@@ -219,7 +219,7 @@ public class Java2DUtils
                 (sourceRaster.getSampleModelTranslateY() * sourceSampleModel.getScanlineStride()));
               }
 
-            DataBuffer sourceDataBuffer = sourceRaster.getDataBuffer();
+            final DataBuffer sourceDataBuffer = sourceRaster.getDataBuffer();
 
             if (sourceDataBuffer instanceof DataBufferUShort)
               {
@@ -236,7 +236,7 @@ public class Java2DUtils
                 throw new IllegalArgumentException("Cannot deal with " + sourceDataBuffer.getClass());
               }
 
-            String sourceProfileName = ImageUtils.getICCProfileName(colorSpace.getProfile());
+            final String sourceProfileName = ImageUtils.getICCProfileName(colorSpace.getProfile());
 
             if (sourceProfileName.equals("Nikon sRGB 4.0.0.3001"))
               {
@@ -297,12 +297,12 @@ public class Java2DUtils
       {
         log.debug("scaleWithDrawImage(" + xScale + ", " + yScale + ", " + quality);
 
-        int newWidth = (int)Math.round(bufferedImage.getWidth() * xScale);
-        int newHeight = (int)Math.round(bufferedImage.getHeight() * yScale);
-        BufferedImage result = createSimilarImage(bufferedImage, newWidth, newHeight);
+        final int newWidth = (int)Math.round(bufferedImage.getWidth() * xScale);
+        final int newHeight = (int)Math.round(bufferedImage.getHeight() * yScale);
+        final BufferedImage result = createSimilarImage(bufferedImage, newWidth, newHeight);
 
-        Graphics2D g2d = (Graphics2D)result.getGraphics();
-        Object interpolation = findRenderingHintsInterpolation(quality);
+        final Graphics2D g2d = (Graphics2D)result.getGraphics();
+        final Object interpolation = findRenderingHintsInterpolation(quality);
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, interpolation);
 
         try
@@ -323,16 +323,16 @@ public class Java2DUtils
      ******************************************************************************/
     public static BufferedImage rotateWithDrawImage (final BufferedImage bufferedImage, final double degrees, final Quality quality)
       {
-        double radians = Math.toRadians(degrees);
-        double cos = Math.cos(radians);
-        double sin = Math.sin(radians);
-        int width = bufferedImage.getWidth();
-        int height = bufferedImage.getHeight();
-        int newWidth = (int)Math.round(Math.abs(width * cos) + Math.abs(height * sin));
-        int newHeight = (int)Math.round(Math.abs(width * sin) + Math.abs(height * cos));
-        BufferedImage result = createSimilarImage(bufferedImage, newWidth, newHeight);
-        Graphics2D g2d = (Graphics2D)result.getGraphics();
-        Object interpolation = findRenderingHintsInterpolation(quality);
+        final double radians = Math.toRadians(degrees);
+        final double cos = Math.cos(radians);
+        final double sin = Math.sin(radians);
+        final int width = bufferedImage.getWidth();
+        final int height = bufferedImage.getHeight();
+        final int newWidth = (int)Math.round(Math.abs(width * cos) + Math.abs(height * sin));
+        final int newHeight = (int)Math.round(Math.abs(width * sin) + Math.abs(height * cos));
+        final BufferedImage result = createSimilarImage(bufferedImage, newWidth, newHeight);
+        final Graphics2D g2d = (Graphics2D)result.getGraphics();
+        final Object interpolation = findRenderingHintsInterpolation(quality);
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, interpolation);
 
         try
@@ -354,9 +354,9 @@ public class Java2DUtils
      *
      *
      ******************************************************************************/
-    protected static String toString (int[] array, int radix)
+    protected static String toString (final int[] array, final int radix)
       {
-        StringBuffer buffer = new StringBuffer("");
+        final StringBuffer buffer = new StringBuffer();
 
         for (int i = 0; i < array.length; i++)
           {
@@ -379,7 +379,7 @@ public class Java2DUtils
      *
      *
      ******************************************************************************/
-    public static void logImage (Logger log, final String prefix, final RenderedImage image)
+    public static void logImage (final Logger log, final String prefix, final RenderedImage image)
       {
         if (Java2DUtils.log.isDebugEnabled())
           {
@@ -391,7 +391,7 @@ public class Java2DUtils
             else
               {
 //            image.getData(); THIS IS SLOW SLOW SLOW!!
-                ColorModel colorModel = image.getColorModel();
+                final ColorModel colorModel = image.getColorModel();
                 Java2DUtils.log.debug(prefix + ".size:           " + image.getWidth() + ", " + image.getHeight());
                 Java2DUtils.log.debug(prefix + ".tiles:          " + image.getNumXTiles() + " " + image.getNumYTiles());
                 Java2DUtils.log.debug(prefix + ".class:          " + image.getClass().getName());
@@ -412,7 +412,7 @@ public class Java2DUtils
      *
      *
      ******************************************************************************/
-    private static String toString (SampleModel sampleModel)
+    private static String toString (final SampleModel sampleModel)
       {
         if (sampleModel instanceof SinglePixelPackedSampleModel)
           {
@@ -434,7 +434,7 @@ public class Java2DUtils
      *
      *
      ******************************************************************************/
-    private static String toString (ColorSpace colorSpace)
+    private static String toString (final ColorSpace colorSpace)
       {
         if (colorSpace instanceof ICC_ColorSpace)
           {
@@ -451,9 +451,9 @@ public class Java2DUtils
      *
      *
      ******************************************************************************/
-    private static String toString (ICC_ColorSpace colorSpace)
+    private static String toString (final ICC_ColorSpace colorSpace)
       {
-        StringBuffer buffer = new StringBuffer("");
+        final StringBuffer buffer = new StringBuffer();
         buffer.append(colorSpace.getClass().getName());
         buffer.append("[type: ");
         buffer.append(colorSpace.getType());
@@ -468,9 +468,9 @@ public class Java2DUtils
      *
      *
      ******************************************************************************/
-    private static String toString (SinglePixelPackedSampleModel sampleModel)
+    private static String toString (final SinglePixelPackedSampleModel sampleModel)
       {
-        StringBuffer buffer = new StringBuffer("");
+        final StringBuffer buffer = new StringBuffer();
         buffer.append(sampleModel.getClass().getName());
         buffer.append("[width: ");
         buffer.append(sampleModel.getWidth());
@@ -499,9 +499,9 @@ public class Java2DUtils
      *
      *
      ******************************************************************************/
-    private static String toString (PixelInterleavedSampleModel sampleModel)
+    private static String toString (final PixelInterleavedSampleModel sampleModel)
       {
-        StringBuffer buffer = new StringBuffer("");
+        final StringBuffer buffer = new StringBuffer();
         buffer.append(sampleModel.getClass().getName());
         buffer.append("[width: ");
         buffer.append(sampleModel.getWidth());
@@ -535,12 +535,12 @@ public class Java2DUtils
      * @param destBuffer
      *
      ******************************************************************************/
-    private static void convertUShortDataBuffer (BufferedImage image, DataBufferUShort sourceDataBuffer,
-        PixelInterleavedSampleModel sourceSampleModel, int[] bandOffsets, int[] destBuffer)
+    private static void convertUShortDataBuffer (final BufferedImage image, final DataBufferUShort sourceDataBuffer,
+                                                 final PixelInterleavedSampleModel sourceSampleModel, final int[] bandOffsets, final int[] destBuffer)
       {
         int base = 0;
         int i = 0;
-        short[] sourceBuffer = sourceDataBuffer.getData();
+        final short[] sourceBuffer = sourceDataBuffer.getData();
 
         for (int y = 0; y < image.getHeight(); y++)
           {
@@ -548,9 +548,9 @@ public class Java2DUtils
 
             for (int x = 0; x < image.getWidth(); x++)
               {
-                int r = (sourceBuffer[j + bandOffsets[0]] & 0xffff) >> 8;
-                int g = (sourceBuffer[j + bandOffsets[1]] & 0xffff) >> 8;
-                int b = (sourceBuffer[j + bandOffsets[2]] & 0xffff) >> 8;
+                final int r = (sourceBuffer[j + bandOffsets[0]] & 0xffff) >> 8;
+                final int g = (sourceBuffer[j + bandOffsets[1]] & 0xffff) >> 8;
+                final int b = (sourceBuffer[j + bandOffsets[2]] & 0xffff) >> 8;
 
                 destBuffer[i++] = (r << 16) | (g << 8) | b;
                 j += 3;
@@ -567,13 +567,13 @@ public class Java2DUtils
      * @param bandOffsets
      * @param destBuffer
      */
-    private static void convertByteDataBuffer (BufferedImage image, DataBufferByte sourceDataBuffer,
-        PixelInterleavedSampleModel sourceSampleModel, int[] bandOffsets, int[] destBuffer)
+    private static void convertByteDataBuffer (final BufferedImage image, final DataBufferByte sourceDataBuffer,
+                                               final PixelInterleavedSampleModel sourceSampleModel, final int[] bandOffsets, final int[] destBuffer)
       {
         int base = 0;
         int i = 0;
-        byte[] sourceBuffer = sourceDataBuffer.getData();
-        int pixelStride = sourceSampleModel.getPixelStride();
+        final byte[] sourceBuffer = sourceDataBuffer.getData();
+        final int pixelStride = sourceSampleModel.getPixelStride();
 
         for (int y = 0; y < image.getHeight(); y++)
           {
@@ -581,9 +581,9 @@ public class Java2DUtils
 
             for (int x = 0; x < image.getWidth(); x++)
               {
-                int r = (sourceBuffer[j + bandOffsets[0]] & 0xff);
-                int g = (sourceBuffer[j + bandOffsets[1]] & 0xff);
-                int b = (sourceBuffer[j + bandOffsets[2]] & 0xff);
+                final int r = (sourceBuffer[j + bandOffsets[0]] & 0xff);
+                final int g = (sourceBuffer[j + bandOffsets[1]] & 0xff);
+                final int b = (sourceBuffer[j + bandOffsets[2]] & 0xff);
 
                 destBuffer[i++] = (r << 16) | (g << 8) | b;
                 j += pixelStride;
@@ -601,18 +601,18 @@ public class Java2DUtils
      * @return
      *
      ******************************************************************************/
-    public static BufferedImage createOptimizedImage (BufferedImage bufferedImage, double xScale, double yScale, Quality quality)
+    public static BufferedImage createOptimizedImage (final BufferedImage bufferedImage, final double xScale, final double yScale, final Quality quality)
       {
         log.debug("createOptimizedImage(" + xScale + ", " + yScale + ", " + quality + ")");
 
-        int iw = (int)Math.round(xScale * bufferedImage.getWidth());
-        int ih = (int)Math.round(yScale * bufferedImage.getHeight());
-        BufferedImage image2 = createOptimizedImage(iw, ih);
-        Graphics2D g = (Graphics2D)image2.getGraphics();
+        final int iw = (int)Math.round(xScale * bufferedImage.getWidth());
+        final int ih = (int)Math.round(yScale * bufferedImage.getHeight());
+        final BufferedImage image2 = createOptimizedImage(iw, ih);
+        final Graphics2D g = (Graphics2D)image2.getGraphics();
 
         try
           {
-            Object interpolation = findRenderingHintsInterpolation(quality);
+            final Object interpolation = findRenderingHintsInterpolation(quality);
 
             // Workaround for bugs #4886071 and #4705399
             // See http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4886071
@@ -641,10 +641,10 @@ public class Java2DUtils
              */
             log.debug(">>>> applying AffineTransform.getScaleInstance() with RenderingHint: " + interpolation);
 
-            Object renderingHintSave = g.getRenderingHint(RenderingHints.KEY_INTERPOLATION);
+            final Object renderingHintSave = g.getRenderingHint(RenderingHints.KEY_INTERPOLATION);
             g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, interpolation);
 
-            AffineTransform transform = ((xScale == 1.0) && (yScale == 1.0)) ? null : AffineTransform.getScaleInstance(xScale, yScale);
+            final AffineTransform transform = ((xScale == 1.0) && (yScale == 1.0)) ? null : AffineTransform.getScaleInstance(xScale, yScale);
             g.drawRenderedImage(bufferedImage, transform);
 
             if (renderingHintSave != null)
@@ -699,7 +699,7 @@ public class Java2DUtils
      * @return
      *
      ******************************************************************************/
-    public static Kernel getAveragingKernel (int n)
+    public static Kernel getAveragingKernel (final int n)
       {
         Kernel kernel = null;
 
@@ -723,16 +723,16 @@ public class Java2DUtils
      * @return
      *
      ******************************************************************************/
-    private static Kernel getEvenAveragingKernel (int n)
+    private static Kernel getEvenAveragingKernel (final int n)
       {
-        int r = n + 1;
-        int totalCount = r * r;
-        int coreCount = (r - 2) * (r - 2);
-        int extCount = totalCount - coreCount;
-        float a = 1.0f / ((coreCount * 2) + extCount); // core count double
-        float coreValue = a * 2;
-        float extValue = a;
-        float[] result = new float[totalCount];
+        final int r = n + 1;
+        final int totalCount = r * r;
+        final int coreCount = (r - 2) * (r - 2);
+        final int extCount = totalCount - coreCount;
+        final float a = 1.0f / ((coreCount * 2) + extCount); // core count double
+        final float coreValue = a * 2;
+        final float extValue = a;
+        final float[] result = new float[totalCount];
 
         int j = 0;
 
@@ -768,11 +768,11 @@ public class Java2DUtils
      * @return
      *
      ******************************************************************************/
-    private static Kernel getOddAveragingKernel (int n)
+    private static Kernel getOddAveragingKernel (final int n)
       {
-        int totalCount = n * n;
-        float v = 1.0f / (totalCount);
-        float[] result = new float[totalCount];
+        final int totalCount = n * n;
+        final float v = 1.0f / (totalCount);
+        final float[] result = new float[totalCount];
 
         for (int i = 0; i < result.length; i++)
           {

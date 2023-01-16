@@ -55,28 +55,28 @@ class TestInfo implements Comparable<TestInfo>
     private final String file;
     private Set<TestResults> results = new TreeSet<TestResults>();
 
-    public TestInfo (String body)
+    public TestInfo (final String body)
       {
         System.err.println(body);
 
-        String[] tmp = body.split("::");
+        final String[] tmp = body.split("::");
         revision = tmp[0];
         test = tmp[3];
         quality = tmp[4];
         file = tmp[5];
       }
 
-    public void add (TestResults testResults)
+    public void add (final TestResults testResults)
       {
         results.add(testResults);
       }
 
-    public void printHeader (PrintWriter pw)
+    public void printHeader (final PrintWriter pw)
       {
         pw.println(
             "<tr><td rowspan='2'>Revision</td><td rowspan='2'>Test</td><td rowspan='2'>Quality</td><td rowspan='2'>File</td>");
 
-        for (TestResults testResults : results)
+        for (final TestResults testResults : results)
           {
             pw.println("<td>" + testResults.host + "</td>");
           }
@@ -84,7 +84,7 @@ class TestInfo implements Comparable<TestInfo>
         pw.println("</tr>");
         pw.println("<tr>");
 
-        for (TestResults testResults : results)
+        for (final TestResults testResults : results)
           {
             pw.println("<td>" + testResults.os + "</td>");
           }
@@ -96,7 +96,7 @@ class TestInfo implements Comparable<TestInfo>
     private String[] colors = new String[] { "#ffffff", "#dddddd" };
     private static int k;
 
-    public void print (PrintWriter pw)
+    public void print (final PrintWriter pw)
       {
         if (!latestTest.equals(test + quality))
           {
@@ -109,7 +109,7 @@ class TestInfo implements Comparable<TestInfo>
         pw.print("<td>" + quality + "</td>");
         pw.print("<td>" + file + "</td>");
 
-        for (TestResults testResults : results)
+        for (final TestResults testResults : results)
           {
             testResults.print(pw);
           }
@@ -118,7 +118,7 @@ class TestInfo implements Comparable<TestInfo>
       }
 
     @Override
-    public int compareTo (TestInfo o)
+    public int compareTo (final TestInfo o)
       {
         int r = test.compareTo(o.test);
 
@@ -163,7 +163,7 @@ class TestInfo implements Comparable<TestInfo>
       }
 
     @Override
-    public boolean equals (Object o)
+    public boolean equals (final Object o)
       {
         if (!(o instanceof TestInfo))
           {
@@ -186,16 +186,16 @@ class TestResults implements Comparable<TestResults>
     public final String host;
     public final String os;
 
-    public TestResults (String body, String value)
+    public TestResults (final String body, final String value)
       {
-        String[] tmp = body.split("::");
+        final String[] tmp = body.split("::");
         host = tmp[1];
         os = tmp[2];
         this.value = value;
       }
 
     @Override
-    public int compareTo (TestResults o)
+    public int compareTo (final TestResults o)
       {
         int r = host.compareTo(o.host);
 
@@ -209,7 +209,7 @@ class TestResults implements Comparable<TestResults>
         return r;
       }
 
-    public void print (PrintWriter pw)
+    public void print (final PrintWriter pw)
       {
         String color = "black";
 
@@ -239,7 +239,7 @@ public class TestReportFormatter
     public void run ()
         throws IOException
       {
-        BufferedReader br = new BufferedReader(new FileReader(reportFile));
+        final BufferedReader br = new BufferedReader(new FileReader(reportFile));
 
         for (;;)
           {
@@ -257,13 +257,13 @@ public class TestReportFormatter
                 continue;
               }
 
-            String[] tmp = s.split("=");
-            String body = tmp[0].trim();
-            String value = tmp[1].trim();
+            final String[] tmp = s.split("=");
+            final String body = tmp[0].trim();
+            final String value = tmp[1].trim();
             TestInfo testInfo = new TestInfo(body);
-            TestResults testResults = new TestResults(body, value);
+            final TestResults testResults = new TestResults(body, value);
 
-            int i = tests.indexOf(testInfo);
+            final int i = tests.indexOf(testInfo);
 
             if (i < 0)
               {
@@ -281,11 +281,11 @@ public class TestReportFormatter
         br.close();
         Collections.sort(tests);
 
-        PrintWriter pw = new PrintWriter(new FileWriter(htmlFile));
+        final PrintWriter pw = new PrintWriter(new FileWriter(htmlFile));
         pw.println("<table border='1' cellpadding='2' cellspacing='0'>");
         tests.get(0).printHeader(pw);
 
-        for (TestInfo testInfo : tests)
+        for (final TestInfo testInfo : tests)
           {
             testInfo.print(pw);
           }
@@ -294,7 +294,7 @@ public class TestReportFormatter
         pw.close();
       }
 
-    public static void main (String[] args)
+    public static void main (final String[] args)
         throws IOException
       {
         new TestReportFormatter(new File(

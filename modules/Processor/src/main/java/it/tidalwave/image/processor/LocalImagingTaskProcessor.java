@@ -45,7 +45,7 @@ public class LocalImagingTaskProcessor extends ImagingTaskProcessor
      **************************************************************************/
     protected class PoolThread extends Thread
       {
-        public PoolThread (String name)
+        public PoolThread (final String name)
           {
             super(name);  
             setDaemon(true);
@@ -57,7 +57,7 @@ public class LocalImagingTaskProcessor extends ImagingTaskProcessor
             for (;;) // TODO: add a smart way to terminate
               {
                 changeFreeWorkerCount(+1);
-                ImagingTask task = getNextTask(getName(), false);
+                final ImagingTask task = getNextTask(getName(), false);
                 changeFreeWorkerCount(-1);
                 log.debug(Thread.currentThread().getName() + " assigned to " + task.getName());
                 
@@ -86,7 +86,7 @@ public class LocalImagingTaskProcessor extends ImagingTaskProcessor
       {
         for (int i = 0; i < Math.min(Runtime.getRuntime().availableProcessors(), maxWorkers); i++)
           {
-            PoolThread worker = new PoolThread("PoolThread #" + i);
+            final PoolThread worker = new PoolThread("PoolThread #" + i);
             workers.add(worker);
             worker.start();   
           }
@@ -133,9 +133,9 @@ public class LocalImagingTaskProcessor extends ImagingTaskProcessor
     @Override
     public Collection<Serializable> getWorkerIds()
       {
-        Collection<Serializable> result = new ArrayList<Serializable>();
+        final Collection<Serializable> result = new ArrayList<Serializable>();
         
-        for (PoolThread worker : workers)
+        for (final PoolThread worker : workers)
           {
             result.add(worker.getName());
           }

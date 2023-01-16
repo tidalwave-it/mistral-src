@@ -41,13 +41,13 @@ public final class ImageUtils
      *
      *
      ******************************************************************************/
-    public static ICC_Profile getICCProfile (RenderedImage image)
+    public static ICC_Profile getICCProfile (final RenderedImage image)
       {
-        ColorSpace colorSpace = image.getColorModel().getColorSpace();
+        final ColorSpace colorSpace = image.getColorModel().getColorSpace();
 
         if (colorSpace instanceof ICC_ColorSpace)
           {
-            ICC_ColorSpace iccColorSpace = (ICC_ColorSpace)colorSpace;
+            final ICC_ColorSpace iccColorSpace = (ICC_ColorSpace)colorSpace;
 
             return iccColorSpace.getProfile();
           }
@@ -59,15 +59,15 @@ public final class ImageUtils
      *
      *
      ******************************************************************************/
-    public static String getICCProfileName (ICC_Profile profile)
+    public static String getICCProfileName (final ICC_Profile profile)
       {
         if (profile == null)
           {
             return null;
           }
 
-        byte[] xx = profile.getData(ICC_Profile.icSigProfileDescriptionTag);
-        int offset = 12;
+        final byte[] xx = profile.getData(ICC_Profile.icSigProfileDescriptionTag);
+        final int offset = 12;
         int count;
 
         for (count = 1; xx[offset + count] != 0; count++)
@@ -86,7 +86,7 @@ public final class ImageUtils
      *             it is set to the closest greater odd number
      * @return gaussian blur kernel
      ******************************************************************************/    
-    public static Kernel gaussianBlurKernel(double sigma, int size)
+    public static Kernel gaussianBlurKernel(final double sigma, int size)
       {
         // Size od kernel must be an odd number
         if (size%2 == 0)
@@ -94,18 +94,18 @@ public final class ImageUtils
           size += 1;
         }
 
-        float[] matrix = new float[size*size];
+        final float[] matrix = new float[size * size];
         double sum = 0.0;
 
         for (int x=-size/2; x <=size/2; x++)
         {
           for (int y=-size/2; y<=size/2; y++)
           {
-            double rsq = x*x + y*y;
-            double gauss = 1/(Math.sqrt(2*Math.PI)*sigma) * Math.exp(-rsq/(2*sigma*sigma));
+            final double rsq = x * x + y * y;
+            final double gauss = 1 / (Math.sqrt(2 * Math.PI) * sigma) * Math.exp(-rsq / (2 * sigma * sigma));
             sum += gauss;
 
-            int index = size*(y+size/2) + (x+size/2);
+            final int index = size * (y + size / 2) + (x + size / 2);
             matrix[index] = (float) gauss;        
           }
         }
@@ -134,7 +134,7 @@ public final class ImageUtils
      * @param sigma standard deviation of gaussian bell
      * @return gaussian blur kernel
      ******************************************************************************/    
-    public static Kernel gaussianBlurKernel(double sigma)
+    public static Kernel gaussianBlurKernel(final double sigma)
       {
         int size = 0;    
 
@@ -153,7 +153,7 @@ public final class ImageUtils
         else if (sigma >= (13.0/6.0))
           size = 15;
 
-        Kernel result = gaussianBlurKernel(sigma, size);
+        final Kernel result = gaussianBlurKernel(sigma, size);
 
         return result;
       }

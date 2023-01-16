@@ -49,9 +49,9 @@ public class RotateQuadrantJ2DOp extends OperationImplementation<RotateQuadrantO
      *
      ******************************************************************************/
     @Override
-    protected BufferedImage execute (RotateQuadrantOp operation, final EditableImage image, BufferedImage bufferedImage)
+    protected BufferedImage execute (final RotateQuadrantOp operation, final EditableImage image, final BufferedImage bufferedImage)
       {
-        int degrees = operation.getDegrees();
+        final int degrees = operation.getDegrees();
         log.debug("rotateQuadrant(" + degrees + ")");
         Java2DUtils.logImage(log, ">>>> source bufferedImage", bufferedImage);
 
@@ -60,8 +60,8 @@ public class RotateQuadrantJ2DOp extends OperationImplementation<RotateQuadrantO
             return bufferedImage;
           }
 
-        int newWidth = bufferedImage.getWidth();
-        int newHeight = bufferedImage.getHeight();
+        final int newWidth = bufferedImage.getWidth();
+        final int newHeight = bufferedImage.getHeight();
 
         SampleModel sampleModel = bufferedImage.getSampleModel();
 
@@ -72,16 +72,16 @@ public class RotateQuadrantJ2DOp extends OperationImplementation<RotateQuadrantO
             sampleModel = sampleModel.createCompatibleSampleModel(bufferedImage.getHeight(), bufferedImage.getWidth());
           }
 
-        WritableRaster newRaster = Raster.createWritableRaster(sampleModel, null);
-        ColorModel colorModel = bufferedImage.getColorModel();
-        BufferedImage result = new BufferedImage(colorModel, newRaster, false, Java2DUtils.getProperties(bufferedImage));
+        final WritableRaster newRaster = Raster.createWritableRaster(sampleModel, null);
+        final ColorModel colorModel = bufferedImage.getColorModel();
+        final BufferedImage result = new BufferedImage(colorModel, newRaster, false, Java2DUtils.getProperties(bufferedImage));
 
 //        BufferedImage result = Java2DUtils.createCompatibleImage(bufferedImage, newWidth, newHeight);
-        Graphics2D g2d = (Graphics2D)result.getGraphics();
+        final Graphics2D g2d = (Graphics2D)result.getGraphics();
 
         try
           {
-            double radians = Math.toRadians(degrees);
+            final double radians = Math.toRadians(degrees);
             g2d.transform(AffineTransform.getRotateInstance(radians));
 
             int x = 0;

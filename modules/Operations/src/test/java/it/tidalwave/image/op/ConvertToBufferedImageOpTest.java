@@ -39,7 +39,7 @@ public class ConvertToBufferedImageOpTest
     public void testGetBufferedImage() 
       {
         System.out.println("getBufferedImage");
-        ConvertToBufferedImageOp op = new ConvertToBufferedImageOp();
+        final ConvertToBufferedImageOp op = new ConvertToBufferedImageOp();
         
 //        EditableImage image;
 //        BufferedImage bufferedImage = image.execute(new ConvertToBufferedImageOp()).getBufferedImage();
@@ -49,7 +49,7 @@ public class ConvertToBufferedImageOpTest
     public void testToString() 
       {
         System.out.println("toString");
-        ConvertToBufferedImageOp instance = new ConvertToBufferedImageOp();
+        final ConvertToBufferedImageOp instance = new ConvertToBufferedImageOp();
         instance.toString();
       }  
   }

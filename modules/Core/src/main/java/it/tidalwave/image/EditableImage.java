@@ -125,7 +125,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
          *
          *
          **********************************************************************/
-        DataType (int value)
+        DataType (final int value)
           {
             this.value = value;
           }
@@ -305,7 +305,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      ******************************************************************************************************************/
     public static Collection<String> getAvailableExtensions()
       {
-        boolean logExtensions;
+        final boolean logExtensions;
         
         synchronized (EditableImage.class)
           {
@@ -318,22 +318,22 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
             log.info("getAvailableExtensions()");
           }
 
-        Set<String> suffixList = new TreeSet<String>();
+        final Set<String> suffixList = new TreeSet<String>();
 
-        for (String formatName : ImageIO.getReaderFormatNames())
+        for (final String formatName : ImageIO.getReaderFormatNames())
           {
-            for (Iterator<ImageReader> i = ImageIO.getImageReadersByFormatName(formatName); i.hasNext();)
+            for (final Iterator<ImageReader> i = ImageIO.getImageReadersByFormatName(formatName); i.hasNext();)
               {
-                ImageReader imageReader = i.next();
-                ImageReaderSpi originatingProvider = imageReader.getOriginatingProvider();
-                String[] suffixes = originatingProvider.getFileSuffixes();
-                List<String> suffixesAsList = Arrays.asList(suffixes);
+                final ImageReader imageReader = i.next();
+                final ImageReaderSpi originatingProvider = imageReader.getOriginatingProvider();
+                final String[] suffixes = originatingProvider.getFileSuffixes();
+                final List<String> suffixesAsList = Arrays.asList(suffixes);
                 suffixList.addAll(suffixesAsList);
                 
                 if (logExtensions)
                   {
-                    log.info(">>>> reader - format name: {} provider: {} supports {}", 
-                             new Object[] { formatName, originatingProvider.getPluginClassName(), suffixesAsList });
+                    log.info(">>>> reader - format name: {} provider: {} supports {}",
+                             formatName, originatingProvider.getPluginClassName(), suffixesAsList);
                   }
               }
           }
@@ -373,17 +373,6 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
       {
         final List<?> objects = metadataMapByClass.get(metadataClass);
         return objects.size();
-      }
-    
-    /*******************************************************************************************************************
-     *
-     * @deprecated Use getMetadata(EXIF.class) instead.
-     *
-     ******************************************************************************************************************/
-    @Deprecated
-    public final EXIF getEXIFDirectory()
-      {
-        return getMetadata(EXIF.class);
       }
 
     /*******************************************************************************************************************
@@ -483,8 +472,8 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
     @Nonnull
     public final <T extends Operation> T execute (final @Nonnull T operation)
       {
-        long time = System.currentTimeMillis();
-        Object image = internalExecute(operation);
+        final long time = System.currentTimeMillis();
+        final Object image = internalExecute(operation);
         imageModelHolder.get().setImage(image);
         latestOperationTime = System.currentTimeMillis() - time;
 
@@ -505,12 +494,12 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
       {
         try
           {
-            long time = System.currentTimeMillis();
-            Object image = internalExecute(operation);
-            Class modelClass = imageModelHolder.get().getClass();
-            Constructor constructor = modelClass.getConstructor(Object.class);
-            ImageModel newModel = (ImageModel)constructor.newInstance(image);
-            EditableImage result = new EditableImage(newModel);
+            final long time = System.currentTimeMillis();
+            final Object image = internalExecute(operation);
+            final Class modelClass = imageModelHolder.get().getClass();
+            final Constructor constructor = modelClass.getConstructor(Object.class);
+            final ImageModel newModel = (ImageModel)constructor.newInstance(image);
+            final EditableImage result = new EditableImage(newModel);
             result.attributeMapByName = new HashMap<String, Object>(attributeMapByName);
             result.latestOperationTime = System.currentTimeMillis() - time;
 
@@ -595,9 +584,9 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      ******************************************************************************************************************/
     public final EditableImage createResizedImage (final int width, final int height, final Quality quality)
       {
-        double hScale = (double)width / (double)getWidth();
-        double vScale = (double)height / (double)getHeight();
-        ScaleOp scaleOp = new ScaleOp(hScale, vScale, quality);
+        final double hScale = (double)width / (double)getWidth();
+        final double vScale = (double)height / (double)getHeight();
+        final ScaleOp scaleOp = new ScaleOp(hScale, vScale, quality);
         execute(scaleOp);
 
         return this;
@@ -646,9 +635,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
     public final Map<String, Object> getAttributes()
       {
         // FIXME: no such a thing as CopyOnWriteHashMap
-        final Map<String, Object> result = new HashMap<String, Object>();
-        result.putAll(attributeMapByName);
-        return result;
+        return new HashMap<String, Object>(attributeMapByName);
       }
                 
     /*******************************************************************************************************************
@@ -721,7 +708,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
 
             if (colorSpace instanceof ICC_ColorSpace)
               {
-                ICC_ColorSpace iccColorSpace = (ICC_ColorSpace)colorSpace;
+                final ICC_ColorSpace iccColorSpace = (ICC_ColorSpace)colorSpace;
 
                 return iccColorSpace.getProfile();
               }

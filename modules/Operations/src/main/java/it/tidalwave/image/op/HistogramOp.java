@@ -51,7 +51,7 @@ public class HistogramOp extends Operation
      *
      *
      ******************************************************************************/
-    public void setHistogram (Histogram histogram)
+    public void setHistogram (final Histogram histogram)
       {
         this.histogram = histogram;
       }

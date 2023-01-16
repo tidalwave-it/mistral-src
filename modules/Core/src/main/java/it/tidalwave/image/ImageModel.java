@@ -239,13 +239,13 @@ public abstract class ImageModel implements Externalizable
             writeRaster(new OutputStream() 
               {
                 @Override
-                public void write (byte buffer[], int off, int len) throws IOException 
+                public void write (final byte[] buffer, final int off, final int len) throws IOException
                   {
                     out.write(buffer, off, len);
                   }
                 
                 @Override
-                public void write (int b) throws IOException 
+                public void write (final int b) throws IOException
                   {
                     out.write(b);
                   }
@@ -274,7 +274,7 @@ public abstract class ImageModel implements Externalizable
             readRaster(new InputStream() 
               {
                 @Override
-                public int read(byte b[], int off, int len) throws IOException 
+                public int read(final byte[] b, final int off, final int len) throws IOException
                   {
                     return in.read(b, off, len);
                   }

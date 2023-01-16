@@ -66,9 +66,9 @@ public class MouseClickZoomingController
     private final EditableImageRendererAdapter scaleListener = new EditableImageRendererAdapter()
           {
         @Override
-            public void scaleChanged (EditableImageRendererEvent editableImageRendererEvent)
+            public void scaleChanged (final EditableImageRendererEvent editableImageRendererEvent)
               {
-                double scale = imageRenderer.getScale();
+                final double scale = imageRenderer.getScale();
                 imageRenderer.setCursor(Cursor.getPredefinedCursor((scale != imageRenderer.getFitScale()) ? Cursor.HAND_CURSOR
                                                                                                           : Cursor.CROSSHAIR_CURSOR));
               }
@@ -82,11 +82,11 @@ public class MouseClickZoomingController
     private final MouseListener clickListener = new MouseAdapter()
           {
             @Override
-            public void mouseClicked (MouseEvent event)
+            public void mouseClicked (final MouseEvent event)
               {
                 if ((event.getClickCount() == clickCountToZoom) && (imageRenderer.getPositionOverImage(event.getPoint()) != null))
                   {
-                    double scale = imageRenderer.getScale();
+                    final double scale = imageRenderer.getScale();
                     scaleController.setScale((scale == 1) ? imageRenderer.getFitScale() * factor : 1, event.getPoint());
                   }
               }
@@ -119,7 +119,7 @@ public class MouseClickZoomingController
      * @param  clickCountToZoom  the number of clicks
      *
      **************************************************************************/
-    public void setClickCountToZoom (int clickCountToZoom)
+    public void setClickCountToZoom (final int clickCountToZoom)
       {
         this.clickCountToZoom = clickCountToZoom;
       }
@@ -143,7 +143,7 @@ public class MouseClickZoomingController
      * @param  enabled  true if must be enabled, false otherwise
      *
      **************************************************************************/
-    public void setEnabled (boolean enabled)
+    public void setEnabled (final boolean enabled)
       {
         if (this.enabled != enabled)
           {

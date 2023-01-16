@@ -46,7 +46,7 @@ public class CropOp extends Operation
      * @param  h  the height of the crop
      *
      ******************************************************************************/
-    public CropOp (int x, int y, int w, int h)
+    public CropOp (final int x, final int y, final int w, final int h)
       {
         this.x = x;
         this.y = y;

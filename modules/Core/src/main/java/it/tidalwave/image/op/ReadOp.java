@@ -38,6 +38,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.net.URL;
 import java.awt.image.BufferedImage;
@@ -201,7 +202,7 @@ public class ReadOp extends Operation
         protected abstract EditableImage read (@Nonnull ImageReader imageReader)
           throws IOException;
         
-        private final void setProperties (final @Nonnull EditableImage image, final @Nonnull ImageReader imageReader)
+        private void setProperties (final @Nonnull EditableImage image, final @Nonnull ImageReader imageReader)
           throws IOException
           {
             image.setAttribute(EditableImage.PROP_FORMAT, imageReader.getFormatName());
@@ -262,7 +263,7 @@ public class ReadOp extends Operation
                 final Object input = readOp.getInput();
                 final int imageIndex = readOp.getImageIndex();
                 final int thumbnailIndex = readOp.getThumbnailIndex();
-                log.info("read({}, {}, {})", new Object[] { input , imageIndex, thumbnailIndex });
+                log.info("read({}, {}, {})", input, imageIndex, thumbnailIndex);
 
                 return Reader.read(input, new Reader()
                   {
@@ -271,7 +272,7 @@ public class ReadOp extends Operation
                     protected EditableImage read (final @Nonnull ImageReader imageReader)
                       throws IOException
                       {
-                        long time = System.currentTimeMillis();
+                        final long time = System.currentTimeMillis();
                         return create(imageReader.readThumbnail(imageIndex, thumbnailIndex), System.currentTimeMillis() - time);
                       }
                   }, readOp.getPluginBlackList());
@@ -392,7 +393,7 @@ public class ReadOp extends Operation
         this.pluginBlackList = Parameters.find(PluginBlackList.class, PluginBlackList.DEFAULT, options);
         this.imageIndex = imageIndex;
         this.thumbnailIndex = thumbnailIndex;
-        log.trace("ReadOp({}, {}, {}, {})", new Object[] { input, imageIndex, thumbnailIndex, options });
+        log.trace("ReadOp({}, {}, {}, {})", input, imageIndex, thumbnailIndex, options);
       }
     
     /*******************************************************************************************************************
@@ -435,14 +436,14 @@ public class ReadOp extends Operation
             
         String fileName = file.getName();
         String suffix = "";
-        boolean gzipCompression = fileName.toLowerCase().endsWith(".gz");
+        final boolean gzipCompression = fileName.toLowerCase().endsWith(".gz");
         
         if (gzipCompression)
           {
             fileName = fileName.substring(0, fileName.length() - 3);  
           }
 
-        int i = fileName.lastIndexOf('.');
+        final int i = fileName.lastIndexOf('.');
 
         if (i > 0)
           {
@@ -466,7 +467,7 @@ public class ReadOp extends Operation
         //
         else
           {
-            InputStream inputStream = new GZIPInputStream(new FileInputStream(file));
+            final InputStream inputStream = new GZIPInputStream(Files.newInputStream(file.toPath()));
             imageInputStream = ImageIO.createImageInputStream(inputStream);
           }
 
@@ -488,11 +489,11 @@ public class ReadOp extends Operation
       {
         log.trace("createImageReader({})", url);
 
-        String fileName = url.getPath();
+        final String fileName = url.getPath();
         String suffix = "";
-        boolean gzipCompression = fileName.toLowerCase().endsWith(".gz");
+        final boolean gzipCompression = fileName.toLowerCase().endsWith(".gz");
         
-        int i = fileName.lastIndexOf('.');
+        final int i = fileName.lastIndexOf('.');
 
         if (i > 0)
           {
@@ -546,7 +547,7 @@ public class ReadOp extends Operation
                                                   final @Nonnull PluginBlackList pluginBlackList) 
       throws IOException                                                  
       {
-        log.info("createImageReader({}, {}, {})", new Object[] { imageInputStream, gzipCompression, suffix });       
+        log.info("createImageReader({}, {}, {})", imageInputStream, gzipCompression, suffix);
 //        logger.finest(">>>> Suffixes: " + Arrays.asList(ImageIO.getReaderFileSuffixes()));
         final Iterator<ImageReader> iterator = ImageIO.getImageReaders(imageInputStream);
         return createImageReader(imageInputStream, iterator, pluginBlackList);
@@ -563,7 +564,7 @@ public class ReadOp extends Operation
      ******************************************************************************************************************/
     @Nonnull 
     private static ImageReader createImageReader (final @Nonnull ImageInputStream imageInputStream, 
-                                                  final @Nonnull Iterator<ImageReader> iterator,
+                                                  final @Nonnull Iterator<? extends ImageReader> iterator,
                                                   final @Nonnull PluginBlackList pluginBlackList) 
       throws IOException                                                  
       {
@@ -590,7 +591,6 @@ public class ReadOp extends Operation
                 if (pluginBlackList.contains(pluginClassName))
                   {
                     log.trace(">>>> {} discarded because it's in the black list", reader);
-                    continue;  
                   }
                 else if (pluginClassName.indexOf("TIFF") < 0) // TODO: maybe is it better to test for supported extension or mime?
                   {

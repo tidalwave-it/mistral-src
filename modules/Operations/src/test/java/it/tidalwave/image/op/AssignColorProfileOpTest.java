@@ -40,8 +40,8 @@ public class AssignColorProfileOpTest
       {
         System.out.println("getICCProfile");
         
-        ICC_Profile iccProfile = ICC_Profile.getInstance(ColorSpace.CS_sRGB);
-        AssignColorProfileOp op = new AssignColorProfileOp(iccProfile);
+        final ICC_Profile iccProfile = ICC_Profile.getInstance(ColorSpace.CS_sRGB);
+        final AssignColorProfileOp op = new AssignColorProfileOp(iccProfile);
         AssertJUnit.assertEquals(iccProfile, op.getIccProfile());
       }
 
@@ -49,8 +49,8 @@ public class AssignColorProfileOpTest
     public void testToString() 
       {
         System.out.println("toString");
-        ICC_Profile iccProfile = ICC_Profile.getInstance(ColorSpace.CS_sRGB);
-        AssignColorProfileOp op = new AssignColorProfileOp(iccProfile);
+        final ICC_Profile iccProfile = ICC_Profile.getInstance(ColorSpace.CS_sRGB);
+        final AssignColorProfileOp op = new AssignColorProfileOp(iccProfile);
         op.toString();
       }  
   }

@@ -49,7 +49,7 @@ public class Main
   {
     private static boolean jai = false;
 
-    public static void main (String [] args)
+    public static void main (final String [] args)
       throws IOException
       {
         if (!Platform.isMacOSX())
@@ -98,14 +98,14 @@ public class Main
                 //
                 // HistogramOp can take some time to perform.
                 //
-                Thread thread = new Thread()
+                final Thread thread = new Thread()
                   {
                     @Override
                     public void run()
                       {
                         histogramRenderer.start();
                         long time = System.currentTimeMillis();
-                        Histogram histogram = image.execute(new HistogramOp()).getHistogram();
+                        final Histogram histogram = image.execute(new HistogramOp()).getHistogram();
                         time = System.currentTimeMillis() - time;
                         histogramRenderer.setHistogram(histogram);
                         statusBar.setText("Computed in " + time + " msec " + (jai ? "with" : "without") + " JAI");

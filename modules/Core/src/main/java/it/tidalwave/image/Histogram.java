@@ -43,7 +43,7 @@ public abstract class Histogram
      * @param image
      *
      *******************************************************************************/
-    protected Histogram (Object image)
+    protected Histogram (final Object image)
       {
         this.image = image;
 
@@ -97,7 +97,7 @@ public abstract class Histogram
      * @param band
      *
      *******************************************************************************/
-    protected void validateBand (int band)
+    protected void validateBand (final int band)
       {
         // if ((band < 0) || (band >= bandCount))
         //   {

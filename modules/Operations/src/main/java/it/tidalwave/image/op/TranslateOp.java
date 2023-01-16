@@ -47,7 +47,7 @@ public class TranslateOp extends Operation
      *
      *
      *******************************************************************************/
-    public TranslateOp (float deltaX, float deltaY, InterpolationType interpolationType)
+    public TranslateOp (final float deltaX, final float deltaY, final InterpolationType interpolationType)
       {
         this.deltaX = deltaX;
         this.deltaY = deltaY;

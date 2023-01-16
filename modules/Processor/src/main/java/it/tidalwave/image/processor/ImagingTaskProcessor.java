@@ -112,7 +112,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
      * @param  defaultClass  the implementation class
      *
      **************************************************************************/
-    public static void setDefault (Class<? extends ImagingTaskProcessor> defaultClass)
+    public static void setDefault (final Class<? extends ImagingTaskProcessor> defaultClass)
       {
         ImagingTaskProcessor.defaultClass = defaultClass;
         instance = null; // force a creation of new instance next time
@@ -125,7 +125,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
      * @param  maxWorkers  the max. number of workers
      *
      **************************************************************************/
-    public static void setMaxWorkers (int maxWorkers)
+    public static void setMaxWorkers (final int maxWorkers)
       {
         ImagingTaskProcessor.maxWorkers = maxWorkers;  
       }
@@ -175,7 +175,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
      *
      *
      **************************************************************************/
-    public void addListener (ImagingTaskProcessorListener listener)
+    public void addListener (final ImagingTaskProcessorListener listener)
       {
         eventManager.addListener(listener);
       }
@@ -184,7 +184,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
      *
      *
      **************************************************************************/
-    public void removeListener (ImagingTaskProcessorListener listener)
+    public void removeListener (final ImagingTaskProcessorListener listener)
       {
         eventManager.removeListener(listener);
       }
@@ -288,7 +288,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
         
         synchronized (lock)
           {
-            for (Iterator<? extends ImagingTask> i = pendingTasks.iterator(); i.hasNext(); )
+            for (final Iterator<? extends ImagingTask> i = pendingTasks.iterator(); i.hasNext(); )
               {
                 final ImagingTask task = i.next();
 //                if ((taskClass == null) || taskClass.equals(task.getClass()))
@@ -356,11 +356,11 @@ public abstract class ImagingTaskProcessor // NOT Serializable
      *
      **************************************************************************/
     @SuppressWarnings("unchecked")
-    public <T extends ImagingTask> T popCompletedTask (Class<T> taskClass) 
+    public <T extends ImagingTask> T popCompletedTask (final Class<T> taskClass)
       {
         synchronized (lock)
           {
-            for (ImagingTask task : completedTasks)
+            for (final ImagingTask task : completedTasks)
               {
 //                if ((taskClass == null) || taskClass.equals(task.getClass()))
                 if ((taskClass == null) || taskClass.getName().equals(task.getClass().getName()))
@@ -400,7 +400,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
      *
      *
      **************************************************************************/
-    protected void changeFreeWorkerCount (int delta)
+    protected void changeFreeWorkerCount (final int delta)
       {
         synchronized (lock)
           {
@@ -417,7 +417,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
      * @return  the task to execute
      *
      **************************************************************************/
-    protected final ImagingTask getNextTask (Serializable workerId, boolean remoteExecution) 
+    protected final ImagingTask getNextTask (final Serializable workerId, final boolean remoteExecution)
       {
         ImagingTask task = null;
 
@@ -437,9 +437,9 @@ public abstract class ImagingTaskProcessor // NOT Serializable
                       }
                   }
 
-                for (Iterator<ImagingTask> i = pendingTasks.iterator(); i.hasNext(); )
+                for (final Iterator<ImagingTask> i = pendingTasks.iterator(); i.hasNext(); )
                   {
-                    ImagingTask task2 = i.next();
+                    final ImagingTask task2 = i.next();
 
                     if (!remoteExecution || task2.isRemoteExecutionOk())
                       {
@@ -528,7 +528,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
      *
      *
      **************************************************************************/
-    private int getTaskCount (final Class taskClass, final Collection<ImagingTask> taskCollection)
+    private int getTaskCount (final Class taskClass, final Collection<? extends ImagingTask> taskCollection)
       {
         int count = 0;
         

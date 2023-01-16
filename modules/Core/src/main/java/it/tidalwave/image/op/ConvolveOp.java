@@ -43,7 +43,7 @@ public class ConvolveOp extends Operation
      * @return         the convolved image
      *
      ******************************************************************************/
-    public ConvolveOp (Kernel kernel)
+    public ConvolveOp (final Kernel kernel)
       {
         this.kernel = kernel;
       }

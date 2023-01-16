@@ -197,7 +197,7 @@ public class AnimatedScaleController extends ScaleController
      *
      *
      **************************************************************************/
-    private double bound (double scale)
+    private double bound (final double scale)
       {
         return Math.max(Math.min(scale, Math.max(startScale, targetScale)), Math.min(startScale, targetScale));
       }

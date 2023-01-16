@@ -37,13 +37,13 @@ import lombok.extern.slf4j.Slf4j;
 public class LoggerPerformanceTest extends BasePerformanceTestSupport
   {
     @Override
-    protected long runTest (EditableImage image)
+    protected long runTest (final EditableImage image)
       {
         long accTime = 0;
         
         for (int i = 0; i < 10; i++)
           {
-            long time = System.currentTimeMillis();
+            final long time = System.currentTimeMillis();
             Java2DUtils.logImage(log, "test", image.getInnerProperty(BufferedImage.class));
             accTime += System.currentTimeMillis() - time;
           }

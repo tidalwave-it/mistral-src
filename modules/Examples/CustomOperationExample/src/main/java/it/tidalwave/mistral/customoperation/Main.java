@@ -39,7 +39,7 @@ import org.openide.util.Lookup;
  ******************************************************************************/
 public class Main 
   {
-    public static void main (String[] args)
+    public static void main (final String[] args)
       throws IOException
       {
         //
@@ -47,8 +47,8 @@ public class Main
         //
         Lookup.getDefault().lookup(ImplementationFactoryJ2D.class).registerImplementation(ChangeBufferTypeOp.class, ChangeBufferTypeJ2DOp.class);
         
-        File file = new File("20030701-0043.jpg");
-        EditableImage image = EditableImage.create(new ReadOp(file));
+        final File file = new File("20030701-0043.jpg");
+        final EditableImage image = EditableImage.create(new ReadOp(file));
         image.execute(new ChangeBufferTypeOp(BufferedImage.TYPE_3BYTE_BGR));
         image.execute(new WriteOp("JPEG", new File("/tmp/Result.tif")));
       }

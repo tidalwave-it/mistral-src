@@ -32,6 +32,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.net.URL;
@@ -112,7 +113,7 @@ public abstract class BaseTestSupport
       {
       }
 
-    protected static File downloadFile (String urlString)
+    protected static File downloadFile (final String urlString)
       {
         return null;
         /*
@@ -186,17 +187,17 @@ public abstract class BaseTestSupport
         */
       }
 
-    protected void assertChecksum (String expectedChecksum, File file)
+    protected void assertChecksum (final String expectedChecksum, final File file)
       {
         try
           {
-            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-            byte[] buffer = new byte[128 * 1024];
-            InputStream is = new BufferedInputStream(new FileInputStream(file));
+            final MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+            final byte[] buffer = new byte[128 * 1024];
+            final InputStream is = new BufferedInputStream(Files.newInputStream(file.toPath()));
 
             for (;;)
               {
-                int n = is.read(buffer);
+                final int n = is.read(buffer);
 
                 if (n <= 0)
                   {
@@ -207,8 +208,8 @@ public abstract class BaseTestSupport
               }
 
             is.close();
-            byte[] digest = messageDigest.digest();
-            String checksum = toString(digest);
+            final byte[] digest = messageDigest.digest();
+            final String checksum = toString(digest);
             AssertJUnit.assertEquals("Unxepected checksum for file " + file, expectedChecksum, checksum);
           }
         catch (Exception e)
@@ -217,13 +218,13 @@ public abstract class BaseTestSupport
           }
       }
 
-    private static String toString (byte[] bytes)
+    private static String toString (final byte[] bytes)
       {
-        StringBuilder stringBuilder = new StringBuilder();
+        final StringBuilder stringBuilder = new StringBuilder();
 
         for (int i = 0; i < bytes.length; i++)
           {
-            String s = Integer.toHexString(bytes[i] & 0xff);
+            final String s = Integer.toHexString(bytes[i] & 0xff);
 
             if (s.length() < 2)
               {

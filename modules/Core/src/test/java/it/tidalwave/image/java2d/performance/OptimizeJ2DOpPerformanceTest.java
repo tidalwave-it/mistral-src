@@ -37,14 +37,14 @@ import lombok.extern.slf4j.Slf4j;
 public class OptimizeJ2DOpPerformanceTest extends BasePerformanceTestSupport 
   {
     @Override
-    protected long runTest (EditableImage image)
+    protected long runTest (final EditableImage image)
       {
         long accTime = 0;
         
         for (double scale = 0.1; scale <= 1; scale += 0.1)
           {
             log.info(">>>> scale: " + scale);
-            EditableImage image2 = image.execute2(new OptimizeOp(scale, Quality.INTERMEDIATE));
+            final EditableImage image2 = image.execute2(new OptimizeOp(scale, Quality.INTERMEDIATE));
             accTime += image2.getLatestOperationTime();
           }
         

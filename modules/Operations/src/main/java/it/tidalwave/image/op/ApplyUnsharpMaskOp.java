@@ -47,7 +47,7 @@ public class ApplyUnsharpMaskOp extends Operation
      * @return
      *
      *******************************************************************************/
-    public ApplyUnsharpMaskOp (double intensity, double radius, double threshold)
+    public ApplyUnsharpMaskOp (final double intensity, final double radius, final double threshold)
       {
         this.intensity = intensity;
         this.radius = radius;

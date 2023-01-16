@@ -36,14 +36,14 @@ public class HistogramOpTest
     public void testGetHistogram() 
       {
         System.out.println("getHistogram");
-        HistogramOp op = new HistogramOp();
+        final HistogramOp op = new HistogramOp();
       }
 
     @Test
     public void testToString() 
       {
         System.out.println("toString");
-        HistogramOp op = new HistogramOp();
+        final HistogramOp op = new HistogramOp();
         op.toString();
       }  
   }

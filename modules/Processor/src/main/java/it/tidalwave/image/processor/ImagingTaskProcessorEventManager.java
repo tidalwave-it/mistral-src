@@ -46,7 +46,7 @@ import lombok.extern.slf4j.Slf4j;
      *
      *
      **************************************************************************/
-    public ImagingTaskProcessorEventManager (ImagingTaskProcessor processor)
+    public ImagingTaskProcessorEventManager (final ImagingTaskProcessor processor)
       {
         this.processor = processor;
       }
@@ -55,7 +55,7 @@ import lombok.extern.slf4j.Slf4j;
      *
      *
      **************************************************************************/
-    public void addListener (ImagingTaskProcessorListener listener)
+    public void addListener (final ImagingTaskProcessorListener listener)
       {
         listeners.add(listener);  
       } 
@@ -64,7 +64,7 @@ import lombok.extern.slf4j.Slf4j;
      *
      *
      **************************************************************************/
-    public void removeListener (ImagingTaskProcessorListener listener)
+    public void removeListener (final ImagingTaskProcessorListener listener)
       {
         listeners.remove(listener);  
       } 
@@ -75,11 +75,11 @@ import lombok.extern.slf4j.Slf4j;
      * the counters are not changed while the controller is running.
      *
      **************************************************************************/
-    public void fireNotifyTaskPosted (ImagingTask task) 
+    public void fireNotifyTaskPosted (final ImagingTask task)
       {
         synchronized (processor.lock)
           {
-            ImagingTaskProcessorEvent event = new ImagingTaskProcessorEvent(processor, Thread.currentThread().getName(), task);
+            final ImagingTaskProcessorEvent event = new ImagingTaskProcessorEvent(processor, Thread.currentThread().getName(), task);
 
             for (final ImagingTaskProcessorListener listener : new ArrayList<ImagingTaskProcessorListener>(listeners))
               {
@@ -102,11 +102,11 @@ import lombok.extern.slf4j.Slf4j;
      * the counters are not changed while the controller is running.
      *
      **************************************************************************/
-    public void fireNotifyTaskStarted (ImagingTask task, Serializable workerId) 
+    public void fireNotifyTaskStarted (final ImagingTask task, final Serializable workerId)
       {
         synchronized (processor.lock)
           {
-            ImagingTaskProcessorEvent event = new ImagingTaskProcessorEvent(processor, workerId, task);
+            final ImagingTaskProcessorEvent event = new ImagingTaskProcessorEvent(processor, workerId, task);
 
             for (final ImagingTaskProcessorListener listener : new ArrayList<ImagingTaskProcessorListener>(listeners))
               {
@@ -129,11 +129,11 @@ import lombok.extern.slf4j.Slf4j;
      * the counters are not changed while the controller is running.
      *
      **************************************************************************/
-    public void fireNotifyTaskCompleted (ImagingTask task) 
+    public void fireNotifyTaskCompleted (final ImagingTask task)
       {
         synchronized (processor.lock)
           {
-            ImagingTaskProcessorEvent event = new ImagingTaskProcessorEvent(processor, Thread.currentThread().getName(), task);
+            final ImagingTaskProcessorEvent event = new ImagingTaskProcessorEvent(processor, Thread.currentThread().getName(), task);
 
             for (final ImagingTaskProcessorListener listener : new ArrayList<ImagingTaskProcessorListener>(listeners))
               {
@@ -156,11 +156,11 @@ import lombok.extern.slf4j.Slf4j;
      * the counters are not changed while the controller is running.
      *
      **************************************************************************/
-    public void fireNotifyTaskPopped (ImagingTask task) 
+    public void fireNotifyTaskPopped (final ImagingTask task)
       {
         synchronized (processor.lock)
           {
-            ImagingTaskProcessorEvent event = new ImagingTaskProcessorEvent(processor, Thread.currentThread().getName(), task);
+            final ImagingTaskProcessorEvent event = new ImagingTaskProcessorEvent(processor, Thread.currentThread().getName(), task);
 
             for (final ImagingTaskProcessorListener listener : new ArrayList<ImagingTaskProcessorListener>(listeners))
               {

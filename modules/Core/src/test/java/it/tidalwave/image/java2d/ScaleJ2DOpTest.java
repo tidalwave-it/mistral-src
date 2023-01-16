@@ -91,13 +91,13 @@ public class ScaleJ2DOpTest extends BaseTestSupport
         runTest(optimized,    1.35, "a4b449318eb07e481167a8a0e40f78be", 4050, 2693);
       }
     
-    private void runTest (EditableImage image, double scale, String checksum, int width, int height)
+    private void runTest (final EditableImage image, final double scale, final String checksum, final int width, final int height)
       {
         if (image != null)
           {
-            String suffix = image.getInnerProperty(SampleModel.class).getClass().getName();
-            EditableImage result = image.execute2(new ScaleOp(scale));
-            File f = (File)result.execute(new WriteOp("TIFF", tmp + "/" + scale + suffix + ".tif")).getOutput();
+            final String suffix = image.getInnerProperty(SampleModel.class).getClass().getName();
+            final EditableImage result = image.execute2(new ScaleOp(scale));
+            final File f = (File)result.execute(new WriteOp("TIFF", tmp + "/" + scale + suffix + ".tif")).getOutput();
             assertChecksum(checksum, f);
             AssertJUnit.assertEquals(width,  result.getWidth());
             AssertJUnit.assertEquals(height, result.getHeight());

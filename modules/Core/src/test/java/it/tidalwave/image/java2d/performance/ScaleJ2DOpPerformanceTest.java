@@ -38,7 +38,7 @@ import static org.junit.Assert.*;
 public class ScaleJ2DOpPerformanceTest extends BasePerformanceTestSupport 
   {
     @Override
-    protected long runTest (EditableImage image)
+    protected long runTest (final EditableImage image)
       {
         fail("disabled because it takes forever");
         long accTime = 0;
@@ -46,7 +46,7 @@ public class ScaleJ2DOpPerformanceTest extends BasePerformanceTestSupport
         for (double scale = 0.1; scale <= 1; scale += 0.1)
           {
             log.info(">>>> scale: " + scale);
-            EditableImage image2 = image.execute2(new ScaleOp(scale, Quality.INTERMEDIATE));
+            final EditableImage image2 = image.execute2(new ScaleOp(scale, Quality.INTERMEDIATE));
             accTime += image2.getLatestOperationTime();
           }
         

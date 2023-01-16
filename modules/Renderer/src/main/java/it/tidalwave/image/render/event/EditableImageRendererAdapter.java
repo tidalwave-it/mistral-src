@@ -31,22 +31,22 @@ package it.tidalwave.image.render.event;
 public class EditableImageRendererAdapter implements EditableImageRendererListener
   {
     @Override
-    public void scaleChanged (EditableImageRendererEvent event)
+    public void scaleChanged (final EditableImageRendererEvent event)
       {
       }
     
     @Override
-    public void angleChanged (EditableImageRendererEvent event)
+    public void angleChanged (final EditableImageRendererEvent event)
       {
       }
 
     @Override
-    public void toolActivated (EditableImageRendererEvent event) 
+    public void toolActivated (final EditableImageRendererEvent event)
       {
       }
 
     @Override
-    public void toolDeactivated(EditableImageRendererEvent event) 
+    public void toolDeactivated(final EditableImageRendererEvent event)
       {
       }
   }

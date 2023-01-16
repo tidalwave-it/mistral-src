@@ -60,7 +60,7 @@ public class RotateQuadrantOpTest
               {
                 try 
                   {
-                    RotateQuadrantOp op = new RotateQuadrantOp(degrees);
+                    final RotateQuadrantOp op = new RotateQuadrantOp(degrees);
                   } 
                 catch (IllegalArgumentException e) 
                   {
@@ -75,7 +75,7 @@ public class RotateQuadrantOpTest
     public void testToString() 
       {
         System.out.println("toString");
-        RotateQuadrantOp op = new RotateQuadrantOp(90);
+        final RotateQuadrantOp op = new RotateQuadrantOp(90);
         op.toString();
       }
   }

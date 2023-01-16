@@ -152,7 +152,7 @@ public class EXIF extends EXIFDirectoryGenerated
           }
         catch (Exception e)
           {
-            int i = (Integer)getObject(37510); // flowers.jpeg does this strange thing
+            final int i = (Integer)getObject(37510); // flowers.jpeg does this strange thing
 
             return ("" + i).getBytes();
           }

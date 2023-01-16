@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.imageio.IIOImage;
@@ -76,7 +77,7 @@ public class WriteJ2DOp extends OperationImplementation<WriteOp, BufferedImage>
 
             else if (output instanceof File)
               {
-                stream = ImageIO.createImageOutputStream(new BufferedOutputStream(new FileOutputStream((File)output)));
+                stream = ImageIO.createImageOutputStream(new BufferedOutputStream(Files.newOutputStream(((File)output).toPath())));
                 shouldClose = true;
               }
             

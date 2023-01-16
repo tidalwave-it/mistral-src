@@ -65,7 +65,7 @@ public class ConvertColorProfileJ2DOp extends OperationImplementation<ConvertCol
         final String sourceProfileName = ImageUtils.getICCProfileName(sourceProfile);
         log.debug(">>>> Converting profile from {}  to {}", sourceProfileName, ImageUtils.getICCProfileName(targetProfile));
 
-        final RenderingHints hints = new RenderingHints(Collections.<RenderingHints.Key, Object>emptyMap());
+        final RenderingHints hints = new RenderingHints(Collections.emptyMap());
         hints.put(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
         final ColorConvertOp ccOp = new ColorConvertOp(new ICC_Profile[] { targetProfile }, hints);
 

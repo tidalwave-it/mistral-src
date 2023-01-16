@@ -86,12 +86,12 @@ public class HistogramGrid
      ******************************************************************************/
     public void paint (final Graphics g, final Rectangle bounds)
       {
-        Graphics2D g2 = (Graphics2D)g;
+        final Graphics2D g2 = (Graphics2D)g;
         g2.setColor(getColor());
-        int x = bounds.x;
-        int y = bounds.y;
-        int w = bounds.width;
-        int h = bounds.height;
+        final int x = bounds.x;
+        final int y = bounds.y;
+        final int w = bounds.width;
+        final int h = bounds.height;
 
         for (int i = 1; i <= hSteps - 1; i++)
           {

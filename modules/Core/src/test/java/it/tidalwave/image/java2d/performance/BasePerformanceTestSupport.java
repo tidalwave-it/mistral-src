@@ -56,7 +56,7 @@ public abstract class BasePerformanceTestSupport extends BaseTestSupport
         try 
           {
             h = InetAddress.getLocalHost().getHostName();
-            int i = h.indexOf('.');
+            final int i = h.indexOf('.');
 
             if (i >= 0)
               {
@@ -94,14 +94,14 @@ public abstract class BasePerformanceTestSupport extends BaseTestSupport
     @Test
     public void testPerformance() 
       {
-        for (Quality quality : Quality.values())
+        for (final Quality quality : Quality.values())
           {
-            String name = getClassName();
+            final String name = getClassName();
             log.info(name  + " running");
 
             AssertJUnit.assertEquals(PixelInterleavedSampleModel.class, 
                          img20030701_0043_jpg.getInnerProperty(SampleModel.class).getClass());
-            long time = runTest(img20030701_0043_jpg);
+            final long time = runTest(img20030701_0043_jpg);
             log.info(name + img20030701_0043_jpg);
             log.info("STATS: " + "VERSION" + "::" + host + "::" + os + "::" + name + "::" + quality + "::" + file_20030701_0043_jpg.getName() + "=" + time);
           }
@@ -110,15 +110,15 @@ public abstract class BasePerformanceTestSupport extends BaseTestSupport
     @Test
     public void testOptimizedPerformance() 
       {
-        for (Quality quality : Quality.values())
+        for (final Quality quality : Quality.values())
           {
-            String name = getClassName() + " (opt)";
+            final String name = getClassName() + " (opt)";
             log.info(name  + " running");
 
-            EditableImage optimizedImage = img20030701_0043_jpg.execute2(new OptimizeOp());
+            final EditableImage optimizedImage = img20030701_0043_jpg.execute2(new OptimizeOp());
             AssertJUnit.assertEquals(SinglePixelPackedSampleModel.class, 
                          optimizedImage.getInnerProperty(SampleModel.class).getClass());
-            long time = runTest(optimizedImage);
+            final long time = runTest(optimizedImage);
             log.info(name + optimizedImage);
             log.info("STATS: " + "VERSION" + "::" + host + "::" + os + "::" + name + "::" + quality + "::" + file_20030701_0043_jpg.getName() + "=" + time);
           }

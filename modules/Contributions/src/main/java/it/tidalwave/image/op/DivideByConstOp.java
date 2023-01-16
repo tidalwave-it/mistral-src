@@ -37,7 +37,7 @@ public class DivideByConstOp extends Operation
      *
      *
      *******************************************************************************/
-    public DivideByConstOp (float divider)
+    public DivideByConstOp (final float divider)
       {
         this.divider = divider;
       }

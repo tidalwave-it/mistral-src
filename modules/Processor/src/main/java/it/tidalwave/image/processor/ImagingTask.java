@@ -136,7 +136,7 @@ abstract public class ImagingTask implements Serializable
      * @param  processor  the processor
      *
      **************************************************************************/
-    public void prepare (ImagingTaskProcessor processor)
+    public void prepare (final ImagingTaskProcessor processor)
       throws Exception
       {
       }
@@ -162,7 +162,7 @@ abstract public class ImagingTask implements Serializable
         return result;  
       }
     
-    protected final void setResult (EditableImage result)
+    protected final void setResult (final EditableImage result)
       {
         this.result = result;  
       }
@@ -179,7 +179,7 @@ abstract public class ImagingTask implements Serializable
         return throwable;
       }
     
-    public void setThrowable (Throwable throwable)
+    public void setThrowable (final Throwable throwable)
       {
         this.throwable = throwable;  
       }
@@ -285,10 +285,10 @@ abstract public class ImagingTask implements Serializable
                 addStatisticsSample("TOTAL", time);    
                 log.info("STATS: " + getName() + " completed in " + time + " msec");
                 
-                Runtime runtime = Runtime.getRuntime();
-                long totalMemory = runtime.totalMemory();
-                long freeMemory = runtime.freeMemory();
-                long usedMemory = totalMemory - freeMemory;
+                final Runtime runtime = Runtime.getRuntime();
+                final long totalMemory = runtime.totalMemory();
+                final long freeMemory = runtime.freeMemory();
+                final long usedMemory = totalMemory - freeMemory;
                 log.info("STATS: memory " + "used: " + mega(usedMemory) 
                                              + ", total: " + mega(totalMemory) 
                                              + ", max: " + mega(runtime.maxMemory()) 
@@ -311,7 +311,7 @@ abstract public class ImagingTask implements Serializable
      *
      *
      **************************************************************************/
-    public void addStatisticsSample (String name, long value)
+    public void addStatisticsSample (final String name, final long value)
       {
         statistics.addSample(this.name + "." + name, value);
       }
@@ -325,7 +325,7 @@ abstract public class ImagingTask implements Serializable
      * @param  image  the image
      *
      **************************************************************************/
-    protected void registerTime (String name, EditableImage image)
+    protected void registerTime (final String name, final EditableImage image)
       {
         addStatisticsSample(name, image.getLatestOperationTime());
       }
@@ -341,7 +341,7 @@ abstract public class ImagingTask implements Serializable
      *                        results)
      *  
      *******************************************************************************/
-    protected <T extends Operation> T execute (EditableImage image, T operation, String operationName)
+    protected <T extends Operation> T execute (final EditableImage image, final T operation, final String operationName)
       {
         image.execute(operation);
         image.setNickName(operationName);
@@ -360,7 +360,7 @@ abstract public class ImagingTask implements Serializable
      *                        results)
      *  
      *******************************************************************************/
-    protected <T extends Operation> T executeAndDispose (EditableImage image, T operation, String operationName)
+    protected <T extends Operation> T executeAndDispose (final EditableImage image, final T operation, final String operationName)
       {
         final T result = execute(image, operation, operationName);
         image.dispose();
@@ -377,7 +377,7 @@ abstract public class ImagingTask implements Serializable
      * @return                the result
      *  
      *******************************************************************************/
-    protected EditableImage execute2 (EditableImage image, Operation operation, String operationName)
+    protected EditableImage execute2 (final EditableImage image, final Operation operation, final String operationName)
       {
         final EditableImage result = image.execute2(operation);
         result.setNickName(operationName);
@@ -395,7 +395,7 @@ abstract public class ImagingTask implements Serializable
      * @return                the result
      *  
      *******************************************************************************/
-    protected EditableImage execute2AndDispose (EditableImage image, Operation operation, String operationName)
+    protected EditableImage execute2AndDispose (final EditableImage image, final Operation operation, final String operationName)
       {
         final EditableImage result = execute2(image, operation, operationName);
         image.dispose();
@@ -407,7 +407,7 @@ abstract public class ImagingTask implements Serializable
      *
      *
      *******************************************************************************/
-    private static String mega (long l)
+    private static String mega (final long l)
       {
         return "" + ((l + MEGA / 2) / MEGA) + "M";
       }

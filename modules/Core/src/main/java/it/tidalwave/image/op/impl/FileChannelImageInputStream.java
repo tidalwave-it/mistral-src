@@ -95,10 +95,10 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
       {
         raf = new RandomAccessFile(file, "r");
         this.channel = raf.getChannel();
-        long channelPosition = channel.position();
+        final long channelPosition = channel.position();
         this.streamPos = this.flushedPos = channelPosition;
-        long fullSize = channel.size() - channelPosition;
-        long mappedSize = Math.min(fullSize, Integer.MAX_VALUE);
+        final long fullSize = channel.size() - channelPosition;
+        final long mappedSize = Math.min(fullSize, Integer.MAX_VALUE);
         this.mappedPos = 0;
         this.mappedUpperBound = mappedPos + mappedSize;
         this.mappedBuffer = channel.map(FileChannel.MapMode.READ_ONLY, channelPosition, mappedSize);
@@ -113,7 +113,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
      * @param len The number of bytes required beyond the current stream
      * position.
      */
-    private MappedByteBuffer getMappedBuffer(int len)
+    private MappedByteBuffer getMappedBuffer(final int len)
             throws IOException {
         // If request is outside mapped region, map a new region.
         if (streamPos < mappedPos || streamPos + len >= mappedUpperBound) {
@@ -122,8 +122,8 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
             mappedPos = streamPos;
 
             // Determine the map size.
-            long mappedSize = Math.min(channel.size() - mappedPos,
-                    Integer.MAX_VALUE);
+            final long mappedSize = Math.min(channel.size() - mappedPos,
+                                             Integer.MAX_VALUE);
 
             // Set the mapped upper bound.
             mappedUpperBound = mappedPos + mappedSize;
@@ -146,7 +146,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         bitOffset = 0;
 
         // Get the mapped buffer.
-        ByteBuffer byteBuffer = getMappedBuffer(1);
+        final ByteBuffer byteBuffer = getMappedBuffer(1);
 
         // Check number of bytes left.
         if (byteBuffer.remaining() < 1) {
@@ -155,7 +155,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         }
 
         // Get the byte from the buffer.
-        int value = byteBuffer.get() & 0xff;
+        final int value = byteBuffer.get() & 0xff;
 
         // Increment the stream position.
         streamPos++;
@@ -166,7 +166,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
     }
 
     @Override
-    public int read(byte[] b, int off, int len) throws IOException {
+    public int read(final byte[] b, final int off, int len) throws IOException {
         if (off < 0 || len < 0 || off + len > b.length) {
             // NullPointerException will be thrown before this if b is null.
             throw new IndexOutOfBoundsException(
@@ -179,10 +179,10 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         bitOffset = 0;
 
         // Get the mapped buffer.
-        ByteBuffer byteBuffer = getMappedBuffer(len);
+        final ByteBuffer byteBuffer = getMappedBuffer(len);
 
         // Get the number of bytes remaining.
-        int numBytesRemaining = byteBuffer.remaining();
+        final int numBytesRemaining = byteBuffer.remaining();
 
         // Check number of bytes left.
         if (numBytesRemaining < 1) {
@@ -222,7 +222,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
       }
 
     @Override
-    public void readFully(char[] c, int off, int len)
+    public void readFully(final char[] c, final int off, final int len)
             throws IOException {
         if (off < 0 || len < 0 || off + len > c.length) {
             // NullPointerException will be thrown before this if c is null.
@@ -233,10 +233,10 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         }
 
         // Determine the requested length in bytes.
-        int byteLen = 2 * len;
+        final int byteLen = 2 * len;
 
         // Get the mapped buffer.
-        ByteBuffer byteBuffer = getMappedBuffer(byteLen);
+        final ByteBuffer byteBuffer = getMappedBuffer(byteLen);
 
         // Ensure enough bytes remain.
         if (byteBuffer.remaining() < byteLen) {
@@ -244,7 +244,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         }
 
         // Get the view Buffer.
-        CharBuffer viewBuffer = byteBuffer.asCharBuffer();
+        final CharBuffer viewBuffer = byteBuffer.asCharBuffer();
 
         // Get the chars.
         viewBuffer.get(c, off, len);
@@ -254,7 +254,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
     }
 
     @Override
-    public void readFully(short[] s, int off, int len)
+    public void readFully(final short[] s, final int off, final int len)
             throws IOException {
         if (off < 0 || len < 0 || off + len > s.length) {
             // NullPointerException will be thrown before this if s is null.
@@ -265,10 +265,10 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         }
 
         // Determine the requested length in bytes.
-        int byteLen = 2 * len;
+        final int byteLen = 2 * len;
 
         // Get the mapped buffer.
-        ByteBuffer byteBuffer = getMappedBuffer(byteLen);
+        final ByteBuffer byteBuffer = getMappedBuffer(byteLen);
 
         // Ensure enough bytes remain.
         if (byteBuffer.remaining() < byteLen) {
@@ -276,7 +276,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         }
 
         // Get the view Buffer.
-        ShortBuffer viewBuffer = byteBuffer.asShortBuffer();
+        final ShortBuffer viewBuffer = byteBuffer.asShortBuffer();
 
         // Get the shorts.
         viewBuffer.get(s, off, len);
@@ -286,7 +286,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
     }
 
     @Override
-    public void readFully(int[] i, int off, int len) throws IOException {
+    public void readFully(final int[] i, final int off, final int len) throws IOException {
         if (off < 0 || len < 0 || off + len > i.length) {
             // NullPointerException will be thrown before this if i is null.
             throw new IndexOutOfBoundsException(
@@ -296,10 +296,10 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         }
 
         // Determine the requested length in bytes.
-        int byteLen = 4 * len;
+        final int byteLen = 4 * len;
 
         // Get the mapped buffer.
-        ByteBuffer byteBuffer = getMappedBuffer(byteLen);
+        final ByteBuffer byteBuffer = getMappedBuffer(byteLen);
 
         // Ensure enough bytes remain.
         if (byteBuffer.remaining() < byteLen) {
@@ -307,7 +307,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         }
 
         // Get the view Buffer.
-        IntBuffer viewBuffer = byteBuffer.asIntBuffer();
+        final IntBuffer viewBuffer = byteBuffer.asIntBuffer();
 
         // Get the ints.
         viewBuffer.get(i, off, len);
@@ -317,7 +317,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
     }
 
     @Override
-    public void readFully(long[] l, int off, int len)
+    public void readFully(final long[] l, final int off, final int len)
             throws IOException {
         if (off < 0 || len < 0 || off + len > l.length) {
             // NullPointerException will be thrown before this if l is null.
@@ -328,10 +328,10 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         }
 
         // Determine the requested length in bytes.
-        int byteLen = 8 * len;
+        final int byteLen = 8 * len;
 
         // Get the mapped buffer.
-        ByteBuffer byteBuffer = getMappedBuffer(byteLen);
+        final ByteBuffer byteBuffer = getMappedBuffer(byteLen);
 
         // Ensure enough bytes remain.
         if (byteBuffer.remaining() < byteLen) {
@@ -339,7 +339,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         }
 
         // Get the view Buffer.
-        LongBuffer viewBuffer = byteBuffer.asLongBuffer();
+        final LongBuffer viewBuffer = byteBuffer.asLongBuffer();
 
         // Get the longs.
         viewBuffer.get(l, off, len);
@@ -349,7 +349,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
     }
 
     @Override
-    public void readFully(float[] f, int off, int len)
+    public void readFully(final float[] f, final int off, final int len)
             throws IOException {
         if (off < 0 || len < 0 || off + len > f.length) {
             // NullPointerException will be thrown before this if f is null.
@@ -360,10 +360,10 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         }
 
         // Determine the requested length in bytes.
-        int byteLen = 4 * len;
+        final int byteLen = 4 * len;
 
         // Get the mapped buffer.
-        ByteBuffer byteBuffer = getMappedBuffer(byteLen);
+        final ByteBuffer byteBuffer = getMappedBuffer(byteLen);
 
         // Ensure enough bytes remain.
         if (byteBuffer.remaining() < byteLen) {
@@ -371,7 +371,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         }
 
         // Get the view Buffer.
-        FloatBuffer viewBuffer = byteBuffer.asFloatBuffer();
+        final FloatBuffer viewBuffer = byteBuffer.asFloatBuffer();
 
         // Get the floats.
         viewBuffer.get(f, off, len);
@@ -381,7 +381,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
     }
 
     @Override
-    public void readFully(double[] d, int off, int len)
+    public void readFully(final double[] d, final int off, final int len)
             throws IOException {
         if (off < 0 || len < 0 || off + len > d.length) {
             // NullPointerException will be thrown before this if d is null.
@@ -392,10 +392,10 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         }
 
         // Determine the requested length in bytes.
-        int byteLen = 8 * len;
+        final int byteLen = 8 * len;
 
         // Get the mapped buffer.
-        ByteBuffer byteBuffer = getMappedBuffer(byteLen);
+        final ByteBuffer byteBuffer = getMappedBuffer(byteLen);
 
         // Ensure enough bytes remain.
         if (byteBuffer.remaining() < byteLen) {
@@ -403,7 +403,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         }
 
         // Get the view Buffer.
-        DoubleBuffer viewBuffer = byteBuffer.asDoubleBuffer();
+        final DoubleBuffer viewBuffer = byteBuffer.asDoubleBuffer();
 
         // Get the doubles.
         viewBuffer.get(d, off, len);
@@ -442,7 +442,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
      * {@link java.nio.channels.FileChannel#position(long)} is not invoked.
      */
     @Override
-    public void seek(long pos) throws IOException {
+    public void seek(final long pos) throws IOException {
         super.seek(pos);
 
         if (pos >= mappedPos && pos < mappedUpperBound) {
@@ -451,14 +451,14 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl {
         } else {
             // Seeking to location outside mapped buffer: get a new mapped
             // buffer at current position with maximal size.
-            int len = (int) Math.min(channel.size() - pos,
-                    Integer.MAX_VALUE);
+            final int len = (int) Math.min(channel.size() - pos,
+                                           Integer.MAX_VALUE);
             mappedBuffer = getMappedBuffer(len);
         }
     }
 
     @Override
-    public void setByteOrder(ByteOrder networkByteOrder) {
+    public void setByteOrder(final ByteOrder networkByteOrder) {
         super.setByteOrder(networkByteOrder);
         mappedBuffer.order(networkByteOrder);
     }

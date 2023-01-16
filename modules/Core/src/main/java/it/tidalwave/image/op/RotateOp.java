@@ -44,7 +44,7 @@ public class RotateOp extends Operation
      * @param  degree  the rotation angle in degrees
      *
      ******************************************************************************/
-    public RotateOp (double degrees)
+    public RotateOp (final double degrees)
       {
         this(degrees, Quality.FASTEST);
       }
@@ -58,7 +58,7 @@ public class RotateOp extends Operation
      * @param  quality  the quality of the operation
      *
      ******************************************************************************/
-    public RotateOp (double degrees, Quality quality)
+    public RotateOp (double degrees, final Quality quality)
       {
         while (degrees < 0)
           {

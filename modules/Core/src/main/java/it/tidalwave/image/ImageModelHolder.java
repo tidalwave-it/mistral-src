@@ -39,7 +39,7 @@ public abstract class ImageModelHolder implements Serializable
 
     public abstract ImageModel get ();
 
-    public static void setDefault (Class<?extends ImageModelHolder> defaultClass)
+    public static void setDefault (final Class<?extends ImageModelHolder> defaultClass)
       {
         ImageModelHolder.defaultClass = defaultClass;
       }
@@ -54,12 +54,12 @@ public abstract class ImageModelHolder implements Serializable
         return get().getNickName();
       }
     
-    public static ImageModelHolder wrap (ImageModel imageModel)
+    public static ImageModelHolder wrap (final ImageModel imageModel)
       {
         try
           {
 //            System.err.println("Wrapping ImageModel into a " + defaultClass.getName());
-            ImageModelHolder holder = defaultClass.newInstance();
+            final ImageModelHolder holder = defaultClass.newInstance();
             holder.set(imageModel);
 
             return holder;
