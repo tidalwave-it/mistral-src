@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,12 +17,13 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.java2d;
 
 import java.util.Arrays;
@@ -27,63 +31,64 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import it.tidalwave.image.EditableImage;
-import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.CreateOp;
+import it.tidalwave.image.op.OperationImplementation;
 import lombok.extern.slf4j.Slf4j;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Emmanuele Sordini
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Emmanuele Sordini
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 @Slf4j
 public class CreateJ2DOp extends OperationImplementation<CreateOp, BufferedImage>
   {
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     @Override
     public boolean canHandle (final CreateOp operation)
       {
         switch (operation.getDataType())
           {
             case BYTE:
-               switch (operation.getFiller().length)
-                  {
-                    case 1:
-                    case 3:
-                      return true;
-                      
-                    default:
-                      return false;
-                  }
-               
+              switch (operation.getFiller().length)
+                {
+                  case 1:
+                  case 3:
+                    return true;
+
+                  default:
+                    return false;
+                }
+
             case UNSIGNED_SHORT:
-                switch (operation.getFiller().length)
-                  {
-                    case 1:
-                      return true;
-                      
-                    default:
-                      return false;
-                  }
+              switch (operation.getFiller().length)
+                {
+                  case 1:
+                    return true;
+
+                  default:
+                    return false;
+                }
 
             default:
-                return false;
+              return false;
           }
       }
-    
-    /*******************************************************************************
+
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     @Override
-    protected BufferedImage execute (final CreateOp operation, final EditableImage image, final BufferedImage bufferedImage)
+    protected BufferedImage execute (final CreateOp operation,
+                                     final EditableImage image,
+                                     final BufferedImage bufferedImage)
       {
         log.info("CreateJ2DOp.execute(" + operation + ", " + image + ")");
         Java2DUtils.logImage(log, ">>>> bufferedImage: ", bufferedImage);
@@ -102,43 +107,43 @@ public class CreateJ2DOp extends OperationImplementation<CreateOp, BufferedImage
           {
             case BYTE:
 
-                switch (dims.length)
-                  {
-                    case 1:
-                        type = BufferedImage.TYPE_BYTE_GRAY;
+              switch (dims.length)
+                {
+                  case 1:
+                    type = BufferedImage.TYPE_BYTE_GRAY;
 
-                        break;
+                    break;
 
-                    case 3:
-                        type = BufferedImage.TYPE_3BYTE_BGR;
+                  case 3:
+                    type = BufferedImage.TYPE_3BYTE_BGR;
 
-                        break;
+                    break;
 
-                    default:
-                        throw new IllegalArgumentException("Band count not supported (" + dims.length + ") for type " +
-                            operation.getDataType());
-                  }
+                  default:
+                    throw new IllegalArgumentException("Band count not supported (" + dims.length + ") for type " +
+                                                       operation.getDataType());
+                }
 
-                break;
+              break;
 
             case UNSIGNED_SHORT:
 
-                switch (dims.length)
-                  {
-                    case 1:
-                        type = BufferedImage.TYPE_USHORT_GRAY;
+              switch (dims.length)
+                {
+                  case 1:
+                    type = BufferedImage.TYPE_USHORT_GRAY;
 
-                        break;
+                    break;
 
-                    default:
-                        throw new IllegalArgumentException("Band count not supported (" + dims.length + ") for type " +
-                            operation.getDataType());
-                  }
+                  default:
+                    throw new IllegalArgumentException("Band count not supported (" + dims.length + ") for type " +
+                                                       operation.getDataType());
+                }
 
-                break;
+              break;
 
             default:
-                throw new IllegalArgumentException("Unsupported dataType: " + operation.getDataType());
+              throw new IllegalArgumentException("Unsupported dataType: " + operation.getDataType());
           }
 
         final BufferedImage result = new BufferedImage(operation.getWidth(), operation.getHeight(), type);
@@ -159,7 +164,9 @@ public class CreateJ2DOp extends OperationImplementation<CreateOp, BufferedImage
 
                 try
                   {
-                    g.setColor((dims.length == 1) ? new Color(dims[0], dims[0], dims[0]) : new Color(dims[0], dims[1], dims[2]));
+                    g.setColor((dims.length == 1)
+                               ? new Color(dims[0], dims[0], dims[0])
+                               : new Color(dims[0], dims[1], dims[2]));
                     g.fillRect(0, 0, operation.getWidth(), operation.getHeight());
                   }
                 finally

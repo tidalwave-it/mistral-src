@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,12 +17,13 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.render;
 
 import java.awt.Point;
@@ -30,14 +34,13 @@ import javax.swing.Timer;
 import it.tidalwave.image.Quality;
 import lombok.extern.slf4j.Slf4j;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * A special <code>ScaleController</code> which performs smooth scale transictions.
+ * A special <code>ScaleController</code> which performs smooth scale transitions.
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 @Slf4j
 public class AnimatedScaleController extends ScaleController
   {
@@ -46,48 +49,54 @@ public class AnimatedScaleController extends ScaleController
     private int framesPerSecond = DEFAULT_FRAMES_PER_SECOND;
     private int duration = DEFAULT_DURATION;
 
-    /** When a zoom is performed, keep the following image point fixed. */
+    /**
+     * When a zoom is performed, keep the following image point fixed.
+     */
     private Point pivot;
     private double startScale;
     private double targetScale;
     private long startTime;
     private Timer timer;
 
-    /** The scale quality saved at the start of the animation. */
+    /**
+     * The scale quality saved at the start of the animation.
+     */
     private Quality scaleQualitySave;
 
-    /** The rotate quality saved at the start of the animation. */
+    /**
+     * The rotate quality saved at the start of the animation.
+     */
     private Quality rotateQualitySave;
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Creates a new instance of this class, attached to the given renderer.
      *
      * @param  imageRenderer    the image renderer
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public AnimatedScaleController (final EditableImageRenderer imageRenderer)
       {
         super(imageRenderer);
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      * Returns true if the zoom animation is running.
-     *  
-     * @return  true if animation running
      *
-     **************************************************************************/
+     * @return true if animation running
+     *
+     ******************************************************************************************************************/
     public synchronized boolean isRunning()
       {
         return timer != null;
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     @Override
     public void setScale (final double scale, Point pivot)
       {
@@ -120,14 +129,14 @@ public class AnimatedScaleController extends ScaleController
                 imageRenderer.setRotateQuality(Quality.FASTEST);
 
                 timer = new Timer(1000 / framesPerSecond,
-                        new ActionListener()
-                          {
-                    @Override
-                            public void actionPerformed (final ActionEvent e)
-                              {
-                                changeScale();
-                              }
-                          });
+                                  new ActionListener()
+                                    {
+                                      @Override
+                                      public void actionPerformed (final ActionEvent e)
+                                        {
+                                          changeScale();
+                                        }
+                                    });
 
                 timer.setRepeats(true);
                 timer.setInitialDelay(0);
@@ -136,17 +145,18 @@ public class AnimatedScaleController extends ScaleController
           }
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
-    private void changeScale ()
+     ******************************************************************************************************************/
+    private void changeScale()
       {
         log.debug("changeScale()");
 
         final long deltaTime = System.currentTimeMillis() - startTime;
         final double scale = bound(startScale + (((targetScale - startScale) * deltaTime) / duration));
-        imageRenderer.setScale(Math.max(Math.min(scale, EditableImageRenderer.MAX_SCALE), EditableImageRenderer.MIN_SCALE), pivot);
+        imageRenderer.setScale(Math.max(Math.min(scale, EditableImageRenderer.MAX_SCALE),
+                                        EditableImageRenderer.MIN_SCALE), pivot);
         log.debug(">>>> scale: " + scale + ", targetScale: " + targetScale);
 
         if (Math.abs(scale - targetScale) < 1E-3)
@@ -154,10 +164,13 @@ public class AnimatedScaleController extends ScaleController
             //
             // If this is the last operation in the sequence, restore original quality.
             //
-            log.debug(">>>> scale quality:  save: " + scaleQualitySave + " /// current: " + imageRenderer.getScaleQuality());
-            log.debug(">>>> rotate quality: save: " + rotateQualitySave + " /// current: " + imageRenderer.getRotateQuality());
+            log.debug(">>>> scale quality:  save: " + scaleQualitySave + " /// current: " +
+                      imageRenderer.getScaleQuality());
+            log.debug(">>>> rotate quality: save: " + rotateQualitySave + " /// current: " +
+                      imageRenderer.getRotateQuality());
 
-            if ((scaleQualitySave != imageRenderer.getScaleQuality()) || (rotateQualitySave != imageRenderer.getRotateQuality()))
+            if ((scaleQualitySave != imageRenderer.getScaleQuality()) ||
+                (rotateQualitySave != imageRenderer.getRotateQuality()))
               {
                 //
                 // A higher quality rendering can take too long and thus disrupt the smoothness of the animated zoom.
@@ -166,18 +179,18 @@ public class AnimatedScaleController extends ScaleController
                 // are in the Event Thread.
                 //
                 SwingUtilities.invokeLater(new Runnable()
-                      {
+                  {
                     @Override
-                        public void run ()
-                          {
-                            imageRenderer.setScaleQuality(scaleQualitySave);
-                            imageRenderer.setRotateQuality(rotateQualitySave);
-                            log.debug(">>>> quality restored to " + scaleQualitySave + ", " + rotateQualitySave);
-                            imageRenderer.flushScaledImageCache();
-                            imageRenderer.repaint();
-                            log.debug(">>>> scale: " + scale + ", targetScale: " + targetScale);
-                          }
-                      });
+                    public void run()
+                      {
+                        imageRenderer.setScaleQuality(scaleQualitySave);
+                        imageRenderer.setRotateQuality(rotateQualitySave);
+                        log.debug(">>>> quality restored to " + scaleQualitySave + ", " + rotateQualitySave);
+                        imageRenderer.flushScaledImageCache();
+                        imageRenderer.repaint();
+                        log.debug(">>>> scale: " + scale + ", targetScale: " + targetScale);
+                      }
+                  });
               }
 
             synchronized (this)
@@ -193,10 +206,10 @@ public class AnimatedScaleController extends ScaleController
           }
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     private double bound (final double scale)
       {
         return Math.max(Math.min(scale, Math.max(startScale, targetScale)), Math.min(startScale, targetScale));

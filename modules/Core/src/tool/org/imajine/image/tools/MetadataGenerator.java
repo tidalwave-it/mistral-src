@@ -1,9 +1,11 @@
 /***********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,76 +16,82 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
-package it.tidalwave.image.tools;
+ * *********************************************************************************************************************
+ */
+package it.tidalwave.image.codegenerator;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.Writer;
-import org.antlr.runtime.ANTLRReaderStream;
-import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.RecognitionException;
-import org.antlr.stringtemplate.StringTemplate;
-import org.antlr.stringtemplate.StringTemplateGroup;
-import it.tidalwave.image.tools.grammar.TIFFLexer;
-import it.tidalwave.image.tools.grammar.TIFFParser;
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.RecognitionException;
+import org.stringtemplate.v4.ST;
+import org.stringtemplate.v4.STGroup;
+import org.stringtemplate.v4.STGroupFile;
+import it.tidalwave.image.codegenerator.grammar.TIFFLexer;
+import it.tidalwave.image.codegenerator.grammar.TIFFParser;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class MetadataGenerator
   {
     private List<TIFFRecord> records;
 
-    public static void main (final String ... args)
-      throws Exception
+    public static void main (final String... args)
+            throws Exception
       {
-        final ClassLoader loader = MetadataGenerator.class.getClassLoader();
-        final InputStreamReader input = new InputStreamReader(loader.getResourceAsStream("resources/" + args[0]));
-        final MetadataGenerator exifGenerator = new MetadataGenerator(input);
-        final String className = args[1];
-        final String path = args[2];
-        final File file = new File(String.format("%s/%s.java", path, className));
-        file.getParentFile().mkdirs();
-        final PrintWriter output = new PrintWriter(new FileWriter(file));
-        exifGenerator.generate(output, className);
-        output.close();
+        System.out.println("METADATAGENERATOR" );
+        final String className = args[0];
+        final String source = args[1];
+        final String template = args[2];
+        final String output = args[3];
+        final Path outputFile = new File(String.format("%s/%s.java", output, className)).toPath();
+        Files.createDirectories(outputFile.getParent());
+
+        System.out.println("    CLASS NAME: " + className);
+        System.out.println("    SOURCE:     " + source);
+        System.out.println("    TEMPLATE:   " + template);
+        System.out.println("    OUTPUT      " + outputFile);
+
+        try (final Reader r = Files.newBufferedReader(Paths.get(source));
+             final PrintWriter pw = new PrintWriter(Files.newBufferedWriter(outputFile)))
+          {
+            new MetadataGenerator(r).generate(pw, className, template);
+          }
       }
 
     public MetadataGenerator (final Reader input)
-      throws IOException, RecognitionException
+            throws IOException, RecognitionException
       {
-        final ANTLRReaderStream reader = new ANTLRReaderStream(input);
+        final ANTLRInputStream reader = new ANTLRInputStream(input);
         final TIFFLexer lexer = new TIFFLexer(reader);
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
         final TIFFParser parser = new TIFFParser(tokens);
-        records = parser.prog();
+        System.out.println("    PARSING ...");
+        records = parser.prog().result;
       }
 
-    private StringTemplateGroup getGroup()
+    public void generate (final Writer output, final String className, final String template)
+            throws IOException
       {
-        InputStream templateStream = this.getClass().getClassLoader().getResourceAsStream("resources/MetadataGenerator.stg");
-        Reader templateReader = new InputStreamReader(templateStream);
-        return new StringTemplateGroup(templateReader);
-      }
-
-    public void generate (final Writer output, final String className)
-      throws IOException
-      {
-        final StringTemplateGroup group = getGroup();
-        final StringTemplate template = group.getInstanceOf("generator");
-        template.setAttribute("creation_date", new Date(0));
-        template.setAttribute("class_name", className);
-        template.setAttribute("records", records);
-        output.write(template.toString());
+        System.out.println("    GENERATING CODE...");
+        final STGroup group = new STGroupFile(Paths.get(template).toAbsolutePath().toString());
+        final ST st = group.getInstanceOf("generator");
+        st.add("creation_date", new Date());
+        st.add("class_name", className);
+        st.add("records", records);
+        output.write(st.render());
       }
   }

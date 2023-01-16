@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,27 +17,31 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
-package it.tidalwave.image.tools;
+ * *********************************************************************************************************************
+ */
+package it.tidalwave.image.codegenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+import lombok.ToString;
 
+@ToString
 public class TIFFRecord
   {
-    private String id;
-    private String tagName;
-    private String type;
-    private List<TIFFEnumValueName> enums = new ArrayList<TIFFEnumValueName>();
-    private static ResourceBundle javaTypeDict = ResourceBundle.getBundle("resources/TIFFRecord_JavaType");
+    private static ResourceBundle javaTypeDict = ResourceBundle.getBundle("TIFFRecord_JavaType");
     private static final String UNDEFINED = "undefined";
+
+    private final String id;
+    private final String tagName;
+    private final String type;
+    private final List<TIFFEnumValueName> enums = new ArrayList<TIFFEnumValueName>();
 
     public TIFFRecord (final String id, final String tagName, final String type, final List<TIFFEnumValueName> enums)
       {
@@ -82,7 +89,7 @@ public class TIFFRecord
             return this.getCapitalizedTagName();
           }
 
-        String type = getType();
+        final String type = getType();
 
         try
           {

@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,32 +17,31 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image;
 
 import java.io.Serializable;
 
-
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public abstract class ImageModelHolder implements Serializable
   {
-    private static Class<?extends ImageModelHolder> defaultClass = SerializableImageModelHolder.class;
+    private static Class<? extends ImageModelHolder> defaultClass = SerializableImageModelHolder.class;
 
     public abstract void set (ImageModel imageModel);
 
-    public abstract ImageModel get ();
+    public abstract ImageModel get();
 
-    public static void setDefault (final Class<?extends ImageModelHolder> defaultClass)
+    public static void setDefault (final Class<? extends ImageModelHolder> defaultClass)
       {
         ImageModelHolder.defaultClass = defaultClass;
       }
@@ -48,12 +50,12 @@ public abstract class ImageModelHolder implements Serializable
       {
         get().setNickName(nickName);
       }
-    
+
     public String getNickName()
       {
         return get().getNickName();
       }
-    
+
     public static ImageModelHolder wrap (final ImageModel imageModel)
       {
         try
@@ -69,16 +71,16 @@ public abstract class ImageModelHolder implements Serializable
             throw new RuntimeException(e);
           }
       }
-    
+
     @Override
     public String toString()
       {
-        
+
         final StringBuffer buffer = new StringBuffer(getClass().getName() + "[");
         final ImageModel model = get();
         buffer.append((model != null) ? model.getId() : "null");
 
-        if (model != null) 
+        if (model != null)
           {
             final String nickName = getNickName();
 
@@ -87,9 +89,9 @@ public abstract class ImageModelHolder implements Serializable
                 buffer.append(", " + nickName);
               }
           }
-        
+
         buffer.append("]");
-        
+
         return buffer.toString();
       }
   }

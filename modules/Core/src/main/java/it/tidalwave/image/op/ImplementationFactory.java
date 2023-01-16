@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,12 +17,13 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.op;
 
 import javax.annotation.Nonnull;
@@ -34,16 +38,15 @@ import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
  **********************************************************************************************************************/
-@RequiredArgsConstructor @ToString(of="modelClass") @Slf4j
+@RequiredArgsConstructor @ToString(of = "modelClass") @Slf4j
 public abstract class ImplementationFactory
   {
     @Getter @Nonnull
     private final Class modelClass;
-    
+
     private final Map<Class<? extends Operation>, Class<? extends OperationImplementation>> implementationMapping =
             new HashMap<Class<? extends Operation>, Class<? extends OperationImplementation>>();
 
@@ -71,14 +74,14 @@ public abstract class ImplementationFactory
      * Finds the concrete implementation for a given operation.
      *
      * @param  operation  operation
-     * @return            the implementation (null if not supported)
+     * @return the implementation (null if not supported)
      *
      ******************************************************************************************************************/
-    @Nonnull 
+    @Nonnull
     public OperationImplementation<Operation, Object> findImplementation (final @Nonnull Operation operation)
       {
-        final Class<OperationImplementation<Operation, Object>> implementationClass = 
-                (Class<OperationImplementation<Operation, Object>>) implementationMapping.get(operation.getClass());
+        final Class<OperationImplementation<Operation, Object>> implementationClass =
+                (Class<OperationImplementation<Operation, Object>>)implementationMapping.get(operation.getClass());
 
         if (implementationClass != null)
           {
@@ -108,7 +111,7 @@ public abstract class ImplementationFactory
      *
      *
      ******************************************************************************************************************/
-    @Nonnull 
+    @Nonnull
     public ImageModel createImageModel (final @Nonnull BufferedImage image)
       {
         throw new UnsupportedOperationException();
@@ -127,7 +130,7 @@ public abstract class ImplementationFactory
      * Converts the given image into our specific image representation.
      *
      ******************************************************************************************************************/
-    @Nonnull 
+    @Nonnull
     public abstract ImageModel convertFrom (@Nonnull Object image);
 
     /*******************************************************************************************************************
@@ -140,6 +143,6 @@ public abstract class ImplementationFactory
      *
      *
      ******************************************************************************************************************/
-    @Nonnull 
+    @Nonnull
     public abstract Object convertTo (@Nonnull Object image);
   }

@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,12 +17,13 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.java2d;
 
 import java.awt.Graphics2D;
@@ -34,22 +38,23 @@ import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.RotateQuadrantOp;
 import lombok.extern.slf4j.Slf4j;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 @Slf4j
 public class RotateQuadrantJ2DOp extends OperationImplementation<RotateQuadrantOp, BufferedImage>
   {
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     @Override
-    protected BufferedImage execute (final RotateQuadrantOp operation, final EditableImage image, final BufferedImage bufferedImage)
+    protected BufferedImage execute (final RotateQuadrantOp operation,
+                                     final EditableImage image,
+                                     final BufferedImage bufferedImage)
       {
         final int degrees = operation.getDegrees();
         log.debug("rotateQuadrant(" + degrees + ")");
@@ -74,7 +79,8 @@ public class RotateQuadrantJ2DOp extends OperationImplementation<RotateQuadrantO
 
         final WritableRaster newRaster = Raster.createWritableRaster(sampleModel, null);
         final ColorModel colorModel = bufferedImage.getColorModel();
-        final BufferedImage result = new BufferedImage(colorModel, newRaster, false, Java2DUtils.getProperties(bufferedImage));
+        final BufferedImage result =
+                new BufferedImage(colorModel, newRaster, false, Java2DUtils.getProperties(bufferedImage));
 
 //        BufferedImage result = Java2DUtils.createCompatibleImage(bufferedImage, newWidth, newHeight);
         final Graphics2D g2d = (Graphics2D)result.getGraphics();
@@ -90,20 +96,20 @@ public class RotateQuadrantJ2DOp extends OperationImplementation<RotateQuadrantO
             switch (degrees)
               {
                 case 90:
-                    y = -bufferedImage.getHeight();
+                  y = -bufferedImage.getHeight();
 
-                    break;
+                  break;
 
                 case 180:
-                    x = -bufferedImage.getWidth();
-                    y = -bufferedImage.getHeight();
+                  x = -bufferedImage.getWidth();
+                  y = -bufferedImage.getHeight();
 
-                    break;
+                  break;
 
                 case 270:
-                    x = -bufferedImage.getWidth();
+                  x = -bufferedImage.getWidth();
 
-                    break;
+                  break;
               }
 
             g2d.drawImage(bufferedImage, x, y, null);

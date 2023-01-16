@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,12 +17,13 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.java2d;
 
 import java.awt.Graphics2D;
@@ -31,27 +35,28 @@ import java.awt.image.LookupOp;
 import java.awt.image.LookupTable;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
-import it.tidalwave.image.render.PreviewSettings;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.PaintOp;
+import it.tidalwave.image.render.PreviewSettings;
 import lombok.extern.slf4j.Slf4j;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 @Slf4j
 public class PaintJ2DOp extends OperationImplementation<PaintOp, BufferedImage>
   {
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     @Override
-    protected BufferedImage execute (final PaintOp operation, final EditableImage image, final BufferedImage bufferedImage)
+    protected BufferedImage execute (final PaintOp operation,
+                                     final EditableImage image,
+                                     final BufferedImage bufferedImage)
       {
         final int x = operation.getX();
         final int y = operation.getY();
@@ -84,10 +89,10 @@ public class PaintJ2DOp extends OperationImplementation<PaintOp, BufferedImage>
         return bufferedImage;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
 
     // FIXME: ottimizzalo, fallo lavorare solo sulla subimage visualizzata
     // FIXME: aggiungi un parametro sulla qualita', da mettere dentro PreviewSettings
@@ -104,17 +109,17 @@ public class PaintJ2DOp extends OperationImplementation<PaintOp, BufferedImage>
               {
                 case 8:
                 case 32: // packed model
-                    lookupTable = previewSettings.getLookupTable8bit();
+                  lookupTable = previewSettings.getLookupTable8bit();
 
-                    break;
+                  break;
 
                 case 16:
-                    lookupTable = previewSettings.getLookupTable16bit();
+                  lookupTable = previewSettings.getLookupTable16bit();
 
-                    break;
+                  break;
 
                 default:
-                    throw new IllegalArgumentException("DataSize is " + size);
+                  throw new IllegalArgumentException("DataSize is " + size);
               }
 
             if (lookupTable != null)

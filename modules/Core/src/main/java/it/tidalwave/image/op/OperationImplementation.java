@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,12 +17,13 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.op;
 
 import javax.annotation.Nonnull;
@@ -30,16 +34,17 @@ import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
  **********************************************************************************************************************/
 @Slf4j
 public abstract class OperationImplementation<Op extends Operation, Model extends Object>
   {
-    /** The operation we are implementing. */
+    /**
+     * The operation we are implementing.
+     */
     private Op operation;
-    
+
     @Getter @Setter
     private ImplementationFactory factory;
 
@@ -60,7 +65,7 @@ public abstract class OperationImplementation<Op extends Operation, Model extend
 
         return result;
       }
-    
+
     /*******************************************************************************************************************
      *
      * Sometimes an implementation can't handle a specific set of parameters.
@@ -72,9 +77,9 @@ public abstract class OperationImplementation<Op extends Operation, Model extend
      ******************************************************************************************************************/
     public boolean canHandle (final @Nonnull Op operation)
       {
-        return true;  
+        return true;
       }
-    
+
     /*******************************************************************************************************************
      *
      *
@@ -83,7 +88,7 @@ public abstract class OperationImplementation<Op extends Operation, Model extend
       {
         this.operation = operation;
       }
-    
+
     /*******************************************************************************************************************
      *
      * The concrete implementation of this operation should be provided by
@@ -94,7 +99,7 @@ public abstract class OperationImplementation<Op extends Operation, Model extend
      *
      ******************************************************************************************************************/
     @Nonnull
-    protected abstract Model execute (final @Nonnull Op operation, 
-                                      final @Nonnull EditableImage image, 
+    protected abstract Model execute (final @Nonnull Op operation,
+                                      final @Nonnull EditableImage image,
                                       final @Nonnull Model model);
   }

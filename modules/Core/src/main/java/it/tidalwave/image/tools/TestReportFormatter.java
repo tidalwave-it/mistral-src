@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,12 +17,13 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 /*
  * TestReportFormatter.java
  *
@@ -30,22 +34,21 @@
  */
 package it.tidalwave.image.tools;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 
 /**
- *
- * @author fritz
+ * @author Fabrizio Giudici
  */
 class TestInfo implements Comparable<TestInfo>
   {
@@ -74,7 +77,8 @@ class TestInfo implements Comparable<TestInfo>
     public void printHeader (final PrintWriter pw)
       {
         pw.println(
-            "<tr><td rowspan='2'>Revision</td><td rowspan='2'>Test</td><td rowspan='2'>Quality</td><td rowspan='2'>File</td>");
+                "<tr><td rowspan='2'>Revision</td><td rowspan='2'>Test</td><td rowspan='2'>Quality</td><td " +
+                "rowspan='2'>File</td>");
 
         for (final TestResults testResults : results)
           {
@@ -93,7 +97,7 @@ class TestInfo implements Comparable<TestInfo>
       }
 
     private static String latestTest = "";
-    private String[] colors = new String[] { "#ffffff", "#dddddd" };
+    private String[] colors = new String[]{"#ffffff", "#dddddd"};
     private static int k;
 
     public void print (final PrintWriter pw)
@@ -173,7 +177,7 @@ class TestInfo implements Comparable<TestInfo>
         return compareTo((TestInfo)o) == 0;
       }
 
-    public int hashcode ()
+    public int hashcode()
       {
         return revision.hashCode() ^ test.hashCode() ^ quality.hashCode() ^ file.hashCode();
       }
@@ -229,19 +233,21 @@ public class TestReportFormatter
     private final File htmlFile;
     private List<TestInfo> tests = new ArrayList<TestInfo>();
 
-    /** Creates a new instance of TestReportFormatter */
+    /**
+     * Creates a new instance of TestReportFormatter
+     */
     public TestReportFormatter (final File reportFile, final File htmlFile)
       {
         this.reportFile = reportFile;
         this.htmlFile = htmlFile;
       }
 
-    public void run ()
-        throws IOException
+    public void run()
+            throws IOException
       {
         final BufferedReader br = new BufferedReader(new FileReader(reportFile));
 
-        for (;;)
+        for (; ; )
           {
             String s = br.readLine();
 
@@ -295,10 +301,11 @@ public class TestReportFormatter
       }
 
     public static void main (final String[] args)
-        throws IOException
+            throws IOException
       {
         new TestReportFormatter(new File(
                 "/Users/fritz/Business/Tidalwave/Projects/Mistral/trunk/src/EditableImage/TestReport.txt"),
-            new File("/Users/fritz/Business/Tidalwave/Projects/Mistral/trunk/src/EditableImage/TestReport.html")).run();
+                                new File(
+                                        "/Users/fritz/Business/Tidalwave/Projects/Mistral/trunk/src/EditableImage/TestReport.html")).run();
       }
   }

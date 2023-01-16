@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,45 +17,38 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image;
 
-import org.testng.annotations.BeforeMethod;
-import org.testng.AssertJUnit;
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
+import java.security.MessageDigest;
 import java.io.BufferedInputStream;
-import java.io.InputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.net.URL;
-import java.net.URLConnection;
-import java.security.MessageDigest;
-import it.tidalwave.image.op.ReadOp;
 import lombok.extern.slf4j.Slf4j;
+import org.testng.AssertJUnit;
+import org.testng.annotations.BeforeMethod;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 @Slf4j
 public abstract class BaseTestSupport
   {
     protected static final Path PATH_TEST_SETS = Paths.get(System.getProperty("imageTestSets.folder",
-                                                                           "(WARNING: imageTestSets.folder property " +
-                                                                           "missing)"));
+                                                                              "(WARNING: imageTestSets.folder " +
+                                                                              "property " +
+                                                                              "missing)"));
     protected static final Path TEST_SD100_FOLDER = PATH_TEST_SETS.resolve("StoppingDown_100_2023-01-16");
 
     protected static final String tmp = System.getProperty("java.io.tmpdir");
@@ -102,11 +98,11 @@ public abstract class BaseTestSupport
         file_20060603_0002_jpg = downloadFile("https://mistral.dev.java.net/images/20060603-0002.jpg");
         file_20030701_0043_nef = downloadFile("https://mistral.dev.java.net/images/20030701-0043.NEF");
 //        file_L4840172_dng      = downloadFile("http://www.digitalworld.com.bn/images/dmr_test/raw/L4840172.DNG");
-        file_timezones32_png   = downloadFile("https://mistral.dev.java.net/images/timezones32.png");
-        file_w1_tiff           = downloadFile("https://mistral.dev.java.net/images/w1.tif");
+        file_timezones32_png = downloadFile("https://mistral.dev.java.net/images/timezones32.png");
+        file_w1_tiff = downloadFile("https://mistral.dev.java.net/images/w1.tif");
         file_uncompressed_tiff = downloadFile("https://mistral.dev.java.net/images/uncompressed.tif");
-        file_fax1_tif          = downloadFile("https://mistral.dev.java.net/images/Fax_1.tif");
-        file_IPTC1_jpg         = downloadFile("https://mistral.dev.java.net/images/AgencyPhotographer-Example.jpg");
+        file_fax1_tif = downloadFile("https://mistral.dev.java.net/images/Fax_1.tif");
+        file_IPTC1_jpg = downloadFile("https://mistral.dev.java.net/images/AgencyPhotographer-Example.jpg");
       }
 
     protected BaseTestSupport()
@@ -171,8 +167,8 @@ public abstract class BaseTestSupport
       }
 
     @BeforeMethod
-	public void setUp()
-      throws Exception
+    public void setUp()
+            throws Exception
       {
         /*
         final long maxMemory = Runtime.getRuntime().maxMemory();
@@ -195,7 +191,7 @@ public abstract class BaseTestSupport
             final byte[] buffer = new byte[128 * 1024];
             final InputStream is = new BufferedInputStream(Files.newInputStream(file.toPath()));
 
-            for (;;)
+            for (; ; )
               {
                 final int n = is.read(buffer);
 

@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,32 +17,32 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.java2d;
 
-import java.awt.image.BufferedImage;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.print.PrinterJob;
+import java.awt.image.BufferedImage;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.PaintOp;
 import it.tidalwave.image.op.PrintOp;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class PrintJ2DOp extends OperationImplementation<PrintOp, BufferedImage>
   {
     public PrintJ2DOp()
@@ -47,13 +50,13 @@ public class PrintJ2DOp extends OperationImplementation<PrintOp, BufferedImage>
       }
 
     @Override
-    protected BufferedImage execute (final PrintOp operation, final EditableImage image, final BufferedImage model) 
+    protected BufferedImage execute (final PrintOp operation, final EditableImage image, final BufferedImage model)
       {
         final Printable printable = new Printable()
           {
             @Override
-            public int print (final Graphics graphics, final PageFormat pageFormat, final int pageIndex) 
-              throws PrinterException 
+            public int print (final Graphics graphics, final PageFormat pageFormat, final int pageIndex)
+                    throws PrinterException
               {
                 if (pageIndex > 0)
                   {
@@ -69,24 +72,24 @@ public class PrintJ2DOp extends OperationImplementation<PrintOp, BufferedImage>
                 final int height = (int)Math.round(image.getHeight() * aspectScale);
                 image.execute(new PaintOp(g2d, 0, 0, width, height, null, null));
                 return Printable.PAGE_EXISTS;
-              }  
+              }
           };
-          
+
         final PrinterJob pj = operation.getPrinterJob();
         pj.setPrintable(printable);
-        
+
         if (operation.confirmPrint())
           {
-            try 
+            try
               {
                 pj.print(operation.getPrintRequestAttributeSet());
-              } 
+              }
             catch (PrinterException e)
               {
                 throw new RuntimeException(e);
-              }  
+              }
           }
-        
+
         return model;
       }
   }

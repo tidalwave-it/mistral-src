@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,23 +17,23 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.op;
 
 import java.awt.Color;
 import it.tidalwave.image.EditableImage;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class CreateOp extends AbstractCreateOp
   {
     private final int width;
@@ -38,7 +41,7 @@ public class CreateOp extends AbstractCreateOp
     private final EditableImage.DataType dataType;
     private final double[] filler;
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Create a black monochromatic image (i.e. made of a single band) with the
      * specified data type.
@@ -47,13 +50,13 @@ public class CreateOp extends AbstractCreateOp
      * @param  height    the image height
      * @param  dataType  the data type
      *
-     *******************************************************************************/
+     ******************************************************************************************************************/
     public CreateOp (final int width, final int height, final EditableImage.DataType dataType)
       {
         this(width, height, dataType, 0f);
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Create an RGB image with the specified data type.
      *
@@ -62,13 +65,13 @@ public class CreateOp extends AbstractCreateOp
      * @param  dataType  the data type
      * @param  color     the filler color
      *
-     *******************************************************************************/
+     ******************************************************************************************************************/
     public CreateOp (final int width, final int height, final EditableImage.DataType dataType, final Color color)
       {
         this(width, height, dataType, toDoubles(color, dataType));
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Create a multi-band image with the specified data type. Ploase note that 
      * while the <code>filler</code> param is <code>double</code>, its valid 
@@ -82,7 +85,7 @@ public class CreateOp extends AbstractCreateOp
      * @param  dataType  the data type
      * @param  filler    the filler values
      *
-     *******************************************************************************/
+     ******************************************************************************************************************/
     public CreateOp (final int width, final int height, final EditableImage.DataType dataType, final double... filler)
       {
         if (width <= 0)
@@ -111,90 +114,90 @@ public class CreateOp extends AbstractCreateOp
         this.filler = filler;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     *******************************************************************************/
-    public int getWidth ()
+     ******************************************************************************************************************/
+    public int getWidth()
       {
         return width;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     *******************************************************************************/
-    public int getHeight ()
+     ******************************************************************************************************************/
+    public int getHeight()
       {
         return height;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     *******************************************************************************/
-    public EditableImage.DataType getDataType ()
+     ******************************************************************************************************************/
+    public EditableImage.DataType getDataType()
       {
         return dataType;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     *******************************************************************************/
-    public double[] getFiller ()
+     ******************************************************************************************************************/
+    public double[] getFiller()
       {
         return filler;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     *******************************************************************************/
+     ******************************************************************************************************************/
     @Override
-    public String toString ()
+    public String toString()
       {
         return "CreateOp(" + width + ", " + height + ", " + dataType + ", " + filler + ")";
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     *******************************************************************************/
+     ******************************************************************************************************************/
     private static double[] toDoubles (final Color color, final EditableImage.DataType dataType)
       {
-        final double[] result = { color.getRed(), color.getGreen(), color.getBlue() };
+        final double[] result = {color.getRed(), color.getGreen(), color.getBlue()};
         double scale = 1;
         final double F = 1.0 / 255.0;
 
         switch (dataType)
           {
             case BYTE:
-                break;
+              break;
 
             case SHORT:
-                scale = F * (Math.pow(2, 15) - 1);
+              scale = F * (Math.pow(2, 15) - 1);
 
-                break;
+              break;
 
             case UNSIGNED_SHORT:
-                scale = F * (Math.pow(2, 16) - 1);
+              scale = F * (Math.pow(2, 16) - 1);
 
-                break;
+              break;
 
             case INT:
-                scale = F * (Math.pow(2, 31) - 1);
+              scale = F * (Math.pow(2, 31) - 1);
 
-                break;
+              break;
 
             case FLOAT:
             case DOUBLE:
-                scale = F;
-                break;
+              scale = F;
+              break;
 
             default:
-                throw new IllegalArgumentException("toDoubles: " + dataType);
+              throw new IllegalArgumentException("toDoubles: " + dataType);
           }
 
         for (int i = 0; i < result.length; i++)

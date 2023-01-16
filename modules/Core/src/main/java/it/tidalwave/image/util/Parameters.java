@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,41 +17,41 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.util;
 
-import javax.annotation.Nonnull;
 import javax.annotation.CheckForNull;
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collection;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * This class provides a few static utility methods to extracts parameters from
  * an array.
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public final class Parameters
   {
     private Parameters()
       {
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public static void checkNonNull (@CheckForNull final Object parameter,
                                      @Nonnull final String name)
-      throws IllegalArgumentException
+            throws IllegalArgumentException
       {
         if (parameter == null)
           {
@@ -56,7 +59,7 @@ public final class Parameters
           }
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Extracts a singled-value parameter of the given type from an array. If the
      * parameter is not found, the default value is passed. If more than a single
@@ -67,12 +70,12 @@ public final class Parameters
      * @param  parameters                the array of parameters
      * @throws IllegalparameterException if more than a single value is found
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     @CheckForNull
-    public static <T,O> T find (@Nonnull final Class<T> parameterClass,
-                                @CheckForNull final T defaultOption,
-                                @Nonnull final O ... parameters)
-      throws IllegalArgumentException
+    public static <T, O> T find (@Nonnull final Class<T> parameterClass,
+                                 @CheckForNull final T defaultOption,
+                                 @Nonnull final O... parameters)
+            throws IllegalArgumentException
       {
         final Collection<T> c = find(parameterClass, parameters);
 
@@ -85,7 +88,7 @@ public final class Parameters
         return c.isEmpty() ? defaultOption : c.iterator().next();
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Extracts multiple-value parameters of the given type from an array. If the
      * parameter is not found, an empty collection is returned.
@@ -93,10 +96,10 @@ public final class Parameters
      * @param  parameterClass            the class of the parameter to retrieve
      * @param  parameters                the array of parameters
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     @Nonnull
-    public static <T,O> Collection<T> find (@Nonnull final Class<T> parameterClass,
-                                            @Nonnull final O ... parameters)
+    public static <T, O> Collection<T> find (@Nonnull final Class<T> parameterClass,
+                                             @Nonnull final O... parameters)
       {
         final Collection<T> result = new ArrayList<T>();
 

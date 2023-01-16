@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,12 +17,13 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.render;
 
 import java.util.HashMap;
@@ -41,20 +45,19 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JToggleButton;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class EditingTool implements MouseListener, MouseMotionListener, KeyListener, Overlay
   {
     public static final String CHANGED_ATTRIBUTE = EditingTool.class.getName() + ".changed";
-            
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public class State // implements MouseListener, MouseMotionListener
       {
         public void mouseClicked (final MouseEvent event)
@@ -84,7 +87,7 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
         public void mouseMoved (final MouseEvent event)
           {
           }
-        
+
         public void keyTyped (final KeyEvent event)
           {
           }
@@ -93,7 +96,7 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
           {
             if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
               {
-                deactivate();  
+                deactivate();
               }
           }
 
@@ -114,30 +117,30 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
           {
           }
       }
-    
+
     protected final EditableImageRenderer imageRenderer;
-    
+
     private final Map<Class<? extends State>, State> stateMap = new HashMap<Class<? extends State>, State>();
-    
+
     private final State NULL_STATE = new State();
-    
+
     private State state = NULL_STATE;
-    
+
     private Class<? extends State> initialState;
-    
+
     private boolean active = false;
-    
+
     private boolean oneShot = false;
-    
+
     private Icon icon;
-    
+
     private final JToggleButton.ToggleButtonModel buttonModel = new JToggleButton.ToggleButtonModel();
-            
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
-    private final Action action = new AbstractAction() 
+     ******************************************************************************************************************/
+    private final Action action = new AbstractAction()
       {
         @Override
         public void actionPerformed (final ActionEvent event)
@@ -146,79 +149,79 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
               {
                 activate();
               }
-            
+
             else
               {
-                deactivate();  
+                deactivate();
               }
           }
       };
-      
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     protected EditingTool (final EditableImageRenderer imageRenderer)
       {
         this.imageRenderer = imageRenderer;
       }
-    
-    /*******************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void setEnabled (final boolean enabled)
       {
         action.setEnabled(enabled);
       }
-    
-    /*******************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public boolean isEnabled()
       {
-        return action.isEnabled(); 
+        return action.isEnabled();
       }
-    
-    /*******************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public boolean isActive()
       {
         return active;
       }
-    
-    /*******************************************************************************
+
+    /*******************************************************************************************************************
      *
      * Programmatically commits the changes. E.g. called by the save of an image
      * editor when a tools is currently on.
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void commitChanges()
       {
       }
-            
-    /*******************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void activate()
       {
         if (active)
           {
-            throw new IllegalStateException("Already active");  
+            throw new IllegalStateException("Already active");
           }
-        
+
         if (imageRenderer.editingTool != null)
           {
             imageRenderer.editingTool.deactivate();
           }
-        
+
         active = true;
         buttonModel.setSelected(true);
-        setState(initialState);        
+        setState(initialState);
         imageRenderer.addMouseListener(this);
         imageRenderer.addMouseMotionListener(this);
         imageRenderer.addKeyListener(this);
@@ -227,18 +230,18 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
         imageRenderer.fireEditingToolActivated(this);
         imageRenderer.editingTool = this;
       }
-            
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public void deactivate()
       {
         if (!active)
           {
-            throw new IllegalStateException("Not active");  
+            throw new IllegalStateException("Not active");
           }
-        
+
         active = false;
         buttonModel.setSelected(false);
         imageRenderer.removeMouseListener(this);
@@ -250,139 +253,139 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
         imageRenderer.fireEditingToolDeactivated(this);
         imageRenderer.editingTool = null;
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      * Invoked when the renderer changes the image being edited by this tool.
      * By default, the tool is deactivated (by invoking 
      * <code>deactivate()</code>), but you can change the default behaviour by
      * overriding this method (for instance, committing changes).
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public void imageChanged()
       {
         deactivate();
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public void reset()
       {
         if (oneShot)
           {
-            deactivate();  
+            deactivate();
           }
-        
+
         else
           {
             imageRenderer.repaint();
-            setState(initialState);  
-          }  
+            setState(initialState);
+          }
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public void setIcon (final Icon icon)
       {
-        this.icon = icon;  
+        this.icon = icon;
         action.putValue(Action.SMALL_ICON, icon);
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     @Override
-    public final boolean isVisible() 
+    public final boolean isVisible()
       {
         return true;
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public void connectButton (final JToggleButton button)
       {
         action.putValue(Action.SHORT_DESCRIPTION, button.getToolTipText());
         button.setAction(action);
         button.setModel(buttonModel);
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     protected void setInitialState (final Class<? extends State> initialStateClass)
       {
         this.initialState = initialStateClass;
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     protected void setState (final Class<? extends State> newStateClass)
       {
         if (state != null)
           {
-            state.stop();     
+            state.stop();
           }
-        
+
         final State newState = stateMap.get(newStateClass);
-        
+
         if (newState == null)
           {
             throw new IllegalArgumentException("Invalid or unregistered state: " + newStateClass);
           }
-        
+
         this.state = newState;
         state.start();
         System.err.println("CURRENT STATE: " + this.state);
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     protected State getCurrentState()
       {
         return state;
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     protected void registerState (final State state)
       {
         stateMap.put(state.getClass(), state);
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     protected void repaint()
       {
-        imageRenderer.repaint();  
+        imageRenderer.repaint();
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     protected Cursor makeCursor (final Icon icon, final String name)
       {
         final Toolkit toolkit = Toolkit.getDefaultToolkit();
         final Image image = ((ImageIcon)icon).getImage();
         return toolkit.createCustomCursor(image, new Point(0, 0), name);
       }
-    
+
     //// The following methods just delegate to the current State
 
     @Override

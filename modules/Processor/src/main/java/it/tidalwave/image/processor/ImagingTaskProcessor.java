@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,12 +17,13 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.processor;
 
 import java.util.ArrayList;
@@ -32,63 +36,78 @@ import java.io.Serializable;
 import it.tidalwave.image.processor.event.ImagingTaskProcessorListener;
 import lombok.extern.slf4j.Slf4j;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 @Slf4j
 public abstract class ImagingTaskProcessor // NOT Serializable
   {
-    /** The singleton instance. */
+    /**
+     * The singleton instance.
+     */
     private static ImagingTaskProcessor instance;
-    
-    /** The class to be used for the concrete implementation. */
+
+    /**
+     * The class to be used for the concrete implementation.
+     */
     private static Class<? extends ImagingTaskProcessor> defaultClass = LocalImagingTaskProcessor.class;
 
     private static int eventNotifierCounter;
-    
-    /** The max number of workers. */
+
+    /**
+     * The max number of workers.
+     */
     protected static int maxWorkers = Integer.MAX_VALUE;
-  
-    /** The current number of free workers. */
+
+    /**
+     * The current number of free workers.
+     */
     protected int freeWorkers;
-    
-    /** A lock used to manipulate the inner state. */
+
+    /**
+     * A lock used to manipulate the inner state.
+     */
     protected final Object lock = new Object();
-    
-    /** The list of pending tasks. */
+
+    /**
+     * The list of pending tasks.
+     */
     private final List<ImagingTask> pendingTasks = Collections.synchronizedList(new ArrayList<ImagingTask>());
-    
-    /** The list of running tasks. */
+
+    /**
+     * The list of running tasks.
+     */
     private final List<ImagingTask> runningTasks = Collections.synchronizedList(new ArrayList<ImagingTask>());
-    
-    /** The list of completed tasks. */
+
+    /**
+     * The list of completed tasks.
+     */
     private final List<ImagingTask> completedTasks = Collections.synchronizedList(new ArrayList<ImagingTask>());
-    
+
     private final Statistics statistics = new Statistics();
-    
-    private final ImagingTaskProcessorEventManager eventManager = new ImagingTaskProcessorEventManager(this); 
-    
-    /***************************************************************************
+
+    private final ImagingTaskProcessorEventManager eventManager = new ImagingTaskProcessorEventManager(this);
+
+    /*******************************************************************************************************************
      *
      *
      *
-     **************************************************************************/
-    protected ImagingTaskProcessor() 
+     ******************************************************************************************************************/
+    protected ImagingTaskProcessor()
       {
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Gets the singleton instance of the processor.
      *
-     * @return  the ImagingTaskProcessor
+     * @return the ImagingTaskProcessor
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     // change getInstance()->getDefault() since this is no more a singleton
-    public synchronized static ImagingTaskProcessor getInstance() 
+    public synchronized static ImagingTaskProcessor getInstance()
       {
         if (instance == null)
           {
@@ -101,66 +120,66 @@ public abstract class ImagingTaskProcessor // NOT Serializable
                 throw new RuntimeException(e); // FIXME  
               }
           }
-        
+
         return instance;
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      * Sets the default implementation of the ImagingTaskProcessor
      *
      * @param  defaultClass  the implementation class
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public static void setDefault (final Class<? extends ImagingTaskProcessor> defaultClass)
       {
         ImagingTaskProcessor.defaultClass = defaultClass;
         instance = null; // force a creation of new instance next time
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      * Sets a limit to the number of concurrent workers.
      *
      * @param  maxWorkers  the max. number of workers
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public static void setMaxWorkers (final int maxWorkers)
       {
-        ImagingTaskProcessor.maxWorkers = maxWorkers;  
+        ImagingTaskProcessor.maxWorkers = maxWorkers;
       }
-     
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
-    public int getMaxWorkers() 
+     ******************************************************************************************************************/
+    public int getMaxWorkers()
       {
         return maxWorkers;
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public abstract int getWorkerCount();
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public abstract Collection<Serializable> getWorkerIds();
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      * Returns true if the tasks will be executed in a distributed context
      * (i.e. with different physical nodes - in single-node, multi-core contexts
      * this method returns false.
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public abstract boolean isDistributed();
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      * Returns true if the tasks will be executed in a distributed context
      * with the support of a distributed file system - that is, if each task
@@ -168,32 +187,32 @@ public abstract class ImagingTaskProcessor // NOT Serializable
      * the context is a single-node, multi-core system, which of course has a
      * single filesystem.
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public abstract boolean hasFileAccess();
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public void addListener (final ImagingTaskProcessorListener listener)
       {
         eventManager.addListener(listener);
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public void removeListener (final ImagingTaskProcessorListener listener)
       {
         eventManager.removeListener(listener);
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public boolean processingResourcesAvailable()
       {
         synchronized (lock)
@@ -202,23 +221,23 @@ public abstract class ImagingTaskProcessor // NOT Serializable
           }
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Posts a new task into the queue. The task will be scheduled later as soon
      * there are favorable conditions. This method returns immediately.
      *
      * @param  task  the ImagingTask to post
      *
-     **************************************************************************/
-    public void post (final Collection<? extends ImagingTask> tasks) 
+     ******************************************************************************************************************/
+    public void post (final Collection<? extends ImagingTask> tasks)
       {
         log.info(String.format("post(%s) - free workers: %d", tasks, freeWorkers));
-        
+
         synchronized (lock)
           {
             pendingTasks.addAll(tasks);
             lock.notify();
-            
+
             for (final ImagingTask task : tasks)
               {
                 log.info(String.format(">>>> %s added to pending task list", task.getName()));
@@ -227,33 +246,33 @@ public abstract class ImagingTaskProcessor // NOT Serializable
           }
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Posts a new task into the queue. The task will be scheduled later as soon
      * there are favorable conditions. This method returns immediately.
      *
      * @param  task  the ImagingTask to post
      *
-     **************************************************************************/
-    public void post (final ImagingTask task) 
+     ******************************************************************************************************************/
+    public void post (final ImagingTask task)
       {
         post(Collections.singletonList(task));
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * @param  task  the ImagingTask to post
      *
-     **************************************************************************/
-    public void postWithPriority (final Collection<? extends ImagingTask> tasks) 
+     ******************************************************************************************************************/
+    public void postWithPriority (final Collection<? extends ImagingTask> tasks)
       {
         log.info(String.format("postWithPriority(%s) - free workers: %d", tasks, freeWorkers));
-        
+
         synchronized (lock)
           {
             pendingTasks.addAll(0, tasks);
             lock.notify();
-            
+
             for (final ImagingTask task : tasks)
               {
                 log.info(String.format(">>>> %s added to pending task list", task.getName()));
@@ -261,31 +280,31 @@ public abstract class ImagingTaskProcessor // NOT Serializable
               }
           }
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      * @param  task  the ImagingTasks to post
      *
-     **************************************************************************/
-    public void postWithPriority (final ImagingTask task) 
+     ******************************************************************************************************************/
+    public void postWithPriority (final ImagingTask task)
       {
         postWithPriority(Collections.singletonList(task));
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      * Cancels all the pending tasks of the given type. This method returns 
      * immediately. Tasks in running state will be completed.
      *
      * @param  taskClass  the kind of task to remove (null means all)
-     * @return            the list of completed tasks
+     * @return the list of completed tasks
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public final <T extends ImagingTask> Collection<T> cancellPendingTasks (final Class<T> taskClass)
       {
         log.info("cancellPendingTasks(" + taskClass.getName() + ")");
         final List<T> result = new ArrayList<T>();
-        
+
         synchronized (lock)
           {
             for (final Iterator<? extends ImagingTask> i = pendingTasks.iterator(); i.hasNext(); )
@@ -299,62 +318,62 @@ public abstract class ImagingTaskProcessor // NOT Serializable
                   }
               }
           }
-        
+
         return result;
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns the number of pending tasks of the given class.
      *
      * @param  taskClass  the class of the task (null for any class)
-     * @return            the task count
+     * @return the task count
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public int getPendingTaskCount (final Class<? extends ImagingTask> taskClass)
       {
         return getTaskCount(taskClass, pendingTasks);
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      * Returns the number of running tasks of the given class.
      *
      * @param  taskClass  the class of the task (null for any class)
-     * @return            the task count
+     * @return the task count
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public int getRunningTaskCount (final Class<? extends ImagingTask> taskClass)
       {
         return getTaskCount(taskClass, runningTasks);
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      * Returns the number of completed tasks of the given class. This number is
      * decreased as popCompletedTask() is called.
      *
      * @param  taskClass  the class of the task (null for any class)
-     * @return            the task count
+     * @return the task count
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public int getCompletedTaskCount (final Class<? extends ImagingTask> taskClass)
       {
         return getTaskCount(taskClass, completedTasks);
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      * Pops a completed task out of the list. This will decrease the count of
      * completed task. This operation is usually performed by the controller to
      * consume the task result and eventually schedule a new task.
      *
      * @param  taskClass  the class of the task
-     * @return            the completed task
-     * @throws            NoSuchElementException if no tasks of the given class
+     * @return the completed task
+     * @throws NoSuchElementException if no tasks of the given class
      *                    is available
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     @SuppressWarnings("unchecked")
     public <T extends ImagingTask> T popCompletedTask (final Class<T> taskClass)
       {
@@ -371,35 +390,35 @@ public abstract class ImagingTaskProcessor // NOT Serializable
                   }
               }
           }
-        
+
         throw new NoSuchElementException("No completed task of class " + taskClass);
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public Statistics getStatistics()
       {
-        return statistics;    
+        return statistics;
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
 //    protected boolean canScheduleMore()
 //      {
 //        return freeWorkers > 0;
 //      }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     protected void changeFreeWorkerCount (final int delta)
       {
         synchronized (lock)
@@ -408,15 +427,15 @@ public abstract class ImagingTaskProcessor // NOT Serializable
             lock.notify();
           }
       }
-            
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      * Returns the next pending task to execute. This method blocks until a
      * pending task is available.
      *
-     * @return  the task to execute
+     * @return the task to execute
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     protected final ImagingTask getNextTask (final Serializable workerId, final boolean remoteExecution)
       {
         ImagingTask task = null;
@@ -427,11 +446,11 @@ public abstract class ImagingTaskProcessor // NOT Serializable
               {
                 while (pendingTasks.isEmpty())
                   {
-                    try 
+                    try
                       {
                         lock.wait();
                       }
-                    catch (InterruptedException e) 
+                    catch (InterruptedException e)
                       {
                         return null; // FIXME: better to relaunch InterruptedException
                       }
@@ -455,28 +474,28 @@ public abstract class ImagingTaskProcessor // NOT Serializable
                 synchronized (lock)
                   {
                     runningTasks.add(task);
-                  } 
-                
+                  }
+
                 eventManager.fireNotifyTaskStarted(task, workerId);
               }
 
             else
               {
-                try 
+                try
                   {
                     Thread.sleep(100); // Don't go CPU-bound
                   }
-                catch (InterruptedException e) 
+                catch (InterruptedException e)
                   {
-                 // FIXME: better to relaunch InterruptedException
+                    // FIXME: better to relaunch InterruptedException
                   }
               }
           }
-        
+
         return task;
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      * <p>Notifies that a task has been completed. The task is removed from the
      * list of running tasks and added into the list of completed tasks. If 
@@ -491,31 +510,31 @@ public abstract class ImagingTaskProcessor // NOT Serializable
      * for instance if there are no running tasks and the controller has not 
      * been able to post new tasks yet. In this circumstances, the facility 
      * erroneously thinks that everything is over and quits.</p>
-     * 
+     *
      * @param  task  the completed task
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     protected final void notifyTaskCompleted (final ImagingTask task)
       {
-        log.info("notifyTaskCompleted(" + task + ")");        
+        log.info("notifyTaskCompleted(" + task + ")");
         boolean duplicate = false;
-        
+
         synchronized (lock)
           {
             duplicate = !runningTasks.contains(task);
-            
+
             if (!duplicate)
               {
                 runningTasks.remove(task);
                 completedTasks.add(task);
               }
           }
-        
+
         if (duplicate)
           {
             log.warn("Filtering out duplicated task: " + task);
           }
-        
+
         else
           {
             statistics.merge(task.getStatistics());
@@ -523,15 +542,15 @@ public abstract class ImagingTaskProcessor // NOT Serializable
           }
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     private int getTaskCount (final Class taskClass, final Collection<? extends ImagingTask> taskCollection)
       {
         int count = 0;
-        
+
         synchronized (lock) // implement in a smarter way
           {
             for (final ImagingTask task : taskCollection)
@@ -539,11 +558,11 @@ public abstract class ImagingTaskProcessor // NOT Serializable
 //                if ((taskClass == null) || taskClass.equals(task.getClass()))
                 if ((taskClass == null) || taskClass.getName().equals(task.getClass().getName()))
                   {
-                    count++;  
+                    count++;
                   }
               }
           }
-        
+
         return count;
       }
   }

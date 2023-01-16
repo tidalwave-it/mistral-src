@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,34 +17,33 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.op;
 
-
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class RotateQuadrantOp extends Operation
   {
     private final int degrees;
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Rotates the image by a quadrant. The angle is expressed in degress and can
      * only be a multiple of 90. Rotation is counterclockwise.
      *
      * @param  degree  the rotation angle in degrees
-     * @throws         IllegalArgumentException  if degrees is not a multiple of 90
+     * @throws IllegalArgumentException  if degrees is not a multiple of 90
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public RotateQuadrantOp (int degrees)
       {
         while (degrees < 0)
@@ -59,22 +61,22 @@ public class RotateQuadrantOp extends Operation
         this.degrees = degrees;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
-    public int getDegrees ()
+     ******************************************************************************************************************/
+    public int getDegrees()
       {
         return degrees;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     @Override
-    public String toString ()
+    public String toString()
       {
         return "RotateQuadrantOp(" + degrees + ")";
       }

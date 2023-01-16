@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,29 +17,25 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image;
 
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
 import java.lang.reflect.InvocationTargetException;
 import javax.annotation.Nonnull;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -49,29 +48,31 @@ import it.tidalwave.image.metadata.IPTC;
 import it.tidalwave.image.metadata.TIFF;
 import it.tidalwave.image.op.ReadOp;
 import lombok.extern.slf4j.Slf4j;
-import static it.tidalwave.util.test.FileComparisonUtils.*;
+import org.testng.AssertJUnit;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 import static it.tidalwave.image.op.ReadOp.Type.METADATA;
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static it.tidalwave.util.test.FileComparisonUtils.assertSameContents;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 @Slf4j
 public class EditableImageTest extends BaseTestSupport
   {
     @Test
     public void testPropertiesWithJPG()
-      throws IOException
+            throws IOException
       {
         _testProperties(file_20030701_0043_jpg, 3000, 1995, 3, 8, 24, EditableImage.DataType.BYTE);
       }
 
     @Test
     public void testReadMetadataFromJPEGWithBM25()
-      throws Exception
+            throws Exception
       {
         System.out.println("testLoadEXIFFromJPEGWithBM25");
         final EditableImage image = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
@@ -120,7 +121,8 @@ public class EditableImageTest extends BaseTestSupport
         AssertJUnit.assertEquals(0, (int)exif.getFlash());
         AssertJUnit.assertEquals(new Rational(180, 1), exif.getFocalLength());
 //        assertEquals(9996, (long)exif.getMakerNote());
-        AssertJUnit.assertEquals("ASCII\u0000\u0000\u0000(C) Copyright by Fabrizio Giudici", new String(exif.getUserComment()));
+        AssertJUnit.assertEquals("ASCII\u0000\u0000\u0000(C) Copyright by Fabrizio Giudici",
+                                 new String(exif.getUserComment()));
         AssertJUnit.assertEquals("80", exif.getSubsecTimeOriginal());
         AssertJUnit.assertEquals("80", exif.getSubsecTimeDigitized());
         AssertJUnit.assertEquals(EXIF.SensingMethod.ONE_CHIP_COLOR_AREA_SENSOR, exif.getSensingMethod());
@@ -130,7 +132,7 @@ public class EditableImageTest extends BaseTestSupport
 
     @Test
     public void testPropertiesWithNEF()
-      throws IOException
+            throws IOException
       {
         // Reajent is enabled
         // FIXME: should be 16 and 48, UNSIGNED_SHORT
@@ -141,7 +143,8 @@ public class EditableImageTest extends BaseTestSupport
 //    public void testReadMetadataFromJPEXXX()
 //      throws Exception
 //      {
-//        final EditableImage image = EditableImage.create(new ReadOp(new File("/Users/fritz/Desktop/1205789521406.jpg"), ReadOp.Type.METADATA));
+//        final EditableImage image = EditableImage.create(new ReadOp(new File("/Users/fritz/Desktop/1205789521406
+//        .jpg"), ReadOp.Type.METADATA));
 //        final EXIF exif = image.getMetadata(EXIF.class);
 //        assertNotNull(exif);
 //        assertEquals(38, exif.getTagCodes().length);
@@ -190,7 +193,7 @@ public class EditableImageTest extends BaseTestSupport
 
     @Test
     public void testReadMetadataFromNEF()
-      throws Exception
+            throws Exception
       {
         final File file = file_20030701_0043_nef;
         AssertJUnit.assertTrue(file.exists());
@@ -205,7 +208,7 @@ public class EditableImageTest extends BaseTestSupport
         AssertJUnit.assertEquals(TIFF.NewSubFileType.REDUCED_RESOLUTION, tiff.getNewSubFileType());
         AssertJUnit.assertEquals(320, (long)tiff.getImageWidth());
         AssertJUnit.assertEquals(212, (long)tiff.getImageLength());
-        AssertJUnit.assertTrue(Arrays.equals(new int[]{8,8,8}, tiff.getBitsPerSample()));
+        AssertJUnit.assertTrue(Arrays.equals(new int[]{8, 8, 8}, tiff.getBitsPerSample()));
         AssertJUnit.assertEquals(TIFF.Compression.UNCOMPRESSED, tiff.getCompression());
         AssertJUnit.assertEquals(TIFF.PhotometricInterpretation.RGB, tiff.getPhotometricInterpretation());
         AssertJUnit.assertEquals("                                ", tiff.getImageDescription());
@@ -252,7 +255,8 @@ public class EditableImageTest extends BaseTestSupport
         AssertJUnit.assertEquals(0, (int)exif.getFlash());
         AssertJUnit.assertEquals(new Rational(180, 1), exif.getFocalLength());
         AssertJUnit.assertEquals(9996, (long)exif.getMakerNote());
-        AssertJUnit.assertEquals("ASCII\u0000\u0000\u0000(C) Copyright by Fabrizio Giudici   ", new String(exif.getUserComment()));
+        AssertJUnit.assertEquals("ASCII\u0000\u0000\u0000(C) Copyright by Fabrizio Giudici   ",
+                                 new String(exif.getUserComment()));
         AssertJUnit.assertEquals("80", exif.getSubsecTime());
         AssertJUnit.assertEquals("80", exif.getSubsecTimeOriginal());
         AssertJUnit.assertEquals("80", exif.getSubsecTimeDigitized());
@@ -261,12 +265,12 @@ public class EditableImageTest extends BaseTestSupport
         AssertJUnit.assertEquals(EXIF.SensingMethod.ONE_CHIP_COLOR_AREA_SENSOR, exif.getSensingMethod());
         AssertJUnit.assertEquals(EXIF.FileSource.DSC, exif.getFileSource());
         AssertJUnit.assertEquals(EXIF.SceneType.DIRECTLY_PHOTOGRAPHED_IMAGE, exif.getSceneType());
-        AssertJUnit.assertTrue(Arrays.equals(new byte[]{0,2,0,2,1,0,2,1}, exif.getEXIFCFAPattern()));
+        AssertJUnit.assertTrue(Arrays.equals(new byte[]{0, 2, 0, 2, 1, 0, 2, 1}, exif.getEXIFCFAPattern()));
       }
 
     @Test
     public void testReadMetadataFromAdobeLightroomJPEG()
-      throws Exception
+            throws Exception
       {
         AssertJUnit.assertEquals(1, img20060603_0002_jpg.getMetadataCount(TIFF.class));
         final TIFF tiff = img20060603_0002_jpg.getMetadata(TIFF.class);
@@ -287,7 +291,7 @@ public class EditableImageTest extends BaseTestSupport
 //        assertEquals(FORMAT.parse("2006 06 03 12:04:53.700"), exif.getDateTimeOriginalAsDate());
         AssertJUnit.assertEquals(1.0, exif.getDigitalZoomRatio().doubleValue());
         AssertJUnit.assertEquals(EXIF.ExposureProgram.APERTURE_PRIORITY, exif.getExposureProgram());
-        AssertJUnit.assertTrue(Arrays.equals(new byte[]{2,0,2,0,1,0,2,1}, exif.getEXIFCFAPattern()));
+        AssertJUnit.assertTrue(Arrays.equals(new byte[]{2, 0, 2, 0, 1, 0, 2, 1}, exif.getEXIFCFAPattern()));
         AssertJUnit.assertTrue(Arrays.equals(new byte[]{48, 50, 50, 49}, exif.getEXIFVersion()));
         AssertJUnit.assertEquals(0.0, exif.getExposureBiasValue().doubleValue());
         AssertJUnit.assertEquals(EXIF.ExposureMode.AUTO, exif.getExposureMode());
@@ -317,7 +321,8 @@ public class EditableImageTest extends BaseTestSupport
         AssertJUnit.assertEquals("Ver.2.00", exif.getSoftware());
         AssertJUnit.assertEquals(300.0, exif.getXResolution().doubleValue());
         AssertJUnit.assertEquals(300.0, exif.getYResolution().doubleValue());
-        AssertJUnit.assertEquals("ASCII\u0000\u0000\u0000(C) Copyright by Fabrizio Giudici", new String(exif.getUserComment()));
+        AssertJUnit.assertEquals("ASCII\u0000\u0000\u0000(C) Copyright by Fabrizio Giudici",
+                                 new String(exif.getUserComment()));
         AssertJUnit.assertEquals(EXIF.WhiteBalance.AUTO, exif.getWhiteBalance());
       }
 
@@ -330,11 +335,11 @@ public class EditableImageTest extends BaseTestSupport
         AssertJUnit.assertNotNull(iptc);
         AssertJUnit.assertTrue(iptc.isAvailable());
 
-        final String caption =  "The Shore Temple of the Seven Pagodas was built under Narsimha II of " +
-                                "the Pallava dynasty between 7th and 8th century AD and is dedicated to " +
-                                "Lord Shiva. It resembles the structure of the Dharmaraja rath, but its " +
-                                "tower rises much higher (approx. five stories or ~ 60 ft. high) and its " +
-                                "stupa spire is small and slender. ";
+        final String caption = "The Shore Temple of the Seven Pagodas was built under Narsimha II of " +
+                               "the Pallava dynasty between 7th and 8th century AD and is dedicated to " +
+                               "Lord Shiva. It resembles the structure of the Dharmaraja rath, but its " +
+                               "tower rises much higher (approx. five stories or ~ 60 ft. high) and its " +
+                               "stupa spire is small and slender. ";
         final String keywords = "land, monument, nature, scenery, architectural, architecture, building, " +
                                 "place of worship, religious building, structures, temple, sacred place, " +
                                 "sanctum, Asia, India, Malibalipuram, Tamil Nadu, night, moonlight, moon, " +
@@ -361,7 +366,7 @@ public class EditableImageTest extends BaseTestSupport
 
     @Test
     public void testSerialize()
-      throws IOException, ClassNotFoundException
+            throws IOException, ClassNotFoundException
       {
         final File file = new File("Serialized");
         final ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(file.toPath()));
@@ -377,14 +382,14 @@ public class EditableImageTest extends BaseTestSupport
       }
 
     @Test(enabled = false)
-	private void _testProperties (final File file,
+    private void _testProperties (final File file,
                                   final int expectedWidth,
                                   final int expectedHeight,
                                   final int expectedBandCount,
                                   final int expectedBitsPerBand,
                                   final int expectedBitsPerPixel,
                                   final EditableImage.DataType expectedDataType)
-      throws IOException
+            throws IOException
       {
         final EditableImage image = EditableImage.create(new ReadOp(file));
         final int width = image.getWidth();
@@ -410,7 +415,7 @@ public class EditableImageTest extends BaseTestSupport
       }
 
     private void dump (final Directory directory)
-      throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+            throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
       {
         final String name = directory.getClass().getSimpleName();
 
@@ -483,7 +488,7 @@ public class EditableImageTest extends BaseTestSupport
             return s.filter(p -> p.getFileName().toString().endsWith(".jpg"))
                     .sorted()
                     .limit(99999)
-                    .map(p -> new Object[] { p })
+                    .map(p -> new Object[]{p})
                     .toArray(Object[][]::new);
           }
       }

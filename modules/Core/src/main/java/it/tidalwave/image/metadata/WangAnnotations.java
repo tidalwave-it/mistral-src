@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,12 +17,13 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.metadata;
 
 import java.util.ArrayList;
@@ -27,25 +31,23 @@ import java.util.List;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.ByteOrder;
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageInputStream;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.DrawOp;
-import java.util.Arrays;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * http://support.global360.com/content/I4W/documentation/annospec.htm
- * 
- * @author  Fabrizio Giudici
- * @version $Id$
  *
- ******************************************************************************/
-public class WangAnnotations 
+ * @author Fabrizio Giudici
+ *
+ **********************************************************************************************************************/
+public class WangAnnotations
   {
     public static class Attributes
       {
@@ -68,7 +70,7 @@ public class WangAnnotations
             private final String faceName;
 
             protected LogFont (final byte[] buffer)
-              throws IOException
+                    throws IOException
               {
                 final ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(buffer));
                 iis.setByteOrder(ByteOrder.LITTLE_ENDIAN);
@@ -89,14 +91,14 @@ public class WangAnnotations
                 iis.read(bytes);
                 faceName = new String(bytes);
                 iis.close();
-             }
-            
+              }
+
             public Font createFont()
               {
                 return new Font(faceName, (weight < 700) ? Font.PLAIN : Font.BOLD, 40 * height / 15); // FIXME
               }
-            
-            @Override 
+
+            @Override
             public String toString()
               {
                 return String.format("LogFont[height: %d, weight: %d, face: %s]", height, weight, faceName);
@@ -114,9 +116,9 @@ public class WangAnnotations
         private final LogFont logFont;
         private final int timeStamp;
         private final byte visible;
-        
+
         protected Attributes (final byte[] buffer)
-          throws IOException
+                throws IOException
           {
             final ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(buffer));
             iis.setByteOrder(ByteOrder.LITTLE_ENDIAN);
@@ -125,13 +127,13 @@ public class WangAnnotations
             y1 = iis.readInt();
             x2 = iis.readInt();
             y2 = iis.readInt();
-            
+
             iis.skipBytes(3); // color1
             iis.skipBytes(3); // color2
             highlight = iis.readByte();
             transparent = iis.readByte();
             lineSize = iis.readInt();
-            
+
             iis.readLong(); // reserved 1
             iis.readLong(); // reserved 2
             final byte[] logFontBuffer = new byte[64];
@@ -142,12 +144,12 @@ public class WangAnnotations
             iis.skipBytes(8); // reserved 4
             iis.close();
           }
-        
+
         public int getType()
           {
             return type;
           }
-        
+
         public void drawString (final Graphics2D g, final EditableImage image, final String text)
           {
             g.setColor(Color.BLACK);
@@ -157,7 +159,7 @@ public class WangAnnotations
             g.drawString(text, (float)x1, (float)y1 + g.getFontMetrics().getAscent());
 //            System.err.println(String.format("Rendered %s at %d, %d", text, xx, yy));
           }
-        
+
         public void drawRectangle (final Graphics2D g, final EditableImage image)
           {
             final int ww = Math.abs(x2 - x1);
@@ -170,34 +172,41 @@ public class WangAnnotations
             System.err.println(String.format(">>>> Rendered rectangle: %d,%d,%d,%d - %dx%d", x1, y1, x2, y2, ww, hh));
 //            System.err.println(String.format("Rendered %s at %f, %f", text, xx, yy));
           }
-        
-        @Override 
+
+        @Override
         public String toString()
           {
-            return String.format("Attributes [%d %d,%d,%d,%d visible: %d font: %s]", type, x1, y1, x2, y2, visible, logFont);
+            return String.format("Attributes [%d %d,%d,%d,%d visible: %d font: %s]",
+                                 type,
+                                 x1,
+                                 y1,
+                                 x2,
+                                 y2,
+                                 visible,
+                                 logFont);
           }
       }
-    
+
     public static abstract class Internal
       {
         protected final Attributes attributes;
 
-        public Internal (final Attributes attributes) 
+        public Internal (final Attributes attributes)
           {
             this.attributes = attributes;
           }
-        
-        public abstract void render (EditableImage image); 
+
+        public abstract void render (EditableImage image);
       }
-    
+
     public static class OiAnText extends Internal
       {
         private final double orientation;
         private final double resolution;
         private final String text;
-        
+
         protected OiAnText (final Attributes attributes, final byte[] buffer)
-          throws IOException
+                throws IOException
           {
             super(attributes);
             final ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(buffer));
@@ -212,27 +221,31 @@ public class WangAnnotations
             text = new String(bytes, 0, stringLength, "CP1252");
             iis.close();
           }
-        
+
         @Override
         public void render (final EditableImage image)
           {
-            image.execute2(new DrawOp(new DrawOp.Executor() 
+            image.execute2(new DrawOp(new DrawOp.Executor()
               {
                 @Override
-                public void draw (final Graphics2D g, final EditableImage image) 
+                public void draw (final Graphics2D g, final EditableImage image)
                   {
                     attributes.drawString(g, image, text);
                   }
               }));
           }
-        
-        @Override 
+
+        @Override
         public String toString()
           {
-            return String.format("OiAnText[angle: %f resolution: %f text: %s, %s]", orientation, resolution, text, attributes);
+            return String.format("OiAnText[angle: %f resolution: %f text: %s, %s]",
+                                 orientation,
+                                 resolution,
+                                 text,
+                                 attributes);
           }
       }
-    
+
     public static class OiHilite extends Internal
       {
         protected OiHilite (final Attributes attributes)
@@ -240,47 +253,47 @@ public class WangAnnotations
             super(attributes);
             System.err.println(String.format("OiHilite"));
           }
-        
+
         @Override
         public void render (final EditableImage image)
           {
-            image.execute2(new DrawOp(new DrawOp.Executor() 
+            image.execute2(new DrawOp(new DrawOp.Executor()
               {
                 @Override
-                public void draw (final Graphics2D g, final EditableImage image) 
+                public void draw (final Graphics2D g, final EditableImage image)
                   {
                     attributes.drawRectangle(g, image);
                   }
               }));
           }
-        
-        @Override 
+
+        @Override
         public String toString()
           {
             return String.format("OiHilite[%s]", attributes);
           }
       }
-    
+
     private final List<Internal> internals = new ArrayList<Internal>();
-    
+
     public WangAnnotations (final byte[] buffer)
-      throws IOException
+            throws IOException
       {
         final ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
         final ImageInputStream iis = ImageIO.createImageInputStream(bais);
         iis.setByteOrder(ByteOrder.LITTLE_ENDIAN);
-        
+
         final int header = iis.readInt();
         final int intSize = iis.readInt();
         assert intSize == 1;
         Attributes attributes = null;
-        
+
         while (iis.getStreamPosition() < buffer.length)
           {
             final int dataType = iis.readInt();
             final int dataSize = iis.readInt();
 //            System.err.println(String.format("dataType: %d size: %d", dataType, dataSize));
-            
+
             if ((dataType == 2) || (dataType == 6))
               {
                 System.err.println((dataType == 2) ? "DEFAULT NAMED BLOCK" : "PART OF PRECEDING");
@@ -291,10 +304,10 @@ public class WangAnnotations
                 final int size = iis.readInt();
                 final byte[] block = new byte[size];
                 iis.read(block);
-                
+
                 if (name.startsWith("OiAnText"))
                   {
-                    internals.add(new OiAnText(attributes, block));  
+                    internals.add(new OiAnText(attributes, block));
                   }
                 if (name.startsWith("OiHilite"))
                   {
@@ -302,10 +315,10 @@ public class WangAnnotations
                   }
                 else
                   {
-                    System.err.println(String.format("unmanaged named block: %s", name));                
+                    System.err.println(String.format("unmanaged named block: %s", name));
                   }
               }
-            
+
             else if (dataType == 5)
               {
                 final byte[] block = new byte[dataSize];
@@ -313,15 +326,15 @@ public class WangAnnotations
                 attributes = new Attributes(block);
               }
           }
-          
+
         System.err.println(internals);
       }
-    
+
     public void render (final EditableImage image)
       {
         for (final Internal internal : internals)
           {
-            internal.render(image);  
+            internal.render(image);
           }
       }
   }

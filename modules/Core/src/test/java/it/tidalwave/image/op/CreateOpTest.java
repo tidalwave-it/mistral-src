@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2023 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,30 +17,29 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.op;
 
-import it.tidalwave.image.op.CreateOp;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
 import java.awt.Color;
 import it.tidalwave.image.EditableImage;
+import org.testng.AssertJUnit;
+import org.testng.annotations.Test;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
-public class CreateOpTest 
+ **********************************************************************************************************************/
+public class CreateOpTest
   {
     @Test
-    public void testGetWidth ()
+    public void testGetWidth()
       {
         for (int w = 1; w < 1000; w += 10)
           {
@@ -53,7 +55,7 @@ public class CreateOpTest
       }
 
     @Test
-    public void testGetHeight ()
+    public void testGetHeight()
       {
         for (int h = 1; h < 1000; h += 10)
           {
@@ -69,7 +71,7 @@ public class CreateOpTest
       }
 
     @Test
-    public void testGetDataType ()
+    public void testGetDataType()
       {
         for (final EditableImage.DataType dataType : EditableImage.DataType.values())
           {
@@ -90,7 +92,7 @@ public class CreateOpTest
       }
 
     @Test
-    public void testGetFiller1 ()
+    public void testGetFiller1()
       {
         final CreateOp createOp = new CreateOp(10, 10, EditableImage.DataType.BYTE);
         final double[] filler = createOp.getFiller();
@@ -99,7 +101,7 @@ public class CreateOpTest
       }
 
     @Test
-    public void testGetFiller2 ()
+    public void testGetFiller2()
       {
         final Color color = new Color(63, 127, 255);
         checkColor(new CreateOp(10, 10, EditableImage.DataType.BYTE, color), color, 255);
@@ -111,7 +113,7 @@ public class CreateOpTest
       }
 
     @Test
-    public void testGetFiller3 ()
+    public void testGetFiller3()
       {
         final CreateOp createOp = new CreateOp(10, 10, EditableImage.DataType.BYTE, 1, 2, 3, 4, 5, 6, 7);
         final double[] filler = createOp.getFiller();

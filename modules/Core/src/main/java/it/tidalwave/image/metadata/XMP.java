@@ -22,22 +22,21 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.metadata;
 
-import java.util.HashMap;
 import javax.annotation.Nonnull;
+import java.util.HashMap;
 import java.util.Map;
 import lombok.Getter;
 
 /***********************************************************************************************************************
  *
- * @author  fritz
- * @version $Id$
+ * @author Fabrizio Giudici
  *
  **********************************************************************************************************************/
 public class XMP extends Directory
   {
     private final static long serialVersionUID = 84768464253462456L;
-    
-    @Getter 
+
+    @Getter
     private final Map<String, String> xmpProperties = new HashMap<String, String>();
 
     void _setProperties (final @Nonnull Map<String, String> xmpProperties)
