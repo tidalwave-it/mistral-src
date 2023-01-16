@@ -59,7 +59,7 @@ Directory tree
 
         <netbeans.hint.license>Tidalwave-ASF</netbeans.hint.license>
 
-        <tft.clirr.skip>true</tft.clirr.skip> <!-- Clirr is not compatible with JDK 8 --> 
+        <tft.clirr.skip>true</tft.clirr.skip> <!-- Clirr is not compatible with JDK 8 -->
         <tft.checkstyle.skip>true</tft.checkstyle.skip> <!-- FIXME: breaks the build -->
     </properties>
 

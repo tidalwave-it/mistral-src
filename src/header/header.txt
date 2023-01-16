@@ -1,6 +1,6 @@
 
  ${description}
- Copyright (C) ${inceptionYear}-2012 by Tidalwave s.a.s.
+ Copyright (C) ${inceptionYear}-2023 by Tidalwave s.a.s.
 
 **********************************************************************************************************************
 

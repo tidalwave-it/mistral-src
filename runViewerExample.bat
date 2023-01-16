@@ -1,7 +1,7 @@
 @REM
 @REM
 @REM  Mistral - open source imaging engine
-@REM  Copyright (C) 2003-2012 by Tidalwave s.a.s.
+@REM  Copyright (C) 2003-2023 by Tidalwave s.a.s.
 @REM
 @REM **********************************************************************************************************************
 @REM
