@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/modules/Contributions/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/Contributions/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/Core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/Core/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/Examples/CustomOperationExample/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/Examples/CustomOperationExample/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/Examples/HistogramViewerExample/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/Examples/HistogramViewerExample/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/Examples/MiscellaneousExample/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/Examples/MiscellaneousExample/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/Examples/ViewerExample/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/Examples/ViewerExample/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/Examples/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/Examples/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/JAI-Plugin/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/JAI-Plugin/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/Operations/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/Operations/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/Processor/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/Processor/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/Renderer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/Renderer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/modules/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
