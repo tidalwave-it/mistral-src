@@ -1,18 +1,18 @@
 group bluemarine;
 
-enumDecl()::=<<
-         <it.identifierName>(<it.value>, "<it.name>"),<\n>
+enumDecl(item) ::= <<
+         <item.identifierName>(<item.value>, "<item.name>"),<\n>
 >>
 
-enumIf(type)::=<<
+enumIf(type) ::= <<
              if (value == <it.value>) return <it.identifierName>;<\n>
 >>
 
-printDescriptionTags(records)::=<<
+printDescriptionTags(records) ::= <<
     @Override
     public String getTagName (int tag)
       {
-        return (String)descriptionMapByTag.get(tag);
+        return descriptionMapByTag.get(tag);
       }
     static
       {
@@ -20,17 +20,17 @@ printDescriptionTags(records)::=<<
       }
 >>
 
-printMemberDecl(records)::=<<
+printMemberDecl(records) ::= <<
     <records: {record | public final static int <record.constTagName> = <record.id>;<\n>}>
 >>
 
-printEnumRecord(record)::=<<
+printEnumRecord(record) ::= <<
     public static enum <record.capitalizedTagName>
        {
-<record.enums:enumDecl()>         _UNKNOWN(-1, "_unknown_");
+<record.enums: { enum | <enumDecl(item = enum)> }>         _UNKNOWN(-1, "_unknown_");
          private final static long serialVersionUID = 3059468666726854749L;
-         private int value;
-         private String name;
+         private final int value;
+         private final String name;
 
          private <record.capitalizedTagName> (final int value, final String name)
            {
@@ -51,7 +51,7 @@ printEnumRecord(record)::=<<
        }
 >>
 
-printRecord(record)::=<<
+printRecord(record) ::= <<
 <if(record.hasEnums)><printEnumRecord(record = record)><endif>
     public void set<record.capitalizedTagName> (final <record.javaType> <record.uncapitalizedTagName>)
       {
@@ -100,18 +100,18 @@ printRecord(record)::=<<
 
 >>
 
-testIsAvailable(record)::=<<
+testIsAvailable(record) ::= <<
 is<record.capitalizedTagName>Available()<\n>
 >>
 
-printIsAvailable(records)::=<<
+printIsAvailable(records) ::= <<
     public boolean isAvailable()
       {
         return <testIsAvailable(first(records))><rest(records):{ record |              | <testIsAvailable(record)>}>;
       }
 >>
 
-generator(creation_date, class_name, records)::=<<
+generator(creation_date, class_name, records) ::= <<
 package it.tidalwave.image.metadata;
 
 import java.util.Date;
@@ -124,7 +124,7 @@ import it.tidalwave.image.Rational;
 public class <class_name> extends Directory
   {
     private final static long serialVersionUID = 2056233055989339523L;
-    private final static Map\<Integer, String\> descriptionMapByTag = new HashMap\<Integer, String\>();
+    private final static Map\<Integer, String> descriptionMapByTag = new HashMap\<>();
 
     public <class_name>()
       {

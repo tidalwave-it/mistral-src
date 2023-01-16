@@ -17,8 +17,10 @@
     <name>Mistral (modules)</name>
 
     <properties>
+        <antlr4.version>4.3</antlr4.version>
         <jrawio.version>1.7-ALPHA-1</jrawio.version>
         <libraries.version>1.1.5</libraries.version>
+        <st4.version>4.0.8</st4.version>
         <thesefoolishthings.version>3.2-ALPHA-13</thesefoolishthings.version>
         <netbeans.version>RELEASE71</netbeans.version>
     </properties>
@@ -52,6 +54,17 @@
                 <version>${jrawio.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.antlr</groupId>
+                <artifactId>antlr4</artifactId>
+                <version>${antlr4.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.antlr</groupId>
+                <artifactId>ST4</artifactId>
+                <version>${st4.version}</version>
             </dependency>
 
             <dependency> <!-- FIXME: drop it -->
@@ -129,6 +142,7 @@
     </dependencies>
 
     <modules>
+        <module>CodeGenerator</module>
         <module>Core</module>
         <module>Operations</module>
         <module>Contributions</module>

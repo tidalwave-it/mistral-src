@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="image-renderer" />
         <module name="image-operations" />
+        <module name="code-generator" />
         <module name="image-core" />
         <module name="image-examples-histogramviewer" />
         <module name="image-contributions" />
@@ -19,11 +20,14 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="CodeGenerator" target="1.8" />
       <module name="image-plugin-jai" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="CodeGenerator" options="-Xlint:all" />
+      <module name="code-generator" options="-Xlint:all" />
       <module name="image" options="-Xlint:all" />
       <module name="image-contributions" options="-Xlint:all" />
       <module name="image-core" options="-Xlint:all" />
