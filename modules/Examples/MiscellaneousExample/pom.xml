@@ -28,14 +28,6 @@
             <groupId>it.tidalwave.image</groupId>
             <artifactId>image-contributions</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.kenai.nbpwr</groupId>
-            <artifactId>javax-media-jai</artifactId>
-        </dependency>
-<!--        <dependency>
-            <groupId>javax.media</groupId>
-            <artifactId>jai_core</artifactId>
-        </dependency>-->
     </dependencies>
 </project>
 

@@ -13,12 +13,14 @@
         <module name="image-examples-histogramviewer" />
         <module name="image-contributions" />
         <module name="image-examples-customoperation" />
-        <module name="image-plugin-jai" />
         <module name="image-examples-miscellaneous" />
         <module name="image-examples-viewer" />
         <module name="image-processor" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="image-plugin-jai" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
