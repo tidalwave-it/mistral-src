@@ -37,6 +37,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.net.URL;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
@@ -135,7 +136,16 @@ public class ReadOp extends Operation
                                    final @Nonnull PluginBlackList pluginBlackList)
           throws IOException
           {
-            if (input instanceof File)
+            if (input instanceof Path)
+              {
+                final ImageReader imageReader = createImageReader(((Path)input).toFile(), pluginBlackList);
+                final EditableImage editableImage = read(imageReader);
+                setProperties(editableImage, imageReader);
+                imageReader.dispose();
+                return editableImage;
+              }
+
+            else if (input instanceof File)
               {
                 final ImageReader imageReader = createImageReader((File)input, pluginBlackList);
                 final EditableImage editableImage = read(imageReader);
