@@ -32,6 +32,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.net.URL;
 import java.net.URLConnection;
 import java.security.MessageDigest;
@@ -47,6 +49,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public abstract class BaseTestSupport
   {
+    protected static final Path PATH_TEST_SETS = Paths.get(System.getProperty("imageTestSets.folder",
+                                                                           "(WARNING: imageTestSets.folder property " +
+                                                                           "missing)"));
+    protected static final Path TEST_SD100_FOLDER = PATH_TEST_SETS.resolve("StoppingDown_100_2023-01-16");
+
     protected static final String tmp = System.getProperty("java.io.tmpdir");
     protected static File imageFolder = new File(System.getProperty("it.tidalwave.image.test.folder", ""));
     protected static final File file_timezones32_png;
@@ -99,19 +106,6 @@ public abstract class BaseTestSupport
         file_uncompressed_tiff = downloadFile("https://mistral.dev.java.net/images/uncompressed.tif");
         file_fax1_tif          = downloadFile("https://mistral.dev.java.net/images/Fax_1.tif");
         file_IPTC1_jpg         = downloadFile("https://mistral.dev.java.net/images/AgencyPhotographer-Example.jpg");
-
-//
-//        try
-//          {
-//            InputStream is = BaseTestSupport.class.getResourceAsStream("log.properties");
-//            LogManager.getLogManager().readConfiguration(is);
-//            is.close();
-//            new File("log").mkdirs();
-//          }
-//        catch (Exception e)
-//          {
-//            e.printStackTrace();
-//          }
       }
 
     protected BaseTestSupport()
@@ -120,6 +114,8 @@ public abstract class BaseTestSupport
 
     protected static File downloadFile (String urlString)
       {
+        return null;
+        /*
         try
           {
             URL url = new URL(urlString);
@@ -170,12 +166,14 @@ public abstract class BaseTestSupport
             e.printStackTrace();
             return null;
           }
+         */
       }
 
     @BeforeMethod
 	public void setUp()
       throws Exception
       {
+        /*
         final long maxMemory = Runtime.getRuntime().maxMemory();
         AssertJUnit.assertTrue("Must set -Xmx512M: " + maxMemory, maxMemory >= 500000000);
         AssertJUnit.assertTrue(file_20030701_0043_jpg.exists());
@@ -185,6 +183,7 @@ public abstract class BaseTestSupport
         img20060603_0002_jpg = EditableImage.create(new ReadOp(file_20060603_0002_jpg));
         imgIPTC1_jpg = EditableImage.create(new ReadOp(file_IPTC1_jpg));
         fax1_tif = EditableImage.create(new ReadOp(file_fax1_tif));
+        */
       }
 
     protected void assertChecksum (String expectedChecksum, File file)

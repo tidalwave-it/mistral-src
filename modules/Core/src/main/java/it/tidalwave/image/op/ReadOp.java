@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.zip.GZIPInputStream;
 import java.util.Arrays;
@@ -136,6 +137,8 @@ public class ReadOp extends Operation
                                    final @Nonnull PluginBlackList pluginBlackList)
           throws IOException
           {
+            Objects.requireNonNull(input, "input");
+
             if (input instanceof Path)
               {
                 final ImageReader imageReader = createImageReader(((Path)input).toFile(), pluginBlackList);
@@ -569,6 +572,11 @@ public class ReadOp extends Operation
         // See http://bluemarine.tidalwave.it/issues/browse/MST-137
         final List<ImageReader> readers = new ArrayList<ImageReader>();
         final List<ImageReader> tiffReaders = new ArrayList<ImageReader>();
+
+        if (!iterator.hasNext())
+          {
+            log.warn("Iterator is empty");
+          }
 
         while (iterator.hasNext())
           {

@@ -60,9 +60,9 @@
             </dependency>
 
             <dependency>
-                <groupId>com.kenai.nbpwr</groupId>
-                <artifactId>com-drew-metadata</artifactId>
-                <version>2.5.0rc3-201203012000</version>
+                <groupId>com.drewnoakes</groupId>
+                <artifactId>metadata-extractor</artifactId>
+                <version>2.18.0</version>
             </dependency>
             <dependency>
                 <groupId>com.kenai.nbpwr</groupId>
@@ -135,6 +135,20 @@
         <module>Renderer</module>
         <module>Examples</module>
     </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <systemPropertyVariables>
+                        <imageTestSets.folder>${imageTestSets.folder}</imageTestSets.folder>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
 

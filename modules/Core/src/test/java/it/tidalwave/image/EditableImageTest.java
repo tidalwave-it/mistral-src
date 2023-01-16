@@ -22,23 +22,35 @@
  **********************************************************************************************************************/
 package it.tidalwave.image;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.AssertJUnit;
 import java.lang.reflect.InvocationTargetException;
+import javax.annotation.Nonnull;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import it.tidalwave.image.metadata.Directory;
 import it.tidalwave.image.metadata.EXIF;
 import it.tidalwave.image.metadata.IPTC;
 import it.tidalwave.image.metadata.TIFF;
 import it.tidalwave.image.op.ReadOp;
 import lombok.extern.slf4j.Slf4j;
+import static it.tidalwave.util.test.FileComparisonUtils.*;
+import static it.tidalwave.image.op.ReadOp.Type.METADATA;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /*******************************************************************************
  *
@@ -181,7 +193,7 @@ public class EditableImageTest extends BaseTestSupport
       {
         final File file = file_20030701_0043_nef;
         AssertJUnit.assertTrue(file.exists());
-        final EditableImage image = EditableImage.create(new ReadOp(file, ReadOp.Type.METADATA));
+        final EditableImage image = EditableImage.create(new ReadOp(file, METADATA));
 
         AssertJUnit.assertEquals(1, image.getMetadataCount(TIFF.class));
         final TIFF tiff = image.getMetadata(TIFF.class);
@@ -424,6 +436,87 @@ public class EditableImageTest extends BaseTestSupport
               }
 
             System.err.printf("%5d %-10s %-30s %-10s %s\n", tag, name, directory.getTagName(tag), type, string);
+          }
+      }
+
+    @Test(dataProvider = "stoppingDownImages")
+    public void testMetadata (@Nonnull final Path path)
+            throws IOException
+      {
+        // WHEN
+        final EditableImage underTest = EditableImage.create(new ReadOp(path, METADATA));
+        final TIFF tiff = underTest.getMetadata(TIFF.class);
+        final EXIF exif = underTest.getMetadata(EXIF.class);
+        final IPTC iptc = underTest.getMetadata(IPTC.class);
+        // final XMP xmp = underTest.getMetadata(XMP.class);
+        // THEN
+        log.info("TIFF: {}", tiff);
+        log.info("EXIF: {}", exif);
+        log.info("IPTC: {}", iptc);
+        // log.info("XMP: {}", xmp);
+        final String resourceName = String.format(path.getFileName().toString().replaceAll("\\.jpg$", ".txt"));
+        final List<String> strings = new ArrayList<>();
+        dumpTags(strings, "TIFF", tiff);
+        dumpTags(strings, "EXIF", exif);
+        dumpTags(strings, "IPTC", iptc);
+        final Path actualResults = Paths.get("target/test-results");
+        Files.createDirectories(actualResults);
+        final Path actualDump = actualResults.resolve(resourceName);
+        Files.write(actualDump, strings, UTF_8);
+        final Path expectedDump = path.resolveSibling(resourceName);
+        assertSameContents(expectedDump, actualDump);
+      }
+
+    @DataProvider
+    public static Object[][] stoppingDownImages()
+            throws IOException
+      {
+        if (!Files.exists(TEST_SD100_FOLDER))
+          {
+            log.warn("TEST SET PATH NOT FOUND: {}", TEST_SD100_FOLDER);
+            return new Object[0][1];
+          }
+
+        return Files.list(TEST_SD100_FOLDER)
+                    .filter(p -> p.getFileName().toString().endsWith(".jpg"))
+                    .sorted()
+                    .limit(99999)
+                    .map(p -> new Object[] { p })
+                    .toArray(Object[][]::new);
+      }
+
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    private static void dumpTags (@Nonnull final List<String> strings,
+                                  @Nonnull final String directoryName,
+                                  @Nonnull final Directory directory)
+      {
+        for (final int tag : directory.getTagCodes())
+          {
+            Object value = directory.getObject(tag);
+
+            if (value instanceof byte[])
+              {
+                value = Arrays.toString((byte[])value);
+              }
+            else if (value instanceof Rational[])
+              {
+                value = Arrays.toString((Rational[])value);
+              }
+            else if (value instanceof Object[])
+              {
+                value = Arrays.toString((Object[])value);
+              }
+            else if (value instanceof Date)
+              {
+                value = ((Date)value).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+                                     .format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+              }
+
+            final String s = String.format("%s [%d] %s: %s", directoryName, tag, directory.getTagName(tag), value);
+            log.info("{}", s);
+            strings.add(s);
           }
       }
   }

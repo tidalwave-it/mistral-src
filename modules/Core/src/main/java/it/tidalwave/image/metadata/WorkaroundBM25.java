@@ -50,7 +50,8 @@ public class WorkaroundBM25
         JpegMetadataReader.class.getName(); // Check if Drew stuff is in the classpath 
       }
 
-    public void loadExifAndIptcFromJpeg (final @Nonnull ImageReader reader, 
+    public void loadExifAndIptcFromJpeg (final @Nonnull ImageReader reader,
+                                         final @Nonnull TIFF tiff,
                                          final @Nonnull EXIF exif, 
                                          final @Nonnull IPTC iptc,
                                          final @Nonnull XMP xmp)
@@ -88,16 +89,17 @@ public class WorkaroundBM25
           };
 
         final Metadata metadata = JpegMetadataReader.readMetadata(is);
-        final DirectoryDrewAdapter exifAdatpter = new DirectoryDrewAdapter(metadata.getDirectory(ExifSubIFDDirectory.class));
-        exif.loadFromAdapter(exifAdatpter);
-        final DirectoryDrewAdapter iptcAdatpter = new DirectoryDrewAdapter(metadata.getDirectory(IptcDirectory.class));
-        iptc.loadFromAdapter(iptcAdatpter);
+        final DirectoryDrewAdapter exifAdapter = new DirectoryDrewAdapter(metadata.getFirstDirectoryOfType(ExifSubIFDDirectory.class));
+        exif.loadFromAdapter(exifAdapter);
+        final DirectoryDrewAdapter iptcAdapter = new DirectoryDrewAdapter(metadata.getFirstDirectoryOfType(IptcDirectory.class));
+        iptc.loadFromAdapter(iptcAdapter);
 
-        final XmpDirectory xmpDirectory = metadata.getDirectory(XmpDirectory.class);
-        final DirectoryDrewAdapter xmpAdatpter = new DirectoryDrewAdapter(xmpDirectory);
-        xmp.loadFromAdapter(xmpAdatpter);
-        xmp._setProperties(xmpDirectory.getXmpProperties());
-        
+        final XmpDirectory xmpDirectory = metadata.getFirstDirectoryOfType(XmpDirectory.class);
+        final DirectoryDrewAdapter xmpAdapter = new DirectoryDrewAdapter(xmpDirectory);
+        xmp.loadFromAdapter(xmpAdapter);
+        xmp._setProperties(xmpDirectory.getXmpProperties()); // FIXME 18 e 19
+
+        log.debug(">>>> TIFF metadata: {}", tiff);
         log.debug(">>>> EXIF metadata: {}", exif);
         log.debug(">>>> IPTC metadata: {}", iptc);
         log.debug(">>>> XMP metadata:  {}", xmp);

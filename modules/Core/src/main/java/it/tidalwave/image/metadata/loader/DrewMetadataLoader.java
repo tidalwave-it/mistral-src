@@ -22,6 +22,7 @@
  **********************************************************************************************************************/
 package it.tidalwave.image.metadata.loader;
 
+import com.drew.lang.ByteArrayReader;
 import javax.imageio.metadata.IIOMetadata;
 import javax.imageio.metadata.IIOMetadataNode;
 import org.w3c.dom.Node;
@@ -116,8 +117,8 @@ public class DrewMetadataLoader implements MetadataLoader
               {
                 final byte[] data = (byte[])((IIOMetadataNode)node).getUserObject();
                 final Metadata metadata = new Metadata();
-                new ExifReader().extract(data, metadata);
-                return metadata.getDirectory(ExifSubIFDDirectory.class);
+                new ExifReader().extract(new ByteArrayReader(data), metadata);
+                return metadata.getFirstDirectoryOfType(ExifSubIFDDirectory.class);
               }
           }
 
@@ -150,8 +151,8 @@ public class DrewMetadataLoader implements MetadataLoader
               {
                 final byte[] data = (byte[])((IIOMetadataNode)node).getUserObject();
                 final Metadata metadata = new Metadata();
-                new ExifReader().extract(data, metadata);
-                return metadata.getDirectory(IptcDirectory.class);
+                new ExifReader().extract(new ByteArrayReader(data), metadata);
+                return metadata.getFirstDirectoryOfType(IptcDirectory.class);
               }
           }
 

@@ -910,7 +910,8 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
               {
                 try
                   {
-                    workaroundBM25.loadExifAndIptcFromJpeg(reader, getMetadata(EXIF.class), 
+                    workaroundBM25.loadExifAndIptcFromJpeg(reader, getMetadata(TIFF.class),
+                                                                   getMetadata(EXIF.class),
                                                                    getMetadata(IPTC.class),
                                                                    getMetadata(XMP.class));
                   }
@@ -940,7 +941,8 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
             try
               {
                 log.trace(">>>> using special treatment for JPEG");
-                workaroundBM25.loadExifAndIptcFromJpeg(reader, getMetadata(EXIF.class), 
+                workaroundBM25.loadExifAndIptcFromJpeg(reader, getMetadata(TIFF.class),
+                                                               getMetadata(EXIF.class),
                                                                getMetadata(IPTC.class),
                                                                getMetadata(XMP.class));
                 return;
