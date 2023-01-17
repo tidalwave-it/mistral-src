@@ -275,19 +275,19 @@ public class ViewerPanel extends AbstractViewerPanel
 
         btZoomIn.setIcon(new javax.swing.ImageIcon(getClass().getResource(
                 "/it/tidalwave/mistral/example/viewer/icons/viewmag+.png"))); // NOI18N
-        btZoomIn.addActionListener(evt -> btZoomInActionPerformed(evt));
+        btZoomIn.addActionListener(this::btZoomInActionPerformed);
 
         btActualPixels.setIcon(new javax.swing.ImageIcon(getClass().getResource(
                 "/it/tidalwave/mistral/example/viewer/icons/viewmag1.png"))); // NOI18N
-        btActualPixels.addActionListener(evt -> btActualPixelsActionPerformed(evt));
+        btActualPixels.addActionListener(this::btActualPixelsActionPerformed);
 
         btZoomOut.setIcon(new javax.swing.ImageIcon(getClass().getResource(
                 "/it/tidalwave/mistral/example/viewer/icons/viewmag-.png"))); // NOI18N
-        btZoomOut.addActionListener(evt -> btZoomOutActionPerformed(evt));
+        btZoomOut.addActionListener(this::btZoomOutActionPerformed);
 
         btFitToWindow.setIcon(new javax.swing.ImageIcon(getClass().getResource(
                 "/it/tidalwave/mistral/example/viewer/icons/viewmagfit.png"))); // NOI18N
-        btFitToWindow.addActionListener(evt -> btFitToWindowActionPerformed(evt));
+        btFitToWindow.addActionListener(this::btFitToWindowActionPerformed);
 
         slRotation.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
         slRotation.setMajorTickSpacing(90);
@@ -295,25 +295,25 @@ public class ViewerPanel extends AbstractViewerPanel
         slRotation.setMinimum(-180);
         slRotation.setMinorTickSpacing(10);
         slRotation.setPaintTicks(true);
-        slRotation.addChangeListener(evt -> slRotationStateChanged(evt));
+        slRotation.addChangeListener(this::slRotationStateChanged);
 
         cbCrop.setText("Crop");
         cbCrop.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         cbCrop.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        cbCrop.addChangeListener(evt -> cbCropStateChanged(evt));
+        cbCrop.addChangeListener(this::cbCropStateChanged);
 
         btResetRotation.setText("Level");
         btResetRotation.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btResetRotation.addActionListener(evt -> btResetRotationActionPerformed(evt));
+        btResetRotation.addActionListener(this::btResetRotationActionPerformed);
 
         lbQuality.setText("Quality:");
 
-        cbQuality.addActionListener(evt -> cbQualityActionPerformed(evt));
+        cbQuality.addActionListener(this::cbQualityActionPerformed);
 
         cbScrollBars.setText("Scroll bars");
         cbScrollBars.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         cbScrollBars.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        cbScrollBars.addActionListener(evt -> cbScrollBarsActionPerformed(evt));
+        cbScrollBars.addActionListener(this::cbScrollBarsActionPerformed);
 
         final org.jdesktop.layout.GroupLayout pnToolBarLayout = new org.jdesktop.layout.GroupLayout(pnToolBar);
         pnToolBar.setLayout(pnToolBarLayout);

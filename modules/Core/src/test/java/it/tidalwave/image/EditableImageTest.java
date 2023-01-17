@@ -32,6 +32,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
@@ -231,7 +232,7 @@ public class EditableImageTest extends BaseTestSupport
         AssertJUnit.assertEquals("2003:07:01 12:29:36", tiff.getDateTimeOriginal());
         AssertJUnit.assertTrue(Arrays.equals(new byte[]{1, 0, 0, 0}, tiff.getTIFF_EPStandardID()));
 
-        AssertJUnit.assertEquals(Arrays.asList("EXIF"), new ArrayList<>(tiff.getSubDirectoryNames()));
+        AssertJUnit.assertEquals(List.of("EXIF"), new ArrayList<>(tiff.getSubDirectoryNames()));
         AssertJUnit.assertEquals(1, image.getMetadataCount(EXIF.class));
         final EXIF exif = image.getMetadata(EXIF.class);
         AssertJUnit.assertNotNull(exif);
@@ -354,7 +355,7 @@ public class EditableImageTest extends BaseTestSupport
         AssertJUnit.assertEquals("Mugwum Press", iptc.getCredit());
         AssertJUnit.assertEquals("Sat Jan 01 00:00:00 CET 2005", iptc.getDateCreated().toString());
         AssertJUnit.assertEquals("Shore Temple, Malibalipuram, India", iptc.getHeadline());
-        AssertJUnit.assertEquals("[" + keywords + "]", Arrays.asList(iptc.getKeywords()).toString());
+        AssertJUnit.assertEquals("[" + keywords + "]", Collections.singletonList(iptc.getKeywords()).toString());
         AssertJUnit.assertEquals("ar21319", iptc.getObjectName());
         AssertJUnit.assertEquals("Sacred India", iptc.getOriginalTransmissionReference());
         AssertJUnit.assertEquals("Tamil Nadu", iptc.getProvinceState());

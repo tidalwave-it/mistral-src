@@ -173,9 +173,7 @@ public final class ImageUtils
             size = 15;
           }
 
-        final Kernel result = gaussianBlurKernel(sigma, size);
-
-        return result;
+        return gaussianBlurKernel(sigma, size);
       }
 
 

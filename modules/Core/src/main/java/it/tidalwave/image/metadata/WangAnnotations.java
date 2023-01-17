@@ -250,7 +250,7 @@ public class WangAnnotations
         @Override
         public void render (final EditableImage image)
           {
-            image.execute2(new DrawOp((g, image1) -> attributes.drawRectangle(g, image1)));
+            image.execute2(new DrawOp(attributes::drawRectangle));
           }
 
         @Override

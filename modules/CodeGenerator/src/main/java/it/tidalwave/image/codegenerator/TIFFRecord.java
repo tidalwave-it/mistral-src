@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+import java.util.concurrent.CopyOnWriteArrayList;
 import lombok.ToString;
 
 @ToString
@@ -41,7 +42,7 @@ public class TIFFRecord
     private final String id;
     private final String tagName;
     private final String type;
-    private final List<TIFFEnumValueName> enums = new ArrayList<TIFFEnumValueName>();
+    private final List<TIFFEnumValueName> enums = new ArrayList<>();
 
     public TIFFRecord (final String id, final String tagName, final String type, final List<TIFFEnumValueName> enums)
       {
@@ -135,7 +136,7 @@ public class TIFFRecord
 
     public List<TIFFEnumValueName> getEnums()
       {
-        return new ArrayList<TIFFEnumValueName>(enums);
+        return new CopyOnWriteArrayList<>(enums);
       }
 
     private String getStrippedTagName()

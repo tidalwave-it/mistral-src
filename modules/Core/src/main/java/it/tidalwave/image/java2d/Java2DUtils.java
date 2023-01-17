@@ -27,8 +27,6 @@
 package it.tidalwave.image.java2d;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.awt.Graphics2D;
@@ -71,26 +69,20 @@ public class Java2DUtils
   {
     public static final Float ZERO = (float)0;
     private static final Map<Quality, Object> renderingHintsQualityMap =
-            Collections.unmodifiableMap(new HashMap<Quality, Object>()
-              {
-
-                {
-                  put(Quality.FASTEST, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
-                  put(Quality.INTERMEDIATE, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-                  put(Quality.BEST, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-                }
-              });
+            Map.of(Quality.FASTEST,
+                   RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR,
+                   Quality.INTERMEDIATE,
+                   RenderingHints.VALUE_INTERPOLATION_BILINEAR,
+                   Quality.BEST,
+                   RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 
     private static final Map<Quality, Integer> affineTransformQualityMap =
-            Collections.unmodifiableMap(new HashMap<Quality, Integer>()
-              {
-
-                {
-                  put(Quality.FASTEST, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-                  put(Quality.INTERMEDIATE, AffineTransformOp.TYPE_BILINEAR);
-                  put(Quality.BEST, AffineTransformOp.TYPE_BICUBIC);
-                }
-              });
+            Map.of(Quality.FASTEST,
+                   AffineTransformOp.TYPE_NEAREST_NEIGHBOR,
+                   Quality.INTERMEDIATE,
+                   AffineTransformOp.TYPE_BILINEAR,
+                   Quality.BEST,
+                   AffineTransformOp.TYPE_BICUBIC);
 
     /*******************************************************************************************************************
      *
@@ -138,9 +130,8 @@ public class Java2DUtils
         final GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         final GraphicsDevice[] gs = ge.getScreenDevices();
         final GraphicsDevice gd = gs[0]; // FIXME
-        final GraphicsConfiguration gc = gd.getDefaultConfiguration();
 
-        return gc;
+        return gd.getDefaultConfiguration();
       }
 
     /*******************************************************************************************************************
@@ -772,31 +763,30 @@ public class Java2DUtils
         final int extCount = totalCount - coreCount;
         final float a = 1.0f / ((coreCount * 2) + extCount); // core count double
         final float coreValue = a * 2;
-        final float extValue = a;
         final float[] result = new float[totalCount];
 
         int j = 0;
 
         for (int i = 0; i < r; i++)
           {
-            result[j++] = extValue;
+            result[j++] = a;
           }
 
         for (int k = 0; k < (r - 2); k++)
           {
-            result[j++] = extValue;
+            result[j++] = a;
 
             for (int h = 0; h < (r - 2); h++)
               {
                 result[j++] = coreValue;
               }
 
-            result[j++] = extValue;
+            result[j++] = a;
           }
 
         for (int i = 0; i < r; i++)
           {
-            result[j++] = extValue;
+            result[j++] = a;
           }
         assert j == totalCount;
 

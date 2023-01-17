@@ -65,7 +65,7 @@ public class ReadOpTest extends BaseTestSupport
 
     @Test
     public void testReadJPG1()
-            throws FileNotFoundException, IOException
+            throws IOException
       {
         final File file = file_20030701_0043_jpg;
         AssertJUnit.assertTrue(file.exists());
@@ -76,7 +76,7 @@ public class ReadOpTest extends BaseTestSupport
 
     @Test
     public void testReadTIFF1()
-            throws FileNotFoundException, IOException
+            throws IOException
       {
         final File file = file_uncompressed_tiff;
         AssertJUnit.assertTrue(file.exists());
@@ -87,7 +87,7 @@ public class ReadOpTest extends BaseTestSupport
 
     @Test
     public void testReadTIFF2()
-            throws FileNotFoundException, IOException
+            throws IOException
       {
         final File file = file_w1_tiff;
         AssertJUnit.assertTrue(file.exists());

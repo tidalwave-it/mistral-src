@@ -182,7 +182,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      ******************************************************************************************************************/
     static
       {
-//        ImplementationFactoryJ2D.getInstance();
+//        it.tidalwave.image.java2d.ImplementationFactoryJ2D.getInstance();
 
         try
           {
@@ -202,11 +202,11 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
     public EditableImage()
       {
         // By default put empty objects for which isAvailable() returns false
-        metadataMapByClass.put(TIFF.class, Arrays.asList(new TIFF()));
-        metadataMapByClass.put(EXIF.class, Arrays.asList(new EXIF()));
-        metadataMapByClass.put(IPTC.class, Arrays.asList(new IPTC()));
-        metadataMapByClass.put(XMP.class, Arrays.asList(new XMP()));
-        metadataMapByClass.put(MakerNote.class, Arrays.asList(new MakerNote()));
+        metadataMapByClass.put(TIFF.class, List.of(new TIFF()));
+        metadataMapByClass.put(EXIF.class, List.of(new EXIF()));
+        metadataMapByClass.put(IPTC.class, List.of(new IPTC()));
+        metadataMapByClass.put(XMP.class, List.of(new XMP()));
+        metadataMapByClass.put(MakerNote.class, List.of(new MakerNote()));
       }
 
     /*******************************************************************************************************************
@@ -494,7 +494,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
             final long time = System.currentTimeMillis();
             final Object image = internalExecute(operation);
             final Class modelClass = imageModelHolder.get().getClass();
-            final Constructor constructor = modelClass.getConstructor(Object.class);
+            final Constructor<Object> constructor = modelClass.getConstructor(Object.class);
             final ImageModel newModel = (ImageModel)constructor.newInstance(image);
             final EditableImage result = new EditableImage(newModel);
             result.attributeMapByName = new HashMap<>(attributeMapByName);
@@ -803,7 +803,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
       {
         if (IIOMetadata.class.equals(propertyClass))
           {
-            return (T)iioMetadata;
+            return propertyClass.cast(iioMetadata);
           }
 
         return imageModelHolder.get().getInnerProperty(propertyClass);

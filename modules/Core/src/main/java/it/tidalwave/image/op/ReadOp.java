@@ -422,7 +422,7 @@ public class ReadOp extends Operation
     @Nonnull
     public static ImageReader createImageReader (@Nonnull final File file,
                                                  @Nonnull final PluginBlackList pluginBlackList)
-            throws FileNotFoundException, IOException
+            throws IOException
       {
         log.trace("createImageReader({}, {})", file, pluginBlackList);
 
@@ -596,8 +596,7 @@ public class ReadOp extends Operation
                   {
                     log.trace(">>>> {} discarded because it's in the black list", reader);
                   }
-                else if (pluginClassName.indexOf("TIFF") <
-                         0) // TODO: maybe is it better to test for supported extension or mime?
+                else if (!pluginClassName.contains("TIFF")) // TODO: maybe is it better to test for supported extension or mime?
                   {
                     readers.add(reader);
                   }

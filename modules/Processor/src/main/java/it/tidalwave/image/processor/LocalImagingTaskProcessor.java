@@ -57,7 +57,7 @@ public class LocalImagingTaskProcessor extends ImagingTaskProcessor
         @Override
         public void run()
           {
-            for (; ; ) // TODO: add a smart way to terminate
+            for (;;) // TODO: add a smart way to terminate
               {
                 changeFreeWorkerCount(+1);
                 final ImagingTask task = getNextTask(getName(), false);

@@ -222,7 +222,7 @@ public class Directory extends JavaBeanSupport implements Serializable
             value = array;
           }
 
-        return (T)value;
+        return asType.cast(value);
       }
 
     /*******************************************************************************************************************

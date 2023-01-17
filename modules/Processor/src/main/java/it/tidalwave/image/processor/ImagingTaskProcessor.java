@@ -314,7 +314,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
                 if ((taskClass == null) || taskClass.getName().equals(task.getClass().getName()))
                   {
                     i.remove();
-                    result.add((T)task);
+                    result.add(taskClass.cast(task));
                   }
               }
           }

@@ -173,7 +173,7 @@ public class DirectoryRawAdapter implements DirectoryAdapter
     @Override
     public boolean containsTag (final int tag)
       {
-        return (directory != null) ? directory.containsTag(tag) : false;
+        return directory != null && directory.containsTag(tag);
       }
 
     /*******************************************************************************************************************

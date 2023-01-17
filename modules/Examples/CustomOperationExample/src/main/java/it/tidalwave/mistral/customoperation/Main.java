@@ -31,7 +31,6 @@ import java.io.IOException;
 import java.awt.image.BufferedImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.java2d.ImplementationFactoryJ2D;
-import it.tidalwave.image.op.ImplementationFactory;
 import it.tidalwave.image.op.ReadOp;
 import it.tidalwave.image.op.WriteOp;
 
