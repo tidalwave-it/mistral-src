@@ -107,7 +107,7 @@ public abstract class BasePerformanceTestSupport extends BaseTestSupport
             final long time = runTest(img20030701_0043_jpg);
             log.info(name + img20030701_0043_jpg);
             log.info("STATS: " + "VERSION" + "::" + host + "::" + os + "::" + name + "::" + quality + "::" +
-                     file_20030701_0043_jpg.getName() + "=" + time);
+                     file_20030701_0043_jpg.getFileName() + "=" + time);
           }
       }
 
@@ -125,7 +125,7 @@ public abstract class BasePerformanceTestSupport extends BaseTestSupport
             final long time = runTest(optimizedImage);
             log.info(name + optimizedImage);
             log.info("STATS: " + "VERSION" + "::" + host + "::" + os + "::" + name + "::" + quality + "::" +
-                     file_20030701_0043_jpg.getName() + "=" + time);
+                     file_20030701_0043_jpg.getFileName() + "=" + time);
           }
       }
 

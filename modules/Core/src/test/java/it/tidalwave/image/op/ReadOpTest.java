@@ -31,6 +31,7 @@ import java.util.Iterator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Path;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import it.tidalwave.image.BaseTestSupport;
@@ -49,7 +50,6 @@ public class ReadOpTest extends BaseTestSupport
   {
     static
       {
-
         final String[] mimeTypes = ImageIO.getReaderMIMETypes();
         log.info("MIME TYPES for PHOTODATALOADER: " + Arrays.asList(mimeTypes));
 
@@ -67,8 +67,8 @@ public class ReadOpTest extends BaseTestSupport
     public void testReadJPG1()
             throws IOException
       {
-        final File file = file_20030701_0043_jpg;
-        AssertJUnit.assertTrue(file.exists());
+        final Path file = file_20030701_0043_jpg;
+        AssertJUnit.assertTrue(file.toFile().exists());
         final EditableImage image = EditableImage.create(new ReadOp(file));
         AssertJUnit.assertEquals("JPEG", image.getAttribute(EditableImage.PROP_FORMAT));
         AssertJUnit.assertEquals("image/jpeg", image.getAttribute(EditableImage.PROP_MIME_TYPE));

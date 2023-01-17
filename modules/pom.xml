@@ -154,7 +154,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <systemPropertyVariables>
-                        <imageTestSets.folder>${imageTestSets.folder}</imageTestSets.folder>
+                        <testSet.stoppingdown_100_20230116.folder>${testSet.stoppingdown_100_20230116.folder}</testSet.stoppingdown_100_20230116.folder>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

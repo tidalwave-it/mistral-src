@@ -28,6 +28,7 @@ package it.tidalwave.image;
 
 import java.lang.reflect.InvocationTargetException;
 import javax.annotation.Nonnull;
+import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Stream;
 import java.io.File;
 import java.io.IOException;
@@ -44,8 +46,10 @@ import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import it.tidalwave.util.Pair;
 import it.tidalwave.image.metadata.Directory;
 import it.tidalwave.image.metadata.EXIF;
+import it.tidalwave.image.metadata.EXIFTest;
 import it.tidalwave.image.metadata.IPTC;
 import it.tidalwave.image.metadata.TIFF;
 import it.tidalwave.image.op.ReadOp;
@@ -139,7 +143,7 @@ public class EditableImageTest extends BaseTestSupport
       {
         // Reajent is enabled
         // FIXME: should be 16 and 48, UNSIGNED_SHORT
-        _testProperties(file_20030701_0043_nef, 3008, 2000, 3, 8, 24, EditableImage.DataType.BYTE);
+        _testProperties(file_20030701_0043_nef.toPath(), 3008, 2000, 3, 8, 24, EditableImage.DataType.BYTE);
       }
 
 //    @Test
@@ -382,7 +386,7 @@ public class EditableImageTest extends BaseTestSupport
     public void testSerialize()
             throws IOException, ClassNotFoundException
       {
-        final File file = new File("Serialized");
+        final File file = new File("target/Serialized");
         final ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(file.toPath()));
         final EditableImage image1 = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
         oos.writeObject(image1);
@@ -396,7 +400,7 @@ public class EditableImageTest extends BaseTestSupport
       }
 
     @Test(enabled = false)
-    private void _testProperties (final File file,
+    private void _testProperties (final Path file,
                                   final int expectedWidth,
                                   final int expectedHeight,
                                   final int expectedBandCount,
@@ -539,6 +543,17 @@ public class EditableImageTest extends BaseTestSupport
             final String s = String.format("%s [%d] %s: %s", directoryName, tag, directory.getTagName(tag), value);
             log.info("{}", s);
             strings.add(s);
+          }
+
+        if (directory instanceof EXIF)
+          {
+            final EXIF exif = (EXIF)directory;
+            final List<Pair<String, Function<EXIF, Optional<Instant>>>> x = List.of(
+                Pair.of("dateTimeAsDate", EXIF::getDateTimeAsDate),
+                Pair.of("dateTimeOriginalAsDate", EXIF::getDateTimeOriginalAsDate),
+                Pair.of("dateTimeDigitizedAsDate", EXIF::getDateTimeDigitizedAsDate));
+            x.forEach(p ->
+                      p.b.apply(exif).ifPresent(i -> strings.add(String.format("%s %s: %s", directoryName, p.a, i))));
           }
       }
   }

@@ -32,17 +32,24 @@ import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.stream.Stream;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
+import com.drew.metadata.StringValue;
 import it.tidalwave.image.Rational;
 import it.tidalwave.image.metadata.loader.DirectoryAdapter;
 import lombok.extern.slf4j.Slf4j;
+import static java.util.stream.Collectors.*;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /***********************************************************************************************************************
  *
@@ -57,9 +64,9 @@ public class Directory extends JavaBeanSupport implements Serializable
   {
     private static final long serialVersionUID = 3088068666726854722L;
 
-    // Not static since they are not thread safe
-    private final static DateTimeFormatter exifDateFormat = DateTimeFormatter.ofPattern("yyyy:MM:dd HH:mm:ss");
-    private final static DateTimeFormatter exifDateFormat2 = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+    private final static List<DateTimeFormatter> EXIF_DATE_TIME_FORMATTERS =
+            Stream.of("yyyy:MM:dd HH:mm:ss", "yyyy-MM-dd'T'HH:mm:ss")
+                  .map(DateTimeFormatter::ofPattern).collect(toList());;
 
     private static int nextId = 1;
 
@@ -213,6 +220,11 @@ public class Directory extends JavaBeanSupport implements Serializable
           {
             final long[][] array = (long[][])value;
             value = new Rational((int)array[0][0], (int)array[0][1]);
+          }
+
+        if (value instanceof StringValue)
+          {
+            value = ((StringValue)value).toString(UTF_8);
           }
 
         // If an array is asked and a scalar is available, convert it to an array[1]
@@ -511,43 +523,45 @@ public class Directory extends JavaBeanSupport implements Serializable
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-    protected static String formatDate (final LocalDateTime date)
+    protected static String formatDateTime (final Instant date)
       {
         if (date == null)
           {
             return null;
           }
 
-        return exifDateFormat.format(date);
+        return EXIF_DATE_TIME_FORMATTERS.get(0).format(date);
       }
 
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-    protected static LocalDateTime parseDate (final String string)
+    protected static Instant parseDateTime (final String string)
       {
         if (string == null)
           {
             return null;
           }
 
-        try
-          {
-            return LocalDateTime.parse(string, exifDateFormat);
-          }
+        final ZoneOffset defaultZoneOffset = ZoneOffset.UTC; // of(ZoneOffset.systemDefault().getId());
 
-        catch (Exception e)
+        final Optional<Instant> instant = EXIF_DATE_TIME_FORMATTERS.stream().flatMap(f ->
           {
             try
               {
-                return LocalDateTime.parse(string, exifDateFormat2);
+                return Stream.of(LocalDateTime.parse(string, f).toInstant(defaultZoneOffset));
               }
-
-            catch (Exception e1)
+            catch (Exception e)
               {
-                log.warn("*** BAD DATE " + string);
-                return null;
+                return Stream.empty();
               }
+          }).findFirst();
+
+        if (instant.isEmpty())
+          {
+            log.warn("*** BAD DATE " + string);
           }
+
+        return instant.orElse(null);
       }
   }

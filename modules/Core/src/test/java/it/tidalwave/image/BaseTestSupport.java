@@ -32,7 +32,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import it.tidalwave.image.op.ReadOp;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeMethod;
@@ -45,11 +45,10 @@ import org.testng.annotations.BeforeMethod;
 @Slf4j
 public abstract class BaseTestSupport
   {
-    protected static final Path PATH_TEST_SETS = Paths.get(System.getProperty("imageTestSets.folder",
-                                                                              "(WARNING: imageTestSets.folder " +
-                                                                              "property " +
-                                                                              "missing)"));
-    protected static final Path TEST_SD100_FOLDER = PATH_TEST_SETS.resolve("StoppingDown_100_2023-01-16");
+    protected static final String P_TS_STOPPINGDOWN_100_20230116 = "testSet.stoppingdown_100_20230116.folder";
+    protected static final Path TEST_SD100_FOLDER =
+            Path.of(System.getProperty(P_TS_STOPPINGDOWN_100_20230116,
+                    "(WARNING: property '" + P_TS_STOPPINGDOWN_100_20230116 + "' missing)"));
 
     protected static final String tmp = System.getProperty("java.io.tmpdir");
     protected static File imageFolder = new File(System.getProperty("it.tidalwave.image.test.folder", ""));
@@ -65,8 +64,8 @@ public abstract class BaseTestSupport
      * The first test run will download once and for all the required test images.
      *
      */
-    protected static final File file_20030701_0043_jpg;
-    protected static final File file_20060603_0002_jpg;
+    protected static final Path file_20030701_0043_jpg;
+    protected static final Path file_20060603_0002_jpg;
     protected static final File file_20030701_0043_nef;
     protected static File file_L4840172_dng;
     protected static final File file_w1_tiff;
@@ -94,8 +93,8 @@ public abstract class BaseTestSupport
               }
           }
 
-        file_20030701_0043_jpg = downloadFile("https://mistral.dev.java.net/images/20030701-0043.jpg");
-        file_20060603_0002_jpg = downloadFile("https://mistral.dev.java.net/images/20060603-0002.jpg");
+        file_20030701_0043_jpg = TEST_SD100_FOLDER.resolve("20030701-0043.jpg");
+        file_20060603_0002_jpg = TEST_SD100_FOLDER.resolve("20060603-0002.jpg");
         file_20030701_0043_nef = downloadFile("https://mistral.dev.java.net/images/20030701-0043.NEF");
 //        file_L4840172_dng      = downloadFile("http://www.digitalworld.com.bn/images/dmr_test/raw/L4840172.DNG");
         file_timezones32_png = downloadFile("https://mistral.dev.java.net/images/timezones32.png");
@@ -112,58 +111,6 @@ public abstract class BaseTestSupport
     protected static File downloadFile (final String urlString)
       {
         return null;
-        /*
-        try
-          {
-            URL url = new URL(urlString);
-            File file = new File(imageFolder, "From The Web/" + url.getHost() + "/" + url.getPath());
-
-            if (!file.exists())
-              {
-                System.err.println("Downloading test file from " + url + " - I'll do this only once");
-                URLConnection connection = url.openConnection();
-                int contentLenght = connection.getContentLength();
-                System.err.println("    " + contentLenght + " bytes");
-                InputStream is = connection.getInputStream();
-                file.getParentFile().mkdirs();
-                OutputStream os = new BufferedOutputStream(new FileOutputStream(file));
-                byte[] buffer = new byte[512 * 1024];
-                int done = 0;
-                int previousPerc = 0;
-
-                for (;;)
-                  {
-                    int n = is.read(buffer);
-
-                    if (n <= 0)
-                      {
-                        break;
-                      }
-
-                    os.write(buffer, 0, n);
-                    done += n;
-                    int perc = (100 * done) / contentLenght;
-
-                    if (perc != previousPerc)
-                      {
-                        previousPerc = perc;
-                        System.err.print("Downloading test file from " + url + " - " + perc + "%...\n");
-                      }
-                  }
-
-                System.err.println("Downloading test file from " + url + " - done");
-                is.close();
-                os.close();
-              }
-
-            return file;
-          }
-        catch (IOException e)
-          {
-            e.printStackTrace();
-            return null;
-          }
-         */
       }
 
     @BeforeMethod
@@ -176,11 +123,11 @@ public abstract class BaseTestSupport
         AssertJUnit.assertTrue(file_20030701_0043_jpg.exists());
         AssertJUnit.assertTrue(file_20060603_0002_jpg.exists());
         AssertJUnit.assertTrue(file_20030701_0043_nef.exists());
-        img20030701_0043_jpg = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
-        img20060603_0002_jpg = EditableImage.create(new ReadOp(file_20060603_0002_jpg));
         imgIPTC1_jpg = EditableImage.create(new ReadOp(file_IPTC1_jpg));
         fax1_tif = EditableImage.create(new ReadOp(file_fax1_tif));
         */
+        img20030701_0043_jpg = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
+        img20060603_0002_jpg = EditableImage.create(new ReadOp(file_20060603_0002_jpg));
       }
 
     protected void assertChecksum (final String expectedChecksum, final File file)

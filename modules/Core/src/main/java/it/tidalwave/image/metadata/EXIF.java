@@ -29,7 +29,6 @@ package it.tidalwave.image.metadata;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 import java.awt.color.ICC_Profile;
@@ -229,17 +228,17 @@ public class EXIF extends EXIFDirectoryGenerated
      *
      ******************************************************************************************************************/
     @Nonnull
-    public Optional<LocalDateTime> getDateTimeAsDate()
+    public Optional<Instant> getDateTimeAsDate()
       {
-        return getDateTime().map(EXIF::parseDate).flatMap(d -> getSubsecTime().map(s -> adjust(d, s)));
+        return getDateTime().map(EXIF::parseDateTime).flatMap(d -> getSubsecTime().map(s -> adjust(d, s)));
       }
 
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-    public void setDateTimeAsDate (final @Nonnull LocalDateTime date)
+    public void setDateTimeAsDate (final @Nonnull Instant date)
       {
-        setDateTime((date == null) ? null : formatDate(date));
+        setDateTime((date == null) ? null : formatDateTime(date));
       }
 
     /*******************************************************************************************************************
@@ -248,18 +247,19 @@ public class EXIF extends EXIFDirectoryGenerated
      *
      ******************************************************************************************************************/
     @Nonnull
-    public Optional<LocalDateTime> getDateTimeOriginalAsDate()
+    public Optional<Instant> getDateTimeOriginalAsDate()
       {
-        return getDateTimeOriginal().map(EXIF::parseDate).flatMap(d -> getSubsecTimeOriginal().map(s -> adjust(d, s)));
+        return getDateTimeOriginal().map(EXIF::parseDateTime)
+                                    .flatMap(d -> getSubsecTimeOriginal().map(s -> adjust(d, s)));
       }
 
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-    public void setDateTimeOriginalAsDate (final @Nonnull LocalDateTime date)
+    public void setDateTimeOriginalAsDate (final @Nonnull Instant date)
       {
-        final Optional<LocalDateTime> oldValue = getDateTimeOriginalAsDate();
-        setDateTimeOriginal((date == null) ? null : formatDate(date));
+        final Optional<Instant> oldValue = getDateTimeOriginalAsDate();
+        setDateTimeOriginal((date == null) ? null : formatDateTime(date));
         propertyChangeSupport.firePropertyChange("dateTimeOriginalAsDate", oldValue, getDateTimeOriginalAsDate());
       }
 
@@ -269,18 +269,19 @@ public class EXIF extends EXIFDirectoryGenerated
      *
      ******************************************************************************************************************/
     @Nonnull
-    public Optional<LocalDateTime> getDateTimeDigitizedAsDate()
+    public Optional<Instant> getDateTimeDigitizedAsDate()
       {
-        return getDateTimeDigitized().map(EXIF::parseDate).flatMap(d -> getSubsecTimeDigitized().map(s -> adjust(d, s)));
+        return getDateTimeDigitized().map(EXIF::parseDateTime).flatMap(d -> getSubsecTimeDigitized().map(s -> adjust(d,
+                                                                                                                  s)));
       }
 
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-    public void setDateTimeDigitizedAsDate (final @Nonnull LocalDateTime date)
+    public void setDateTimeDigitizedAsDate (final @Nonnull Instant date)
       {
-        final Optional<LocalDateTime> oldValue = getDateTimeDigitizedAsDate();
-        setDateTimeDigitized((date == null) ? null : formatDate(date));
+        final Optional<Instant> oldValue = getDateTimeDigitizedAsDate();
+        setDateTimeDigitized((date == null) ? null : formatDateTime(date));
         propertyChangeSupport.firePropertyChange("dateTimeDigitizedAsDate", oldValue, getDateTimeDigitizedAsDate());
       }
 
@@ -290,7 +291,7 @@ public class EXIF extends EXIFDirectoryGenerated
     @Override
     public void setDateTime (final @Nonnull String dateTime)
       {
-        final Optional<LocalDateTime> oldValue = getDateTimeAsDate();
+        final Optional<Instant> oldValue = getDateTimeAsDate();
         super.setDateTime(dateTime);
         propertyChangeSupport.firePropertyChange("dateTimeAsDate", oldValue, getDateTimeAsDate());
       }
@@ -301,7 +302,7 @@ public class EXIF extends EXIFDirectoryGenerated
     @Override
     public void setDateTimeDigitized (final @Nonnull String dateTimeDigitized)
       {
-        final Optional<LocalDateTime> oldValue = getDateTimeDigitizedAsDate();
+        final Optional<Instant> oldValue = getDateTimeDigitizedAsDate();
         super.setDateTimeDigitized(dateTimeDigitized);
         propertyChangeSupport.firePropertyChange("dateTimeDigitizedAsDate", oldValue, getDateTimeDigitizedAsDate());
       }
@@ -312,25 +313,25 @@ public class EXIF extends EXIFDirectoryGenerated
     @Override
     public void setDateTimeOriginal (final @Nonnull String dateTimeOriginal)
       {
-        final Optional<LocalDateTime> oldValue = getDateTimeOriginalAsDate();
+        final Optional<Instant> oldValue = getDateTimeOriginalAsDate();
         super.setDateTimeOriginal(dateTimeOriginal);
         propertyChangeSupport.firePropertyChange("dateTimeOriginalAsDate", oldValue, getDateTimeOriginalAsDate());
       }
 
     /*******************************************************************************************************************
      *
-     * @param date
+     * @param instant
      * @param subsec
      *
      ******************************************************************************************************************/
     @Nonnull
-    private LocalDateTime adjust (final @CheckForNull LocalDateTime date, final @Nonnull String subsec)
+    private Instant adjust (final @CheckForNull Instant instant, final @Nonnull String subsec)
       {
-        if (date == null)
+        if (instant == null)
           {
             return null;
           }
 
-        return date.plus(Integer.parseInt(subsec) * 10, ChronoUnit.MILLIS);
+        return instant.plus(Integer.parseInt(subsec) * 10, ChronoUnit.MILLIS);
       }
   }

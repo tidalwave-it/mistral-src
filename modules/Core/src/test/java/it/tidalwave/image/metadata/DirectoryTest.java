@@ -28,52 +28,38 @@ package it.tidalwave.image.metadata;
 
 import javax.annotation.Nonnull;
 import java.time.Instant;
-import java.util.Optional;
-import lombok.extern.slf4j.Slf4j;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.CoreMatchers.is;
 
 /***********************************************************************************************************************
  *
  * @author Fabrizio Giudici
  *
  **********************************************************************************************************************/
-@Slf4j
-public class IPTC extends IPTCDirectoryGenerated
+public class DirectoryTest
   {
-    private static final long serialVersionUID = 3033068666726854799L;
-
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    public IPTC()
+    @Test(dataProvider = "dates")
+    public void testParseDateTime (@Nonnull final String string, @Nonnull final Instant expected)
       {
+        // WHEN
+        final Instant actual = Directory.parseDateTime(string);
+        // THEN
+        assertThat(expected, is(actual));
       }
 
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    public IPTC (@Nonnull final Instant latestModificationTime)
+    @DataProvider
+    public static Object[][] dates()
       {
-        super(latestModificationTime);
-      }
+        final ZoneOffset dzo = ZoneOffset.UTC;
 
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    @Nonnull
-    public Optional<Instant> getDateCreatedAsDate()
-      {
-        return getDateCreated().map(IPTC::parseDateTime);
-      }
-
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    public void setDateCreatedAsDate (@Nonnull final Instant date)
-      {
-        setDateCreated((date == null) ? null : formatDateTime(date));
+        return new Object[][]
+          {
+            { "2023:03:15 12:20:45", LocalDateTime.of(2023, 3, 15, 12, 20, 45).toInstant(dzo) },
+            { "2021-07-25T17:42:31", LocalDateTime.of(2021, 7, 25, 17, 42, 31).toInstant(dzo) }
+          };
       }
   }
