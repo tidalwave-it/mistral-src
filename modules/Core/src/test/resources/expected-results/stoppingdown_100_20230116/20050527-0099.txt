@@ -1,0 +1,38 @@
+EXIF [33434] Exposure Time: 1/125
+EXIF [33437] F Number: 16/1
+EXIF [34850] Exposure Program: 3
+EXIF [34855] ISO Speed Ratings: 200
+EXIF [36864] EXIF Version: [48, 50, 51, 48]
+EXIF [36867] Date/Time Original: 2005:05:27 15:48:08
+EXIF [36868] Date/Time Digitized: 2005:05:27 15:48:08
+EXIF [37377] Shutter SpeedValue: 6965784/1000000
+EXIF [37378] Aperture Value: 8/1
+EXIF [37380] Exposure Bias Value: 0/6
+EXIF [37381] Max Aperture Value: 4/1
+EXIF [37383] Metering Mode: 5
+EXIF [37384] Light Source: 0
+EXIF [37385] Flash: 0
+EXIF [37386] Focal Length: 17/1
+EXIF [37510] User Comment: [65, 83, 67, 73, 73, 0, 0, 0, 40, 67, 41, 32, 67, 111, 112, 121, 114, 105, 103, 104, 116, 32, 98, 121, 32, 70, 97, 98, 114, 105, 122, 105, 111, 32, 71, 105, 117, 100, 105, 99, 105]
+EXIF [37521] Subsec Time Original: 2
+EXIF [37522] Subsec Time Digitized: 2
+EXIF [40961] Color Space: 1
+EXIF [41495] Sensing Method: 2
+EXIF [41728] File Source: [3]
+EXIF [41729] Scene Type: [1]
+EXIF [42034] LensSpecification: [12/1, 24/1, 4/1, 4/1]
+EXIF [42036] LensModel: 12.0-24.0 mm f/4.0
+EXIF dateTimeOriginalAsDate: 2005-05-27T15:48:08.020Z
+EXIF dateTimeDigitizedAsDate: 2005-05-27T15:48:08.020Z
+IPTC [346] null: UTF-8
+IPTC [512] null: 4
+IPTC [567] null: 20050527
+IPTC [572] null: 154808+0200
+IPTC [574] null: 20050527
+IPTC [575] null: 154808+0200
+IPTC [592] null: Fabrizio Giudici
+IPTC [597] null: Photographer
+IPTC [622] null: Fabrizio Giudici
+IPTC [627] null: Fabrizio Giudici
+IPTC [628] null: © Copyright by Fabrizio Giudici. All rights reserved.
+IPTC [634] null: Fabrizio Giudici

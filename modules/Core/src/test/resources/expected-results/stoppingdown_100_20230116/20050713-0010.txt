@@ -1,0 +1,40 @@
+EXIF [33434] Exposure Time: 1/400
+EXIF [33437] F Number: 8/1
+EXIF [34850] Exposure Program: 1
+EXIF [34855] ISO Speed Ratings: 1000
+EXIF [36864] EXIF Version: [48, 50, 51, 48]
+EXIF [36867] Date/Time Original: 2005:07:13 16:40:59
+EXIF [36868] Date/Time Digitized: 2005:07:13 16:40:59
+EXIF [37377] Shutter SpeedValue: 8643856/1000000
+EXIF [37378] Aperture Value: 6/1
+EXIF [37380] Exposure Bias Value: 0/6
+EXIF [37381] Max Aperture Value: 6/1
+EXIF [37383] Metering Mode: 5
+EXIF [37384] Light Source: 9
+EXIF [37385] Flash: 0
+EXIF [37386] Focal Length: 600/1
+EXIF [37510] User Comment: [65, 83, 67, 73, 73, 0, 0, 0, 40, 67, 41, 32, 98, 121, 32, 70, 97, 98, 114, 105, 122, 105, 111, 32, 71, 73, 85, 68, 73, 67, 73]
+EXIF [37521] Subsec Time Original: 00
+EXIF [37522] Subsec Time Digitized: 00
+EXIF [40961] Color Space: 1
+EXIF [41495] Sensing Method: 2
+EXIF [41728] File Source: [3]
+EXIF [41729] Scene Type: [1]
+EXIF [42033] BodySerialNumber: 100062dc
+EXIF [42034] LensSpecification: [300/1, 300/1, 4/1, 4/1]
+EXIF [42036] LensModel: 300.0 mm f/4.0
+EXIF dateTimeOriginalAsDate: 2005-07-13T16:40:59Z
+EXIF dateTimeDigitizedAsDate: 2005-07-13T16:40:59Z
+IPTC [346] null: UTF-8
+IPTC [512] null: 4
+IPTC [537] null: [Animalia, Chordata, Eukaryota, Mammalia, Marmota, Marmota marmota, Rodentia, Sciuridae, Taxonomy, marmot, marmotta]
+IPTC [567] null: 20050713
+IPTC [572] null: 164059+0200
+IPTC [574] null: 20050713
+IPTC [575] null: 164059+0200
+IPTC [592] null: Fabrizio Giudici
+IPTC [597] null: Photographer
+IPTC [622] null: Fabrizio Giudici
+IPTC [627] null: Fabrizio Giudici
+IPTC [628] null: © Copyright by Fabrizio Giudici. All rights reserved.
+IPTC [634] null: Fabrizio Giudici

@@ -26,16 +26,35 @@
  */
 package it.tidalwave.image;
 
+import javax.annotation.Nonnull;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.stream.Stream;
 import java.security.MessageDigest;
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import it.tidalwave.util.Pair;
+import it.tidalwave.image.metadata.Directory;
+import it.tidalwave.image.metadata.EXIF;
 import it.tidalwave.image.op.ReadOp;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import static org.junit.Assert.assertThat;
+import static org.testng.AssertJUnit.*;
+import static org.hamcrest.CoreMatchers.*;
 
 /***********************************************************************************************************************
  *
@@ -54,6 +73,8 @@ public abstract class BaseTestSupport
     protected static File imageFolder = new File(System.getProperty("it.tidalwave.image.test.folder", ""));
     protected static final File file_timezones32_png;
     /*
+     * THIS INFO IS OBSOLETE.
+     *
      * The images required for testing are not part of the distributions since they are several megabytes large.
      * You have to:
      *
@@ -78,6 +99,9 @@ public abstract class BaseTestSupport
     protected EditableImage imgIPTC1_jpg;
     protected EditableImage fax1_tif;
 
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
     static
       {
         if (!imageFolder.exists())
@@ -104,15 +128,24 @@ public abstract class BaseTestSupport
         file_IPTC1_jpg = downloadFile("https://mistral.dev.java.net/images/AgencyPhotographer-Example.jpg");
       }
 
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
     protected BaseTestSupport()
       {
       }
 
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
     protected static File downloadFile (final String urlString)
       {
         return null;
       }
 
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
     @BeforeMethod
     public void setUp()
             throws Exception
@@ -120,16 +153,178 @@ public abstract class BaseTestSupport
         /*
         final long maxMemory = Runtime.getRuntime().maxMemory();
         AssertJUnit.assertTrue("Must set -Xmx512M: " + maxMemory, maxMemory >= 500000000);
-        AssertJUnit.assertTrue(file_20030701_0043_jpg.exists());
-        AssertJUnit.assertTrue(file_20060603_0002_jpg.exists());
-        AssertJUnit.assertTrue(file_20030701_0043_nef.exists());
         imgIPTC1_jpg = EditableImage.create(new ReadOp(file_IPTC1_jpg));
         fax1_tif = EditableImage.create(new ReadOp(file_fax1_tif));
         */
-        img20030701_0043_jpg = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
-        img20060603_0002_jpg = EditableImage.create(new ReadOp(file_20060603_0002_jpg));
+        img20030701_0043_jpg = Files.exists(file_20030701_0043_jpg) ?
+                               EditableImage.create(new ReadOp(file_20030701_0043_jpg)) : null;
+        img20060603_0002_jpg = Files.exists(file_20060603_0002_jpg) ?
+                               EditableImage.create(new ReadOp(file_20060603_0002_jpg)) : null;
       }
 
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    protected void _testProperties (final Path file,
+                                    final int expectedWidth,
+                                    final int expectedHeight,
+                                    final int expectedBandCount,
+                                    final int expectedBitsPerBand,
+                                    final int expectedBitsPerPixel,
+                                    final EditableImage.DataType expectedDataType)
+            throws IOException
+      {
+        final EditableImage image = EditableImage.create(new ReadOp(file));
+        final int width = image.getWidth();
+        final int height = image.getHeight();
+        final int bandCount = image.getBandCount();
+        final int bitsPerBand = image.getBitsPerBand();
+        final int bitsPerPixel = image.getBitsPerPixel();
+        final EditableImage.DataType dataType = image.getDataType();
+
+        assertEquals(expectedWidth, width);
+        assertEquals(expectedHeight, height);
+        assertEquals(expectedBandCount, bandCount);
+        assertEquals(expectedBitsPerBand, bitsPerBand);
+        assertEquals(expectedBitsPerPixel, bitsPerPixel);
+        assertEquals(expectedDataType, dataType);
+
+        log.info(">>>> File:           " + file);
+        log.info(">>>> Size:           " + width + " x " + height);
+        log.info(">>>> Bands:          " + bandCount);
+        log.info(">>>> Bits per bands: " + bitsPerBand);
+        log.info(">>>> Bits per pixel: " + bitsPerPixel);
+        log.info(">>>> Data type:      " + dataType);
+      }
+
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    @DataProvider
+    protected static Object[][] stoppingDownImages()
+            throws IOException
+      {
+        if (!Files.exists(TEST_SD100_FOLDER))
+          {
+            log.warn("TEST SET PATH NOT FOUND: {}", TEST_SD100_FOLDER);
+            return new Object[0][1];
+          }
+
+        final int limit = Boolean.getBoolean("it.tidalwave-ci.skipLongTests") ? 100 : 99999;
+
+        try (final Stream<Path> s = Files.list(TEST_SD100_FOLDER))
+          {
+            return s.filter(p -> p.getFileName().toString().endsWith(".jpg"))
+                    .sorted()
+                    .limit(limit)
+                    .map(p -> new Object[]{p})
+                    .toArray(Object[][]::new);
+          }
+      }
+
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    /*
+    private void dump (final Directory directory)
+            throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+      {
+        final String name = directory.getClass().getSimpleName();
+
+        for (final int tag : directory.getTagCodes())
+          {
+            String string = "???";
+            String type = "???";
+            final Object value = directory.getObject(tag);
+
+            if (value == null)
+              {
+                string = "null";
+                type = "null";
+              }
+            else if (!value.getClass().isArray())
+              {
+                string = value.toString();
+                type = value.getClass().getSimpleName();
+              }
+            else
+              {
+                string = (String)Arrays.class.getMethod("toString", value.getClass()).invoke(null, value);
+                type = value.getClass().getSimpleName();
+              }
+
+            System.err.printf("%5d %-10s %-30s %-10s %s\n", tag, name, directory.getTagName(tag), type, string);
+          }
+      }
+    */
+
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    protected static void dumpTags (@Nonnull final String directoryName,
+                                    @Nonnull final Directory directory,
+                                    @Nonnull final Consumer<String> consumer)
+      {
+        for (final int tag : directory.getTagCodes())
+          {
+            Object value = directory.getObject(tag);
+
+            if (value instanceof byte[])
+              {
+                value = Arrays.toString((byte[])value);
+              }
+            else if (value instanceof Rational[])
+              {
+                value = Arrays.toString((Rational[])value);
+              }
+            else if (value instanceof Object[])
+              {
+                value = Arrays.toString((Object[])value);
+              }
+            else if (value instanceof Date)
+              {
+                value = ((Date)value).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+                                     .format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+              }
+
+            final String s = String.format("%s [%d] %s: %s", directoryName, tag, directory.getTagName(tag), value);
+            // log.info("{}", s);
+            consumer.accept(s);
+          }
+
+        if (directory instanceof EXIF)
+          {
+            final EXIF exif = (EXIF)directory;
+            final List<Pair<String, Function<EXIF, Optional<Instant>>>> x = List.of(
+                    Pair.of("dateTimeAsDate", EXIF::getDateTimeAsDate),
+                    Pair.of("dateTimeOriginalAsDate", EXIF::getDateTimeOriginalAsDate),
+                    Pair.of("dateTimeDigitizedAsDate", EXIF::getDateTimeDigitizedAsDate));
+            x.forEach(p ->
+                    p.b.apply(exif).ifPresent(i -> consumer.accept(String.format("%s %s: %s", directoryName, p.a, i))));
+          }
+      }
+
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    protected static <T> void assertOptionalEquals (final T expected, final Optional<T> actual)
+      {
+        assertTrue("Empty optional", actual.isPresent());
+        assertThat(actual.get(), is(expected));
+      }
+
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    protected static void assertOptionalEquals (final double expected, final Optional<Rational> actual)
+      {
+        assertTrue("Empty optional", actual.isPresent());
+        assertThat(actual.get().doubleValue(), is(expected));
+      }
+
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
     protected void assertChecksum (final String expectedChecksum, final File file)
       {
         try
@@ -161,6 +356,9 @@ public abstract class BaseTestSupport
           }
       }
 
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
     private static String toString (final byte[] bytes)
       {
         final StringBuilder stringBuilder = new StringBuilder();

@@ -1,0 +1,49 @@
+EXIF [33434] Exposure Time: 1/320
+EXIF [33437] F Number: 45/10
+EXIF [34850] Exposure Program: 3
+EXIF [34855] ISO Speed Ratings: 800
+EXIF [34864] null: 2
+EXIF [34866] RecommendedExposureIndex: 800
+EXIF [36864] EXIF Version: [48, 50, 51, 49]
+EXIF [36867] Date/Time Original: 2022:06:04 16:31:23
+EXIF [36868] Date/Time Digitized: 2022:06:04 16:31:23
+EXIF [37377] Shutter SpeedValue: 8321928/1000000
+EXIF [37378] Aperture Value: 433985/100000
+EXIF [37379] Brightness Value: 7634/2560
+EXIF [37380] Exposure Bias Value: -13/10
+EXIF [37381] Max Aperture Value: 760/256
+EXIF [37383] Metering Mode: 5
+EXIF [37384] Light Source: 0
+EXIF [37385] Flash: 48
+EXIF [37386] Focal Length: 1050/10
+EXIF [40962] Pixel X Dimension: 100
+EXIF [40963] Pixel Y Dimension: 100
+EXIF [41728] File Source: [3]
+EXIF [41729] Scene Type: [1]
+EXIF [41985] Custom Rendered: 0
+EXIF [41986] Exposure Mode: 2
+EXIF [41987] White Balance: 0
+EXIF [41988] Digital Zoom Ratio: 16/16
+EXIF [41989] Focal Length 35mm Film: 157
+EXIF [41990] Scene Capture Type: 0
+EXIF [41992] Contrast: 1
+EXIF [41993] Saturation: 0
+EXIF [41994] Sharpness: 0
+EXIF [42034] LensSpecification: [1050/10, 1050/10, 35923/12839, 35923/12839]
+EXIF [42036] LensModel: 105mm F2.8 DG DN MACRO | Art 020
+IPTC [346] null: UTF-8
+IPTC [512] null: 4
+IPTC [517] null: 20220604-0465
+IPTC [537] null: [edit process 2017-10-21, published, backgrounds]
+IPTC [567] null: 20220604
+IPTC [572] null: 163123+0200
+IPTC [574] null: 20220604
+IPTC [575] null: 163123+0200
+IPTC [592] null: Fabrizio Giudici
+IPTC [602] null: San Colombano Certénoli
+IPTC [604] null: Gnorecco
+IPTC [607] null: Liguria
+IPTC [612] null: IT
+IPTC [613] null: Italia
+IPTC [628] null: Fabrizio Giudici
+IPTC [632] null:                                

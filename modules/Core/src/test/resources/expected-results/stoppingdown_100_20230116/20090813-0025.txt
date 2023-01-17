@@ -1,0 +1,49 @@
+EXIF [33434] Exposure Time: 1/80
+EXIF [33437] F Number: 11/1
+EXIF [34850] Exposure Program: 1
+EXIF [34855] ISO Speed Ratings: 500
+EXIF [36864] EXIF Version: [48, 50, 51, 48]
+EXIF [36867] Date/Time Original: 2009:08:13 15:56:07
+EXIF [36868] Date/Time Digitized: 2009:08:13 15:56:07
+EXIF [37377] Shutter SpeedValue: 6321928/1000000
+EXIF [37378] Aperture Value: 6918863/1000000
+EXIF [37380] Exposure Bias Value: 0/6
+EXIF [37381] Max Aperture Value: 55/10
+EXIF [37383] Metering Mode: 5
+EXIF [37384] Light Source: 0
+EXIF [37385] Flash: 0
+EXIF [37386] Focal Length: 5000/10
+EXIF [37521] Subsec Time Original: 08
+EXIF [37522] Subsec Time Digitized: 08
+EXIF [41495] Sensing Method: 2
+EXIF [41728] File Source: [3]
+EXIF [41729] Scene Type: [1]
+EXIF [41730] EXIF CFA Pattern: [2, 0, 2, 0, 1, 0, 2, 1]
+EXIF [41985] Custom Rendered: 0
+EXIF [41986] Exposure Mode: 1
+EXIF [41987] White Balance: 1
+EXIF [41988] Digital Zoom Ratio: 1/1
+EXIF [41989] Focal Length 35mm Film: 750
+EXIF [41990] Scene Capture Type: 0
+EXIF [41991] Gain Control: 1
+EXIF [41992] Contrast: 0
+EXIF [41993] Saturation: 0
+EXIF [41994] Sharpness: 2
+EXIF [41996] Subject Distance Range: 0
+EXIF [42034] LensSpecification: [3000/10, 3000/10, 40/10, 40/10]
+EXIF [42036] LensModel: 300.0 mm f/4.0
+EXIF dateTimeOriginalAsDate: 2009-08-13T15:56:07.080Z
+EXIF dateTimeDigitizedAsDate: 2009-08-13T15:56:07.080Z
+IPTC [346] null: UTF-8
+IPTC [512] null: 4
+IPTC [517] null: Ricci immaturi.
+IPTC [567] null: 20090813
+IPTC [572] null: 155607+0200
+IPTC [574] null: 20090813
+IPTC [575] null: 155607+0200
+IPTC [592] null: Fabrizio Giudici
+IPTC [597] null: Photographer
+IPTC [622] null: Fabrizio Giudici
+IPTC [627] null: Fabrizio Giudici
+IPTC [628] null: © Copyright by Fabrizio Giudici. All rights reserved.
+IPTC [634] null: Fabrizio Giudici

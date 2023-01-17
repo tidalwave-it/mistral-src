@@ -1,0 +1,48 @@
+EXIF [33434] Exposure Time: 1/3
+EXIF [33437] F Number: 8/1
+EXIF [34850] Exposure Program: 3
+EXIF [34855] ISO Speed Ratings: 100
+EXIF [34864] null: 2
+EXIF [34866] RecommendedExposureIndex: 100
+EXIF [36864] EXIF Version: [48, 50, 51, 48]
+EXIF [36867] Date/Time Original: 2015:02:20 18:04:21
+EXIF [36868] Date/Time Digitized: 2015:02:20 18:04:21
+EXIF [37377] Shutter SpeedValue: 1584963/1000000
+EXIF [37378] Aperture Value: 6/1
+EXIF [37379] Brightness Value: 7784/2560
+EXIF [37380] Exposure Bias Value: 3/10
+EXIF [37381] Max Aperture Value: 1024/256
+EXIF [37383] Metering Mode: 5
+EXIF [37384] Light Source: 1
+EXIF [37385] Flash: 16
+EXIF [37386] Focal Length: 700/10
+EXIF [41486] Focal Plane X Resolution: 83662979/32768
+EXIF [41487] Focal Plane Y Resolution: 83662979/32768
+EXIF [41488] Focal Plane ResolutionUnit: 3
+EXIF [41728] File Source: [3]
+EXIF [41729] Scene Type: [1]
+EXIF [41985] Custom Rendered: 0
+EXIF [41986] Exposure Mode: 2
+EXIF [41987] White Balance: 1
+EXIF [41988] Digital Zoom Ratio: 16/16
+EXIF [41989] Focal Length 35mm Film: 105
+EXIF [41990] Scene Capture Type: 0
+EXIF [41992] Contrast: 0
+EXIF [41993] Saturation: 0
+EXIF [41994] Sharpness: 0
+EXIF [42034] LensSpecification: [700/10, 2000/10, 40/10, 40/10]
+EXIF [42036] LensModel: FE 70-200mm F4 G OSS
+IPTC [346] null: UTF-8
+IPTC [512] null: 4
+IPTC [517] null: La dernière couleur.
+IPTC [537] null: [Workflow, edit process 2013-09-14]
+IPTC [567] null: 20150220
+IPTC [572] null: 180421
+IPTC [574] null: 20150220
+IPTC [575] null: 180421
+IPTC [592] null: Fabrizio Giudici
+IPTC [597] null: Photographer
+IPTC [622] null: Fabrizio Giudici
+IPTC [627] null: Fabrizio Giudici
+IPTC [628] null: © Copyright by Fabrizio Giudici. All rights reserved.
+IPTC [634] null: Fabrizio Giudici

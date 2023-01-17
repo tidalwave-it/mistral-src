@@ -1,0 +1,58 @@
+EXIF [33434] Exposure Time: 1/20
+EXIF [33437] F Number: 4/1
+EXIF [34850] Exposure Program: 1
+EXIF [34855] ISO Speed Ratings: 1600
+EXIF [36864] EXIF Version: [48, 50, 50, 49]
+EXIF [36867] Date/Time Original: 2006:12:11 14:48:08
+EXIF [36868] Date/Time Digitized: 2006:12:11 14:48:08
+EXIF [37377] Shutter SpeedValue: 4321928/1000000
+EXIF [37378] Aperture Value: 4/1
+EXIF [37380] Exposure Bias Value: 0/6
+EXIF [37381] Max Aperture Value: 40/10
+EXIF [37383] Metering Mode: 5
+EXIF [37384] Light Source: 0
+EXIF [37385] Flash: 0
+EXIF [37386] Focal Length: 120/10
+EXIF [37510] User Comment: [65, 83, 67, 73, 73, 0, 0, 0, 40, 67, 41, 32, 67, 111, 112, 121, 114, 105, 103, 104, 116, 32, 98, 121, 32, 70, 97, 98, 114, 105, 122, 105, 111, 32, 71, 105, 117, 100, 105, 99, 105]
+EXIF [40962] Pixel X Dimension: 71
+EXIF [40963] Pixel Y Dimension: 100
+EXIF [41495] Sensing Method: 2
+EXIF [41728] File Source: [3]
+EXIF [41729] Scene Type: [1]
+EXIF [41985] Custom Rendered: 0
+EXIF [41986] Exposure Mode: 1
+EXIF [41987] White Balance: 0
+EXIF [41988] Digital Zoom Ratio: 1/1
+EXIF [41989] Focal Length 35mm Film: 18
+EXIF [41990] Scene Capture Type: 0
+EXIF [41991] Gain Control: 1
+EXIF [41992] Contrast: 0
+EXIF [41993] Saturation: 0
+EXIF [41994] Sharpness: 0
+EXIF [41996] Subject Distance Range: 0
+EXIF [42034] LensSpecification: [120/10, 240/10, 40/10, 40/10]
+EXIF [42036] LensModel: Nikkor 12-24mm ƒ/4G DX AF-S
+IPTC [346] null: UTF-8
+IPTC [512] null: 4
+IPTC [517] null: L'Abbaye de Fontenay.
+IPTC [537] null: [published, monochrome, edit process 2022-09-08]
+IPTC [567] null: 20061211
+IPTC [572] null: 144808+0100
+IPTC [574] null: 20061211
+IPTC [575] null: 144808+0100
+IPTC [592] null: Fabrizio Giudici
+IPTC [597] null: Photographer
+IPTC [622] null: Fabrizio Giudici
+IPTC [627] null: Fabrizio Giudici
+IPTC [628] null: © Copyright by Fabrizio Giudici. All rights reserved.
+IPTC [632] null:                                 
+IPTC [634] null: Fabrizio Giudici
+IPTC [720] null: Via Nizza 6/13
+IPTC [721] null: Genoa
+IPTC [722] null: GE
+IPTC [723] null: I-16145
+IPTC [724] null: Italy
+IPTC [726] null: email@fabriziogiudici.it
+IPTC [727] null: http://stoppingdown.net
+IPTC [738] null: Cannot be used without prior written consent of the author.
+IPTC [739] null: http://stoppingdown.net

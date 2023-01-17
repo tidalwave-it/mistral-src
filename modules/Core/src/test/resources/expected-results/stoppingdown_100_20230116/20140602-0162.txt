@@ -1,0 +1,52 @@
+EXIF [33434] Exposure Time: 1/640
+EXIF [33437] F Number: 8/1
+EXIF [34850] Exposure Program: 1
+EXIF [34855] ISO Speed Ratings: 140
+EXIF [34864] null: 2
+EXIF [36864] EXIF Version: [48, 50, 51, 48]
+EXIF [36867] Date/Time Original: 2014:06:02 07:30:03
+EXIF [36868] Date/Time Digitized: 2014:06:02 07:30:03
+EXIF [37377] Shutter SpeedValue: 9321928/1000000
+EXIF [37378] Aperture Value: 6/1
+EXIF [37380] Exposure Bias Value: -10/6
+EXIF [37381] Max Aperture Value: 40/10
+EXIF [37383] Metering Mode: 5
+EXIF [37384] Light Source: 0
+EXIF [37385] Flash: 0
+EXIF [37386] Focal Length: 3000/10
+EXIF [37521] Subsec Time Original: 90
+EXIF [37522] Subsec Time Digitized: 90
+EXIF [41495] Sensing Method: 2
+EXIF [41728] File Source: [3]
+EXIF [41729] Scene Type: [1]
+EXIF [41730] EXIF CFA Pattern: [2, 0, 2, 0, 0, 1, 1, 2]
+EXIF [41985] Custom Rendered: 0
+EXIF [41986] Exposure Mode: 1
+EXIF [41987] White Balance: 0
+EXIF [41988] Digital Zoom Ratio: 1/1
+EXIF [41989] Focal Length 35mm Film: 450
+EXIF [41990] Scene Capture Type: 0
+EXIF [41991] Gain Control: 0
+EXIF [41992] Contrast: 0
+EXIF [41993] Saturation: 0
+EXIF [41994] Sharpness: 0
+EXIF [41996] Subject Distance Range: 0
+EXIF [42033] BodySerialNumber: 6286813
+EXIF [42034] LensSpecification: [3000/10, 3000/10, 40/10, 40/10]
+EXIF [42036] LensModel: 300.0 mm f/4.0
+EXIF dateTimeOriginalAsDate: 2014-06-02T07:30:03.900Z
+EXIF dateTimeDigitizedAsDate: 2014-06-02T07:30:03.900Z
+IPTC [346] null: UTF-8
+IPTC [512] null: 4
+IPTC [517] null: Tracce nel grano.
+IPTC [537] null: [Workflow, edit process 2013-09-14]
+IPTC [567] null: 20140602
+IPTC [572] null: 073003
+IPTC [574] null: 20140602
+IPTC [575] null: 073003
+IPTC [592] null: Fabrizio Giudici
+IPTC [597] null: Photographer
+IPTC [622] null: Fabrizio Giudici
+IPTC [627] null: Fabrizio Giudici
+IPTC [628] null: © Copyright by Fabrizio Giudici. All rights reserved.
+IPTC [634] null: Fabrizio Giudici
