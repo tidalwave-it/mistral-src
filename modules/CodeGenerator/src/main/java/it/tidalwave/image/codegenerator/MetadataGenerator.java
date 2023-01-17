@@ -87,7 +87,7 @@ public class MetadataGenerator
             throws IOException
       {
         System.out.println("    GENERATING CODE...");
-        final STGroup group = new STGroupFile(Paths.get(template).toAbsolutePath().toString());
+        final STGroup group = new STGroupFile(Paths.get(template).toAbsolutePath().toString(), '$' ,'$');
         final ST st = group.getInstanceOf("generator");
         st.add("creation_date", new Date());
         st.add("class_name", className);

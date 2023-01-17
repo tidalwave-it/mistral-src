@@ -1,11 +1,11 @@
 group bluemarine;
 
 enumDecl(item) ::= <<
-         <item.identifierName>(<item.value>, "<item.name>"),<\n>
+         $item.identifierName$($item.value$, "$item.name$"),$\n$
 >>
 
 enumIf(type) ::= <<
-             if (value == <it.value>) return <it.identifierName>;<\n>
+             if (value == $it.value$) return $it.identifierName$;$\n$
 >>
 
 printDescriptionTags(records) ::= <<
@@ -16,23 +16,23 @@ printDescriptionTags(records) ::= <<
       }
     static
       {
-        <records: {record | descriptionMapByTag.put(<record.id>, "<record.tagName>");<\n>}>
+        $records: {record | descriptionMapByTag.put($record.id$, "$record.tagName$");$\n$}$
       }
 >>
 
 printMemberDecl(records) ::= <<
-    <records: {record | public final static int <record.constTagName> = <record.id>;<\n>}>
+    $records: {record | public final static int $record.constTagName$ = $record.id$;$\n$}$
 >>
 
 printEnumRecord(record) ::= <<
-    public static enum <record.capitalizedTagName>
+    public static enum $record.capitalizedTagName$
        {
-<record.enums: { enum | <enumDecl(item = enum)> }>         _UNKNOWN(-1, "_unknown_");
+$record.enums: { enum | $enumDecl(item = enum)$ }$         _UNKNOWN(-1, "_unknown_");
          private final static long serialVersionUID = 3059468666726854749L;
          private final int value;
          private final String name;
 
-         private <record.capitalizedTagName> (final int value, final String name)
+         private $record.capitalizedTagName$ (final int value, final String name)
            {
              this.value = value;
              this.name = name;
@@ -43,71 +43,71 @@ printEnumRecord(record) ::= <<
              return value;
            }
 
-         public static <record.capitalizedTagName> fromInteger (int value)
+         public static $record.capitalizedTagName$ fromInteger (int value)
            {
-<record.enums:enumIf(type = record.type)>
+$record.enums:enumIf(type = record.type)$
              return _UNKNOWN;
            }
        }
 >>
 
 printRecord(record) ::= <<
-<if(record.hasEnums)><printEnumRecord(record = record)><endif>
-    public void set<record.capitalizedTagName> (final <record.javaType> <record.uncapitalizedTagName>)
+$if(record.hasEnums)$$printEnumRecord(record = record)$$endif$
+    public void set$record.capitalizedTagName$ (final $record.javaType$ $record.uncapitalizedTagName$)
       {
-        final <record.javaType> oldValue = get<record.capitalizedTagName>();
-        final boolean oldPropAvailable = is<record.capitalizedTagName>Available();
+        final $record.javaType$ oldValue = get$record.capitalizedTagName$();
+        final boolean oldPropAvailable = is$record.capitalizedTagName$Available();
         final boolean oldAvailable = isAvailable();
         final Instant oldLatestModificationTime = getLatestModificationTime();
-        setObject(<class_name>.<record.constTagName>, <record.uncapitalizedTagName>);
-        propertyChangeSupport.firePropertyChange("<record.uncapitalizedTagName>", oldValue, <record.uncapitalizedTagName>);
-        propertyChangeSupport.firePropertyChange("<record.uncapitalizedTagName>Available", oldPropAvailable, is<record.capitalizedTagName>Available());
+        setObject($class_name$.$record.constTagName$, $record.uncapitalizedTagName$);
+        propertyChangeSupport.firePropertyChange("$record.uncapitalizedTagName$", oldValue, $record.uncapitalizedTagName$);
+        propertyChangeSupport.firePropertyChange("$record.uncapitalizedTagName$Available", oldPropAvailable, is$record.capitalizedTagName$Available());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public <record.javaType> get<record.capitalizedTagName>()
+    public $record.javaType$ get$record.capitalizedTagName$()
       {
-        return getObject(<record.constTagName>, <record.javaType>.class);
+        return getObject($record.constTagName$, $record.javaType$.class);
       }
 
-    public void set<record.capitalizedTagName>Available (final boolean available)
+    public void set$record.capitalizedTagName$Available (final boolean available)
       {
-        final <record.javaType> oldValue = get<record.capitalizedTagName>();
-        final boolean oldPropAvailable = is<record.capitalizedTagName>Available();
+        final $record.javaType$ oldValue = get$record.capitalizedTagName$();
+        final boolean oldPropAvailable = is$record.capitalizedTagName$Available();
         final boolean oldAvailable = isAvailable();
         final Instant oldLatestModificationTime = getLatestModificationTime();
 
-        if (available && !containsTag(<record.constTagName>))
+        if (available && !containsTag($record.constTagName$))
           {
-            setObject(<record.constTagName>, null);
+            setObject($record.constTagName$, null);
           }
         else if (!available)
           {
-            removeTag(<record.constTagName>);
+            removeTag($record.constTagName$);
           }
 
-        propertyChangeSupport.firePropertyChange("<record.uncapitalizedTagName>Available", oldPropAvailable, available);
-        propertyChangeSupport.firePropertyChange("<record.uncapitalizedTagName>", oldValue, get<record.capitalizedTagName>());
+        propertyChangeSupport.firePropertyChange("$record.uncapitalizedTagName$Available", oldPropAvailable, available);
+        propertyChangeSupport.firePropertyChange("$record.uncapitalizedTagName$", oldValue, get$record.capitalizedTagName$());
         propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
         propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
       }
 
-    public boolean is<record.capitalizedTagName>Available()
+    public boolean is$record.capitalizedTagName$Available()
       {
-        return containsTag(<record.constTagName>);
+        return containsTag($record.constTagName$);
       }
 
 >>
 
 testIsAvailable(record) ::= <<
-is<record.capitalizedTagName>Available()<\n>
+is$record.capitalizedTagName$Available()$\n$
 >>
 
 printIsAvailable(records) ::= <<
     public boolean isAvailable()
       {
-        return <testIsAvailable(first(records))><rest(records):{ record |              | <testIsAvailable(record)>}>;
+        return $testIsAvailable(first(records))$$rest(records):{ record |              | $testIsAvailable(record)$}$;
       }
 >>
 
@@ -119,26 +119,26 @@ import java.util.Map;
 import java.util.HashMap;
 import it.tidalwave.image.Rational;
 
-/* Automatically generated on <creation_date> - DO NOT EDIT! */
+/* Automatically generated on $creation_date$ - DO NOT EDIT! */
 
-public class <class_name> extends Directory
+public class $class_name$ extends Directory
   {
     private final static long serialVersionUID = 2056233055989339523L;
-    private final static Map\<Integer, String> descriptionMapByTag = new HashMap\<>();
+    private final static Map<Integer, String> descriptionMapByTag = new HashMap<>();
 
-    public <class_name>()
+    public $class_name$()
       {
       }
 
-    public <class_name> (final Instant latestModificationTime)
+    public $class_name$ (final Instant latestModificationTime)
       {
         super(latestModificationTime);
       }
 
-<printMemberDecl(records)>
-<printDescriptionTags(records)>
-<printRecord(first(records))><rest(records):{record|<\n><printRecord(record)>}>
-<printIsAvailable(records)>
+$printMemberDecl(records)$
+$printDescriptionTags(records)$
+$printRecord(first(records))$$rest(records):{record|$\n$$printRecord(record)$}$
+$printIsAvailable(records)$
   }
 
 >>
