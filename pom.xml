@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -8,13 +7,13 @@
         <groupId>it.tidalwave.superpom</groupId>
         <artifactId>superpom</artifactId>
         <version>5.0-ALPHA-15</version>
-        <relativePath/>
+        <relativePath />
     </parent>
 
     <groupId>it.tidalwave.image</groupId>
     <artifactId>image</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-ALPHA-5-SNAPSHOT</version>
+    <version>1.0-ALPHA-6-SNAPSHOT</version>
     <name>Mistral</name>
     <description>
 This library is a façade for image manipulation, acting as a proxy to libraries such as Java2D, JAI, ImageJ.
@@ -91,38 +90,38 @@ Directory tree
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>code-generator</artifactId>
-                <version>1.0-ALPHA-5-SNAPSHOT</version>
+                <version>1.0-ALPHA-6-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-core</artifactId>
-                <version>1.0-ALPHA-5-SNAPSHOT</version>
+                <version>1.0-ALPHA-6-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-core</artifactId>
-                <version>1.0-ALPHA-5-SNAPSHOT</version>
+                <version>1.0-ALPHA-6-SNAPSHOT</version>
                 <classifier>tests</classifier>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-operations</artifactId>
-                <version>1.0-ALPHA-5-SNAPSHOT</version>
+                <version>1.0-ALPHA-6-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-contributions</artifactId>
-                <version>1.0-ALPHA-5-SNAPSHOT</version>
+                <version>1.0-ALPHA-6-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-processor</artifactId>
-                <version>1.0-ALPHA-5-SNAPSHOT</version>
+                <version>1.0-ALPHA-6-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-renderer</artifactId>
-                <version>1.0-ALPHA-5-SNAPSHOT</version>
+                <version>1.0-ALPHA-6-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
