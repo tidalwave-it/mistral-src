@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2012 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,18 +17,20 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.java2d;
 
-import javax.annotation.Nonnull;
 import java.lang.reflect.Method;
+import javax.annotation.Nonnull;
+import java.util.ServiceLoader;
+import java.util.stream.StreamSupport;
 import java.awt.image.BufferedImage;
-import org.openide.util.lookup.ServiceProvider;
 import it.tidalwave.image.ImageModel;
 import it.tidalwave.image.op.CaptureOp;
 import it.tidalwave.image.op.ConvertToBufferedImageOp;
@@ -46,14 +51,22 @@ import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
  **********************************************************************************************************************/
-@ServiceProvider(service=ImplementationFactory.class) @Slf4j
+@Slf4j
 public class ImplementationFactoryJ2D extends ImplementationFactory
   {
     private Class<?> planarImageClass;
+
+    @Nonnull
+    public static ImplementationFactory getDefault()
+      {
+        ServiceLoader<ImplementationFactory> loader = ServiceLoader.load(ImplementationFactory.class);
+        return StreamSupport.stream(loader.spliterator(), false)
+                            .findFirst()
+                            .orElseThrow(() -> new RuntimeException("Can't found implementation of " + ImplementationFactory.class));
+      }
 
     /*******************************************************************************************************************
      *
@@ -85,7 +98,7 @@ public class ImplementationFactoryJ2D extends ImplementationFactory
           }
         catch (Throwable e)
           {
-            log.warn("JAI not available: ", e.toString());
+            log.warn("JAI not available: {}", e.toString());
           }
 
         try
@@ -105,8 +118,9 @@ public class ImplementationFactoryJ2D extends ImplementationFactory
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Override @Nonnull
-    public ImageModel createImageModel (final @Nonnull BufferedImage bufferedImage)
+    @Override
+    @Nonnull
+    public ImageModel createImageModel (@Nonnull final BufferedImage bufferedImage)
       {
         return new ImageModelJ2D(bufferedImage);
       }
@@ -117,10 +131,10 @@ public class ImplementationFactoryJ2D extends ImplementationFactory
      *
      ******************************************************************************************************************/
     @Override
-    public boolean canConvertFrom (final @Nonnull Class imageClass)
+    public boolean canConvertFrom (@Nonnull final Class imageClass)
       {
         return imageClass.equals(BufferedImage.class) ||
-        ((planarImageClass != null) && planarImageClass.isAssignableFrom(imageClass));
+               ((planarImageClass != null) && planarImageClass.isAssignableFrom(imageClass));
       }
 
     /*******************************************************************************************************************
@@ -130,14 +144,15 @@ public class ImplementationFactoryJ2D extends ImplementationFactory
      ******************************************************************************************************************/
     @Nonnull
     @Override
-    public ImageModel convertFrom (final @Nonnull Object image)
+    public ImageModel convertFrom (@Nonnull final Object image)
       {
-//        if ((planarImageClass != null) && planarImageClass.isAssignableFrom(image.getClass())) // image instanceof PlanarImage
+//        if ((planarImageClass != null) && planarImageClass.isAssignableFrom(image.getClass())) // image instanceof
+//        PlanarImage
         if (canConvertFrom(image.getClass()))
           {
             if (image instanceof BufferedImage)
               {
-                return new ImageModelJ2D((BufferedImage)image);
+                return new ImageModelJ2D(image);
               }
 
             try
@@ -162,9 +177,10 @@ public class ImplementationFactoryJ2D extends ImplementationFactory
      *
      ******************************************************************************************************************/
     @Override
-    public boolean canConvertTo (final @Nonnull Class imageClass)
+    public boolean canConvertTo (@Nonnull final Class imageClass)
       {
-        return (planarImageClass != null) && planarImageClass.isAssignableFrom(imageClass); // image instanceof PlanarImage
+        return (planarImageClass != null) &&
+               planarImageClass.isAssignableFrom(imageClass); // image instanceof PlanarImage
       }
 
     /*******************************************************************************************************************
@@ -174,7 +190,7 @@ public class ImplementationFactoryJ2D extends ImplementationFactory
      ******************************************************************************************************************/
     @Nonnull
     @Override
-    public Object convertTo (final @Nonnull Object image)
+    public Object convertTo (@Nonnull final Object image)
       {
         if (image.getClass().getName().equals("javax.media.jai.PlanarImage"))
           {

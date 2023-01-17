@@ -1,0 +1,55 @@
+EXIF [33434] Exposure Time: 1/400
+EXIF [33437] F Number: 10/1
+EXIF [34850] Exposure Program: 1
+EXIF [34855] ISO Speed Ratings: 640
+EXIF [36864] EXIF Version: [48, 50, 50, 49]
+EXIF [36867] Date/Time Original: 2005:08:17 19:27:08
+EXIF [36868] Date/Time Digitized: 2005:08:17 19:27:08
+EXIF [37377] Shutter SpeedValue: 8643856/1000000
+EXIF [37378] Aperture Value: 6643856/1000000
+EXIF [37380] Exposure Bias Value: 0/6
+EXIF [37381] Max Aperture Value: 6/1
+EXIF [37382] Subject Distance: 38/1
+EXIF [37383] Metering Mode: 5
+EXIF [37384] Light Source: 9
+EXIF [37385] Flash: 0
+EXIF [37386] Focal Length: 600/1
+EXIF [37510] User Comment: [65, 83, 67, 73, 73, 0, 0, 0, 40, 67, 41, 32, 98, 121, 32, 70, 97, 98, 114, 105, 122, 105, 111, 32, 71, 73, 85, 68, 73, 67, 73]
+EXIF [40962] Pixel X Dimension: 100
+EXIF [40963] Pixel Y Dimension: 67
+EXIF [41495] Sensing Method: 2
+EXIF [41728] File Source: [3]
+EXIF [41729] Scene Type: [1]
+EXIF [41986] Exposure Mode: 1
+EXIF [42033] BodySerialNumber: NO= 100062dc        
+EXIF [42034] LensSpecification: [300/1, 300/1, 4/1, 4/1]
+EXIF [42036] LensModel: Nikkor 300mm ƒ/4D ED-IF AF-S
+IPTC [346] null: UTF-8
+IPTC [512] null: 4
+IPTC [517] null: Incrocio al tramonto.
+IPTC [537] null: [published, edit process 2022-09-08, landscape]
+IPTC [567] null: 20050817
+IPTC [572] null: 192708+0200
+IPTC [574] null: 20050817
+IPTC [575] null: 192708+0200
+IPTC [592] null: Fabrizio Giudici
+IPTC [597] null: Photographer
+IPTC [602] null: Provincia di Grosseto
+IPTC [604] null: Senza Nome
+IPTC [607] null: Toscana
+IPTC [612] null: IT
+IPTC [613] null: Italia
+IPTC [622] null: Fabrizio Giudici
+IPTC [627] null: Fabrizio Giudici
+IPTC [628] null: © Copyright by Fabrizio Giudici. All rights reserved.
+IPTC [634] null: Fabrizio Giudici
+IPTC [720] null: Via Nizza 6/13
+IPTC [721] null: Genoa
+IPTC [722] null: GE
+IPTC [723] null: I-16145
+IPTC [724] null: Italy
+IPTC [725] null: +39 348 1506941
+IPTC [726] null: fabrizio.giudici@libero.it
+IPTC [727] null: http://stoppingdown.net
+IPTC [738] null: Cannot be used without prior written consent of the author.
+IPTC [739] null: http://stoppingdown.net

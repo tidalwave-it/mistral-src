@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2012 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,12 +17,13 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 /*
  * TestReportFormatter.java
  *
@@ -30,22 +34,21 @@
  */
 package it.tidalwave.image.tools;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 
 /**
- *
- * @author fritz
+ * @author Fabrizio Giudici
  */
 class TestInfo implements Comparable<TestInfo>
   {
@@ -53,30 +56,31 @@ class TestInfo implements Comparable<TestInfo>
     private final String test;
     private final String quality;
     private final String file;
-    private Set<TestResults> results = new TreeSet<TestResults>();
+    private Set<TestResults> results = new TreeSet<>();
 
-    public TestInfo (String body)
+    public TestInfo (final String body)
       {
         System.err.println(body);
 
-        String[] tmp = body.split("::");
+        final String[] tmp = body.split("::");
         revision = tmp[0];
         test = tmp[3];
         quality = tmp[4];
         file = tmp[5];
       }
 
-    public void add (TestResults testResults)
+    public void add (final TestResults testResults)
       {
         results.add(testResults);
       }
 
-    public void printHeader (PrintWriter pw)
+    public void printHeader (final PrintWriter pw)
       {
         pw.println(
-            "<tr><td rowspan='2'>Revision</td><td rowspan='2'>Test</td><td rowspan='2'>Quality</td><td rowspan='2'>File</td>");
+                "<tr><td rowspan='2'>Revision</td><td rowspan='2'>Test</td><td rowspan='2'>Quality</td><td " +
+                "rowspan='2'>File</td>");
 
-        for (TestResults testResults : results)
+        for (final TestResults testResults : results)
           {
             pw.println("<td>" + testResults.host + "</td>");
           }
@@ -84,7 +88,7 @@ class TestInfo implements Comparable<TestInfo>
         pw.println("</tr>");
         pw.println("<tr>");
 
-        for (TestResults testResults : results)
+        for (final TestResults testResults : results)
           {
             pw.println("<td>" + testResults.os + "</td>");
           }
@@ -93,10 +97,10 @@ class TestInfo implements Comparable<TestInfo>
       }
 
     private static String latestTest = "";
-    private String[] colors = new String[] { "#ffffff", "#dddddd" };
+    private String[] colors = new String[]{"#ffffff", "#dddddd"};
     private static int k;
 
-    public void print (PrintWriter pw)
+    public void print (final PrintWriter pw)
       {
         if (!latestTest.equals(test + quality))
           {
@@ -109,7 +113,7 @@ class TestInfo implements Comparable<TestInfo>
         pw.print("<td>" + quality + "</td>");
         pw.print("<td>" + file + "</td>");
 
-        for (TestResults testResults : results)
+        for (final TestResults testResults : results)
           {
             testResults.print(pw);
           }
@@ -118,7 +122,7 @@ class TestInfo implements Comparable<TestInfo>
       }
 
     @Override
-    public int compareTo (TestInfo o)
+    public int compareTo (final TestInfo o)
       {
         int r = test.compareTo(o.test);
 
@@ -163,7 +167,7 @@ class TestInfo implements Comparable<TestInfo>
       }
 
     @Override
-    public boolean equals (Object o)
+    public boolean equals (final Object o)
       {
         if (!(o instanceof TestInfo))
           {
@@ -173,7 +177,7 @@ class TestInfo implements Comparable<TestInfo>
         return compareTo((TestInfo)o) == 0;
       }
 
-    public int hashcode ()
+    public int hashcode()
       {
         return revision.hashCode() ^ test.hashCode() ^ quality.hashCode() ^ file.hashCode();
       }
@@ -186,16 +190,16 @@ class TestResults implements Comparable<TestResults>
     public final String host;
     public final String os;
 
-    public TestResults (String body, String value)
+    public TestResults (final String body, final String value)
       {
-        String[] tmp = body.split("::");
+        final String[] tmp = body.split("::");
         host = tmp[1];
         os = tmp[2];
         this.value = value;
       }
 
     @Override
-    public int compareTo (TestResults o)
+    public int compareTo (final TestResults o)
       {
         int r = host.compareTo(o.host);
 
@@ -209,7 +213,7 @@ class TestResults implements Comparable<TestResults>
         return r;
       }
 
-    public void print (PrintWriter pw)
+    public void print (final PrintWriter pw)
       {
         String color = "black";
 
@@ -227,21 +231,23 @@ public class TestReportFormatter
   {
     private final File reportFile;
     private final File htmlFile;
-    private List<TestInfo> tests = new ArrayList<TestInfo>();
+    private List<TestInfo> tests = new ArrayList<>();
 
-    /** Creates a new instance of TestReportFormatter */
+    /**
+     * Creates a new instance of TestReportFormatter
+     */
     public TestReportFormatter (final File reportFile, final File htmlFile)
       {
         this.reportFile = reportFile;
         this.htmlFile = htmlFile;
       }
 
-    public void run ()
-        throws IOException
+    public void run()
+            throws IOException
       {
-        BufferedReader br = new BufferedReader(new FileReader(reportFile));
+        final BufferedReader br = new BufferedReader(new FileReader(reportFile));
 
-        for (;;)
+        for (; ; )
           {
             String s = br.readLine();
 
@@ -257,13 +263,13 @@ public class TestReportFormatter
                 continue;
               }
 
-            String[] tmp = s.split("=");
-            String body = tmp[0].trim();
-            String value = tmp[1].trim();
+            final String[] tmp = s.split("=");
+            final String body = tmp[0].trim();
+            final String value = tmp[1].trim();
             TestInfo testInfo = new TestInfo(body);
-            TestResults testResults = new TestResults(body, value);
+            final TestResults testResults = new TestResults(body, value);
 
-            int i = tests.indexOf(testInfo);
+            final int i = tests.indexOf(testInfo);
 
             if (i < 0)
               {
@@ -281,11 +287,11 @@ public class TestReportFormatter
         br.close();
         Collections.sort(tests);
 
-        PrintWriter pw = new PrintWriter(new FileWriter(htmlFile));
+        final PrintWriter pw = new PrintWriter(new FileWriter(htmlFile));
         pw.println("<table border='1' cellpadding='2' cellspacing='0'>");
         tests.get(0).printHeader(pw);
 
-        for (TestInfo testInfo : tests)
+        for (final TestInfo testInfo : tests)
           {
             testInfo.print(pw);
           }
@@ -294,11 +300,12 @@ public class TestReportFormatter
         pw.close();
       }
 
-    public static void main (String[] args)
-        throws IOException
+    public static void main (final String[] args)
+            throws IOException
       {
         new TestReportFormatter(new File(
                 "/Users/fritz/Business/Tidalwave/Projects/Mistral/trunk/src/EditableImage/TestReport.txt"),
-            new File("/Users/fritz/Business/Tidalwave/Projects/Mistral/trunk/src/EditableImage/TestReport.html")).run();
+                                new File(
+                                        "/Users/fritz/Business/Tidalwave/Projects/Mistral/trunk/src/EditableImage/TestReport.html")).run();
       }
   }

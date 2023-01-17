@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2012 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,12 +17,13 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.java2d;
 
 import javax.annotation.Nonnegative;
@@ -32,7 +36,6 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.RenderedImage;
 import java.awt.image.SampleModel;
-import org.openide.util.Lookup;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.ImageModel;
 import it.tidalwave.image.InterpolationType;
@@ -47,16 +50,15 @@ import lombok.extern.slf4j.Slf4j;
  * (e.g. by using or not JAI, etc...)
  *
  * @author Fabrizio Giudici
- * @version $Id$
  *
- ***********************************************************************************************************************/
+ **********************************************************************************************************************/
 @NoArgsConstructor /* for serialization */ @Slf4j
 public class ImageModelJ2D extends ImageModel
   {
-    private static final Map<InterpolationType, Object> interpolationMap = new HashMap<InterpolationType, Object>();
-    
-    private static final Map<InterpolationType, Integer> interpolationMap2 = new HashMap<InterpolationType, Integer>();
-    
+    private static final Map<InterpolationType, Object> interpolationMap = new HashMap<>();
+
+    private static final Map<InterpolationType, Integer> interpolationMap2 = new HashMap<>();
+
 //    private static final List<String> ICC_PROFILES_WORKAROUND = Arrays.asList(new String[]
 //      {
 //        "sRGB IEC61966-2.1", "Nikon sRGB 4.0.0.3000", "Nikon sRGB 4.0.0.3001"
@@ -70,11 +72,11 @@ public class ImageModelJ2D extends ImageModel
         interpolationMap.put(InterpolationType.BICUBIC, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
         interpolationMap.put(InterpolationType.BEST, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 
-        interpolationMap2.put(InterpolationType.FASTEST, new Integer(AffineTransformOp.TYPE_NEAREST_NEIGHBOR));
-        interpolationMap2.put(InterpolationType.NEAREST_NEIGHBOR, new Integer(AffineTransformOp.TYPE_NEAREST_NEIGHBOR));
-        interpolationMap2.put(InterpolationType.BILINEAR, new Integer(AffineTransformOp.TYPE_BILINEAR));
-        interpolationMap2.put(InterpolationType.BICUBIC, new Integer(AffineTransformOp.TYPE_BILINEAR));
-        interpolationMap2.put(InterpolationType.BEST, new Integer(AffineTransformOp.TYPE_BILINEAR));
+        interpolationMap2.put(InterpolationType.FASTEST, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        interpolationMap2.put(InterpolationType.NEAREST_NEIGHBOR, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        interpolationMap2.put(InterpolationType.BILINEAR, AffineTransformOp.TYPE_BILINEAR);
+        interpolationMap2.put(InterpolationType.BICUBIC, AffineTransformOp.TYPE_BILINEAR);
+        interpolationMap2.put(InterpolationType.BEST, AffineTransformOp.TYPE_BILINEAR);
       }
 
     /*******************************************************************************************************************
@@ -84,35 +86,35 @@ public class ImageModelJ2D extends ImageModel
      * @param  bufferedImage  the buffered image
      *
      ******************************************************************************************************************/
-    public ImageModelJ2D (final @Nonnull Object bufferedImage)
+    public ImageModelJ2D (@Nonnull final Object bufferedImage)
       {
         super(bufferedImage);
-        
+
         if (!(bufferedImage instanceof BufferedImage))
           {
             throw new IllegalArgumentException("bufferedImage is not an instance of BufferedImage");
           }
       }
-    
+
     /*******************************************************************************************************************
      *
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Nonnull 
+    @Nonnull
     @Override
     public ImplementationFactory getFactory()
       {
-        return Lookup.getDefault().lookup(ImplementationFactoryJ2D.class);
+        return ImplementationFactoryJ2D.getDefault();
       }
 
     /*******************************************************************************************************************
      *
-     * 
+     *
      *
      ******************************************************************************************************************/
-    @Nonnull 
-    public static EditableImage createImage (final @Nonnull BufferedImage bufferedImage) // FIXME: try to remove this
+    @Nonnull
+    public static EditableImage createImage (@Nonnull final BufferedImage bufferedImage) // FIXME: try to remove this
       {
         return new EditableImage(new ImageModelJ2D(bufferedImage));
       }
@@ -182,12 +184,13 @@ public class ImageModelJ2D extends ImageModel
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Override @Nonnegative
+    @Override
+    @Nonnegative
     public long getMemorySize()
       {
         return (getBufferedImage() == null) ? 0 : getBufferedImage().getRaster().getDataBuffer().getSize();
       }
-    
+
     /*******************************************************************************************************************
      *
      * {@inheritDoc}
@@ -199,10 +202,10 @@ public class ImageModelJ2D extends ImageModel
       {
         log.trace("createCopy({})", copyContents);
 
-        long time = System.currentTimeMillis();
+        final long time = System.currentTimeMillis();
         log.warn(">>>> **** WARNING CREATECOPY DISABLED");
 
-        BufferedImage result = getBufferedImage(); // createCopy2(copyContents);
+        final BufferedImage result = getBufferedImage(); // createCopy2(copyContents);
         log.trace(">>>> createCopy() completed ok in {} msec", (System.currentTimeMillis() - time));
 
         return createImage(result);
@@ -226,9 +229,10 @@ public class ImageModelJ2D extends ImageModel
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @SuppressWarnings("unchecked") @Nonnull
+    @SuppressWarnings("unchecked")
+    @Nonnull
     @Override
-    public <T> T getInnerProperty (final @Nonnull Class<T> propertyClass)
+    public <T> T getInnerProperty (@Nonnull final Class<T> propertyClass)
       {
         if (propertyClass.equals(BufferedImage.class))
           {
@@ -257,9 +261,9 @@ public class ImageModelJ2D extends ImageModel
     @Override
     protected RenderedImage toRenderedImageForSerialization()
       {
-        return getBufferedImage();    
+        return getBufferedImage();
       }
-    
+
     /*******************************************************************************************************************
      *
      * {@inheritDoc}
@@ -267,15 +271,15 @@ public class ImageModelJ2D extends ImageModel
      ******************************************************************************************************************/
     @Nonnull
     @Override
-    protected Object toObjectForDeserialization (final @Nonnull RenderedImage renderedImage)
+    protected Object toObjectForDeserialization (@Nonnull final RenderedImage renderedImage)
       {
         return renderedImage;
       }
-    
-    @Nonnull 
+
+    @Nonnull
     private BufferedImage getBufferedImage()
       {
-        return (BufferedImage)model;  
+        return (BufferedImage)model;
       }
 
     /*

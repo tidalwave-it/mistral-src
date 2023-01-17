@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2012 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,54 +17,54 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.op;
 
-import org.testng.annotations.Test;
 import org.testng.AssertJUnit;
+import org.testng.annotations.Test;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
-public class ApplyUnsharpMaskOpTest 
+ **********************************************************************************************************************/
+public class ApplyUnsharpMaskOpTest
   {
     @Test
-    public void testGetIntensity() 
+    public void testGetIntensity()
       {
         System.out.println("getIntensity");
-        ApplyUnsharpMaskOp op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
+        final ApplyUnsharpMaskOp op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
         AssertJUnit.assertEquals(12.34, op.getIntensity(), 0.0);
       }
 
     @Test
-    public void testGetRadius() 
+    public void testGetRadius()
       {
         System.out.println("getRadius");
-        ApplyUnsharpMaskOp op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
+        final ApplyUnsharpMaskOp op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
         AssertJUnit.assertEquals(56.78, op.getRadius(), 0.0);
-      }  
+      }
 
     @Test
-    public void testGetThreshold() 
+    public void testGetThreshold()
       {
         System.out.println("getThreshold");
-        ApplyUnsharpMaskOp op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
+        final ApplyUnsharpMaskOp op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
         AssertJUnit.assertEquals(90.12, op.getThreshold(), 0.0);
       }
 
     @Test
-    public void testToString() 
+    public void testToString()
       {
         System.out.println("toString");
-        ApplyUnsharpMaskOp op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
+        final ApplyUnsharpMaskOp op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
         op.toString();
-      }  
+      }
   }

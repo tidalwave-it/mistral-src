@@ -1,0 +1,69 @@
+EXIF [33434] Exposure Time: 1/400
+EXIF [33437] F Number: 11/1
+EXIF [34850] Exposure Program: 1
+EXIF [34855] ISO Speed Ratings: 140
+EXIF [34864] null: 2
+EXIF [36864] EXIF Version: [48, 50, 50, 49]
+EXIF [36867] Date/Time Original: 2011:07:09 16:54:01
+EXIF [36868] Date/Time Digitized: 2011:07:09 16:54:01
+EXIF [37377] Shutter SpeedValue: 8643856/1000000
+EXIF [37378] Aperture Value: 6918863/1000000
+EXIF [37380] Exposure Bias Value: -6/6
+EXIF [37381] Max Aperture Value: 0/10
+EXIF [37383] Metering Mode: 5
+EXIF [37384] Light Source: 0
+EXIF [37385] Flash: 16
+EXIF [37386] Focal Length: 80/10
+EXIF [37510] User Comment: [65, 83, 67, 73, 73, 0, 0, 0, 40, 67, 41, 32, 70, 97, 98, 114, 105, 122, 105, 111, 32, 71, 105, 117, 100, 105, 99, 105, 46]
+EXIF [37520] Subsec Time: 500
+EXIF [37521] Subsec Time Original: 500
+EXIF [37522] Subsec Time Digitized: 500
+EXIF [40962] Pixel X Dimension: 100
+EXIF [40963] Pixel Y Dimension: 42
+EXIF [41495] Sensing Method: 2
+EXIF [41728] File Source: [3]
+EXIF [41729] Scene Type: [1]
+EXIF [41985] Custom Rendered: 0
+EXIF [41986] Exposure Mode: 1
+EXIF [41987] White Balance: 0
+EXIF [41988] Digital Zoom Ratio: 1/1
+EXIF [41989] Focal Length 35mm Film: 12
+EXIF [41990] Scene Capture Type: 0
+EXIF [41991] Gain Control: 0
+EXIF [41992] Contrast: 0
+EXIF [41993] Saturation: 0
+EXIF [41994] Sharpness: 0
+EXIF [41996] Subject Distance Range: 0
+EXIF [42033] BodySerialNumber: 6055645
+EXIF [42034] LensSpecification: [0/10, 0/10, 0/10, 0/10]
+EXIF [42036] LensModel: Samyang 8mm ƒ/3.5
+EXIF dateTimeOriginalAsDate: 2011-07-09T16:54:06Z
+EXIF dateTimeDigitizedAsDate: 2011-07-09T16:54:06Z
+IPTC [346] null: UTF-8
+IPTC [512] null: 4
+IPTC [537] null: edit process 2017-10-21
+IPTC [567] null: 20110709
+IPTC [572] null: 165401+0200
+IPTC [574] null: 20110709
+IPTC [575] null: 165401+0200
+IPTC [592] null: Fabrizio Giudici
+IPTC [597] null: Photographer
+IPTC [602] null: Saint-Étienne-les-Orgues
+IPTC [604] null: D53, 04230 Saint-Étienne-les-Or
+IPTC [607] null: Provence-Alpes-Côte d'Azur
+IPTC [612] null: FR
+IPTC [613] null: France
+IPTC [622] null: Fabrizio Giudici
+IPTC [627] null: Fabrizio Giudici
+IPTC [628] null: © Copyright by Fabrizio Giudici. All rights reserved.
+IPTC [634] null: Fabrizio Giudici
+IPTC [720] null: Via Nizza 6/13
+IPTC [721] null: Genoa
+IPTC [722] null: GE
+IPTC [723] null: I-16145
+IPTC [724] null: Italy
+IPTC [725] null: +39 348 1506941
+IPTC [726] null: email@fabriziogiudici.it
+IPTC [727] null: http://stoppingdown.net
+IPTC [738] null: Cannot be used without prior written consent of the author.
+IPTC [739] null: http://stoppingdown.net

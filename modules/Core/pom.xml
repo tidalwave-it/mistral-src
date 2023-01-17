@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,58 +15,99 @@
     <packaging>jar</packaging>
     <name>Mistral Core</name>
 
+    <properties>
+        <codegenerator.src>${project.basedir}/src/main/codegenerator</codegenerator.src>
+        <generatedSources.target>${project.basedir}/target/generated-sources/codegenerator</generatedSources.target>
+    </properties>
+
     <dependencies>
+        <dependency>
+            <groupId>it.tidalwave.thesefoolishthings</groupId>
+            <artifactId>it-tidalwave-util</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.rawdarkroom</groupId>
             <artifactId>codec</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.code.findbugs</groupId>
+                    <artifactId>jsr305</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-openide-util-lookup</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.kenai.nbpwr</groupId>
-            <artifactId>com-drew-metadata</artifactId>
+            <groupId>com.drewnoakes</groupId>
+            <artifactId>metadata-extractor</artifactId>
         </dependency>
         <dependency>
             <groupId>com.kenai.nbpwr</groupId>
             <artifactId>com-sun-media-imageio</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>com.kenai.nbpwr</groupId>
-            <artifactId>org-slf4j-jdk14</artifactId>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <dependencies>
-                    <dependency>
-                        <groupId>ant</groupId>
-                        <artifactId>ant-trax</artifactId>
-                        <version>1.6.5</version>
-                    </dependency>
-                </dependencies>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version> <!-- FIXME -->
                 <executions>
                     <execution>
+                        <id>generate-exif</id>
                         <phase>generate-sources</phase>
-                        <configuration>
-                            <tasks>
-                                <ant antfile="src/main/scripts/generate-sources.xml" target="generate-sources" inheritAll="true" />
-                            </tasks>
-                        </configuration>
                         <goals>
-                            <goal>run</goal>
+                            <goal>java</goal>
                         </goals>
+                        <configuration>
+                            <arguments>
+                                <argument>EXIFDirectoryGenerated</argument>
+                                <argument>${codegenerator.src}/TIFF.properties</argument>
+                                <argument>${codegenerator.src}/MetadataGenerator.stg</argument>
+                                <argument>${generatedSources.target}/it/tidalwave/image/metadata/</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-iptc</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>
+                                <argument>IPTCDirectoryGenerated</argument>
+                                <argument>${codegenerator.src}/IPTC.properties</argument>
+                                <argument>${codegenerator.src}/MetadataGenerator.stg</argument>
+                                <argument>${generatedSources.target}/it/tidalwave/image/metadata/</argument>
+                            </arguments>
+                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <mainClass>it.tidalwave.image.codegenerator.MetadataGenerator</mainClass>
+                    <includeProjectDependencies>false</includeProjectDependencies>
+                    <includePluginDependencies>true</includePluginDependencies>
+                    <useMavenLogger>true</useMavenLogger>
+                    <executableDependency>
+                        <groupId>it.tidalwave.image</groupId>
+                        <artifactId>code-generator</artifactId>
+                    </executableDependency>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>it.tidalwave.image</groupId>
+                        <artifactId>code-generator</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
-
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
@@ -77,7 +119,7 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>target/src-generated</source>
+                                <source>${generatedSources.target}</source>
                             </sources>
                         </configuration>
                     </execution>

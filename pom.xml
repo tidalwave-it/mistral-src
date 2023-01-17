@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>it.tidalwave.superpom</groupId>
         <artifactId>superpom</artifactId>
-        <version>4.4</version>
-        <relativePath />
+        <version>5.0-ALPHA-15</version>
+        <relativePath/>
     </parent>
 
     <groupId>it.tidalwave.image</groupId>
@@ -16,6 +17,13 @@
     <version>1.0-ALPHA-5-SNAPSHOT</version>
     <name>Mistral</name>
     <description>
+This library is a façade for image manipulation, acting as a proxy to libraries such as Java2D, JAI, ImageJ.
+
+In its early years (after 2003) it was used for photo development, metadata management and even demonstrated distributed
+calculus on the Sun Grid.
+
+At the end of 2016 development stopped. It resumed at the end of 2022, dropping obsolete stuff (JAI). At the moment the
+portions related to image manipulation are not tested. Features about metadata manipulation are being actively developed.
 
 A few scripts for U*ix and Windows systems are provided to quickly run examples:
 
@@ -29,8 +37,6 @@ Directory tree
 ==============
 
 * modules/Core                              sources for the core component
-* modules/ImageJ-Plugin                     sources for the ImageJ plugin
-* modules/JAI-Plugin                        sources for the JAI plugin
 * modules/Metadata                          sources for the Metadata component
 * modules/Processor                         sources for the imaging processor
 * modules/Renderer                          sources for the renderer
@@ -41,54 +47,52 @@ Directory tree
 * modules/Examples/Miscellaneous            miscellaneous examples
     </description>
 
-    <url>http://mistral.tidalwave.it</url>
+    <url>http://tidalwave.it/project/mistral</url>
     <inceptionYear>2003</inceptionYear>
 
     <properties>
+        <tft.maven.requiredJdk>[11,12)</tft.maven.requiredJdk>
         <scm.repo.url>git@bitbucket.org:tidalwave/mistral-src.git</scm.repo.url>
         <scm.repo.readonly.url>https://bitbucket.org/tidalwave/mistral-src.git</scm.repo.readonly.url>
         <scm.repo.browse.url>https://bitbucket.org/tidalwave/mistral-src/src</scm.repo.browse.url>
-
+        <tidalwave.project.url>http://tidalwave.it/projects/mistral</tidalwave.project.url>
+        <tidalwave.slogan>Mistral: open source imaging engine</tidalwave.slogan>
         <tidalwave.ci.view>Mistral</tidalwave.ci.view>
         <tidalwave.issues>MST</tidalwave.issues>
-
-        <jrawio.version>1.7-ALPHA-1</jrawio.version>
-        <libraries.version>1.1.5</libraries.version>
-        <thesefoolishthings.version>1.28</thesefoolishthings.version>
-        <netbeans.version>RELEASE71</netbeans.version>
-
-        <netbeans.hint.license>Tidalwave-ASF</netbeans.hint.license>
-
-        <tft.clirr.skip>true</tft.clirr.skip> <!-- Clirr is not compatible with JDK 8 --> 
-        <tft.checkstyle.skip>true</tft.checkstyle.skip> <!-- FIXME: breaks the build -->
+        <tidalwave.github.readonly.url>https://github.com/tidalwave-it/mistral-src</tidalwave.github.readonly.url>
+        <tidalwave.github.browse.url>https://github.com/tidalwave-it/mistral-src</tidalwave.github.browse.url>
     </properties>
 
     <repositories>
+        <!--
         <repository>
             <id>releases-oss.sonatype.org</id>
             <name>Sonatype Releases Repository</name>
-            <url>http://oss.sonatype.org/content/repositories/releases/</url>
+            <url>https://oss.sonatype.org/content/repositories/releases/</url>
         </repository>
-        <repository>
-            <id>snapshots-oss.sonatype.org</id>
-            <name>Sonatype Snapshots Repository</name>
-            <url>http://oss.sonatype.org/content/repositories/snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
+        -->
         <repository>
             <id>maven2-thirdparty-repository.tidalwave.it</id>
             <name>Tidalwave Release Repository</name>
-            <url>http://services.tidalwave.it/nexus/content/repositories/thirdparty</url>
+            <url>https://services.tidalwave.it/nexus/content/repositories/thirdparty</url>
         </repository>
     </repositories>
 
+    <!-- Repeated because of http://jira.codehaus.org/browse/SCM-442 -->
+    <scm>
+        <connection>scm:git:${scm.repo.readonly.url}</connection>
+        <developerConnection>scm:git:${scm.repo.effective.url}</developerConnection>
+        <url>${scm.repo.browse.url}</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>it.tidalwave.image</groupId>
+                <artifactId>code-generator</artifactId>
+                <version>1.0-ALPHA-5-SNAPSHOT</version>
+            </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-core</artifactId>
@@ -112,11 +116,6 @@ Directory tree
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
-                <artifactId>image-plugin-jai</artifactId>
-                <version>1.0-ALPHA-5-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-processor</artifactId>
                 <version>1.0-ALPHA-5-SNAPSHOT</version>
             </dependency>
@@ -127,25 +126,6 @@ Directory tree
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <!-- Repeated because of http://jira.codehaus.org/browse/SCM-442 -->
-    <scm>
-        <connection>scm:git:${scm.repo.readonly.url}</connection>
-        <developerConnection>scm:git:${scm.repo.effective.url}</developerConnection>
-        <url>${scm.repo.browse.url}</url>
-        <tag>HEAD</tag>
-    </scm>
-
-    <build>
-        <plugins>
-            <!-- Needed for setting that inherited = false -->
-            <plugin>
-                <groupId>com.mycila.maven-license-plugin</groupId>
-                <artifactId>maven-license-plugin</artifactId>
-                <inherited>false</inherited>
-            </plugin>
-        </plugins>
-    </build>
 
     <modules>
         <module>modules</module>

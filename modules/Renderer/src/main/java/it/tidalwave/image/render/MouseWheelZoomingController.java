@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2012 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,55 +17,63 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.render;
 
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
-/*******************************************************************************
- * 
+/***********************************************************************************************************************
+ *
  * This class zooms listening to the mouse wheel.
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
-public class MouseWheelZoomingController 
+ **********************************************************************************************************************/
+public class MouseWheelZoomingController
   {
-    /** The attached renderer. */
+    /**
+     * The attached renderer.
+     */
     private final EditableImageRenderer imageRenderer;
-    
-    /** The controller for the scale operation. */
+
+    /**
+     * The controller for the scale operation.
+     */
     private final ScaleController scaleController;
-    
-    /** The enablement state. */
+
+    /**
+     * The enablement state.
+     */
     private boolean enabled;
-    
-    /** How fast the zoom acts with mouse clicks. */
-    private double zoomFactor = 0.25;          
-            
-    /***************************************************************************
-     * 
+
+    /**
+     * How fast the zoom acts with mouse clicks.
+     */
+    private double zoomFactor = 0.25;
+
+    /*******************************************************************************************************************
+     *
      * Listens to mouse clicks.
-     * 
-     **************************************************************************/
-    private final MouseWheelListener mouseWheelListener = new MouseWheelListener() 
+     *
+     ******************************************************************************************************************/
+    private final MouseWheelListener mouseWheelListener = new MouseWheelListener()
       {
         @Override
-        public void mouseWheelMoved (MouseWheelEvent event) 
+        public void mouseWheelMoved (final MouseWheelEvent event)
           {
             final double changeScale = Math.pow(2, zoomFactor * event.getWheelRotation());
             scaleController.setScale(scaleController.getScale() * changeScale);
           }
       };
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      * Creates a new instance of this class, attached to a
      * <code>ScaleController</code>. This controller must be
@@ -70,27 +81,27 @@ public class MouseWheelZoomingController
      *
      * @param  scaleController  the scale controller
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     public MouseWheelZoomingController (final ScaleController scaleController)
       {
         if (scaleController == null)
           {
             throw new IllegalArgumentException("scaleController is mandatory");
           }
-        
+
         this.scaleController = scaleController;
         this.imageRenderer = scaleController.getImageRenderer();
       }
-    
-    /***************************************************************************
-     * 
+
+    /*******************************************************************************************************************
+     *
      * Enables or disables this controller. As this class attaches some 
      * listeners to the image renderer component, it's advisable to disable it
      * when it's not needed, in order to facilitate garbage collection.
-     * 
+     *
      * @param  enabled  true if must be enabled, false otherwise
-     * 
-     **************************************************************************/
+     *
+     ******************************************************************************************************************/
     public void setEnabled (final boolean enabled)
       {
         if (this.enabled != enabled)
@@ -99,35 +110,35 @@ public class MouseWheelZoomingController
 
             if (enabled)
               {
-                imageRenderer.addMouseWheelListener(mouseWheelListener);  
+                imageRenderer.addMouseWheelListener(mouseWheelListener);
               }
 
             else
               {
-                imageRenderer.removeMouseWheelListener(mouseWheelListener);  
+                imageRenderer.removeMouseWheelListener(mouseWheelListener);
               }
           }
       }
-    
-    /***************************************************************************
-     * 
+
+    /*******************************************************************************************************************
+     *
      * Returns true if the controller is enabled.
      *
-     * @return  true  if enabled
-     * 
-     **************************************************************************/
+     * @return true  if enabled
+     *
+     ******************************************************************************************************************/
     public boolean isEnabled()
       {
-        return enabled;  
+        return enabled;
       }
-    
+
     public void setZoomFactor (final double zoomFactor)
       {
-        this.zoomFactor = zoomFactor;  
+        this.zoomFactor = zoomFactor;
       }
 
     public double getZoomFactor()
       {
-        return zoomFactor;  
+        return zoomFactor;
       }
   }

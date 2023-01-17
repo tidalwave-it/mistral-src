@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2012 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,42 +17,39 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.java2d;
 
-import java.util.logging.Logger;
 import java.awt.image.BufferedImage;
 import java.awt.image.Kernel;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.ConvolveOp;
 import it.tidalwave.image.op.OperationImplementation;
 
-
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class ConvolveJ2DOp extends OperationImplementation<ConvolveOp, BufferedImage>
   {
-    private static final String CLASS = ConvolveJ2DOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     @Override
-    protected BufferedImage execute (ConvolveOp operation, final EditableImage image, BufferedImage bufferedImage)
+    protected BufferedImage execute (final ConvolveOp operation,
+                                     final EditableImage image,
+                                     final BufferedImage bufferedImage)
       {
-        Kernel kernel = operation.getKernel();
-        java.awt.image.ConvolveOp convolveOp = new java.awt.image.ConvolveOp(kernel);
+        final Kernel kernel = operation.getKernel();
+        final java.awt.image.ConvolveOp convolveOp = new java.awt.image.ConvolveOp(kernel);
 
         return convolveOp.filter(bufferedImage, null);
       }

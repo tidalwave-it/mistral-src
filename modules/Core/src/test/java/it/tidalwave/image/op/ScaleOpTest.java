@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2012 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,32 +17,31 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.op;
 
-import it.tidalwave.image.op.ScaleOp;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
 import it.tidalwave.image.Quality;
+import org.testng.AssertJUnit;
+import org.testng.annotations.Test;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class ScaleOpTest
   {
     @Test
     public void testGetXScale1()
       {
         System.out.println("getXScale1");
-        ScaleOp op = new ScaleOp(17.0);
+        final ScaleOp op = new ScaleOp(17.0);
         AssertJUnit.assertEquals(17.0, op.getXScale(), 0.0);
       }
 
@@ -47,7 +49,7 @@ public class ScaleOpTest
     public void testGetXScale2()
       {
         System.out.println("getXScale2");
-        ScaleOp op = new ScaleOp(17.0, 13.0);
+        final ScaleOp op = new ScaleOp(17.0, 13.0);
         AssertJUnit.assertEquals(17.0, op.getXScale(), 0.0);
       }
 
@@ -55,7 +57,7 @@ public class ScaleOpTest
     public void testGetXScale3()
       {
         System.out.println("getXScale3");
-        ScaleOp op = new ScaleOp(17.0, Quality.INTERMEDIATE);
+        final ScaleOp op = new ScaleOp(17.0, Quality.INTERMEDIATE);
         AssertJUnit.assertEquals(17.0, op.getXScale(), 0.0);
       }
 
@@ -63,7 +65,7 @@ public class ScaleOpTest
     public void testGetXScale4()
       {
         System.out.println("getXScale4");
-        ScaleOp op = new ScaleOp(17.0, 13.0, Quality.INTERMEDIATE);
+        final ScaleOp op = new ScaleOp(17.0, 13.0, Quality.INTERMEDIATE);
         AssertJUnit.assertEquals(17.0, op.getXScale(), 0.0);
       }
 
@@ -71,7 +73,7 @@ public class ScaleOpTest
     public void testGetYScale1()
       {
         System.out.println("getYScale1");
-        ScaleOp op = new ScaleOp(17.0);
+        final ScaleOp op = new ScaleOp(17.0);
         AssertJUnit.assertEquals(17.0, op.getYScale(), 0.0);
       }
 
@@ -79,7 +81,7 @@ public class ScaleOpTest
     public void testGetYScale2()
       {
         System.out.println("getYScale2");
-        ScaleOp op = new ScaleOp(17.0, 13.0);
+        final ScaleOp op = new ScaleOp(17.0, 13.0);
         AssertJUnit.assertEquals(13.0, op.getYScale(), 0.0);
       }
 
@@ -87,7 +89,7 @@ public class ScaleOpTest
     public void testGetYScale3()
       {
         System.out.println("getYScale3");
-        ScaleOp op = new ScaleOp(17.0, Quality.INTERMEDIATE);
+        final ScaleOp op = new ScaleOp(17.0, Quality.INTERMEDIATE);
         AssertJUnit.assertEquals(17.0, op.getYScale(), 0.0);
       }
 
@@ -95,7 +97,7 @@ public class ScaleOpTest
     public void testGetYScale4()
       {
         System.out.println("getYScale4");
-        ScaleOp op = new ScaleOp(17.0, 13.0, Quality.INTERMEDIATE);
+        final ScaleOp op = new ScaleOp(17.0, 13.0, Quality.INTERMEDIATE);
         AssertJUnit.assertEquals(13.0, op.getYScale(), 0.0);
       }
 
@@ -103,7 +105,7 @@ public class ScaleOpTest
     public void testGetQuality1()
       {
         System.out.println("getQuality1");
-        ScaleOp op = new ScaleOp(17.0);
+        final ScaleOp op = new ScaleOp(17.0);
         AssertJUnit.assertEquals(Quality.FASTEST, op.getQuality());
       }
 
@@ -111,10 +113,10 @@ public class ScaleOpTest
      * Test of getQuality method, of class it.tidalwave.image.op.ScaleOp.
      */
     @Test
-	public void testGetQuality2()
+    public void testGetQuality2()
       {
         System.out.println("getQuality2");
-        ScaleOp op = new ScaleOp(17.0, 13.0);
+        final ScaleOp op = new ScaleOp(17.0, 13.0);
         AssertJUnit.assertEquals(Quality.FASTEST, op.getQuality());
       }
 
@@ -122,10 +124,10 @@ public class ScaleOpTest
      * Test of getQuality method, of class it.tidalwave.image.op.ScaleOp.
      */
     @Test
-	public void testGetQuality3()
+    public void testGetQuality3()
       {
         System.out.println("getQuality3");
-        ScaleOp op = new ScaleOp(17.0, Quality.INTERMEDIATE);
+        final ScaleOp op = new ScaleOp(17.0, Quality.INTERMEDIATE);
         AssertJUnit.assertEquals(Quality.INTERMEDIATE, op.getQuality());
       }
 
@@ -133,7 +135,7 @@ public class ScaleOpTest
     public void testGetQuality4()
       {
         System.out.println("getQuality4");
-        ScaleOp op = new ScaleOp(17.0, 13.0, Quality.INTERMEDIATE);
+        final ScaleOp op = new ScaleOp(17.0, 13.0, Quality.INTERMEDIATE);
         AssertJUnit.assertEquals(Quality.INTERMEDIATE, op.getQuality());
       }
 
@@ -141,7 +143,7 @@ public class ScaleOpTest
     public void testToString()
       {
         System.out.println("toString");
-        ScaleOp op = new ScaleOp(17.0, 13.0, Quality.INTERMEDIATE);
+        final ScaleOp op = new ScaleOp(17.0, 13.0, Quality.INTERMEDIATE);
         op.toString();
       }
   }

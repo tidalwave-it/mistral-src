@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2012 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,26 +17,24 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.render;
 
-import it.tidalwave.image.render.PreviewSettings;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Shape;
-import java.awt.Insets;
 import java.awt.event.AdjustmentListener;
-import java.awt.event.AdjustmentEvent;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
@@ -47,159 +48,218 @@ import it.tidalwave.image.op.ScaleOp;
 import it.tidalwave.image.render.event.EditableImageRendererEvent;
 import it.tidalwave.image.render.event.EditableImageRendererListener;
 import it.tidalwave.image.util.Platform;
+import lombok.extern.slf4j.Slf4j;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * This class is a pipe which adds to SimpleEditableImageRenderer scrolling
  * capabilities and a fit-to-size feature.
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
+@Slf4j
 public class EditableImageRenderer extends JComponent
   {
-    private final static String CLASS = EditableImageRenderer.class.getName();
-    private final static Logger logger = Logger.getLogger(CLASS);
+    /**
+     * The maximum allowed value for scale.
+     */
+    public static final double MAX_SCALE = 40;
 
-    /** The maximum allowed value for scale. */
-    public final static double MAX_SCALE = 40;
+    /**
+     * The maximum allowed value for scale.
+     */
+    public static final double MIN_SCALE = 0.01;
 
-    /** The maximum allowed value for scale. */
-    public final static double MIN_SCALE = 0.01;
+    /**
+     * Over this image size the scaled image caching is always disabled.
+     */
+    private static final int MAX_SIZE_FOR_SCALED_CACHING = 8000;
 
-    /** Over this image size the scaled image caching is always disabled. */
-    private final static int MAX_SIZE_FOR_SCALED_CACHING = 8000;
+    /**
+     * The default background color for parts not covered by the image.
+     */
+    private static final Color DEFAULT_BACKGROUND = Color.DARK_GRAY;
 
-    /** The default background color for parts not covered by the image. */
-    private final static Color DEFAULT_BACKGROUND = Color.DARK_GRAY;
-
-    /** An empty margin. */
+    /**
+     * An empty margin.
+     */
     private static final Insets NULL_MARGIN = new Insets(0, 0, 0, 0);
 
-    /** The original image to be displayed. */
+    /**
+     * The original image to be displayed.
+     */
     protected EditableImage image;
 
-    /** A display-optimized copy of the image. If optimizedImageEnabled is false,
-        it just references the original image. */
+    /**
+     * A display-optimized copy of the image. If optimizedImageEnabled is false, it just references the original image.
+     */
     private EditableImage optimizedImage;
 
-    /** A scaled-down version of the image to fit the actual rendering settings. */
+    /**
+     * A scaled-down version of the image to fit the actual rendering settings.
+     */
     private EditableImage scaledImage;
 
-    /** True if a local optimized copy of the image should be used. */
+    /**
+     * True if a local optimized copy of the image should be used.
+     */
     private boolean optimizedImageEnabled;
 
-    /** True if use a scaled local copy of the image for faster rendering. */
+    /**
+     * True if use a scaled local copy of the image for faster rendering.
+     */
     private boolean scaledImageCachingEnabled;
 
-    /** The current scale. */
+    /**
+     * The current scale.
+     */
     protected double scale = 1;
-    
+
     private double minScale = MIN_SCALE;
-    
+
     private double maxScale = MAX_SCALE;
 
-    /** The current rotation. */
+    /**
+     * The current rotation.
+     */
     protected double angle = 0;
 
-    /** The image coordinates of the pixel shown in the top left corner of the component. */
+    /**
+     * The image coordinates of the pixel shown in the top left corner of the component.
+     */
     private Point origin = new Point(0, 0);
 
-    /** The current preview settings. */
+    /**
+     * The current preview settings.
+     */
     private PreviewSettings previewSettings;
 
-    /** The coordinates of the photo origin relative to the component location. */
+    /**
+     * The coordinates of the photo origin relative to the component location.
+     */
     private int shownImageX;
 
-    /** The coordinates of the photo origin relative to the component location. */
+    /**
+     * The coordinates of the photo origin relative to the component location.
+     */
     private int shownImageY;
 
-    /** The scaled photo dimension in pixels. */
+    /**
+     * The scaled photo dimension in pixels.
+     */
     private int shownImageWidth;
 
-    /** The scaled photo dimension in pixels. */
+    /**
+     * The scaled photo dimension in pixels.
+     */
     private int shownImageHeight;
 
-    /** The maximum margin that can be shown around the image. */
+    /**
+     * The maximum margin that can be shown around the image.
+     */
     private Insets margin = new Insets(0, 0, 0, 0);
 
-    /** If not null, the image rendering will be clipped against this shape. */
+    /**
+     * If not null, the image rendering will be clipped against this shape.
+     */
     private Shape clippingShape;
 
-    /** The quality used for scale. */
+    /**
+     * The quality used for scale.
+     */
     private Quality scaleQuality = Quality.INTERMEDIATE;
 
-    /** The quality used for rotate. */
+    /**
+     * The quality used for rotate.
+     */
     private Quality rotateQuality = Quality.INTERMEDIATE;
 
-    /** Overlays will be drawn over the image. */
-    private final List<Overlay> overlayList = new ArrayList<Overlay>();
+    /**
+     * Overlays will be drawn over the image.
+     */
+    private final List<Overlay> overlayList = new ArrayList<>();
 
-    /** If true, the image always fits the component size. */
+    /**
+     * If true, the image always fits the component size.
+     */
     private boolean fitToDisplaySize;
 
-    /** The list of listeners. */
-    private final List<EditableImageRendererListener> listenerList = new ArrayList<EditableImageRendererListener>();
+    /**
+     * The list of listeners.
+     */
+    private final List<EditableImageRendererListener> listenerList = new ArrayList<>();
 
-    /** True if repaint is currently enabled. */
+    /**
+     * True if repaint is currently enabled.
+     */
     private boolean repaintEnabled = true;
 
-    /** The current EditingTool. */
+    /**
+     * The current EditingTool.
+     */
     protected EditingTool editingTool;
 
-    /** The vertical scrollbar. */
+    /**
+     * The vertical scrollbar.
+     */
     private final JScrollBar horizontalScrollBar = new JScrollBar(JScrollBar.HORIZONTAL);
 
-    /** The horizontal scrollbar. */
+    /**
+     * The horizontal scrollbar.
+     */
     private final JScrollBar verticalScrollBar = new JScrollBar(JScrollBar.VERTICAL);
-    
+
     private final JPanel filler = new JPanel();
-    
-    /** True if scrollbars should be visible. */
+
+    /**
+     * True if scrollbars should be visible.
+     */
     private boolean scrollBarsVisible = false;
-    
-    /** A border to be rendered around the image. */
+
+    /**
+     * A border to be rendered around the image.
+     */
     private Border imageBorder;
 
-    /** Width of the renderer before the latest resize, used to layout scrollbars. */
+    /**
+     * Width of the renderer before the latest resize, used to layout scrollbars.
+     */
     private int previousWidth;
-    
-    /** Height of the renderer before the latest resize, used to layout scrollbars. */
+
+    /**
+     * Height of the renderer before the latest resize, used to layout scrollbars.
+     */
     private int previohsHeight;
-    
-    /** The thickness of scrollbars. */
+
+    /**
+     * The thickness of scrollbars.
+     */
     private int scrollbarThickness = 16;
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * The scrollbar listener. 
      *
-     **************************************************************************/
-    private final AdjustmentListener scrollbarListener = new AdjustmentListener()
-      {
-        @Override
-        public void adjustmentValueChanged (final AdjustmentEvent event)
-          {
-            setOrigin(new Point(horizontalScrollBar.getValue(), verticalScrollBar.getValue()));
-          }
-      };
+     ******************************************************************************************************************/
+    private final AdjustmentListener scrollbarListener =
+            event -> setOrigin(new Point(horizontalScrollBar.getValue(), verticalScrollBar.getValue()));
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
-    public EditableImageRenderer ()
+     ******************************************************************************************************************/
+    public EditableImageRenderer()
       {
         setBackground(DEFAULT_BACKGROUND);
         setLayout(null);
         setOpaque(false);
 
-        boolean workaroundMST63 = !Platform.isMacOSX();
+        final boolean workaroundMST63 = !Platform.isMacOSX();
 
         if (workaroundMST63)
           {
-            logger.warning("Enabled workaround for MST-63");
+            log.warn("Enabled workaround for MST-63");
           }
 
         setScaledImageCachingEnabled(workaroundMST63);
@@ -215,7 +275,7 @@ public class EditableImageRenderer extends JComponent
         filler.setVisible(scrollBarsVisible);
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Sets the image to display. The image is internally cloned, so any further
      * operation performed on the same source (that could cause a model switch) won't
@@ -223,15 +283,15 @@ public class EditableImageRenderer extends JComponent
      *
      * @param  image  the image
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void setImage (final EditableImage image)
       {
-        logger.info("setImage(" + image + ")");
-        
+        log.info("setImage(" + image + ")");
+
         if (image == null)
           {
             this.image = null;
-            logger.warning("setImage(null)");
+            log.warn("setImage(null)");
           }
 
         else
@@ -243,7 +303,7 @@ public class EditableImageRenderer extends JComponent
           {
             editingTool.imageChanged();
           }
-        
+
         flushAllCaches();
         updateScrollBars();
 
@@ -257,26 +317,26 @@ public class EditableImageRenderer extends JComponent
           }
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns the displayed image.
      *
-     * @return  the image
+     * @return the image
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public EditableImage getImage()
       {
         return image;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns a possibly optimized version of the image. If useOptimizedImage is
      * false, this method returns the original image.
      *
-     * @return  the image
+     * @return the image
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
 
     // useful for the loupe, to prevent it from recomputing the optimized version
     public EditableImage getOptimizedImage()
@@ -284,44 +344,44 @@ public class EditableImageRenderer extends JComponent
         return optimizedImage;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Turns on/off repaint. It's advisable to turn repainting off before a sequence
      * of operations, and turning it on again only at the end of the sequence.
      *
      * @param  repaintEnabled  the new setting
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void setRepaintEnabled (final boolean repaintEnabled)
       {
-        logger.info("setRepaintEnabled(" + repaintEnabled + ")");
+        log.info("setRepaintEnabled(" + repaintEnabled + ")");
         this.repaintEnabled = repaintEnabled;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns the state of repaint.
      *
-     * @return  the repaint state
+     * @return the repaint state
      *
-     ******************************************************************************/
-    public boolean isRepaintEnabled ()
+     ******************************************************************************************************************/
+    public boolean isRepaintEnabled()
       {
         return repaintEnabled;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Sets the image point which is displayed in the top left corner (coordinates
      * are in actual image pixels).
      *
      * @param    origin  the origin
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void setOrigin (final Point origin)
       {
-        logger.info("setOrigin(" + origin + ")");
-        
+        log.info("setOrigin(" + origin + ")");
+
         if ((image != null) && (image.getWidth() > 0) && (image.getHeight() > 0))
           {
             internalSetOrigin(origin);
@@ -330,9 +390,9 @@ public class EditableImageRenderer extends JComponent
           }
       }
 
-    private void internalSetOrigin (final Point origin) 
+    private void internalSetOrigin (final Point origin)
       {
-        logger.info("internalSetOrigin(" + origin + ")");
+        log.info("internalSetOrigin(" + origin + ")");
         //
         // No margin with the scroll bars.
         //
@@ -359,36 +419,40 @@ public class EditableImageRenderer extends JComponent
         //
         // If there's more room to display the image with its margin, center it.
         //
-        this.origin.x = (maxWidth <= widthWithMargin) ? Math.min(Math.max(xMin, origin.x), xMax) : (-(maxWidth - image.getWidth()) / 2);
-        this.origin.y = (maxHeight <= heightWithMargin) ? Math.min(Math.max(yMin, origin.y), yMax) : (-(maxHeight - image.getHeight()) / 2);
+        this.origin.x = (maxWidth <= widthWithMargin)
+                        ? Math.min(Math.max(xMin, origin.x), xMax)
+                        : (-(maxWidth - image.getWidth()) / 2);
+        this.origin.y = (maxHeight <= heightWithMargin)
+                        ? Math.min(Math.max(yMin, origin.y), yMax)
+                        : (-(maxHeight - image.getHeight()) / 2);
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public Point getOrigin()
       {
         return origin;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public double getScale()
       {
         return scale;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void setAngle (final double angle)
       {
-        logger.info("setAngle(" + angle + ")");
-        
+        log.info("setAngle(" + angle + ")");
+
         if (this.angle != angle)
           {
             this.angle = angle;
@@ -398,61 +462,61 @@ public class EditableImageRenderer extends JComponent
           }
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
-    public double getAngle ()
+     ******************************************************************************************************************/
+    public double getAngle()
       {
         return angle;
       }
-    
-    /*******************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public EditingTool getEditingTool()
       {
         return editingTool;
       }
-    
-    /*******************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void setImageBorder (final Border imageBorder)
       {
-        this.imageBorder = imageBorder;    
+        this.imageBorder = imageBorder;
       }
-    
-    /*******************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public Border getImageBorder()
       {
         return imageBorder;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Given a point in component coordinates, returns the coordinates of the
      * image pixel rendered at that point. If the point is outside of the image
      * rendering areas, returns null.
      *
      * @param  componentPoint  the point in relative coordinates
-     * @return                 the image pixel coordinates (null if none)
+     * @return the image pixel coordinates (null if none)
      *
-     ******************************************************************************/
-    public Point getPositionOverImage (Point componentPoint)
+     ******************************************************************************************************************/
+    public Point getPositionOverImage (final Point componentPoint)
       {
         if (image == null)
           {
             return null;
           }
 
-        int imageWidth = image.getWidth();
-        int imageHeight = image.getHeight();
+        final int imageWidth = image.getWidth();
+        final int imageHeight = image.getHeight();
 
         if ((imageWidth == 0) || (imageHeight == 0)) // can happen if metadata is not loaded yet
           {
@@ -461,12 +525,12 @@ public class EditableImageRenderer extends JComponent
 
         if ((shownImageWidth == 0) || (shownImageHeight == 0))
           {
-            logger.severe("Image size: " + shownImageHeight + " x " + shownImageHeight);
+            log.error("Image size: " + shownImageHeight + " x " + shownImageHeight);
             return null;
           }
 
-        int x = ((componentPoint.x - shownImageX) * imageWidth) / shownImageWidth;
-        int y = ((componentPoint.y - shownImageY) * imageHeight) / shownImageHeight;
+        final int x = ((componentPoint.x - shownImageX) * imageWidth) / shownImageWidth;
+        final int y = ((componentPoint.y - shownImageY) * imageHeight) / shownImageHeight;
 
         if ((x >= 0) && (y >= 0) && (x < imageWidth) && (y < imageHeight))
           {
@@ -479,24 +543,24 @@ public class EditableImageRenderer extends JComponent
           }
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Given a point in image coordinates, returns the coordinates of the
      * component point which renders that image point.
      *
      * @param  imagePoint  the point in image coordinates
-     * @return             the point coordinates
+     * @return the point coordinates
      *
-     ******************************************************************************/
-    public Point convertImagePointToComponentPoint (Point imagePoint)
+     ******************************************************************************************************************/
+    public Point convertImagePointToComponentPoint (final Point imagePoint)
       {
         if (image == null)
           {
             return null;
           }
 
-        int imageWidth = image.getWidth();
-        int imageHeight = image.getHeight();
+        final int imageWidth = image.getWidth();
+        final int imageHeight = image.getHeight();
 
         if ((imageWidth == 0) || (imageHeight == 0)) // can happen if metadata is not loaded yet
           {
@@ -505,13 +569,13 @@ public class EditableImageRenderer extends JComponent
 
         if ((shownImageWidth == 0) || (shownImageHeight == 0))
           {
-            logger.severe("Image size: " + shownImageHeight + " x " + shownImageHeight);
+            log.error("Image size: " + shownImageHeight + " x " + shownImageHeight);
 
             return null;
           }
 
-        int x = ((imagePoint.x * shownImageWidth) / imageWidth) + shownImageX;
-        int y = ((imagePoint.y * shownImageHeight) / imageHeight) + shownImageY;
+        final int x = ((imagePoint.x * shownImageWidth) / imageWidth) + shownImageX;
+        final int y = ((imagePoint.y * shownImageHeight) / imageHeight) + shownImageY;
 
         return new Point(x, y);
 
@@ -526,7 +590,7 @@ public class EditableImageRenderer extends JComponent
           }*/
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Ensures that the given image pixel is shown at the given component
      * coordinates.
@@ -534,11 +598,11 @@ public class EditableImageRenderer extends JComponent
      * @param   imagePoint     the coordinates of the image pixel
      * @param   componentPoint the relative coordinates where to show imagePoint
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void setPositionOverImage (final Point imagePoint, final Point componentPoint)
       {
-        logger.info("setPositionOverImage(" + imagePoint + ", " + componentPoint + ")");
-        Point newOrigin = computeOrigin(imagePoint, componentPoint, scale);
+        log.info("setPositionOverImage(" + imagePoint + ", " + componentPoint + ")");
+        final Point newOrigin = computeOrigin(imagePoint, componentPoint, scale);
 
         if (newOrigin != null)
           {
@@ -546,7 +610,7 @@ public class EditableImageRenderer extends JComponent
           }
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Sets the maximum margin that can be shown around the image. The number of
      * pixels is in image scale.
@@ -555,36 +619,36 @@ public class EditableImageRenderer extends JComponent
      *
      * @param   margin  the new margin
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void setMargin (final Insets margin)
       {
-        logger.info("setMargin(" + margin + ")");
+        log.info("setMargin(" + margin + ")");
         this.margin = (Insets)margin.clone();
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns the maximum margin that can be shown around the image.
      *
-     * @return  the margin
+     * @return the margin
      *
-     ******************************************************************************/
-    public Insets getMargin ()
+     ******************************************************************************************************************/
+    public Insets getMargin()
       {
         return (Insets)margin.clone();
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Sets the scrollbars visible or not.
      *
      * @param  scrollBarsVisible  the new setting
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void setScrollBarsVisible (final boolean scrollBarsVisible)
       {
-        logger.info("setScrollBarsVisible(" + scrollBarsVisible + ")");
-        
+        log.info("setScrollBarsVisible(" + scrollBarsVisible + ")");
+
         if (this.scrollBarsVisible != scrollBarsVisible)
           {
             this.scrollBarsVisible = scrollBarsVisible;
@@ -602,28 +666,28 @@ public class EditableImageRenderer extends JComponent
           }
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Return true if the scrollbars are visible.
      *
-     * @return  true if the scrollbars are visible
+     * @return true if the scrollbars are visible
      *
-     ******************************************************************************/
-    public boolean isScrollBarsVisible ()
+     ******************************************************************************************************************/
+    public boolean isScrollBarsVisible()
       {
         return scrollBarsVisible;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Computes a new origin so that the given image point is shown at the given
      * relative coordinates.
      *
      * @param   imagePoint     the coordinates of the image pixel
      * @param   componentPoint the relative coordinates where to show imagePoint
-     * @return                 the new origin
+     * @return the new origin
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     protected Point computeOrigin (final Point imagePoint, final Point componentPoint, final double scale)
       {
         if (image == null)
@@ -631,8 +695,8 @@ public class EditableImageRenderer extends JComponent
             return null;
           }
 
-        int imageWidth = image.getWidth();
-        int imageHeight = image.getHeight();
+        final int imageWidth = image.getWidth();
+        final int imageHeight = image.getHeight();
 
         if ((imageWidth == 0) || (imageHeight == 0)) // can happen if metadata is not loaded yet
           {
@@ -640,10 +704,10 @@ public class EditableImageRenderer extends JComponent
           }
 
         return new Point((int)Math.round(imagePoint.x - (componentPoint.x / scale)),
-            (int)Math.round(imagePoint.y - (componentPoint.y / scale)));
+                         (int)Math.round(imagePoint.y - (componentPoint.y / scale)));
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Sets the quality used for scale operations. This operation doesn't force a
      * <code>repaint()</code>, so it must be explicitly invoked if you want to see
@@ -651,11 +715,11 @@ public class EditableImageRenderer extends JComponent
      *
      * @param  quality  the quality
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void setScaleQuality (final Quality scaleQuality)
       {
-        logger.info("setScaleQuality(" + scaleQuality + ")");
-        
+        log.info("setScaleQuality(" + scaleQuality + ")");
+
         if (this.scaleQuality != scaleQuality)
           {
             this.scaleQuality = scaleQuality;
@@ -663,19 +727,19 @@ public class EditableImageRenderer extends JComponent
           }
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns the quality used for scale operations.
      *
-     * @return  the quality
+     * @return the quality
      *
-     ******************************************************************************/
-    public Quality getScaleQuality ()
+     ******************************************************************************************************************/
+    public Quality getScaleQuality()
       {
         return scaleQuality;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Sets the quality used for rotate operations. This operation doesn't force a
      * <code>repaint()</code>, so it must be explicitly invoked if you want to see
@@ -683,11 +747,11 @@ public class EditableImageRenderer extends JComponent
      *
      * @param  quality  the quality
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void setRotateQuality (final Quality rotateQuality)
       {
-        logger.info("setRotateQuality(" + rotateQuality + ")");
-        
+        log.info("setRotateQuality(" + rotateQuality + ")");
+
         if (this.rotateQuality != rotateQuality)
           {
             this.rotateQuality = rotateQuality;
@@ -695,28 +759,28 @@ public class EditableImageRenderer extends JComponent
           }
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns the quality used for scale operations.
      *
-     * @return  the quality
+     * @return the quality
      *
-     ******************************************************************************/
-    public Quality getRotateQuality ()
+     ******************************************************************************************************************/
+    public Quality getRotateQuality()
       {
         return rotateQuality;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Enables or disables the caching of a scaled image for faster speed.
      *
      * @param  cacheScaleImageEnabled  the switch for this property
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void setScaledImageCachingEnabled (final boolean scaledImageCachingEnabled)
       {
-        logger.info("setScaledImageCachingEnabled(" + scaledImageCachingEnabled + ")");
+        log.info("setScaledImageCachingEnabled(" + scaledImageCachingEnabled + ")");
         this.scaledImageCachingEnabled = scaledImageCachingEnabled;
 
         if (!scaledImageCachingEnabled)
@@ -725,117 +789,117 @@ public class EditableImageRenderer extends JComponent
           }
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns the status of the caching of a scaled image for faster speed.
      *
-     * @return  the status of this feature
+     * @return the status of this feature
      *
-     ******************************************************************************/
-    public boolean isScaledImageCachingEnabled ()
+     ******************************************************************************************************************/
+    public boolean isScaledImageCachingEnabled()
       {
         return scaledImageCachingEnabled;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Enables or disables the use of an optimized copy of the image.
      *
      * @param  optimizedImageEnabled  the switch for this property
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void setOptimizedImageEnabled (final boolean optimizedImageEnabled)
       {
-        logger.info("setOptimizedImageEnabled(" + optimizedImageEnabled + ")");
+        log.info("setOptimizedImageEnabled(" + optimizedImageEnabled + ")");
         this.optimizedImageEnabled = optimizedImageEnabled;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns the status of the rgb image caching feature.
      *
-     * @return  the status of this feature
+     * @return the status of this feature
      *
-     ******************************************************************************/
-    public boolean isOptimizedImageEnabled ()
+     ******************************************************************************************************************/
+    public boolean isOptimizedImageEnabled()
       {
         return optimizedImageEnabled;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Sets a shape to clip rendering against.
      *
      * @param  clippingShape  the clipping shape
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void setClippingShape (final Shape clippingShape)
       {
         this.clippingShape = clippingShape;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Adds an overlay to be shown over the image.
      *
      * @param  overlay  the overlay
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void addOverlay (final Overlay overlay)
       {
         overlayList.add(overlay);
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void removeOverlay (final Overlay overlay)
       {
         overlayList.remove(overlay);
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Sets the preview settings.
      *
-     ******************************************************************************/
-    public void setPreviewSettings (PreviewSettings previewSettings)
+     ******************************************************************************************************************/
+    public void setPreviewSettings (final PreviewSettings previewSettings)
       {
         this.previewSettings = previewSettings;
         repaint();
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Gets the preview settings.
      *
-     ******************************************************************************/
-    public PreviewSettings getPreviewSettings ()
+     ******************************************************************************************************************/
+    public PreviewSettings getPreviewSettings()
       {
         return previewSettings;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     @Override
     public void update (final Graphics g)
       {
         paint(g); // don't waste time on the background
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Renders this component.
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     @Override
     public void paint (final Graphics g)
       {
-        logger.info("paint()");
-        
+        log.info("paint()");
+
         if (!repaintEnabled)
           {
             return;
@@ -850,12 +914,12 @@ public class EditableImageRenderer extends JComponent
 
         layoutScrollBars();
 
-        int myWidth = getWidth();
-        int myHeight = getHeight();
+        final int myWidth = getWidth();
+        final int myHeight = getHeight();
         //if (image == null) // FIXME: this can be optimized
         {
-            g.setColor(getBackground());
-            g.fillRect(0, 0, myWidth, myHeight);
+          g.setColor(getBackground());
+          g.fillRect(0, 0, myWidth, myHeight);
         }
 
         Graphics2D g2 = null;
@@ -865,7 +929,7 @@ public class EditableImageRenderer extends JComponent
             if (image != null)
               {
                 EditableImage imageToDraw = null;
-                double maxSize = scale * Math.max(image.getWidth(), image.getHeight());
+                final double maxSize = scale * Math.max(image.getWidth(), image.getHeight());
                 boolean needScaling = true;
                 int rotationDeltaX = 0;
                 int rotationDeltaY = 0;
@@ -878,7 +942,7 @@ public class EditableImageRenderer extends JComponent
                   {
                     if (scaledImage == null)
                       {
-                        logger.fine(">>>> computing scaled image");
+                        log.debug(">>>> computing scaled image");
                         scaledImage = optimizedImage.execute2(new ScaleOp(scale, getScaleQuality()));
 
                         final int prevWidth = scaledImage.getWidth();
@@ -922,11 +986,18 @@ public class EditableImageRenderer extends JComponent
                 // Don't pass 'this' as an observer, it could trigger paint() twice (FIXME: check if it's true)
                 //
                 final PaintOp paintOp = needScaling
-                    ? new PaintOp(g2, shownImageX, shownImageY, shownImageWidth, shownImageHeight, scaleQuality, previewSettings, null)
-                    : new PaintOp(g2, shownImageX, shownImageY, previewSettings, null);
+                                        ? new PaintOp(g2,
+                                                      shownImageX,
+                                                      shownImageY,
+                                                      shownImageWidth,
+                                                      shownImageHeight,
+                                                      scaleQuality,
+                                                      previewSettings,
+                                                      null)
+                                        : new PaintOp(g2, shownImageX, shownImageY, previewSettings, null);
 
                 imageToDraw.execute(paintOp);
-                
+
                 if (imageBorder != null)
                   {
                     imageBorder.paintBorder(this, g2, shownImageX, shownImageY, shownImageWidth, shownImageHeight);
@@ -938,11 +1009,11 @@ public class EditableImageRenderer extends JComponent
                 g2 = (Graphics2D)g;
               }
 
-            for (Overlay overlay : overlayList)
+            for (final Overlay overlay : overlayList)
               {
                 if (overlay.isVisible())
                   {
-                    Graphics2D g2Copy = (Graphics2D)g2.create();
+                    final Graphics2D g2Copy = (Graphics2D)g2.create();
 
                     try
                       {
@@ -950,8 +1021,8 @@ public class EditableImageRenderer extends JComponent
                       }
                     catch (Throwable t)
                       {
-                        logger.warning("Exception in Overlay: " + t);
-                        logger.throwing(CLASS, "paint()", t);
+                        log.warn("Exception in Overlay: " + t);
+                        log.warn("paint()", t);
                       }
 
                     g2Copy.dispose();
@@ -961,7 +1032,7 @@ public class EditableImageRenderer extends JComponent
 
         catch (Throwable t)
           {
-            logger.throwing(CLASS, "paint()", t);
+            log.warn("paint()", t);
           }
 
         finally
@@ -975,67 +1046,67 @@ public class EditableImageRenderer extends JComponent
         paintComponents(g);
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Flush all image caches.
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void flushAllCaches()
       {
-        logger.info("flushAllCaches()");
-        logger.info(">>>> all caches will be recomputed from: " + image);
+        log.info("flushAllCaches()");
+        log.info(">>>> all caches will be recomputed from: " + image);
         flushScaledImageCache();
-        
+
         if (image != null)
           {
             optimizedImage = optimizedImageEnabled ? image.execute2(new OptimizeOp()) : image;
           }
-        
+
         else
           {
             optimizedImage = null;
           }
       }
-    
-    /*******************************************************************************
+
+    /*******************************************************************************************************************
      *
      * Flush the cached scaled image.
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void flushScaledImageCache()
       {
-        logger.info("flushScaledImageCache()");
+        log.info("flushScaledImageCache()");
         scaledImage = null;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void moveOrigin (final int deltaX, final int deltaY)
       {
-        logger.info("moveOrigin(" + deltaX + "," + deltaY + ")");
+        log.info("moveOrigin(" + deltaX + "," + deltaY + ")");
         final Point position = getOrigin();
         position.setLocation(position.getX() + deltaX, position.getY() + deltaY);
         setOrigin(position);
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Sets the explicit scale for displaying the current image. This disables the
      * fit-to-display-size feature.
      *
      * @param  scale   the new scale
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void setScale (final double scale)
       {
-        logger.info("setScale(" + scale + ")");
+        log.info("setScale(" + scale + ")");
         setScale(scale, null);
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Sets the explicit scale for displaying the current image. This disables the
      * fit-to-display-size feature. A pivot point is specified: the contents under
@@ -1045,29 +1116,29 @@ public class EditableImageRenderer extends JComponent
      * @param  pivotPoint  the pivot point (if null, the center of the renderer
      *                     is used)
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void setScale (double scale, final Point pivotPoint)
       {
-        logger.info("setScale(" + scale + ", " + pivotPoint + ")");
+        log.info("setScale(" + scale + ", " + pivotPoint + ")");
         scale = Math.min(Math.max(scale, minScale), maxScale);
-        
+
 //        if ((scale < MIN_SCALE) || (scale > MAX_SCALE))
 //          {
 //            throw new IllegalArgumentException("scale: " + scale);
 //          }
 
-        boolean repaintEnabledSave = repaintEnabled;
+        final boolean repaintEnabledSave = repaintEnabled;
         repaintEnabled = false;
         setFitToDisplaySize(false);
         internalSetScale(scale);
 
         if (pivotPoint != null)
           {
-            Point imagePivotPoint = getPositionOverImage(pivotPoint);
+            final Point imagePivotPoint = getPositionOverImage(pivotPoint);
 
             if (imagePivotPoint != null)
               {
-                Point newOrigin = computeOrigin(imagePivotPoint, pivotPoint, scale);
+                final Point newOrigin = computeOrigin(imagePivotPoint, pivotPoint, scale);
 
                 if (newOrigin != null)
                   {
@@ -1080,84 +1151,84 @@ public class EditableImageRenderer extends JComponent
         repaintEnabled = repaintEnabledSave;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void setMaxScale (final double maxScale)
       {
         this.maxScale = Math.min(MAX_SCALE, maxScale);
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public double getMaxScale()
       {
         return maxScale;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void setMinScale (final double minScale)
       {
         this.minScale = Math.max(MIN_SCALE, minScale);
       }
-    
-    /*******************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public double getMinScale()
       {
         return minScale;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
      *
-     ******************************************************************************/
-    public double getFitScale ()
+     ******************************************************************************************************************/
+    public double getFitScale()
       {
-        double hScale = (double)getAvailableWidth() / image.getWidth();
-        double vScale = (double)getAvailableHeight() / image.getHeight();
+        final double hScale = (double)getAvailableWidth() / image.getWidth();
+        final double vScale = (double)getAvailableHeight() / image.getHeight();
 
         return Math.min(hScale, vScale);
 
 //        if (this.scale < 0)
 //          {
-//            logger.info("SCALE < 0: w:" + w + " h:" + h + " iw:" + iw + " ih:" + ih);
+//            log.info("SCALE < 0: w:" + w + " h:" + h + " iw:" + iw + " ih:" + ih);
 //          }
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Centers the image on the renderer, keeping the current scale.
      *
-     ******************************************************************************/
-    public void centerImage ()
+     ******************************************************************************************************************/
+    public void centerImage()
       {
-        logger.info("centerImage()");
+        log.info("centerImage()");
         setOrigin(computeCenterPoint());
       }
-    
-    /*******************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
      *
-     ******************************************************************************/
-    public void fitToDisplaySize ()
+     ******************************************************************************************************************/
+    public void fitToDisplaySize()
       {
-        logger.info("fitToDisplaySize()");
-        
+        log.info("fitToDisplaySize()");
+
         if (image != null)
           {
             final boolean saveRepaintEnabled = repaintEnabled;
@@ -1169,14 +1240,14 @@ public class EditableImageRenderer extends JComponent
           }
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Enables or disables the fit-to-display-size feature.
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void setFitToDisplaySize (final boolean fitToDisplaySize)
       {
-        logger.info("setFitToDisplaySize(" + fitToDisplaySize + ")");
+        log.info("setFitToDisplaySize(" + fitToDisplaySize + ")");
         this.fitToDisplaySize = fitToDisplaySize;
 
         if (fitToDisplaySize)
@@ -1185,32 +1256,32 @@ public class EditableImageRenderer extends JComponent
           }
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void addImageRendererListener (final EditableImageRendererListener listener)
       {
         listenerList.add(listener);
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     public void removeImageRendererListener (final EditableImageRendererListener listener)
       {
         listenerList.remove(listener);
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
      *
-     ******************************************************************************/
-    private void internalSetScale (double scale)
+     ******************************************************************************************************************/
+    private void internalSetScale (final double scale)
       {
         if (this.scale != scale)
           {
@@ -1222,27 +1293,27 @@ public class EditableImageRenderer extends JComponent
         fireScaleChangedEvent();
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     private Point computeCenterPoint()
       {
         return new Point(-(int)Math.round(((getAvailableWidth() / scale) - image.getWidth()) / 2),
                          -(int)Math.round(((getAvailableHeight() / scale) - image.getHeight()) / 2));
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
      *
-     ******************************************************************************/
-    private void fireScaleChangedEvent ()
+     ******************************************************************************************************************/
+    private void fireScaleChangedEvent()
       {
         final EditableImageRendererEvent event = new EditableImageRendererEvent(this);
 
-        for (final EditableImageRendererListener listener : new ArrayList<EditableImageRendererListener>(listenerList))
+        for (final EditableImageRendererListener listener : new ArrayList<>(listenerList))
           {
             try
               {
@@ -1250,22 +1321,22 @@ public class EditableImageRenderer extends JComponent
               }
             catch (Throwable t)
               {
-                logger.warning("Exception in listener: " + t);
-                logger.throwing(CLASS, "fireScaleChangedEvent()", t);
+                log.warn("Exception in listener: " + t);
+                log.warn("fireScaleChangedEvent()", t);
               }
           }
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
      *
-     ******************************************************************************/
-    private void fireAngleChangedEvent ()
+     ******************************************************************************************************************/
+    private void fireAngleChangedEvent()
       {
         final EditableImageRendererEvent event = new EditableImageRendererEvent(this);
 
-        for (final EditableImageRendererListener listener : new ArrayList<EditableImageRendererListener>(listenerList))
+        for (final EditableImageRendererListener listener : new ArrayList<>(listenerList))
           {
             try
               {
@@ -1273,22 +1344,22 @@ public class EditableImageRenderer extends JComponent
               }
             catch (Throwable t)
               {
-                logger.warning("Exception in listener: " + t);
-                logger.throwing(CLASS, "fireAngleChangedEvent()", t);
+                log.warn("Exception in listener: " + t);
+                log.warn("fireAngleChangedEvent()", t);
               }
           }
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     protected void fireEditingToolActivated (final EditingTool editingTool)
       {
         final EditableImageRendererEvent event = new EditableImageRendererEvent(this, editingTool);
 
-        for (final EditableImageRendererListener listener : new ArrayList<EditableImageRendererListener>(listenerList))
+        for (final EditableImageRendererListener listener : new ArrayList<>(listenerList))
           {
             try
               {
@@ -1296,22 +1367,22 @@ public class EditableImageRenderer extends JComponent
               }
             catch (Throwable t)
               {
-                logger.warning("Exception in listener: " + t);
-                logger.throwing(CLASS, "fireEditingToolActivated()", t);
+                log.warn("Exception in listener: " + t);
+                log.warn("fireEditingToolActivated()", t);
               }
           }
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     protected void fireEditingToolDeactivated (final EditingTool editingTool)
       {
         final EditableImageRendererEvent event = new EditableImageRendererEvent(this, editingTool);
 
-        for (final EditableImageRendererListener listener : new ArrayList<EditableImageRendererListener>(listenerList))
+        for (final EditableImageRendererListener listener : new ArrayList<>(listenerList))
           {
             try
               {
@@ -1319,59 +1390,74 @@ public class EditableImageRenderer extends JComponent
               }
             catch (Throwable t)
               {
-                logger.warning("Exception in listener: " + t);
-                logger.throwing(CLASS, "fireEditingToolDeactivated()", t);
+                log.warn("Exception in listener: " + t);
+                log.warn("fireEditingToolDeactivated()", t);
               }
           }
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Updates the scrollbar cursors positions.
      *
-     **************************************************************************/
-    private void updateScrollBars ()
+     ******************************************************************************************************************/
+    private void updateScrollBars()
       {
         if (scrollBarsVisible)
           {
-            horizontalScrollBar.setValues(this.origin.x, (int)Math.round(getAvailableWidth() / scale), 0, image.getWidth());
-            verticalScrollBar.setValues(this.origin.y, (int)Math.round(getAvailableHeight() / scale), 0, image.getHeight());
+            horizontalScrollBar.setValues(this.origin.x,
+                                          (int)Math.round(getAvailableWidth() / scale),
+                                          0,
+                                          image.getWidth());
+            verticalScrollBar.setValues(this.origin.y,
+                                        (int)Math.round(getAvailableHeight() / scale),
+                                        0,
+                                        image.getHeight());
           }
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Lays out the scrollbars in their correct position.
      *
-     **************************************************************************/
-    private void layoutScrollBars ()
+     ******************************************************************************************************************/
+    private void layoutScrollBars()
       {
         if (scrollBarsVisible && ((previousWidth != getWidth()) || (previohsHeight != getHeight())))
           {
-            horizontalScrollBar.setBounds(0, getHeight() - scrollbarThickness, getWidth() - scrollbarThickness, scrollbarThickness);
-            verticalScrollBar.setBounds(getWidth() - scrollbarThickness, 0, scrollbarThickness, getHeight() - scrollbarThickness);
-            filler.setBounds(getWidth() - scrollbarThickness, getHeight() - scrollbarThickness, scrollbarThickness, scrollbarThickness);
+            horizontalScrollBar.setBounds(0,
+                                          getHeight() - scrollbarThickness,
+                                          getWidth() - scrollbarThickness,
+                                          scrollbarThickness);
+            verticalScrollBar.setBounds(getWidth() - scrollbarThickness,
+                                        0,
+                                        scrollbarThickness,
+                                        getHeight() - scrollbarThickness);
+            filler.setBounds(getWidth() - scrollbarThickness,
+                             getHeight() - scrollbarThickness,
+                             scrollbarThickness,
+                             scrollbarThickness);
             previousWidth = getWidth();
             previohsHeight = getHeight();
           }
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      * Returns the available width for rendering the image.
      *
-     **************************************************************************/
-    private int getAvailableWidth ()
+     ******************************************************************************************************************/
+    private int getAvailableWidth()
       {
         return getWidth() - (scrollBarsVisible ? scrollbarThickness : 0);
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      * Returns the available height for rendering the image.
      *
-     **************************************************************************/
-    private int getAvailableHeight ()
+     ******************************************************************************************************************/
+    private int getAvailableHeight()
       {
         return getHeight() - (scrollBarsVisible ? scrollbarThickness : 0);
       }

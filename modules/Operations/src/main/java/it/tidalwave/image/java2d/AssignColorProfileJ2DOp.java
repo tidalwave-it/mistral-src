@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2012 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,15 +17,15 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.java2d;
 
-import it.tidalwave.image.java2d.Java2DUtils;
 import javax.annotation.Nonnull;
 import javax.annotation.concurrent.Immutable;
 import java.awt.color.ColorSpace;
@@ -39,8 +42,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
  **********************************************************************************************************************/
 @Immutable @Slf4j
@@ -48,9 +50,9 @@ public class AssignColorProfileJ2DOp extends OperationImplementation<AssignColor
   {
     @Nonnull
     @Override
-    protected BufferedImage execute (final @Nonnull AssignColorProfileOp operation,
-                                     final @Nonnull EditableImage image,
-                                     final @Nonnull BufferedImage bufferedImage)
+    protected BufferedImage execute (@Nonnull final AssignColorProfileOp operation,
+                                     @Nonnull final EditableImage image,
+                                     @Nonnull final BufferedImage bufferedImage)
       {
         final ICC_Profile targetProfile = operation.getIccProfile();
         log.trace("assignColorProfile({})", ImageUtils.getICCProfileName(targetProfile));
@@ -59,7 +61,10 @@ public class AssignColorProfileJ2DOp extends OperationImplementation<AssignColor
         final ColorSpace colorSpace = new ICC_ColorSpace(targetProfile);
         final ColorModel colorModel = new ComponentColorModel(colorSpace, false, false, ColorModel.OPAQUE,
                                                               bufferedImage.getRaster().getDataBuffer().getDataType());
-        final BufferedImage result = new BufferedImage(colorModel, bufferedImage.getRaster(), false, Java2DUtils.getProperties(bufferedImage));
+        final BufferedImage result = new BufferedImage(colorModel,
+                                                       bufferedImage.getRaster(),
+                                                       false,
+                                                       Java2DUtils.getProperties(bufferedImage));
         Java2DUtils.logImage(log, ">>>> assignColorProfile() returning ", bufferedImage);
 
         return result;

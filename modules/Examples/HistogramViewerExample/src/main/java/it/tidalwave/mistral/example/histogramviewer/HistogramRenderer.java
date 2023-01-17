@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2012 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,15 +17,15 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.mistral.example.histogramviewer;
 
-import java.util.logging.Logger;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -30,19 +33,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import it.tidalwave.image.Histogram;
+import lombok.extern.slf4j.Slf4j;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
+@Slf4j
 public class HistogramRenderer extends JPanel
   {
-    private final static String CLASS = HistogramRenderer.class.getName();
-
-    private final static Logger logger = Logger.getLogger(CLASS);
-
     private static final String COMPUTING = "COMPUTING";
 
     private static final String EMPTY = "EMPTY";
@@ -61,12 +61,12 @@ public class HistogramRenderer extends JPanel
 
     private final CardLayout cardLayout = new CardLayout();
 
-    /*******************************************************************************
-     * 
-     * 
-     * 
-     *******************************************************************************/
-    public HistogramRenderer ()
+    /*******************************************************************************************************************
+     *
+     *
+     *
+     ******************************************************************************************************************/
+    public HistogramRenderer()
       {
         build();
         lbEmpty.setOpaque(false);
@@ -75,91 +75,87 @@ public class HistogramRenderer extends JPanel
         clear();
       }
 
-    /*******************************************************************************
-     * 
+    /*******************************************************************************************************************
+     *
      * @return Returns the histogram.
-     * 
-     *******************************************************************************/
+     *
+     ******************************************************************************************************************/
     public Histogram getHistogram()
       {
         return histogram;
       }
 
-    /*******************************************************************************
-     * 
-     * 
-     * 
-     *******************************************************************************/
+    /*******************************************************************************************************************
+     *
+     *
+     *
+     ******************************************************************************************************************/
     public void start()
       {
         lbComputing.setText("Computing histogram...");
       }
-    
-    /*******************************************************************************
-     * 
-     * 
-     * 
-     *******************************************************************************/
+
+    /*******************************************************************************************************************
+     *
+     *
+     *
+     ******************************************************************************************************************/
     public void clear()
       {
         cardLayout.show(this, EMPTY);
       }
-    
-    /*******************************************************************************
-     * 
-     * 
-     * 
-     *******************************************************************************/
+
+    /*******************************************************************************************************************
+     *
+     *
+     *
+     ******************************************************************************************************************/
     public void showComputing()
       {
         cardLayout.show(this, COMPUTING);
       }
 
-    /*******************************************************************************
-     * 
+    /*******************************************************************************************************************
+     *
      * @param histogram
-     * 
-     *******************************************************************************/
+     *
+     ******************************************************************************************************************/
     public void setHistogram (final Histogram histogram)
       {
         this.histogram = histogram;
 
-        SwingUtilities.invokeLater(new Runnable()
-          {
-            @Override
-            public void run ()
-              {
-                logger.finer(">>>> histogram ready...");
-                histogramPlotter.clearData();
-                //histogramPlotter.setXAxisLogarithmic(6);
-                histogramPlotter.setXAxisLinear();
-                grid.setHSteps(6);
+        SwingUtilities.invokeLater(() ->
+                                     {
+                                       log.trace(">>>> histogram ready...");
+                                       histogramPlotter.clearData();
+                                       //histogramPlotter.setXAxisLogarithmic(6);
+                                       histogramPlotter.setXAxisLinear();
+                                       grid.setHSteps(6);
 
-                int bandCount = histogram.getBandCount();
+                                       final int bandCount = histogram.getBandCount();
 
-                if (bandCount == 1)
-                  {
-                    histogramPlotter.addData("GRAY", histogram.getFrequencies(0), Color.WHITE);
-                  }
+                                       if (bandCount == 1)
+                                         {
+                                           histogramPlotter.addData("GRAY", histogram.getFrequencies(0), Color.WHITE);
+                                         }
 
-                else if (bandCount == 3)
-                  {
-                    histogramPlotter.addData("RED", histogram.getFrequencies(0), Color.RED);
-                    histogramPlotter.addData("GREEN", histogram.getFrequencies(1), Color.GREEN);
-                    histogramPlotter.addData("BLUE", histogram.getFrequencies(2), Color.BLUE);
-                  }
+                                       else if (bandCount == 3)
+                                         {
+                                           histogramPlotter.addData("RED", histogram.getFrequencies(0), Color.RED);
+                                           histogramPlotter.addData("GREEN", histogram.getFrequencies(1), Color.GREEN);
+                                           histogramPlotter.addData("BLUE", histogram.getFrequencies(2), Color.BLUE);
+                                         }
 
-                cardLayout.show(HistogramRenderer.this, HISTOGRAM);
-                logger.finer(">>>> showing histogram...");
-              }
-          });
+                                       cardLayout.show(HistogramRenderer.this, HISTOGRAM);
+                                       log.trace(">>>> showing histogram...");
+                                     });
       }
-    
-    /*******************************************************************************
-     * 
-     * 
-     * 
-     *******************************************************************************/
+
+    /*******************************************************************************************************************
+     *
+     *
+     *
+     ******************************************************************************************************************/
     private void build()
       {
         setLayout(cardLayout);
@@ -179,7 +175,7 @@ public class HistogramRenderer extends JPanel
         add(lbEmpty, EMPTY);
         add(lbComputing, COMPUTING);
         add(histogramPlotter, HISTOGRAM);
-        Dimension dimension = new Dimension(340, 80);
+        final Dimension dimension = new Dimension(340, 80);
         setMinimumSize(dimension);
         setPreferredSize(dimension);
         setSize(dimension);

@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2012 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,53 +17,52 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.mistral.example.histogramviewer;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 import javax.swing.JComponent;
 import it.tidalwave.image.render.Overlay;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class XYPlotter extends JComponent
   {
-    class DataBundle
+    static class DataBundle
       {
         private int[] data;
 
         private Color color;
 
-        public DataBundle (int[] data, Color color)
+        public DataBundle (final int[] data, final Color color)
           {
             this.data = data;
             this.color = color;
           }
 
-        public int[] getData ()
+        public int[] getData()
           {
             return data;
           }
 
-        public Color getColor ()
+        public Color getColor()
           {
             return color;
           }
@@ -78,9 +80,9 @@ public class XYPlotter extends JComponent
 
     private Overlay overlay;
 
-    public final static int LINEAR = 0;
+    public static final int LINEAR = 0;
 
-    public final static int LOG = 1;
+    public static final int LOG = 1;
 
     private int xMode = LINEAR;
 
@@ -92,54 +94,54 @@ public class XYPlotter extends JComponent
       {
         setOpaque(false);
       }
-    
-    /*******************************************************************************
-     * 
-     * 
-     * 
-     *******************************************************************************/
-    public void setXAxisLinear ()
+
+    /*******************************************************************************************************************
+     *
+     *
+     *
+     ******************************************************************************************************************/
+    public void setXAxisLinear()
       {
         this.xMode = LINEAR;
       }
 
-    /*******************************************************************************
-     * 
+    /*******************************************************************************************************************
+     *
      * @param logXBands
-     * 
-     *******************************************************************************/
-    public void setXAxisLogarithmic (int logXBands)
+     *
+     ******************************************************************************************************************/
+    public void setXAxisLogarithmic (final int logXBands)
       {
         this.logXBands = logXBands;
         this.xMode = LOG;
       }
 
-    /*******************************************************************************
-     * 
-     * 
-     * 
-     *******************************************************************************/
-    public void setAreaPlot ()
+    /*******************************************************************************************************************
+     *
+     *
+     *
+     ******************************************************************************************************************/
+    public void setAreaPlot()
       {
         area = true;
       }
 
-    /*******************************************************************************
-     * 
+    /*******************************************************************************************************************
+     *
      * @return
-     * 
-     *******************************************************************************/
-    public boolean isXAxisLogarithmic ()
+     *
+     ******************************************************************************************************************/
+    public boolean isXAxisLogarithmic()
       {
         return xMode == LOG;
       }
 
-    /*******************************************************************************
-     * 
-     * 
-     * 
-     *******************************************************************************/
-    public void clearData ()
+    /*******************************************************************************************************************
+     *
+     *
+     *
+     ******************************************************************************************************************/
+    public void clearData()
       {
         dataList.clear();
         dataMap.clear();
@@ -148,16 +150,16 @@ public class XYPlotter extends JComponent
         buffer = null;
       }
 
-    /*******************************************************************************
-     * 
+    /*******************************************************************************************************************
+     *
      * @param key
      * @param data
      * @param color
-     * 
-     *******************************************************************************/
-    public void addUnsignedData (Object key, short[] data, Color color)
+     *
+     ******************************************************************************************************************/
+    public void addUnsignedData (final Object key, final short[] data, final Color color)
       {
-        int[] data2 = new int[data.length];
+        final int[] data2 = new int[data.length];
 
         for (int i = 0; i < data.length; i++)
           {
@@ -167,22 +169,21 @@ public class XYPlotter extends JComponent
         addData(key, data2, color);
       }
 
-    /*******************************************************************************
-     * 
+    /*******************************************************************************************************************
+     *
      * @param key
      * @param data
      * @param color
-     * 
-     *******************************************************************************/
-    public void addData (Object key, int[] data, Color color)
+     *
+     ******************************************************************************************************************/
+    public void addData (final Object key, final int[] data, final Color color)
       {
         buffer = null;
-        int[] myData = new int[data.length];
+        final int[] myData = new int[data.length];
         System.arraycopy(data, 0, myData, 0, data.length);
 
-        for (int i = 0; i < myData.length; i++)
+        for (final int d : myData)
           {
-            int d = myData[i];
             max = Math.max(max, d);
             min = Math.min(min, d);
           }
@@ -191,18 +192,20 @@ public class XYPlotter extends JComponent
         dataList.add(key);
 
         if (isVisible())
-          repaint();
+          {
+            repaint();
+          }
 
         //        System.err.println("Data: " + data.length + " max: " + max + " min: " + min);
       }
 
-    /*******************************************************************************
-     * 
-     * @inheritDoc
-     * 
-     *******************************************************************************/
+    /*******************************************************************************************************************
+     *
+     * {@inheritDoc}
+     *
+     ******************************************************************************************************************/
     @Override
-    public void paint (Graphics g)
+    public void paint (final Graphics g)
       {
         if ((buffer == null) || (buffer.getWidth() != getWidth()) || (buffer.getHeight() != getHeight()))
           {
@@ -238,34 +241,36 @@ public class XYPlotter extends JComponent
           }
 
         else
-          plot(g);
+          {
+            plot(g);
+          }
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Sets an overlay to overimpose to the image.
      *
      * @param  overlay  the overlay
      *
-     ******************************************************************************/
-    public void setOverlay (Overlay overlay)
+     ******************************************************************************************************************/
+    public void setOverlay (final Overlay overlay)
       {
         this.overlay = overlay;
       }
 
-    /*******************************************************************************
-     * 
+    /*******************************************************************************************************************
+     *
      * @param g
-     * 
-     *******************************************************************************/
-    private void plot (Graphics g)
+     *
+     ******************************************************************************************************************/
+    private void plot (final Graphics g)
       {
-        Graphics2D g2 = (Graphics2D)g.create();
+        final Graphics2D g2 = (Graphics2D)g.create();
 
         try
           {
-            int width = getSize().width;
-            int height = getSize().height;
+            final int width = getSize().width;
+            final int height = getSize().height;
 
             g.setColor(new Color(0, 0, 0, 0));
             g.fillRect(0, 0, width, height);
@@ -280,7 +285,7 @@ public class XYPlotter extends JComponent
 
             if (xMode == LOG)
               {
-                double xMinNorm = 1 / Math.pow(2, logXBands);
+                final double xMinNorm = 1 / Math.pow(2, logXBands);
                 f = 1.0 / (logXBands * Math.log(2));
                 xMin = (int)Math.round(xMinNorm * width);
               }
@@ -292,11 +297,10 @@ public class XYPlotter extends JComponent
 
             int yMax = Integer.MIN_VALUE;
 
-            for (Iterator j = dataList.iterator(); j.hasNext();)
+            for (final Object key : dataList)
               {
-                Object key = j.next();
-                DataBundle dataBundle = (DataBundle)dataMap.get(key);
-                int[] data = dataBundle.getData();
+                final DataBundle dataBundle = (DataBundle)dataMap.get(key);
+                final int[] data = dataBundle.getData();
 
                 for (int i = xMin; i < data.length; i++)
                   {
@@ -304,18 +308,18 @@ public class XYPlotter extends JComponent
                   }
               }
 
-            double yScale = (double)height / (double)yMax;
+            final double yScale = (double)height / (double)yMax;
 
-            for (Iterator j = dataMap.values().iterator(); j.hasNext();)
+            for (Object o : dataMap.values())
               {
-                DataBundle dataBundle = (DataBundle)j.next();
+                final DataBundle dataBundle = (DataBundle)o;
                 g.setColor(dataBundle.getColor());
-                int[] data = dataBundle.getData();
-                int mask = dataBundle.getColor().getRGB();
+                final int[] data = dataBundle.getData();
+                final int mask = dataBundle.getColor().getRGB();
 
                 boolean first = true;
-                int length = data.length;
-                double xScale = (double)width / (double)length;
+                final int length = data.length;
+                final double xScale = (double)width / (double)length;
                 int prevX = 0, prevY = 0;
 
                 for (int i = xMin; i < length; i++)
@@ -334,7 +338,7 @@ public class XYPlotter extends JComponent
                         x = (int)Math.round(xNorm * width);
                       }
 
-                    int y = height - (int)Math.round(data[i] * yScale);
+                    final int y = height - (int)Math.round(data[i] * yScale);
 
                     if (!first)
                       {
@@ -349,7 +353,7 @@ public class XYPlotter extends JComponent
                               {
                                 for (int yy = y; yy < height; yy++)
                                   {
-                                    int rgb = buffer.getRGB(xx, yy);
+                                    final int rgb = buffer.getRGB(xx, yy);
                                     buffer.setRGB(xx, yy, rgb | mask);
                                   }
 

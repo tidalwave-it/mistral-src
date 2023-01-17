@@ -1,0 +1,51 @@
+EXIF [33434] Exposure Time: 1/250
+EXIF [33437] F Number: 8/1
+EXIF [34850] Exposure Program: 1
+EXIF [34855] ISO Speed Ratings: 100
+EXIF [34864] null: 2
+EXIF [36864] EXIF Version: [48, 50, 51, 48]
+EXIF [36867] Date/Time Original: 2012:10:06 11:15:48
+EXIF [36868] Date/Time Digitized: 2012:10:06 11:15:48
+EXIF [37377] Shutter SpeedValue: 7965784/1000000
+EXIF [37378] Aperture Value: 6/1
+EXIF [37380] Exposure Bias Value: -6/6
+EXIF [37381] Max Aperture Value: 40/10
+EXIF [37383] Metering Mode: 5
+EXIF [37384] Light Source: 0
+EXIF [37385] Flash: 0
+EXIF [37386] Focal Length: 220/10
+EXIF [37521] Subsec Time Original: 4
+EXIF [37522] Subsec Time Digitized: 4
+EXIF [41495] Sensing Method: 2
+EXIF [41728] File Source: [3]
+EXIF [41729] Scene Type: [1]
+EXIF [41730] EXIF CFA Pattern: [2, 0, 2, 0, 0, 1, 1, 2]
+EXIF [41985] Custom Rendered: 0
+EXIF [41986] Exposure Mode: 1
+EXIF [41987] White Balance: 0
+EXIF [41988] Digital Zoom Ratio: 1/1
+EXIF [41989] Focal Length 35mm Film: 33
+EXIF [41990] Scene Capture Type: 0
+EXIF [41991] Gain Control: 0
+EXIF [41992] Contrast: 0
+EXIF [41993] Saturation: 0
+EXIF [41994] Sharpness: 0
+EXIF [41996] Subject Distance Range: 0
+EXIF [42033] BodySerialNumber: 6286813
+EXIF [42034] LensSpecification: [120/10, 240/10, 40/10, 40/10]
+EXIF [42036] LensModel: 12.0-24.0 mm f/4.0
+EXIF dateTimeOriginalAsDate: 2012-10-06T11:15:48.040Z
+EXIF dateTimeDigitizedAsDate: 2012-10-06T11:15:48.040Z
+IPTC [346] null: UTF-8
+IPTC [512] null: 4
+IPTC [517] null: St. Moritzersee im Herbst.
+IPTC [567] null: 20121006
+IPTC [572] null: 111548
+IPTC [574] null: 20121006
+IPTC [575] null: 111548
+IPTC [592] null: Fabrizio Giudici
+IPTC [597] null: Photographer
+IPTC [622] null: Fabrizio Giudici
+IPTC [627] null: Fabrizio Giudici
+IPTC [628] null: © Copyright by Fabrizio Giudici. All rights reserved.
+IPTC [634] null: Fabrizio Giudici

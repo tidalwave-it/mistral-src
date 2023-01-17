@@ -1,0 +1,48 @@
+EXIF [33434] Exposure Time: 1/250
+EXIF [33437] F Number: 28/10
+EXIF [34850] Exposure Program: 3
+EXIF [34855] ISO Speed Ratings: 100
+EXIF [34864] null: 2
+EXIF [34866] RecommendedExposureIndex: 100
+EXIF [36864] EXIF Version: [48, 50, 51, 48]
+EXIF [36867] Date/Time Original: 2017:04:03 15:04:02
+EXIF [36868] Date/Time Digitized: 2017:04:03 14:04:02
+EXIF [37377] Shutter SpeedValue: 7965784/1000000
+EXIF [37378] Aperture Value: 2970854/1000000
+EXIF [37379] Brightness Value: 3794/2560
+EXIF [37380] Exposure Bias Value: -7/10
+EXIF [37381] Max Aperture Value: 0/10
+EXIF [37383] Metering Mode: 5
+EXIF [37384] Light Source: 1
+EXIF [37385] Flash: 16
+EXIF [37386] Focal Length: 50/1
+EXIF [40961] Color Space: 1
+EXIF [41486] Focal Plane X Resolution: 68784793/32768
+EXIF [41487] Focal Plane Y Resolution: 68784793/32768
+EXIF [41488] Focal Plane ResolutionUnit: 3
+EXIF [41728] File Source: [3]
+EXIF [41729] Scene Type: [1]
+EXIF [41985] Custom Rendered: 0
+EXIF [41986] Exposure Mode: 2
+EXIF [41987] White Balance: 1
+EXIF [41988] Digital Zoom Ratio: 16/16
+EXIF [41989] Focal Length 35mm Film: 75
+EXIF [41990] Scene Capture Type: 0
+EXIF [41992] Contrast: 1
+EXIF [41993] Saturation: 0
+EXIF [41994] Sharpness: 1
+EXIF [42036] LensModel: Nikkor AF-D 50.0 mm f/1.8
+IPTC [346] null: UTF-8
+IPTC [512] null: 4
+IPTC [517] null: Anemone con denti brevi (Anemonoides trifolia brevidentata).
+IPTC [537] null: [@new tags, Anemonoides, Anemonoides trifolia, Anemonoides trifolia brevidentata, Angiospermae, Dicotiledoni, Eudicotiledoni, Eukaryota, Magnoliophyta, Magnoliopsida, Plantae, Ranunculaceae, Ranunculales, Taxonomy, Workflow, anemone con denti brevi, anemone trifolia, anémone noble, edit process 2013-09-14, flower, focusing helicoid, landscape, leaves, macro, photography, shadow, tagged, three-leaved anemone]
+IPTC [567] null: 20170403
+IPTC [572] null: 150402
+IPTC [574] null: 20170403
+IPTC [575] null: 140402
+IPTC [592] null: Fabrizio Giudici
+IPTC [597] null: Photographer
+IPTC [622] null: Fabrizio Giudici
+IPTC [627] null: Fabrizio Giudici
+IPTC [628] null: © Copyright by Fabrizio Giudici. All rights reserved.
+IPTC [634] null: Fabrizio Giudici

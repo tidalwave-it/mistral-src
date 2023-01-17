@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2012 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,47 +17,64 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image;
 
-import it.tidalwave.image.EditableImage;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.AssertJUnit;
-import java.util.logging.Logger;
-import java.util.logging.Handler;
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
+import javax.annotation.Nonnull;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.stream.Stream;
 import java.security.MessageDigest;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import it.tidalwave.util.Pair;
+import it.tidalwave.image.metadata.Directory;
+import it.tidalwave.image.metadata.EXIF;
 import it.tidalwave.image.op.ReadOp;
-import it.tidalwave.util.logging.SingleLineLogFormatter;
+import lombok.extern.slf4j.Slf4j;
+import org.testng.AssertJUnit;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import static org.junit.Assert.assertThat;
+import static org.testng.AssertJUnit.*;
+import static org.hamcrest.CoreMatchers.*;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
+@Slf4j
 public abstract class BaseTestSupport
   {
-    protected static final Logger logger = Logger.getLogger("TEST");
+    protected static final String P_TS_STOPPINGDOWN_100_20230116 = "testSet.stoppingdown_100_20230116.folder";
+    protected static final Path TEST_SD100_FOLDER =
+            Path.of(System.getProperty(P_TS_STOPPINGDOWN_100_20230116,
+                    "(WARNING: property '" + P_TS_STOPPINGDOWN_100_20230116 + "' missing)"));
+
     protected static final String tmp = System.getProperty("java.io.tmpdir");
     protected static File imageFolder = new File(System.getProperty("it.tidalwave.image.test.folder", ""));
     protected static final File file_timezones32_png;
     /*
+     * THIS INFO IS OBSOLETE.
+     *
      * The images required for testing are not part of the distributions since they are several megabytes large.
      * You have to:
      *
@@ -65,8 +85,8 @@ public abstract class BaseTestSupport
      * The first test run will download once and for all the required test images.
      *
      */
-    protected static final File file_20030701_0043_jpg;
-    protected static final File file_20060603_0002_jpg;
+    protected static final Path file_20030701_0043_jpg;
+    protected static final Path file_20060603_0002_jpg;
     protected static final File file_20030701_0043_nef;
     protected static File file_L4840172_dng;
     protected static final File file_w1_tiff;
@@ -79,6 +99,9 @@ public abstract class BaseTestSupport
     protected EditableImage imgIPTC1_jpg;
     protected EditableImage fax1_tif;
 
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
     static
       {
         if (!imageFolder.exists())
@@ -94,148 +117,225 @@ public abstract class BaseTestSupport
               }
           }
 
-        file_20030701_0043_jpg = downloadFile("https://mistral.dev.java.net/images/20030701-0043.jpg");
-        file_20060603_0002_jpg = downloadFile("https://mistral.dev.java.net/images/20060603-0002.jpg");
+        file_20030701_0043_jpg = TEST_SD100_FOLDER.resolve("20030701-0043.jpg");
+        file_20060603_0002_jpg = TEST_SD100_FOLDER.resolve("20060603-0002.jpg");
         file_20030701_0043_nef = downloadFile("https://mistral.dev.java.net/images/20030701-0043.NEF");
 //        file_L4840172_dng      = downloadFile("http://www.digitalworld.com.bn/images/dmr_test/raw/L4840172.DNG");
-        file_timezones32_png   = downloadFile("https://mistral.dev.java.net/images/timezones32.png");
-        file_w1_tiff           = downloadFile("https://mistral.dev.java.net/images/w1.tif");
+        file_timezones32_png = downloadFile("https://mistral.dev.java.net/images/timezones32.png");
+        file_w1_tiff = downloadFile("https://mistral.dev.java.net/images/w1.tif");
         file_uncompressed_tiff = downloadFile("https://mistral.dev.java.net/images/uncompressed.tif");
-        file_fax1_tif          = downloadFile("https://mistral.dev.java.net/images/Fax_1.tif");
-        file_IPTC1_jpg         = downloadFile("https://mistral.dev.java.net/images/AgencyPhotographer-Example.jpg");
-
-//
-//        try
-//          {
-//            InputStream is = BaseTestSupport.class.getResourceAsStream("log.properties");
-//            LogManager.getLogManager().readConfiguration(is);
-//            is.close();
-//            new File("log").mkdirs();
-//          }
-//        catch (Exception e)
-//          {
-//            e.printStackTrace();
-//          }
+        file_fax1_tif = downloadFile("https://mistral.dev.java.net/images/Fax_1.tif");
+        file_IPTC1_jpg = downloadFile("https://mistral.dev.java.net/images/AgencyPhotographer-Example.jpg");
       }
 
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
     protected BaseTestSupport()
       {
       }
 
-    protected static File downloadFile (String urlString)
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    protected static File downloadFile (final String urlString)
       {
-        try
-          {
-            URL url = new URL(urlString);
-            File file = new File(imageFolder, "From The Web/" + url.getHost() + "/" + url.getPath());
-
-            if (!file.exists())
-              {
-                System.err.println("Downloading test file from " + url + " - I'll do this only once");
-                URLConnection connection = url.openConnection();
-                int contentLenght = connection.getContentLength();
-                System.err.println("    " + contentLenght + " bytes");
-                InputStream is = connection.getInputStream();
-                file.getParentFile().mkdirs();
-                OutputStream os = new BufferedOutputStream(new FileOutputStream(file));
-                byte[] buffer = new byte[512 * 1024];
-                int done = 0;
-                int previousPerc = 0;
-
-                for (;;)
-                  {
-                    int n = is.read(buffer);
-
-                    if (n <= 0)
-                      {
-                        break;
-                      }
-
-                    os.write(buffer, 0, n);
-                    done += n;
-                    int perc = (100 * done) / contentLenght;
-
-                    if (perc != previousPerc)
-                      {
-                        previousPerc = perc;
-                        System.err.print("Downloading test file from " + url + " - " + perc + "%...\n");
-                      }
-                  }
-
-                System.err.println("Downloading test file from " + url + " - done");
-                is.close();
-                os.close();
-              }
-
-            return file;
-          }
-        catch (IOException e)
-          {
-            e.printStackTrace();
-            return null;
-          }
+        return null;
       }
 
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
     @BeforeMethod
-	public void setUp()
-      throws Exception
+    public void setUp()
+            throws Exception
       {
+        /*
         final long maxMemory = Runtime.getRuntime().maxMemory();
         AssertJUnit.assertTrue("Must set -Xmx512M: " + maxMemory, maxMemory >= 500000000);
-        AssertJUnit.assertTrue(file_20030701_0043_jpg.exists());
-        AssertJUnit.assertTrue(file_20060603_0002_jpg.exists());
-        AssertJUnit.assertTrue(file_20030701_0043_nef.exists());
-        img20030701_0043_jpg = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
-        img20060603_0002_jpg = EditableImage.create(new ReadOp(file_20060603_0002_jpg));
         imgIPTC1_jpg = EditableImage.create(new ReadOp(file_IPTC1_jpg));
         fax1_tif = EditableImage.create(new ReadOp(file_fax1_tif));
+        */
+        img20030701_0043_jpg = Files.exists(file_20030701_0043_jpg) ?
+                               EditableImage.create(new ReadOp(file_20030701_0043_jpg)) : null;
+        img20060603_0002_jpg = Files.exists(file_20060603_0002_jpg) ?
+                               EditableImage.create(new ReadOp(file_20060603_0002_jpg)) : null;
       }
 
-    @BeforeClass
-    public static void setupLogging()
-      throws Exception
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    protected void _testProperties (final Path file,
+                                    final int expectedWidth,
+                                    final int expectedHeight,
+                                    final int expectedBandCount,
+                                    final int expectedBitsPerBand,
+                                    final int expectedBitsPerPixel,
+                                    final EditableImage.DataType expectedDataType)
+            throws IOException
+      {
+        final EditableImage image = EditableImage.create(new ReadOp(file));
+        final int width = image.getWidth();
+        final int height = image.getHeight();
+        final int bandCount = image.getBandCount();
+        final int bitsPerBand = image.getBitsPerBand();
+        final int bitsPerPixel = image.getBitsPerPixel();
+        final EditableImage.DataType dataType = image.getDataType();
+
+        assertEquals(expectedWidth, width);
+        assertEquals(expectedHeight, height);
+        assertEquals(expectedBandCount, bandCount);
+        assertEquals(expectedBitsPerBand, bitsPerBand);
+        assertEquals(expectedBitsPerPixel, bitsPerPixel);
+        assertEquals(expectedDataType, dataType);
+
+        log.info(">>>> File:           " + file);
+        log.info(">>>> Size:           " + width + " x " + height);
+        log.info(">>>> Bands:          " + bandCount);
+        log.info(">>>> Bits per bands: " + bitsPerBand);
+        log.info(">>>> Bits per pixel: " + bitsPerPixel);
+        log.info(">>>> Data type:      " + dataType);
+      }
+
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    @DataProvider
+    protected static Object[][] stoppingDownImages()
+            throws IOException
+      {
+        if (!Files.exists(TEST_SD100_FOLDER))
+          {
+            log.warn("TEST SET PATH NOT FOUND: {}", TEST_SD100_FOLDER);
+            return new Object[0][1];
+          }
+
+        final int limit = Boolean.getBoolean("it.tidalwave-ci.skipLongTests") ? 100 : 99999;
+
+        try (final Stream<Path> s = Files.list(TEST_SD100_FOLDER))
+          {
+            return s.filter(p -> p.getFileName().toString().endsWith(".jpg"))
+                    .sorted()
+                    .limit(limit)
+                    .map(p -> new Object[]{p})
+                    .toArray(Object[][]::new);
+          }
+      }
+
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    /*
+    private void dump (final Directory directory)
+            throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+      {
+        final String name = directory.getClass().getSimpleName();
+
+        for (final int tag : directory.getTagCodes())
+          {
+            String string = "???";
+            String type = "???";
+            final Object value = directory.getObject(tag);
+
+            if (value == null)
+              {
+                string = "null";
+                type = "null";
+              }
+            else if (!value.getClass().isArray())
+              {
+                string = value.toString();
+                type = value.getClass().getSimpleName();
+              }
+            else
+              {
+                string = (String)Arrays.class.getMethod("toString", value.getClass()).invoke(null, value);
+                type = value.getClass().getSimpleName();
+              }
+
+            System.err.printf("%5d %-10s %-30s %-10s %s\n", tag, name, directory.getTagName(tag), type, string);
+          }
+      }
+    */
+
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    protected static void dumpTags (@Nonnull final String directoryName,
+                                    @Nonnull final Directory directory,
+                                    @Nonnull final Consumer<String> consumer)
+      {
+        for (final int tag : directory.getTagCodes())
+          {
+            Object value = directory.getObject(tag);
+
+            if (value instanceof byte[])
+              {
+                value = Arrays.toString((byte[])value);
+              }
+            else if (value instanceof Rational[])
+              {
+                value = Arrays.toString((Rational[])value);
+              }
+            else if (value instanceof Object[])
+              {
+                value = Arrays.toString((Object[])value);
+              }
+            else if (value instanceof Date)
+              {
+                value = ((Date)value).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+                                     .format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+              }
+
+            final String s = String.format("%s [%d] %s: %s", directoryName, tag, directory.getTagName(tag), value);
+            // log.info("{}", s);
+            consumer.accept(s);
+          }
+
+        if (directory instanceof EXIF)
+          {
+            final EXIF exif = (EXIF)directory;
+            final List<Pair<String, Function<EXIF, Optional<Instant>>>> x = List.of(
+                    Pair.of("dateTimeAsDate", EXIF::getDateTimeAsDate),
+                    Pair.of("dateTimeOriginalAsDate", EXIF::getDateTimeOriginalAsDate),
+                    Pair.of("dateTimeDigitizedAsDate", EXIF::getDateTimeDigitizedAsDate));
+            x.forEach(p ->
+                    p.b.apply(exif).ifPresent(i -> consumer.accept(String.format("%s %s: %s", directoryName, p.a, i))));
+          }
+      }
+
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    protected static <T> void assertOptionalEquals (final T expected, final Optional<T> actual)
+      {
+        assertTrue("Empty optional", actual.isPresent());
+        assertThat(actual.get(), is(expected));
+      }
+
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    protected static void assertOptionalEquals (final double expected, final Optional<Rational> actual)
+      {
+        assertTrue("Empty optional", actual.isPresent());
+        assertThat(actual.get().doubleValue(), is(expected));
+      }
+
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    protected void assertChecksum (final String expectedChecksum, final File file)
       {
         try
           {
-//            final InputStream is = BaseTestSupport.class.getResourceAsStream("log.properties");
-//            LogManager.getLogManager().readConfiguration(is);
-//            is.close();
+            final MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+            final byte[] buffer = new byte[128 * 1024];
+            final InputStream is = new BufferedInputStream(Files.newInputStream(file.toPath()));
 
-            //
-            // The formatter must be set programmatically as the property in the log.properties won't
-            // be honored. I suspect it is related with NetBeans module classloaders as the formatter
-            // is loaded inside LogManager by using the SystemClassLoader, which only sees the classpath.
-            //
-            final SingleLineLogFormatter formatter = new SingleLineLogFormatter();
-            Logger rootLogger = Logger.getLogger(BaseTestSupport.class.getName());
-
-            while (rootLogger.getParent() != null)
+            for (; ; )
               {
-                rootLogger = rootLogger.getParent();
-              }
-
-            for (final Handler handler : rootLogger.getHandlers())
-              {
-                handler.setFormatter(formatter);
-              }
-          }
-        catch (Exception e)
-          {
-            e.printStackTrace();
-          }
-      }
-
-    protected void assertChecksum (String expectedChecksum, File file)
-      {
-        try
-          {
-            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-            byte[] buffer = new byte[128 * 1024];
-            InputStream is = new BufferedInputStream(new FileInputStream(file));
-
-            for (;;)
-              {
-                int n = is.read(buffer);
+                final int n = is.read(buffer);
 
                 if (n <= 0)
                   {
@@ -246,8 +346,8 @@ public abstract class BaseTestSupport
               }
 
             is.close();
-            byte[] digest = messageDigest.digest();
-            String checksum = toString(digest);
+            final byte[] digest = messageDigest.digest();
+            final String checksum = toString(digest);
             AssertJUnit.assertEquals("Unxepected checksum for file " + file, expectedChecksum, checksum);
           }
         catch (Exception e)
@@ -256,18 +356,16 @@ public abstract class BaseTestSupport
           }
       }
 
-    protected void log (String message)
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    private static String toString (final byte[] bytes)
       {
-        logger.info("**** " + message);
-      }
+        final StringBuilder stringBuilder = new StringBuilder();
 
-    private static String toString (byte[] bytes)
-      {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        for (int i = 0; i < bytes.length; i++)
+        for (byte aByte : bytes)
           {
-            String s = Integer.toHexString(bytes[i] & 0xff);
+            final String s = Integer.toHexString(aByte & 0xff);
 
             if (s.length() < 2)
               {

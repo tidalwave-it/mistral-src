@@ -1,0 +1,157 @@
+group bluemarine;
+
+enumDecl(item) ::= <<
+         $item.identifierName$($item.value$, "$item.name$"),$\n$
+>>
+
+enumIf(type) ::= <<
+             if (value == $type.value$) return $type.identifierName$;$\n$
+>>
+
+printDescriptionTags(records) ::= <<
+    @Override @Nonnull
+    public String getTagName (int tag)
+      {
+        return descriptionMapByTag.get(tag);
+      }
+    static
+      {
+        $records: {record | descriptionMapByTag.put($record.id$, "$record.tagName$");$\n$}$
+      }
+>>
+
+printMemberDecl(records) ::= <<
+    $records: {record | public final static int $record.constTagName$ = $record.id$;$\n$}$
+>>
+
+printEnumRecord(record) ::= <<
+
+    /*******************************************************************************************************************
+     *
+     * Enumeration for representing the possible values of tag $record.capitalizedTagName$.
+     *
+     ******************************************************************************************************************/
+    public static enum $record.capitalizedTagName$
+       {
+         $record.enums: { enum | $enumDecl(item = enum)$ }$
+         _UNKNOWN(-1, "_unknown_");
+
+         private final static long serialVersionUID = 3059468666726854749L;
+         private final int value;
+         private final String name;
+
+         private $record.capitalizedTagName$ (final int value, final String name)
+           {
+             this.value = value;
+             this.name = name;
+           }
+
+         public int getValue()
+           {
+             return value;
+           }
+
+         @Nonnull
+         public static $record.capitalizedTagName$ fromInteger (int value)
+           {
+             $record.enums: { enum | $enumIf(type = enum)$ }$
+             return _UNKNOWN;
+           }
+       }
+
+>>
+
+printRecord(record) ::= <<
+$if(record.hasEnums)$$printEnumRecord(record = record)$$endif$
+    /*******************************************************************************************************************
+     *
+     * Sets the property {@code $record.constTagName$}. If the value is changed, property change events will be fired
+     * for {@code "$record.uncapitalizedTagName$"} and {@code "latestModificationTime}.
+     *
+     * @param   $record.uncapitalizedTagName$     the new value of {@code $record.constTagName$}
+     *
+     ******************************************************************************************************************/
+    public void set$record.capitalizedTagName$ (@Nonnull final $record.javaType$ $record.uncapitalizedTagName$)
+      {
+        requireNonNull($record.uncapitalizedTagName$, "$record.uncapitalizedTagName$");
+        set$record.capitalizedTagName$(Optional.of($record.uncapitalizedTagName$));
+      }
+
+    /*******************************************************************************************************************
+     *
+     * Sets the property {@code $record.constTagName$}. If the value is changed, property change events will be fired
+     * for {@code "$record.uncapitalizedTagName$"} and {@code "latestModificationTime}.
+     *
+     * @param   $record.uncapitalizedTagName$     the new value of {@code $record.constTagName$}
+     *
+     ******************************************************************************************************************/
+    public void set$record.capitalizedTagName$ (@Nonnull final Optional<$record.javaType$> $record.uncapitalizedTagName$)
+      {
+        requireNonNull($record.uncapitalizedTagName$, "$record.uncapitalizedTagName$");
+        final Optional<$record.javaType$> oldValue = get$record.capitalizedTagName$();
+        final boolean oldAvailable = isAvailable();
+        final Instant oldLatestModificationTime = getLatestModificationTime();
+        setObject($class_name$.$record.constTagName$, $record.uncapitalizedTagName$);
+        propertyChangeSupport.firePropertyChange("$record.uncapitalizedTagName$", oldValue, $record.uncapitalizedTagName$);
+        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
+        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+      }
+
+    /*******************************************************************************************************************
+     *
+     * Gets the property {@code $record.constTagName$}.
+     *
+     * @return  the current value of $record.uncapitalizedTagName$
+     *
+     ******************************************************************************************************************/
+    @Nonnull
+    public Optional<$record.javaType$> get$record.capitalizedTagName$()
+      {
+        return getObject($record.constTagName$, $record.javaType$.class);
+      }
+>>
+
+testIsAvailable(record) ::= <<
+is$record.capitalizedTagName$Available()$\n$
+>>
+
+printIsAvailable(records) ::= <<
+    public boolean isAvailable()
+      {
+        return $testIsAvailable(first(records))$$rest(records):{ record |              | $testIsAvailable(record)$}$;
+      }
+>>
+
+generator(creation_date, class_name, records) ::= <<
+package it.tidalwave.image.metadata;
+
+import javax.annotation.Nonnull;
+import java.time.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import it.tidalwave.image.Rational;
+import static java.util.Objects.requireNonNull;
+
+/* Automatically generated on $creation_date$ - DO NOT EDIT! */
+
+public class $class_name$ extends Directory
+  {
+    private final static long serialVersionUID = 2056233055989339523L;
+    private final static Map<Integer, String> descriptionMapByTag = new HashMap<>();
+
+    public $class_name$()
+      {
+      }
+
+    public $class_name$ (final Instant latestModificationTime)
+      {
+        super(latestModificationTime);
+      }
+
+$printMemberDecl(records)$
+$printDescriptionTags(records)$
+$printRecord(first(records))$$rest(records):{record|$\n$$printRecord(record)$}$
+  }
+
+>>

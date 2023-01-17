@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="image-renderer" />
+        <module name="image-operations" />
+        <module name="code-generator" />
+        <module name="image-core" />
+        <module name="image-examples-histogramviewer" />
+        <module name="image-contributions" />
+        <module name="image-examples-customoperation" />
+        <module name="image-examples-miscellaneous" />
+        <module name="image-examples-viewer" />
+        <module name="image-processor" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="CodeGenerator" target="1.8" />
+      <module name="image-plugin-jai" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="CodeGenerator" options="-Xlint:all" />
+      <module name="code-generator" options="-Xlint:all" />
+      <module name="image" options="-Xlint:all" />
+      <module name="image-contributions" options="-Xlint:all" />
+      <module name="image-core" options="-Xlint:all" />
+      <module name="image-examples" options="-Xlint:all" />
+      <module name="image-examples-customoperation" options="-Xlint:all" />
+      <module name="image-examples-histogramviewer" options="-Xlint:all" />
+      <module name="image-examples-miscellaneous" options="-Xlint:all" />
+      <module name="image-examples-viewer" options="-Xlint:all" />
+      <module name="image-modules" options="-Xlint:all" />
+      <module name="image-operations" options="-Xlint:all" />
+      <module name="image-plugin-jai" options="-Xlint:all" />
+      <module name="image-processor" options="-Xlint:all" />
+      <module name="image-renderer" options="-Xlint:all" />
+    </option>
+  </component>
+</project>

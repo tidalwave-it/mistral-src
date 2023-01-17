@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2012 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,12 +17,13 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.metadata;
 
 import javax.annotation.Nonnull;
@@ -38,8 +42,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
  **********************************************************************************************************************/
 @Slf4j
@@ -50,13 +53,15 @@ public class WorkaroundBM25
         JpegMetadataReader.class.getName(); // Check if Drew stuff is in the classpath 
       }
 
-    public void loadExifAndIptcFromJpeg (final @Nonnull ImageReader reader, 
-                                         final @Nonnull EXIF exif, 
-                                         final @Nonnull IPTC iptc,
-                                         final @Nonnull XMP xmp)
-      throws IOException, JpegProcessingException
+    public void loadExifAndIptcFromJpeg (@Nonnull final ImageReader reader,
+                                         @Nonnull final TIFF tiff,
+                                         @Nonnull final EXIF exif,
+                                         @Nonnull final IPTC iptc,
+                                         @Nonnull final XMP xmp)
+            throws IOException, JpegProcessingException
       {
-        // See http://bluemarine.tidalwave.it/issues/browse/BM-25 and http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4924909
+        // See http://bluemarine.tidalwave.it/issues/browse/BM-25 and http://bugs.sun.com/bugdatabase/view_bug
+        // .do?bug_id=4924909
         log.info("Workaround for bug BM-25");
 
         final ImageInputStream iis = (ImageInputStream)reader.getInput();
@@ -67,7 +72,7 @@ public class WorkaroundBM25
           {
             @Override
             public int available()
-              throws IOException
+                    throws IOException
               {
                 long l = iis.length();
 
@@ -81,23 +86,26 @@ public class WorkaroundBM25
 
             @Override
             public int read()
-              throws IOException
+                    throws IOException
               {
                 return iis.read();
               }
           };
 
         final Metadata metadata = JpegMetadataReader.readMetadata(is);
-        final DirectoryDrewAdapter exifAdatpter = new DirectoryDrewAdapter(metadata.getDirectory(ExifSubIFDDirectory.class));
-        exif.loadFromAdapter(exifAdatpter);
-        final DirectoryDrewAdapter iptcAdatpter = new DirectoryDrewAdapter(metadata.getDirectory(IptcDirectory.class));
-        iptc.loadFromAdapter(iptcAdatpter);
+        final DirectoryDrewAdapter exifAdapter =
+                new DirectoryDrewAdapter(metadata.getFirstDirectoryOfType(ExifSubIFDDirectory.class));
+        exif.loadFromAdapter(exifAdapter);
+        final DirectoryDrewAdapter iptcAdapter =
+                new DirectoryDrewAdapter(metadata.getFirstDirectoryOfType(IptcDirectory.class));
+        iptc.loadFromAdapter(iptcAdapter);
 
-        final XmpDirectory xmpDirectory = metadata.getDirectory(XmpDirectory.class);
-        final DirectoryDrewAdapter xmpAdatpter = new DirectoryDrewAdapter(xmpDirectory);
-        xmp.loadFromAdapter(xmpAdatpter);
-        xmp._setProperties(xmpDirectory.getXmpProperties());
-        
+        final XmpDirectory xmpDirectory = metadata.getFirstDirectoryOfType(XmpDirectory.class);
+        final DirectoryDrewAdapter xmpAdapter = new DirectoryDrewAdapter(xmpDirectory);
+        xmp.loadFromAdapter(xmpAdapter);
+        xmp._setProperties(xmpDirectory.getXmpProperties()); // FIXME 18 e 19
+
+        log.debug(">>>> TIFF metadata: {}", tiff);
         log.debug(">>>> EXIF metadata: {}", exif);
         log.debug(">>>> IPTC metadata: {}", iptc);
         log.debug(">>>> XMP metadata:  {}", xmp);

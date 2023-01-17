@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2012 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,56 +17,55 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.java2d;
 
 import java.util.Iterator;
-import java.util.logging.Logger;
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
+import java.nio.file.Files;
 import javax.imageio.IIOImage;
+import javax.imageio.ImageIO;
 import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.ImageOutputStream;
+import java.awt.image.BufferedImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.WriteOp;
+import lombok.extern.slf4j.Slf4j;
 
-
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
+@Slf4j
 public class WriteJ2DOp extends OperationImplementation<WriteOp, BufferedImage>
   {
-    private static final String CLASS = WriteJ2DOp.class.getName();
-    private static final Logger logger = Logger.getLogger(CLASS);
-
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     ******************************************************************************/
+     ******************************************************************************************************************/
     @Override
-    protected BufferedImage execute (final WriteOp operation, final EditableImage image, final BufferedImage bufferedImage)
+    protected BufferedImage execute (final WriteOp operation,
+                                     final EditableImage image,
+                                     final BufferedImage bufferedImage)
       {
         final String format = operation.getFormat();
         final Object output = operation.getOutput();
         final Object outputForLog = (output instanceof OutputStream) ? output.getClass() : output;
         final ImageWriteParam imageWriteParam = operation.getImageWriteParam();
-        logger.info("Write2DOp(" + format + ", " + outputForLog + ", " + imageWriteParam + ")");
+        log.info("Write2DOp(" + format + ", " + outputForLog + ", " + imageWriteParam + ")");
 
         ImageOutputStream stream = null;
         boolean shouldClose = true;
@@ -72,16 +74,17 @@ public class WriteJ2DOp extends OperationImplementation<WriteOp, BufferedImage>
           {
             if (output instanceof OutputStream)
               {
-                stream = ImageIO.createImageOutputStream((OutputStream)output);
+                stream = ImageIO.createImageOutputStream(output);
                 shouldClose = false;
               }
 
             else if (output instanceof File)
               {
-                stream = ImageIO.createImageOutputStream(new BufferedOutputStream(new FileOutputStream((File)output)));
+                stream =
+                        ImageIO.createImageOutputStream(new BufferedOutputStream(Files.newOutputStream(((File)output).toPath())));
                 shouldClose = true;
               }
-            
+
             else if (output instanceof ImageOutputStream)
               {
                 stream = (ImageOutputStream)output;
@@ -89,12 +92,12 @@ public class WriteJ2DOp extends OperationImplementation<WriteOp, BufferedImage>
 
             final Iterator<ImageWriter> writers = ImageIO.getImageWritersByFormatName(format);
             ImageWriter selectedWriter = null;
-            logger.fine("Available writers for format: " + format);
+            log.debug("Available writers for format: " + format);
 
             while (writers.hasNext())
               {
                 final ImageWriter writer = writers.next();
-                logger.fine(">>>> writer: " + writer);
+                log.debug(">>>> writer: " + writer);
 
                 if (selectedWriter == null) // keep the first one, keep on logging the others
                   {
@@ -130,7 +133,7 @@ public class WriteJ2DOp extends OperationImplementation<WriteOp, BufferedImage>
                   }
                 catch (IOException e)
                   {
-                    logger.throwing(CLASS, "execute()", e);
+                    log.warn("execute()", e);
                   }
               }
           }

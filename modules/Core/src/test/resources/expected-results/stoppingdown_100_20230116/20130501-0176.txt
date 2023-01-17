@@ -1,0 +1,70 @@
+EXIF [33434] Exposure Time: 1/500
+EXIF [33437] F Number: 8/1
+EXIF [34850] Exposure Program: 1
+EXIF [34855] ISO Speed Ratings: 200
+EXIF [34864] null: 2
+EXIF [36864] EXIF Version: [48, 50, 50, 49]
+EXIF [36867] Date/Time Original: 2013:05:01 14:30:01
+EXIF [36868] Date/Time Digitized: 2013:05:01 14:30:01
+EXIF [37377] Shutter SpeedValue: 8965784/1000000
+EXIF [37378] Aperture Value: 6/1
+EXIF [37380] Exposure Bias Value: -4/6
+EXIF [37381] Max Aperture Value: 40/10
+EXIF [37382] Subject Distance: 11/4
+EXIF [37383] Metering Mode: 5
+EXIF [37384] Light Source: 0
+EXIF [37385] Flash: 16
+EXIF [37386] Focal Length: 120/10
+EXIF [37510] User Comment: [65, 83, 67, 73, 73, 0, 0, 0, 40, 67, 41, 32, 70, 97, 98, 114, 105, 122, 105, 111, 32, 71, 105, 117, 100, 105, 99, 105, 46]
+EXIF [37520] Subsec Time: 600
+EXIF [37521] Subsec Time Original: 600
+EXIF [37522] Subsec Time Digitized: 600
+EXIF [40962] Pixel X Dimension: 100
+EXIF [40963] Pixel Y Dimension: 71
+EXIF [41495] Sensing Method: 2
+EXIF [41728] File Source: [3]
+EXIF [41729] Scene Type: [1]
+EXIF [41985] Custom Rendered: 0
+EXIF [41986] Exposure Mode: 1
+EXIF [41987] White Balance: 0
+EXIF [41988] Digital Zoom Ratio: 1/1
+EXIF [41989] Focal Length 35mm Film: 18
+EXIF [41990] Scene Capture Type: 0
+EXIF [41991] Gain Control: 0
+EXIF [41992] Contrast: 0
+EXIF [41993] Saturation: 0
+EXIF [41994] Sharpness: 0
+EXIF [41996] Subject Distance Range: 0
+EXIF [42033] BodySerialNumber: 6055645
+EXIF [42034] LensSpecification: [120/10, 240/10, 40/10, 40/10]
+EXIF [42036] LensModel: Nikkor 12-24mm ƒ/4G DX AF-S
+EXIF dateTimeOriginalAsDate: 2013-05-01T14:30:07Z
+EXIF dateTimeDigitizedAsDate: 2013-05-01T14:30:07Z
+IPTC [346] null: UTF-8
+IPTC [512] null: 4
+IPTC [517] null: Collegiata dei Santi Quirico e Giulitta.
+IPTC [537] null: [edit process 2013-09-14, backgrounds, published, architecture, edit process 2022-09-08, village:San Quirico d'Orcia]
+IPTC [567] null: 20130501
+IPTC [572] null: 143001+0200
+IPTC [574] null: 20130501
+IPTC [575] null: 143001+0200
+IPTC [592] null: Fabrizio Giudici
+IPTC [597] null: Photographer
+IPTC [602] null: Siena
+IPTC [604] null: Via Dante Alighieri, 16, 53027 S
+IPTC [607] null: Toscana
+IPTC [612] null: IT
+IPTC [613] null: Italia
+IPTC [622] null: Fabrizio Giudici
+IPTC [627] null: Fabrizio Giudici
+IPTC [628] null: © Copyright by Fabrizio Giudici. All rights reserved.
+IPTC [634] null: Fabrizio Giudici
+IPTC [720] null: Via Nizza 6/13
+IPTC [721] null: Genoa
+IPTC [722] null: GE
+IPTC [723] null: I-16145
+IPTC [724] null: Italy
+IPTC [726] null: email@fabriziogiudici.it
+IPTC [727] null: http://stoppingdown.net
+IPTC [738] null: Cannot be used without prior written consent of the author.
+IPTC [739] null: http://stoppingdown.net

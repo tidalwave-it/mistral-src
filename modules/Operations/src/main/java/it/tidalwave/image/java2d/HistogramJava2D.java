@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2012 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,58 +17,56 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.java2d;
 
-import java.util.logging.Logger;
 import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
 import java.awt.image.RenderedImage;
 import it.tidalwave.image.Histogram;
 import it.tidalwave.image.render.PreviewSettings;
+import lombok.extern.slf4j.Slf4j;
 
-
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  fritz
- * @version CVS $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
+@Slf4j
 public class HistogramJava2D extends Histogram
   {
-    private final static String CLASS = HistogramJava2D.class.getName();
-    private final static Logger logger = Logger.getLogger(CLASS);
     private RenderedImage renderedImage;
     private int[][] bandData;
     private int[] max;
     private int[] min;
     private int shift;
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * @param image
      *
-     *******************************************************************************/
+     ******************************************************************************************************************/
 
-    /* package */ HistogramJava2D (RenderedImage renderedImage)
+    /* package */ HistogramJava2D (final RenderedImage renderedImage)
       {
         super(renderedImage);
         this.renderedImage = renderedImage;
         compute();
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     *******************************************************************************/
+     ******************************************************************************************************************/
     @Override
-    public int[] getFrequencies (int band)
+    public int[] getFrequencies (final int band)
       {
         validateBand(band);
 
@@ -80,38 +81,38 @@ public class HistogramJava2D extends Histogram
         return bandData[band];
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     *******************************************************************************/
+     ******************************************************************************************************************/
     @Override
-    public int getMin (int band)
+    public int getMin (final int band)
       {
         validateBand(band);
 
         return min[band];
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     *******************************************************************************/
+     ******************************************************************************************************************/
     @Override
-    public int getMax (int band)
+    public int getMax (final int band)
       {
         validateBand(band);
 
         return max[band];
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     *******************************************************************************/
-    private void compute ()
+     ******************************************************************************************************************/
+    private void compute()
       {
-        logger.info("compute()");
+        log.info("compute()");
         bandCount = renderedImage.getSampleModel().getNumBands();
         bitsPerBand = renderedImage.getSampleModel().getSampleSize(0);
         shift = 0;
@@ -124,7 +125,7 @@ public class HistogramJava2D extends Histogram
         bandData = new int[bandCount][1 << (bitsPerBand - shift)];
         min = new int[bandCount];
         max = new int[bandCount];
-        logger.info(">>>> Allocated bandData[" + bandData.length + "][" + bandData[0].length + "]");
+        log.info(">>>> Allocated bandData[" + bandData.length + "][" + bandData[0].length + "]");
         genericCompute();
 
         //DataBuffer dataBuffer = raster.getDataBuffer();
@@ -132,34 +133,34 @@ public class HistogramJava2D extends Histogram
         //        if (dataBuffer instanceof DataBufferInt)
         //            DataBufferInt dbs = (DataBufferInt)dataBuffer;
         //            int[][] bankData = dbs.getBankData();
-        //            logger.info(">>>> bankData[" + bankData.length + "][" + bankData[0].length + "]");
+        //            log.info(">>>> bankData[" + bankData.length + "][" + bankData[0].length + "]");
         //            int[] offsets = dbs.getOffsets();
         //            int scanStride = w;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     *******************************************************************************/
+     ******************************************************************************************************************/
     @Override
-    public it.tidalwave.image.Histogram getPreview (PreviewSettings previewSetting)
+    public it.tidalwave.image.Histogram getPreview (final PreviewSettings previewSetting)
       {
-        HistogramJava2D previewHistogram = new HistogramJava2D(null);
+        final HistogramJava2D previewHistogram = new HistogramJava2D(null);
         previewHistogram.bandCount = bandCount;
         previewHistogram.bandData = new int[bandCount][];
 
-        byte[][] lut8bit = previewSetting.getLookupTable8bit().getTable();
-        short[][] lut16bit = previewSetting.getLookupTable16bit().getTable();
+        final byte[][] lut8bit = previewSetting.getLookupTable8bit().getTable();
+        final short[][] lut16bit = previewSetting.getLookupTable16bit().getTable();
 
         for (int band = 0; band < bandCount; band++)
           {
-            int len = bandData[band].length;
+            final int len = bandData[band].length;
             previewHistogram.bandData[band] = new int[len];
 
             for (int i = 0; i < len; i++)
               {
-                int dst = (len <= 256) ? (lut8bit[band][i] & 0xff) : (lut16bit[band][i] & 0xffff);
+                final int dst = (len <= 256) ? (lut8bit[band][i] & 0xff) : (lut16bit[band][i] & 0xffff);
                 previewHistogram.bandData[band][dst] += bandData[band][i];
               }
           }
@@ -167,7 +168,7 @@ public class HistogramJava2D extends Histogram
         return previewHistogram;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Works with every kind of data buffer, but it's not fast.
      *
@@ -177,12 +178,12 @@ public class HistogramJava2D extends Histogram
      * @param h
      * @param first
      *
-     *******************************************************************************/
-    private void genericCompute ()
+     ******************************************************************************************************************/
+    private void genericCompute()
       {
-        Raster raster = ((BufferedImage)image).getRaster();
-        int w = renderedImage.getWidth();
-        int h = renderedImage.getHeight();
+        final Raster raster = ((BufferedImage)image).getRaster();
+        final int w = renderedImage.getWidth();
+        final int h = renderedImage.getHeight();
         boolean first = true;
 
         for (int y = 0; y < h; y++)
@@ -191,7 +192,7 @@ public class HistogramJava2D extends Histogram
               {
                 for (int b = 0; b < bandCount; b++)
                   {
-                    int v = raster.getSample(x, y, b) >> shift;
+                    final int v = raster.getSample(x, y, b) >> shift;
 
                     bandData[b][v]++;
 

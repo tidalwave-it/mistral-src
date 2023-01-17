@@ -1,8 +1,8 @@
 #!/bin/sh
 #***********************************************************************************************************************
 #*
-#* Mistral - open source imaging engine
-#* Copyright (C) 2003-2012 by Tidalwave s.a.s.
+#* Mistral: open source imaging engine
+#* Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
 #*
 #***********************************************************************************************************************
 #*
@@ -17,8 +17,8 @@
 #*
 #***********************************************************************************************************************
 #*
-#* WWW: http://mistral.tidalwave.it
-#* SCM: https://bitbucket.org/tidalwave/mistral-src
+#* git clone https://bitbucket.org/tidalwave/mistral-src
+#* git clone https://github.com/tidalwave-it/mistral-src
 #*
 #***********************************************************************************************************************
 #

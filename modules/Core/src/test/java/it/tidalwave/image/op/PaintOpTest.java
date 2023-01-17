@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2012 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,37 +17,36 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.op;
 
-import it.tidalwave.image.op.PaintOp;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
 import java.awt.Graphics2D;
 import javax.swing.JLabel;
+import org.testng.AssertJUnit;
+import org.testng.annotations.Test;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class PaintOpTest
   {
-    private final static JLabel c = new JLabel();
+    private static final JLabel c = new JLabel();
 
-    private final static Graphics2D g = (Graphics2D)c.getGraphics();
+    private static final Graphics2D g = (Graphics2D)c.getGraphics();
 
     @Test
     public void testGetX1()
       {
         System.out.println("getX1");
-        PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
+        final PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
         AssertJUnit.assertEquals(1, op.getX());
       }
 
@@ -52,7 +54,7 @@ public class PaintOpTest
     public void testGetX2()
       {
         System.out.println("getX2");
-        PaintOp op = new PaintOp(g, 1, 2, null, null);
+        final PaintOp op = new PaintOp(g, 1, 2, null, null);
         AssertJUnit.assertEquals(1, op.getX());
       }
 
@@ -60,7 +62,7 @@ public class PaintOpTest
     public void testGetY1()
       {
         System.out.println("getY1");
-        PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
+        final PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
         AssertJUnit.assertEquals(2, op.getY());
       }
 
@@ -68,7 +70,7 @@ public class PaintOpTest
     public void testGetY2()
       {
         System.out.println("getY2");
-        PaintOp op = new PaintOp(g, 1, 2, null, null);
+        final PaintOp op = new PaintOp(g, 1, 2, null, null);
         AssertJUnit.assertEquals(2, op.getY());
       }
 
@@ -76,7 +78,7 @@ public class PaintOpTest
     public void testGetW1()
       {
         System.out.println("getW1");
-        PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
+        final PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
         AssertJUnit.assertEquals(3, op.getW());
       }
 
@@ -84,7 +86,7 @@ public class PaintOpTest
     public void testGetW2()
       {
         System.out.println("getW2");
-        PaintOp op = new PaintOp(g, 1, 2, null, null);
+        final PaintOp op = new PaintOp(g, 1, 2, null, null);
         AssertJUnit.assertEquals(0, op.getW());
       }
 
@@ -92,7 +94,7 @@ public class PaintOpTest
     public void testGetH1()
       {
         System.out.println("getH");
-        PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
+        final PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
         AssertJUnit.assertEquals(4, op.getH());
       }
 
@@ -100,7 +102,7 @@ public class PaintOpTest
     public void testGetH2()
       {
         System.out.println("getH");
-        PaintOp op = new PaintOp(g, 1, 2, null, null);
+        final PaintOp op = new PaintOp(g, 1, 2, null, null);
         AssertJUnit.assertEquals(0, op.getH());
       }
 
@@ -108,7 +110,7 @@ public class PaintOpTest
     public void testGetGraphics2D1()
       {
         System.out.println("getGraphics2D1");
-        PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
+        final PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
         AssertJUnit.assertEquals(g, op.getGraphics2D());
       }
 
@@ -116,7 +118,7 @@ public class PaintOpTest
     public void testGetGraphics2D2()
       {
         System.out.println("getGraphics2D2");
-        PaintOp op = new PaintOp(g, 1, 2, null, null);
+        final PaintOp op = new PaintOp(g, 1, 2, null, null);
         AssertJUnit.assertEquals(g, op.getGraphics2D());
       }
 
@@ -128,12 +130,11 @@ public class PaintOpTest
         System.out.println("getPreviewSettings");
         fail("The test case is a prototype.");
       }*/
-
     @Test
     public void testToString1()
       {
         System.out.println("toString1");
-        PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
+        final PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
         op.toString();
       }
 
@@ -141,7 +142,7 @@ public class PaintOpTest
     public void testToString2()
       {
         System.out.println("toString2");
-        PaintOp op = new PaintOp(g, 1, 2, null, null);
+        final PaintOp op = new PaintOp(g, 1, 2, null, null);
         op.toString();
       }
   }

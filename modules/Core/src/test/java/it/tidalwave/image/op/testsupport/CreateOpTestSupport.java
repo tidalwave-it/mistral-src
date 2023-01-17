@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2012 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,40 +17,43 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.op.testsupport;
 
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
 import java.awt.image.Raster;
 import it.tidalwave.image.BaseTestSupport;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.CreateOp;
+import lombok.extern.slf4j.Slf4j;
+import org.testng.AssertJUnit;
+import org.testng.annotations.Test;
 
-/*******************************************************************************
+/***********************************************************************************************************************
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
+@Slf4j
 public abstract class CreateOpTestSupport extends BaseTestSupport
   {
     private static final int WIDTH = 128;
     private static final int HEIGHT = 128;
-    private static final int[] byteValues = { 0, 127, 255 };
-    private static final int[] shortValues = { 0, 127, 255, 511, 1023, 2047, 4095, 8191, 16383, 32767, 65535 };
-    private static final int[] shortValues2 = { 0, 255, 1023, 4095, 16383, 65535 };
-    private static final int[] intValues = { 0, 127, 255, 511, 1023, 2047, 4095, 8191, 16383, 32767, 65535, Integer.MAX_VALUE };
-    private static final int[] intValues2 = { 0, 1023, 4095, 16383, 65535, Integer.MAX_VALUE };
-    private static final float[] floatValues = { 0f, 0.1f, 0.2f, 0.3f, 0.4f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f };
-    private static final float[] floatValues2 = { 0f, 0.2f, 0.4f, 0.6f, 0.8f, 1.0f };
-    private static final double[] doubleValues = { 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0 };
-    private static final double[] doubleValues2 = { 0, 0.2, 0.4, 0.6, 0.8, 1.0 };
+    private static final int[] byteValues = {0, 127, 255};
+    private static final int[] shortValues = {0, 127, 255, 511, 1023, 2047, 4095, 8191, 16383, 32767, 65535};
+    private static final int[] shortValues2 = {0, 255, 1023, 4095, 16383, 65535};
+    private static final int[] intValues =
+            {0, 127, 255, 511, 1023, 2047, 4095, 8191, 16383, 32767, 65535, Integer.MAX_VALUE};
+    private static final int[] intValues2 = {0, 1023, 4095, 16383, 65535, Integer.MAX_VALUE};
+    private static final float[] floatValues = {0f, 0.1f, 0.2f, 0.3f, 0.4f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f};
+    private static final float[] floatValues2 = {0f, 0.2f, 0.4f, 0.6f, 0.8f, 1.0f};
+    private static final double[] doubleValues = {0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
+    private static final double[] doubleValues2 = {0, 0.2, 0.4, 0.6, 0.8, 1.0};
 
     ////////////////////////////////////////////////////////////////////////////
     //
@@ -55,37 +61,38 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
     //
     ////////////////////////////////////////////////////////////////////////////
     @Test
-    public void testCreateSingleBandByteBlack ()
+    public void testCreateSingleBandByteBlack()
       {
-        log("testCreateSingleBandByteBlack");
+        log.info("testCreateSingleBandByteBlack");
 
         final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.BYTE));
         assertImage(image, 1, 8, 8, EditableImage.DataType.BYTE);
         assertIntContents(image, 0);
       }
 
-/*    @Test FAILS
-    public void testCreateSingleBandShortBlack ()
-      {
-        log("execute");
+    /*    @Test FAILS
+        public void testCreateSingleBandShortBlack()
+          {
+            log.info("execute");
 
-        final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.SHORT));
-        assertImage(image, 1, 16, 16, EditableImage.DataType.SHORT);
-      }*/
+            final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.SHORT));
+            assertImage(image, 1, 16, 16, EditableImage.DataType.SHORT);
+          }*/
     @Test
-    public void testCreateSingleBandUnsignedShortBlack ()
+    public void testCreateSingleBandUnsignedShortBlack()
       {
-        log("testCreateSingleBandUnsignedShortBlack");
+        log.info("testCreateSingleBandUnsignedShortBlack");
 
-        final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.UNSIGNED_SHORT));
+        final EditableImage image =
+                EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.UNSIGNED_SHORT));
         assertImage(image, 1, 16, 16, EditableImage.DataType.UNSIGNED_SHORT);
         assertIntContents(image, 0);
       }
 
     @Test
-    public void testCreateSingleBandIntBlack ()
+    public void testCreateSingleBandIntBlack()
       {
-        log("testCreateSingleBandFloatBlack");
+        log.info("testCreateSingleBandFloatBlack");
 
         final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.INT));
         assertImage(image, 1, 32, 32, EditableImage.DataType.INT);
@@ -93,9 +100,9 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
       }
 
     @Test
-    public void testCreateSingleBandFloatBlack ()
+    public void testCreateSingleBandFloatBlack()
       {
-        log("testCreateSingleBandFloatBlack");
+        log.info("testCreateSingleBandFloatBlack");
 
         final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.FLOAT));
         assertImage(image, 1, 32, 32, EditableImage.DataType.FLOAT);
@@ -103,9 +110,9 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
       }
 
     @Test
-    public void testCreateSingleBandDoubleBlack ()
+    public void testCreateSingleBandDoubleBlack()
       {
-        log("testCreateSingleBandDoubleBlack");
+        log.info("testCreateSingleBandDoubleBlack");
 
         final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.DOUBLE));
         assertImage(image, 1, 64, 64, EditableImage.DataType.DOUBLE);
@@ -118,76 +125,82 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
     //
     ////////////////////////////////////////////////////////////////////////////
     @Test
-    public void testCreateSingleBandByteInitialValue ()
+    public void testCreateSingleBandByteInitialValue()
       {
-        log("testCreateSingleBandByteInitialValue");
+        log.info("testCreateSingleBandByteInitialValue");
 
-        for (int i = 0; i < byteValues.length; i++)
+        for (int byteValue : byteValues)
           {
-            final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.BYTE, byteValues[i]));
+            final EditableImage image =
+                    EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.BYTE, byteValue));
             assertImage(image, 1, 8, 8, EditableImage.DataType.BYTE);
-            assertIntContents(image, byteValues[i]);
+            assertIntContents(image, byteValue);
           }
       }
 
-/*    @Test FAILS
-    public void testCreateSingleBandShortInitialValue ()
-      {
-        log("execute");
-
-        final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.SHORT, 32767));
-        assertImage(image, 1, 16, 16, EditableImage.DataType.SHORT);
-      }*/
-    @Test
-    public void testCreateSingleBandUnsignedShortInitialValue ()
-      {
-        log("testCreateSingleBandUnsignedShortInitialValue");
-
-        for (int i = 0; i < shortValues.length; i++)
+    /*    @Test FAILS
+        public void testCreateSingleBandShortInitialValue()
           {
-            final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.UNSIGNED_SHORT,
-                        shortValues[i]));
+            log.info("execute");
+
+            final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType
+            .SHORT, 32767));
+            assertImage(image, 1, 16, 16, EditableImage.DataType.SHORT);
+          }*/
+    @Test
+    public void testCreateSingleBandUnsignedShortInitialValue()
+      {
+        log.info("testCreateSingleBandUnsignedShortInitialValue");
+
+        for (int shortValue : shortValues)
+          {
+            final EditableImage image =
+                    EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.UNSIGNED_SHORT,
+                                                      shortValue));
             assertImage(image, 1, 16, 16, EditableImage.DataType.UNSIGNED_SHORT);
-            assertIntContents(image, shortValues[i]);
+            assertIntContents(image, shortValue);
           }
       }
 
     @Test
-    public void testCreateSingleBandIntInitialValue ()
+    public void testCreateSingleBandIntInitialValue()
       {
-        log("testCreateSingleBandIntInitialValue");
+        log.info("testCreateSingleBandIntInitialValue");
 
-        for (int i = 0; i < intValues.length; i++)
+        for (int intValue : intValues)
           {
-            final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.INT, intValues[i]));
+            final EditableImage image =
+                    EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.INT, intValue));
             assertImage(image, 1, 32, 32, EditableImage.DataType.INT);
-            assertIntContents(image, intValues[i]);
+            assertIntContents(image, intValue);
           }
       }
 
     @Test
-    public void testCreateSingleBandFloatInitialValue ()
+    public void testCreateSingleBandFloatInitialValue()
       {
-        log("testCreateSingleBandFloatInitialValue");
+        log.info("testCreateSingleBandFloatInitialValue");
 
-        for (int i = 0; i < floatValues.length; i++)
+        for (float floatValue : floatValues)
           {
-            final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.FLOAT, floatValues[i]));
+            final EditableImage image =
+                    EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.FLOAT, floatValue));
             assertImage(image, 1, 32, 32, EditableImage.DataType.FLOAT);
-            assertFloatContents(image, floatValues[i]);
+            assertFloatContents(image, floatValue);
           }
       }
 
     @Test
-    public void testCreateSingleBandDoubleInitialValue ()
+    public void testCreateSingleBandDoubleInitialValue()
       {
-        log("testCreateSingleBandDoubleInitialValue");
+        log.info("testCreateSingleBandDoubleInitialValue");
 
-        for (int i = 0; i < doubleValues.length; i++)
+        for (double doubleValue : doubleValues)
           {
-            final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.DOUBLE, doubleValues[i]));
+            final EditableImage image =
+                    EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.DOUBLE, doubleValue));
             assertImage(image, 1, 64, 64, EditableImage.DataType.DOUBLE);
-            assertDoubleContents(image, doubleValues[i]);
+            assertDoubleContents(image, doubleValue);
           }
       }
 
@@ -197,123 +210,129 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
     //
     ////////////////////////////////////////////////////////////////////////////
     @Test
-    public void testCreateThreeBandsByteInitialValue ()
+    public void testCreateThreeBandsByteInitialValue()
       {
-        log("testCreateThreeBandsByteInitialValue");
+        log.info("testCreateThreeBandsByteInitialValue");
 
-        for (int r = 0; r < byteValues.length; r++)
+        for (int i : byteValues)
           {
-            for (int g = 0; g < byteValues.length; g++)
+            for (int value : byteValues)
               {
-                for (int b = 0; b < byteValues.length; b++)
+                for (int byteValue : byteValues)
                   {
-                    final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.BYTE,
-                                byteValues[r], byteValues[g], byteValues[b]));
+                    final EditableImage image =
+                            EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.BYTE,
+                                                              i, value, byteValue));
                     assertImage(image, 3, 8, 24, EditableImage.DataType.BYTE);
-                    assertIntContents(image, byteValues[r], byteValues[g], byteValues[b]);
+                    assertIntContents(image, i, value, byteValue);
                   }
               }
           }
       }
 
-/*    @Test FAILS
-    public void testCreateSingleBandShortInitialValue ()
-      {
-        log("execute");
-
-        final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.SHORT, 32767));
-        assertImage(image, 1, 16, 16, EditableImage.DataType.SHORT);
-      }*/
-    @Test
-    public void testCreateThreeBandsUnsignedShortInitialValue ()
-      {
-        log("testCreateThreeBandsUnsignedShortInitialValue");
-
-        for (int r = 0; r < shortValues2.length; r++)
+    /*    @Test FAILS
+        public void testCreateSingleBandShortInitialValue()
           {
-            for (int g = 0; g < shortValues2.length; g++)
+            log.info("execute");
+
+            final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType
+            .SHORT, 32767));
+            assertImage(image, 1, 16, 16, EditableImage.DataType.SHORT);
+          }*/
+    @Test
+    public void testCreateThreeBandsUnsignedShortInitialValue()
+      {
+        log.info("testCreateThreeBandsUnsignedShortInitialValue");
+
+        for (int k : shortValues2)
+          {
+            for (int j : shortValues2)
               {
-                for (int b = 0; b < shortValues2.length; b++)
+                for (int i : shortValues2)
                   {
-                    final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.UNSIGNED_SHORT,
-                                shortValues2[r], shortValues2[g], shortValues2[b]));
+                    final EditableImage image =
+                            EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.UNSIGNED_SHORT,
+                                                              k, j, i));
                     assertImage(image, 3, 16, 48, EditableImage.DataType.UNSIGNED_SHORT);
-                    assertIntContents(image, shortValues2[r], shortValues2[g], shortValues2[b]);
+                    assertIntContents(image, k, j, i);
                   }
               }
           }
       }
 
     @Test
-    public void testCreateThreeBandsIntInitialValue ()
+    public void testCreateThreeBandsIntInitialValue()
       {
-        log("testCreateThreeBandsIntInitialValue");
+        log.info("testCreateThreeBandsIntInitialValue");
 
-        for (int r = 0; r < intValues2.length; r++)
+        for (int k : intValues2)
           {
-            for (int g = 0; g < intValues2.length; g++)
+            for (int j : intValues2)
               {
-                for (int b = 0; b < intValues2.length; b++)
+                for (int i : intValues2)
                   {
-                    final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.INT, intValues2[r],
-                                intValues2[g], intValues2[b]));
+                    final EditableImage image =
+                            EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.INT, k,
+                                                              j, i));
                     assertImage(image, 3, 32, 96, EditableImage.DataType.INT);
-                    assertIntContents(image, intValues2[r], intValues2[g], intValues2[b]);
+                    assertIntContents(image, k, j, i);
                   }
               }
           }
       }
 
     @Test
-    public void testCreateThreeBandsFloatInitialValue ()
+    public void testCreateThreeBandsFloatInitialValue()
       {
-        log("testCreateThreeBandsFloatInitialValue");
+        log.info("testCreateThreeBandsFloatInitialValue");
 
-        for (int r = 0; r < floatValues2.length; r++)
+        for (float item : floatValues2)
           {
-            for (int g = 0; g < floatValues2.length; g++)
+            for (float value : floatValues2)
               {
-                for (int b = 0; b < floatValues2.length; b++)
+                for (float v : floatValues2)
                   {
-                    final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.FLOAT,
-                                floatValues2[r], floatValues2[g], floatValues2[b]));
+                    final EditableImage image =
+                            EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.FLOAT,
+                                                              item, value, v));
                     assertImage(image, 3, 32, 96, EditableImage.DataType.FLOAT);
-                    assertFloatContents(image, floatValues2[r], floatValues2[g], floatValues2[b]);
+                    assertFloatContents(image, item, value, v);
                   }
               }
           }
       }
 
     @Test
-    public void testCreateThreeBandsDoubleInitialValue ()
+    public void testCreateThreeBandsDoubleInitialValue()
       {
-        log("testCreateThreeBandsDoubleInitialValue");
+        log.info("testCreateThreeBandsDoubleInitialValue");
 
-        for (int r = 0; r < doubleValues2.length; r++)
+        for (double item : doubleValues2)
           {
-            for (int g = 0; g < doubleValues2.length; g++)
+            for (double value : doubleValues2)
               {
-                for (int b = 0; b < doubleValues2.length; b++)
+                for (double v : doubleValues2)
                   {
-                    final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.DOUBLE,
-                                doubleValues2[r], doubleValues2[g], doubleValues2[b]));
+                    final EditableImage image =
+                            EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.DOUBLE,
+                                                              item, value, v));
                     assertImage(image, 3, 64, 192, EditableImage.DataType.DOUBLE);
-                    assertDoubleContents(image, doubleValues2[r], doubleValues2[g], doubleValues2[b]);
+                    assertDoubleContents(image, item, value, v);
                   }
               }
           }
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     protected abstract Raster getRaster (final EditableImage image);
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     private void assertIntContents (final EditableImage image, final int... filler)
       {
         final Raster raster = getRaster(image);
@@ -324,17 +343,17 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
               {
                 for (int x = 0; x < image.getWidth(); x++)
                   {
-                    int sample = raster.getSample(x, y, b);
+                    final int sample = raster.getSample(x, y, b);
                     AssertJUnit.assertEquals(filler[b], sample);
                   }
               }
           }
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     private void assertFloatContents (final EditableImage image, final float... filler)
       {
         final Raster raster = getRaster(image);
@@ -345,17 +364,17 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
               {
                 for (int x = 0; x < image.getWidth(); x++)
                   {
-                    float sample = raster.getSampleFloat(x, y, b);
+                    final float sample = raster.getSampleFloat(x, y, b);
                     AssertJUnit.assertEquals(filler[b], sample);
                   }
               }
           }
       }
 
-    /***************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
+     ******************************************************************************************************************/
     private void assertDoubleContents (final EditableImage image, final double... filler)
       {
         final Raster raster = getRaster(image);
@@ -366,19 +385,22 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
               {
                 for (int x = 0; x < image.getWidth(); x++)
                   {
-                    double sample = raster.getSampleDouble(x, y, b);
+                    final double sample = raster.getSampleDouble(x, y, b);
                     AssertJUnit.assertEquals(filler[b], sample);
                   }
               }
           }
       }
-    
-    /***************************************************************************
+
+    /*******************************************************************************************************************
      *
      *
-     **************************************************************************/
-    private void assertImage (final EditableImage image, final int bandCount, final int bitsPerBand, final int bitsPerPixel,
-        final EditableImage.DataType dataType)
+     ******************************************************************************************************************/
+    private void assertImage (final EditableImage image,
+                              final int bandCount,
+                              final int bitsPerBand,
+                              final int bitsPerPixel,
+                              final EditableImage.DataType dataType)
       {
         AssertJUnit.assertEquals(WIDTH, image.getWidth());
         AssertJUnit.assertEquals(HEIGHT, image.getHeight());

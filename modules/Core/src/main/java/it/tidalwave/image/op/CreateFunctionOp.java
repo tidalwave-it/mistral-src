@@ -1,9 +1,12 @@
-/***********************************************************************************************************************
+/*
+ * *********************************************************************************************************************
  *
- * Mistral - open source imaging engine
- * Copyright (C) 2003-2012 by Tidalwave s.a.s.
+ * Mistral: open source imaging engine
+ * http://tidalwave.it/projects/mistral
  *
- ***********************************************************************************************************************
+ * Copyright (C) 2003 - 2023 by Tidalwave s.a.s. (http://tidalwave.it)
+ *
+ * *********************************************************************************************************************
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,32 +17,31 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations under the License.
  *
- ***********************************************************************************************************************
+ * *********************************************************************************************************************
  *
- * WWW: http://mistral.tidalwave.it
- * SCM: https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://bitbucket.org/tidalwave/mistral-src
+ * git clone https://github.com/tidalwave-it/mistral-src
  *
- **********************************************************************************************************************/
+ * *********************************************************************************************************************
+ */
 package it.tidalwave.image.op;
 
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.ImageFunction;
 
-
-/*******************************************************************************
+/***********************************************************************************************************************
  *
  * This operation creates a new image with the specified size and data type,
  * whose pixel values are computed by a given function.
  *
- * @author  Fabrizio Giudici
- * @version $Id$
+ * @author Fabrizio Giudici
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 public class CreateFunctionOp extends CreateOp
   {
     private final ImageFunction function;
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      * Creates a new operation which will create an image. AT THE MOMENT ONLY
      * MONOCHROMATIC IMAGES (MADE BY A SINGLE BAND) ARE SUPPORTED.
@@ -49,8 +51,11 @@ public class CreateFunctionOp extends CreateOp
      * @param  function  the function which computes the pixel values
      * @param  dataType  the data type
      *
-     *******************************************************************************/
-    public CreateFunctionOp (final int width, final int height, final ImageFunction function, final EditableImage.DataType dataType)
+     ******************************************************************************************************************/
+    public CreateFunctionOp (final int width,
+                             final int height,
+                             final ImageFunction function,
+                             final EditableImage.DataType dataType)
       {
         super(width, height, dataType);
         this.function = function;
@@ -61,22 +66,22 @@ public class CreateFunctionOp extends CreateOp
           }
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
      *
-     *******************************************************************************/
-    public ImageFunction getImageFunction ()
+     ******************************************************************************************************************/
+    public ImageFunction getImageFunction()
       {
         return function;
       }
 
-    /*******************************************************************************
+    /*******************************************************************************************************************
      *
-     * @inheritDoc
+     * {@inheritDoc}
      *
-     *******************************************************************************/
+     ******************************************************************************************************************/
     @Override
-    public String toString ()
+    public String toString()
       {
         return "CreateFunctionOp(" + getWidth() + ", " + getHeight() + ", " + function + ", " + getDataType() + ")";
       }
