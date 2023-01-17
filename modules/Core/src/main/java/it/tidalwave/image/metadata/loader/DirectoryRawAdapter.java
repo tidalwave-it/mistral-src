@@ -144,7 +144,7 @@ public class DirectoryRawAdapter implements DirectoryAdapter
         if (value instanceof TagRational)
           {
             final TagRational rational = (TagRational)value;
-            return new Rational(rational.getNumerator(), rational.getDenominator());
+            return Rational.of(rational.getNumerator(), rational.getDenominator());
           }
 
         else if (value instanceof TagRational[])
@@ -199,7 +199,7 @@ public class DirectoryRawAdapter implements DirectoryAdapter
 
         for (int i = 0; i < r.length; i++)
           {
-            r[i] = new Rational(temp[i].getNumerator(), temp[i].getDenominator());
+            r[i] = Rational.of(temp[i].getNumerator(), temp[i].getDenominator());
           }
 
         return r;

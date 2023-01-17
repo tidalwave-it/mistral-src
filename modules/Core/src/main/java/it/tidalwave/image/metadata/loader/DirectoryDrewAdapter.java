@@ -125,7 +125,7 @@ public class DirectoryDrewAdapter implements DirectoryAdapter
         if (value instanceof com.drew.lang.Rational)
           {
             final com.drew.lang.Rational drewRational = (com.drew.lang.Rational)value;
-            value = new Rational((int)drewRational.getNumerator(), (int)drewRational.getDenominator());
+            value = Rational.of((int)drewRational.getNumerator(), (int)drewRational.getDenominator());
           }
 
         else if (value instanceof com.drew.lang.Rational[])
@@ -180,7 +180,7 @@ public class DirectoryDrewAdapter implements DirectoryAdapter
 
         for (int i = 0; i < r.length; i++)
           {
-            r[i] = new Rational((int)temp[i].getNumerator(), (int)temp[i].getDenominator());
+            r[i] = Rational.of((int)temp[i].getNumerator(), (int)temp[i].getDenominator());
           }
 
         return r;

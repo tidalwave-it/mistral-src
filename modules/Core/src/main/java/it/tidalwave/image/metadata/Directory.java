@@ -219,7 +219,7 @@ public class Directory extends JavaBeanSupport implements Serializable
         if ((value instanceof long[][]) && Rational.class.equals(asType))
           {
             final long[][] array = (long[][])value;
-            value = new Rational((int)array[0][0], (int)array[0][1]);
+            value = Rational.of((int)array[0][0], (int)array[0][1]);
           }
 
         if (value instanceof StringValue)

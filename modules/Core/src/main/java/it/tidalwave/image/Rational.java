@@ -37,7 +37,7 @@ import lombok.RequiredArgsConstructor;
  * @author Fabrizio Giudici
  *
  **********************************************************************************************************************/
-@Immutable @RequiredArgsConstructor @EqualsAndHashCode(callSuper = false)
+@Immutable @RequiredArgsConstructor(staticName = "of") @EqualsAndHashCode(callSuper = false)
 public class Rational extends Number
   {
     @Getter
@@ -134,7 +134,7 @@ public class Rational extends Number
     @Nonnull
     public final Rational divide (final double det)
       {
-        return new Rational(numerator, (int)Math.round(denominator * det));
+        return Rational.of(numerator, (int)Math.round(denominator * det));
       }
 
     /*******************************************************************************************************************
@@ -145,7 +145,7 @@ public class Rational extends Number
     @Nonnull
     public final Rational getReciprocal()
       {
-        return new Rational(denominator, numerator);
+        return Rational.of(denominator, numerator);
       }
 
     /*******************************************************************************************************************

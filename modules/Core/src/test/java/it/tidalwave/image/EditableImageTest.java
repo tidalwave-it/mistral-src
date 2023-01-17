@@ -94,14 +94,14 @@ public class EditableImageTest extends BaseTestSupport
 
         // assertOptionalEquals("NIKON CORPORATION", exif.getMake());
         // assertOptionalEquals("NIKON D100", exif.getModel());
-        // assertOptionalEquals(new Rational(300, 1), exif.getXResolution());
-        // assertOptionalEquals(new Rational(300, 1), exif.getYResolution());
+        // assertOptionalEquals(Rational.of(300, 1), exif.getXResolution());
+        // assertOptionalEquals(Rational.of(300, 1), exif.getYResolution());
         // assertOptionalEquals(EXIF.ResolutionUnit.INCHES, exif.getResolutionUnit());
         // assertOptionalEquals("Nikon Capture Editor 4.1.3 W", exif.getSoftware());
         // assertOptionalEquals("2006:11:11 20:24:33", exif.getDateTime());
         // assertOptionalEquals("(C) Copyright 2006 by Fabrizio Giudici", exif.getCopyright());
-        assertOptionalEquals(new Rational(1, 320), exif.getExposureTime());
-        assertOptionalEquals(new Rational(28, 10), exif.getFNumber());
+        assertOptionalEquals(Rational.of(1, 320), exif.getExposureTime());
+        assertOptionalEquals(Rational.of(28, 10), exif.getFNumber());
         assertOptionalEquals(EXIF.ExposureProgram.SHUTTER_PRIORITY, exif.getExposureProgram());
         assertOptionalEquals(400, exif.getISOSpeedRatings());
         assertOptionalEquals(new byte[]{48, 50, 50, 49}, exif.getEXIFVersion());
@@ -114,14 +114,14 @@ public class EditableImageTest extends BaseTestSupport
                      exif.getDateTimeOriginalAsDate());
         assertOptionalEquals("800", exif.getSubsecTimeDigitized());
 //        assertEquals(FORMAT.parse("2007 04 21 21:51:02.000"), exif.getDateTimeAsDate());
-        assertOptionalEquals(new Rational(8321928, 1000000), exif.getShutterSpeedValue());
-        assertOptionalEquals(new Rational(2970854, 1000000), exif.getApertureValue());
-        assertOptionalEquals(new Rational(0, 6), exif.getExposureBiasValue());
-        assertOptionalEquals(new Rational(3, 1), exif.getMaxApertureValue());
+        assertOptionalEquals(Rational.of(8321928, 1000000), exif.getShutterSpeedValue());
+        assertOptionalEquals(Rational.of(2970854, 1000000), exif.getApertureValue());
+        assertOptionalEquals(Rational.of(0, 6), exif.getExposureBiasValue());
+        assertOptionalEquals(Rational.of(3, 1), exif.getMaxApertureValue());
         assertOptionalEquals(EXIF.MeteringMode.PATTERN, exif.getMeteringMode());
         assertOptionalEquals(EXIF.LightSource.FINE_WEATHER, exif.getLightSource());
         assertOptionalEquals(0, exif.getFlash());
-        assertOptionalEquals(new Rational(180, 1), exif.getFocalLength());
+        assertOptionalEquals(Rational.of(180, 1), exif.getFocalLength());
 //        assertEquals(9996, (long)exif.getMakerNote());
         assertOptionalEquals("ASCII\u0000\u0000\u0000(C) Copyright by Fabrizio Giudici",
                                  exif.getUserComment().map(String::new));
@@ -218,13 +218,13 @@ public class EditableImageTest extends BaseTestSupport
 //
 //        assertEquals("Canon", exif.getMake());
 //        assertEquals("Canon EOS 20D", exif.getModel());
-//        assertEquals(new Rational(72, 1), exif.getXResolution());
-//        assertEquals(new Rational(72, 1), exif.getYResolution());
+//        assertEquals(Rational.of(72, 1), exif.getXResolution());
+//        assertEquals(Rational.of(72, 1), exif.getYResolution());
 //        assertEquals(EXIF.ResolutionUnit.INCHES, exif.getResolutionUnit());
 //        assertEquals("2004:09:19 12:25:20", exif.getDateTime());
-//        assertEquals(new Rational(1, 250), exif.getExposureTime());
+//        assertEquals(Rational.of(1, 250), exif.getExposureTime());
 //
-////        assertEquals(new Rational(28, 10), exif.getFNumber());
+////        assertEquals(Rational.of(28, 10), exif.getFNumber());
 ////        assertEquals(EXIF.ExposureProgram.SHUTTER_PRIORITY, exif.getExposureProgram());
 ////        assertEquals(400, (int)exif.getISOSpeedRatings());
 ////        assertTrue(Arrays.equals(new byte[]{48, 50, 50, 49}, exif.getEXIFVersion()));
@@ -233,14 +233,14 @@ public class EditableImageTest extends BaseTestSupport
 //////        assertEquals(FORMAT.parse("2007 04 21 21:51:02.000"), exif.getDateTimeAsDate());
 //////        assertEquals(FORMAT.parse("2006 06 03 12:04:53.700"), exif.getDateTimeDigitizedAsDate());
 //////        assertEquals(FORMAT.parse("2006 06 03 12:04:53.700"), exif.getDateTimeOriginalAsDate());
-////        assertEquals(new Rational(8321928, 1000000), exif.getShutterSpeedValue());
-////        assertEquals(new Rational(2970854, 1000000), exif.getApertureValue());
-////        assertEquals(new Rational(0, 6), exif.getExposureBiasValue());
-////        assertEquals(new Rational(3, 1), exif.getMaxApertureValue());
+////        assertEquals(Rational.of(8321928, 1000000), exif.getShutterSpeedValue());
+////        assertEquals(Rational.of(2970854, 1000000), exif.getApertureValue());
+////        assertEquals(Rational.of(0, 6), exif.getExposureBiasValue());
+////        assertEquals(Rational.of(3, 1), exif.getMaxApertureValue());
 ////        assertEquals(EXIF.MeteringMode.PATTERN, exif.getMeteringMode());
 ////        assertEquals(EXIF.LightSource.FINE_WEATHER, exif.getLightSource());
 ////        assertEquals(0, (int)exif.getFlash());
-////        assertEquals(new Rational(180, 1), exif.getFocalLength());
+////        assertEquals(Rational.of(180, 1), exif.getFocalLength());
 //////        assertEquals(9996, (long)exif.getMakerNote());
 ////        assertEquals("ASCII\u0000\u0000\u0000(C) Copyright by Fabrizio Giudici", new String(exif.getUserComment()));
 ////        assertEquals("80", exif.getSubsecTimeOriginal());
@@ -278,8 +278,8 @@ public class EditableImageTest extends BaseTestSupport
         assertEquals(3, (int)tiff.getSamplesPerPixel().get());
         assertEquals(212, (int)tiff.getRowsPerStrip().get());
         assertEquals(203520, (int)tiff.getStripByteCounts().get());
-        assertEquals(new Rational(300, 1), tiff.getXResolution());
-        assertEquals(new Rational(300, 1), tiff.getYResolution());
+        assertEquals(Rational.of(300, 1), tiff.getXResolution());
+        assertEquals(Rational.of(300, 1), tiff.getYResolution());
         assertEquals(TIFF.PlanarConfiguration.CHUNKY, tiff.getPlanarConfiguration());
         assertEquals(TIFF.ResolutionUnit.INCHES, tiff.getResolutionUnit());
         assertEquals("Nikon Capture Editor 4.1.3 W", tiff.getSoftware());
@@ -299,20 +299,20 @@ public class EditableImageTest extends BaseTestSupport
         assertEquals(22, exif.getTagCodes().length);
         dumpTags("EXIF", exif, log::info);
 
-        assertEquals(new Rational(3125, 1000000), exif.getExposureTime());
-        assertEquals(new Rational(28, 10), exif.getFNumber());
+        assertEquals(Rational.of(3125, 1000000), exif.getExposureTime());
+        assertEquals(Rational.of(28, 10), exif.getFNumber());
         assertEquals(EXIF.ExposureProgram.SHUTTER_PRIORITY, exif.getExposureProgram());
         assertEquals("2003:07:01 12:29:36", exif.getDateTimeOriginal());
         assertEquals("2003:07:01 12:29:36", exif.getDateTimeDigitized());
 //        assertEquals(FORMAT.parse("2007 04 21 21:51:02.000"), exif.getDateTimeAsDate());
 //        assertEquals(FORMAT.parse("2006 06 03 12:04:53.700"), exif.getDateTimeDigitizedAsDate());
 //        assertEquals(FORMAT.parse("2006 06 03 12:04:53.700"), exif.getDateTimeOriginalAsDate());
-        assertEquals(new Rational(0, 6), exif.getExposureBiasValue());
-        assertEquals(new Rational(3, 1), exif.getMaxApertureValue());
+        assertEquals(Rational.of(0, 6), exif.getExposureBiasValue());
+        assertEquals(Rational.of(3, 1), exif.getMaxApertureValue());
         assertEquals(EXIF.MeteringMode.PATTERN, exif.getMeteringMode());
         assertEquals(EXIF.LightSource.FINE_WEATHER, exif.getLightSource());
         assertEquals(0, (int)exif.getFlash().get());
-        assertEquals(new Rational(180, 1), exif.getFocalLength());
+        assertEquals(Rational.of(180, 1), exif.getFocalLength());
         assertEquals(9996, exif.getMakerNote());
         assertEquals("ASCII\u0000\u0000\u0000(C) Copyright by Fabrizio Giudici   ",
                                  new String(exif.getUserComment().get()));
