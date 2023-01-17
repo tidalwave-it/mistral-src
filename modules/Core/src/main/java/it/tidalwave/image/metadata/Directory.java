@@ -30,8 +30,10 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -39,6 +41,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import java.io.Serializable;
 import it.tidalwave.image.Rational;
 import it.tidalwave.image.metadata.loader.DirectoryAdapter;
+import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
  *
@@ -48,9 +51,14 @@ import it.tidalwave.image.metadata.loader.DirectoryAdapter;
  * @author Fabrizio Giudici
  *
  **********************************************************************************************************************/
+@Slf4j
 public class Directory extends JavaBeanSupport implements Serializable
   {
     private static final long serialVersionUID = 3088068666726854722L;
+
+    // Not static since they are not thread safe
+    private final static DateTimeFormatter exifDateFormat = DateTimeFormatter.ofPattern("yyyy:MM:dd HH:mm:ss");
+    private final static DateTimeFormatter exifDateFormat2 = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
     private static int nextId = 1;
 
@@ -60,7 +68,7 @@ public class Directory extends JavaBeanSupport implements Serializable
 
     private final Map<String, Directory> directoryMap = new HashMap<>();
 
-    private Date latestModificationTime;
+    private Instant latestModificationTime;
 
     /*******************************************************************************************************************
      *
@@ -74,9 +82,9 @@ public class Directory extends JavaBeanSupport implements Serializable
      *
      *
      ******************************************************************************************************************/
-    public Directory (final Date latestModificationTime)
+    public Directory (final Instant latestModificationTime)
       {
-        this.latestModificationTime = (Date)latestModificationTime.clone();
+        this.latestModificationTime = latestModificationTime;
       }
 
     /*******************************************************************************************************************
@@ -274,15 +282,15 @@ public class Directory extends JavaBeanSupport implements Serializable
 //        return strategy.getTagName(tag);
       }
 
-    public Date getLatestModificationTime()
+    public Instant getLatestModificationTime()
       {
-        return (latestModificationTime == null) ? null : (Date)latestModificationTime.clone();
+        return (latestModificationTime == null) ? null : latestModificationTime;
       }
 
     protected synchronized void touch()
       {
 //        latestModificationTime.setTime(System.currentTimeMillis()) breaks firePropertyChange()  
-        latestModificationTime = new Date();
+        latestModificationTime = Instant.now();
       }
 
     /*******************************************************************************************************************
@@ -487,26 +495,47 @@ public class Directory extends JavaBeanSupport implements Serializable
         return false;
       }
 
+
     /*******************************************************************************************************************
      *
-     * @param s
-     * @return
+     ******************************************************************************************************************/
+    protected static String formatDate (final LocalDateTime date)
+      {
+        if (date == null)
+          {
+            return null;
+          }
+
+        return exifDateFormat.format(date);
+      }
+
+    /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-//    private static String strip (final String string)
-//      {
-//        final StringBuffer result = new StringBuffer();
-//
-//        for (int i = 0; i < string.length(); i++)
-//          {
-//            char c = string.charAt(i);
-//
-//            if (Character.isJavaIdentifierPart(c))
-//              {
-//                result.append(c);
-//              }
-//          }
-//
-//        return result.toString();
-//      }
+    protected static LocalDateTime parseDate (final String string)
+      {
+        if (string == null)
+          {
+            return null;
+          }
+
+        try
+          {
+            return LocalDateTime.parse(string, exifDateFormat);
+          }
+
+        catch (Exception e)
+          {
+            try
+              {
+                return LocalDateTime.parse(string, exifDateFormat2);
+              }
+
+            catch (Exception e1)
+              {
+                log.warn("*** BAD DATE " + string);
+                return null;
+              }
+          }
+      }
   }

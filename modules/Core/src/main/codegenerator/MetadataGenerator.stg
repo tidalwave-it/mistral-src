@@ -58,7 +58,7 @@ printRecord(record) ::= <<
         final <record.javaType> oldValue = get<record.capitalizedTagName>();
         final boolean oldPropAvailable = is<record.capitalizedTagName>Available();
         final boolean oldAvailable = isAvailable();
-        final Date oldLatestModificationTime = getLatestModificationTime();
+        final Instant oldLatestModificationTime = getLatestModificationTime();
         setObject(<class_name>.<record.constTagName>, <record.uncapitalizedTagName>);
         propertyChangeSupport.firePropertyChange("<record.uncapitalizedTagName>", oldValue, <record.uncapitalizedTagName>);
         propertyChangeSupport.firePropertyChange("<record.uncapitalizedTagName>Available", oldPropAvailable, is<record.capitalizedTagName>Available());
@@ -76,7 +76,7 @@ printRecord(record) ::= <<
         final <record.javaType> oldValue = get<record.capitalizedTagName>();
         final boolean oldPropAvailable = is<record.capitalizedTagName>Available();
         final boolean oldAvailable = isAvailable();
-        final Date oldLatestModificationTime = getLatestModificationTime();
+        final Instant oldLatestModificationTime = getLatestModificationTime();
 
         if (available && !containsTag(<record.constTagName>))
           {
@@ -114,7 +114,7 @@ printIsAvailable(records) ::= <<
 generator(creation_date, class_name, records) ::= <<
 package it.tidalwave.image.metadata;
 
-import java.util.Date;
+import java.time.*;
 import java.util.Map;
 import java.util.HashMap;
 import it.tidalwave.image.Rational;
@@ -130,7 +130,7 @@ public class <class_name> extends Directory
       {
       }
 
-    public <class_name> (final Date latestModificationTime)
+    public <class_name> (final Instant latestModificationTime)
       {
         super(latestModificationTime);
       }

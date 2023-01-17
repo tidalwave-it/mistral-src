@@ -27,8 +27,8 @@
 package it.tidalwave.image.metadata;
 
 import javax.annotation.Nonnull;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.Instant;
+import java.time.LocalDateTime;
 import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
@@ -40,10 +40,6 @@ import lombok.extern.slf4j.Slf4j;
 public class IPTC extends IPTCDirectoryGenerated
   {
     private static final long serialVersionUID = 3033068666726854799L;
-
-    // Not static since they are not thread safe
-    private final SimpleDateFormat exifDateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
-    private final SimpleDateFormat exifDateFormat2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
     /*******************************************************************************************************************
      *
@@ -57,7 +53,7 @@ public class IPTC extends IPTCDirectoryGenerated
      *
      *
      ******************************************************************************************************************/
-    public IPTC (@Nonnull final Date latestModificationTime)
+    public IPTC (@Nonnull final Instant latestModificationTime)
       {
         super(latestModificationTime);
       }
@@ -67,7 +63,7 @@ public class IPTC extends IPTCDirectoryGenerated
      *
      ******************************************************************************************************************/
     @Nonnull
-    public Date getDateCreatedAsDate()
+    public LocalDateTime getDateCreatedAsDate()
       {
         return parseDate(getDateCreated());
       }
@@ -76,7 +72,7 @@ public class IPTC extends IPTCDirectoryGenerated
      *
      *
      ******************************************************************************************************************/
-    public void setDateCreatedAsDate (@Nonnull final Date date)
+    public void setDateCreatedAsDate (@Nonnull final LocalDateTime date)
       {
         setDateCreated((date == null) ? null : formatDate(date));
       }
@@ -96,60 +92,12 @@ public class IPTC extends IPTCDirectoryGenerated
      ******************************************************************************************************************/
     public void setDateCreatedAsDateAvailable (final boolean available)
       {
-        final Date oldValue = getDateCreatedAsDate();
+        final LocalDateTime oldValue = getDateCreatedAsDate();
         final boolean oldAvailable = isDateCreatedAsDateAvailable();
         setDateCreatedAvailable(available);
         propertyChangeSupport.firePropertyChange("dateCreatedAsDate", oldValue, getDateCreatedAsDate());
         propertyChangeSupport.firePropertyChange("dateCreatedAsDateAvailable",
                                                  oldAvailable,
                                                  isDateCreatedAsDateAvailable());
-      }
-
-    /*******************************************************************************************************************
-     *
-     * synchronized since SimpleDateFormat is not thread-safe.
-     *
-     ******************************************************************************************************************/
-    private synchronized String formatDate (@Nonnull final Date date)
-      {
-        if (date == null)
-          {
-            return null;
-          }
-
-        return exifDateFormat.format(date);
-      }
-
-    /*******************************************************************************************************************
-     *
-     * synchronized since SimpleDateFormat is not thread-safe.
-     *
-     ******************************************************************************************************************/
-    @Nonnull
-    private synchronized Date parseDate (@Nonnull final String string)
-      {
-        if (string == null)
-          {
-            return null;
-          }
-
-        try
-          {
-            return exifDateFormat.parse(string);
-          }
-
-        catch (Exception e)
-          {
-            try
-              {
-                return exifDateFormat2.parse(string);
-              }
-
-            catch (Exception e1)
-              {
-                log.warn("*** BAD DATE {}", string);
-                return null;
-              }
-          }
       }
   }

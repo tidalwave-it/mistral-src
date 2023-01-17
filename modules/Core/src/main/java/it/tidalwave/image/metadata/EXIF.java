@@ -26,9 +26,9 @@
  */
 package it.tidalwave.image.metadata;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.awt.color.ICC_Profile;
 import lombok.extern.slf4j.Slf4j;
 
@@ -44,10 +44,6 @@ public class EXIF extends EXIFDirectoryGenerated
 
     private static final String ASCII_PREFIX = "ASCII\u0000\u0000\u0000";
 
-    // Not static since they are not thread safe
-    private final SimpleDateFormat exifDateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
-    private final SimpleDateFormat exifDateFormat2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-
     /*******************************************************************************************************************
      *
      *
@@ -60,7 +56,7 @@ public class EXIF extends EXIFDirectoryGenerated
      *
      *
      ******************************************************************************************************************/
-    public EXIF (final Date latestModificationTime)
+    public EXIF (final Instant latestModificationTime)
       {
         super(latestModificationTime);
       }
@@ -262,9 +258,9 @@ public class EXIF extends EXIFDirectoryGenerated
      * @return
      *
      ******************************************************************************************************************/
-    public Date getDateTimeAsDate()
+    public LocalDateTime getDateTimeAsDate()
       {
-        Date date = parseDate(getDateTime());
+        LocalDateTime date = parseDate(getDateTime());
 
         if (isSubsecTimeAvailable())
           {
@@ -277,7 +273,7 @@ public class EXIF extends EXIFDirectoryGenerated
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-    public void setDateTimeAsDate (final Date date)
+    public void setDateTimeAsDate (final LocalDateTime date)
       {
         setDateTime((date == null) ? null : formatDate(date));
       }
@@ -295,7 +291,7 @@ public class EXIF extends EXIFDirectoryGenerated
      ******************************************************************************************************************/
     public void setDateTimeAsDateAvailable (final boolean available)
       {
-        final Date oldValue = getDateTimeAsDate();
+        final LocalDateTime oldValue = getDateTimeAsDate();
         final boolean oldAvailable = isDateTimeAsDateAvailable();
         setDateTimeAvailable(available);
         propertyChangeSupport.firePropertyChange("dateTimeAsDate", oldValue, getDateTimeAsDate());
@@ -307,9 +303,9 @@ public class EXIF extends EXIFDirectoryGenerated
      * @return
      *
      ******************************************************************************************************************/
-    public Date getDateTimeOriginalAsDate()
+    public LocalDateTime getDateTimeOriginalAsDate()
       {
-        Date date = parseDate(getDateTimeOriginal());
+        LocalDateTime date = parseDate(getDateTimeOriginal());
 
         if (isSubsecTimeOriginalAvailable())
           {
@@ -322,9 +318,9 @@ public class EXIF extends EXIFDirectoryGenerated
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-    public void setDateTimeOriginalAsDate (final Date date)
+    public void setDateTimeOriginalAsDate (final LocalDateTime date)
       {
-        final Date oldValue = getDateTimeOriginalAsDate();
+        final LocalDateTime oldValue = getDateTimeOriginalAsDate();
         final boolean oldAvailable = isDateTimeOriginalAsDateAvailable();
         setDateTimeOriginal((date == null) ? null : formatDate(date));
         propertyChangeSupport.firePropertyChange("dateTimeOriginalAsDate", oldValue, getDateTimeOriginalAsDate());
@@ -346,7 +342,7 @@ public class EXIF extends EXIFDirectoryGenerated
      ******************************************************************************************************************/
     public void setDateTimeOriginalAsDateAvailable (final boolean available)
       {
-        final Date oldValue = getDateTimeOriginalAsDate();
+        final LocalDateTime oldValue = getDateTimeOriginalAsDate();
         final boolean oldAvailable = isDateTimeOriginalAsDateAvailable();
         setDateTimeOriginalAvailable(available);
         propertyChangeSupport.firePropertyChange("dateTimeOriginalAsDate", oldValue, getDateTimeOriginalAsDate());
@@ -360,9 +356,9 @@ public class EXIF extends EXIFDirectoryGenerated
      * @return
      *
      ******************************************************************************************************************/
-    public Date getDateTimeDigitizedAsDate()
+    public LocalDateTime getDateTimeDigitizedAsDate()
       {
-        Date date = parseDate(getDateTimeDigitized());
+        LocalDateTime date = parseDate(getDateTimeDigitized());
 
         if (isSubsecTimeDigitizedAvailable())
           {
@@ -375,9 +371,9 @@ public class EXIF extends EXIFDirectoryGenerated
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-    public void setDateTimeDigitizedAsDate (final Date date)
+    public void setDateTimeDigitizedAsDate (final LocalDateTime date)
       {
-        final Date oldValue = getDateTimeDigitizedAsDate();
+        final LocalDateTime oldValue = getDateTimeDigitizedAsDate();
         final boolean oldAvailable = isDateTimeDigitizedAsDateAvailable();
         setDateTimeDigitized((date == null) ? null : formatDate(date));
         propertyChangeSupport.firePropertyChange("dateTimeDigitizedAsDate", oldValue, getDateTimeDigitizedAsDate());
@@ -399,7 +395,7 @@ public class EXIF extends EXIFDirectoryGenerated
      ******************************************************************************************************************/
     public void setDateTimeDigitizedAsDateAvailable (final boolean available)
       {
-        final Date oldValue = getDateTimeDigitizedAsDate();
+        final LocalDateTime oldValue = getDateTimeDigitizedAsDate();
         final boolean oldAvailable = isDateTimeDigitizedAsDateAvailable();
         setDateTimeDigitizedAvailable(available);
         propertyChangeSupport.firePropertyChange("dateTimeDigitizedAsDate", oldValue, getDateTimeDigitizedAsDate());
@@ -414,7 +410,7 @@ public class EXIF extends EXIFDirectoryGenerated
     @Override
     public void setDateTime (final String dateTime)
       {
-        final Date oldValue = getDateTimeAsDate();
+        final LocalDateTime oldValue = getDateTimeAsDate();
         final boolean oldAvailable = isDateTimeAsDateAvailable();
         super.setDateTime(dateTime);
         propertyChangeSupport.firePropertyChange("dateTimeAsDate", oldValue, getDateTimeAsDate());
@@ -427,7 +423,7 @@ public class EXIF extends EXIFDirectoryGenerated
     @Override
     public void setDateTimeDigitized (final String dateTimeDigitized)
       {
-        final Date oldValue = getDateTimeDigitizedAsDate();
+        final LocalDateTime oldValue = getDateTimeDigitizedAsDate();
         final boolean oldAvailable = isDateTimeDigitizedAsDateAvailable();
         super.setDateTimeDigitized(dateTimeDigitized);
         propertyChangeSupport.firePropertyChange("dateTimeDigitizedAsDate", oldValue, getDateTimeDigitizedAsDate());
@@ -442,7 +438,7 @@ public class EXIF extends EXIFDirectoryGenerated
     @Override
     public void setDateTimeOriginal (final String dateTimeOriginal)
       {
-        final Date oldValue = getDateTimeOriginalAsDate();
+        final LocalDateTime oldValue = getDateTimeOriginalAsDate();
         final boolean oldAvailable = isDateTimeOriginalAsDateAvailable();
         super.setDateTimeOriginal(dateTimeOriginal);
         propertyChangeSupport.firePropertyChange("dateTimeOriginalAsDate", oldValue, getDateTimeOriginalAsDate());
@@ -457,63 +453,13 @@ public class EXIF extends EXIFDirectoryGenerated
      * @param subsec
      *
      ******************************************************************************************************************/
-    private Date adjust (final Date date, final String subsec)
+    private LocalDateTime adjust (final LocalDateTime date, final String subsec)
       {
         if (date == null)
           {
             return null;
           }
 
-        final Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.add(Calendar.MILLISECOND, Integer.parseInt(subsec) * 10);
-        return calendar.getTime();
-      }
-
-    /*******************************************************************************************************************
-     *
-     * synchronized since SimpleDateFormat is not thread-safe.
-     *
-     ******************************************************************************************************************/
-    private synchronized String formatDate (final Date date)
-      {
-        if (date == null)
-          {
-            return null;
-          }
-
-        return exifDateFormat.format(date);
-      }
-
-    /*******************************************************************************************************************
-     *
-     * synchronized since SimpleDateFormat is not thread-safe.
-     *
-     ******************************************************************************************************************/
-    private synchronized Date parseDate (final String string)
-      {
-        if (string == null)
-          {
-            return null;
-          }
-
-        try
-          {
-            return exifDateFormat.parse(string);
-          }
-
-        catch (Exception e)
-          {
-            try
-              {
-                return exifDateFormat2.parse(string);
-              }
-
-            catch (Exception e1)
-              {
-                log.warn("*** BAD DATE " + string);
-                return null;
-              }
-          }
+        return date.plus(Integer.parseInt(subsec) * 10, ChronoUnit.MILLIS);
       }
   }

@@ -26,7 +26,7 @@
  */
 package it.tidalwave.image.metadata;
 
-import java.util.Date;
+import java.time.Instant;
 import java.io.IOException;
 
 /***********************************************************************************************************************
@@ -50,7 +50,7 @@ public class TIFF extends EXIF // DirectoryGenerated
      *
      *
      ******************************************************************************************************************/
-    public TIFF (final Date latestModificationTime)
+    public TIFF (final Instant latestModificationTime)
       {
         super(latestModificationTime);
       }
