@@ -36,7 +36,6 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.RenderedImage;
 import java.awt.image.SampleModel;
-import org.openide.util.Lookup;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.ImageModel;
 import it.tidalwave.image.InterpolationType;
@@ -106,7 +105,7 @@ public class ImageModelJ2D extends ImageModel
     @Override
     public ImplementationFactory getFactory()
       {
-        return Lookup.getDefault().lookup(ImplementationFactoryJ2D.class);
+        return ImplementationFactoryJ2D.getDefault();
       }
 
     /*******************************************************************************************************************

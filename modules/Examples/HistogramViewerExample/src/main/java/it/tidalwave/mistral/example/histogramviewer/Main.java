@@ -35,7 +35,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import org.openide.util.Lookup;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Histogram;
 import it.tidalwave.image.java2d.ImplementationFactoryJ2D;
@@ -129,7 +128,7 @@ public class Main
         try
           {
             Class.forName("it.tidalwave.image.jai.ImplementationFactoryJAI");
-            Lookup.getDefault().lookup(ImplementationFactoryJ2D.class).unregisterImplementation(HistogramOp.class);
+            ImplementationFactoryJ2D.getDefault().unregisterImplementation(HistogramOp.class);
             jai = true;
           }
         catch (Throwable e)

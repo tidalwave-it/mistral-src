@@ -29,9 +29,9 @@ package it.tidalwave.mistral.customoperation;
 import java.io.File;
 import java.io.IOException;
 import java.awt.image.BufferedImage;
-import org.openide.util.Lookup;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.java2d.ImplementationFactoryJ2D;
+import it.tidalwave.image.op.ImplementationFactory;
 import it.tidalwave.image.op.ReadOp;
 import it.tidalwave.image.op.WriteOp;
 
@@ -48,9 +48,7 @@ public class Main
         //
         // Register the custom operation and its implementation.
         //
-        Lookup.getDefault()
-              .lookup(ImplementationFactoryJ2D.class)
-              .registerImplementation(ChangeBufferTypeOp.class, ChangeBufferTypeJ2DOp.class);
+        ImplementationFactoryJ2D.getDefault().registerImplementation(ChangeBufferTypeOp.class, ChangeBufferTypeJ2DOp.class);
 
         final File file = new File("20030701-0043.jpg");
         final EditableImage image = EditableImage.create(new ReadOp(file));

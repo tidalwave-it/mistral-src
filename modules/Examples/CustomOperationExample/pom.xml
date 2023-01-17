@@ -28,10 +28,6 @@
             <groupId>it.tidalwave.image</groupId>
             <artifactId>image-contributions</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-openide-util-lookup</artifactId>
-        </dependency>
     </dependencies>
 </project>
 

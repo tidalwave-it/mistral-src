@@ -28,7 +28,9 @@ package it.tidalwave.image.op;
 
 import javax.annotation.Nonnull;
 import java.util.Collection;
-import org.openide.util.lookup.ServiceProvider;
+import java.util.ServiceLoader;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 import it.tidalwave.image.ImageModel;
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,9 +39,18 @@ import lombok.extern.slf4j.Slf4j;
  * @author Fabrizio Giudici
  *
  **********************************************************************************************************************/
-@ServiceProvider(service = ImplementationFactoryRegistry.class) @Slf4j
+@Slf4j
 public class ImplementationFactoryRegistry
   {
+    @Nonnull
+    public static ImplementationFactoryRegistry getDefault()
+      {
+        ServiceLoader<ImplementationFactoryRegistry> loader = ServiceLoader.load(ImplementationFactoryRegistry.class);
+        return StreamSupport.stream(loader.spliterator(), false)
+                            .findFirst()
+                            .orElseThrow(() -> new RuntimeException("Can't found implementation of " + ImplementationFactory.class));
+      }
+
     /*******************************************************************************************************************
      *
      *
@@ -127,8 +138,9 @@ public class ImplementationFactoryRegistry
      *
      ******************************************************************************************************************/
     @Nonnull
-    private Collection<? extends ImplementationFactory> getFactories()
+    private static Collection<ImplementationFactory> getFactories()
       {
-        return org.openide.util.Lookup.getDefault().lookupAll(ImplementationFactory.class);
+        ServiceLoader<ImplementationFactory> loader = ServiceLoader.load(ImplementationFactory.class);
+        return StreamSupport.stream(loader.spliterator(), false).collect(Collectors.toList());
       }
   }

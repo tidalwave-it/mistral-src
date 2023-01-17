@@ -48,7 +48,6 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import java.net.URL;
 import java.awt.image.BufferedImage;
-import org.openide.util.Lookup;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.java2d.ImplementationFactoryJ2D;
 import it.tidalwave.image.java2d.Java2DUtils;
@@ -327,9 +326,7 @@ public class ReadOp extends Operation
         @Nonnull
         private static EditableImage create (@Nonnull final BufferedImage image)
           {
-            return new EditableImage(Lookup.getDefault()
-                                           .lookup(ImplementationFactoryJ2D.class)
-                                           .createImageModel(image));
+            return new EditableImage(ImplementationFactoryJ2D.getDefault().createImageModel(image));
           }
 
         /***************************************************************************************************************

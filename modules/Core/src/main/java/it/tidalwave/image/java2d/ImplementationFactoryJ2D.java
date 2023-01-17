@@ -28,8 +28,9 @@ package it.tidalwave.image.java2d;
 
 import java.lang.reflect.Method;
 import javax.annotation.Nonnull;
+import java.util.ServiceLoader;
+import java.util.stream.StreamSupport;
 import java.awt.image.BufferedImage;
-import org.openide.util.lookup.ServiceProvider;
 import it.tidalwave.image.ImageModel;
 import it.tidalwave.image.op.CaptureOp;
 import it.tidalwave.image.op.ConvertToBufferedImageOp;
@@ -53,10 +54,19 @@ import lombok.extern.slf4j.Slf4j;
  * @author Fabrizio Giudici
  *
  **********************************************************************************************************************/
-@ServiceProvider(service = ImplementationFactory.class) @Slf4j
+@Slf4j
 public class ImplementationFactoryJ2D extends ImplementationFactory
   {
     private Class<?> planarImageClass;
+
+    @Nonnull
+    public static ImplementationFactory getDefault()
+      {
+        ServiceLoader<ImplementationFactory> loader = ServiceLoader.load(ImplementationFactory.class);
+        return StreamSupport.stream(loader.spliterator(), false)
+                            .findFirst()
+                            .orElseThrow(() -> new RuntimeException("Can't found implementation of " + ImplementationFactory.class));
+      }
 
     /*******************************************************************************************************************
      *

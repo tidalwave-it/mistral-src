@@ -48,7 +48,6 @@ import java.awt.color.ICC_ColorSpace;
 import java.awt.color.ICC_Profile;
 import java.awt.image.ColorModel;
 import java.awt.image.DataBuffer;
-import org.openide.util.Lookup;
 import it.tidalwave.image.metadata.Directory;
 import it.tidalwave.image.metadata.EXIF;
 import it.tidalwave.image.metadata.IPTC;
@@ -256,8 +255,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
       {
         final EditableImage editableImage = new EditableImage(null);
         final Object image = editableImage.internalExecute(createOp);
-        final ImageModel imageModel =
-                Lookup.getDefault().lookup(ImplementationFactoryRegistry.class).createImageModel(image);
+        final ImageModel imageModel = ImplementationFactoryRegistry.getDefault().createImageModel(image);
         editableImage.imageModelHolder = ImageModelHolder.wrap(imageModel);
 
         return editableImage;
@@ -823,8 +821,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
     private Object internalExecute (final Operation operation)
             throws UnsupportedOperationException
       {
-        final ImplementationFactoryRegistry implementationFactoryRegistry =
-                Lookup.getDefault().lookup(ImplementationFactoryRegistry.class);
+        final ImplementationFactoryRegistry implementationFactoryRegistry = ImplementationFactoryRegistry.getDefault();
         final ImageModel imageModel = imageModelHolder.get();
         Object image = (imageModel != null) ? imageModel.getImage() : null;
         OperationImplementation implementation = null;

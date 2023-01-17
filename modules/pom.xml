@@ -22,7 +22,6 @@
         <libraries.version>1.1.5</libraries.version>
         <st4.version>4.0.8</st4.version>
         <thesefoolishthings.version>3.2-ALPHA-13</thesefoolishthings.version>
-        <netbeans.version>RELEASE71</netbeans.version>
     </properties>
 
     <dependencyManagement>
@@ -31,13 +30,6 @@
                 <groupId>it.tidalwave.thesefoolishthings</groupId>
                 <artifactId>thesefoolishthings</artifactId>
                 <version>${thesefoolishthings.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>it.tidalwave.superpom</groupId>
-                <artifactId>platform</artifactId>
-                <version>${netbeans.version}-1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
