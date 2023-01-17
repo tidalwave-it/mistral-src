@@ -5,7 +5,7 @@ enumDecl(item) ::= <<
 >>
 
 enumIf(type) ::= <<
-             if (value == $it.value$) return $it.identifierName$;$\n$
+             if (value == $type.value$) return $type.identifierName$;$\n$
 >>
 
 printDescriptionTags(records) ::= <<
@@ -25,9 +25,17 @@ printMemberDecl(records) ::= <<
 >>
 
 printEnumRecord(record) ::= <<
+
+    /*******************************************************************************************************************
+     *
+     * Enumeration for representing the possible values of tag $record.capitalizedTagName$.
+     *
+     ******************************************************************************************************************/
     public static enum $record.capitalizedTagName$
        {
-$record.enums: { enum | $enumDecl(item = enum)$ }$         _UNKNOWN(-1, "_unknown_");
+         $record.enums: { enum | $enumDecl(item = enum)$ }$
+         _UNKNOWN(-1, "_unknown_");
+
          private final static long serialVersionUID = 3059468666726854749L;
          private final int value;
          private final String name;
@@ -46,10 +54,11 @@ $record.enums: { enum | $enumDecl(item = enum)$ }$         _UNKNOWN(-1, "_unknow
          @Nonnull
          public static $record.capitalizedTagName$ fromInteger (int value)
            {
-$record.enums:enumIf(type = record.type)$
+             $record.enums: { enum | $enumIf(type = enum)$ }$
              return _UNKNOWN;
            }
        }
+
 >>
 
 printRecord(record) ::= <<
