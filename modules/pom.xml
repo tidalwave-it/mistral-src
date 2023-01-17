@@ -23,7 +23,7 @@
 
         <antlr4.version>4.3</antlr4.version>
         <jrawio.version>1.7-ALPHA-1</jrawio.version>
-        <libraries.version>1.1.5</libraries.version>
+        <metadata-extractor.version>2.18.0</metadata-extractor.version>
         <st4.version>4.0.8</st4.version>
         <thesefoolishthings.version>3.2-ALPHA-13</thesefoolishthings.version>
     </properties>
@@ -34,13 +34,6 @@
                 <groupId>it.tidalwave.thesefoolishthings</groupId>
                 <artifactId>thesefoolishthings</artifactId>
                 <version>${thesefoolishthings.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>it.tidalwave.superpom</groupId>
-                <artifactId>libraries</artifactId>
-                <version>${libraries.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -72,7 +65,7 @@
             <dependency>
                 <groupId>com.drewnoakes</groupId>
                 <artifactId>metadata-extractor</artifactId>
-                <version>2.18.0</version>
+                <version>${metadata-extractor.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.kenai.nbpwr</groupId>
