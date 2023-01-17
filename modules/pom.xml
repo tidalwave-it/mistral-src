@@ -17,6 +17,10 @@
     <name>Mistral (modules)</name>
 
     <properties>
+        <tft.javac.source>11</tft.javac.source>
+        <tft.javac.target>11</tft.javac.target>
+        <tft.javac.release>11</tft.javac.release>
+
         <antlr4.version>4.3</antlr4.version>
         <jrawio.version>1.7-ALPHA-1</jrawio.version>
         <libraries.version>1.1.5</libraries.version>

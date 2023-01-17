@@ -46,6 +46,7 @@
     <inceptionYear>2003</inceptionYear>
 
     <properties>
+        <tft.maven.requiredJdk>[11,12)</tft.maven.requiredJdk>
         <scm.repo.url>git@bitbucket.org:tidalwave/mistral-src.git</scm.repo.url>
         <scm.repo.readonly.url>https://bitbucket.org/tidalwave/mistral-src.git</scm.repo.readonly.url>
         <scm.repo.browse.url>https://bitbucket.org/tidalwave/mistral-src/src</scm.repo.browse.url>
