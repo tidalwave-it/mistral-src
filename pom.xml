@@ -17,6 +17,13 @@
     <version>1.0-ALPHA-5-SNAPSHOT</version>
     <name>Mistral</name>
     <description>
+        This library is a façade for image manipulation, acting as a proxy to libraries such as Java2D, JAI, ImageJ.
+
+        In its early years (after 2003) it was used for photo development, metadata management and even demonstrated distributed
+        calculus on the Sun Grid.
+
+        At the end of 2016 development stopped. It resumed at the end of 2022, dropping obsolete stuff (JAI). At the moment the
+        portions related to image manipulation are not tested. Features about metadata manipulation are being actively developed.
 
         A few scripts for U*ix and Windows systems are provided to quickly run examples:
 
@@ -29,17 +36,15 @@
         Directory tree
         ==============
 
-        * modules/Core sources for the core component
-        * modules/ImageJ-Plugin sources for the ImageJ plugin
-        * modules/JAI-Plugin sources for the JAI plugin
-        * modules/Metadata sources for the Metadata component
-        * modules/Processor sources for the imaging processor
-        * modules/Renderer sources for the renderer
+        * modules/Core                              sources for the core component
+        * modules/Metadata                          sources for the Metadata component
+        * modules/Processor                         sources for the imaging processor
+        * modules/Renderer                          sources for the renderer
 
-        * modules/Examples/ViewerExample example about the renderer
-        * modules/Examples/HistogramViewerExample example about histogram computation
-        * modules/Examples/CustomOperationExample example about custom operations
-        * modules/Examples/Miscellaneous miscellaneous examples
+        * modules/Examples/ViewerExample            example about the renderer
+        * modules/Examples/HistogramViewerExample   example about histogram computation
+        * modules/Examples/CustomOperationExample   example about custom operations
+        * modules/Examples/Miscellaneous            miscellaneous examples
     </description>
 
     <url>http://tidalwave.it/project/mistral</url>
