@@ -26,9 +26,12 @@
  */
 package it.tidalwave.image.metadata;
 
+import javax.annotation.CheckForNull;
+import javax.annotation.Nonnull;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Optional;
 import java.awt.color.ICC_Profile;
 import lombok.extern.slf4j.Slf4j;
 
@@ -66,8 +69,8 @@ public class EXIF extends EXIFDirectoryGenerated
      * FIXME: this conversion could be generically be implemented in getObject().
      *
      ******************************************************************************************************************/
-    @Override
-    public int[] getBitsPerSample()
+    @Override @Nonnull
+    public Optional<int[]> getBitsPerSample()
       {
         Object object = getObject(BITS_PER_SAMPLE);
 
@@ -84,7 +87,7 @@ public class EXIF extends EXIFDirectoryGenerated
             object = result;
           }
 
-        return (int[])object;
+        return Optional.ofNullable((int[])object);
       }
 
     /*******************************************************************************************************************
@@ -94,8 +97,8 @@ public class EXIF extends EXIFDirectoryGenerated
      * a ClassCastException in the generated code.
      *
      ******************************************************************************************************************/
-    @Override
-    public FileSource getFileSource()
+    @Override @Nonnull
+    public Optional<FileSource> getFileSource()
       {
         Object object = getObject(FILE_SOURCE);
 
@@ -109,7 +112,7 @@ public class EXIF extends EXIFDirectoryGenerated
             object = FileSource.fromInteger(((Integer)object));
           }
 
-        return (FileSource)object;
+        return Optional.ofNullable((FileSource)object);
       }
 
     /*******************************************************************************************************************
@@ -119,8 +122,8 @@ public class EXIF extends EXIFDirectoryGenerated
      * a ClassCastException in the generated code.
      *
      ******************************************************************************************************************/
-    @Override
-    public SceneType getSceneType()
+    @Override @Nonnull
+    public Optional<SceneType> getSceneType()
       {
         Object object = getObject(SCENE_TYPE);
 
@@ -134,7 +137,7 @@ public class EXIF extends EXIFDirectoryGenerated
             object = SceneType.fromInteger(((Integer)object));
           }
 
-        return (SceneType)object;
+        return Optional.ofNullable((SceneType)object);
       }
 
     /*******************************************************************************************************************
@@ -142,8 +145,8 @@ public class EXIF extends EXIFDirectoryGenerated
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Override
-    public byte[] getUserComment()
+    @Override @Nonnull
+    public Optional<byte[]> getUserComment()
       {
         try
           {
@@ -153,7 +156,7 @@ public class EXIF extends EXIFDirectoryGenerated
           {
             final int i = (Integer)getObject(37510); // flowers.jpeg does this strange thing
 
-            return ("" + i).getBytes();
+            return Optional.ofNullable(("" + i).getBytes());
           }
       }
 
@@ -161,10 +164,11 @@ public class EXIF extends EXIFDirectoryGenerated
      *
      *
      ******************************************************************************************************************/
-    public String getUserCommentAsString()
+    @Nonnull
+    public Optional<String> getUserCommentAsString()
       {
         String string = null;
-        final byte[] bytes = getUserComment();
+        final byte[] bytes = getUserComment().orElse(null);
 
         if (bytes != null)
           {
@@ -172,50 +176,22 @@ public class EXIF extends EXIFDirectoryGenerated
 
             if (string.startsWith(ASCII_PREFIX))
               {
-                return string.substring(ASCII_PREFIX.length());
+                return Optional.of(string.substring(ASCII_PREFIX.length()));
               }
           }
 
-        return string;
+        return Optional.ofNullable(string);
       }
 
     /*******************************************************************************************************************
      *
      *
      ******************************************************************************************************************/
-    public void setUserCommentAsString (final String string)
+    public void setUserCommentAsString (final @Nonnull String string)
       {
-        final String oldValue = getUserCommentAsString();
-        final boolean oldAvailable = isUserCommentAsStringAvailable();
+        final Optional<String> oldValue = getUserCommentAsString();
         setUserComment((string == null) ? null : (ASCII_PREFIX + string).getBytes());
         propertyChangeSupport.firePropertyChange("userCommentAsString", oldValue, getUserCommentAsString());
-        propertyChangeSupport.firePropertyChange("userCommentAsStringAvailable",
-                                                 oldAvailable,
-                                                 isUserCommentAsStringAvailable());
-      }
-
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    public boolean isUserCommentAsStringAvailable()
-      {
-        return isUserCommentAvailable();
-      }
-
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    public void setUserCommentAsStringAvailable (final boolean available)
-      {
-        final String oldValue = getUserCommentAsString();
-        final boolean oldAvailable = isUserCommentAsStringAvailable();
-        setUserCommentAvailable(available);
-        propertyChangeSupport.firePropertyChange("userCommentAsString", oldValue, getUserCommentAsString());
-        propertyChangeSupport.firePropertyChange("userCommentAsStringAvailable",
-                                                 oldAvailable,
-                                                 isUserCommentAsStringAvailable());
       }
 
     /*******************************************************************************************************************
@@ -223,8 +199,8 @@ public class EXIF extends EXIFDirectoryGenerated
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Override
-    public String getOriginalRawFileName()
+    @Override @Nonnull
+    public Optional<String> getOriginalRawFileName()
       {
         Object value = getObject(ORIGINAL_RAW_FILE_NAME);
 
@@ -233,7 +209,7 @@ public class EXIF extends EXIFDirectoryGenerated
             value = new String((byte[])value);
           }
 
-        return (String)value;
+        return Optional.ofNullable((String)value);
       }
 
     /*******************************************************************************************************************
@@ -241,16 +217,10 @@ public class EXIF extends EXIFDirectoryGenerated
      * @return
      *
      ******************************************************************************************************************/
-    public ICC_Profile getICCProfile()
+    @Nonnull
+    public Optional<ICC_Profile> getICCProfile()
       {
-        final byte[] iccBytes = getInterColourProfile();
-
-        if (iccBytes == null)
-          {
-            return null;
-          }
-
-        return ICC_Profile.getInstance(iccBytes);
+        return getInterColourProfile().map(ICC_Profile::getInstance);
       }
 
     /*******************************************************************************************************************
@@ -258,97 +228,39 @@ public class EXIF extends EXIFDirectoryGenerated
      * @return
      *
      ******************************************************************************************************************/
-    public LocalDateTime getDateTimeAsDate()
+    @Nonnull
+    public Optional<LocalDateTime> getDateTimeAsDate()
       {
-        LocalDateTime date = parseDate(getDateTime());
-
-        if (isSubsecTimeAvailable())
-          {
-            date = adjust(date, getSubsecTime());
-          }
-
-        return date;
+        return getDateTime().map(EXIF::parseDate).flatMap(d -> getSubsecTime().map(s -> adjust(d, s)));
       }
 
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-    public void setDateTimeAsDate (final LocalDateTime date)
+    public void setDateTimeAsDate (final @Nonnull LocalDateTime date)
       {
         setDateTime((date == null) ? null : formatDate(date));
       }
 
     /*******************************************************************************************************************
      *
-     ******************************************************************************************************************/
-    public boolean isDateTimeAsDateAvailable()
-      {
-        return isDateTimeAvailable();
-      }
-
-    /*******************************************************************************************************************
-     *
-     ******************************************************************************************************************/
-    public void setDateTimeAsDateAvailable (final boolean available)
-      {
-        final LocalDateTime oldValue = getDateTimeAsDate();
-        final boolean oldAvailable = isDateTimeAsDateAvailable();
-        setDateTimeAvailable(available);
-        propertyChangeSupport.firePropertyChange("dateTimeAsDate", oldValue, getDateTimeAsDate());
-        propertyChangeSupport.firePropertyChange("dateTimeAsDateAvailable", oldAvailable, isDateTimeAsDateAvailable());
-      }
-
-    /*******************************************************************************************************************
-     *
      * @return
      *
      ******************************************************************************************************************/
-    public LocalDateTime getDateTimeOriginalAsDate()
+    @Nonnull
+    public Optional<LocalDateTime> getDateTimeOriginalAsDate()
       {
-        LocalDateTime date = parseDate(getDateTimeOriginal());
-
-        if (isSubsecTimeOriginalAvailable())
-          {
-            date = adjust(date, getSubsecTimeOriginal());
-          }
-
-        return date;
+        return getDateTimeOriginal().map(EXIF::parseDate).flatMap(d -> getSubsecTimeOriginal().map(s -> adjust(d, s)));
       }
 
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-    public void setDateTimeOriginalAsDate (final LocalDateTime date)
+    public void setDateTimeOriginalAsDate (final @Nonnull LocalDateTime date)
       {
-        final LocalDateTime oldValue = getDateTimeOriginalAsDate();
-        final boolean oldAvailable = isDateTimeOriginalAsDateAvailable();
+        final Optional<LocalDateTime> oldValue = getDateTimeOriginalAsDate();
         setDateTimeOriginal((date == null) ? null : formatDate(date));
         propertyChangeSupport.firePropertyChange("dateTimeOriginalAsDate", oldValue, getDateTimeOriginalAsDate());
-        propertyChangeSupport.firePropertyChange("dateTimeOriginalAsDateAvailable",
-                                                 oldAvailable,
-                                                 isDateTimeOriginalAsDateAvailable());
-      }
-
-    /*******************************************************************************************************************
-     *
-     ******************************************************************************************************************/
-    public boolean isDateTimeOriginalAsDateAvailable()
-      {
-        return isDateTimeOriginalAvailable();
-      }
-
-    /*******************************************************************************************************************
-     *
-     ******************************************************************************************************************/
-    public void setDateTimeOriginalAsDateAvailable (final boolean available)
-      {
-        final LocalDateTime oldValue = getDateTimeOriginalAsDate();
-        final boolean oldAvailable = isDateTimeOriginalAsDateAvailable();
-        setDateTimeOriginalAvailable(available);
-        propertyChangeSupport.firePropertyChange("dateTimeOriginalAsDate", oldValue, getDateTimeOriginalAsDate());
-        propertyChangeSupport.firePropertyChange("dateTimeOriginalAsDateAvailable",
-                                                 oldAvailable,
-                                                 isDateTimeOriginalAsDateAvailable());
       }
 
     /*******************************************************************************************************************
@@ -356,95 +268,53 @@ public class EXIF extends EXIFDirectoryGenerated
      * @return
      *
      ******************************************************************************************************************/
-    public LocalDateTime getDateTimeDigitizedAsDate()
+    @Nonnull
+    public Optional<LocalDateTime> getDateTimeDigitizedAsDate()
       {
-        LocalDateTime date = parseDate(getDateTimeDigitized());
-
-        if (isSubsecTimeDigitizedAvailable())
-          {
-            date = adjust(date, getSubsecTimeDigitized());
-          }
-
-        return date;
+        return getDateTimeDigitized().map(EXIF::parseDate).flatMap(d -> getSubsecTimeDigitized().map(s -> adjust(d, s)));
       }
 
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-    public void setDateTimeDigitizedAsDate (final LocalDateTime date)
+    public void setDateTimeDigitizedAsDate (final @Nonnull LocalDateTime date)
       {
-        final LocalDateTime oldValue = getDateTimeDigitizedAsDate();
-        final boolean oldAvailable = isDateTimeDigitizedAsDateAvailable();
+        final Optional<LocalDateTime> oldValue = getDateTimeDigitizedAsDate();
         setDateTimeDigitized((date == null) ? null : formatDate(date));
         propertyChangeSupport.firePropertyChange("dateTimeDigitizedAsDate", oldValue, getDateTimeDigitizedAsDate());
-        propertyChangeSupport.firePropertyChange("dateTimeDigitizedAsDateAvailable",
-                                                 oldAvailable,
-                                                 isDateTimeDigitizedAsDateAvailable());
-      }
-
-    /*******************************************************************************************************************
-     *
-     ******************************************************************************************************************/
-    public boolean isDateTimeDigitizedAsDateAvailable()
-      {
-        return isDateTimeDigitizedAvailable();
-      }
-
-    /*******************************************************************************************************************
-     *
-     ******************************************************************************************************************/
-    public void setDateTimeDigitizedAsDateAvailable (final boolean available)
-      {
-        final LocalDateTime oldValue = getDateTimeDigitizedAsDate();
-        final boolean oldAvailable = isDateTimeDigitizedAsDateAvailable();
-        setDateTimeDigitizedAvailable(available);
-        propertyChangeSupport.firePropertyChange("dateTimeDigitizedAsDate", oldValue, getDateTimeDigitizedAsDate());
-        propertyChangeSupport.firePropertyChange("dateTimeDigitizedAsDateAvailable",
-                                                 oldAvailable,
-                                                 isDateTimeDigitizedAsDateAvailable());
       }
 
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
     @Override
-    public void setDateTime (final String dateTime)
+    public void setDateTime (final @Nonnull String dateTime)
       {
-        final LocalDateTime oldValue = getDateTimeAsDate();
-        final boolean oldAvailable = isDateTimeAsDateAvailable();
+        final Optional<LocalDateTime> oldValue = getDateTimeAsDate();
         super.setDateTime(dateTime);
         propertyChangeSupport.firePropertyChange("dateTimeAsDate", oldValue, getDateTimeAsDate());
-        propertyChangeSupport.firePropertyChange("dateTimeAsDateAvailable", oldAvailable, isDateTimeAsDateAvailable());
       }
 
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
     @Override
-    public void setDateTimeDigitized (final String dateTimeDigitized)
+    public void setDateTimeDigitized (final @Nonnull String dateTimeDigitized)
       {
-        final LocalDateTime oldValue = getDateTimeDigitizedAsDate();
-        final boolean oldAvailable = isDateTimeDigitizedAsDateAvailable();
+        final Optional<LocalDateTime> oldValue = getDateTimeDigitizedAsDate();
         super.setDateTimeDigitized(dateTimeDigitized);
         propertyChangeSupport.firePropertyChange("dateTimeDigitizedAsDate", oldValue, getDateTimeDigitizedAsDate());
-        propertyChangeSupport.firePropertyChange("dateTimeDigitizedAsDateAvailable",
-                                                 oldAvailable,
-                                                 isDateTimeDigitizedAsDateAvailable());
       }
 
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
     @Override
-    public void setDateTimeOriginal (final String dateTimeOriginal)
+    public void setDateTimeOriginal (final @Nonnull String dateTimeOriginal)
       {
-        final LocalDateTime oldValue = getDateTimeOriginalAsDate();
-        final boolean oldAvailable = isDateTimeOriginalAsDateAvailable();
+        final Optional<LocalDateTime> oldValue = getDateTimeOriginalAsDate();
         super.setDateTimeOriginal(dateTimeOriginal);
         propertyChangeSupport.firePropertyChange("dateTimeOriginalAsDate", oldValue, getDateTimeOriginalAsDate());
-        propertyChangeSupport.firePropertyChange("dateTimeOriginalAsDateAvailable",
-                                                 oldAvailable,
-                                                 isDateTimeOriginalAsDateAvailable());
       }
 
     /*******************************************************************************************************************
@@ -453,7 +323,8 @@ public class EXIF extends EXIFDirectoryGenerated
      * @param subsec
      *
      ******************************************************************************************************************/
-    private LocalDateTime adjust (final LocalDateTime date, final String subsec)
+    @Nonnull
+    private LocalDateTime adjust (final @CheckForNull LocalDateTime date, final @Nonnull String subsec)
       {
         if (date == null)
           {

@@ -29,6 +29,7 @@ package it.tidalwave.image.metadata;
 import javax.annotation.Nonnull;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 
 /***********************************************************************************************************************
@@ -63,9 +64,9 @@ public class IPTC extends IPTCDirectoryGenerated
      *
      ******************************************************************************************************************/
     @Nonnull
-    public LocalDateTime getDateCreatedAsDate()
+    public Optional<LocalDateTime> getDateCreatedAsDate()
       {
-        return parseDate(getDateCreated());
+        return getDateCreated().map(IPTC::parseDate);
       }
 
     /*******************************************************************************************************************
@@ -75,29 +76,5 @@ public class IPTC extends IPTCDirectoryGenerated
     public void setDateCreatedAsDate (@Nonnull final LocalDateTime date)
       {
         setDateCreated((date == null) ? null : formatDate(date));
-      }
-
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    public boolean isDateCreatedAsDateAvailable()
-      {
-        return isDateCreatedAvailable();
-      }
-
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    public void setDateCreatedAsDateAvailable (final boolean available)
-      {
-        final LocalDateTime oldValue = getDateCreatedAsDate();
-        final boolean oldAvailable = isDateCreatedAsDateAvailable();
-        setDateCreatedAvailable(available);
-        propertyChangeSupport.firePropertyChange("dateCreatedAsDate", oldValue, getDateCreatedAsDate());
-        propertyChangeSupport.firePropertyChange("dateCreatedAsDateAvailable",
-                                                 oldAvailable,
-                                                 isDateCreatedAsDateAvailable());
       }
   }

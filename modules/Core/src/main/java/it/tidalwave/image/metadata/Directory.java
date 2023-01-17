@@ -36,6 +36,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.io.Serializable;
@@ -167,13 +168,13 @@ public class Directory extends JavaBeanSupport implements Serializable
      *
      ******************************************************************************************************************/
     @CheckForNull
-    public <T> T getObject (final int tag, @Nonnull final Class<T> asType)
+    public <T> Optional<T> getObject (final int tag, @Nonnull final Class<T> asType)
       {
         Object value = tagMap.get(tag);
 
         if (value == null)
           {
-            return null;
+            return Optional.empty();
           }
 
         if (value instanceof Number)
@@ -222,7 +223,7 @@ public class Directory extends JavaBeanSupport implements Serializable
             value = array;
           }
 
-        return asType.cast(value);
+        return Optional.ofNullable(asType.cast(value));
       }
 
     /*******************************************************************************************************************
@@ -231,6 +232,11 @@ public class Directory extends JavaBeanSupport implements Serializable
      ******************************************************************************************************************/
     public void setObject (final int tag, Object value)
       {
+        if ((value != null) && (value instanceof Optional))
+          {
+            value = ((Optional<?>)value).orElse(null);
+          }
+
         if ((value != null) && value.getClass().isEnum())
           {
             try
@@ -276,6 +282,7 @@ public class Directory extends JavaBeanSupport implements Serializable
      * @return
      *
      ******************************************************************************************************************/
+    @Nonnull
     public String getTagName (final int tag)
       {
         return null; // TODO
@@ -285,6 +292,11 @@ public class Directory extends JavaBeanSupport implements Serializable
     public Instant getLatestModificationTime()
       {
         return (latestModificationTime == null) ? null : latestModificationTime;
+      }
+
+    public boolean isAvailable()
+      {
+        return !this.tagMap.isEmpty();
       }
 
     protected synchronized void touch()
@@ -298,7 +310,7 @@ public class Directory extends JavaBeanSupport implements Serializable
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Override
+    @Override @Nonnull
     public final String toString()
       {
         synchronized (this)

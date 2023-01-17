@@ -27,7 +27,8 @@
 package it.tidalwave.image.metadata;
 
 import java.time.Instant;
-import java.io.IOException;
+import java.util.Optional;
+import static it.tidalwave.util.FunctionalCheckedExceptionWrappers._f;
 
 /***********************************************************************************************************************
  *
@@ -59,19 +60,8 @@ public class TIFF extends EXIF // DirectoryGenerated
      *
      *
      ******************************************************************************************************************/
-    public synchronized WangAnnotations getWangAnnotations2()
-            throws IOException
+    public Optional<WangAnnotations> getWangAnnotations2()
       {
-        if (!isWangAnnotationAvailable())
-          {
-            return null;
-          }
-
-        if (wangAnnotations == null)
-          {
-            wangAnnotations = new WangAnnotations(getWangAnnotation());
-          }
-
-        return wangAnnotations;
+        return getWangAnnotation().map(_f(WangAnnotations::new));
       }
   }

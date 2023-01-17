@@ -58,7 +58,7 @@ public class WangAnnotationsTest extends BaseTestSupport
 //        assertNotNull(exif);
         System.err.println("TAGS: " + Arrays.toString(tiff.getTagCodes()));
 //        assertTrue(tiff.containsTag(32934));
-        AssertJUnit.assertTrue(tiff.isWangAnnotationAvailable());
-        final WangAnnotations wangAnnotations = tiff.getWangAnnotations2();
+        AssertJUnit.assertTrue(tiff.getWangAnnotations2().isPresent());
+        final WangAnnotations wangAnnotations = tiff.getWangAnnotations2().get();
       }
   }
