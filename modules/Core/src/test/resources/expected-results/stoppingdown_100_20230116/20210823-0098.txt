@@ -1,47 +1,55 @@
-EXIF [33434] Exposure Time: 1/320
-EXIF [33437] F Number: 13/1
-EXIF [34850] Exposure Program: 3
-EXIF [34855] ISO Speed Ratings: 200
-EXIF [34864] null: 2
-EXIF [34866] RecommendedExposureIndex: 200
-EXIF [36864] EXIF Version: [48, 50, 51, 48]
-EXIF [36867] Date/Time Original: 2021:08:23 17:39:35
-EXIF [36868] Date/Time Digitized: 2021:08:23 17:39:35
-EXIF [37377] Shutter SpeedValue: 8321928/1000000
-EXIF [37378] Aperture Value: 7400879/1000000
-EXIF [37379] Brightness Value: 27224/2560
-EXIF [37380] Exposure Bias Value: 7/10
-EXIF [37381] Max Aperture Value: 1024/256
-EXIF [37383] Metering Mode: 5
-EXIF [37384] Light Source: 1
-EXIF [37385] Flash: 48
-EXIF [37386] Focal Length: 310/10
-EXIF [40962] Pixel X Dimension: 100
-EXIF [40963] Pixel Y Dimension: 56
-EXIF [41728] File Source: [3]
-EXIF [41729] Scene Type: [1]
-EXIF [41985] Custom Rendered: 0
-EXIF [41986] Exposure Mode: 2
-EXIF [41987] White Balance: 1
-EXIF [41988] Digital Zoom Ratio: 16/16
-EXIF [41989] Focal Length 35mm Film: 46
-EXIF [41990] Scene Capture Type: 0
-EXIF [41992] Contrast: 0
-EXIF [41993] Saturation: 0
-EXIF [41994] Sharpness: 0
-EXIF [42034] LensSpecification: [310/10, 310/10, 4/1, 4/1]
-EXIF [42036] LensModel: Sony Zeiss Vario-Tessar T* E 16-70mm F4 ZA OSS
-IPTC [346] null: UTF-8
-IPTC [512] null: 4
-IPTC [517] null: Panorama da Montenero d'Orcia.
-IPTC [537] null: [landscape, sunbeams, edit process 2017-10-21, published, backgrounds]
-IPTC [567] null: 20210823
-IPTC [572] null: 173935+0200
-IPTC [574] null: 20210823
-IPTC [575] null: 173935+0200
-IPTC [602] null: Castel del Piano
-IPTC [604] null: Montenero d'Orcia
-IPTC [607] null: Toscana
-IPTC [612] null: IT
-IPTC [613] null: Italia
-IPTC [632] null:                                
+TIFF[0][270, Image Description]:                                
+TIFF[0][271, Make]: SONY
+TIFF[0][272, Model]: ILCE-6000
+TIFF[0][282, X Resolution]: 72/1 - 72.0
+TIFF[0][283, Y Resolution]: 72/1 - 72.0
+TIFF[0][296, Resolution Unit]: 2
+TIFF[0][305, Software]: Capture One 15 Macintosh
+TIFF[0][306, Date/Time]: 2021:08:23 17:39:35
+EXIF[0][33434, Exposure Time]: 1/320 - 0.003125
+EXIF[0][33437, F Number]: 13/1 - 13.0
+EXIF[0][34850, Exposure Program]: 3
+EXIF[0][34855, ISO Speed Ratings]: 200
+EXIF[0][34864]: 2
+EXIF[0][34866, RecommendedExposureIndex]: 200
+EXIF[0][36864, EXIF Version]: [48, 50, 51, 48]
+EXIF[0][36867, Date/Time Original]: 2021:08:23 17:39:35
+EXIF[0][36868, Date/Time Digitized]: 2021:08:23 17:39:35
+EXIF[0][37377, Shutter SpeedValue]: 8321928/1000000 - 8.321928
+EXIF[0][37378, Aperture Value]: 7400879/1000000 - 7.400879
+EXIF[0][37379, Brightness Value]: 27224/2560 - 10.634375
+EXIF[0][37380, Exposure Bias Value]: 7/10 - 0.7
+EXIF[0][37381, Max Aperture Value]: 1024/256 - 4.0
+EXIF[0][37383, Metering Mode]: 5
+EXIF[0][37384, Light Source]: 1
+EXIF[0][37385, Flash]: 48
+EXIF[0][37386, Focal Length]: 310/10 - 31.0
+EXIF[0][40962, Pixel X Dimension]: 100
+EXIF[0][40963, Pixel Y Dimension]: 56
+EXIF[0][41728, File Source]: [3]
+EXIF[0][41729, Scene Type]: [1]
+EXIF[0][41985, Custom Rendered]: 0
+EXIF[0][41986, Exposure Mode]: 2
+EXIF[0][41987, White Balance]: 1
+EXIF[0][41988, Digital Zoom Ratio]: 16/16 - 1.0
+EXIF[0][41989, Focal Length 35mm Film]: 46
+EXIF[0][41990, Scene Capture Type]: 0
+EXIF[0][41992, Contrast]: 0
+EXIF[0][41993, Saturation]: 0
+EXIF[0][41994, Sharpness]: 0
+EXIF[0][42034, LensSpecification]: [310/10, 310/10, 4/1, 4/1] - [31.0, 31.0, 4.0, 4.0]
+EXIF[0][42036, LensModel]: Sony Zeiss Vario-Tessar T* E 16-70mm F4 ZA OSS
+IPTC[0][346]: UTF-8
+IPTC[0][512]: 4
+IPTC[0][517]: Panorama da Montenero d'Orcia.
+IPTC[0][537]: [landscape, sunbeams, edit process 2017-10-21, published, backgrounds]
+IPTC[0][567]: 20210823
+IPTC[0][572]: 173935+0200
+IPTC[0][574]: 20210823
+IPTC[0][575]: 173935+0200
+IPTC[0][602]: Castel del Piano
+IPTC[0][604]: Montenero d'Orcia
+IPTC[0][607]: Toscana
+IPTC[0][612]: IT
+IPTC[0][613]: Italia
+IPTC[0][632]:                                

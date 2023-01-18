@@ -32,7 +32,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.ByteOrder;
 import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageInputStream;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
@@ -225,7 +224,7 @@ public class WangAnnotations
         @Override
         public void render (final EditableImage image)
           {
-            image.execute2(new DrawOp((g, image1) -> attributes.drawString(g, image1, text)));
+            image.execute(new DrawOp((g, image1) -> attributes.drawString(g, image1, text)));
           }
 
         @Override
@@ -250,7 +249,7 @@ public class WangAnnotations
         @Override
         public void render (final EditableImage image)
           {
-            image.execute2(new DrawOp(attributes::drawRectangle));
+            image.execute(new DrawOp(attributes::drawRectangle));
           }
 
         @Override

@@ -26,6 +26,8 @@
  */
 package it.tidalwave.image.java2d.performance;
 
+import javax.annotation.Nonnull;
+import java.time.Duration;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.awt.image.PixelInterleavedSampleModel;
@@ -119,7 +121,7 @@ public abstract class BasePerformanceTestSupport extends BaseTestSupport
             final var name = getClassName() + " (opt)";
             log.info(name + " running");
 
-            final var optimizedImage = img20030701_0043_jpg.execute2(new OptimizeOp());
+            final var optimizedImage = img20030701_0043_jpg.execute(new OptimizeOp());
             AssertJUnit.assertEquals(SinglePixelPackedSampleModel.class,
                                      optimizedImage.getInnerProperty(SampleModel.class).getClass());
             final var time = runTest(optimizedImage);
@@ -129,5 +131,6 @@ public abstract class BasePerformanceTestSupport extends BaseTestSupport
           }
       }
 
-    protected abstract long runTest (EditableImage image);
+    @Nonnull
+    protected abstract Duration runTest (@Nonnull EditableImage image);
   }

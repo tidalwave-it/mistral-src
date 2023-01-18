@@ -943,11 +943,11 @@ public class EditableImageRenderer extends JComponent
                     if (scaledImage == null)
                       {
                         log.debug(">>>> computing scaled image");
-                        scaledImage = optimizedImage.execute2(new ScaleOp(scale, getScaleQuality()));
+                        scaledImage = optimizedImage.execute(new ScaleOp(scale, getScaleQuality()));
 
                         final var prevWidth = scaledImage.getWidth();
                         final var prevHeight = scaledImage.getHeight();
-                        scaledImage.execute(new RotateOp(angle, getRotateQuality()));
+                        scaledImage.executeInPlace(new RotateOp(angle, getRotateQuality()));
                         //
                         // Rotating the image could have make it bigger (to avoid truncation).
                         // Adjust the origin in order to compensate for it.
@@ -996,7 +996,7 @@ public class EditableImageRenderer extends JComponent
                                                       null)
                                         : new PaintOp(g2, shownImageX, shownImageY, previewSettings, null);
 
-                imageToDraw.execute(paintOp);
+                imageToDraw.executeInPlace(paintOp);
 
                 if (imageBorder != null)
                   {
@@ -1059,7 +1059,7 @@ public class EditableImageRenderer extends JComponent
 
         if (image != null)
           {
-            optimizedImage = optimizedImageEnabled ? image.execute2(new OptimizeOp()) : image;
+            optimizedImage = optimizedImageEnabled ? image.execute(new OptimizeOp()) : image;
           }
 
         else

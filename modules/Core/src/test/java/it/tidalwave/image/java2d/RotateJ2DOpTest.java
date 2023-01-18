@@ -55,7 +55,7 @@ public class RotateJ2DOpTest extends BaseTestSupport
         super.setUp();
         // otherwise it's too slow!
         notOptimized = null; // Platform.isMacOSX() ? img20030701_0043_jpg : null;
-        optimized = img20030701_0043_jpg.execute2(new OptimizeOp());
+        optimized = img20030701_0043_jpg.execute(new OptimizeOp());
       }
 
     @Test
@@ -101,9 +101,9 @@ public class RotateJ2DOpTest extends BaseTestSupport
       {
         if (image != null)
           {
-            final var result = image.execute2(new RotateOp(angle));
+            final var result = image.execute(new RotateOp(angle));
             final var suffix = image.getInnerProperty(SampleModel.class).getClass().getName();
-            final var f = (File)result.execute(new WriteOp("TIFF", tmp + "/" + angle + suffix + ".tif")).getOutput();
+            final var f = (File)result.executeInPlace(new WriteOp("TIFF", tmp + "/" + angle + suffix + ".tif")).getOutput();
             assertChecksum(checksum, f);
             AssertJUnit.assertEquals(width, result.getWidth());
             AssertJUnit.assertEquals(height, result.getHeight());

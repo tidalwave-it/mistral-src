@@ -36,7 +36,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import it.tidalwave.image.EditableImage;
-import it.tidalwave.image.Histogram;
 import it.tidalwave.image.java2d.ImplementationFactoryJ2D;
 import it.tidalwave.image.op.HistogramOp;
 import it.tidalwave.image.util.Platform;
@@ -104,7 +103,7 @@ public class Main
                    {
                      histogramRenderer.start();
                    var time = System.currentTimeMillis();
-                     final var histogram = image.execute(new HistogramOp()).getHistogram();
+                     final var histogram = image.executeInPlace(new HistogramOp()).getHistogram();
                      time = System.currentTimeMillis() - time;
                      histogramRenderer.setHistogram(histogram);
                      statusBar.setText("Computed in " + time + " msec " + (jai ? "with" : "without") + " JAI");

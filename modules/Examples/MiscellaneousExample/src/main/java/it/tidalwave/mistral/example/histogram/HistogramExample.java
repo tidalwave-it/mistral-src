@@ -29,7 +29,6 @@ package it.tidalwave.mistral.example.histogram;
 import java.io.File;
 import java.io.IOException;
 import it.tidalwave.image.EditableImage;
-import it.tidalwave.image.Histogram;
 import it.tidalwave.image.op.CropOp;
 import it.tidalwave.image.op.HistogramOp;
 import it.tidalwave.image.op.ReadOp;
@@ -58,17 +57,17 @@ public class HistogramExample
         //
         final var file = new File("../images/20030701-0043.NEF");
         final var image = EditableImage.create(new ReadOp(file));
-        log.info("Image loaded in " + image.getLatestOperationTime() + " msec");
+        log.info("Image loaded in " + image.getLatestOperationDuration() + " msec");
         //
         // Crops the image
         //
-        image.execute(new CropOp(10, 10, 600, 400));
-        log.info("Image cropped in " + image.getLatestOperationTime() + " msec");
+        image.executeInPlace(new CropOp(10, 10, 600, 400));
+        log.info("Image cropped in " + image.getLatestOperationDuration() + " msec");
         //
         // Computes the histogram
         //
-        final var histogram = image.execute(new HistogramOp()).getHistogram();
-        log.info("Histogram computed in " + image.getLatestOperationTime() + " msec");
+        final var histogram = image.executeInPlace(new HistogramOp()).getHistogram();
+        log.info("Histogram computed in " + image.getLatestOperationDuration() + " msec");
         //
         // Prints some information item from the histogram
         //

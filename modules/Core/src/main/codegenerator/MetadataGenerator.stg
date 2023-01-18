@@ -9,14 +9,9 @@ enumIf(type) ::= <<
 >>
 
 printDescriptionTags(records) ::= <<
-    @Override @Nonnull
-    public String getTagName (int tag)
-      {
-        return descriptionMapByTag.get(tag);
-      }
     static
       {
-        $records: {record | descriptionMapByTag.put($record.id$, "$record.tagName$");$\n$}$
+        $records: {record | mapTagInfo.put("$class_name$.$record.id$", TagInfo.of("$record.tagName$", $record.javaType$.class));$\n$}$
       }
 >>
 
@@ -31,6 +26,7 @@ printEnumRecord(record) ::= <<
      * Enumeration for representing the possible values of tag $record.capitalizedTagName$.
      *
      ******************************************************************************************************************/
+    @RequiredArgsConstructor(access = AccessLevel.PRIVATE) @Getter
     public static enum $record.capitalizedTagName$
        {
          $record.enums: { enum | $enumDecl(item = enum)$ }$
@@ -40,19 +36,8 @@ printEnumRecord(record) ::= <<
          private final int value;
          private final String name;
 
-         private $record.capitalizedTagName$ (final int value, final String name)
-           {
-             this.value = value;
-             this.name = name;
-           }
-
-         public int getValue()
-           {
-             return value;
-           }
-
          @Nonnull
-         public static $record.capitalizedTagName$ fromInteger (int value)
+         public static $record.capitalizedTagName$ fromInteger (final int value)
            {
              $record.enums: { enum | $enumIf(type = enum)$ }$
              return _UNKNOWN;
@@ -126,11 +111,13 @@ generator(creation_date, class_name, records) ::= <<
 package it.tidalwave.image.metadata;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nonnegative;
 import java.time.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import it.tidalwave.image.Rational;
+import lombok.*;
 import static java.util.Objects.requireNonNull;
 
 /* Automatically generated on $creation_date$ - DO NOT EDIT! */
@@ -138,7 +125,6 @@ import static java.util.Objects.requireNonNull;
 public class $class_name$ extends Directory
   {
     private final static long serialVersionUID = 2056233055989339523L;
-    private final static Map<Integer, String> descriptionMapByTag = new HashMap<>();
 
     public $class_name$()
       {

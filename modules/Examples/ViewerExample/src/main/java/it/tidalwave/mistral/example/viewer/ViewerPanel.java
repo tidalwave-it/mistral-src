@@ -135,8 +135,8 @@ public class ViewerPanel extends AbstractViewerPanel
     @Override
     protected void onImageLoaded (final EditableImage image)
       {
-        final Directory exifDirectory = image.getMetadata(EXIF.class);
-        final Directory makerNoteDirectory = image.getMetadata(MakerNote.class);
+        final Directory exifDirectory = image.getMetadata(EXIF.class).get();
+        final Directory makerNoteDirectory = image.getMetadata(MakerNote.class).get();
         final var exif = createTable(exifDirectory);
         final var makerNote = createTable(makerNoteDirectory);
         lbMetadata.setText(exif);
@@ -158,8 +158,8 @@ public class ViewerPanel extends AbstractViewerPanel
 
             for (final int code : directory.getTagCodes())
               {
-                final String tagName = directory.getTagName(code);
-                final Object tagValue = directory.getObject(code);
+                final String tagName = directory.getTagName(code).get();
+                final Object tagValue = directory.getRawObject(code);
                 sb.append("<tr><td>");
                 sb.append(Integer.toString(code));
                 sb.append("</td><td>");

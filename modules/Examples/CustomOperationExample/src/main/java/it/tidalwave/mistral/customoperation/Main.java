@@ -51,7 +51,7 @@ public class Main
 
         final var file = new File("20030701-0043.jpg");
         final var image = EditableImage.create(new ReadOp(file));
-        image.execute(new ChangeBufferTypeOp(BufferedImage.TYPE_3BYTE_BGR));
-        image.execute(new WriteOp("JPEG", new File("/tmp/Result.tif")));
+        image.executeInPlace(new ChangeBufferTypeOp(BufferedImage.TYPE_3BYTE_BGR));
+        image.executeInPlace(new WriteOp("JPEG", new File("/tmp/Result.tif")));
       }
   }

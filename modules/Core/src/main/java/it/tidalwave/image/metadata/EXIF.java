@@ -71,7 +71,7 @@ public class EXIF extends EXIFDirectoryGenerated
     @Override @Nonnull
     public Optional<int[]> getBitsPerSample()
       {
-        Object object = getObject(BITS_PER_SAMPLE);
+        Object object = getRawObject(BITS_PER_SAMPLE);
 
         if (object instanceof short[])
           {
@@ -99,7 +99,7 @@ public class EXIF extends EXIFDirectoryGenerated
     @Override @Nonnull
     public Optional<FileSource> getFileSource()
       {
-        Object object = getObject(FILE_SOURCE);
+        Object object = getRawObject(FILE_SOURCE);
 
         if (object instanceof byte[])
           {
@@ -124,7 +124,7 @@ public class EXIF extends EXIFDirectoryGenerated
     @Override @Nonnull
     public Optional<SceneType> getSceneType()
       {
-        Object object = getObject(SCENE_TYPE);
+        Object object = getRawObject(SCENE_TYPE);
 
         if (object instanceof byte[])
           {
@@ -153,7 +153,7 @@ public class EXIF extends EXIFDirectoryGenerated
           }
         catch (Exception e)
           {
-            final int i = (Integer)getObject(37510); // flowers.jpeg does this strange thing
+            final int i = (Integer)getRawObject(37510); // flowers.jpeg does this strange thing
 
             return Optional.ofNullable(("" + i).getBytes());
           }
@@ -201,7 +201,7 @@ public class EXIF extends EXIFDirectoryGenerated
     @Override @Nonnull
     public Optional<String> getOriginalRawFileName()
       {
-        Object value = getObject(ORIGINAL_RAW_FILE_NAME);
+        Object value = getRawObject(ORIGINAL_RAW_FILE_NAME);
 
         if (value instanceof byte[])
           {

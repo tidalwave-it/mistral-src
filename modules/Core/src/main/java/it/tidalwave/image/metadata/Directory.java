@@ -27,9 +27,9 @@
 package it.tidalwave.image.metadata;
 
 import java.lang.reflect.Array;
-import java.lang.reflect.Method;
-import javax.annotation.CheckForNull;
+import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
+import javax.annotation.concurrent.Immutable;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -43,18 +43,21 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.stream.Stream;
 import java.io.Serializable;
-import java.nio.charset.StandardCharsets;
 import com.drew.metadata.StringValue;
 import it.tidalwave.image.Rational;
-import it.tidalwave.image.metadata.loader.DirectoryAdapter;
+import it.tidalwave.image.metadata.loader.DirectoryLoader;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import static java.util.stream.Collectors.*;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 /***********************************************************************************************************************
  *
- * This class provides basic support for all of kind of metadata such EXIF, IPTC
- * or maker notes. 
+ * This class provides basic support for all kinds   of metadata such EXIF, IPTC or maker notes.
  *
  * @author Fabrizio Giudici
  *
@@ -62,11 +65,23 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 @Slf4j
 public class Directory extends JavaBeanSupport implements Serializable
   {
+    @Immutable @RequiredArgsConstructor(staticName = "of") @Getter @ToString @EqualsAndHashCode
+    public static class TagInfo
+      {
+        @Nonnull
+        private final String name;
+
+        @Nonnull
+        private final Class<?> type;
+      }
+
     private static final long serialVersionUID = 3088068666726854722L;
 
     private static final List<DateTimeFormatter> EXIF_DATE_TIME_FORMATTERS =
             Stream.of("yyyy:MM:dd HH:mm:ss", "yyyy-MM-dd'T'HH:mm:ss")
                   .map(DateTimeFormatter::ofPattern).collect(toList());;
+
+    protected final static Map<String, TagInfo> mapTagInfo = new HashMap<>();
 
     private static int nextId = 1;
 
@@ -76,7 +91,7 @@ public class Directory extends JavaBeanSupport implements Serializable
 
     private final Map<String, Directory> directoryMap = new HashMap<>();
 
-    private Instant latestModificationTime;
+    private Instant latestModificationTime = Instant.now();
 
     /*******************************************************************************************************************
      *
@@ -90,28 +105,34 @@ public class Directory extends JavaBeanSupport implements Serializable
      *
      *
      ******************************************************************************************************************/
-    public Directory (final Instant latestModificationTime)
+    public Directory (final @Nonnull Instant latestModificationTime)
       {
         this.latestModificationTime = latestModificationTime;
       }
 
     /*******************************************************************************************************************
      *
+     * Loads tags and subdirectories from the given loader.
      *
      ******************************************************************************************************************/
-    public void loadFromAdapter (final DirectoryAdapter adapter)
+    public void load (final @Nonnull DirectoryLoader loader)
       {
-        for (final var tag : adapter.getTags())
+        log.debug("load({})", loader);
+
+        for (final var tag : loader.getTags())
           {
-            tagMap.put(tag, adapter.getObject(tag));
+            tagMap.put(tag, loader.getObject(tag));
           }
 
-        for (final var directoryName : adapter.getSubDirectoryNames())
+        for (final var directoryName : loader.getSubDirectoryNames())
           {
             final var directory = new Directory();
-            directory.loadFromAdapter(adapter.getSubDirectory(directoryName));
+            directory.load(loader.getSubDirectory(directoryName));
             directoryMap.put(directoryName, directory);
           }
+
+        // log.trace(">>>> tagMap: {}", tagMap);
+        // log.trace(">>>> directoryMap: {}", directoryMap);
       }
 
     /*******************************************************************************************************************
@@ -153,14 +174,13 @@ public class Directory extends JavaBeanSupport implements Serializable
 
     /*******************************************************************************************************************
      *
-     * Returns an original tag value (i.e. exactly as it is stored into the
-     * file).
+     * Returns the raw tag value (i.e. exactly as it is stored into the file).
      *
-     * @param    tag    the tag to retrieve
-     * @return the value
+     * @param    tag      the tag to retrieve
+     * @return            the value
      *
      ******************************************************************************************************************/
-    public Object getObject (final int tag)
+    public Object getRawObject (@Nonnegative final int tag)
       {
         return tagMap.get(tag);
       }
@@ -169,13 +189,13 @@ public class Directory extends JavaBeanSupport implements Serializable
      *
      * Returns a tag value converted to the specified type.
      *
-     * @param    tag    the tag to retrieve
-     * @param    asType the type to convert the value into
-     * @return the value
+     * @param    tag      the tag to retrieve
+     * @param    asType   the type to convert the value into
+     * @return            the value
      *
      ******************************************************************************************************************/
     @Nonnull
-    public <T> Optional<T> getObject (final int tag, @Nonnull final Class<T> asType)
+    public <T> Optional<T> getObject (@Nonnegative final int tag, @Nonnull final Class<T> asType)
       {
         var value = tagMap.get(tag);
 
@@ -242,7 +262,7 @@ public class Directory extends JavaBeanSupport implements Serializable
      *
      *
      ******************************************************************************************************************/
-    public void setObject (final int tag, Object value)
+    public void setObject (final @Nonnegative int tag, Object value)
       {
         if ((value != null) && (value instanceof Optional))
           {
@@ -272,7 +292,7 @@ public class Directory extends JavaBeanSupport implements Serializable
      * @return
      *
      ******************************************************************************************************************/
-    public boolean containsTag (final int tag)
+    public boolean containsTag (final @Nonnegative int tag)
       {
         return tagMap.containsKey(tag);
       }
@@ -282,7 +302,7 @@ public class Directory extends JavaBeanSupport implements Serializable
      * @param tag
      *
      ******************************************************************************************************************/
-    public void removeTag (final int tag)
+    public void removeTag (final @Nonnegative int tag)
       {
         tagMap.remove(tag);
         touch();
@@ -290,27 +310,71 @@ public class Directory extends JavaBeanSupport implements Serializable
 
     /*******************************************************************************************************************
      *
-     * @param tag
+     * Returns information about a tag.
+     *
+     * @param     tag   the tag code
+     * @return          the tag info
+     *
+     ******************************************************************************************************************/
+    @Nonnull
+    public Optional<TagInfo> getTagInfo (@Nonnegative final int tag)
+      {
+        final var s = (getClass().getSimpleName() + "DirectoryGenerated").replaceAll("TIFF", "EXIF");
+        return Optional.ofNullable(mapTagInfo.get(s + "." + tag));
+      }
+
+    /*******************************************************************************************************************
+     *
+     * Returns the name of a tag.
+     *
+     * @param     tag   the tag code
+     * @return          the tag name
+     *
+     ******************************************************************************************************************/
+    @Nonnull
+    public Optional<String> getTagName (@Nonnegative final int tag)
+      {
+        return getTagInfo(tag).map(TagInfo::getName);
+      }
+
+    /*******************************************************************************************************************
+     *
+     * Returns the Java type of a tag.
+     *
+     * @param     tag   the tag code
+     * @return          the tag Java type
+     *
+     ******************************************************************************************************************/
+    @Nonnull
+    public Optional<Class<?>> getTagType (@Nonnegative final int tag)
+      {
+        return getTagInfo(tag).map(TagInfo::getType);
+      }
+
+    /*******************************************************************************************************************
+     *
      * @return
      *
      ******************************************************************************************************************/
     @Nonnull
-    public String getTagName (final int tag)
-      {
-        return null; // TODO
-//        return strategy.getTagName(tag);
-      }
-
     public Instant getLatestModificationTime()
       {
         return (latestModificationTime == null) ? null : latestModificationTime;
       }
 
+    /*******************************************************************************************************************
+     *
+     * @return
+     *
+     ******************************************************************************************************************/
     public boolean isAvailable()
       {
         return !this.tagMap.isEmpty();
       }
 
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
     protected synchronized void touch()
       {
 //        latestModificationTime.setTime(System.currentTimeMillis()) breaks firePropertyChange()  
@@ -404,7 +468,7 @@ public class Directory extends JavaBeanSupport implements Serializable
 
         for (final var tag : myTags)
           {
-            if (!equals(getObject(tag), other.getObject(tag)))
+            if (!equals(getRawObject(tag), other.getRawObject(tag)))
               {
                 return false;
               }
@@ -467,7 +531,7 @@ public class Directory extends JavaBeanSupport implements Serializable
 
         for (final var tag : getTagCodes())
           {
-            final var object = getObject(tag);
+            final var object = getRawObject(tag);
             hash = 67 * hash + (object != null ? object.hashCode() : 0);
           }
 

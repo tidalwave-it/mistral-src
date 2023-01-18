@@ -48,14 +48,27 @@ public final class Rational extends Number
 
     /*******************************************************************************************************************
      *
+     * @param     i
+     *
+     ******************************************************************************************************************/
+    @Nonnull
+    public static Rational of (final int i)
+      {
+        return of(i, 1);
+      }
+
+    /*******************************************************************************************************************
+     *
      * @param d
      *
      ******************************************************************************************************************/
-    public Rational (final double d)
+    @Nonnull
+    public static Rational of (final double d)
       {
-        denominator = 100000;
-        numerator = (int)Math.round(d * denominator);
+        var denominator = 100000;
+        var numerator = (int)Math.round(d * denominator);
         // TODO: normalize
+        return of(numerator, denominator);
       }
 
     /*******************************************************************************************************************

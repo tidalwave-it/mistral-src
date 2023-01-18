@@ -26,6 +26,7 @@
  */
 package it.tidalwave.image.processor;
 
+import javax.annotation.Nonnull;
 import java.io.Serializable;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.Operation;
@@ -336,9 +337,9 @@ import lombok.extern.slf4j.Slf4j;
      * @param  image  the image
      *
      ******************************************************************************************************************/
-    protected void registerTime (final String name, final EditableImage image)
+    protected void registerTime (final @Nonnull String name, final @Nonnull EditableImage image)
       {
-        addStatisticsSample(name, image.getLatestOperationTime());
+        addStatisticsSample(name, image.getLatestOperationDuration().toMillis());
       }
 
     /*******************************************************************************************************************
@@ -352,9 +353,11 @@ import lombok.extern.slf4j.Slf4j;
      *                        results)
      *
      ******************************************************************************************************************/
-    protected <T extends Operation> T execute (final EditableImage image, final T operation, final String operationName)
+    protected <T extends Operation> T execute (final @Nonnull EditableImage image,
+                                               final @Nonnull T operation,
+                                               final @Nonnull String operationName)
       {
-        image.execute(operation);
+        image.executeInPlace(operation);
         image.setNickName(operationName);
         registerTime(operationName, image);
         return operation;
@@ -371,9 +374,9 @@ import lombok.extern.slf4j.Slf4j;
      *                        results)
      *
      ******************************************************************************************************************/
-    protected <T extends Operation> T executeAndDispose (final EditableImage image,
-                                                         final T operation,
-                                                         final String operationName)
+    protected <T extends Operation> T executeAndDispose (final @Nonnull EditableImage image,
+                                                         final @Nonnull T operation,
+                                                         final @Nonnull String operationName)
       {
         final var result = execute(image, operation, operationName);
         image.dispose();
@@ -390,9 +393,12 @@ import lombok.extern.slf4j.Slf4j;
      * @return the result
      *
      ******************************************************************************************************************/
-    protected EditableImage execute2 (final EditableImage image, final Operation operation, final String operationName)
+    @Nonnull
+    protected EditableImage execute2 (final @Nonnull EditableImage image,
+                                      final @Nonnull Operation operation,
+                                      final @Nonnull String operationName)
       {
-        final var result = image.execute2(operation);
+        final var result = image.execute(operation);
         result.setNickName(operationName);
         registerTime(operationName, result);
         return result;
@@ -408,9 +414,10 @@ import lombok.extern.slf4j.Slf4j;
      * @return the result
      *
      ******************************************************************************************************************/
-    protected EditableImage execute2AndDispose (final EditableImage image,
-                                                final Operation operation,
-                                                final String operationName)
+    @Nonnull
+    protected EditableImage execute2AndDispose (final @Nonnull EditableImage image,
+                                                final @Nonnull Operation operation,
+                                                final @Nonnull String operationName)
       {
         final var result = execute2(image, operation, operationName);
         image.dispose();
@@ -422,6 +429,7 @@ import lombok.extern.slf4j.Slf4j;
      *
      *
      ******************************************************************************************************************/
+    @Nonnull
     private static String mega (final long l)
       {
         return "" + ((l + MEGA / 2) / MEGA) + "M";

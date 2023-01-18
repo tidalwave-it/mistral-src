@@ -30,7 +30,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.PaintOp;
@@ -64,7 +63,7 @@ public class PrintJ2DOp extends OperationImplementation<PrintOp, BufferedImage>
             final var aspectScale = Math.min(xScale, yScale);
             final var width = (int)Math.round(image.getWidth() * aspectScale);
             final var height = (int)Math.round(image.getHeight() * aspectScale);
-            image.execute(new PaintOp(g2d, 0, 0, width, height, null, null));
+            image.executeInPlace(new PaintOp(g2d, 0, 0, width, height, null, null));
             return Printable.PAGE_EXISTS;
           };
 

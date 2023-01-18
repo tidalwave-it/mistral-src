@@ -26,6 +26,8 @@
  */
 package it.tidalwave.image;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import javax.annotation.Nonnull;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -36,6 +38,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.security.MessageDigest;
 import java.io.BufferedInputStream;
@@ -47,11 +50,13 @@ import java.nio.file.Path;
 import it.tidalwave.util.Pair;
 import it.tidalwave.image.metadata.Directory;
 import it.tidalwave.image.metadata.EXIF;
+import it.tidalwave.image.metadata.EXIFDirectoryGenerated;
 import it.tidalwave.image.op.ReadOp;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
+import static java.util.stream.Collectors.*;
 import static org.junit.Assert.assertThat;
 import static org.testng.AssertJUnit.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -201,7 +206,7 @@ public abstract class BaseTestSupport
      *
      ******************************************************************************************************************/
     @DataProvider
-    protected static Object[][] stoppingDownImages()
+    protected static Object[][] testSet_StoppingDown_100_20230116()
             throws IOException
       {
         if (!Files.exists(TEST_SD100_FOLDER))
@@ -217,7 +222,7 @@ public abstract class BaseTestSupport
             return s.filter(p -> p.getFileName().toString().endsWith(".jpg"))
                     .sorted()
                     .limit(limit)
-                    .map(p -> new Object[]{p})
+                    .map(p -> new Object[]{ "stoppingdown_100_20230116", TEST_SD100_FOLDER, p})
                     .toArray(Object[][]::new);
           }
       }
@@ -267,27 +272,43 @@ public abstract class BaseTestSupport
       {
         for (final int tag : directory.getTagCodes())
           {
-            Object value = directory.getObject(tag);
+            final var value = directory.getRawObject(tag);
+            var valueAsString = value;
 
             if (value instanceof byte[])
               {
-                value = Arrays.toString((byte[])value);
+                valueAsString = Arrays.toString((byte[])value);
+              }
+            else if (value instanceof Rational)
+              {
+                valueAsString = value.toString() + " - " + ((Rational)value).doubleValue();
               }
             else if (value instanceof Rational[])
               {
-                value = Arrays.toString((Rational[])value);
+                var rationals = (Rational[])value;
+                valueAsString = Arrays.toString(rationals) + " - "
+                                + Stream.of(rationals).map(Rational::doubleValue).collect(toList());
               }
             else if (value instanceof Object[])
               {
-                value = Arrays.toString((Object[])value);
+                valueAsString = Arrays.toString((Object[])value);
               }
             else if (value instanceof Date)
               {
-                value = ((Date)value).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+                valueAsString = ((Date)value).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
                                      .format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
               }
 
-            final var s = String.format("%s [%d] %s: %s", directoryName, tag, directory.getTagName(tag), value);
+            // valueAsString += directory.getTagType(tag)
+            //                           .filter(Class::isEnum)
+            //                           .map(tagType -> toString(value, tagType))
+            //                           .orElse("");
+
+            final var s = String.format("%s[%d%s]: %s",
+                                        directoryName,
+                                        tag,
+                                        directory.getTagName(tag).map(n -> ", " + n).orElse(""),
+                                        valueAsString);
             // log.info("{}", s);
             consumer.accept(s);
           }
@@ -353,6 +374,26 @@ public abstract class BaseTestSupport
         catch (Exception e)
           {
             throw new RuntimeException(e);
+          }
+      }
+
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    @Nonnull
+    private static String toString (@Nonnull final Object value, @Nonnull final Class<?> tagType)
+      {
+        try
+          {
+            var method = tagType.getDeclaredMethod("fromInteger", int.class);
+            log.info("===== {}", Arrays.toString(method.getParameterTypes()));
+            return " - " + method.invoke(Integer.parseInt(value.toString()));
+          }
+        catch (Exception /*| IllegalAccessException | InvocationTargetException | NoSuchMethodException */ e)
+          {
+            log.warn("Can't get enum for: {} {} because of {}", value, tagType, e.toString());
+            log.warn("", e);
+            return "";
           }
       }
 

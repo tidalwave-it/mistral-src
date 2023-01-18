@@ -26,9 +26,10 @@
  */
 package it.tidalwave.image.metadata.loader;
 
+import javax.annotation.Nonnull;
+import java.util.Optional;
 import javax.imageio.metadata.IIOMetadata;
 import com.sun.media.imageio.plugins.tiff.EXIFParentTIFFTagSet;
-import com.sun.media.imageio.plugins.tiff.TIFFField;
 import com.sun.media.imageioimpl.plugins.tiff.TIFFIFD;
 import com.sun.media.imageioimpl.plugins.tiff.TIFFImageMetadata;
 
@@ -40,66 +41,26 @@ import com.sun.media.imageioimpl.plugins.tiff.TIFFImageMetadata;
 public class TIFFMetadataLoader implements MetadataLoader
   {
     /*******************************************************************************************************************
-     *
-     *
+     * {@inheritDoc}
      ******************************************************************************************************************/
-    @Override
-    public Object findEXIF (final IIOMetadata iioMetadata)
+    @Override @Nonnull
+    public Optional<DirectoryLoader> getExifLoader (final IIOMetadata iioMetadata)
       {
         final var rootIFD = ((TIFFImageMetadata)iioMetadata).getRootIFD();
 //         logger.finer(">>>> rootIFD: " + rootIFD);
         final var field = rootIFD.getTIFFField(EXIFParentTIFFTagSet.TAG_EXIF_IFD_POINTER);
-        return (field == null) ? null : (TIFFIFD)field.getData();
+        return (field == null) ?
+               Optional.empty() :
+               Optional.of(new DirectoryTIFFLoader((TIFFIFD)field.getData()));
 //         logger.finer(">>>> exifIFD: " + exifIFD);
       }
 
     /*******************************************************************************************************************
-     *
-     *
+     * {@inheritDoc}
      ******************************************************************************************************************/
-    @Override
-    public Object findIPTC (final IIOMetadata iioMetadata)
+    @Override @Nonnull
+    public Optional<DirectoryLoader> getTiffLoader (final IIOMetadata iioMetadata)
       {
-        return null;
-      }
-
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    @Override
-    public Object findXMP (final IIOMetadata iioMetadata)
-      {
-        return null;
-      }
-
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    @Override
-    public Object findTIFF (final IIOMetadata iioMetadata)
-      {
-        return ((TIFFImageMetadata)iioMetadata).getRootIFD();
-      }
-
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    @Override
-    public Object findMakerNote (final IIOMetadata iioMetadata)
-      {
-        return null;
-      }
-
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    @Override
-    public Object findDNG (final IIOMetadata iioMetadata)
-      {
-        return null;
+        return Optional.of(new DirectoryTIFFLoader(((TIFFImageMetadata)iioMetadata).getRootIFD()));
       }
   }
