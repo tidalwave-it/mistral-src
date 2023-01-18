@@ -64,7 +64,7 @@ public class Directory extends JavaBeanSupport implements Serializable
   {
     private static final long serialVersionUID = 3088068666726854722L;
 
-    private final static List<DateTimeFormatter> EXIF_DATE_TIME_FORMATTERS =
+    private static final List<DateTimeFormatter> EXIF_DATE_TIME_FORMATTERS =
             Stream.of("yyyy:MM:dd HH:mm:ss", "yyyy-MM-dd'T'HH:mm:ss")
                   .map(DateTimeFormatter::ofPattern).collect(toList());;
 
@@ -174,7 +174,7 @@ public class Directory extends JavaBeanSupport implements Serializable
      * @return the value
      *
      ******************************************************************************************************************/
-    @CheckForNull
+    @Nonnull
     public <T> Optional<T> getObject (final int tag, @Nonnull final Class<T> asType)
       {
         Object value = tagMap.get(tag);
@@ -431,7 +431,7 @@ public class Directory extends JavaBeanSupport implements Serializable
         return true;
       }
 
-    private static boolean equals (final Object o1, final Object o2)
+    private static boolean equals (final Object o1, final Object o2) // FIXME: check Objects.deepEquals()
       {
         if (o1 == null)
           {

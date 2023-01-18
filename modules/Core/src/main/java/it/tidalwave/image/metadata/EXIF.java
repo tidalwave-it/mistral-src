@@ -186,7 +186,7 @@ public class EXIF extends EXIFDirectoryGenerated
      *
      *
      ******************************************************************************************************************/
-    public void setUserCommentAsString (final @Nonnull String string)
+    public void setUserCommentAsString (@Nonnull final String string)
       {
         final Optional<String> oldValue = getUserCommentAsString();
         setUserComment((string == null) ? null : (ASCII_PREFIX + string).getBytes());
@@ -236,7 +236,7 @@ public class EXIF extends EXIFDirectoryGenerated
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-    public void setDateTimeAsDate (final @Nonnull Instant date)
+    public void setDateTimeAsDate (@Nonnull final Instant date)
       {
         setDateTime((date == null) ? null : formatDateTime(date));
       }
@@ -256,7 +256,7 @@ public class EXIF extends EXIFDirectoryGenerated
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-    public void setDateTimeOriginalAsDate (final @Nonnull Instant date)
+    public void setDateTimeOriginalAsDate (@Nonnull final Instant date)
       {
         final Optional<Instant> oldValue = getDateTimeOriginalAsDate();
         setDateTimeOriginal((date == null) ? null : formatDateTime(date));
@@ -278,7 +278,7 @@ public class EXIF extends EXIFDirectoryGenerated
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-    public void setDateTimeDigitizedAsDate (final @Nonnull Instant date)
+    public void setDateTimeDigitizedAsDate (@Nonnull final Instant date)
       {
         final Optional<Instant> oldValue = getDateTimeDigitizedAsDate();
         setDateTimeDigitized((date == null) ? null : formatDateTime(date));
@@ -289,7 +289,7 @@ public class EXIF extends EXIFDirectoryGenerated
      *
      ******************************************************************************************************************/
     @Override
-    public void setDateTime (final @Nonnull String dateTime)
+    public void setDateTime (@Nonnull final String dateTime)
       {
         final Optional<Instant> oldValue = getDateTimeAsDate();
         super.setDateTime(dateTime);
@@ -300,7 +300,7 @@ public class EXIF extends EXIFDirectoryGenerated
      *
      ******************************************************************************************************************/
     @Override
-    public void setDateTimeDigitized (final @Nonnull String dateTimeDigitized)
+    public void setDateTimeDigitized (@Nonnull final String dateTimeDigitized)
       {
         final Optional<Instant> oldValue = getDateTimeDigitizedAsDate();
         super.setDateTimeDigitized(dateTimeDigitized);
@@ -311,7 +311,7 @@ public class EXIF extends EXIFDirectoryGenerated
      *
      ******************************************************************************************************************/
     @Override
-    public void setDateTimeOriginal (final @Nonnull String dateTimeOriginal)
+    public void setDateTimeOriginal (@Nonnull final String dateTimeOriginal)
       {
         final Optional<Instant> oldValue = getDateTimeOriginalAsDate();
         super.setDateTimeOriginal(dateTimeOriginal);
@@ -325,7 +325,7 @@ public class EXIF extends EXIFDirectoryGenerated
      *
      ******************************************************************************************************************/
     @Nonnull
-    private Instant adjust (final @CheckForNull Instant instant, final @Nonnull String subsec)
+    private Instant adjust (@CheckForNull final Instant instant, @Nonnull final String subsec)
       {
         if (instant == null)
           {
