@@ -55,8 +55,7 @@ public class Kernel2 extends Kernel
      *
      *
      ******************************************************************************************************************/
-    @Override
-    @Nonnull
+    @Override @Nonnull
     public String toString()
       {
         final var buffer = new StringBuilder("Kernel2[");

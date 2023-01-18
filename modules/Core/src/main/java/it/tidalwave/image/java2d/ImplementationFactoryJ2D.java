@@ -118,8 +118,7 @@ public class ImplementationFactoryJ2D extends ImplementationFactory
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Override
-    @Nonnull
+    @Override @Nonnull
     public ImageModel createImageModel (@Nonnull final BufferedImage bufferedImage)
       {
         return new ImageModelJ2D(bufferedImage);
@@ -142,8 +141,7 @@ public class ImplementationFactoryJ2D extends ImplementationFactory
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Nonnull
-    @Override
+    @Override @Nonnull
     public ImageModel convertFrom (@Nonnull final Object image)
       {
 //        if ((planarImageClass != null) && planarImageClass.isAssignableFrom(image.getClass())) // image instanceof
@@ -188,8 +186,7 @@ public class ImplementationFactoryJ2D extends ImplementationFactory
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Nonnull
-    @Override
+    @Override @Nonnull
     public Object convertTo (@Nonnull final Object image)
       {
         if (image.getClass().getName().equals("javax.media.jai.PlanarImage"))

@@ -64,12 +64,10 @@ public class ConvertColorProfileOp extends Operation
         this(iccProfile, RenderingIntent.PERCEPTUAL);
       }
 
-    @Override
-    @Nonnull
+    @Override @Nonnull
     public String toString()
       {
         return String.format("ConvertColorProfileOp(%s, %s)",
-                             ImageUtils.getICCProfileName(iccProfile),
-                             renderingIntent);
+                             ImageUtils.getICCProfileName(iccProfile), renderingIntent);
       }
   }

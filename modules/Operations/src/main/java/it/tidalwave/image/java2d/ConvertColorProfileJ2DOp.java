@@ -54,8 +54,7 @@ import lombok.extern.slf4j.Slf4j;
 @Immutable @Slf4j
 public class ConvertColorProfileJ2DOp extends OperationImplementation<ConvertColorProfileOp, BufferedImage>
   {
-    @Nonnull
-    @Override
+    @Override @Nonnull
     protected BufferedImage execute (@Nonnull final ConvertColorProfileOp operation,
                                      @Nonnull final EditableImage image,
                                      @Nonnull final BufferedImage bufferedImage)
