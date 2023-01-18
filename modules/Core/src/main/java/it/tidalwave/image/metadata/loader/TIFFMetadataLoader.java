@@ -46,9 +46,9 @@ public class TIFFMetadataLoader implements MetadataLoader
     @Override
     public Object findEXIF (final IIOMetadata iioMetadata)
       {
-        final TIFFIFD rootIFD = ((TIFFImageMetadata)iioMetadata).getRootIFD();
+        final var rootIFD = ((TIFFImageMetadata)iioMetadata).getRootIFD();
 //         logger.finer(">>>> rootIFD: " + rootIFD);
-        final TIFFField field = rootIFD.getTIFFField(EXIFParentTIFFTagSet.TAG_EXIF_IFD_POINTER);
+        final var field = rootIFD.getTIFFField(EXIFParentTIFFTagSet.TAG_EXIF_IFD_POINTER);
         return (field == null) ? null : (TIFFIFD)field.getData();
 //         logger.finer(">>>> exifIFD: " + exifIFD);
       }

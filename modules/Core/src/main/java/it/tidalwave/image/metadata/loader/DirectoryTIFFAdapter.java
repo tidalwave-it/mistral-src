@@ -55,10 +55,10 @@ public class DirectoryTIFFAdapter implements DirectoryAdapter
     @Override
     public int[] getTags()
       {
-        final TIFFField[] fields = ifd.getTIFFFields();
-        final int[] result = new int[fields.length];
+        final var fields = ifd.getTIFFFields();
+        final var result = new int[fields.length];
 
-        for (int i = 0; i < fields.length; i++)
+        for (var i = 0; i < fields.length; i++)
           {
             result[i] = fields[i].getTagNumber();
           }

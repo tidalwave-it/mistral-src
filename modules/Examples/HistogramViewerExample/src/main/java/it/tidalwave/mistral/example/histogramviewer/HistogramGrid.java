@@ -89,16 +89,16 @@ public class HistogramGrid
      ******************************************************************************************************************/
     public void paint (final Graphics g, final Rectangle bounds)
       {
-        final Graphics2D g2 = (Graphics2D)g;
+        final var g2 = (Graphics2D)g;
         g2.setColor(getColor());
-        final int x = bounds.x;
-        final int y = bounds.y;
-        final int w = bounds.width;
-        final int h = bounds.height;
+        final var x = bounds.x;
+        final var y = bounds.y;
+        final var w = bounds.width;
+        final var h = bounds.height;
 
-        for (int i = 1; i <= hSteps - 1; i++)
+        for (var i = 1; i <= hSteps - 1; i++)
           {
-            int x0 = 0;
+            var x0 = 0;
 
             if (histogramPlotter.isXAxisLogarithmic())
               {

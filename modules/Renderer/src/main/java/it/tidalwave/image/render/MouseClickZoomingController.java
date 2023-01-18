@@ -78,7 +78,7 @@ public class MouseClickZoomingController
         @Override
         public void scaleChanged (final EditableImageRendererEvent editableImageRendererEvent)
           {
-            final double scale = imageRenderer.getScale();
+            final var scale = imageRenderer.getScale();
             imageRenderer.setCursor(Cursor.getPredefinedCursor((scale != imageRenderer.getFitScale())
                                                                ? Cursor.HAND_CURSOR
                                                                : Cursor.CROSSHAIR_CURSOR));
@@ -98,7 +98,7 @@ public class MouseClickZoomingController
             if ((event.getClickCount() == clickCountToZoom) &&
                 (imageRenderer.getPositionOverImage(event.getPoint()) != null))
               {
-                final double scale = imageRenderer.getScale();
+                final var scale = imageRenderer.getScale();
                 scaleController.setScale((scale == 1) ? imageRenderer.getFitScale() * factor : 1, event.getPoint());
               }
           }

@@ -105,10 +105,10 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl
       {
         raf = new RandomAccessFile(file, "r");
         this.channel = raf.getChannel();
-        final long channelPosition = channel.position();
+        final var channelPosition = channel.position();
         this.streamPos = this.flushedPos = channelPosition;
-        final long fullSize = channel.size() - channelPosition;
-        final long mappedSize = Math.min(fullSize, Integer.MAX_VALUE);
+        final var fullSize = channel.size() - channelPosition;
+        final var mappedSize = Math.min(fullSize, Integer.MAX_VALUE);
         this.mappedPos = 0;
         this.mappedUpperBound = mappedPos + mappedSize;
         this.mappedBuffer = channel.map(FileChannel.MapMode.READ_ONLY, channelPosition, mappedSize);
@@ -131,8 +131,8 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl
             mappedPos = streamPos;
 
             // Determine the map size.
-            final long mappedSize = Math.min(channel.size() - mappedPos,
-                                             Integer.MAX_VALUE);
+            final var mappedSize = Math.min(channel.size() - mappedPos,
+                                            Integer.MAX_VALUE);
 
             // Set the mapped upper bound.
             mappedUpperBound = mappedPos + mappedSize;
@@ -167,7 +167,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl
           }
 
         // Get the byte from the buffer.
-        final int value = byteBuffer.get() & 0xff;
+        final var value = byteBuffer.get() & 0xff;
 
         // Increment the stream position.
         streamPos++;
@@ -199,7 +199,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl
         final ByteBuffer byteBuffer = getMappedBuffer(len);
 
         // Get the number of bytes remaining.
-        final int numBytesRemaining = byteBuffer.remaining();
+        final var numBytesRemaining = byteBuffer.remaining();
 
         // Check number of bytes left.
         if (numBytesRemaining < 1)
@@ -257,7 +257,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl
           }
 
         // Determine the requested length in bytes.
-        final int byteLen = 2 * len;
+        final var byteLen = 2 * len;
 
         // Get the mapped buffer.
         final ByteBuffer byteBuffer = getMappedBuffer(byteLen);
@@ -269,7 +269,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl
           }
 
         // Get the view Buffer.
-        final CharBuffer viewBuffer = byteBuffer.asCharBuffer();
+        final var viewBuffer = byteBuffer.asCharBuffer();
 
         // Get the chars.
         viewBuffer.get(c, off, len);
@@ -294,7 +294,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl
           }
 
         // Determine the requested length in bytes.
-        final int byteLen = 2 * len;
+        final var byteLen = 2 * len;
 
         // Get the mapped buffer.
         final ByteBuffer byteBuffer = getMappedBuffer(byteLen);
@@ -306,7 +306,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl
           }
 
         // Get the view Buffer.
-        final ShortBuffer viewBuffer = byteBuffer.asShortBuffer();
+        final var viewBuffer = byteBuffer.asShortBuffer();
 
         // Get the shorts.
         viewBuffer.get(s, off, len);
@@ -331,7 +331,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl
           }
 
         // Determine the requested length in bytes.
-        final int byteLen = 4 * len;
+        final var byteLen = 4 * len;
 
         // Get the mapped buffer.
         final ByteBuffer byteBuffer = getMappedBuffer(byteLen);
@@ -343,7 +343,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl
           }
 
         // Get the view Buffer.
-        final IntBuffer viewBuffer = byteBuffer.asIntBuffer();
+        final var viewBuffer = byteBuffer.asIntBuffer();
 
         // Get the ints.
         viewBuffer.get(i, off, len);
@@ -368,7 +368,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl
           }
 
         // Determine the requested length in bytes.
-        final int byteLen = 8 * len;
+        final var byteLen = 8 * len;
 
         // Get the mapped buffer.
         final ByteBuffer byteBuffer = getMappedBuffer(byteLen);
@@ -380,7 +380,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl
           }
 
         // Get the view Buffer.
-        final LongBuffer viewBuffer = byteBuffer.asLongBuffer();
+        final var viewBuffer = byteBuffer.asLongBuffer();
 
         // Get the longs.
         viewBuffer.get(l, off, len);
@@ -405,7 +405,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl
           }
 
         // Determine the requested length in bytes.
-        final int byteLen = 4 * len;
+        final var byteLen = 4 * len;
 
         // Get the mapped buffer.
         final ByteBuffer byteBuffer = getMappedBuffer(byteLen);
@@ -417,7 +417,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl
           }
 
         // Get the view Buffer.
-        final FloatBuffer viewBuffer = byteBuffer.asFloatBuffer();
+        final var viewBuffer = byteBuffer.asFloatBuffer();
 
         // Get the floats.
         viewBuffer.get(f, off, len);
@@ -442,7 +442,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl
           }
 
         // Determine the requested length in bytes.
-        final int byteLen = 8 * len;
+        final var byteLen = 8 * len;
 
         // Get the mapped buffer.
         final ByteBuffer byteBuffer = getMappedBuffer(byteLen);
@@ -454,7 +454,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl
           }
 
         // Get the view Buffer.
-        final DoubleBuffer viewBuffer = byteBuffer.asDoubleBuffer();
+        final var viewBuffer = byteBuffer.asDoubleBuffer();
 
         // Get the doubles.
         viewBuffer.get(d, off, len);
@@ -473,7 +473,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl
     public long length()
       {
         // Initialize to value indicating unknown length.
-        long length = -1L;
+        var length = -1L;
 
         // Set length to current size with respect to initial position.
         try
@@ -508,7 +508,7 @@ public class FileChannelImageInputStream extends ImageInputStreamImpl
           {
             // Seeking to location outside mapped buffer: get a new mapped
             // buffer at current position with maximal size.
-            final int len = (int)Math.min(channel.size() - pos,
+            final var len = (int)Math.min(channel.size() - pos,
                                           Integer.MAX_VALUE);
             mappedBuffer = getMappedBuffer(len);
           }

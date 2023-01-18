@@ -174,13 +174,13 @@ public abstract class BaseTestSupport
                                     final EditableImage.DataType expectedDataType)
             throws IOException
       {
-        final EditableImage image = EditableImage.create(new ReadOp(file));
-        final int width = image.getWidth();
-        final int height = image.getHeight();
-        final int bandCount = image.getBandCount();
-        final int bitsPerBand = image.getBitsPerBand();
-        final int bitsPerPixel = image.getBitsPerPixel();
-        final EditableImage.DataType dataType = image.getDataType();
+        final var image = EditableImage.create(new ReadOp(file));
+        final var width = image.getWidth();
+        final var height = image.getHeight();
+        final var bandCount = image.getBandCount();
+        final var bitsPerBand = image.getBitsPerBand();
+        final var bitsPerPixel = image.getBitsPerPixel();
+        final var dataType = image.getDataType();
 
         assertEquals(expectedWidth, width);
         assertEquals(expectedHeight, height);
@@ -210,9 +210,9 @@ public abstract class BaseTestSupport
             return new Object[0][1];
           }
 
-        final int limit = Boolean.getBoolean("it.tidalwave-ci.skipLongTests") ? 100 : 99999;
+        final var limit = Boolean.getBoolean("it.tidalwave-ci.skipLongTests") ? 100 : 99999;
 
-        try (final Stream<Path> s = Files.list(TEST_SD100_FOLDER))
+        try (final var s = Files.list(TEST_SD100_FOLDER))
           {
             return s.filter(p -> p.getFileName().toString().endsWith(".jpg"))
                     .sorted()
@@ -287,14 +287,14 @@ public abstract class BaseTestSupport
                                      .format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
               }
 
-            final String s = String.format("%s [%d] %s: %s", directoryName, tag, directory.getTagName(tag), value);
+            final var s = String.format("%s [%d] %s: %s", directoryName, tag, directory.getTagName(tag), value);
             // log.info("{}", s);
             consumer.accept(s);
           }
 
         if (directory instanceof EXIF)
           {
-            final EXIF exif = (EXIF)directory;
+            final var exif = (EXIF)directory;
             final List<Pair<String, Function<EXIF, Optional<Instant>>>> x = List.of(
                     Pair.of("dateTimeAsDate", EXIF::getDateTimeAsDate),
                     Pair.of("dateTimeOriginalAsDate", EXIF::getDateTimeOriginalAsDate),
@@ -329,13 +329,13 @@ public abstract class BaseTestSupport
       {
         try
           {
-            final MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-            final byte[] buffer = new byte[128 * 1024];
+            final var messageDigest = MessageDigest.getInstance("MD5");
+            final var buffer = new byte[128 * 1024];
             final InputStream is = new BufferedInputStream(Files.newInputStream(file.toPath()));
 
             for (; ; )
               {
-                final int n = is.read(buffer);
+                final var n = is.read(buffer);
 
                 if (n <= 0)
                   {
@@ -346,8 +346,8 @@ public abstract class BaseTestSupport
               }
 
             is.close();
-            final byte[] digest = messageDigest.digest();
-            final String checksum = toString(digest);
+            final var digest = messageDigest.digest();
+            final var checksum = toString(digest);
             AssertJUnit.assertEquals("Unxepected checksum for file " + file, expectedChecksum, checksum);
           }
         catch (Exception e)
@@ -361,11 +361,11 @@ public abstract class BaseTestSupport
      ******************************************************************************************************************/
     private static String toString (final byte[] bytes)
       {
-        final StringBuilder stringBuilder = new StringBuilder();
+        final var stringBuilder = new StringBuilder();
 
-        for (byte aByte : bytes)
+        for (var aByte : bytes)
           {
-            final String s = Integer.toHexString(aByte & 0xff);
+            final var s = Integer.toHexString(aByte & 0xff);
 
             if (s.length() < 2)
               {

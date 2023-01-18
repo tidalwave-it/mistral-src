@@ -65,7 +65,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
       {
         log.info("testCreateSingleBandByteBlack");
 
-        final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.BYTE));
+        final var image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.BYTE));
         assertImage(image, 1, 8, 8, EditableImage.DataType.BYTE);
         assertIntContents(image, 0);
       }
@@ -83,8 +83,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
       {
         log.info("testCreateSingleBandUnsignedShortBlack");
 
-        final EditableImage image =
-                EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.UNSIGNED_SHORT));
+        final var image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.UNSIGNED_SHORT));
         assertImage(image, 1, 16, 16, EditableImage.DataType.UNSIGNED_SHORT);
         assertIntContents(image, 0);
       }
@@ -94,7 +93,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
       {
         log.info("testCreateSingleBandFloatBlack");
 
-        final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.INT));
+        final var image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.INT));
         assertImage(image, 1, 32, 32, EditableImage.DataType.INT);
         assertIntContents(image, 0);
       }
@@ -104,7 +103,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
       {
         log.info("testCreateSingleBandFloatBlack");
 
-        final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.FLOAT));
+        final var image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.FLOAT));
         assertImage(image, 1, 32, 32, EditableImage.DataType.FLOAT);
         assertFloatContents(image, 0f);
       }
@@ -114,7 +113,7 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
       {
         log.info("testCreateSingleBandDoubleBlack");
 
-        final EditableImage image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.DOUBLE));
+        final var image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.DOUBLE));
         assertImage(image, 1, 64, 64, EditableImage.DataType.DOUBLE);
         assertDoubleContents(image, 0);
       }
@@ -129,10 +128,9 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
       {
         log.info("testCreateSingleBandByteInitialValue");
 
-        for (int byteValue : byteValues)
+        for (var byteValue : byteValues)
           {
-            final EditableImage image =
-                    EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.BYTE, byteValue));
+            final var image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.BYTE, byteValue));
             assertImage(image, 1, 8, 8, EditableImage.DataType.BYTE);
             assertIntContents(image, byteValue);
           }
@@ -152,10 +150,9 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
       {
         log.info("testCreateSingleBandUnsignedShortInitialValue");
 
-        for (int shortValue : shortValues)
+        for (var shortValue : shortValues)
           {
-            final EditableImage image =
-                    EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.UNSIGNED_SHORT,
+            final var image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.UNSIGNED_SHORT,
                                                       shortValue));
             assertImage(image, 1, 16, 16, EditableImage.DataType.UNSIGNED_SHORT);
             assertIntContents(image, shortValue);
@@ -167,10 +164,9 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
       {
         log.info("testCreateSingleBandIntInitialValue");
 
-        for (int intValue : intValues)
+        for (var intValue : intValues)
           {
-            final EditableImage image =
-                    EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.INT, intValue));
+            final var image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.INT, intValue));
             assertImage(image, 1, 32, 32, EditableImage.DataType.INT);
             assertIntContents(image, intValue);
           }
@@ -181,10 +177,10 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
       {
         log.info("testCreateSingleBandFloatInitialValue");
 
-        for (float floatValue : floatValues)
+        for (var floatValue : floatValues)
           {
-            final EditableImage image =
-                    EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.FLOAT, floatValue));
+            final var image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.FLOAT,
+                                                                floatValue));
             assertImage(image, 1, 32, 32, EditableImage.DataType.FLOAT);
             assertFloatContents(image, floatValue);
           }
@@ -195,10 +191,10 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
       {
         log.info("testCreateSingleBandDoubleInitialValue");
 
-        for (double doubleValue : doubleValues)
+        for (var doubleValue : doubleValues)
           {
-            final EditableImage image =
-                    EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.DOUBLE, doubleValue));
+            final var image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.DOUBLE,
+                                                                doubleValue));
             assertImage(image, 1, 64, 64, EditableImage.DataType.DOUBLE);
             assertDoubleContents(image, doubleValue);
           }
@@ -214,14 +210,13 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
       {
         log.info("testCreateThreeBandsByteInitialValue");
 
-        for (int i : byteValues)
+        for (var i : byteValues)
           {
-            for (int value : byteValues)
+            for (var value : byteValues)
               {
-                for (int byteValue : byteValues)
+                for (var byteValue : byteValues)
                   {
-                    final EditableImage image =
-                            EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.BYTE,
+                    final var image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.BYTE,
                                                               i, value, byteValue));
                     assertImage(image, 3, 8, 24, EditableImage.DataType.BYTE);
                     assertIntContents(image, i, value, byteValue);
@@ -244,14 +239,14 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
       {
         log.info("testCreateThreeBandsUnsignedShortInitialValue");
 
-        for (int k : shortValues2)
+        for (var k : shortValues2)
           {
-            for (int j : shortValues2)
+            for (var j : shortValues2)
               {
-                for (int i : shortValues2)
+                for (var i : shortValues2)
                   {
-                    final EditableImage image =
-                            EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.UNSIGNED_SHORT,
+                    final var image = EditableImage.create(new CreateOp(WIDTH, HEIGHT,
+                                                                        EditableImage.DataType.UNSIGNED_SHORT,
                                                               k, j, i));
                     assertImage(image, 3, 16, 48, EditableImage.DataType.UNSIGNED_SHORT);
                     assertIntContents(image, k, j, i);
@@ -265,14 +260,13 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
       {
         log.info("testCreateThreeBandsIntInitialValue");
 
-        for (int k : intValues2)
+        for (var k : intValues2)
           {
-            for (int j : intValues2)
+            for (var j : intValues2)
               {
-                for (int i : intValues2)
+                for (var i : intValues2)
                   {
-                    final EditableImage image =
-                            EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.INT, k,
+                    final var image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.INT, k,
                                                               j, i));
                     assertImage(image, 3, 32, 96, EditableImage.DataType.INT);
                     assertIntContents(image, k, j, i);
@@ -286,14 +280,13 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
       {
         log.info("testCreateThreeBandsFloatInitialValue");
 
-        for (float item : floatValues2)
+        for (var item : floatValues2)
           {
-            for (float value : floatValues2)
+            for (var value : floatValues2)
               {
-                for (float v : floatValues2)
+                for (var v : floatValues2)
                   {
-                    final EditableImage image =
-                            EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.FLOAT,
+                    final var image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.FLOAT,
                                                               item, value, v));
                     assertImage(image, 3, 32, 96, EditableImage.DataType.FLOAT);
                     assertFloatContents(image, item, value, v);
@@ -307,14 +300,13 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
       {
         log.info("testCreateThreeBandsDoubleInitialValue");
 
-        for (double item : doubleValues2)
+        for (var item : doubleValues2)
           {
-            for (double value : doubleValues2)
+            for (var value : doubleValues2)
               {
-                for (double v : doubleValues2)
+                for (var v : doubleValues2)
                   {
-                    final EditableImage image =
-                            EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.DOUBLE,
+                    final var image = EditableImage.create(new CreateOp(WIDTH, HEIGHT, EditableImage.DataType.DOUBLE,
                                                               item, value, v));
                     assertImage(image, 3, 64, 192, EditableImage.DataType.DOUBLE);
                     assertDoubleContents(image, item, value, v);
@@ -335,15 +327,15 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
      ******************************************************************************************************************/
     private void assertIntContents (final EditableImage image, final int... filler)
       {
-        final Raster raster = getRaster(image);
+        final var raster = getRaster(image);
 
-        for (int b = 0; b < image.getBandCount(); b++)
+        for (var b = 0; b < image.getBandCount(); b++)
           {
-            for (int y = 0; y < image.getHeight(); y++)
+            for (var y = 0; y < image.getHeight(); y++)
               {
-                for (int x = 0; x < image.getWidth(); x++)
+                for (var x = 0; x < image.getWidth(); x++)
                   {
-                    final int sample = raster.getSample(x, y, b);
+                    final var sample = raster.getSample(x, y, b);
                     AssertJUnit.assertEquals(filler[b], sample);
                   }
               }
@@ -356,15 +348,15 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
      ******************************************************************************************************************/
     private void assertFloatContents (final EditableImage image, final float... filler)
       {
-        final Raster raster = getRaster(image);
+        final var raster = getRaster(image);
 
-        for (int b = 0; b < image.getBandCount(); b++)
+        for (var b = 0; b < image.getBandCount(); b++)
           {
-            for (int y = 0; y < image.getHeight(); y++)
+            for (var y = 0; y < image.getHeight(); y++)
               {
-                for (int x = 0; x < image.getWidth(); x++)
+                for (var x = 0; x < image.getWidth(); x++)
                   {
-                    final float sample = raster.getSampleFloat(x, y, b);
+                    final var sample = raster.getSampleFloat(x, y, b);
                     AssertJUnit.assertEquals(filler[b], sample);
                   }
               }
@@ -377,15 +369,15 @@ public abstract class CreateOpTestSupport extends BaseTestSupport
      ******************************************************************************************************************/
     private void assertDoubleContents (final EditableImage image, final double... filler)
       {
-        final Raster raster = getRaster(image);
+        final var raster = getRaster(image);
 
-        for (int b = 0; b < image.getBandCount(); b++)
+        for (var b = 0; b < image.getBandCount(); b++)
           {
-            for (int y = 0; y < image.getHeight(); y++)
+            for (var y = 0; y < image.getHeight(); y++)
               {
-                for (int x = 0; x < image.getWidth(); x++)
+                for (var x = 0; x < image.getWidth(); x++)
                   {
-                    final double sample = raster.getSampleDouble(x, y, b);
+                    final var sample = raster.getSampleDouble(x, y, b);
                     AssertJUnit.assertEquals(filler[b], sample);
                   }
               }

@@ -61,7 +61,7 @@ public abstract class ImageModelHolder implements Serializable
         try
           {
 //            System.err.println("Wrapping ImageModel into a " + defaultClass.getName());
-            final ImageModelHolder holder = defaultClass.newInstance();
+            final var holder = defaultClass.newInstance();
             holder.set(imageModel);
 
             return holder;
@@ -76,13 +76,13 @@ public abstract class ImageModelHolder implements Serializable
     public String toString()
       {
 
-        final StringBuilder buffer = new StringBuilder(getClass().getName() + "[");
-        final ImageModel model = get();
+        final var buffer = new StringBuilder(getClass().getName() + "[");
+        final var model = get();
         buffer.append((model != null) ? model.getId() : "null");
 
         if (model != null)
           {
-            final String nickName = getNickName();
+            final var nickName = getNickName();
 
             if (nickName != null)
               {

@@ -127,7 +127,7 @@ public abstract class ImageModel implements Externalizable
             return false;
           }
 
-        final ImageModel imageModel = (ImageModel)object;
+        final var imageModel = (ImageModel)object;
 
         if ((id == null) || (imageModel.id == null))
           {
@@ -219,7 +219,7 @@ public abstract class ImageModel implements Externalizable
      ******************************************************************************************************************/
     public long getMemorySize()
       {
-        final EditableImage.DataType dataType = getDataType();
+        final var dataType = getDataType();
         return (dataType == null) ? 0 : ((long)dataType.getSize() * getWidth() * getHeight() * getBandCount()) / 8;
       }
 
@@ -234,7 +234,7 @@ public abstract class ImageModel implements Externalizable
         out.writeObject(id);
         out.writeObject((nickName != null) ? nickName : "NULL"); // FIXME: needed? Can writeObject(null)?
 
-        final boolean notNull = model != null;
+        final var notNull = model != null;
         out.writeBoolean(notNull);
 
         if (notNull)

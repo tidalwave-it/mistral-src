@@ -62,7 +62,7 @@ public class ImplementationFactoryJ2D extends ImplementationFactory
     @Nonnull
     public static ImplementationFactory getDefault()
       {
-        ServiceLoader<ImplementationFactory> loader = ServiceLoader.load(ImplementationFactory.class);
+        var loader = ServiceLoader.load(ImplementationFactory.class);
         return StreamSupport.stream(loader.spliterator(), false)
                             .findFirst()
                             .orElseThrow(() -> new RuntimeException("Can't found implementation of " + ImplementationFactory.class));
@@ -90,7 +90,7 @@ public class ImplementationFactoryJ2D extends ImplementationFactory
         registerImplementation(WrapOp.class, WrapJ2DOp.class);
         registerImplementation(WriteOp.class, WriteJ2DOp.class);
 
-        final ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
+        final var contextClassLoader = Thread.currentThread().getContextClassLoader();
 
         try
           {
@@ -103,8 +103,8 @@ public class ImplementationFactoryJ2D extends ImplementationFactory
 
         try
           {
-            final Class<?> clazz = contextClassLoader.loadClass("it.tidalwave.image.java2d.AdditionalOperations");
-            final Method method = clazz.getMethod("register", ImplementationFactoryJ2D.class);
+            final var clazz = contextClassLoader.loadClass("it.tidalwave.image.java2d.AdditionalOperations");
+            final var method = clazz.getMethod("register", ImplementationFactoryJ2D.class);
             method.invoke(null, this);
           }
         catch (Throwable e)
@@ -157,8 +157,8 @@ public class ImplementationFactoryJ2D extends ImplementationFactory
 
             try
               {
-                final Method method = planarImageClass.getMethod("getAsBufferedImage");
-                final Object bufferedImage = method.invoke(image);
+                final var method = planarImageClass.getMethod("getAsBufferedImage");
+                final var bufferedImage = method.invoke(image);
 
                 return new ImageModelJ2D(bufferedImage);
               }

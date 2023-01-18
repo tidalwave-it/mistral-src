@@ -164,7 +164,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
          **************************************************************************************************************/
         public static DataType valueOf (final int value)
           {
-            for (final EditableImage.DataType dataType : DataType.values())
+            for (final var dataType : DataType.values())
               {
                 if (dataType.value() == value)
                   {
@@ -253,9 +253,9 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
     @Nonnull
     public static EditableImage create (@Nonnull final AbstractCreateOp createOp)
       {
-        final EditableImage editableImage = new EditableImage(null);
-        final Object image = editableImage.internalExecute(createOp);
-        final ImageModel imageModel = ImplementationFactoryRegistry.getDefault().createImageModel(image);
+        final var editableImage = new EditableImage(null);
+        final var image = editableImage.internalExecute(createOp);
+        final var imageModel = ImplementationFactoryRegistry.getDefault().createImageModel(image);
         editableImage.imageModelHolder = ImageModelHolder.wrap(imageModel);
 
         return editableImage;
@@ -328,14 +328,14 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
 
         final Set<String> suffixList = new TreeSet<>();
 
-        for (final String formatName : ImageIO.getReaderFormatNames())
+        for (final var formatName : ImageIO.getReaderFormatNames())
           {
-            for (final Iterator<ImageReader> i = ImageIO.getImageReadersByFormatName(formatName); i.hasNext(); )
+            for (final var i = ImageIO.getImageReadersByFormatName(formatName); i.hasNext(); )
               {
-                final ImageReader imageReader = i.next();
-                final ImageReaderSpi originatingProvider = imageReader.getOriginatingProvider();
-                final String[] suffixes = originatingProvider.getFileSuffixes();
-                final List<String> suffixesAsList = Arrays.asList(suffixes);
+                final var imageReader = i.next();
+                final var originatingProvider = imageReader.getOriginatingProvider();
+                final var suffixes = originatingProvider.getFileSuffixes();
+                final var suffixesAsList = Arrays.asList(suffixes);
                 suffixList.addAll(suffixesAsList);
 
                 if (logExtensions)
@@ -369,7 +369,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      ******************************************************************************************************************/
     public final <T> T getMetadata (final Class<T> metadataClass, final int index)
       {
-        final List<T> objects = (List<T>)metadataMapByClass.get(metadataClass);
+        final var objects = (List<T>)metadataMapByClass.get(metadataClass);
         return objects.get(index);
       }
 
@@ -469,8 +469,8 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
     @Nonnull
     public final <T extends Operation> T execute (@Nonnull final T operation)
       {
-        final long time = System.currentTimeMillis();
-        final Object image = internalExecute(operation);
+        final var time = System.currentTimeMillis();
+        final var image = internalExecute(operation);
         imageModelHolder.get().setImage(image);
         latestOperationTime = System.currentTimeMillis() - time;
 
@@ -491,12 +491,12 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
       {
         try
           {
-            final long time = System.currentTimeMillis();
-            final Object image = internalExecute(operation);
+            final var time = System.currentTimeMillis();
+            final var image = internalExecute(operation);
             final Class modelClass = imageModelHolder.get().getClass();
             final Constructor<Object> constructor = modelClass.getConstructor(Object.class);
-            final ImageModel newModel = (ImageModel)constructor.newInstance(image);
-            final EditableImage result = new EditableImage(newModel);
+            final var newModel = (ImageModel)constructor.newInstance(image);
+            final var result = new EditableImage(newModel);
             result.attributeMapByName = new HashMap<>(attributeMapByName);
             result.latestOperationTime = System.currentTimeMillis() - time;
 
@@ -534,7 +534,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      ******************************************************************************************************************/
     public final EditableImage createSimilarImage()
       {
-        final EditableImage imageCopy = imageModelHolder.get().createCopy(false);
+        final var imageCopy = imageModelHolder.get().createCopy(false);
         imageCopy.attributeMapByName = new HashMap<>(attributeMapByName);
 
         return imageCopy;
@@ -547,7 +547,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      ******************************************************************************************************************/
     public final EditableImage cloneImage()
       {
-        final EditableImage imageCopy = imageModelHolder.get().createCopy(true);
+        final var imageCopy = imageModelHolder.get().createCopy(true);
         imageCopy.attributeMapByName = new HashMap<>(attributeMapByName);
 
         return imageCopy;
@@ -581,9 +581,9 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      ******************************************************************************************************************/
     public final EditableImage createResizedImage (final int width, final int height, final Quality quality)
       {
-        final double hScale = (double)width / (double)getWidth();
-        final double vScale = (double)height / (double)getHeight();
-        final ScaleOp scaleOp = new ScaleOp(hScale, vScale, quality);
+        final var hScale = (double)width / (double)getWidth();
+        final var vScale = (double)height / (double)getHeight();
+        final var scaleOp = new ScaleOp(hScale, vScale, quality);
         execute(scaleOp);
 
         return this;
@@ -669,7 +669,7 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      ******************************************************************************************************************/
     public final long getMemorySize()
       {
-        final ImageModel imageModel = imageModelHolder.get();
+        final var imageModel = imageModelHolder.get();
         return (imageModel != null) ? imageModel.getMemorySize() : 0;
       }
 
@@ -697,15 +697,15 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
      ******************************************************************************************************************/
     public final ICC_Profile getICCProfile() // FIXME: to be removed
       {
-        final ColorModel colorModel = getColorModel();
+        final var colorModel = getColorModel();
 
         if (colorModel != null)
           {
-            final ColorSpace colorSpace = colorModel.getColorSpace();
+            final var colorSpace = colorModel.getColorSpace();
 
             if (colorSpace instanceof ICC_ColorSpace)
               {
-                final ICC_ColorSpace iccColorSpace = (ICC_ColorSpace)colorSpace;
+                final var iccColorSpace = (ICC_ColorSpace)colorSpace;
 
                 return iccColorSpace.getProfile();
               }
@@ -821,9 +821,9 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
     private Object internalExecute (final Operation operation)
             throws UnsupportedOperationException
       {
-        final ImplementationFactoryRegistry implementationFactoryRegistry = ImplementationFactoryRegistry.getDefault();
-        final ImageModel imageModel = imageModelHolder.get();
-        Object image = (imageModel != null) ? imageModel.getImage() : null;
+        final var implementationFactoryRegistry = ImplementationFactoryRegistry.getDefault();
+        final var imageModel = imageModelHolder.get();
+        var image = (imageModel != null) ? imageModel.getImage() : null;
         OperationImplementation implementation = null;
 
         if ((image == null) && !(operation instanceof AbstractCreateOp))
@@ -1001,9 +1001,9 @@ public class EditableImage implements Cloneable, Serializable // Externalizable
 
         if (node != null)
           {
-            for (DirectoryAdapter adapter = findAdapter(node); ; )
+            for (var adapter = findAdapter(node); ; )
               {
-                final T item = itemClass.newInstance();
+                final var item = itemClass.newInstance();
                 item.loadFromAdapter(adapter);
                 items.add(item);
 

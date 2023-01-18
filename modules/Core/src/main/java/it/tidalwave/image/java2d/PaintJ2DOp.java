@@ -58,20 +58,20 @@ public class PaintJ2DOp extends OperationImplementation<PaintOp, BufferedImage>
                                      final EditableImage image,
                                      final BufferedImage bufferedImage)
       {
-        final int x = operation.getX();
-        final int y = operation.getY();
-        final int w = operation.getW();
-        final int h = operation.getH();
-        final Graphics2D g2 = operation.getGraphics2D();
-        final PreviewSettings previewSettings = operation.getPreviewSettings();
-        final ImageObserver imageObserver = operation.getImageObserver();
-        final Quality quality = operation.getQuality();
+        final var x = operation.getX();
+        final var y = operation.getY();
+        final var w = operation.getW();
+        final var h = operation.getH();
+        final var g2 = operation.getGraphics2D();
+        final var previewSettings = operation.getPreviewSettings();
+        final var imageObserver = operation.getImageObserver();
+        final var quality = operation.getQuality();
         log.debug("execute(" + x + ", " + y + ", " + w + ", " + h + ", " + quality + ")");
 
         if (w != 0)
           {
-            final Object saveRenderingHints = g2.getRenderingHint(RenderingHints.KEY_INTERPOLATION);
-            final Object interpolation = Java2DUtils.findRenderingHintsInterpolation(quality);
+            final var saveRenderingHints = g2.getRenderingHint(RenderingHints.KEY_INTERPOLATION);
+            final var interpolation = Java2DUtils.findRenderingHintsInterpolation(quality);
             g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, interpolation);
             g2.drawImage(applyPreviewSettings(bufferedImage, previewSettings), x, y, w, h, imageObserver);
 
@@ -98,11 +98,11 @@ public class PaintJ2DOp extends OperationImplementation<PaintOp, BufferedImage>
     // FIXME: aggiungi un parametro sulla qualita', da mettere dentro PreviewSettings
     private BufferedImage applyPreviewSettings (final BufferedImage image, final PreviewSettings previewSettings)
       {
-        BufferedImage theImage = image;
+        var theImage = image;
 
         if (previewSettings != null)
           {
-            final int size = DataBuffer.getDataTypeSize(image.getSampleModel().getDataType());
+            final var size = DataBuffer.getDataTypeSize(image.getSampleModel().getDataType());
             LookupTable lookupTable = null;
 
             switch (size)
@@ -124,7 +124,7 @@ public class PaintJ2DOp extends OperationImplementation<PaintOp, BufferedImage>
 
             if (lookupTable != null)
               {
-                final LookupOp lOp = new LookupOp(lookupTable, null); // FIXME: hints
+                final var lOp = new LookupOp(lookupTable, null); // FIXME: hints
                 Java2DUtils.logImage(log, "applyPreviewSettings: ", image);
                 theImage = lOp.filter(image, null);
               }

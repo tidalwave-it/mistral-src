@@ -202,10 +202,10 @@ public class ImageModelJ2D extends ImageModel
       {
         log.trace("createCopy({})", copyContents);
 
-        final long time = System.currentTimeMillis();
+        final var time = System.currentTimeMillis();
         log.warn(">>>> **** WARNING CREATECOPY DISABLED");
 
-        final BufferedImage result = getBufferedImage(); // createCopy2(copyContents);
+        final var result = getBufferedImage(); // createCopy2(copyContents);
         log.trace(">>>> createCopy() completed ok in {} msec", (System.currentTimeMillis() - time));
 
         return createImage(result);

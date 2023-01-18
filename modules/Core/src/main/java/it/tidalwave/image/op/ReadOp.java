@@ -143,8 +143,8 @@ public class ReadOp extends Operation
 
             if (input instanceof Path)
               {
-                final ImageReader imageReader = createImageReader(((Path)input).toFile(), pluginBlackList);
-                final EditableImage editableImage = read(imageReader);
+                final var imageReader = createImageReader(((Path)input).toFile(), pluginBlackList);
+                final var editableImage = read(imageReader);
                 setProperties(editableImage, imageReader);
                 imageReader.dispose();
                 return editableImage;
@@ -152,8 +152,8 @@ public class ReadOp extends Operation
 
             else if (input instanceof File)
               {
-                final ImageReader imageReader = createImageReader((File)input, pluginBlackList);
-                final EditableImage editableImage = read(imageReader);
+                final var imageReader = createImageReader((File)input, pluginBlackList);
+                final var editableImage = read(imageReader);
                 setProperties(editableImage, imageReader);
                 imageReader.dispose();
                 return editableImage;
@@ -161,8 +161,8 @@ public class ReadOp extends Operation
 
             else if (input instanceof URL)
               {
-                final ImageReader imageReader = createImageReader((URL)input, pluginBlackList);
-                final EditableImage editableImage = read(imageReader);
+                final var imageReader = createImageReader((URL)input, pluginBlackList);
+                final var editableImage = read(imageReader);
                 setProperties(editableImage, imageReader);
                 imageReader.dispose();
                 return editableImage;
@@ -170,8 +170,8 @@ public class ReadOp extends Operation
 
             else if (input instanceof InputStream)
               {
-                final ImageReader imageReader = createImageReader((InputStream)input, pluginBlackList);
-                final EditableImage editableImage = read(imageReader);
+                final var imageReader = createImageReader((InputStream)input, pluginBlackList);
+                final var editableImage = read(imageReader);
                 setProperties(editableImage, imageReader);
                 imageReader.dispose();
                 return editableImage;
@@ -179,9 +179,9 @@ public class ReadOp extends Operation
 
             else if (input instanceof byte[])
               {
-                final ImageReader imageReader =
+                final var imageReader =
                         createImageReader(new ByteArrayInputStream((byte[])input), pluginBlackList);
-                final EditableImage editableImage = read(imageReader);
+                final var editableImage = read(imageReader);
                 setProperties(editableImage, imageReader);
                 imageReader.dispose();
                 return editableImage;
@@ -189,7 +189,7 @@ public class ReadOp extends Operation
 
             else if (input instanceof ImageReader)
               {
-                final EditableImage editableImage = read((ImageReader)input);
+                final var editableImage = read((ImageReader)input);
                 setProperties(editableImage, (ImageReader)input);
                 return editableImage;
                 // don't dispose the ImageReader in this case
@@ -229,8 +229,8 @@ public class ReadOp extends Operation
                     protected EditableImage read (@Nonnull final ReadOp readOp)
                             throws IOException
                       {
-                        final Object input = readOp.getInput();
-                        final int imageIndex = readOp.getImageIndex();
+                        final var input = readOp.getInput();
+                        final var imageIndex = readOp.getImageIndex();
                         log.info("read({}, {})", input, imageIndex);
 
                         return Reader.read(input, new Reader()
@@ -239,9 +239,9 @@ public class ReadOp extends Operation
                             protected EditableImage read (final ImageReader imageReader)
                                     throws IOException
                               {
-                                final long time = System.currentTimeMillis();
-                                final BufferedImage image = imageReader.read(imageIndex);
-                                final EditableImage editableImage = create(image);
+                                final var time = System.currentTimeMillis();
+                                final var image = imageReader.read(imageIndex);
+                                final var editableImage = create(image);
                                 editableImage.loadMetadata(imageReader, imageIndex);
                                 Java2DUtils.logImage(log, ">>>> Loaded image: ", image);
                                 editableImage.latestOperationTime = System.currentTimeMillis() - time;
@@ -262,9 +262,9 @@ public class ReadOp extends Operation
                     protected EditableImage read (@Nonnull final ReadOp readOp)
                             throws IOException
                       {
-                        final Object input = readOp.getInput();
-                        final int imageIndex = readOp.getImageIndex();
-                        final int thumbnailIndex = readOp.getThumbnailIndex();
+                        final var input = readOp.getInput();
+                        final var imageIndex = readOp.getImageIndex();
+                        final var thumbnailIndex = readOp.getThumbnailIndex();
                         log.info("read({}, {}, {})", input, imageIndex, thumbnailIndex);
 
                         return Reader.read(input, new Reader()
@@ -274,7 +274,7 @@ public class ReadOp extends Operation
                             protected EditableImage read (@Nonnull final ImageReader imageReader)
                                     throws IOException
                               {
-                                final long time = System.currentTimeMillis();
+                                final var time = System.currentTimeMillis();
                                 return create(imageReader.readThumbnail(imageIndex, thumbnailIndex),
                                               System.currentTimeMillis() - time);
                               }
@@ -293,8 +293,8 @@ public class ReadOp extends Operation
                     protected EditableImage read (@Nonnull final ReadOp readOp)
                             throws IOException
                       {
-                        final Object input = readOp.getInput();
-                        final int imageIndex = readOp.getImageIndex();
+                        final var input = readOp.getInput();
+                        final var imageIndex = readOp.getImageIndex();
                         log.info("read({}, {})", input, imageIndex);
 
                         return Reader.read(input, new Reader()
@@ -303,7 +303,7 @@ public class ReadOp extends Operation
                             @Override
                             protected EditableImage read (@Nonnull final ImageReader imageReader)
                               {
-                                final EditableImage editableImage = new EditableImage(null);
+                                final var editableImage = new EditableImage(null);
                                 editableImage.loadMetadata(imageReader, imageIndex);
                                 return editableImage;
                               }
@@ -336,7 +336,7 @@ public class ReadOp extends Operation
         @Nonnull
         private static EditableImage create (@Nonnull final BufferedImage image, final long time)
           {
-            final EditableImage editableImage = create(image);
+            final var editableImage = create(image);
             editableImage.latestOperationTime = time;
             return editableImage;
           }
@@ -436,16 +436,16 @@ public class ReadOp extends Operation
             throw new IOException("Cannot read " + file.getAbsolutePath());
           }
 
-        String fileName = file.getName();
-        String suffix = "";
-        final boolean gzipCompression = fileName.toLowerCase().endsWith(".gz");
+        var fileName = file.getName();
+        var suffix = "";
+        final var gzipCompression = fileName.toLowerCase().endsWith(".gz");
 
         if (gzipCompression)
           {
             fileName = fileName.substring(0, fileName.length() - 3);
           }
 
-        final int i = fileName.lastIndexOf('.');
+        final var i = fileName.lastIndexOf('.');
 
         if (i > 0)
           {
@@ -491,11 +491,11 @@ public class ReadOp extends Operation
       {
         log.trace("createImageReader({})", url);
 
-        final String fileName = url.getPath();
-        String suffix = "";
-        final boolean gzipCompression = fileName.toLowerCase().endsWith(".gz");
+        final var fileName = url.getPath();
+        var suffix = "";
+        final var gzipCompression = fileName.toLowerCase().endsWith(".gz");
 
-        final int i = fileName.lastIndexOf('.');
+        final var i = fileName.lastIndexOf('.');
 
         if (i > 0)
           {
@@ -507,7 +507,7 @@ public class ReadOp extends Operation
         //
         // This will not work with multiple-file formats such as Canon .CRW.
         //
-        final InputStream inputStream = gzipCompression ? new GZIPInputStream(url.openStream()) : url.openStream();
+        final var inputStream = gzipCompression ? new GZIPInputStream(url.openStream()) : url.openStream();
         imageInputStream = ImageIO.createImageInputStream(inputStream);
         return createImageReader(imageInputStream, gzipCompression, suffix, pluginBlackList);
       }
@@ -527,8 +527,8 @@ public class ReadOp extends Operation
             throws IOException
       {
         log.info("createImageReader({})", inputStream);
-        final ImageInputStream imageInputStream = ImageIO.createImageInputStream(inputStream);
-        final Iterator<ImageReader> iterator = ImageIO.getImageReaders(imageInputStream);
+        final var imageInputStream = ImageIO.createImageInputStream(inputStream);
+        final var iterator = ImageIO.getImageReaders(imageInputStream);
         return createImageReader(imageInputStream, iterator, pluginBlackList);
       }
 
@@ -551,7 +551,7 @@ public class ReadOp extends Operation
       {
         log.info("createImageReader({}, {}, {})", imageInputStream, gzipCompression, suffix);
 //        logger.finest(">>>> Suffixes: " + Arrays.asList(ImageIO.getReaderFileSuffixes()));
-        final Iterator<ImageReader> iterator = ImageIO.getImageReaders(imageInputStream);
+        final var iterator = ImageIO.getImageReaders(imageInputStream);
         return createImageReader(imageInputStream, iterator, pluginBlackList);
       }
 
@@ -583,8 +583,8 @@ public class ReadOp extends Operation
 
         while (iterator.hasNext())
           {
-            final ImageReader reader = iterator.next();
-            final String pluginClassName = reader.getOriginatingProvider().getPluginClassName();
+            final var reader = iterator.next();
+            final var pluginClassName = reader.getOriginatingProvider().getPluginClassName();
 
             if (reader != null)
               {
@@ -609,7 +609,7 @@ public class ReadOp extends Operation
 
         readers.addAll(tiffReaders);
 
-        for (final ImageReader reader : readers)
+        for (final var reader : readers)
           {
             log.trace(">>>> testing reader: {}, vendor: {}", reader, reader.getOriginatingProvider().getVendorName());
 

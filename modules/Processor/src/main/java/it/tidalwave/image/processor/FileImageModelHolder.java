@@ -69,7 +69,7 @@ import it.tidalwave.image.ImageModelHolder;
           {
             try
               {
-                final ObjectInputStream ois = new ObjectInputStream(Files.newInputStream(file.toPath()));
+                final var ois = new ObjectInputStream(Files.newInputStream(file.toPath()));
                 imageModel = (ImageModel)ois.readObject();
                 ois.close();
               }
@@ -105,7 +105,7 @@ import it.tidalwave.image.ImageModelHolder;
             file = new File("HOLDER-" + id);
             // FIXME: be sure to create the file in a place where it will not be added in
             // the job result .zip. But I don't know if /tmp is shared among nodes in the grid.
-            final ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(file.toPath()));
+            final var oos = new ObjectOutputStream(Files.newOutputStream(file.toPath()));
             oos.writeObject(imageModel);
             oos.close();
           }

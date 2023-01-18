@@ -144,8 +144,8 @@ public class AnimatedScaleController extends ScaleController
       {
         log.debug("changeScale()");
 
-        final long deltaTime = System.currentTimeMillis() - startTime;
-        final double scale = bound(startScale + (((targetScale - startScale) * deltaTime) / duration));
+        final var deltaTime = System.currentTimeMillis() - startTime;
+        final var scale = bound(startScale + (((targetScale - startScale) * deltaTime) / duration));
         imageRenderer.setScale(Math.max(Math.min(scale, EditableImageRenderer.MAX_SCALE),
                                         EditableImageRenderer.MIN_SCALE), pivot);
         log.debug(">>>> scale: " + scale + ", targetScale: " + targetScale);

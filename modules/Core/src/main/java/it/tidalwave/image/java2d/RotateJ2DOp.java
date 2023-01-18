@@ -51,12 +51,12 @@ public class RotateJ2DOp extends OperationImplementation<RotateOp, BufferedImage
                                      final EditableImage image,
                                      final BufferedImage bufferedImage)
       {
-        final double degrees = operation.getDegrees();
-        final Quality quality = operation.getQuality();
+        final var degrees = operation.getDegrees();
+        final var quality = operation.getQuality();
         log.debug("rotate(" + degrees + ", " + quality + ")");
         Java2DUtils.logImage(log, ">>>> source bufferedImage", bufferedImage);
 
-        BufferedImage result = bufferedImage;
+        var result = bufferedImage;
 
         if (degrees != 0)
           {

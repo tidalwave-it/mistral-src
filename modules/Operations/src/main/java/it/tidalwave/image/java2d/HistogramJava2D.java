@@ -146,21 +146,21 @@ public class HistogramJava2D extends Histogram
     @Override
     public it.tidalwave.image.Histogram getPreview (final PreviewSettings previewSetting)
       {
-        final HistogramJava2D previewHistogram = new HistogramJava2D(null);
+        final var previewHistogram = new HistogramJava2D(null);
         previewHistogram.bandCount = bandCount;
         previewHistogram.bandData = new int[bandCount][];
 
-        final byte[][] lut8bit = previewSetting.getLookupTable8bit().getTable();
-        final short[][] lut16bit = previewSetting.getLookupTable16bit().getTable();
+        final var lut8bit = previewSetting.getLookupTable8bit().getTable();
+        final var lut16bit = previewSetting.getLookupTable16bit().getTable();
 
-        for (int band = 0; band < bandCount; band++)
+        for (var band = 0; band < bandCount; band++)
           {
-            final int len = bandData[band].length;
+            final var len = bandData[band].length;
             previewHistogram.bandData[band] = new int[len];
 
-            for (int i = 0; i < len; i++)
+            for (var i = 0; i < len; i++)
               {
-                final int dst = (len <= 256) ? (lut8bit[band][i] & 0xff) : (lut16bit[band][i] & 0xffff);
+                final var dst = (len <= 256) ? (lut8bit[band][i] & 0xff) : (lut16bit[band][i] & 0xffff);
                 previewHistogram.bandData[band][dst] += bandData[band][i];
               }
           }
@@ -182,17 +182,17 @@ public class HistogramJava2D extends Histogram
     private void genericCompute()
       {
         final Raster raster = ((BufferedImage)image).getRaster();
-        final int w = renderedImage.getWidth();
-        final int h = renderedImage.getHeight();
-        boolean first = true;
+        final var w = renderedImage.getWidth();
+        final var h = renderedImage.getHeight();
+        var first = true;
 
-        for (int y = 0; y < h; y++)
+        for (var y = 0; y < h; y++)
           {
-            for (int x = 0; x < w; x++)
+            for (var x = 0; x < w; x++)
               {
-                for (int b = 0; b < bandCount; b++)
+                for (var b = 0; b < bandCount; b++)
                   {
-                    final int v = raster.getSample(x, y, b) >> shift;
+                    final var v = raster.getSample(x, y, b) >> shift;
 
                     bandData[b][v]++;
 

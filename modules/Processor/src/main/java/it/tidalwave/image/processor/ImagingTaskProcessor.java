@@ -309,7 +309,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
           {
             for (final Iterator<? extends ImagingTask> i = pendingTasks.iterator(); i.hasNext(); )
               {
-                final ImagingTask task = i.next();
+                final var task = i.next();
 //                if ((taskClass == null) || taskClass.equals(task.getClass()))
                 if ((taskClass == null) || taskClass.getName().equals(task.getClass().getName()))
                   {
@@ -379,7 +379,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
       {
         synchronized (lock)
           {
-            for (final ImagingTask task : completedTasks)
+            for (final var task : completedTasks)
               {
 //                if ((taskClass == null) || taskClass.equals(task.getClass()))
                 if ((taskClass == null) || taskClass.getName().equals(task.getClass().getName()))
@@ -456,9 +456,9 @@ public abstract class ImagingTaskProcessor // NOT Serializable
                       }
                   }
 
-                for (final Iterator<ImagingTask> i = pendingTasks.iterator(); i.hasNext(); )
+                for (final var i = pendingTasks.iterator(); i.hasNext(); )
                   {
-                    final ImagingTask task2 = i.next();
+                    final var task2 = i.next();
 
                     if (!remoteExecution || task2.isRemoteExecutionOk())
                       {
@@ -517,7 +517,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
     protected final void notifyTaskCompleted (final ImagingTask task)
       {
         log.info("notifyTaskCompleted(" + task + ")");
-        boolean duplicate = false;
+        var duplicate = false;
 
         synchronized (lock)
           {
@@ -549,7 +549,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
      ******************************************************************************************************************/
     private int getTaskCount (final Class taskClass, final Collection<? extends ImagingTask> taskCollection)
       {
-        int count = 0;
+        var count = 0;
 
         synchronized (lock) // implement in a smarter way
           {

@@ -46,7 +46,7 @@ public class HistogramExample
     public static void main (final String[] args)
             throws IOException
       {
-        final HistogramExample e = new HistogramExample();
+        final var e = new HistogramExample();
         e.process();
       }
 
@@ -56,8 +56,8 @@ public class HistogramExample
         //
         // Loads the image
         //
-        final File file = new File("../images/20030701-0043.NEF");
-        final EditableImage image = EditableImage.create(new ReadOp(file));
+        final var file = new File("../images/20030701-0043.NEF");
+        final var image = EditableImage.create(new ReadOp(file));
         log.info("Image loaded in " + image.getLatestOperationTime() + " msec");
         //
         // Crops the image
@@ -67,16 +67,16 @@ public class HistogramExample
         //
         // Computes the histogram
         //
-        final Histogram histogram = image.execute(new HistogramOp()).getHistogram();
+        final var histogram = image.execute(new HistogramOp()).getHistogram();
         log.info("Histogram computed in " + image.getLatestOperationTime() + " msec");
         //
         // Prints some information item from the histogram
         //
-        for (int band = 0; band < histogram.getBandCount(); band++)
+        for (var band = 0; band < histogram.getBandCount(); band++)
           {
-            final int min = histogram.getMin(band);
-            final int max = histogram.getMax(band);
-            final int[] frequencies = histogram.getFrequencies(band);
+            final var min = histogram.getMin(band);
+            final var max = histogram.getMax(band);
+            final var frequencies = histogram.getFrequencies(band);
             log.info("band #" + band + ": min=" + min + " max=" + max + " " + frequencies.length + " samples");
           }
       }

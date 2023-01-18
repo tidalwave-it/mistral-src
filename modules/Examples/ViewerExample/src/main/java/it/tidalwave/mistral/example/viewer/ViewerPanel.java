@@ -90,10 +90,10 @@ public class ViewerPanel extends AbstractViewerPanel
         @Override
         public void scaleChanged (final EditableImageRendererEvent event)
           {
-            final EditableImage image = imageRenderer.getImage();
-            final int width = image.getWidth();
-            final int height = image.getHeight();
-            final int depth = image.getBitsPerPixel();
+            final var image = imageRenderer.getImage();
+            final var width = image.getWidth();
+            final var height = image.getHeight();
+            final var depth = image.getBitsPerPixel();
             lbSize.setText(MessageFormat.format(PHOTO_SIZE_PATTERN, width, height, depth));
             lbScaleValue.setText(MessageFormat.format(SCALE_PATTERN, imageRenderer.getScale()));
           }
@@ -137,8 +137,8 @@ public class ViewerPanel extends AbstractViewerPanel
       {
         final Directory exifDirectory = image.getMetadata(EXIF.class);
         final Directory makerNoteDirectory = image.getMetadata(MakerNote.class);
-        final String exif = createTable(exifDirectory);
-        final String makerNote = createTable(makerNoteDirectory);
+        final var exif = createTable(exifDirectory);
+        final var makerNote = createTable(makerNoteDirectory);
         lbMetadata.setText(exif);
         scaleController.fitToView();
       }
@@ -149,7 +149,7 @@ public class ViewerPanel extends AbstractViewerPanel
      ******************************************************************************************************************/
     private String createTable (final Directory directory)
       {
-        final StringBuilder sb = new StringBuilder();
+        final var sb = new StringBuilder();
         sb.append("<html>");
 
         if (directory != null)
@@ -222,7 +222,7 @@ public class ViewerPanel extends AbstractViewerPanel
 
         lbAngleValue.setText("0");
 
-        final org.jdesktop.layout.GroupLayout pnStatusBarLayout = new org.jdesktop.layout.GroupLayout(pnStatusBar);
+        final var pnStatusBarLayout = new org.jdesktop.layout.GroupLayout(pnStatusBar);
         pnStatusBar.setLayout(pnStatusBarLayout);
         pnStatusBarLayout.setHorizontalGroup(
                 pnStatusBarLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -254,7 +254,7 @@ public class ViewerPanel extends AbstractViewerPanel
                                                        .add(lbAngle))
         );
 
-        final org.jdesktop.layout.GroupLayout pnViewerLayout = new org.jdesktop.layout.GroupLayout(pnViewer);
+        final var pnViewerLayout = new org.jdesktop.layout.GroupLayout(pnViewer);
         pnViewer.setLayout(pnViewerLayout);
         pnViewerLayout.setHorizontalGroup(
                 pnViewerLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -315,7 +315,7 @@ public class ViewerPanel extends AbstractViewerPanel
         cbScrollBars.setMargin(new java.awt.Insets(0, 0, 0, 0));
         cbScrollBars.addActionListener(this::cbScrollBarsActionPerformed);
 
-        final org.jdesktop.layout.GroupLayout pnToolBarLayout = new org.jdesktop.layout.GroupLayout(pnToolBar);
+        final var pnToolBarLayout = new org.jdesktop.layout.GroupLayout(pnToolBar);
         pnToolBar.setLayout(pnToolBarLayout);
         pnToolBarLayout.setHorizontalGroup(
                 pnToolBarLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -387,7 +387,7 @@ public class ViewerPanel extends AbstractViewerPanel
                                                    .addContainerGap())
         );
 
-        final org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
+        final var layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -443,7 +443,7 @@ public class ViewerPanel extends AbstractViewerPanel
 
     private void cbQualityActionPerformed (final java.awt.event.ActionEvent evt)
       {//GEN-FIRST:event_cbQualityActionPerformed
-        final Quality quality = (Quality)cbQuality.getSelectedItem();
+        final var quality = (Quality)cbQuality.getSelectedItem();
         imageRenderer.setScaleQuality(quality);
         imageRenderer.setRotateQuality(quality);
         repaint();

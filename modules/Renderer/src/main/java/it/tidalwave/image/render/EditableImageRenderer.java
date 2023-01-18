@@ -255,7 +255,7 @@ public class EditableImageRenderer extends JComponent
         setLayout(null);
         setOpaque(false);
 
-        final boolean workaroundMST63 = !Platform.isMacOSX();
+        final var workaroundMST63 = !Platform.isMacOSX();
 
         if (workaroundMST63)
           {
@@ -400,22 +400,22 @@ public class EditableImageRenderer extends JComponent
         //
         // The size of the largest image displayable with no clipping at the current zoom.
         //
-        final int maxWidth = (int)Math.round(getAvailableWidth() / scale);
-        final int maxHeight = (int)Math.round(getAvailableHeight() / scale);
+        final var maxWidth = (int)Math.round(getAvailableWidth() / scale);
+        final var maxHeight = (int)Math.round(getAvailableHeight() / scale);
 
         //
         // The size of the image including the margin.
         //
-        final int widthWithMargin = image.getWidth() + margin.left + margin.right;
-        final int heightWithMargin = image.getHeight() + margin.top + margin.bottom;
+        final var widthWithMargin = image.getWidth() + margin.left + margin.right;
+        final var heightWithMargin = image.getHeight() + margin.top + margin.bottom;
 
         //
         // The bounds for the origin to keep the margin within its bounds.
         //
-        final int xMin = -margin.left;
-        final int yMin = -margin.top;
-        final int xMax = (image.getWidth() + margin.right) - maxWidth;
-        final int yMax = (image.getHeight() + margin.bottom) - maxHeight;
+        final var xMin = -margin.left;
+        final var yMin = -margin.top;
+        final var xMax = (image.getWidth() + margin.right) - maxWidth;
+        final var yMax = (image.getHeight() + margin.bottom) - maxHeight;
         //
         // If there's more room to display the image with its margin, center it.
         //
@@ -515,8 +515,8 @@ public class EditableImageRenderer extends JComponent
             return null;
           }
 
-        final int imageWidth = image.getWidth();
-        final int imageHeight = image.getHeight();
+        final var imageWidth = image.getWidth();
+        final var imageHeight = image.getHeight();
 
         if ((imageWidth == 0) || (imageHeight == 0)) // can happen if metadata is not loaded yet
           {
@@ -529,8 +529,8 @@ public class EditableImageRenderer extends JComponent
             return null;
           }
 
-        final int x = ((componentPoint.x - shownImageX) * imageWidth) / shownImageWidth;
-        final int y = ((componentPoint.y - shownImageY) * imageHeight) / shownImageHeight;
+        final var x = ((componentPoint.x - shownImageX) * imageWidth) / shownImageWidth;
+        final var y = ((componentPoint.y - shownImageY) * imageHeight) / shownImageHeight;
 
         if ((x >= 0) && (y >= 0) && (x < imageWidth) && (y < imageHeight))
           {
@@ -559,8 +559,8 @@ public class EditableImageRenderer extends JComponent
             return null;
           }
 
-        final int imageWidth = image.getWidth();
-        final int imageHeight = image.getHeight();
+        final var imageWidth = image.getWidth();
+        final var imageHeight = image.getHeight();
 
         if ((imageWidth == 0) || (imageHeight == 0)) // can happen if metadata is not loaded yet
           {
@@ -574,8 +574,8 @@ public class EditableImageRenderer extends JComponent
             return null;
           }
 
-        final int x = ((imagePoint.x * shownImageWidth) / imageWidth) + shownImageX;
-        final int y = ((imagePoint.y * shownImageHeight) / imageHeight) + shownImageY;
+        final var x = ((imagePoint.x * shownImageWidth) / imageWidth) + shownImageX;
+        final var y = ((imagePoint.y * shownImageHeight) / imageHeight) + shownImageY;
 
         return new Point(x, y);
 
@@ -602,7 +602,7 @@ public class EditableImageRenderer extends JComponent
     public void setPositionOverImage (final Point imagePoint, final Point componentPoint)
       {
         log.info("setPositionOverImage(" + imagePoint + ", " + componentPoint + ")");
-        final Point newOrigin = computeOrigin(imagePoint, componentPoint, scale);
+        final var newOrigin = computeOrigin(imagePoint, componentPoint, scale);
 
         if (newOrigin != null)
           {
@@ -695,8 +695,8 @@ public class EditableImageRenderer extends JComponent
             return null;
           }
 
-        final int imageWidth = image.getWidth();
-        final int imageHeight = image.getHeight();
+        final var imageWidth = image.getWidth();
+        final var imageHeight = image.getHeight();
 
         if ((imageWidth == 0) || (imageHeight == 0)) // can happen if metadata is not loaded yet
           {
@@ -914,8 +914,8 @@ public class EditableImageRenderer extends JComponent
 
         layoutScrollBars();
 
-        final int myWidth = getWidth();
-        final int myHeight = getHeight();
+        final var myWidth = getWidth();
+        final var myHeight = getHeight();
         //if (image == null) // FIXME: this can be optimized
         {
           g.setColor(getBackground());
@@ -929,10 +929,10 @@ public class EditableImageRenderer extends JComponent
             if (image != null)
               {
                 EditableImage imageToDraw = null;
-                final double maxSize = scale * Math.max(image.getWidth(), image.getHeight());
-                boolean needScaling = true;
-                int rotationDeltaX = 0;
-                int rotationDeltaY = 0;
+                final var maxSize = scale * Math.max(image.getWidth(), image.getHeight());
+                var needScaling = true;
+                var rotationDeltaX = 0;
+                var rotationDeltaY = 0;
 
                 //
                 // If scaled image caching is enabled, create a scaled image and then
@@ -945,8 +945,8 @@ public class EditableImageRenderer extends JComponent
                         log.debug(">>>> computing scaled image");
                         scaledImage = optimizedImage.execute2(new ScaleOp(scale, getScaleQuality()));
 
-                        final int prevWidth = scaledImage.getWidth();
-                        final int prevHeight = scaledImage.getHeight();
+                        final var prevWidth = scaledImage.getWidth();
+                        final var prevHeight = scaledImage.getHeight();
                         scaledImage.execute(new RotateOp(angle, getRotateQuality()));
                         //
                         // Rotating the image could have make it bigger (to avoid truncation).
@@ -985,7 +985,7 @@ public class EditableImageRenderer extends JComponent
                 //
                 // Don't pass 'this' as an observer, it could trigger paint() twice (FIXME: check if it's true)
                 //
-                final PaintOp paintOp = needScaling
+                final var paintOp = needScaling
                                         ? new PaintOp(g2,
                                                       shownImageX,
                                                       shownImageY,
@@ -1009,11 +1009,11 @@ public class EditableImageRenderer extends JComponent
                 g2 = (Graphics2D)g;
               }
 
-            for (final Overlay overlay : overlayList)
+            for (final var overlay : overlayList)
               {
                 if (overlay.isVisible())
                   {
-                    final Graphics2D g2Copy = (Graphics2D)g2.create();
+                    final var g2Copy = (Graphics2D)g2.create();
 
                     try
                       {
@@ -1087,7 +1087,7 @@ public class EditableImageRenderer extends JComponent
     public void moveOrigin (final int deltaX, final int deltaY)
       {
         log.info("moveOrigin(" + deltaX + "," + deltaY + ")");
-        final Point position = getOrigin();
+        final var position = getOrigin();
         position.setLocation(position.getX() + deltaX, position.getY() + deltaY);
         setOrigin(position);
       }
@@ -1127,18 +1127,18 @@ public class EditableImageRenderer extends JComponent
 //            throw new IllegalArgumentException("scale: " + scale);
 //          }
 
-        final boolean repaintEnabledSave = repaintEnabled;
+        final var repaintEnabledSave = repaintEnabled;
         repaintEnabled = false;
         setFitToDisplaySize(false);
         internalSetScale(scale);
 
         if (pivotPoint != null)
           {
-            final Point imagePivotPoint = getPositionOverImage(pivotPoint);
+            final var imagePivotPoint = getPositionOverImage(pivotPoint);
 
             if (imagePivotPoint != null)
               {
-                final Point newOrigin = computeOrigin(imagePivotPoint, pivotPoint, scale);
+                final var newOrigin = computeOrigin(imagePivotPoint, pivotPoint, scale);
 
                 if (newOrigin != null)
                   {
@@ -1198,8 +1198,8 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************************************************/
     public double getFitScale()
       {
-        final double hScale = (double)getAvailableWidth() / image.getWidth();
-        final double vScale = (double)getAvailableHeight() / image.getHeight();
+        final var hScale = (double)getAvailableWidth() / image.getWidth();
+        final var vScale = (double)getAvailableHeight() / image.getHeight();
 
         return Math.min(hScale, vScale);
 
@@ -1231,7 +1231,7 @@ public class EditableImageRenderer extends JComponent
 
         if (image != null)
           {
-            final boolean saveRepaintEnabled = repaintEnabled;
+            final var saveRepaintEnabled = repaintEnabled;
             repaintEnabled = false;
             internalSetScale(getFitScale());
             centerImage();
@@ -1311,9 +1311,9 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************************************************/
     private void fireScaleChangedEvent()
       {
-        final EditableImageRendererEvent event = new EditableImageRendererEvent(this);
+        final var event = new EditableImageRendererEvent(this);
 
-        for (final EditableImageRendererListener listener : new ArrayList<>(listenerList))
+        for (final var listener : new ArrayList<>(listenerList))
           {
             try
               {
@@ -1334,9 +1334,9 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************************************************/
     private void fireAngleChangedEvent()
       {
-        final EditableImageRendererEvent event = new EditableImageRendererEvent(this);
+        final var event = new EditableImageRendererEvent(this);
 
-        for (final EditableImageRendererListener listener : new ArrayList<>(listenerList))
+        for (final var listener : new ArrayList<>(listenerList))
           {
             try
               {
@@ -1357,9 +1357,9 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************************************************/
     protected void fireEditingToolActivated (final EditingTool editingTool)
       {
-        final EditableImageRendererEvent event = new EditableImageRendererEvent(this, editingTool);
+        final var event = new EditableImageRendererEvent(this, editingTool);
 
-        for (final EditableImageRendererListener listener : new ArrayList<>(listenerList))
+        for (final var listener : new ArrayList<>(listenerList))
           {
             try
               {
@@ -1380,9 +1380,9 @@ public class EditableImageRenderer extends JComponent
      ******************************************************************************************************************/
     protected void fireEditingToolDeactivated (final EditingTool editingTool)
       {
-        final EditableImageRendererEvent event = new EditableImageRendererEvent(this, editingTool);
+        final var event = new EditableImageRendererEvent(this, editingTool);
 
-        for (final EditableImageRendererListener listener : new ArrayList<>(listenerList))
+        for (final var listener : new ArrayList<>(listenerList))
           {
             try
               {

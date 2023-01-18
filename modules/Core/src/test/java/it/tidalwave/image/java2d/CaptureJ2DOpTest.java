@@ -50,17 +50,17 @@ public class CaptureJ2DOpTest extends BaseTestSupport
             throws Exception
       {
         log.info("CaptureJ2DOpTest");
-        final JLabel label = new JLabel("text");
-        final JFrame frame = new JFrame();
+        final var label = new JLabel("text");
+        final var frame = new JFrame();
         frame.getContentPane().add(label);
         frame.pack();
         frame.setVisible(true);
         Thread.sleep(2000);
-        final CaptureOp operation = new CaptureOp(label);
-        final CaptureJ2DOp instance = new CaptureJ2DOp();
-        final BufferedImage result = instance.execute(operation, null, null);
+        final var operation = new CaptureOp(label);
+        final var instance = new CaptureJ2DOp();
+        final var result = instance.execute(operation, null, null);
 
-        final File f = new File(tmp + "/CaptureOp.tif");
+        final var f = new File(tmp + "/CaptureOp.tif");
         ImageIO.write(result, "TIFF", f);
         AssertJUnit.assertEquals(label.getWidth(), result.getWidth());
         AssertJUnit.assertEquals(label.getHeight(), result.getHeight());

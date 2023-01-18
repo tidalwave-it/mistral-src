@@ -46,10 +46,10 @@ public class ScaleJ2DOpPerformanceTest extends BasePerformanceTestSupport
         fail("disabled because it takes forever");
         long accTime = 0;
 
-        for (double scale = 0.1; scale <= 1; scale += 0.1)
+        for (var scale = 0.1; scale <= 1; scale += 0.1)
           {
             log.info(">>>> scale: " + scale);
-            final EditableImage image2 = image.execute2(new ScaleOp(scale, Quality.INTERMEDIATE));
+            final var image2 = image.execute2(new ScaleOp(scale, Quality.INTERMEDIATE));
             accTime += image2.getLatestOperationTime();
           }
 

@@ -45,15 +45,15 @@ public class WriteJ2DOpTest extends BaseTestSupport
     @Test
     public void testWriteJPEG()
       {
-        final File f = (File)img20030701_0043_jpg.execute(new WriteOp("JPEG", tmp + "/written.jpg")).getOutput();
+        final var f = (File)img20030701_0043_jpg.execute(new WriteOp("JPEG", tmp + "/written.jpg")).getOutput();
 //        assertChecksum("b49272bff3e945d32ad9b617a17829ae", f);
       }
 
     @Test
     public void testWriteOptimizedJPEG()
       {
-        final EditableImage result = img20030701_0043_jpg.execute2(new OptimizeOp(0.5));
-        final File f = (File)result.execute(new WriteOp("JPEG", tmp + "/written-optimized.jpg")).getOutput();
+        final var result = img20030701_0043_jpg.execute2(new OptimizeOp(0.5));
+        final var f = (File)result.execute(new WriteOp("JPEG", tmp + "/written-optimized.jpg")).getOutput();
 //        assertChecksum("b49272bff3e945d32ad9b617a17829ae", f);
       }
   }

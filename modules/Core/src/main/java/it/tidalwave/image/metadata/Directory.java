@@ -101,14 +101,14 @@ public class Directory extends JavaBeanSupport implements Serializable
      ******************************************************************************************************************/
     public void loadFromAdapter (final DirectoryAdapter adapter)
       {
-        for (final int tag : adapter.getTags())
+        for (final var tag : adapter.getTags())
           {
             tagMap.put(tag, adapter.getObject(tag));
           }
 
-        for (final String directoryName : adapter.getSubDirectoryNames())
+        for (final var directoryName : adapter.getSubDirectoryNames())
           {
-            final Directory directory = new Directory();
+            final var directory = new Directory();
             directory.loadFromAdapter(adapter.getSubDirectory(directoryName));
             directoryMap.put(directoryName, directory);
           }
@@ -120,9 +120,9 @@ public class Directory extends JavaBeanSupport implements Serializable
      ******************************************************************************************************************/
     public int[] getTagCodes()
       {
-        final int[] result = new int[tagMap.size()];
+        final var result = new int[tagMap.size()];
 
-        int i = 0;
+        var i = 0;
         for (final int tag : tagMap.keySet())
           {
             result[i++] = tag;
@@ -177,7 +177,7 @@ public class Directory extends JavaBeanSupport implements Serializable
     @Nonnull
     public <T> Optional<T> getObject (final int tag, @Nonnull final Class<T> asType)
       {
-        Object value = tagMap.get(tag);
+        var value = tagMap.get(tag);
 
         if (value == null)
           {
@@ -195,7 +195,7 @@ public class Directory extends JavaBeanSupport implements Serializable
 
                 if (asType.isEnum())
                   {
-                    final Method fromIntegerMethod = asType.getMethod("fromInteger", int.class);
+                    final var fromIntegerMethod = asType.getMethod("fromInteger", int.class);
                     value = fromIntegerMethod.invoke(null, value);
                   }
               }
@@ -218,7 +218,7 @@ public class Directory extends JavaBeanSupport implements Serializable
 
         if ((value instanceof long[][]) && Rational.class.equals(asType))
           {
-            final long[][] array = (long[][])value;
+            final var array = (long[][])value;
             value = Rational.of((int)array[0][0], (int)array[0][1]);
           }
 
@@ -230,7 +230,7 @@ public class Directory extends JavaBeanSupport implements Serializable
         // If an array is asked and a scalar is available, convert it to an array[1]
         if (asType.isArray() && !value.getClass().isArray())
           {
-            final Object array = Array.newInstance(asType.getComponentType(), 1);
+            final var array = Array.newInstance(asType.getComponentType(), 1);
             Array.set(array, 0, value);
             value = array;
           }
@@ -253,7 +253,7 @@ public class Directory extends JavaBeanSupport implements Serializable
           {
             try
               {
-                final Method getValueMethod = value.getClass().getMethod("getValue");
+                final var getValueMethod = value.getClass().getMethod("getValue");
                 value = getValueMethod.invoke(value);
               }
             catch (Exception e)
@@ -333,7 +333,7 @@ public class Directory extends JavaBeanSupport implements Serializable
               }
           }
 
-        String name = getClass().getSimpleName();
+        var name = getClass().getSimpleName();
 
         if ("".equals(name))
           {
@@ -361,9 +361,9 @@ public class Directory extends JavaBeanSupport implements Serializable
             return "" + array.length + " bytes";
           }
 
-        final StringBuilder buffer = new StringBuilder();
+        final var buffer = new StringBuilder();
 
-        for (int i = 0; i < array.length; i++)
+        for (var i = 0; i < array.length; i++)
           {
             if (i > 0)
               {
@@ -393,16 +393,16 @@ public class Directory extends JavaBeanSupport implements Serializable
             return false;
           }
 
-        final Directory other = (Directory)object;
-        final int[] myTags = getTagCodes();
-        final int[] otherTags = other.getTagCodes();
+        final var other = (Directory)object;
+        final var myTags = getTagCodes();
+        final var otherTags = other.getTagCodes();
 
         if (!Arrays.equals(myTags, otherTags))
           {
             return false;
           }
 
-        for (final int tag : myTags)
+        for (final var tag : myTags)
           {
             if (!equals(getObject(tag), other.getObject(tag)))
               {
@@ -440,14 +440,14 @@ public class Directory extends JavaBeanSupport implements Serializable
 
         if (o1.getClass().isArray())
           {
-            final int length = Array.getLength(o1);
+            final var length = Array.getLength(o1);
 
             if (length != Array.getLength(o2))
               {
                 return false;
               }
 
-            for (int i = 0; i < length; i++)
+            for (var i = 0; i < length; i++)
               {
                 return equals(Array.get(o1, i), Array.get(o2, i));
               }
@@ -463,11 +463,11 @@ public class Directory extends JavaBeanSupport implements Serializable
     @Override
     public final int hashCode()
       {
-        int hash = 5;
+        var hash = 5;
 
-        for (final int tag : getTagCodes())
+        for (final var tag : getTagCodes())
           {
-            final Object object = getObject(tag);
+            final var object = getObject(tag);
             hash = 67 * hash + (object != null ? object.hashCode() : 0);
           }
 
@@ -486,9 +486,9 @@ public class Directory extends JavaBeanSupport implements Serializable
      ******************************************************************************************************************/
     public String toString (final Rational[] array)
       {
-        final StringBuilder buffer = new StringBuilder();
+        final var buffer = new StringBuilder();
 
-        for (int i = 0; i < array.length; i++)
+        for (var i = 0; i < array.length; i++)
           {
             if (i > 0)
               {
@@ -543,9 +543,9 @@ public class Directory extends JavaBeanSupport implements Serializable
             return null;
           }
 
-        final ZoneOffset defaultZoneOffset = ZoneOffset.UTC; // of(ZoneOffset.systemDefault().getId());
+        final var defaultZoneOffset = ZoneOffset.UTC; // of(ZoneOffset.systemDefault().getId());
 
-        final Optional<Instant> instant = EXIF_DATE_TIME_FORMATTERS.stream().flatMap(f ->
+        final var instant = EXIF_DATE_TIME_FORMATTERS.stream().flatMap(f ->
           {
             try
               {

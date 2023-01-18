@@ -64,17 +64,17 @@ public class WorkaroundBM25
         // .do?bug_id=4924909
         log.info("Workaround for bug BM-25");
 
-        final ImageInputStream iis = (ImageInputStream)reader.getInput();
-        final long pos = iis.getStreamPosition();
+        final var iis = (ImageInputStream)reader.getInput();
+        final var pos = iis.getStreamPosition();
         iis.seek(0);
 
-        final InputStream is = new InputStream()
+        final var is = new InputStream()
           {
             @Override
             public int available()
                     throws IOException
               {
-                long l = iis.length();
+                var l = iis.length();
 
                 if (l < 0) // sometimes returns -1 and getDirectory() fails
                   {
@@ -92,16 +92,16 @@ public class WorkaroundBM25
               }
           };
 
-        final Metadata metadata = JpegMetadataReader.readMetadata(is);
-        final DirectoryDrewAdapter exifAdapter =
+        final var metadata = JpegMetadataReader.readMetadata(is);
+        final var exifAdapter =
                 new DirectoryDrewAdapter(metadata.getFirstDirectoryOfType(ExifSubIFDDirectory.class));
         exif.loadFromAdapter(exifAdapter);
-        final DirectoryDrewAdapter iptcAdapter =
+        final var iptcAdapter =
                 new DirectoryDrewAdapter(metadata.getFirstDirectoryOfType(IptcDirectory.class));
         iptc.loadFromAdapter(iptcAdapter);
 
-        final XmpDirectory xmpDirectory = metadata.getFirstDirectoryOfType(XmpDirectory.class);
-        final DirectoryDrewAdapter xmpAdapter = new DirectoryDrewAdapter(xmpDirectory);
+        final var xmpDirectory = metadata.getFirstDirectoryOfType(XmpDirectory.class);
+        final var xmpAdapter = new DirectoryDrewAdapter(xmpDirectory);
         xmp.loadFromAdapter(xmpAdapter);
         xmp._setProperties(xmpDirectory.getXmpProperties()); // FIXME 18 e 19
 

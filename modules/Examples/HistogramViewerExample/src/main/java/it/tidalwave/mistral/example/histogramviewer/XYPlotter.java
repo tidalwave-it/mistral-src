@@ -159,9 +159,9 @@ public class XYPlotter extends JComponent
      ******************************************************************************************************************/
     public void addUnsignedData (final Object key, final short[] data, final Color color)
       {
-        final int[] data2 = new int[data.length];
+        final var data2 = new int[data.length];
 
-        for (int i = 0; i < data.length; i++)
+        for (var i = 0; i < data.length; i++)
           {
             data2[i] = data[i] & 0xffff;
           }
@@ -179,10 +179,10 @@ public class XYPlotter extends JComponent
     public void addData (final Object key, final int[] data, final Color color)
       {
         buffer = null;
-        final int[] myData = new int[data.length];
+        final var myData = new int[data.length];
         System.arraycopy(data, 0, myData, 0, data.length);
 
-        for (final int d : myData)
+        for (final var d : myData)
           {
             max = Math.max(max, d);
             min = Math.min(min, d);
@@ -265,12 +265,12 @@ public class XYPlotter extends JComponent
      ******************************************************************************************************************/
     private void plot (final Graphics g)
       {
-        final Graphics2D g2 = (Graphics2D)g.create();
+        final var g2 = (Graphics2D)g.create();
 
         try
           {
-            final int width = getSize().width;
-            final int height = getSize().height;
+            final var width = getSize().width;
+            final var height = getSize().height;
 
             g.setColor(new Color(0, 0, 0, 0));
             g.fillRect(0, 0, width, height);
@@ -280,12 +280,12 @@ public class XYPlotter extends JComponent
 //                overlay.paint(g, getBounds());
               }
 
-            int xMin = 0;
+            var xMin = 0;
             double f = 0;
 
             if (xMode == LOG)
               {
-                final double xMinNorm = 1 / Math.pow(2, logXBands);
+                final var xMinNorm = 1 / Math.pow(2, logXBands);
                 f = 1.0 / (logXBands * Math.log(2));
                 xMin = (int)Math.round(xMinNorm * width);
               }
@@ -295,36 +295,36 @@ public class XYPlotter extends JComponent
                 xMin = 0;
               }
 
-            int yMax = Integer.MIN_VALUE;
+            var yMax = Integer.MIN_VALUE;
 
-            for (final Object key : dataList)
+            for (final var key : dataList)
               {
-                final DataBundle dataBundle = (DataBundle)dataMap.get(key);
-                final int[] data = dataBundle.getData();
+                final var dataBundle = (DataBundle)dataMap.get(key);
+                final var data = dataBundle.getData();
 
-                for (int i = xMin; i < data.length; i++)
+                for (var i = xMin; i < data.length; i++)
                   {
                     yMax = Math.max(yMax, data[i]);
                   }
               }
 
-            final double yScale = (double)height / (double)yMax;
+            final var yScale = (double)height / (double)yMax;
 
-            for (Object o : dataMap.values())
+            for (var o : dataMap.values())
               {
-                final DataBundle dataBundle = (DataBundle)o;
+                final var dataBundle = (DataBundle)o;
                 g.setColor(dataBundle.getColor());
-                final int[] data = dataBundle.getData();
-                final int mask = dataBundle.getColor().getRGB();
+                final var data = dataBundle.getData();
+                final var mask = dataBundle.getColor().getRGB();
 
-                boolean first = true;
-                final int length = data.length;
-                final double xScale = (double)width / (double)length;
+                var first = true;
+                final var length = data.length;
+                final var xScale = (double)width / (double)length;
                 int prevX = 0, prevY = 0;
 
-                for (int i = xMin; i < length; i++)
+                for (var i = xMin; i < length; i++)
                   {
-                    int x = 0;
+                    var x = 0;
 
                     if (xMode == LINEAR)
                       {
@@ -333,12 +333,12 @@ public class XYPlotter extends JComponent
 
                     else if (xMode == LOG)
                       {
-                        double xNorm = (double)i / (double)length;
+                        var xNorm = (double)i / (double)length;
                         xNorm = 1 + Math.log(xNorm) * f;
                         x = (int)Math.round(xNorm * width);
                       }
 
-                    final int y = height - (int)Math.round(data[i] * yScale);
+                    final var y = height - (int)Math.round(data[i] * yScale);
 
                     if (!first)
                       {
@@ -349,11 +349,11 @@ public class XYPlotter extends JComponent
 
                         else
                           {
-                            for (int xx = prevX; xx < x; xx++)
+                            for (var xx = prevX; xx < x; xx++)
                               {
-                                for (int yy = y; yy < height; yy++)
+                                for (var yy = y; yy < height; yy++)
                                   {
-                                    final int rgb = buffer.getRGB(xx, yy);
+                                    final var rgb = buffer.getRGB(xx, yy);
                                     buffer.setRGB(xx, yy, rgb | mask);
                                   }
 

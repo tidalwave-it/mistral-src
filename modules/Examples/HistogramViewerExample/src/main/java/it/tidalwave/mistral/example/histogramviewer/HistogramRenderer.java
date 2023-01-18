@@ -132,7 +132,7 @@ public class HistogramRenderer extends JPanel
                                        histogramPlotter.setXAxisLinear();
                                        grid.setHSteps(6);
 
-                                       final int bandCount = histogram.getBandCount();
+                                       final var bandCount = histogram.getBandCount();
 
                                        if (bandCount == 1)
                                          {
@@ -175,7 +175,7 @@ public class HistogramRenderer extends JPanel
         add(lbEmpty, EMPTY);
         add(lbComputing, COMPUTING);
         add(histogramPlotter, HISTOGRAM);
-        final Dimension dimension = new Dimension(340, 80);
+        final var dimension = new Dimension(340, 80);
         setMinimumSize(dimension);
         setPreferredSize(dimension);
         setSize(dimension);

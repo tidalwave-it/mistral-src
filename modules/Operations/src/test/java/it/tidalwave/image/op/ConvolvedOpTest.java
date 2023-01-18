@@ -42,8 +42,8 @@ public class ConvolvedOpTest
       {
         System.out.println("getKernel");
 
-        final Kernel kernel = new Kernel(3, 3, new float[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
-        final ConvolveOp op = new ConvolveOp(kernel);
+        final var kernel = new Kernel(3, 3, new float[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
+        final var op = new ConvolveOp(kernel);
         AssertJUnit.assertEquals(kernel, op.getKernel());
       }
 
@@ -52,8 +52,8 @@ public class ConvolvedOpTest
       {
         System.out.println("toString");
 
-        final Kernel kernel = new Kernel(3, 3, new float[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
-        final ConvolveOp op = new ConvolveOp(kernel);
+        final var kernel = new Kernel(3, 3, new float[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
+        final var op = new ConvolveOp(kernel);
         op.toString();
       }
   }

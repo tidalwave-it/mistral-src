@@ -49,8 +49,8 @@ public class Main
         //
         ImplementationFactoryJ2D.getDefault().registerImplementation(ChangeBufferTypeOp.class, ChangeBufferTypeJ2DOp.class);
 
-        final File file = new File("20030701-0043.jpg");
-        final EditableImage image = EditableImage.create(new ReadOp(file));
+        final var file = new File("20030701-0043.jpg");
+        final var image = EditableImage.create(new ReadOp(file));
         image.execute(new ChangeBufferTypeOp(BufferedImage.TYPE_3BYTE_BGR));
         image.execute(new WriteOp("JPEG", new File("/tmp/Result.tif")));
       }

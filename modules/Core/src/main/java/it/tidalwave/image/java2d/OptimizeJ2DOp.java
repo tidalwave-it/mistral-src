@@ -52,9 +52,9 @@ public class OptimizeJ2DOp extends OperationImplementation<OptimizeOp, BufferedI
       {
         Java2DUtils.logImage(log, ">>>> source bufferedImage", bufferedImage);
 
-        final double scale = operation.getScale();
-        final Quality quality = operation.getQuality();
-        final SampleModel sampleModel = bufferedImage.getSampleModel();
+        final var scale = operation.getScale();
+        final var quality = operation.getQuality();
+        final var sampleModel = bufferedImage.getSampleModel();
 
         if (!(sampleModel instanceof SinglePixelPackedSampleModel))
           {
@@ -63,7 +63,7 @@ public class OptimizeJ2DOp extends OperationImplementation<OptimizeOp, BufferedI
             log.trace(">>>>>>>> iccProfile is now: " + Java2DUtils.getICCProfileName(bufferedImage));
           }
 
-        final BufferedImage result = Java2DUtils.createOptimizedImage(bufferedImage, scale, scale, quality);
+        final var result = Java2DUtils.createOptimizedImage(bufferedImage, scale, scale, quality);
         Java2DUtils.logImage(log, ">>>> createOptimizedScaledImage() returning ", result);
 
         return result;

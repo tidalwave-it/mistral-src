@@ -39,14 +39,14 @@ public class HistogramOpTest
     public void testGetHistogram()
       {
         System.out.println("getHistogram");
-        final HistogramOp op = new HistogramOp();
+        final var op = new HistogramOp();
       }
 
     @Test
     public void testToString()
       {
         System.out.println("toString");
-        final HistogramOp op = new HistogramOp();
+        final var op = new HistogramOp();
         op.toString();
       }
   }

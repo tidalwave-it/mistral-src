@@ -60,7 +60,7 @@ public class LocalImagingTaskProcessor extends ImagingTaskProcessor
             for (;;) // TODO: add a smart way to terminate
               {
                 changeFreeWorkerCount(+1);
-                final ImagingTask task = getNextTask(getName(), false);
+                final var task = getNextTask(getName(), false);
                 changeFreeWorkerCount(-1);
                 log.debug(Thread.currentThread().getName() + " assigned to " + task.getName());
 
@@ -87,9 +87,9 @@ public class LocalImagingTaskProcessor extends ImagingTaskProcessor
      ******************************************************************************************************************/
     public LocalImagingTaskProcessor()
       {
-        for (int i = 0; i < Math.min(Runtime.getRuntime().availableProcessors(), maxWorkers); i++)
+        for (var i = 0; i < Math.min(Runtime.getRuntime().availableProcessors(), maxWorkers); i++)
           {
-            final PoolThread worker = new PoolThread("PoolThread #" + i);
+            final var worker = new PoolThread("PoolThread #" + i);
             workers.add(worker);
             worker.start();
           }
@@ -138,7 +138,7 @@ public class LocalImagingTaskProcessor extends ImagingTaskProcessor
       {
         final Collection<Serializable> result = new ArrayList<>();
 
-        for (final PoolThread worker : workers)
+        for (final var worker : workers)
           {
             result.add(worker.getName());
           }

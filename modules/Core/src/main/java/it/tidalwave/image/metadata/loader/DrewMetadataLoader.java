@@ -53,7 +53,7 @@ public class DrewMetadataLoader implements MetadataLoader
     @Override
     public Object findEXIF (final IIOMetadata metadata)
       {
-        final Node node = metadata.getAsTree(metadata.getNativeMetadataFormatName());
+        final var node = metadata.getAsTree(metadata.getNativeMetadataFormatName());
         return getEXIFDirectory(node);
       }
 
@@ -64,7 +64,7 @@ public class DrewMetadataLoader implements MetadataLoader
     @Override
     public Object findIPTC (final IIOMetadata metadata)
       {
-        final Node node = metadata.getAsTree(metadata.getNativeMetadataFormatName());
+        final var node = metadata.getAsTree(metadata.getNativeMetadataFormatName());
         return getIPTCDirectory(node);
       }
 
@@ -118,18 +118,18 @@ public class DrewMetadataLoader implements MetadataLoader
           {
             if (Integer.parseInt(node.getAttributes().getNamedItem("MarkerTag").getNodeValue()) == EXIF)
               {
-                final byte[] data = (byte[])((IIOMetadataNode)node).getUserObject();
-                final Metadata metadata = new Metadata();
+                final var data = (byte[])((IIOMetadataNode)node).getUserObject();
+                final var metadata = new Metadata();
                 new ExifReader().extract(new ByteArrayReader(data), metadata);
                 return metadata.getFirstDirectoryOfType(ExifSubIFDDirectory.class);
               }
           }
 
-        Node child = node.getFirstChild();
+        var child = node.getFirstChild();
 
         while (child != null)
           {
-            final Directory directory = getEXIFDirectory(child);
+            final var directory = getEXIFDirectory(child);
 
             if (directory != null)
               {
@@ -152,18 +152,18 @@ public class DrewMetadataLoader implements MetadataLoader
           {
             if (Integer.parseInt(node.getAttributes().getNamedItem("MarkerTag").getNodeValue()) == IPTC)
               {
-                final byte[] data = (byte[])((IIOMetadataNode)node).getUserObject();
-                final Metadata metadata = new Metadata();
+                final var data = (byte[])((IIOMetadataNode)node).getUserObject();
+                final var metadata = new Metadata();
                 new ExifReader().extract(new ByteArrayReader(data), metadata);
                 return metadata.getFirstDirectoryOfType(IptcDirectory.class);
               }
           }
 
-        Node child = node.getFirstChild();
+        var child = node.getFirstChild();
 
         while (child != null)
           {
-            final Directory directory = getIPTCDirectory(child);
+            final var directory = getIPTCDirectory(child);
 
             if (directory != null)
               {

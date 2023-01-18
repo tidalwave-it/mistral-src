@@ -336,7 +336,7 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
             state.stop();
           }
 
-        final State newState = stateMap.get(newStateClass);
+        final var newState = stateMap.get(newStateClass);
 
         if (newState == null)
           {
@@ -381,8 +381,8 @@ public class EditingTool implements MouseListener, MouseMotionListener, KeyListe
      ******************************************************************************************************************/
     protected Cursor makeCursor (final Icon icon, final String name)
       {
-        final Toolkit toolkit = Toolkit.getDefaultToolkit();
-        final Image image = ((ImageIcon)icon).getImage();
+        final var toolkit = Toolkit.getDefaultToolkit();
+        final var image = ((ImageIcon)icon).getImage();
         return toolkit.createCustomCursor(image, new Point(0, 0), name);
       }
 

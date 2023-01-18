@@ -59,7 +59,7 @@ public class Kernel2 extends Kernel
     @Nonnull
     public String toString()
       {
-        final StringBuilder buffer = new StringBuilder("Kernel2[");
+        final var buffer = new StringBuilder("Kernel2[");
         buffer.append(getWidth());
         buffer.append("x");
         buffer.append(getHeight());
@@ -69,9 +69,9 @@ public class Kernel2 extends Kernel
         buffer.append(";");
         buffer.append(getYOrigin());
 
-        final float[] data = getKernelData(null);
+        final var data = getKernelData(null);
 
-        for (int i = 0; i < data.length; i++)
+        for (var i = 0; i < data.length; i++)
           {
             if ((i % getWidth()) == 0)
               {

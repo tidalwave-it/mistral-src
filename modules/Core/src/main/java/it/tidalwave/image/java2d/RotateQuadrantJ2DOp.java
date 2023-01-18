@@ -56,7 +56,7 @@ public class RotateQuadrantJ2DOp extends OperationImplementation<RotateQuadrantO
                                      final EditableImage image,
                                      final BufferedImage bufferedImage)
       {
-        final int degrees = operation.getDegrees();
+        final var degrees = operation.getDegrees();
         log.debug("rotateQuadrant(" + degrees + ")");
         Java2DUtils.logImage(log, ">>>> source bufferedImage", bufferedImage);
 
@@ -65,10 +65,10 @@ public class RotateQuadrantJ2DOp extends OperationImplementation<RotateQuadrantO
             return bufferedImage;
           }
 
-        final int newWidth = bufferedImage.getWidth();
-        final int newHeight = bufferedImage.getHeight();
+        final var newWidth = bufferedImage.getWidth();
+        final var newHeight = bufferedImage.getHeight();
 
-        SampleModel sampleModel = bufferedImage.getSampleModel();
+        var sampleModel = bufferedImage.getSampleModel();
 
         if ((degrees == 90) || (degrees == 270))
           {
@@ -77,21 +77,21 @@ public class RotateQuadrantJ2DOp extends OperationImplementation<RotateQuadrantO
             sampleModel = sampleModel.createCompatibleSampleModel(bufferedImage.getHeight(), bufferedImage.getWidth());
           }
 
-        final WritableRaster newRaster = Raster.createWritableRaster(sampleModel, null);
-        final ColorModel colorModel = bufferedImage.getColorModel();
-        final BufferedImage result =
+        final var newRaster = Raster.createWritableRaster(sampleModel, null);
+        final var colorModel = bufferedImage.getColorModel();
+        final var result =
                 new BufferedImage(colorModel, newRaster, false, Java2DUtils.getProperties(bufferedImage));
 
 //        BufferedImage result = Java2DUtils.createCompatibleImage(bufferedImage, newWidth, newHeight);
-        final Graphics2D g2d = (Graphics2D)result.getGraphics();
+        final var g2d = (Graphics2D)result.getGraphics();
 
         try
           {
-            final double radians = Math.toRadians(degrees);
+            final var radians = Math.toRadians(degrees);
             g2d.transform(AffineTransform.getRotateInstance(radians));
 
-            int x = 0;
-            int y = 0;
+            var x = 0;
+            var y = 0;
 
             switch (degrees)
               {

@@ -50,9 +50,9 @@ public class ApplyUnsharpMaskJ2DOp extends OperationImplementation<ApplyUnsharpM
                                      final EditableImage image,
                                      final BufferedImage model)
       {
-        final double intensity = operation.getIntensity();
-        final double radius = operation.getRadius();
-        final double threshold = operation.getThreshold();
+        final var intensity = operation.getIntensity();
+        final var radius = operation.getRadius();
+        final var threshold = operation.getThreshold();
         log.warn(">>>> unsharpMask not implemented yet!");
 
         return model;

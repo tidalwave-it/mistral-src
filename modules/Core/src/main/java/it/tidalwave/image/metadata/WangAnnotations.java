@@ -72,7 +72,7 @@ public class WangAnnotations
             protected LogFont (final byte[] buffer)
                     throws IOException
               {
-                final ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(buffer));
+                final var iis = ImageIO.createImageInputStream(new ByteArrayInputStream(buffer));
                 iis.setByteOrder(ByteOrder.LITTLE_ENDIAN);
                 height = iis.readInt();
                 width = iis.readInt();
@@ -87,7 +87,7 @@ public class WangAnnotations
                 clipprec = iis.readByte();
                 quality = iis.readByte();
                 pitch = iis.readByte();
-                final byte[] bytes = new byte[16]; // FIXME
+                final var bytes = new byte[16]; // FIXME
                 iis.read(bytes);
                 faceName = new String(bytes);
                 iis.close();
@@ -120,7 +120,7 @@ public class WangAnnotations
         protected Attributes (final byte[] buffer)
                 throws IOException
           {
-            final ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(buffer));
+            final var iis = ImageIO.createImageInputStream(new ByteArrayInputStream(buffer));
             iis.setByteOrder(ByteOrder.LITTLE_ENDIAN);
             type = iis.readInt();
             x1 = iis.readInt();
@@ -136,7 +136,7 @@ public class WangAnnotations
 
             iis.readLong(); // reserved 1
             iis.readLong(); // reserved 2
-            final byte[] logFontBuffer = new byte[64];
+            final var logFontBuffer = new byte[64];
             iis.read(logFontBuffer);
             logFont = new LogFont(logFontBuffer);
             timeStamp = iis.readInt();
@@ -162,8 +162,8 @@ public class WangAnnotations
 
         public void drawRectangle (final Graphics2D g, final EditableImage image)
           {
-            final int ww = Math.abs(x2 - x1);
-            final int hh = Math.abs(y2 - y1);
+            final var ww = Math.abs(x2 - x1);
+            final var hh = Math.abs(y2 - y1);
 //            g.setColor(Color.WHITE);
 //            g.fillRect(xx2, yy2, ww, hh);
             g.setStroke(new BasicStroke(3));
@@ -209,15 +209,15 @@ public class WangAnnotations
                 throws IOException
           {
             super(attributes);
-            final ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(buffer));
+            final var iis = ImageIO.createImageInputStream(new ByteArrayInputStream(buffer));
             iis.setByteOrder(ByteOrder.LITTLE_ENDIAN);
             orientation = iis.readInt() / 10.0;
-            final int d1000 = iis.readInt();
+            final var d1000 = iis.readInt();
             resolution = 72000.0 / iis.readInt();
-            final int len = iis.readInt();
-            final byte[] bytes = new byte[len];
+            final var len = iis.readInt();
+            final var bytes = new byte[len];
             iis.read(bytes);
-            final int stringLength = (bytes[len - 1]) == 0 ? len - 1 : len;
+            final var stringLength = (bytes[len - 1]) == 0 ? len - 1 : len;
             text = new String(bytes, 0, stringLength, "CP1252");
             iis.close();
           }
@@ -265,30 +265,30 @@ public class WangAnnotations
     public WangAnnotations (final byte[] buffer)
             throws IOException
       {
-        final ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
-        final ImageInputStream iis = ImageIO.createImageInputStream(bais);
+        final var bais = new ByteArrayInputStream(buffer);
+        final var iis = ImageIO.createImageInputStream(bais);
         iis.setByteOrder(ByteOrder.LITTLE_ENDIAN);
 
-        final int header = iis.readInt();
-        final int intSize = iis.readInt();
+        final var header = iis.readInt();
+        final var intSize = iis.readInt();
         assert intSize == 1;
         Attributes attributes = null;
 
         while (iis.getStreamPosition() < buffer.length)
           {
-            final int dataType = iis.readInt();
-            final int dataSize = iis.readInt();
+            final var dataType = iis.readInt();
+            final var dataSize = iis.readInt();
 //            System.err.println(String.format("dataType: %d size: %d", dataType, dataSize));
 
             if ((dataType == 2) || (dataType == 6))
               {
                 System.err.println((dataType == 2) ? "DEFAULT NAMED BLOCK" : "PART OF PRECEDING");
-                final byte[] bytes = new byte[8];
+                final var bytes = new byte[8];
                 iis.read(bytes);
-                final String name = new String(bytes);
+                final var name = new String(bytes);
 //                System.err.println(String.format("named block: %s", name));
-                final int size = iis.readInt();
-                final byte[] block = new byte[size];
+                final var size = iis.readInt();
+                final var block = new byte[size];
                 iis.read(block);
 
                 if (name.startsWith("OiAnText"))
@@ -307,7 +307,7 @@ public class WangAnnotations
 
             else if (dataType == 5)
               {
-                final byte[] block = new byte[dataSize];
+                final var block = new byte[dataSize];
                 iis.read(block);
                 attributes = new Attributes(block);
               }
@@ -318,7 +318,7 @@ public class WangAnnotations
 
     public void render (final EditableImage image)
       {
-        for (final Internal internal : internals)
+        for (final var internal : internals)
           {
             internal.render(image);
           }

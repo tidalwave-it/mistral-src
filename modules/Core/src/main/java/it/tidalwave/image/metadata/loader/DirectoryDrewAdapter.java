@@ -57,10 +57,10 @@ public class DirectoryDrewAdapter implements DirectoryAdapter
     @Override
     public int[] getTags()
       {
-        final int[] result = new int[directory.getTagCount()];
-        int j = 0;
+        final var result = new int[directory.getTagCount()];
+        var j = 0;
 
-        for (final Tag tag : directory.getTags())
+        for (final var tag : directory.getTags())
           {
             result[j++] = tag.getTagType();
           }
@@ -120,11 +120,11 @@ public class DirectoryDrewAdapter implements DirectoryAdapter
       {
         checkIfTagExists(tag);
 
-        Object value = directory.getObject(tag);
+        var value = directory.getObject(tag);
 
         if (value instanceof com.drew.lang.Rational)
           {
-            final com.drew.lang.Rational drewRational = (com.drew.lang.Rational)value;
+            final var drewRational = (com.drew.lang.Rational)value;
             value = Rational.of((int)drewRational.getNumerator(), (int)drewRational.getDenominator());
           }
 
@@ -176,9 +176,9 @@ public class DirectoryDrewAdapter implements DirectoryAdapter
      ******************************************************************************************************************/
     private static Rational[] convertRationalArray (final com.drew.lang.Rational[] temp)
       {
-        final Rational[] r = new Rational[temp.length];
+        final var r = new Rational[temp.length];
 
-        for (int i = 0; i < r.length; i++)
+        for (var i = 0; i < r.length; i++)
           {
             r[i] = Rational.of((int)temp[i].getNumerator(), (int)temp[i].getDenominator());
           }

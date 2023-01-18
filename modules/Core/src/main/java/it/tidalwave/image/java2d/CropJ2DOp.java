@@ -48,10 +48,10 @@ public class CropJ2DOp extends OperationImplementation<CropOp, BufferedImage>
                                      final EditableImage image,
                                      final BufferedImage bufferedImage)
       {
-        final int x = operation.getX();
-        final int y = operation.getY();
-        final int w = operation.getW();
-        final int h = operation.getH();
+        final var x = operation.getX();
+        final var y = operation.getY();
+        final var w = operation.getW();
+        final var h = operation.getH();
 
         return bufferedImage.getSubimage(x, y, w, h);
       }

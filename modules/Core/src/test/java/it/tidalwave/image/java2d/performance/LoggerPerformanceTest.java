@@ -44,9 +44,9 @@ public class LoggerPerformanceTest extends BasePerformanceTestSupport
       {
         long accTime = 0;
 
-        for (int i = 0; i < 10; i++)
+        for (var i = 0; i < 10; i++)
           {
-            final long time = System.currentTimeMillis();
+            final var time = System.currentTimeMillis();
             Java2DUtils.logImage(log, "test", image.getInnerProperty(BufferedImage.class));
             accTime += System.currentTimeMillis() - time;
           }

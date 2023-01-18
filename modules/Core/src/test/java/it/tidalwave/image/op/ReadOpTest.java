@@ -50,14 +50,14 @@ public class ReadOpTest extends BaseTestSupport
   {
     static
       {
-        final String[] mimeTypes = ImageIO.getReaderMIMETypes();
+        final var mimeTypes = ImageIO.getReaderMIMETypes();
         log.info("MIME TYPES for PHOTODATALOADER: " + Arrays.asList(mimeTypes));
 
-        for (final String mimeType : mimeTypes)
+        for (final var mimeType : mimeTypes)
           {
-            for (final Iterator<ImageReader> i = ImageIO.getImageReadersByMIMEType(mimeType); i.hasNext(); )
+            for (final var i = ImageIO.getImageReadersByMIMEType(mimeType); i.hasNext(); )
               {
-                final ImageReader imageReader = i.next();
+                final var imageReader = i.next();
                 log.info(">>>> " + mimeType + " -> " + imageReader.getOriginatingProvider().getClass().getName());
               }
           }
@@ -67,9 +67,9 @@ public class ReadOpTest extends BaseTestSupport
     public void testReadJPG1()
             throws IOException
       {
-        final Path file = file_20030701_0043_jpg;
+        final var file = file_20030701_0043_jpg;
         AssertJUnit.assertTrue(file.toFile().exists());
-        final EditableImage image = EditableImage.create(new ReadOp(file));
+        final var image = EditableImage.create(new ReadOp(file));
         AssertJUnit.assertEquals("JPEG", image.getAttribute(EditableImage.PROP_FORMAT));
         AssertJUnit.assertEquals("image/jpeg", image.getAttribute(EditableImage.PROP_MIME_TYPE));
       }
@@ -78,9 +78,9 @@ public class ReadOpTest extends BaseTestSupport
     public void testReadTIFF1()
             throws IOException
       {
-        final File file = file_uncompressed_tiff;
+        final var file = file_uncompressed_tiff;
         AssertJUnit.assertTrue(file.exists());
-        final EditableImage image = EditableImage.create(new ReadOp(file));
+        final var image = EditableImage.create(new ReadOp(file));
         AssertJUnit.assertEquals("tif", image.getAttribute(EditableImage.PROP_FORMAT));
         AssertJUnit.assertEquals("image/tiff", image.getAttribute(EditableImage.PROP_MIME_TYPE));
       }
@@ -89,9 +89,9 @@ public class ReadOpTest extends BaseTestSupport
     public void testReadTIFF2()
             throws IOException
       {
-        final File file = file_w1_tiff;
+        final var file = file_w1_tiff;
         AssertJUnit.assertTrue(file.exists());
-        final EditableImage image = EditableImage.create(new ReadOp(file));
+        final var image = EditableImage.create(new ReadOp(file));
         AssertJUnit.assertEquals("tif", image.getAttribute(EditableImage.PROP_FORMAT));
         AssertJUnit.assertEquals("image/tiff", image.getAttribute(EditableImage.PROP_MIME_TYPE));
       }

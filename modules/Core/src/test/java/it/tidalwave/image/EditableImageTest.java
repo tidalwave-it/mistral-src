@@ -73,7 +73,7 @@ public class EditableImageTest extends BaseTestSupport
     public void testReadMetadataJpegExportedByCaptureOne()
             throws Exception
       {
-        final EditableImage image = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
+        final var image = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
         assertEquals(3, image.getBandCount());
         assertEquals(8, image.getBitsPerBand());
         assertEquals(24, image.getBitsPerPixel());
@@ -81,12 +81,12 @@ public class EditableImageTest extends BaseTestSupport
         assertEquals(100, image.getWidth());
         assertEquals(66, image.getHeight());
 
-        final TIFF tiff = image.getMetadata(TIFF.class);
+        final var tiff = image.getMetadata(TIFF.class);
         assertNotNull(tiff);
         dumpTags("TIFF", tiff, log::info);
         assertFalse(tiff.isAvailable());
 
-        final EXIF exif = image.getMetadata(EXIF.class);
+        final var exif = image.getMetadata(EXIF.class);
         assertNotNull(exif);
         dumpTags("EXIF", exif, log::info);
         assertTrue(exif.isAvailable());
@@ -134,11 +134,11 @@ public class EditableImageTest extends BaseTestSupport
     public void testReadMetadataJpegExportedByAdobeLightroom()
       {
         assertEquals(1, img20060603_0002_jpg.getMetadataCount(TIFF.class));
-        final TIFF tiff = img20060603_0002_jpg.getMetadata(TIFF.class);
+        final var tiff = img20060603_0002_jpg.getMetadata(TIFF.class);
         assertNotNull(tiff);
         assertFalse(tiff.isAvailable());
 
-        final EXIF exif = img20060603_0002_jpg.getMetadata(EXIF.class);
+        final var exif = img20060603_0002_jpg.getMetadata(EXIF.class);
         assertEquals(35, exif.getTagCodes().length);
 
         assertOptionalEquals(6.0, exif.getApertureValue());
@@ -254,12 +254,12 @@ public class EditableImageTest extends BaseTestSupport
     public void testReadMetadataFromNEF()
             throws Exception
       {
-        final File file = file_20030701_0043_nef;
+        final var file = file_20030701_0043_nef;
         assertTrue(file.exists());
-        final EditableImage image = EditableImage.create(new ReadOp(file, METADATA));
+        final var image = EditableImage.create(new ReadOp(file, METADATA));
 
         assertEquals(1, image.getMetadataCount(TIFF.class));
-        final TIFF tiff = image.getMetadata(TIFF.class);
+        final var tiff = image.getMetadata(TIFF.class);
         assertNotNull(tiff);
         assertTrue(tiff.isAvailable());
         assertEquals(25, tiff.getTagCodes().length);
@@ -292,7 +292,7 @@ public class EditableImageTest extends BaseTestSupport
 
         assertEquals(List.of("EXIF"), new ArrayList<>(tiff.getSubDirectoryNames()));
         assertEquals(1, image.getMetadataCount(EXIF.class));
-        final EXIF exif = image.getMetadata(EXIF.class);
+        final var exif = image.getMetadata(EXIF.class);
         assertNotNull(exif);
 //        assertTrue(exif == tiff.getSubDirectory("EXIF"));
         assertTrue(exif.isAvailable());
@@ -333,19 +333,19 @@ public class EditableImageTest extends BaseTestSupport
       {
 
         assertEquals(1, imgIPTC1_jpg.getMetadataCount(IPTC.class));
-        final IPTC iptc = imgIPTC1_jpg.getMetadata(IPTC.class);
+        final var iptc = imgIPTC1_jpg.getMetadata(IPTC.class);
         assertNotNull(iptc);
         assertTrue(iptc.isAvailable());
 
-        final String caption = "The Shore Temple of the Seven Pagodas was built under Narsimha II of " +
-                               "the Pallava dynasty between 7th and 8th century AD and is dedicated to " +
-                               "Lord Shiva. It resembles the structure of the Dharmaraja rath, but its " +
-                               "tower rises much higher (approx. five stories or ~ 60 ft. high) and its " +
-                               "stupa spire is small and slender. ";
-        final String keywords = "land, monument, nature, scenery, architectural, architecture, building, " +
-                                "place of worship, religious building, structures, temple, sacred place, " +
-                                "sanctum, Asia, India, Malibalipuram, Tamil Nadu, night, moonlight, moon, " +
-                                "skies, sky, blue";
+        final var caption = "The Shore Temple of the Seven Pagodas was built under Narsimha II of " +
+                            "the Pallava dynasty between 7th and 8th century AD and is dedicated to " +
+                            "Lord Shiva. It resembles the structure of the Dharmaraja rath, but its " +
+                            "tower rises much higher (approx. five stories or ~ 60 ft. high) and its " +
+                            "stupa spire is small and slender. ";
+        final var keywords = "land, monument, nature, scenery, architectural, architecture, building, " +
+                             "place of worship, religious building, structures, temple, sacred place, " +
+                             "sanctum, Asia, India, Malibalipuram, Tamil Nadu, night, moonlight, moon, " +
+                             "skies, sky, blue";
 
         assertEquals(17, iptc.getTagCodes().length);
         assertOptionalEquals("Julie Doe", iptc.getByline());
@@ -370,15 +370,15 @@ public class EditableImageTest extends BaseTestSupport
     public void testSerialize()
             throws IOException, ClassNotFoundException
       {
-        final File file = new File("target/Serialized");
-        final ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(file.toPath()));
-        final EditableImage image1 = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
+        final var file = new File("target/Serialized");
+        final var oos = new ObjectOutputStream(Files.newOutputStream(file.toPath()));
+        final var image1 = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
         oos.writeObject(image1);
         oos.close();
         log.info("serialized" + image1);
 
-        final ObjectInputStream ois = new ObjectInputStream(Files.newInputStream(file.toPath()));
-        final EditableImage image2 = (EditableImage)ois.readObject();
+        final var ois = new ObjectInputStream(Files.newInputStream(file.toPath()));
+        final var image2 = (EditableImage)ois.readObject();
         ois.close();
         log.info("deserialized" + image2);
       }
@@ -388,25 +388,25 @@ public class EditableImageTest extends BaseTestSupport
             throws IOException
       {
         // WHEN
-        final EditableImage underTest = EditableImage.create(new ReadOp(path, METADATA));
-        final TIFF tiff = underTest.getMetadata(TIFF.class);
-        final EXIF exif = underTest.getMetadata(EXIF.class);
-        final IPTC iptc = underTest.getMetadata(IPTC.class);
+        final var underTest = EditableImage.create(new ReadOp(path, METADATA));
+        final var tiff = underTest.getMetadata(TIFF.class);
+        final var exif = underTest.getMetadata(EXIF.class);
+        final var iptc = underTest.getMetadata(IPTC.class);
         // final XMP xmp = underTest.getMetadata(XMP.class);
         // THEN
         log.info("TIFF: {}", tiff);
         log.info("EXIF: {}", exif);
         log.info("IPTC: {}", iptc);
         // log.info("XMP: {}", xmp);
-        final String resourceName = path.getFileName().toString().replaceAll("\\.jpg$", ".txt");
+        final var resourceName = path.getFileName().toString().replaceAll("\\.jpg$", ".txt");
         final List<String> strings = new ArrayList<>();
         dumpTags("TIFF", tiff, strings::add);
         dumpTags("EXIF", exif, strings::add);
         dumpTags("IPTC", iptc, strings::add);
-        final Path actualResults = Path.of("target/test-results/stoppingdown_100_20230116");
-        final Path expectedResults = Path.of("src/test/resources/expected-results/stoppingdown_100_20230116");
-        final Path actualDump = actualResults.resolve(resourceName);
-        final Path expectedDump = expectedResults.resolve(resourceName);
+        final var actualResults = Path.of("target/test-results/stoppingdown_100_20230116");
+        final var expectedResults = Path.of("src/test/resources/expected-results/stoppingdown_100_20230116");
+        final var actualDump = actualResults.resolve(resourceName);
+        final var expectedDump = expectedResults.resolve(resourceName);
         Files.createDirectories(actualResults);
         Files.write(actualDump, strings, UTF_8);
         assertSameContents(expectedDump, actualDump);

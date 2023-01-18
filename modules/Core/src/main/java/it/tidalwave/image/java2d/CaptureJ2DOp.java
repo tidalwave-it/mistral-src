@@ -52,9 +52,9 @@ public class CaptureJ2DOp extends OperationImplementation<CaptureOp, BufferedIma
       {
         log.info("CaptureJ2DOp.execute(" + operation + ")");
         Java2DUtils.logImage(log, ">>>> bufferedImage: ", bufferedImage);
-        final Component component = operation.getComponent();
-        final int width = component.getWidth();
-        final int height = component.getHeight();
+        final var component = operation.getComponent();
+        final var width = component.getWidth();
+        final var height = component.getHeight();
         bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
         final Graphics g = bufferedImage.createGraphics();
 

@@ -59,9 +59,9 @@ public class PreviewSettings
         lookupTable16bit = new ShortLookupTable(0, new short[][]{redCurve, greenCurve, blueCurve, alphaCurve});
 
         // FIXME: use a better interpolation
-        for (int i = 0; i < redCurve8bit.length; i++)
+        for (var i = 0; i < redCurve8bit.length; i++)
           {
-            final int j = (i << 8) | (i & 0xff);
+            final var j = (i << 8) | (i & 0xff);
             redCurve8bit[i] = (byte)(redCurve[j] >>> 8);
             greenCurve8bit[i] = (byte)(greenCurve[j] >>> 8);
             blueCurve8bit[i] = (byte)(blueCurve[j] >>> 8);

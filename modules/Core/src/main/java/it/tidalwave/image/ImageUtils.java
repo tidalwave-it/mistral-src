@@ -45,11 +45,11 @@ public final class ImageUtils
      ******************************************************************************************************************/
     public static ICC_Profile getICCProfile (final RenderedImage image)
       {
-        final ColorSpace colorSpace = image.getColorModel().getColorSpace();
+        final var colorSpace = image.getColorModel().getColorSpace();
 
         if (colorSpace instanceof ICC_ColorSpace)
           {
-            final ICC_ColorSpace iccColorSpace = (ICC_ColorSpace)colorSpace;
+            final var iccColorSpace = (ICC_ColorSpace)colorSpace;
 
             return iccColorSpace.getProfile();
           }
@@ -68,8 +68,8 @@ public final class ImageUtils
             return null;
           }
 
-        final byte[] xx = profile.getData(ICC_Profile.icSigProfileDescriptionTag);
-        final int offset = 12;
+        final var xx = profile.getData(ICC_Profile.icSigProfileDescriptionTag);
+        final var offset = 12;
         int count;
 
         for (count = 1; xx[offset + count] != 0; count++)
@@ -96,24 +96,24 @@ public final class ImageUtils
             size += 1;
           }
 
-        final float[] matrix = new float[size * size];
-        double sum = 0.0;
+        final var matrix = new float[size * size];
+        var sum = 0.0;
 
-        for (int x = -size / 2; x <= size / 2; x++)
+        for (var x = -size / 2; x <= size / 2; x++)
           {
-            for (int y = -size / 2; y <= size / 2; y++)
+            for (var y = -size / 2; y <= size / 2; y++)
               {
                 final double rsq = x * x + y * y;
-                final double gauss = 1 / (Math.sqrt(2 * Math.PI) * sigma) * Math.exp(-rsq / (2 * sigma * sigma));
+                final var gauss = 1 / (Math.sqrt(2 * Math.PI) * sigma) * Math.exp(-rsq / (2 * sigma * sigma));
                 sum += gauss;
 
-                final int index = size * (y + size / 2) + (x + size / 2);
+                final var index = size * (y + size / 2) + (x + size / 2);
                 matrix[index] = (float)gauss;
               }
           }
 
         // Normalize the kernel
-        for (int i = 0; i < matrix.length; i++)
+        for (var i = 0; i < matrix.length; i++)
           {
             matrix[i] /= (float)sum;
 
@@ -142,7 +142,7 @@ public final class ImageUtils
      ******************************************************************************************************************/
     public static Kernel gaussianBlurKernel (final double sigma)
       {
-        int size = 0;
+        var size = 0;
 
         if (sigma < 0.5)
           {

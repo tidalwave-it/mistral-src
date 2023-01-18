@@ -92,8 +92,8 @@ public class RotateQuadrantOpJ2DTest extends BaseTestSupport
     @Test
     public void testRotate (final EditableImage image, final int angle, final String prefix, final String hash)
       {
-        final EditableImage result = image.execute2(new RotateQuadrantOp(angle));
-        final File f = (File)result.execute(new WriteOp("TIFF", tmp + "/" + prefix + "-" + angle + ".tif")).getOutput();
+        final var result = image.execute2(new RotateQuadrantOp(angle));
+        final var f = (File)result.execute(new WriteOp("TIFF", tmp + "/" + prefix + "-" + angle + ".tif")).getOutput();
         assertChecksum(hash, f);
 
         if ((angle / 90) % 2 == 0)

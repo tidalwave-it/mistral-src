@@ -53,11 +53,11 @@ public class MetadataGenerator
             throws Exception
       {
         System.out.println("METADATAGENERATOR" );
-        final String className = args[0];
-        final String source = args[1];
-        final String template = args[2];
-        final String output = args[3];
-        final Path outputFile = new File(String.format("%s/%s.java", output, className)).toPath();
+        final var className = args[0];
+        final var source = args[1];
+        final var template = args[2];
+        final var output = args[3];
+        final var outputFile = new File(String.format("%s/%s.java", output, className)).toPath();
         Files.createDirectories(outputFile.getParent());
 
         System.out.println("    CLASS NAME: " + className);
@@ -66,7 +66,7 @@ public class MetadataGenerator
         System.out.println("    OUTPUT      " + outputFile);
 
         try (final Reader r = Files.newBufferedReader(Paths.get(source));
-             final PrintWriter pw = new PrintWriter(Files.newBufferedWriter(outputFile)))
+             final var pw = new PrintWriter(Files.newBufferedWriter(outputFile)))
           {
             new MetadataGenerator(r).generate(pw, className, template);
           }
@@ -75,10 +75,10 @@ public class MetadataGenerator
     public MetadataGenerator (final Reader input)
             throws IOException, RecognitionException
       {
-        final ANTLRInputStream reader = new ANTLRInputStream(input);
-        final TIFFLexer lexer = new TIFFLexer(reader);
-        final CommonTokenStream tokens = new CommonTokenStream(lexer);
-        final TIFFParser parser = new TIFFParser(tokens);
+        final var reader = new ANTLRInputStream(input);
+        final var lexer = new TIFFLexer(reader);
+        final var tokens = new CommonTokenStream(lexer);
+        final var parser = new TIFFParser(tokens);
         System.out.println("    PARSING ...");
         records = parser.prog().result;
       }
@@ -88,7 +88,7 @@ public class MetadataGenerator
       {
         System.out.println("    GENERATING CODE...");
         final STGroup group = new STGroupFile(Paths.get(template).toAbsolutePath().toString(), '$' ,'$');
-        final ST st = group.getInstanceOf("generator");
+        final var st = group.getInstanceOf("generator");
         st.add("creation_date", new Date());
         st.add("class_name", className);
         st.add("records", records);

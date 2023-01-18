@@ -50,7 +50,7 @@ public class SerializableImageModelHolder extends ImageModelHolder
     @Override
     public String toString()
       {
-        final ImageModel model = get();
+        final var model = get();
         return String.format("SerializableImageModelHolder[%s]", (model != null) ? model.getId() : "null");
       }
   }

@@ -65,11 +65,11 @@ public class DirectoryRawAdapter implements DirectoryAdapter
     @Override
     public int[] getTags()
       {
-        final Collection<AbstractTag> tags = directory.getTags();
-        final int[] result = new int[tags.size()];
-        int j = 0;
+        final var tags = directory.getTags();
+        final var result = new int[tags.size()];
+        var j = 0;
 
-        for (final AbstractTag tag : tags)
+        for (final var tag : tags)
           {
             result[j++] = tag.getCode();
           }
@@ -94,7 +94,7 @@ public class DirectoryRawAdapter implements DirectoryAdapter
     @Override
     public DirectoryAdapter getSubDirectory (final String name)
       {
-        final Directory subDirectory = directory.getNamedDirectory(name);
+        final var subDirectory = directory.getNamedDirectory(name);
         return (subDirectory != null) ? new DirectoryRawAdapter(subDirectory) : null;
       }
 
@@ -139,11 +139,11 @@ public class DirectoryRawAdapter implements DirectoryAdapter
             throws NoSuchElementException
       {
         checkIfTagExists(tag);
-        final Object value = directory.getObject(tag);
+        final var value = directory.getObject(tag);
 
         if (value instanceof TagRational)
           {
-            final TagRational rational = (TagRational)value;
+            final var rational = (TagRational)value;
             return Rational.of(rational.getNumerator(), rational.getDenominator());
           }
 
@@ -195,9 +195,9 @@ public class DirectoryRawAdapter implements DirectoryAdapter
      ******************************************************************************************************************/
     private static Rational[] convertRationalArray (final TagRational[] temp)
       {
-        final Rational[] r = new Rational[temp.length];
+        final var r = new Rational[temp.length];
 
-        for (int i = 0; i < r.length; i++)
+        for (var i = 0; i < r.length; i++)
           {
             r[i] = Rational.of(temp[i].getNumerator(), temp[i].getDenominator());
           }

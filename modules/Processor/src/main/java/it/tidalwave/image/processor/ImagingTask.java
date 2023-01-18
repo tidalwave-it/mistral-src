@@ -270,7 +270,7 @@ import lombok.extern.slf4j.Slf4j;
             return false;
           }
 
-        final ImagingTask task = (ImagingTask)object;
+        final var task = (ImagingTask)object;
         return this.uniqueId.equals(task.uniqueId);
       }
 
@@ -284,7 +284,7 @@ import lombok.extern.slf4j.Slf4j;
         try
           {
             log.info("Starting " + name);
-            long time = System.currentTimeMillis();
+            var time = System.currentTimeMillis();
 
             try
               {
@@ -296,10 +296,10 @@ import lombok.extern.slf4j.Slf4j;
                 addStatisticsSample("TOTAL", time);
                 log.info("STATS: " + getName() + " completed in " + time + " msec");
 
-                final Runtime runtime = Runtime.getRuntime();
-                final long totalMemory = runtime.totalMemory();
-                final long freeMemory = runtime.freeMemory();
-                final long usedMemory = totalMemory - freeMemory;
+                final var runtime = Runtime.getRuntime();
+                final var totalMemory = runtime.totalMemory();
+                final var freeMemory = runtime.freeMemory();
+                final var usedMemory = totalMemory - freeMemory;
                 log.info("STATS: memory " + "used: " + mega(usedMemory)
                          + ", total: " + mega(totalMemory)
                          + ", max: " + mega(runtime.maxMemory())
@@ -375,7 +375,7 @@ import lombok.extern.slf4j.Slf4j;
                                                          final T operation,
                                                          final String operationName)
       {
-        final T result = execute(image, operation, operationName);
+        final var result = execute(image, operation, operationName);
         image.dispose();
         return result;
       }
@@ -392,7 +392,7 @@ import lombok.extern.slf4j.Slf4j;
      ******************************************************************************************************************/
     protected EditableImage execute2 (final EditableImage image, final Operation operation, final String operationName)
       {
-        final EditableImage result = image.execute2(operation);
+        final var result = image.execute2(operation);
         result.setNickName(operationName);
         registerTime(operationName, result);
         return result;
@@ -412,7 +412,7 @@ import lombok.extern.slf4j.Slf4j;
                                                 final Operation operation,
                                                 final String operationName)
       {
-        final EditableImage result = execute2(image, operation, operationName);
+        final var result = execute2(image, operation, operationName);
         image.dispose();
         result.setNickName(operationName);
         return result;

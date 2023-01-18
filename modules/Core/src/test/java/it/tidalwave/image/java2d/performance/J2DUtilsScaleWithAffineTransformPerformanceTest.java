@@ -47,11 +47,11 @@ public class J2DUtilsScaleWithAffineTransformPerformanceTest extends BasePerform
         fail("disabled because it takes forever");
         long accTime = 0;
 
-        for (double scale = 0.1; scale <= 1; scale += 0.1)
+        for (var scale = 0.1; scale <= 1; scale += 0.1)
           {
             log.info(">>>> scale: " + scale);
-            final long time = System.currentTimeMillis();
-            final BufferedImage bufferedImage = image.getInnerProperty(BufferedImage.class);
+            final var time = System.currentTimeMillis();
+            final var bufferedImage = image.getInnerProperty(BufferedImage.class);
             Java2DUtils.scaleWithAffineTransform(bufferedImage, scale, scale, Quality.INTERMEDIATE);
             accTime += System.currentTimeMillis() - time;
           }

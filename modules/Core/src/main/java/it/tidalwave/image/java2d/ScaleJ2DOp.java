@@ -65,13 +65,13 @@ public class ScaleJ2DOp extends OperationImplementation<ScaleOp, BufferedImage>
                                      final EditableImage image,
                                      final BufferedImage bufferedImage)
       {
-        final double xScale = operation.getXScale();
-        final double yScale = operation.getYScale();
-        final Quality quality = operation.getQuality();
-        final SampleModel sampleModel = bufferedImage.getSampleModel();
+        final var xScale = operation.getXScale();
+        final var yScale = operation.getYScale();
+        final var quality = operation.getQuality();
+        final var sampleModel = bufferedImage.getSampleModel();
         log.debug("execute(" + xScale + ", " + yScale + ", " + quality);
         Java2DUtils.logImage(log, ">>>> ", bufferedImage);
-        final boolean optimizedImage = sampleModel.getClass().equals(SinglePixelPackedSampleModel.class);
+        final var optimizedImage = sampleModel.getClass().equals(SinglePixelPackedSampleModel.class);
         final BufferedImage result;
         //
         // On Mac OS X AffineTransform is extremely slow with non optimized images; but it's faster with optimized ones.

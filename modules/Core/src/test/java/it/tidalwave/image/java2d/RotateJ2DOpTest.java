@@ -101,9 +101,9 @@ public class RotateJ2DOpTest extends BaseTestSupport
       {
         if (image != null)
           {
-            final EditableImage result = image.execute2(new RotateOp(angle));
-            final String suffix = image.getInnerProperty(SampleModel.class).getClass().getName();
-            final File f = (File)result.execute(new WriteOp("TIFF", tmp + "/" + angle + suffix + ".tif")).getOutput();
+            final var result = image.execute2(new RotateOp(angle));
+            final var suffix = image.getInnerProperty(SampleModel.class).getClass().getName();
+            final var f = (File)result.execute(new WriteOp("TIFF", tmp + "/" + angle + suffix + ".tif")).getOutput();
             assertChecksum(checksum, f);
             AssertJUnit.assertEquals(width, result.getWidth());
             AssertJUnit.assertEquals(height, result.getHeight());

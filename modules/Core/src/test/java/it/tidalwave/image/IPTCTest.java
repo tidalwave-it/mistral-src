@@ -46,9 +46,9 @@ public class IPTCTest
     public void testEmbeddedIPTC()
             throws IOException
       {
-        final EditableImage image =
+        final var image =
                 EditableImage.create(new ReadOp(new File("/Users/fritz/Desktop/TEST/BaragliEtruscan181.jpg")));
-        final IPTC iptc = image.getMetadata(IPTC.class);
+        final var iptc = image.getMetadata(IPTC.class);
         System.err.println(iptc);
       }
   }

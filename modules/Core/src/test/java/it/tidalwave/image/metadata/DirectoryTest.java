@@ -46,7 +46,7 @@ public class DirectoryTest
     public void testParseDateTime (@Nonnull final String string, @Nonnull final Instant expected)
       {
         // WHEN
-        final Instant actual = Directory.parseDateTime(string);
+        var actual = Directory.parseDateTime(string);
         // THEN
         assertThat(expected, is(actual));
       }
@@ -54,7 +54,7 @@ public class DirectoryTest
     @DataProvider
     public static Object[][] dates()
       {
-        final ZoneOffset dzo = ZoneOffset.UTC;
+        final var dzo = ZoneOffset.UTC;
 
         return new Object[][]
           {

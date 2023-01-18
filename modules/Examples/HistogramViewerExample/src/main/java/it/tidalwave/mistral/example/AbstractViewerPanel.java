@@ -62,7 +62,7 @@ public class AbstractViewerPanel extends JPanel
       {
         try // used during development
           {
-            final File file = new File("../../../www/images/" + fileName);
+            final var file = new File("../../../www/images/" + fileName);
 
             if (file.exists() && file.canRead())
               {
@@ -87,12 +87,12 @@ public class AbstractViewerPanel extends JPanel
      ******************************************************************************************************************/
     protected void loadImage (final Object input)
       {
-        final JLabel label = new JLabel("Loading " + input + "...");
+        final var label = new JLabel("Loading " + input + "...");
         label.setForeground(Color.WHITE);
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setFont(new Font("sansserif", Font.BOLD, 14));
 
-        final Overlay overlay = new Overlay()
+        final var overlay = new Overlay()
           {
             @Override
             public boolean isVisible()
@@ -116,18 +116,18 @@ public class AbstractViewerPanel extends JPanel
         imageRenderer.repaint(); // FIXME: should not be needed
 
         // A SwingWorker would be good here
-        final Thread loaderThread = new Thread(() ->
+        final var loaderThread = new Thread(() ->
           {
             try
               {
-                final EditableImage image = EditableImage.create(new ReadOp(input));
+                final var image = EditableImage.create(new ReadOp(input));
 
                 SwingUtilities.invokeLater(() ->
                                             {
                                               imageRenderer.setImage(image);
                                               imageRenderer.removeOverlay(overlay);
-                                              final int hMargin = image.getWidth() / 4;
-                                              final int vMargin = image.getHeight() / 4;
+                                              final var hMargin = image.getWidth() / 4;
+                                              final var vMargin = image.getHeight() / 4;
                                               imageRenderer.setMargin(new Insets(vMargin, hMargin, vMargin, hMargin));
                                               onImageLoaded(image);
                                             });
@@ -140,9 +140,9 @@ public class AbstractViewerPanel extends JPanel
                                               imageRenderer.repaint(); // FIXME: should not be needed
                   //                            imageRenderer.removeOverlay(overlay);
                                               e.printStackTrace();
-                                              final String message =
+                                              final var message =
                                                       "<html>Cannot load the image.<br>An Internet connection is required.</html>";
-                                              final String title = "Error";
+                                              final var title = "Error";
                                               JOptionPane.showMessageDialog(AbstractViewerPanel.this,
                                                                             message,
                                                                             title,

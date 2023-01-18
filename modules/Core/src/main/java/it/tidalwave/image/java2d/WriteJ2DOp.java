@@ -61,14 +61,14 @@ public class WriteJ2DOp extends OperationImplementation<WriteOp, BufferedImage>
                                      final EditableImage image,
                                      final BufferedImage bufferedImage)
       {
-        final String format = operation.getFormat();
-        final Object output = operation.getOutput();
-        final Object outputForLog = (output instanceof OutputStream) ? output.getClass() : output;
-        final ImageWriteParam imageWriteParam = operation.getImageWriteParam();
+        final var format = operation.getFormat();
+        final var output = operation.getOutput();
+        final var outputForLog = (output instanceof OutputStream) ? output.getClass() : output;
+        final var imageWriteParam = operation.getImageWriteParam();
         log.info("Write2DOp(" + format + ", " + outputForLog + ", " + imageWriteParam + ")");
 
         ImageOutputStream stream = null;
-        boolean shouldClose = true;
+        var shouldClose = true;
 
         try
           {
@@ -90,13 +90,13 @@ public class WriteJ2DOp extends OperationImplementation<WriteOp, BufferedImage>
                 stream = (ImageOutputStream)output;
               }
 
-            final Iterator<ImageWriter> writers = ImageIO.getImageWritersByFormatName(format);
+            final var writers = ImageIO.getImageWritersByFormatName(format);
             ImageWriter selectedWriter = null;
             log.debug("Available writers for format: " + format);
 
             while (writers.hasNext())
               {
-                final ImageWriter writer = writers.next();
+                final var writer = writers.next();
                 log.debug(">>>> writer: " + writer);
 
                 if (selectedWriter == null) // keep the first one, keep on logging the others

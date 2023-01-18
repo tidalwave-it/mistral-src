@@ -51,7 +51,7 @@ public class RotateJ2DOpPerformanceTest extends BasePerformanceTestSupport
           {
             log.info(">>>> angle: " + angle);
 
-            final EditableImage image2 = image.execute2(new RotateOp(angle, Quality.INTERMEDIATE));
+            final var image2 = image.execute2(new RotateOp(angle, Quality.INTERMEDIATE));
 
             accTime += image2.getLatestOperationTime();
           }

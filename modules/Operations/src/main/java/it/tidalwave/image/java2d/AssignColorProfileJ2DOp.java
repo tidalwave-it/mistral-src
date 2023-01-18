@@ -54,17 +54,17 @@ public class AssignColorProfileJ2DOp extends OperationImplementation<AssignColor
                                      @Nonnull final EditableImage image,
                                      @Nonnull final BufferedImage bufferedImage)
       {
-        final ICC_Profile targetProfile = operation.getIccProfile();
+        final var targetProfile = operation.getIccProfile();
         log.trace("assignColorProfile({})", ImageUtils.getICCProfileName(targetProfile));
         Java2DUtils.logImage(log, ">>>> source bufferedImage", bufferedImage);
 
         final ColorSpace colorSpace = new ICC_ColorSpace(targetProfile);
         final ColorModel colorModel = new ComponentColorModel(colorSpace, false, false, ColorModel.OPAQUE,
                                                               bufferedImage.getRaster().getDataBuffer().getDataType());
-        final BufferedImage result = new BufferedImage(colorModel,
-                                                       bufferedImage.getRaster(),
-                                                       false,
-                                                       Java2DUtils.getProperties(bufferedImage));
+        final var result = new BufferedImage(colorModel,
+                                             bufferedImage.getRaster(),
+                                             false,
+                                             Java2DUtils.getProperties(bufferedImage));
         Java2DUtils.logImage(log, ">>>> assignColorProfile() returning ", bufferedImage);
 
         return result;

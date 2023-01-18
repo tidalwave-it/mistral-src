@@ -40,8 +40,8 @@ public class CaptureOpTest
     @Test
     public void testGetComponent()
       {
-        final JLabel label = new JLabel("text");
-        final CaptureOp captureOp = new CaptureOp(label);
+        final var label = new JLabel("text");
+        final var captureOp = new CaptureOp(label);
         AssertJUnit.assertEquals(label, captureOp.getComponent());
       }
   }
