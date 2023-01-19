@@ -236,7 +236,7 @@ public class Directory extends JavaBeanSupport implements Serializable
       {
         if ((value != null) && (value instanceof Optional))
           {
-            value = (((Optional<?>)value).orElse(null);
+            value = (((Optional<?>)value).orElse(null));
           }
 
         if (value == null)
