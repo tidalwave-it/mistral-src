@@ -26,8 +26,8 @@
  */
 package it.tidalwave.mistral.example.histogram;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.CropOp;
 import it.tidalwave.image.op.HistogramOp;
@@ -55,7 +55,7 @@ public class HistogramExample
         //
         // Loads the image
         //
-        final var file = new File("../images/20030701-0043.NEF");
+        final var file = Path.of("../images/20030701-0043.NEF");
         final var image = EditableImage.create(new ReadOp(file));
         log.info("Image loaded in " + image.getLatestOperationDuration() + " msec");
         //

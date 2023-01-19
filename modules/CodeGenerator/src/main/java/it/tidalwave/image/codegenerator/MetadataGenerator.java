@@ -29,8 +29,11 @@ package it.tidalwave.image.codegenerator;
 import java.util.Date;
 import java.util.List;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
@@ -38,10 +41,6 @@ import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupFile;
 import it.tidalwave.image.codegenerator.grammar.TIFFLexer;
 import it.tidalwave.image.codegenerator.grammar.TIFFParser;
-import java.io.File;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class MetadataGenerator
   {
@@ -55,7 +54,7 @@ public class MetadataGenerator
         final var source = args[1];
         final var template = args[2];
         final var output = args[3];
-        final var outputFile = new File(String.format("%s/%s.java", output, className)).toPath();
+        final var outputFile = Path.of(String.format("%s/%s.java", output, className));
         Files.createDirectories(outputFile.getParent());
 
         System.out.println("    CLASS NAME: " + className);
@@ -85,7 +84,7 @@ public class MetadataGenerator
             throws IOException
       {
         System.out.println("    GENERATING CODE...");
-        final STGroup group = new STGroupFile(Path.of(template).toAbsolutePath().toString(), '$' ,'$');
+        final STGroup group = new STGroupFile(Path.of(template).toAbsolutePath().toString(), '$' , '$');
         final var st = group.getInstanceOf("generator");
         st.add("creation_date", new Date());
         st.add("class_name", className);

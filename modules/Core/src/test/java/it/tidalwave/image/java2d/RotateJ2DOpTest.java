@@ -26,7 +26,7 @@
  */
 package it.tidalwave.image.java2d;
 
-import java.io.File;
+import java.nio.file.Path;
 import java.awt.image.SampleModel;
 import it.tidalwave.image.BaseTestSupport;
 import it.tidalwave.image.EditableImage;
@@ -103,7 +103,7 @@ public class RotateJ2DOpTest extends BaseTestSupport
           {
             final var result = image.execute(new RotateOp(angle));
             final var suffix = image.getInnerProperty(SampleModel.class).getClass().getName();
-            final var f = (File)result.executeInPlace(new WriteOp("TIFF", tmp + "/" + angle + suffix + ".tif")).getOutput();
+            final var f = (Path)result.executeInPlace(new WriteOp("TIFF", tmp + "/" + angle + suffix + ".tif")).getOutput();
             assertChecksum(checksum, f);
             AssertJUnit.assertEquals(width, result.getWidth());
             AssertJUnit.assertEquals(height, result.getHeight());

@@ -28,6 +28,7 @@ package it.tidalwave.image.op;
 
 import java.io.File;
 import java.io.OutputStream;
+import java.nio.file.Path;
 import javax.imageio.ImageWriteParam;
 import javax.imageio.metadata.IIOMetadata;
 
@@ -53,7 +54,7 @@ public class WriteOp extends Operation
      ******************************************************************************************************************/
     public WriteOp (final String format, final String fileName)
       {
-        this(format, new File(fileName));
+        this(format, Path.of(fileName));
       }
 
     /*******************************************************************************************************************
@@ -67,12 +68,12 @@ public class WriteOp extends Operation
      ******************************************************************************************************************/
     public WriteOp (final String format, final String fileName, final ImageWriteParam imageWriteParam)
       {
-        this(format, new File(fileName), imageWriteParam);
+        this(format, Path.of(fileName), imageWriteParam);
       }
 
     /*******************************************************************************************************************
      *
-     * Writes the image to a File or a OutputStream. In the latter case, note that
+     * Writes the image to a Path or a OutputStream. In the latter case, note that
      * the OutputStream is not closed.
      *
      * @param  format    the image format
@@ -86,7 +87,7 @@ public class WriteOp extends Operation
 
     /*******************************************************************************************************************
      *
-     * Writes the image to a File or a OutputStream. In the latter case, note that
+     * Writes the image to a Path or a OutputStream. In the latter case, note that
      * the OutputStream is not closed.
      *
      * @param  format           the image format
@@ -104,7 +105,7 @@ public class WriteOp extends Operation
      *
      ******************************************************************************************************************/
     public WriteOp (final String format,
-                    final Object output,
+                    Object output,
                     final ImageWriteParam imageWriteParam,
                     final IIOMetadata iioMetadata)
       {
@@ -118,9 +119,14 @@ public class WriteOp extends Operation
             throw new IllegalArgumentException("null output");
           }
 
-        if (!(output instanceof File) && !(output instanceof OutputStream))
+        if (!(output instanceof File) && !(output instanceof Path) && !(output instanceof OutputStream))
           {
-            throw new IllegalArgumentException("output must be a File or a OutputStream");
+            throw new IllegalArgumentException("output must be a File, a Path or a OutputStream");
+          }
+
+        if (output instanceof Path)
+          {
+            output = ((Path)output).toFile();
           }
 
         this.format = format;

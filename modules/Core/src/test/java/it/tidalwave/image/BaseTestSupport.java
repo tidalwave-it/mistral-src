@@ -28,7 +28,6 @@ package it.tidalwave.image;
 
 import java.security.MessageDigest;
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -63,15 +62,15 @@ public abstract class BaseTestSupport
      * The first test run will download once and for all the required test images.
      *
      */
-    protected static final File file_timezones32_png;
+    protected static final Path file_timezones32_png;
     protected static final Path file_20030701_0043_jpg;
     protected static final Path file_20060603_0002_jpg;
-    protected static final File file_20030701_0043_nef;
-    protected static File file_L4840172_dng;
-    protected static final File file_w1_tiff;
-    protected static final File file_uncompressed_tiff;
-    protected static final File file_fax1_tif;
-    protected static final File file_IPTC1_jpg;
+    protected static final Path file_20030701_0043_nef;
+    protected static Path file_L4840172_dng;
+    protected static final Path file_w1_tiff;
+    protected static final Path file_uncompressed_tiff;
+    protected static final Path file_fax1_tif;
+    protected static final Path file_IPTC1_jpg;
 
     protected EditableImage img20030701_0043_jpg;
     protected EditableImage img20060603_0002_jpg;
@@ -154,7 +153,7 @@ public abstract class BaseTestSupport
         assertEquals(expectedBitsPerPixel, bitsPerPixel);
         assertEquals(expectedDataType, dataType);
 
-        log.info(">>>> File:           " + file);
+        log.info(">>>> Path:           " + file);
         log.info(">>>> Size:           " + width + " x " + height);
         log.info(">>>> Bands:          " + bandCount);
         log.info(">>>> Bits per bands: " + bitsPerBand);
@@ -165,13 +164,13 @@ public abstract class BaseTestSupport
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-    protected void assertChecksum (final String expectedChecksum, final File file)
+    protected void assertChecksum (final String expectedChecksum, final Path file)
       {
         try
           {
             final var messageDigest = MessageDigest.getInstance("MD5");
             final var buffer = new byte[128 * 1024];
-            final InputStream is = new BufferedInputStream(Files.newInputStream(file.toPath()));
+            final InputStream is = new BufferedInputStream(Files.newInputStream(file));
 
             for (; ; )
               {

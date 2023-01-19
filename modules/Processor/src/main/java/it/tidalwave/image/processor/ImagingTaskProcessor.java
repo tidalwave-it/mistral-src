@@ -183,7 +183,7 @@ public abstract class ImagingTaskProcessor // NOT Serializable
      *
      * Returns true if the tasks will be executed in a distributed context
      * with the support of a distributed file system - that is, if each task
-     * is guaranteed to have a File access to the same set of data. Or if
+     * is guaranteed to have a Path access to the same set of data. Or if
      * the context is a single-node, multi-core system, which of course has a
      * single filesystem.
      *

@@ -30,7 +30,6 @@ import javax.annotation.Nonnull;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
-import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -213,14 +212,14 @@ public class EditableImageTest extends BaseTestSupport
       {
         // Reajent is enabled
         // FIXME: should be 16 and 48, UNSIGNED_SHORT
-        _testProperties(file_20030701_0043_nef.toPath(), 3008, 2000, 3, 8, 24, EditableImage.DataType.BYTE);
+        _testProperties(file_20030701_0043_nef, 3008, 2000, 3, 8, 24, EditableImage.DataType.BYTE);
       }
 
 //    @Test
 //    public void testReadMetadataFromJPEXXX()
 //      throws Exception
 //      {
-//        final EditableImage image = EditableImage.create(new ReadOp(new File("/Users/fritz/Desktop/1205789521406
+//        final EditableImage image = EditableImage.create(new ReadOp(new Path("/Users/fritz/Desktop/1205789521406
 //        .jpg"), ReadOp.Type.METADATA));
 //        final EXIF exif = image.getMetadata(EXIF.class);
 //        assertNotNull(exif);
@@ -392,14 +391,14 @@ public class EditableImageTest extends BaseTestSupport
     public void testSerialize()
             throws IOException, ClassNotFoundException
       {
-        final var file = new File("target/Serialized");
-        final var oos = new ObjectOutputStream(Files.newOutputStream(file.toPath()));
+        final var file = Path.of("target/Serialized");
+        final var oos = new ObjectOutputStream(Files.newOutputStream(file));
         final var image1 = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
         oos.writeObject(image1);
         oos.close();
         log.info("serialized" + image1);
 
-        final var ois = new ObjectInputStream(Files.newInputStream(file.toPath()));
+        final var ois = new ObjectInputStream(Files.newInputStream(file));
         final var image2 = (EditableImage)ois.readObject();
         ois.close();
         log.info("deserialized" + image2);

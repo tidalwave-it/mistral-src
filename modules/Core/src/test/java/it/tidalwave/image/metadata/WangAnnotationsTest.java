@@ -46,7 +46,7 @@ public class WangAnnotationsTest extends BaseTestSupport
       {
         /*
         final var fax = "/Users/fritz/Business/Tidalwave/Projects/Mistral/Nextre/Fax_Image_1.tif";
-        final var image = EditableImage.create(new ReadOp(new File(fax)));
+        final var image = EditableImage.create(new ReadOp(new Path(fax)));
         AssertJUnit.assertNotNull(image);
         final var tiff = image.getMetadata(TIFF.class);
         AssertJUnit.assertNotNull(tiff);

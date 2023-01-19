@@ -160,7 +160,7 @@ public class ReadOp extends Operation
 
             if (input instanceof Path)
               {
-                final var imageReader = createImageReader(((Path)input).toFile(), pluginBlackList);
+                final var imageReader = createImageReader(((Path)input), pluginBlackList);
                 final var editableImage = read(imageReader);
                 setProperties(editableImage, imageReader);
                 imageReader.dispose();
@@ -169,7 +169,7 @@ public class ReadOp extends Operation
 
             else if (input instanceof File)
               {
-                final var imageReader = createImageReader((File)input, pluginBlackList);
+                final var imageReader = createImageReader(((File)input).toPath(), pluginBlackList);
                 final var editableImage = read(imageReader);
                 setProperties(editableImage, imageReader);
                 imageReader.dispose();
@@ -358,7 +358,7 @@ public class ReadOp extends Operation
 
     /*******************************************************************************************************************
      *
-     * @param  input          the input (an ImageReader or a File)
+     * @param  input          the input (an ImageReader or a Path)
      *
      ******************************************************************************************************************/
     public ReadOp (@Nonnull final Object input)
@@ -368,7 +368,7 @@ public class ReadOp extends Operation
 
     /*******************************************************************************************************************
      *
-     * @param  input          the input (an ImageReader or a File)
+     * @param  input          the input (an ImageReader or a Path)
      * @param  type           the type of read
      *
      ******************************************************************************************************************/
@@ -379,7 +379,7 @@ public class ReadOp extends Operation
 
     /*******************************************************************************************************************
      *
-     * @param  input          the input (an ImageReader or a File)
+     * @param  input          the input (an ImageReader or a Path)
      * @param  type           the type of read
      * @param  imageIndex     the index of the image to read
      *
@@ -391,7 +391,7 @@ public class ReadOp extends Operation
 
     /*******************************************************************************************************************
      *
-     * @param  input          the input (an ImageReader or a File)
+     * @param  input          the input (an ImageReader or a Path)
      * @param  type           the type of read
      * @param  imageIndex     the index of the image to read
      * @param  thumbnailIndex the index of the thumbnail to read
@@ -423,7 +423,7 @@ public class ReadOp extends Operation
 
     /*******************************************************************************************************************
      *
-     * Creates an ImageReader for the given File. Using a File as argument is 
+     * Creates an ImageReader for the given Path. Using a Path as argument is
      * important for photos that are stored in multiple files (e.g. Canon .CRW format).
      * This method supports files GZIP compression (but multiple file formats such
      * as .CRW aren't supported in this case).
@@ -432,23 +432,23 @@ public class ReadOp extends Operation
      *
      ******************************************************************************************************************/
     @Nonnull
-    public static ImageReader createImageReader (@Nonnull final File file,
+    public static ImageReader createImageReader (@Nonnull final Path file,
                                                  @Nonnull final PluginBlackList pluginBlackList)
             throws IOException
       {
         log.trace("createImageReader({}, {})", file, pluginBlackList);
 
-        if (!file.exists())
+        if (!Files.exists(file))
           {
-            throw new FileNotFoundException(file.getAbsolutePath());
+            throw new FileNotFoundException(file.toAbsolutePath().toString());
           }
 
-        if (!file.canRead())
+        if (!Files.isReadable(file))
           {
-            throw new IOException("Cannot read " + file.getAbsolutePath());
+            throw new IOException("Cannot read " + file.toAbsolutePath());
           }
 
-        var fileName = file.getName();
+        var fileName = file.getFileName().toString();
         var suffix = "";
         final var gzipCompression = fileName.toLowerCase().endsWith(".gz");
 
@@ -469,11 +469,11 @@ public class ReadOp extends Operation
 
         //
         // For reasons stated in the javadoc comment of this method, it's better
-        // to create the ImageInputStream by passing a File.
+        // to create the ImageInputStream by passing a Path.
         //
         if (!gzipCompression)
           {
-            imageInputStream = new FileChannelImageInputStream(file);
+            imageInputStream = new FileChannelImageInputStream(file.toFile());
 //                imageInputStream = ImageIO.createImageInputStream(file);
           }
         //
@@ -481,7 +481,7 @@ public class ReadOp extends Operation
         //
         else
           {
-            final InputStream inputStream = new GZIPInputStream(Files.newInputStream(file.toPath()));
+            final InputStream inputStream = new GZIPInputStream(Files.newInputStream(file));
             imageInputStream = ImageIO.createImageInputStream(inputStream);
           }
 

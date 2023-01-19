@@ -43,7 +43,6 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 import java.security.MessageDigest;
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -73,7 +72,7 @@ public class MetadataTestUtils
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-    public static File downloadFile (final String urlString)
+    public static Path downloadFile (final String urlString)
       {
         return null;
       }

@@ -40,11 +40,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 
 /**
@@ -78,7 +79,7 @@ class TestInfo implements Comparable<TestInfo>
       {
         pw.println(
                 "<tr><td rowspan='2'>Revision</td><td rowspan='2'>Test</td><td rowspan='2'>Quality</td><td " +
-                "rowspan='2'>File</td>");
+                "rowspan='2'>Path</td>");
 
         for (final var testResults : results)
           {
@@ -229,14 +230,14 @@ class TestResults implements Comparable<TestResults>
 
 public class TestReportFormatter
   {
-    private final File reportFile;
-    private final File htmlFile;
+    private final Path reportFile;
+    private final Path htmlFile;
     private List<TestInfo> tests = new ArrayList<>();
 
     /**
      * Creates a new instance of TestReportFormatter
      */
-    public TestReportFormatter (final File reportFile, final File htmlFile)
+    public TestReportFormatter (final Path reportFile, final Path htmlFile)
       {
         this.reportFile = reportFile;
         this.htmlFile = htmlFile;
@@ -245,67 +246,68 @@ public class TestReportFormatter
     public void run()
             throws IOException
       {
-        final var br = new BufferedReader(new FileReader(reportFile));
-
-        for (; ; )
+        try (final var br = Files.newBufferedReader(reportFile))
           {
-            var s = br.readLine();
-
-            if (s == null)
+            for (;;)
               {
-                break;
+                var s = br.readLine();
+
+                if (s == null)
+                  {
+                    break;
+                  }
+
+                s = s.split("#")[0].trim();
+
+                if ("".equals(s))
+                  {
+                    continue;
+                  }
+
+                final var tmp = s.split("=");
+                final var body = tmp[0].trim();
+                final var value = tmp[1].trim();
+                var testInfo = new TestInfo(body);
+                final var testResults = new TestResults(body, value);
+
+                final var i = tests.indexOf(testInfo);
+
+                if (i < 0)
+                  {
+                    tests.add(testInfo);
+                  }
+
+                else
+                  {
+                    testInfo = tests.get(i);
+                  }
+
+                testInfo.add(testResults);
               }
-
-            s = s.split("#")[0].trim();
-
-            if ("".equals(s))
-              {
-                continue;
-              }
-
-            final var tmp = s.split("=");
-            final var body = tmp[0].trim();
-            final var value = tmp[1].trim();
-            var testInfo = new TestInfo(body);
-            final var testResults = new TestResults(body, value);
-
-            final var i = tests.indexOf(testInfo);
-
-            if (i < 0)
-              {
-                tests.add(testInfo);
-              }
-
-            else
-              {
-                testInfo = tests.get(i);
-              }
-
-            testInfo.add(testResults);
           }
 
-        br.close();
         Collections.sort(tests);
 
-        final var pw = new PrintWriter(new FileWriter(htmlFile));
-        pw.println("<table border='1' cellpadding='2' cellspacing='0'>");
-        tests.get(0).printHeader(pw);
-
-        for (final var testInfo : tests)
+        try (final var pw = new PrintWriter(Files.newBufferedWriter(htmlFile)))
           {
-            testInfo.print(pw);
-          }
+            pw.println("<table border='1' cellpadding='2' cellspacing='0'>");
+            tests.get(0).printHeader(pw);
 
-        pw.println("</table>");
-        pw.close();
+            for (final var testInfo : tests)
+              {
+                testInfo.print(pw);
+              }
+
+            pw.println("</table>");
+          }
       }
 
     public static void main (final String[] args)
             throws IOException
       {
-        new TestReportFormatter(new File(
+        new TestReportFormatter(Path.of(
                 "/Users/fritz/Business/Tidalwave/Projects/Mistral/trunk/src/EditableImage/TestReport.txt"),
-                                new File(
+                                Path.of(
                                         "/Users/fritz/Business/Tidalwave/Projects/Mistral/trunk/src/EditableImage/TestReport.html")).run();
       }
   }
