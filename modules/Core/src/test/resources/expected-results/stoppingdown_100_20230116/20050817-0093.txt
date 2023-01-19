@@ -2,14 +2,14 @@ TIFF[0][271, Make]: NIKON CORPORATION
 TIFF[0][272, Model]: NIKON D70
 TIFF[0][282, X Resolution]: 72/1 - 72.0
 TIFF[0][283, Y Resolution]: 72/1 - 72.0
-TIFF[0][296, Resolution Unit]: 2
+TIFF[0][296, Resolution Unit]: 2 - INCHES
 TIFF[0][305, Software]: Capture One 15 Macintosh
 TIFF[0][306, Date/Time]: 2005:08:19 15:47:30
 TIFF[0][315, Artist]: Fabrizio Giudici
 TIFF[0][33432, Copyright]: © Copyright by Fabrizio Giudici. All rights reserved.
 EXIF[0][33434, Exposure Time]: 1/160 - 0.00625
 EXIF[0][33437, F Number]: 8/1 - 8.0
-EXIF[0][34850, Exposure Program]: 1
+EXIF[0][34850, Exposure Program]: 1 - MANUAL
 EXIF[0][34855, ISO Speed Ratings]: 200
 EXIF[0][36864, EXIF Version]: [48, 50, 50, 49]
 EXIF[0][36867, Date/Time Original]: 2005:08:17 19:13:38
@@ -19,8 +19,8 @@ EXIF[0][37378, Aperture Value]: 6/1 - 6.0
 EXIF[0][37380, Exposure Bias Value]: 0/6 - 0.0
 EXIF[0][37381, Max Aperture Value]: 3/1 - 3.0
 EXIF[0][37382, Subject Distance]: 1/39 - 0.02564102564102564
-EXIF[0][37383, Metering Mode]: 5
-EXIF[0][37384, Light Source]: 9
+EXIF[0][37383, Metering Mode]: 5 - PATTERN
+EXIF[0][37384, Light Source]: 9 - FINE_WEATHER
 EXIF[0][37385, Flash]: 0
 EXIF[0][37386, Focal Length]: 180/1 - 180.0
 EXIF[0][37510, User Comment]: [65, 83, 67, 73, 73, 0, 0, 0, 40, 67, 41, 32, 98, 121, 32, 70, 97, 98, 114, 105, 122, 105, 111, 32, 71, 73, 85, 68, 73, 67, 73]
@@ -29,10 +29,10 @@ EXIF[0][37521, Subsec Time Original]: 900
 EXIF[0][37522, Subsec Time Digitized]: 900
 EXIF[0][40962, Pixel X Dimension]: 100
 EXIF[0][40963, Pixel Y Dimension]: 56
-EXIF[0][41495, Sensing Method]: 2
+EXIF[0][41495, Sensing Method]: 2 - ONE_CHIP_COLOR_AREA_SENSOR
 EXIF[0][41728, File Source]: [3]
 EXIF[0][41729, Scene Type]: [1]
-EXIF[0][41986, Exposure Mode]: 1
+EXIF[0][41986, Exposure Mode]: 1 - MANUAL
 EXIF[0][42033, BodySerialNumber]: NO= 100062dc        
 EXIF[0][42034, LensSpecification]: [180/1, 180/1, 28/10, 28/10] - [180.0, 180.0, 2.8, 2.8]
 EXIF[0][42036, LensModel]: Nikkor 180mm ƒ/2.8N ED-IF AF

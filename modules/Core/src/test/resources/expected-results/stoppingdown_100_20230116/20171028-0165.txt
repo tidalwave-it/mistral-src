@@ -3,14 +3,14 @@ TIFF[0][271, Make]: SONY
 TIFF[0][272, Model]: ILCE-6000
 TIFF[0][282, X Resolution]: 72/1 - 72.0
 TIFF[0][283, Y Resolution]: 72/1 - 72.0
-TIFF[0][296, Resolution Unit]: 2
+TIFF[0][296, Resolution Unit]: 2 - INCHES
 TIFF[0][305, Software]: Capture One 15 Macintosh
 TIFF[0][306, Date/Time]: 2017:10:28 10:30:10
 TIFF[0][315, Artist]: Fabrizio Giudici
 TIFF[0][33432, Copyright]: © Copyright by Fabrizio Giudici. All rights reserved.
 EXIF[0][33434, Exposure Time]: 1/125 - 0.008
 EXIF[0][33437, F Number]: 45/10 - 4.5
-EXIF[0][34850, Exposure Program]: 3
+EXIF[0][34850, Exposure Program]: 3 - APERTURE_PRIORITY
 EXIF[0][34855, ISO Speed Ratings]: 100
 EXIF[0][34864]: 2
 EXIF[0][34866, RecommendedExposureIndex]: 100
@@ -22,8 +22,8 @@ EXIF[0][37378, Aperture Value]: 433985/100000 - 4.33985
 EXIF[0][37379, Brightness Value]: 12644/2560 - 4.9390625
 EXIF[0][37380, Exposure Bias Value]: -13/10 - -1.3
 EXIF[0][37381, Max Aperture Value]: 1024/256 - 4.0
-EXIF[0][37383, Metering Mode]: 5
-EXIF[0][37384, Light Source]: 1
+EXIF[0][37383, Metering Mode]: 5 - PATTERN
+EXIF[0][37384, Light Source]: 1 - DAYLIGHT
 EXIF[0][37385, Flash]: 16
 EXIF[0][37386, Focal Length]: 700/10 - 70.0
 EXIF[0][40962, Pixel X Dimension]: 100
@@ -33,15 +33,15 @@ EXIF[0][41487, Focal Plane Y Resolution]: 83662979/32768 - 2553.1914978027344
 EXIF[0][41488, Focal Plane ResolutionUnit]: 3
 EXIF[0][41728, File Source]: [3]
 EXIF[0][41729, Scene Type]: [1]
-EXIF[0][41985, Custom Rendered]: 0
-EXIF[0][41986, Exposure Mode]: 2
-EXIF[0][41987, White Balance]: 1
+EXIF[0][41985, Custom Rendered]: 0 - NORMAL_PROCESS
+EXIF[0][41986, Exposure Mode]: 2 - BRACKET
+EXIF[0][41987, White Balance]: 1 - MANUAL
 EXIF[0][41988, Digital Zoom Ratio]: 16/16 - 1.0
 EXIF[0][41989, Focal Length 35mm Film]: 105
 EXIF[0][41990, Scene Capture Type]: 0
-EXIF[0][41992, Contrast]: 0
-EXIF[0][41993, Saturation]: 0
-EXIF[0][41994, Sharpness]: 0
+EXIF[0][41992, Contrast]: 0 - NORMAL
+EXIF[0][41993, Saturation]: 0 - NORMAL
+EXIF[0][41994, Sharpness]: 0 - NORMAL
 EXIF[0][42034, LensSpecification]: [160/10, 700/10, 40/10, 40/10] - [16.0, 70.0, 4.0, 4.0]
 EXIF[0][42036, LensModel]: Sony Zeiss Vario-Tessar T* E 16-70mm F4 ZA OSS
 IPTC[0][346]: UTF-8

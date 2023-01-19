@@ -2,14 +2,14 @@ TIFF[0][271, Make]: NIKON CORPORATION
 TIFF[0][272, Model]: NIKON D200
 TIFF[0][282, X Resolution]: 72/1 - 72.0
 TIFF[0][283, Y Resolution]: 72/1 - 72.0
-TIFF[0][296, Resolution Unit]: 2
+TIFF[0][296, Resolution Unit]: 2 - INCHES
 TIFF[0][305, Software]: Adobe Photoshop Lightroom 6.6 (Macintosh)
 TIFF[0][306, Date/Time]: 2017:03:09 21:50:05
 TIFF[0][315, Artist]: Fabrizio Giudici
 TIFF[0][33432, Copyright]: © Copyright by Fabrizio Giudici. All rights reserved.
 EXIF[0][33434, Exposure Time]: 1/400 - 0.0025
 EXIF[0][33437, F Number]: 11/1 - 11.0
-EXIF[0][34850, Exposure Program]: 1
+EXIF[0][34850, Exposure Program]: 1 - MANUAL
 EXIF[0][34855, ISO Speed Ratings]: 250
 EXIF[0][36864, EXIF Version]: [48, 50, 51, 48]
 EXIF[0][36867, Date/Time Original]: 2009:09:26 12:11:16
@@ -18,27 +18,27 @@ EXIF[0][37377, Shutter SpeedValue]: 8643856/1000000 - 8.643856
 EXIF[0][37378, Aperture Value]: 6918863/1000000 - 6.918863
 EXIF[0][37380, Exposure Bias Value]: -4/6 - -0.6666666666666666
 EXIF[0][37381, Max Aperture Value]: 55/10 - 5.5
-EXIF[0][37383, Metering Mode]: 5
-EXIF[0][37384, Light Source]: 0
+EXIF[0][37383, Metering Mode]: 5 - PATTERN
+EXIF[0][37384, Light Source]: 0 - UNKNOWN
 EXIF[0][37385, Flash]: 0
 EXIF[0][37386, Focal Length]: 5000/10 - 500.0
 EXIF[0][37521, Subsec Time Original]: 90
 EXIF[0][37522, Subsec Time Digitized]: 90
-EXIF[0][40961, Color Space]: 1
-EXIF[0][41495, Sensing Method]: 2
+EXIF[0][40961, Color Space]: 1 - SRGB
+EXIF[0][41495, Sensing Method]: 2 - ONE_CHIP_COLOR_AREA_SENSOR
 EXIF[0][41728, File Source]: [3]
 EXIF[0][41729, Scene Type]: [1]
 EXIF[0][41730, EXIF CFA Pattern]: [2, 0, 2, 0, 1, 0, 2, 1]
-EXIF[0][41985, Custom Rendered]: 0
-EXIF[0][41986, Exposure Mode]: 1
-EXIF[0][41987, White Balance]: 1
+EXIF[0][41985, Custom Rendered]: 0 - NORMAL_PROCESS
+EXIF[0][41986, Exposure Mode]: 1 - MANUAL
+EXIF[0][41987, White Balance]: 1 - MANUAL
 EXIF[0][41988, Digital Zoom Ratio]: 1/1 - 1.0
 EXIF[0][41989, Focal Length 35mm Film]: 750
 EXIF[0][41990, Scene Capture Type]: 0
-EXIF[0][41991, Gain Control]: 0
-EXIF[0][41992, Contrast]: 0
-EXIF[0][41993, Saturation]: 0
-EXIF[0][41994, Sharpness]: 2
+EXIF[0][41991, Gain Control]: 0 - NONE
+EXIF[0][41992, Contrast]: 0 - NORMAL
+EXIF[0][41993, Saturation]: 0 - NORMAL
+EXIF[0][41994, Sharpness]: 2 - HARD
 EXIF[0][41996, Subject Distance Range]: 0
 EXIF[0][42034, LensSpecification]: [3000/10, 3000/10, 40/10, 40/10] - [300.0, 300.0, 4.0, 4.0]
 EXIF[0][42036, LensModel]: 300.0 mm f/4.0

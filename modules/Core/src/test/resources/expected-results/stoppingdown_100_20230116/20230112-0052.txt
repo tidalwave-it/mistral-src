@@ -3,12 +3,12 @@ TIFF[0][271, Make]: SONY
 TIFF[0][272, Model]: ILCE-6000
 TIFF[0][282, X Resolution]: 72/1 - 72.0
 TIFF[0][283, Y Resolution]: 72/1 - 72.0
-TIFF[0][296, Resolution Unit]: 2
+TIFF[0][296, Resolution Unit]: 2 - INCHES
 TIFF[0][305, Software]: Capture One 15 Macintosh
 TIFF[0][306, Date/Time]: 2023:01:12 13:19:39
 EXIF[0][33434, Exposure Time]: 1/200 - 0.005
 EXIF[0][33437, F Number]: 8/1 - 8.0
-EXIF[0][34850, Exposure Program]: 3
+EXIF[0][34850, Exposure Program]: 3 - APERTURE_PRIORITY
 EXIF[0][34855, ISO Speed Ratings]: 100
 EXIF[0][34864]: 2
 EXIF[0][34866, RecommendedExposureIndex]: 100
@@ -20,23 +20,23 @@ EXIF[0][37378, Aperture Value]: 6/1 - 6.0
 EXIF[0][37379, Brightness Value]: 13124/2560 - 5.1265625
 EXIF[0][37380, Exposure Bias Value]: -30/10 - -3.0
 EXIF[0][37381, Max Aperture Value]: 760/256 - 2.96875
-EXIF[0][37383, Metering Mode]: 5
-EXIF[0][37384, Light Source]: 0
+EXIF[0][37383, Metering Mode]: 5 - PATTERN
+EXIF[0][37384, Light Source]: 0 - UNKNOWN
 EXIF[0][37385, Flash]: 48
 EXIF[0][37386, Focal Length]: 350/10 - 35.0
 EXIF[0][40962, Pixel X Dimension]: 100
 EXIF[0][40963, Pixel Y Dimension]: 67
 EXIF[0][41728, File Source]: [3]
 EXIF[0][41729, Scene Type]: [1]
-EXIF[0][41985, Custom Rendered]: 0
-EXIF[0][41986, Exposure Mode]: 2
-EXIF[0][41987, White Balance]: 0
+EXIF[0][41985, Custom Rendered]: 0 - NORMAL_PROCESS
+EXIF[0][41986, Exposure Mode]: 2 - BRACKET
+EXIF[0][41987, White Balance]: 0 - AUTO
 EXIF[0][41988, Digital Zoom Ratio]: 16/16 - 1.0
 EXIF[0][41989, Focal Length 35mm Film]: 52
 EXIF[0][41990, Scene Capture Type]: 0
-EXIF[0][41992, Contrast]: 0
-EXIF[0][41993, Saturation]: 0
-EXIF[0][41994, Sharpness]: 0
+EXIF[0][41992, Contrast]: 0 - NORMAL
+EXIF[0][41993, Saturation]: 0 - NORMAL
+EXIF[0][41994, Sharpness]: 0 - NORMAL
 EXIF[0][42034, LensSpecification]: [350/10, 350/10, 35923/12839, 35923/12839] - [35.0, 35.0, 2.7979593426279306, 2.7979593426279306]
 EXIF[0][42036, LensModel]: E 35mm F2.8
 IPTC[0][346]: UTF-8

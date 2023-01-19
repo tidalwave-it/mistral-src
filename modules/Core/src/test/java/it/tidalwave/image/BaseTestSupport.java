@@ -26,6 +26,7 @@
  */
 package it.tidalwave.image;
 
+import java.lang.reflect.InvocationTargetException;
 import javax.annotation.Nonnull;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -296,10 +297,10 @@ public abstract class BaseTestSupport
                                      .format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
               }
 
-            // valueAsString += directory.getTagType(tag)
-            //                           .filter(Class::isEnum)
-            //                           .map(tagType -> toString(value, tagType))
-            //                           .orElse("");
+            valueAsString += directory.getTagType(tag)
+                                      .filter(Class::isEnum)
+                                      .map(tagType -> toString(value, tagType))
+                                      .orElse("");
 
             final var s = String.format("%s[%d%s]: %s",
                                         directoryName,
@@ -383,13 +384,11 @@ public abstract class BaseTestSupport
         try
           {
             var method = tagType.getDeclaredMethod("fromInteger", int.class);
-            log.info("===== {}", Arrays.toString(method.getParameterTypes()));
-            return " - " + method.invoke(Integer.parseInt(value.toString()));
+            return " - " + method.invoke(null, Integer.parseInt(value.toString()));
           }
-        catch (Exception /*| IllegalAccessException | InvocationTargetException | NoSuchMethodException */ e)
+        catch (NumberFormatException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e)
           {
             log.warn("Can't get enum for: {} {} because of {}", value, tagType, e.toString());
-            log.warn("", e);
             return "";
           }
       }

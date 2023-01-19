@@ -2,14 +2,14 @@ TIFF[0][271, Make]: NIKON CORPORATION
 TIFF[0][272, Model]: NIKON D7000
 TIFF[0][282, X Resolution]: 72/1 - 72.0
 TIFF[0][283, Y Resolution]: 72/1 - 72.0
-TIFF[0][296, Resolution Unit]: 2
+TIFF[0][296, Resolution Unit]: 2 - INCHES
 TIFF[0][305, Software]: Adobe Photoshop Lightroom 6.1.1 (Macintosh)
 TIFF[0][306, Date/Time]: 2015:09:06 19:27:24
 TIFF[0][315, Artist]: Fabrizio Giudici
 TIFF[0][33432, Copyright]: © Copyright by Fabrizio Giudici. All rights reserved.
 EXIF[0][33434, Exposure Time]: 1/80 - 0.0125
 EXIF[0][33437, F Number]: 8/1 - 8.0
-EXIF[0][34850, Exposure Program]: 1
+EXIF[0][34850, Exposure Program]: 1 - MANUAL
 EXIF[0][34855, ISO Speed Ratings]: 100
 EXIF[0][34864]: 2
 EXIF[0][36864, EXIF Version]: [48, 50, 51, 48]
@@ -19,26 +19,26 @@ EXIF[0][37377, Shutter SpeedValue]: 6321928/1000000 - 6.321928
 EXIF[0][37378, Aperture Value]: 6/1 - 6.0
 EXIF[0][37380, Exposure Bias Value]: -8/6 - -1.3333333333333333
 EXIF[0][37381, Max Aperture Value]: 40/10 - 4.0
-EXIF[0][37383, Metering Mode]: 5
-EXIF[0][37384, Light Source]: 0
+EXIF[0][37383, Metering Mode]: 5 - PATTERN
+EXIF[0][37384, Light Source]: 0 - UNKNOWN
 EXIF[0][37385, Flash]: 16
 EXIF[0][37386, Focal Length]: 3000/10 - 300.0
 EXIF[0][37510, User Comment]: [65, 83, 67, 73, 73, 0, 0, 0, 40, 67, 41, 32, 70, 97, 98, 114, 105, 122, 105, 111, 32, 71, 105, 117, 100, 105, 99, 105, 46]
 EXIF[0][37522, Subsec Time Digitized]: 20
-EXIF[0][41495, Sensing Method]: 2
+EXIF[0][41495, Sensing Method]: 2 - ONE_CHIP_COLOR_AREA_SENSOR
 EXIF[0][41728, File Source]: [3]
 EXIF[0][41729, Scene Type]: [1]
 EXIF[0][41730, EXIF CFA Pattern]: [2, 0, 2, 0, 0, 1, 1, 2]
-EXIF[0][41985, Custom Rendered]: 0
-EXIF[0][41986, Exposure Mode]: 1
-EXIF[0][41987, White Balance]: 0
+EXIF[0][41985, Custom Rendered]: 0 - NORMAL_PROCESS
+EXIF[0][41986, Exposure Mode]: 1 - MANUAL
+EXIF[0][41987, White Balance]: 0 - AUTO
 EXIF[0][41988, Digital Zoom Ratio]: 1/1 - 1.0
 EXIF[0][41989, Focal Length 35mm Film]: 450
 EXIF[0][41990, Scene Capture Type]: 0
-EXIF[0][41991, Gain Control]: 0
-EXIF[0][41992, Contrast]: 0
-EXIF[0][41993, Saturation]: 0
-EXIF[0][41994, Sharpness]: 0
+EXIF[0][41991, Gain Control]: 0 - NONE
+EXIF[0][41992, Contrast]: 0 - NORMAL
+EXIF[0][41993, Saturation]: 0 - NORMAL
+EXIF[0][41994, Sharpness]: 0 - NORMAL
 EXIF[0][41996, Subject Distance Range]: 0
 EXIF[0][42033, BodySerialNumber]: 6055645
 EXIF[0][42034, LensSpecification]: [3000/10, 3000/10, 40/10, 40/10] - [300.0, 300.0, 4.0, 4.0]
