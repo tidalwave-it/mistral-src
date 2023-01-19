@@ -39,14 +39,14 @@ public class ConvertToBufferedImageOpTest
     public void testGetBufferedImage()
       {
         System.out.println("getBufferedImage");
-        final ConvertToBufferedImageOp op = new ConvertToBufferedImageOp();
+        final var op = new ConvertToBufferedImageOp();
       }
 
     @Test
     public void testToString()
       {
         System.out.println("toString");
-        final ConvertToBufferedImageOp instance = new ConvertToBufferedImageOp();
+        final var instance = new ConvertToBufferedImageOp();
         instance.toString();
       }
   }

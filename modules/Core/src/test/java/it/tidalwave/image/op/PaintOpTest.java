@@ -46,7 +46,7 @@ public class PaintOpTest
     public void testGetX1()
       {
         System.out.println("getX1");
-        final PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
+        final var op = new PaintOp(g, 1, 2, 3, 4, null, null);
         AssertJUnit.assertEquals(1, op.getX());
       }
 
@@ -54,7 +54,7 @@ public class PaintOpTest
     public void testGetX2()
       {
         System.out.println("getX2");
-        final PaintOp op = new PaintOp(g, 1, 2, null, null);
+        final var op = new PaintOp(g, 1, 2, null, null);
         AssertJUnit.assertEquals(1, op.getX());
       }
 
@@ -62,7 +62,7 @@ public class PaintOpTest
     public void testGetY1()
       {
         System.out.println("getY1");
-        final PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
+        final var op = new PaintOp(g, 1, 2, 3, 4, null, null);
         AssertJUnit.assertEquals(2, op.getY());
       }
 
@@ -70,7 +70,7 @@ public class PaintOpTest
     public void testGetY2()
       {
         System.out.println("getY2");
-        final PaintOp op = new PaintOp(g, 1, 2, null, null);
+        final var op = new PaintOp(g, 1, 2, null, null);
         AssertJUnit.assertEquals(2, op.getY());
       }
 
@@ -78,7 +78,7 @@ public class PaintOpTest
     public void testGetW1()
       {
         System.out.println("getW1");
-        final PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
+        final var op = new PaintOp(g, 1, 2, 3, 4, null, null);
         AssertJUnit.assertEquals(3, op.getW());
       }
 
@@ -86,7 +86,7 @@ public class PaintOpTest
     public void testGetW2()
       {
         System.out.println("getW2");
-        final PaintOp op = new PaintOp(g, 1, 2, null, null);
+        final var op = new PaintOp(g, 1, 2, null, null);
         AssertJUnit.assertEquals(0, op.getW());
       }
 
@@ -94,7 +94,7 @@ public class PaintOpTest
     public void testGetH1()
       {
         System.out.println("getH");
-        final PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
+        final var op = new PaintOp(g, 1, 2, 3, 4, null, null);
         AssertJUnit.assertEquals(4, op.getH());
       }
 
@@ -102,7 +102,7 @@ public class PaintOpTest
     public void testGetH2()
       {
         System.out.println("getH");
-        final PaintOp op = new PaintOp(g, 1, 2, null, null);
+        final var op = new PaintOp(g, 1, 2, null, null);
         AssertJUnit.assertEquals(0, op.getH());
       }
 
@@ -110,7 +110,7 @@ public class PaintOpTest
     public void testGetGraphics2D1()
       {
         System.out.println("getGraphics2D1");
-        final PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
+        final var op = new PaintOp(g, 1, 2, 3, 4, null, null);
         AssertJUnit.assertEquals(g, op.getGraphics2D());
       }
 
@@ -118,7 +118,7 @@ public class PaintOpTest
     public void testGetGraphics2D2()
       {
         System.out.println("getGraphics2D2");
-        final PaintOp op = new PaintOp(g, 1, 2, null, null);
+        final var op = new PaintOp(g, 1, 2, null, null);
         AssertJUnit.assertEquals(g, op.getGraphics2D());
       }
 
@@ -134,7 +134,7 @@ public class PaintOpTest
     public void testToString1()
       {
         System.out.println("toString1");
-        final PaintOp op = new PaintOp(g, 1, 2, 3, 4, null, null);
+        final var op = new PaintOp(g, 1, 2, 3, 4, null, null);
         op.toString();
       }
 
@@ -142,7 +142,7 @@ public class PaintOpTest
     public void testToString2()
       {
         System.out.println("toString2");
-        final PaintOp op = new PaintOp(g, 1, 2, null, null);
+        final var op = new PaintOp(g, 1, 2, null, null);
         op.toString();
       }
   }

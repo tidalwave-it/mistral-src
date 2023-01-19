@@ -45,7 +45,7 @@ public class ImplementationFactoryRegistry
     @Nonnull
     public static ImplementationFactoryRegistry getDefault()
       {
-        ServiceLoader<ImplementationFactoryRegistry> loader = ServiceLoader.load(ImplementationFactoryRegistry.class);
+        var loader = ServiceLoader.load(ImplementationFactoryRegistry.class);
         return StreamSupport.stream(loader.spliterator(), false)
                             .findFirst()
                             .orElseThrow(() -> new RuntimeException("Can't found implementation of " + ImplementationFactory.class));
@@ -58,7 +58,7 @@ public class ImplementationFactoryRegistry
     @Nonnull
     public ImageModel createImageModel (@Nonnull final Object image)
       {
-        for (final ImplementationFactory factory : getFactories())
+        for (final var factory : getFactories())
           {
             if (factory.canConvertFrom(image.getClass()))
               {
@@ -89,7 +89,7 @@ public class ImplementationFactoryRegistry
       {
         log.trace("findImplementation({}, {}, canConvert: {})", operation, imageModel, canConvert);
 
-        final Object image = (imageModel != null) ? imageModel.getImage() : null;
+        final var image = (imageModel != null) ? imageModel.getImage() : null;
         final Collection<? extends ImplementationFactory> factories = getFactories();
 
         for (final ImplementationFactory factory : factories)
@@ -140,7 +140,7 @@ public class ImplementationFactoryRegistry
     @Nonnull
     private static Collection<ImplementationFactory> getFactories()
       {
-        ServiceLoader<ImplementationFactory> loader = ServiceLoader.load(ImplementationFactory.class);
+        var loader = ServiceLoader.load(ImplementationFactory.class);
         return StreamSupport.stream(loader.spliterator(), false).collect(Collectors.toList());
       }
   }

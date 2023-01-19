@@ -40,7 +40,7 @@ public class CropOpTest
     public void testGetX()
       {
         System.out.println("getX");
-        final CropOp op = new CropOp(1, 2, 3, 4);
+        final var op = new CropOp(1, 2, 3, 4);
         AssertJUnit.assertEquals(1, op.getX());
       }
 
@@ -48,7 +48,7 @@ public class CropOpTest
     public void testGetY()
       {
         System.out.println("getY");
-        final CropOp op = new CropOp(1, 2, 3, 4);
+        final var op = new CropOp(1, 2, 3, 4);
         AssertJUnit.assertEquals(2, op.getY());
       }
 
@@ -56,7 +56,7 @@ public class CropOpTest
     public void testGetW()
       {
         System.out.println("getW");
-        final CropOp op = new CropOp(1, 2, 3, 4);
+        final var op = new CropOp(1, 2, 3, 4);
         AssertJUnit.assertEquals(3, op.getW());
       }
 
@@ -64,7 +64,7 @@ public class CropOpTest
     public void testGetH()
       {
         System.out.println("getH");
-        final CropOp op = new CropOp(1, 2, 3, 4);
+        final var op = new CropOp(1, 2, 3, 4);
         AssertJUnit.assertEquals(4, op.getH());
       }
 
@@ -72,7 +72,7 @@ public class CropOpTest
     public void testToString()
       {
         System.out.println("toString");
-        final CropOp op = new CropOp(1, 2, 3, 4);
+        final var op = new CropOp(1, 2, 3, 4);
         op.toString();
       }
   }

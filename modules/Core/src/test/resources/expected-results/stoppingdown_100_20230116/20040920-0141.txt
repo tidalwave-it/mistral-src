@@ -1,40 +1,49 @@
-EXIF [33434] Exposure Time: 1/800
-EXIF [33437] F Number: 11/1
-EXIF [34850] Exposure Program: 1
-EXIF [34855] ISO Speed Ratings: 500
-EXIF [36864] EXIF Version: [48, 50, 51, 48]
-EXIF [36867] Date/Time Original: 2004:09:20 17:20:59
-EXIF [36868] Date/Time Digitized: 2004:09:20 17:20:59
-EXIF [37377] Shutter SpeedValue: 9643856/1000000
-EXIF [37378] Aperture Value: 6918863/1000000
-EXIF [37380] Exposure Bias Value: 0/6
-EXIF [37381] Max Aperture Value: 6/1
-EXIF [37383] Metering Mode: 5
-EXIF [37384] Light Source: 9
-EXIF [37385] Flash: 0
-EXIF [37386] Focal Length: 600/1
-EXIF [37510] User Comment: [65, 83, 67, 73, 73, 0, 0, 0, 40, 67, 41, 32, 98, 121, 32, 70, 97, 98, 114, 105, 122, 105, 111, 32, 71, 73, 85, 68, 73, 67, 73]
-EXIF [37521] Subsec Time Original: 80
-EXIF [37522] Subsec Time Digitized: 80
-EXIF [40961] Color Space: 1
-EXIF [41495] Sensing Method: 2
-EXIF [41728] File Source: [3]
-EXIF [41729] Scene Type: [1]
-EXIF [42033] BodySerialNumber: 100062dc
-EXIF [42034] LensSpecification: [300/1, 300/1, 4/1, 4/1]
-EXIF [42036] LensModel: 300.0 mm f/4.0
-EXIF dateTimeOriginalAsDate: 2004-09-20T17:20:59.800Z
-EXIF dateTimeDigitizedAsDate: 2004-09-20T17:20:59.800Z
-IPTC [346] null: UTF-8
-IPTC [512] null: 4
-IPTC [537] null: [Animalia, Aves, Chordata, Eukaryota, Passeriformes, Storno, Sturnidae, Sturnus, Sturnus vulgaris, Taxonomy]
-IPTC [567] null: 20040920
-IPTC [572] null: 172059+0200
-IPTC [574] null: 20040920
-IPTC [575] null: 172059+0200
-IPTC [592] null: Fabrizio Giudici
-IPTC [597] null: Photographer
-IPTC [622] null: Fabrizio Giudici
-IPTC [627] null: Fabrizio Giudici
-IPTC [628] null: © Copyright by Fabrizio Giudici. All rights reserved.
-IPTC [634] null: Fabrizio Giudici
+TIFF[0][271, Make]: NIKON CORPORATION
+TIFF[0][272, Model]: NIKON D70
+TIFF[0][282, X Resolution]: 72/1 - 72.0
+TIFF[0][283, Y Resolution]: 72/1 - 72.0
+TIFF[0][296, Resolution Unit]: 2
+TIFF[0][305, Software]: Adobe Photoshop Lightroom 6.6 (Macintosh)
+TIFF[0][306, Date/Time]: 2017:03:09 21:41:52
+TIFF[0][315, Artist]: Fabrizio Giudici
+TIFF[0][33432, Copyright]: © Copyright by Fabrizio Giudici. All rights reserved.
+EXIF[0][33434, Exposure Time]: 1/800 - 0.00125
+EXIF[0][33437, F Number]: 11/1 - 11.0
+EXIF[0][34850, Exposure Program]: 1
+EXIF[0][34855, ISO Speed Ratings]: 500
+EXIF[0][36864, EXIF Version]: [48, 50, 51, 48]
+EXIF[0][36867, Date/Time Original]: 2004:09:20 17:20:59
+EXIF[0][36868, Date/Time Digitized]: 2004:09:20 17:20:59
+EXIF[0][37377, Shutter SpeedValue]: 9643856/1000000 - 9.643856
+EXIF[0][37378, Aperture Value]: 6918863/1000000 - 6.918863
+EXIF[0][37380, Exposure Bias Value]: 0/6 - 0.0
+EXIF[0][37381, Max Aperture Value]: 6/1 - 6.0
+EXIF[0][37383, Metering Mode]: 5
+EXIF[0][37384, Light Source]: 9
+EXIF[0][37385, Flash]: 0
+EXIF[0][37386, Focal Length]: 600/1 - 600.0
+EXIF[0][37510, User Comment]: [65, 83, 67, 73, 73, 0, 0, 0, 40, 67, 41, 32, 98, 121, 32, 70, 97, 98, 114, 105, 122, 105, 111, 32, 71, 73, 85, 68, 73, 67, 73]
+EXIF[0][37521, Subsec Time Original]: 80
+EXIF[0][37522, Subsec Time Digitized]: 80
+EXIF[0][40961, Color Space]: 1
+EXIF[0][41495, Sensing Method]: 2
+EXIF[0][41728, File Source]: [3]
+EXIF[0][41729, Scene Type]: [1]
+EXIF[0][42033, BodySerialNumber]: 100062dc
+EXIF[0][42034, LensSpecification]: [300/1, 300/1, 4/1, 4/1] - [300.0, 300.0, 4.0, 4.0]
+EXIF[0][42036, LensModel]: 300.0 mm f/4.0
+EXIF[0] dateTimeOriginalAsDate: 2004-09-20T17:20:59.800Z
+EXIF[0] dateTimeDigitizedAsDate: 2004-09-20T17:20:59.800Z
+IPTC[0][346]: UTF-8
+IPTC[0][512]: 4
+IPTC[0][537]: [Animalia, Aves, Chordata, Eukaryota, Passeriformes, Storno, Sturnidae, Sturnus, Sturnus vulgaris, Taxonomy]
+IPTC[0][567]: 20040920
+IPTC[0][572]: 172059+0200
+IPTC[0][574]: 20040920
+IPTC[0][575]: 172059+0200
+IPTC[0][592]: Fabrizio Giudici
+IPTC[0][597]: Photographer
+IPTC[0][622]: Fabrizio Giudici
+IPTC[0][627]: Fabrizio Giudici
+IPTC[0][628]: © Copyright by Fabrizio Giudici. All rights reserved.
+IPTC[0][634]: Fabrizio Giudici

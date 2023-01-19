@@ -50,14 +50,14 @@ public class ChangeBufferTypeJ2DOpTest extends BaseTestSupport
       {
         ImplementationFactoryJ2D.getDefault().registerImplementation(ChangeBufferTypeOp.class, ChangeBufferTypeJ2DOp.class);
 
-        final EditableImage image = EditableImage.create(new ReadOp(file_timezones32_png));
+        final var image = EditableImage.create(new ReadOp(file_timezones32_png));
         AssertJUnit.assertEquals(4, image.getBandCount());
-        image.execute(new ScaleOp(0.5, Quality.BEST));
+        image.executeInPlace(new ScaleOp(0.5, Quality.BEST));
         AssertJUnit.assertEquals(4, image.getBandCount());
-        image.execute(new ChangeBufferTypeOp(BufferedImage.TYPE_3BYTE_BGR));
+        image.executeInPlace(new ChangeBufferTypeOp(BufferedImage.TYPE_3BYTE_BGR));
         AssertJUnit.assertEquals(3, image.getBandCount());
-        final File file = new File(tmp + "/result.jpg");
-        image.execute(new WriteOp("JPEG", file));
+        final var file = new File(tmp + "/result.jpg");
+        image.executeInPlace(new WriteOp("JPEG", file));
         assertChecksum("ec0149544e522dbbb441b4f83a358425", file);
       }
   }

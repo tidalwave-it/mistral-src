@@ -82,10 +82,10 @@ import lombok.extern.slf4j.Slf4j;
       {
         synchronized (processor.lock)
           {
-            final ImagingTaskProcessorEvent event =
+            final var event =
                     new ImagingTaskProcessorEvent(processor, Thread.currentThread().getName(), task);
 
-            for (final ImagingTaskProcessorListener listener : new ArrayList<>(listeners))
+            for (final var listener : new ArrayList<>(listeners))
               {
                 try
                   {
@@ -110,9 +110,9 @@ import lombok.extern.slf4j.Slf4j;
       {
         synchronized (processor.lock)
           {
-            final ImagingTaskProcessorEvent event = new ImagingTaskProcessorEvent(processor, workerId, task);
+            final var event = new ImagingTaskProcessorEvent(processor, workerId, task);
 
-            for (final ImagingTaskProcessorListener listener : new ArrayList<>(listeners))
+            for (final var listener : new ArrayList<>(listeners))
               {
                 try
                   {
@@ -137,10 +137,10 @@ import lombok.extern.slf4j.Slf4j;
       {
         synchronized (processor.lock)
           {
-            final ImagingTaskProcessorEvent event =
+            final var event =
                     new ImagingTaskProcessorEvent(processor, Thread.currentThread().getName(), task);
 
-            for (final ImagingTaskProcessorListener listener : new ArrayList<>(listeners))
+            for (final var listener : new ArrayList<>(listeners))
               {
                 try
                   {
@@ -165,10 +165,10 @@ import lombok.extern.slf4j.Slf4j;
       {
         synchronized (processor.lock)
           {
-            final ImagingTaskProcessorEvent event =
+            final var event =
                     new ImagingTaskProcessorEvent(processor, Thread.currentThread().getName(), task);
 
-            for (final ImagingTaskProcessorListener listener : new ArrayList<>(listeners))
+            for (final var listener : new ArrayList<>(listeners))
               {
                 try
                   {

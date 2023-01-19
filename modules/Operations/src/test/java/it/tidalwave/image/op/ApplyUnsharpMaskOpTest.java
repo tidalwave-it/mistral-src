@@ -40,7 +40,7 @@ public class ApplyUnsharpMaskOpTest
     public void testGetIntensity()
       {
         System.out.println("getIntensity");
-        final ApplyUnsharpMaskOp op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
+        final var op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
         AssertJUnit.assertEquals(12.34, op.getIntensity(), 0.0);
       }
 
@@ -48,7 +48,7 @@ public class ApplyUnsharpMaskOpTest
     public void testGetRadius()
       {
         System.out.println("getRadius");
-        final ApplyUnsharpMaskOp op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
+        final var op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
         AssertJUnit.assertEquals(56.78, op.getRadius(), 0.0);
       }
 
@@ -56,7 +56,7 @@ public class ApplyUnsharpMaskOpTest
     public void testGetThreshold()
       {
         System.out.println("getThreshold");
-        final ApplyUnsharpMaskOp op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
+        final var op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
         AssertJUnit.assertEquals(90.12, op.getThreshold(), 0.0);
       }
 
@@ -64,7 +64,7 @@ public class ApplyUnsharpMaskOpTest
     public void testToString()
       {
         System.out.println("toString");
-        final ApplyUnsharpMaskOp op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
+        final var op = new ApplyUnsharpMaskOp(12.34, 56.78, 90.12);
         op.toString();
       }
   }

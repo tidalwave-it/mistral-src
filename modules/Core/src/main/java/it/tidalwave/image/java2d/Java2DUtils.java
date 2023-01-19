@@ -90,14 +90,14 @@ public class Java2DUtils
      ******************************************************************************************************************/
     public static Properties getProperties (final BufferedImage image)
       {
-        final Properties properties = new Properties();
-        final String[] propertyNames = image.getPropertyNames();
+        final var properties = new Properties();
+        final var propertyNames = image.getPropertyNames();
 
         if (propertyNames != null)
           {
-            for (final String propertyName : propertyNames)
+            for (final var propertyName : propertyNames)
               {
-                final Object propertyValue = image.getProperty(propertyName);
+                final var propertyValue = image.getProperty(propertyName);
                 properties.setProperty(propertyName, propertyValue.toString());
               }
           }
@@ -114,9 +114,9 @@ public class Java2DUtils
      ******************************************************************************************************************/
     public static BufferedImage createOptimizedImage (final int width, final int height)
       {
-        final GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        final GraphicsDevice gs = ge.getDefaultScreenDevice();
-        final GraphicsConfiguration gc = gs.getDefaultConfiguration();
+        final var ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        final var gs = ge.getDefaultScreenDevice();
+        final var gc = gs.getDefaultConfiguration();
 
         return gc.createCompatibleImage(width, height);
       }
@@ -127,9 +127,9 @@ public class Java2DUtils
      ******************************************************************************************************************/
     public static GraphicsConfiguration getGraphicsConfiguration()
       {
-        final GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        final GraphicsDevice[] gs = ge.getScreenDevices();
-        final GraphicsDevice gd = gs[0]; // FIXME
+        final var ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        final var gs = ge.getScreenDevices();
+        final var gd = gs[0]; // FIXME
 
         return gd.getDefaultConfiguration();
       }
@@ -142,9 +142,9 @@ public class Java2DUtils
                                                     final int newWidth,
                                                     final int newHeight)
       {
-        final SampleModel sampleModel = bufferedImage.getSampleModel().createCompatibleSampleModel(newWidth, newHeight);
-        final WritableRaster newRaster = Raster.createWritableRaster(sampleModel, null);
-        final ColorModel colorModel = bufferedImage.getColorModel();
+        final var sampleModel = bufferedImage.getSampleModel().createCompatibleSampleModel(newWidth, newHeight);
+        final var newRaster = Raster.createWritableRaster(sampleModel, null);
+        final var colorModel = bufferedImage.getColorModel();
 
         return new BufferedImage(colorModel, newRaster, false, Java2DUtils.getProperties(bufferedImage));
       }
@@ -155,7 +155,7 @@ public class Java2DUtils
      ******************************************************************************************************************/
     public static String getICCProfileName (final RenderedImage image)
       {
-        final ICC_Profile iccProfile = ImageUtils.getICCProfile(image);
+        final var iccProfile = ImageUtils.getICCProfile(image);
 
         if (iccProfile != null)
           {
@@ -181,12 +181,12 @@ public class Java2DUtils
         log.debug("convertToSinglePixelPackedSampleModel(image: " + image + ")");
         Java2DUtils.logImage(log, ">>>> source bufferedImage", image);
 
-        long time = System.currentTimeMillis();
+        var time = System.currentTimeMillis();
 
-        final WritableRaster sourceRaster = image.getRaster();
-        ColorModel colorModel = image.getColorModel();
-        ICC_ColorSpace colorSpace = (ICC_ColorSpace)colorModel.getColorSpace();
-        final SampleModel ssmd = sourceRaster.getSampleModel();
+        final var sourceRaster = image.getRaster();
+        var colorModel = image.getColorModel();
+        var colorSpace = (ICC_ColorSpace)colorModel.getColorSpace();
+        final var ssmd = sourceRaster.getSampleModel();
 
         if (colorSpace.getType() == ColorSpace.TYPE_GRAY)
           {
@@ -200,25 +200,25 @@ public class Java2DUtils
 
         else
           {
-            final PixelInterleavedSampleModel sourceSampleModel = (PixelInterleavedSampleModel)ssmd;
-            final int[] bitMasks = new int[]{0x00ff0000, 0x0000ff00, 0x000000ff};
+            final var sourceSampleModel = (PixelInterleavedSampleModel)ssmd;
+            final var bitMasks = new int[]{0x00ff0000, 0x0000ff00, 0x000000ff};
 
-            final SinglePixelPackedSampleModel sampleModel =
+            final var sampleModel =
                     new SinglePixelPackedSampleModel(DataBuffer.TYPE_INT, image.getWidth(),
                                                      image.getHeight(), bitMasks);
 
-            final WritableRaster destRaster = Raster.createWritableRaster(sampleModel, null);
-            final DataBufferInt destDataBuffer = (DataBufferInt)destRaster.getDataBuffer();
-            final int[] destBuffer = destDataBuffer.getData();
-            final int[] bandOffsets = sourceSampleModel.getBandOffsets();
+            final var destRaster = Raster.createWritableRaster(sampleModel, null);
+            final var destDataBuffer = (DataBufferInt)destRaster.getDataBuffer();
+            final var destBuffer = destDataBuffer.getData();
+            final var bandOffsets = sourceSampleModel.getBandOffsets();
 
-            for (int i = 0; i < bandOffsets.length; i++)
+            for (var i = 0; i < bandOffsets.length; i++)
               {
                 bandOffsets[i] += ((-sourceRaster.getSampleModelTranslateX() * sourceSampleModel.getPixelStride()) -
                                    (sourceRaster.getSampleModelTranslateY() * sourceSampleModel.getScanlineStride()));
               }
 
-            final DataBuffer sourceDataBuffer = sourceRaster.getDataBuffer();
+            final var sourceDataBuffer = sourceRaster.getDataBuffer();
 
             if (sourceDataBuffer instanceof DataBufferUShort)
               {
@@ -243,7 +243,7 @@ public class Java2DUtils
                 throw new IllegalArgumentException("Cannot deal with " + sourceDataBuffer.getClass());
               }
 
-            final String sourceProfileName = ImageUtils.getICCProfileName(colorSpace.getProfile());
+            final var sourceProfileName = ImageUtils.getICCProfileName(colorSpace.getProfile());
 
             if (sourceProfileName.equals("Nikon sRGB 4.0.0.3001"))
               {
@@ -288,11 +288,11 @@ public class Java2DUtils
       {
         log.debug("scaleWithAffineTransform(" + xScale + ", " + yScale + ", " + quality);
 
-        final AffineTransform transform = AffineTransform.getScaleInstance(xScale, yScale);
-        final int interpolation = findAffineTransformInterpolation(quality);
+        final var transform = AffineTransform.getScaleInstance(xScale, yScale);
+        final var interpolation = findAffineTransformInterpolation(quality);
         log.debug(">>>> AffineTransformOp(" + transform + ", " + interpolation + ")");
 
-        final AffineTransformOp op = new AffineTransformOp(transform, interpolation);
+        final var op = new AffineTransformOp(transform, interpolation);
 
         return op.filter(bufferedImage, null);
       }
@@ -315,12 +315,12 @@ public class Java2DUtils
       {
         log.debug("scaleWithDrawImage(" + xScale + ", " + yScale + ", " + quality);
 
-        final int newWidth = (int)Math.round(bufferedImage.getWidth() * xScale);
-        final int newHeight = (int)Math.round(bufferedImage.getHeight() * yScale);
-        final BufferedImage result = createSimilarImage(bufferedImage, newWidth, newHeight);
+        final var newWidth = (int)Math.round(bufferedImage.getWidth() * xScale);
+        final var newHeight = (int)Math.round(bufferedImage.getHeight() * yScale);
+        final var result = createSimilarImage(bufferedImage, newWidth, newHeight);
 
-        final Graphics2D g2d = (Graphics2D)result.getGraphics();
-        final Object interpolation = findRenderingHintsInterpolation(quality);
+        final var g2d = (Graphics2D)result.getGraphics();
+        final var interpolation = findRenderingHintsInterpolation(quality);
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, interpolation);
 
         try
@@ -343,16 +343,16 @@ public class Java2DUtils
                                                      final double degrees,
                                                      final Quality quality)
       {
-        final double radians = Math.toRadians(degrees);
-        final double cos = Math.cos(radians);
-        final double sin = Math.sin(radians);
-        final int width = bufferedImage.getWidth();
-        final int height = bufferedImage.getHeight();
-        final int newWidth = (int)Math.round(Math.abs(width * cos) + Math.abs(height * sin));
-        final int newHeight = (int)Math.round(Math.abs(width * sin) + Math.abs(height * cos));
-        final BufferedImage result = createSimilarImage(bufferedImage, newWidth, newHeight);
-        final Graphics2D g2d = (Graphics2D)result.getGraphics();
-        final Object interpolation = findRenderingHintsInterpolation(quality);
+        final var radians = Math.toRadians(degrees);
+        final var cos = Math.cos(radians);
+        final var sin = Math.sin(radians);
+        final var width = bufferedImage.getWidth();
+        final var height = bufferedImage.getHeight();
+        final var newWidth = (int)Math.round(Math.abs(width * cos) + Math.abs(height * sin));
+        final var newHeight = (int)Math.round(Math.abs(width * sin) + Math.abs(height * cos));
+        final var result = createSimilarImage(bufferedImage, newWidth, newHeight);
+        final var g2d = (Graphics2D)result.getGraphics();
+        final var interpolation = findRenderingHintsInterpolation(quality);
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, interpolation);
 
         try
@@ -376,9 +376,9 @@ public class Java2DUtils
      ******************************************************************************************************************/
     protected static String toString (final int[] array, final int radix)
       {
-        final StringBuilder buffer = new StringBuilder();
+        final var buffer = new StringBuilder();
 
-        for (int i = 0; i < array.length; i++)
+        for (var i = 0; i < array.length; i++)
           {
             buffer.append(Integer.toString(array[i], radix));
 
@@ -411,7 +411,7 @@ public class Java2DUtils
             else
               {
 //            image.getData(); THIS IS SLOW SLOW SLOW!!
-                final ColorModel colorModel = image.getColorModel();
+                final var colorModel = image.getColorModel();
                 Java2DUtils.log.debug(prefix + ".size:           " + image.getWidth() + ", " + image.getHeight());
                 Java2DUtils.log.debug(prefix + ".tiles:          " + image.getNumXTiles() + " " + image.getNumYTiles());
                 Java2DUtils.log.debug(prefix + ".class:          " + image.getClass().getName());
@@ -474,7 +474,7 @@ public class Java2DUtils
      ******************************************************************************************************************/
     private static String toString (final ICC_ColorSpace colorSpace)
       {
-        final StringBuilder buffer = new StringBuilder();
+        final var buffer = new StringBuilder();
         buffer.append(colorSpace.getClass().getName());
         buffer.append("[type: ");
         buffer.append(colorSpace.getType());
@@ -491,7 +491,7 @@ public class Java2DUtils
      ******************************************************************************************************************/
     private static String toString (final SinglePixelPackedSampleModel sampleModel)
       {
-        final StringBuilder buffer = new StringBuilder();
+        final var buffer = new StringBuilder();
         buffer.append(sampleModel.getClass().getName());
         buffer.append("[width: ");
         buffer.append(sampleModel.getWidth());
@@ -522,7 +522,7 @@ public class Java2DUtils
      ******************************************************************************************************************/
     private static String toString (final PixelInterleavedSampleModel sampleModel)
       {
-        final StringBuilder buffer = new StringBuilder();
+        final var buffer = new StringBuilder();
         buffer.append(sampleModel.getClass().getName());
         buffer.append("[width: ");
         buffer.append(sampleModel.getWidth());
@@ -562,19 +562,19 @@ public class Java2DUtils
                                                  final int[] bandOffsets,
                                                  final int[] destBuffer)
       {
-        int base = 0;
-        int i = 0;
-        final short[] sourceBuffer = sourceDataBuffer.getData();
+        var base = 0;
+        var i = 0;
+        final var sourceBuffer = sourceDataBuffer.getData();
 
-        for (int y = 0; y < image.getHeight(); y++)
+        for (var y = 0; y < image.getHeight(); y++)
           {
-            int j = base;
+            var j = base;
 
-            for (int x = 0; x < image.getWidth(); x++)
+            for (var x = 0; x < image.getWidth(); x++)
               {
-                final int r = (sourceBuffer[j + bandOffsets[0]] & 0xffff) >> 8;
-                final int g = (sourceBuffer[j + bandOffsets[1]] & 0xffff) >> 8;
-                final int b = (sourceBuffer[j + bandOffsets[2]] & 0xffff) >> 8;
+                final var r = (sourceBuffer[j + bandOffsets[0]] & 0xffff) >> 8;
+                final var g = (sourceBuffer[j + bandOffsets[1]] & 0xffff) >> 8;
+                final var b = (sourceBuffer[j + bandOffsets[2]] & 0xffff) >> 8;
 
                 destBuffer[i++] = (r << 16) | (g << 8) | b;
                 j += 3;
@@ -597,20 +597,20 @@ public class Java2DUtils
                                                final int[] bandOffsets,
                                                final int[] destBuffer)
       {
-        int base = 0;
-        int i = 0;
-        final byte[] sourceBuffer = sourceDataBuffer.getData();
-        final int pixelStride = sourceSampleModel.getPixelStride();
+        var base = 0;
+        var i = 0;
+        final var sourceBuffer = sourceDataBuffer.getData();
+        final var pixelStride = sourceSampleModel.getPixelStride();
 
-        for (int y = 0; y < image.getHeight(); y++)
+        for (var y = 0; y < image.getHeight(); y++)
           {
-            int j = base;
+            var j = base;
 
-            for (int x = 0; x < image.getWidth(); x++)
+            for (var x = 0; x < image.getWidth(); x++)
               {
-                final int r = (sourceBuffer[j + bandOffsets[0]] & 0xff);
-                final int g = (sourceBuffer[j + bandOffsets[1]] & 0xff);
-                final int b = (sourceBuffer[j + bandOffsets[2]] & 0xff);
+                final var r = (sourceBuffer[j + bandOffsets[0]] & 0xff);
+                final var g = (sourceBuffer[j + bandOffsets[1]] & 0xff);
+                final var b = (sourceBuffer[j + bandOffsets[2]] & 0xff);
 
                 destBuffer[i++] = (r << 16) | (g << 8) | b;
                 j += pixelStride;
@@ -635,14 +635,14 @@ public class Java2DUtils
       {
         log.debug("createOptimizedImage(" + xScale + ", " + yScale + ", " + quality + ")");
 
-        final int iw = (int)Math.round(xScale * bufferedImage.getWidth());
-        final int ih = (int)Math.round(yScale * bufferedImage.getHeight());
-        final BufferedImage image2 = createOptimizedImage(iw, ih);
-        final Graphics2D g = (Graphics2D)image2.getGraphics();
+        final var iw = (int)Math.round(xScale * bufferedImage.getWidth());
+        final var ih = (int)Math.round(yScale * bufferedImage.getHeight());
+        final var image2 = createOptimizedImage(iw, ih);
+        final var g = (Graphics2D)image2.getGraphics();
 
         try
           {
-            final Object interpolation = findRenderingHintsInterpolation(quality);
+            final var interpolation = findRenderingHintsInterpolation(quality);
 
             // Workaround for bugs #4886071 and #4705399
             // See http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4886071
@@ -672,10 +672,10 @@ public class Java2DUtils
              */
             log.debug(">>>> applying AffineTransform.getScaleInstance() with RenderingHint: " + interpolation);
 
-            final Object renderingHintSave = g.getRenderingHint(RenderingHints.KEY_INTERPOLATION);
+            final var renderingHintSave = g.getRenderingHint(RenderingHints.KEY_INTERPOLATION);
             g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, interpolation);
 
-            final AffineTransform transform =
+            final var transform =
                     ((xScale == 1.0) && (yScale == 1.0)) ? null : AffineTransform.getScaleInstance(xScale, yScale);
             g.drawRenderedImage(bufferedImage, transform);
 
@@ -757,26 +757,26 @@ public class Java2DUtils
      ******************************************************************************************************************/
     private static Kernel getEvenAveragingKernel (final int n)
       {
-        final int r = n + 1;
-        final int totalCount = r * r;
-        final int coreCount = (r - 2) * (r - 2);
-        final int extCount = totalCount - coreCount;
-        final float a = 1.0f / ((coreCount * 2) + extCount); // core count double
-        final float coreValue = a * 2;
-        final float[] result = new float[totalCount];
+        final var r = n + 1;
+        final var totalCount = r * r;
+        final var coreCount = (r - 2) * (r - 2);
+        final var extCount = totalCount - coreCount;
+        final var a = 1.0f / ((coreCount * 2) + extCount); // core count double
+        final var coreValue = a * 2;
+        final var result = new float[totalCount];
 
-        int j = 0;
+        var j = 0;
 
-        for (int i = 0; i < r; i++)
+        for (var i = 0; i < r; i++)
           {
             result[j++] = a;
           }
 
-        for (int k = 0; k < (r - 2); k++)
+        for (var k = 0; k < (r - 2); k++)
           {
             result[j++] = a;
 
-            for (int h = 0; h < (r - 2); h++)
+            for (var h = 0; h < (r - 2); h++)
               {
                 result[j++] = coreValue;
               }
@@ -784,7 +784,7 @@ public class Java2DUtils
             result[j++] = a;
           }
 
-        for (int i = 0; i < r; i++)
+        for (var i = 0; i < r; i++)
           {
             result[j++] = a;
           }
@@ -801,9 +801,9 @@ public class Java2DUtils
      ******************************************************************************************************************/
     private static Kernel getOddAveragingKernel (final int n)
       {
-        final int totalCount = n * n;
-        final float v = 1.0f / (totalCount);
-        final float[] result = new float[totalCount];
+        final var totalCount = n * n;
+        final var v = 1.0f / (totalCount);
+        final var result = new float[totalCount];
         Arrays.fill(result, v);
 
         return new Kernel2(n, n, result);

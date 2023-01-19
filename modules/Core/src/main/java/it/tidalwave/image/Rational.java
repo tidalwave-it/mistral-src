@@ -37,8 +37,8 @@ import lombok.RequiredArgsConstructor;
  * @author Fabrizio Giudici
  *
  **********************************************************************************************************************/
-@Immutable @RequiredArgsConstructor @EqualsAndHashCode(callSuper = false)
-public class Rational extends Number
+@Immutable @RequiredArgsConstructor(staticName = "of") @EqualsAndHashCode(callSuper = false)
+public final class Rational extends Number
   {
     @Getter
     private final int numerator;
@@ -48,14 +48,27 @@ public class Rational extends Number
 
     /*******************************************************************************************************************
      *
+     * @param     i
+     *
+     ******************************************************************************************************************/
+    @Nonnull
+    public static Rational of (final int i)
+      {
+        return of(i, 1);
+      }
+
+    /*******************************************************************************************************************
+     *
      * @param d
      *
      ******************************************************************************************************************/
-    public Rational (final double d)
+    @Nonnull
+    public static Rational of (final double d)
       {
-        denominator = 100000;
-        numerator = (int)Math.round(d * denominator);
+        var denominator = 100000;
+        var numerator = (int)Math.round(d * denominator);
         // TODO: normalize
+        return of(numerator, denominator);
       }
 
     /*******************************************************************************************************************
@@ -64,7 +77,7 @@ public class Rational extends Number
      *
      ******************************************************************************************************************/
     @Override
-    public final double doubleValue()
+    public double doubleValue()
       {
         return (double)numerator / (double)denominator;
       }
@@ -75,7 +88,7 @@ public class Rational extends Number
      *
      ******************************************************************************************************************/
     @Override
-    public final float floatValue()
+    public float floatValue()
       {
         return (float)numerator / (float)denominator;
       }
@@ -86,7 +99,7 @@ public class Rational extends Number
      *
      ******************************************************************************************************************/
     @Override
-    public final byte byteValue()
+    public byte byteValue()
       {
         return (byte)doubleValue();
       }
@@ -97,7 +110,7 @@ public class Rational extends Number
      *
      ******************************************************************************************************************/
     @Override
-    public final int intValue()
+    public int intValue()
       {
         return (int)doubleValue();
       }
@@ -108,7 +121,7 @@ public class Rational extends Number
      *
      ******************************************************************************************************************/
     @Override
-    public final long longValue()
+    public long longValue()
       {
         return (long)doubleValue();
       }
@@ -119,7 +132,7 @@ public class Rational extends Number
      *
      ******************************************************************************************************************/
     @Override
-    public final short shortValue()
+    public short shortValue()
       {
         return (short)doubleValue();
       }
@@ -132,9 +145,9 @@ public class Rational extends Number
      *
      ******************************************************************************************************************/
     @Nonnull
-    public final Rational divide (final double det)
+    public Rational divide (final double det)
       {
-        return new Rational(numerator, (int)Math.round(denominator * det));
+        return Rational.of(numerator, (int)Math.round(denominator * det));
       }
 
     /*******************************************************************************************************************
@@ -143,9 +156,9 @@ public class Rational extends Number
      *
      ******************************************************************************************************************/
     @Nonnull
-    public final Rational getReciprocal()
+    public Rational getReciprocal()
       {
-        return new Rational(denominator, numerator);
+        return Rational.of(denominator, numerator);
       }
 
     /*******************************************************************************************************************
@@ -153,7 +166,7 @@ public class Rational extends Number
      *
      *
      ******************************************************************************************************************/
-    public final boolean isInteger()
+    public boolean isInteger()
       {
         return (denominator == 1) || ((denominator != 0) && ((numerator % denominator) == 0))
                || ((denominator == 0) && (numerator == 0));
@@ -164,9 +177,8 @@ public class Rational extends Number
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Override
-    @Nonnull
-    public final String toString()
+    @Override @Nonnull
+    public String toString()
       {
         return numerator + "/" + denominator;
       }

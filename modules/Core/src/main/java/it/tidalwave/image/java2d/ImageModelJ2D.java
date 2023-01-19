@@ -101,8 +101,7 @@ public class ImageModelJ2D extends ImageModel
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Nonnull
-    @Override
+    @Override @Nonnull
     public ImplementationFactory getFactory()
       {
         return ImplementationFactoryJ2D.getDefault();
@@ -124,8 +123,7 @@ public class ImageModelJ2D extends ImageModel
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Nonnegative
-    @Override
+    @Override @Nonnegative
     public int getWidth()
       {
         return getBufferedImage().getWidth();
@@ -136,8 +134,7 @@ public class ImageModelJ2D extends ImageModel
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Nonnegative
-    @Override
+    @Override @Nonnegative
     public int getHeight()
       {
         return getBufferedImage().getHeight();
@@ -148,8 +145,7 @@ public class ImageModelJ2D extends ImageModel
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Nonnull
-    @Override
+    @Override @Nonnull
     public EditableImage.DataType getDataType()
       {
         return EditableImage.DataType.valueOf(getBufferedImage().getRaster().getDataBuffer().getDataType());
@@ -160,8 +156,7 @@ public class ImageModelJ2D extends ImageModel
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Nonnegative
-    @Override
+    @Override @Nonnegative
     public int getBandCount()
       {
         return getBufferedImage().getRaster().getNumBands();
@@ -172,8 +167,7 @@ public class ImageModelJ2D extends ImageModel
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Nonnull
-    @Override
+    @Override @Nonnull
     public ColorModel getColorModel()
       {
         return getBufferedImage().getColorModel();
@@ -184,8 +178,7 @@ public class ImageModelJ2D extends ImageModel
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Override
-    @Nonnegative
+    @Override @Nonnegative
     public long getMemorySize()
       {
         return (getBufferedImage() == null) ? 0 : getBufferedImage().getRaster().getDataBuffer().getSize();
@@ -196,16 +189,15 @@ public class ImageModelJ2D extends ImageModel
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Nonnull
-    @Override
+    @Override @Nonnull
     public EditableImage createCopy (final boolean copyContents)
       {
         log.trace("createCopy({})", copyContents);
 
-        final long time = System.currentTimeMillis();
+        final var time = System.currentTimeMillis();
         log.warn(">>>> **** WARNING CREATECOPY DISABLED");
 
-        final BufferedImage result = getBufferedImage(); // createCopy2(copyContents);
+        final var result = getBufferedImage(); // createCopy2(copyContents);
         log.trace(">>>> createCopy() completed ok in {} msec", (System.currentTimeMillis() - time));
 
         return createImage(result);
@@ -229,9 +221,7 @@ public class ImageModelJ2D extends ImageModel
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @SuppressWarnings("unchecked")
-    @Nonnull
-    @Override
+    @Override @Nonnull @SuppressWarnings("unchecked")
     public <T> T getInnerProperty (@Nonnull final Class<T> propertyClass)
       {
         if (propertyClass.equals(BufferedImage.class))
@@ -257,8 +247,7 @@ public class ImageModelJ2D extends ImageModel
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Nonnull
-    @Override
+    @Override @Nonnull
     protected RenderedImage toRenderedImageForSerialization()
       {
         return getBufferedImage();
@@ -269,8 +258,7 @@ public class ImageModelJ2D extends ImageModel
      * {@inheritDoc}
      *
      ******************************************************************************************************************/
-    @Nonnull
-    @Override
+    @Override @Nonnull
     protected Object toObjectForDeserialization (@Nonnull final RenderedImage renderedImage)
       {
         return renderedImage;

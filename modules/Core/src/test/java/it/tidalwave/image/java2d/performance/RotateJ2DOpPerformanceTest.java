@@ -26,39 +26,37 @@
  */
 package it.tidalwave.image.java2d.performance;
 
-//~--- non-JDK imports --------------------------------------------------------
-
+import javax.annotation.Nonnull;
+import java.time.Duration;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
 import it.tidalwave.image.op.RotateOp;
 import lombok.extern.slf4j.Slf4j;
 import static org.junit.Assert.fail;
 
-/**
+/***********************************************************************************************************************
+ *
  * @author Fabrizio Giudici
- */
+ *
+ **********************************************************************************************************************/
 @Slf4j
 public class RotateJ2DOpPerformanceTest extends BasePerformanceTestSupport
   {
-    @Override
-    protected long runTest (final EditableImage image)
+    @Override @Nonnull
+    protected Duration runTest (final @Nonnull EditableImage image)
       {
         fail("disabled because it takes forever");
 
-        long accTime = 0;
+        var accTime = Duration.ZERO;
 
         for (double angle = 0; angle < 360; angle += 10)
           {
             log.info(">>>> angle: " + angle);
 
-            final EditableImage image2 = image.execute2(new RotateOp(angle, Quality.INTERMEDIATE));
-
-            accTime += image2.getLatestOperationTime();
+            final var image2 = image.execute(new RotateOp(angle, Quality.INTERMEDIATE));
+            accTime = accTime.plus(image2.getLatestOperationDuration());
           }
 
         return accTime;
       }
   }
-
-
-//~ Formatted by Jindent --- http://www.jindent.com

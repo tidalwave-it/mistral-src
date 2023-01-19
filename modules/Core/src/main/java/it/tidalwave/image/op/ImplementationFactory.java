@@ -80,14 +80,14 @@ public abstract class ImplementationFactory
     @Nonnull
     public OperationImplementation<Operation, Object> findImplementation (@Nonnull final Operation operation)
       {
-        final Class<OperationImplementation<Operation, Object>> implementationClass =
+        final var implementationClass =
                 (Class<OperationImplementation<Operation, Object>>)implementationMapping.get(operation.getClass());
 
         if (implementationClass != null)
           {
             try
               {
-                final OperationImplementation<Operation, Object> implementation = implementationClass.newInstance();
+                final var implementation = implementationClass.newInstance();
                 // FIXME: drop these setters and pass to the constructor, so the object is truly immutable
                 implementation.setFactory(this);
                 implementation.bind(operation);

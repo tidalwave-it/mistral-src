@@ -41,7 +41,7 @@ public class RotateQuadrantOpTest
     public void testGetDegrees1()
       {
         System.out.println("getDegrees1");
-        RotateQuadrantOp op = new RotateQuadrantOp(0);
+        var op = new RotateQuadrantOp(0);
         AssertJUnit.assertEquals(0, op.getDegrees());
         op = new RotateQuadrantOp(90);
         AssertJUnit.assertEquals(90, op.getDegrees());
@@ -56,13 +56,13 @@ public class RotateQuadrantOpTest
       {
         System.out.println("getDegreesBadValues");
 
-        for (int degrees = 0; degrees < 360; degrees++)
+        for (var degrees = 0; degrees < 360; degrees++)
           {
             if ((degrees % 90) != 0)
               {
                 try
                   {
-                    final RotateQuadrantOp op = new RotateQuadrantOp(degrees);
+                    final var op = new RotateQuadrantOp(degrees);
                   }
                 catch (IllegalArgumentException e)
                   {
@@ -77,7 +77,7 @@ public class RotateQuadrantOpTest
     public void testToString()
       {
         System.out.println("toString");
-        final RotateQuadrantOp op = new RotateQuadrantOp(90);
+        final var op = new RotateQuadrantOp(90);
         op.toString();
       }
   }

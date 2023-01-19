@@ -86,13 +86,13 @@ public class DragPanningController
         @Override
         public void mouseDragged (final MouseEvent event)
           {
-            final Point newMousePosition = event.getPoint();
+            final var newMousePosition = event.getPoint();
 
             if (previousMousePosition != null)
               {
-                final int deltaX = (int)(newMousePosition.getX() - previousMousePosition.getX());
-                final int deltaY = (int)(newMousePosition.getY() - previousMousePosition.getY());
-                final double scale = imageRenderer.getScale();
+                final var deltaX = (int)(newMousePosition.getX() - previousMousePosition.getX());
+                final var deltaY = (int)(newMousePosition.getY() - previousMousePosition.getY());
+                final var scale = imageRenderer.getScale();
                 imageRenderer.moveOrigin(-(int)Math.round(deltaX / scale), -(int)Math.round(deltaY / scale));
               }
 

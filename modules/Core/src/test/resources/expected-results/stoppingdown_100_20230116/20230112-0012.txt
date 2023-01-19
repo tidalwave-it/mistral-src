@@ -1,47 +1,55 @@
-EXIF [33434] Exposure Time: 1/1000
-EXIF [33437] F Number: 8/1
-EXIF [34850] Exposure Program: 3
-EXIF [34855] ISO Speed Ratings: 100
-EXIF [34864] null: 2
-EXIF [34866] RecommendedExposureIndex: 100
-EXIF [36864] EXIF Version: [48, 50, 51, 48]
-EXIF [36867] Date/Time Original: 2023:01:12 12:59:23
-EXIF [36868] Date/Time Digitized: 2023:01:12 12:59:23
-EXIF [37377] Shutter SpeedValue: 9965784/1000000
-EXIF [37378] Aperture Value: 6/1
-EXIF [37379] Brightness Value: 18664/2560
-EXIF [37380] Exposure Bias Value: -27/10
-EXIF [37381] Max Aperture Value: 760/256
-EXIF [37383] Metering Mode: 5
-EXIF [37384] Light Source: 0
-EXIF [37385] Flash: 48
-EXIF [37386] Focal Length: 350/10
-EXIF [40962] Pixel X Dimension: 100
-EXIF [40963] Pixel Y Dimension: 67
-EXIF [41728] File Source: [3]
-EXIF [41729] Scene Type: [1]
-EXIF [41985] Custom Rendered: 0
-EXIF [41986] Exposure Mode: 2
-EXIF [41987] White Balance: 0
-EXIF [41988] Digital Zoom Ratio: 16/16
-EXIF [41989] Focal Length 35mm Film: 52
-EXIF [41990] Scene Capture Type: 0
-EXIF [41992] Contrast: 0
-EXIF [41993] Saturation: 0
-EXIF [41994] Sharpness: 0
-EXIF [42034] LensSpecification: [350/10, 350/10, 35923/12839, 35923/12839]
-EXIF [42036] LensModel: E 35mm F2.8
-IPTC [346] null: UTF-8
-IPTC [512] null: 4
-IPTC [517] null: La via Julia Augusta esce dal bosco.
-IPTC [537] null: [white road, sky, trees, shadow, macro, edit process 2022-09-08, backgrounds, road:Via Julia Augusta, fence, gate, published, backlight, tagged]
-IPTC [567] null: 20230112
-IPTC [572] null: 125923+0100
-IPTC [574] null: 20230112
-IPTC [575] null: 125923+0100
-IPTC [602] null: Finale ligure
-IPTC [604] null: Antica Via Julia Augusta
-IPTC [607] null: Liguria
-IPTC [612] null: IT
-IPTC [613] null: Italia
-IPTC [632] null:                                
+TIFF[0][270, Image Description]:                                
+TIFF[0][271, Make]: SONY
+TIFF[0][272, Model]: ILCE-6000
+TIFF[0][282, X Resolution]: 72/1 - 72.0
+TIFF[0][283, Y Resolution]: 72/1 - 72.0
+TIFF[0][296, Resolution Unit]: 2
+TIFF[0][305, Software]: Capture One 15 Macintosh
+TIFF[0][306, Date/Time]: 2023:01:12 12:59:23
+EXIF[0][33434, Exposure Time]: 1/1000 - 0.001
+EXIF[0][33437, F Number]: 8/1 - 8.0
+EXIF[0][34850, Exposure Program]: 3
+EXIF[0][34855, ISO Speed Ratings]: 100
+EXIF[0][34864]: 2
+EXIF[0][34866, RecommendedExposureIndex]: 100
+EXIF[0][36864, EXIF Version]: [48, 50, 51, 48]
+EXIF[0][36867, Date/Time Original]: 2023:01:12 12:59:23
+EXIF[0][36868, Date/Time Digitized]: 2023:01:12 12:59:23
+EXIF[0][37377, Shutter SpeedValue]: 9965784/1000000 - 9.965784
+EXIF[0][37378, Aperture Value]: 6/1 - 6.0
+EXIF[0][37379, Brightness Value]: 18664/2560 - 7.290625
+EXIF[0][37380, Exposure Bias Value]: -27/10 - -2.7
+EXIF[0][37381, Max Aperture Value]: 760/256 - 2.96875
+EXIF[0][37383, Metering Mode]: 5
+EXIF[0][37384, Light Source]: 0
+EXIF[0][37385, Flash]: 48
+EXIF[0][37386, Focal Length]: 350/10 - 35.0
+EXIF[0][40962, Pixel X Dimension]: 100
+EXIF[0][40963, Pixel Y Dimension]: 67
+EXIF[0][41728, File Source]: [3]
+EXIF[0][41729, Scene Type]: [1]
+EXIF[0][41985, Custom Rendered]: 0
+EXIF[0][41986, Exposure Mode]: 2
+EXIF[0][41987, White Balance]: 0
+EXIF[0][41988, Digital Zoom Ratio]: 16/16 - 1.0
+EXIF[0][41989, Focal Length 35mm Film]: 52
+EXIF[0][41990, Scene Capture Type]: 0
+EXIF[0][41992, Contrast]: 0
+EXIF[0][41993, Saturation]: 0
+EXIF[0][41994, Sharpness]: 0
+EXIF[0][42034, LensSpecification]: [350/10, 350/10, 35923/12839, 35923/12839] - [35.0, 35.0, 2.7979593426279306, 2.7979593426279306]
+EXIF[0][42036, LensModel]: E 35mm F2.8
+IPTC[0][346]: UTF-8
+IPTC[0][512]: 4
+IPTC[0][517]: La via Julia Augusta esce dal bosco.
+IPTC[0][537]: [white road, sky, trees, shadow, macro, edit process 2022-09-08, backgrounds, road:Via Julia Augusta, fence, gate, published, backlight, tagged]
+IPTC[0][567]: 20230112
+IPTC[0][572]: 125923+0100
+IPTC[0][574]: 20230112
+IPTC[0][575]: 125923+0100
+IPTC[0][602]: Finale ligure
+IPTC[0][604]: Antica Via Julia Augusta
+IPTC[0][607]: Liguria
+IPTC[0][612]: IT
+IPTC[0][613]: Italia
+IPTC[0][632]:                                

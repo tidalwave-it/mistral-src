@@ -48,8 +48,8 @@ public class ConvolveJ2DOp extends OperationImplementation<ConvolveOp, BufferedI
                                      final EditableImage image,
                                      final BufferedImage bufferedImage)
       {
-        final Kernel kernel = operation.getKernel();
-        final java.awt.image.ConvolveOp convolveOp = new java.awt.image.ConvolveOp(kernel);
+        final var kernel = operation.getKernel();
+        final var convolveOp = new java.awt.image.ConvolveOp(kernel);
 
         return convolveOp.filter(bufferedImage, null);
       }

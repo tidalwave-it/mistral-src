@@ -62,7 +62,7 @@ class TestInfo implements Comparable<TestInfo>
       {
         System.err.println(body);
 
-        final String[] tmp = body.split("::");
+        final var tmp = body.split("::");
         revision = tmp[0];
         test = tmp[3];
         quality = tmp[4];
@@ -80,7 +80,7 @@ class TestInfo implements Comparable<TestInfo>
                 "<tr><td rowspan='2'>Revision</td><td rowspan='2'>Test</td><td rowspan='2'>Quality</td><td " +
                 "rowspan='2'>File</td>");
 
-        for (final TestResults testResults : results)
+        for (final var testResults : results)
           {
             pw.println("<td>" + testResults.host + "</td>");
           }
@@ -88,7 +88,7 @@ class TestInfo implements Comparable<TestInfo>
         pw.println("</tr>");
         pw.println("<tr>");
 
-        for (final TestResults testResults : results)
+        for (final var testResults : results)
           {
             pw.println("<td>" + testResults.os + "</td>");
           }
@@ -113,7 +113,7 @@ class TestInfo implements Comparable<TestInfo>
         pw.print("<td>" + quality + "</td>");
         pw.print("<td>" + file + "</td>");
 
-        for (final TestResults testResults : results)
+        for (final var testResults : results)
           {
             testResults.print(pw);
           }
@@ -124,7 +124,7 @@ class TestInfo implements Comparable<TestInfo>
     @Override
     public int compareTo (final TestInfo o)
       {
-        int r = test.compareTo(o.test);
+        var r = test.compareTo(o.test);
 
         if (r != 0)
           {
@@ -145,15 +145,15 @@ class TestInfo implements Comparable<TestInfo>
             return r;
           }
 
-        String tRevision = revision;
-        int i = tRevision.lastIndexOf('.');
+        var tRevision = revision;
+        var i = tRevision.lastIndexOf('.');
 
         if (i > 0)
           {
             tRevision = revision.substring(i + 1);
           }
 
-        String oRevision = o.revision;
+        var oRevision = o.revision;
         i = oRevision.lastIndexOf('.');
 
         if (i > 0)
@@ -192,7 +192,7 @@ class TestResults implements Comparable<TestResults>
 
     public TestResults (final String body, final String value)
       {
-        final String[] tmp = body.split("::");
+        final var tmp = body.split("::");
         host = tmp[1];
         os = tmp[2];
         this.value = value;
@@ -201,7 +201,7 @@ class TestResults implements Comparable<TestResults>
     @Override
     public int compareTo (final TestResults o)
       {
-        int r = host.compareTo(o.host);
+        var r = host.compareTo(o.host);
 
         if (r != 0)
           {
@@ -215,7 +215,7 @@ class TestResults implements Comparable<TestResults>
 
     public void print (final PrintWriter pw)
       {
-        String color = "black";
+        var color = "black";
 
         if (value.equals("FAILS") || (!value.equals("-") && (Integer.parseInt(value) > 50000)))
           {
@@ -245,11 +245,11 @@ public class TestReportFormatter
     public void run()
             throws IOException
       {
-        final BufferedReader br = new BufferedReader(new FileReader(reportFile));
+        final var br = new BufferedReader(new FileReader(reportFile));
 
         for (; ; )
           {
-            String s = br.readLine();
+            var s = br.readLine();
 
             if (s == null)
               {
@@ -263,13 +263,13 @@ public class TestReportFormatter
                 continue;
               }
 
-            final String[] tmp = s.split("=");
-            final String body = tmp[0].trim();
-            final String value = tmp[1].trim();
-            TestInfo testInfo = new TestInfo(body);
-            final TestResults testResults = new TestResults(body, value);
+            final var tmp = s.split("=");
+            final var body = tmp[0].trim();
+            final var value = tmp[1].trim();
+            var testInfo = new TestInfo(body);
+            final var testResults = new TestResults(body, value);
 
-            final int i = tests.indexOf(testInfo);
+            final var i = tests.indexOf(testInfo);
 
             if (i < 0)
               {
@@ -287,11 +287,11 @@ public class TestReportFormatter
         br.close();
         Collections.sort(tests);
 
-        final PrintWriter pw = new PrintWriter(new FileWriter(htmlFile));
+        final var pw = new PrintWriter(new FileWriter(htmlFile));
         pw.println("<table border='1' cellpadding='2' cellspacing='0'>");
         tests.get(0).printHeader(pw);
 
-        for (final TestInfo testInfo : tests)
+        for (final var testInfo : tests)
           {
             testInfo.print(pw);
           }

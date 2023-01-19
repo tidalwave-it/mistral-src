@@ -1,9 +1,7 @@
 language: java
 jdk:
-  - oraclejdk8
-script: mvn install -B -DskipTests -Pit.tidalwave-ci-v1
-sudo: false
-addons:
-  apt:
-    packages:
-      - oracle-java8-installer
+  - openjdk11
+script: mvn install -B -Pit.tidalwave-ci-v1
+cache:
+  directories:
+    - $HOME/.m2

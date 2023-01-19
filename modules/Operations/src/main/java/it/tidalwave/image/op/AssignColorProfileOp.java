@@ -45,8 +45,7 @@ public class AssignColorProfileOp extends Operation
     @Getter @Nonnull
     private final ICC_Profile iccProfile;
 
-    @Override
-    @Nonnull
+    @Override @Nonnull
     public String toString()
       {
         return String.format("AssignColorProfileOp(%s)", ImageUtils.getICCProfileName(iccProfile));

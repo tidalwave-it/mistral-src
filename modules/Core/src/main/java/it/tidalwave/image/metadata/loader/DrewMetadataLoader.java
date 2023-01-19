@@ -26,10 +26,12 @@
  */
 package it.tidalwave.image.metadata.loader;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Optional;
 import javax.imageio.metadata.IIOMetadata;
 import javax.imageio.metadata.IIOMetadataNode;
 import com.drew.lang.ByteArrayReader;
-import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.exif.ExifReader;
 import com.drew.metadata.exif.ExifSubIFDDirectory;
@@ -51,10 +53,10 @@ public class DrewMetadataLoader implements MetadataLoader
      *
      ******************************************************************************************************************/
     @Override
-    public Object findEXIF (final IIOMetadata metadata)
+    public Optional<DirectoryLoader> getExifLoader (final IIOMetadata metadata)
       {
-        final Node node = metadata.getAsTree(metadata.getNativeMetadataFormatName());
-        return getEXIFDirectory(node);
+        final var node = metadata.getAsTree(metadata.getNativeMetadataFormatName());
+        return Optional.of(new DirectoryDrewLoader(new ArrayList<>(getEXIFDirectories(node)), 0));
       }
 
     /*******************************************************************************************************************
@@ -62,74 +64,34 @@ public class DrewMetadataLoader implements MetadataLoader
      *
      ******************************************************************************************************************/
     @Override
-    public Object findIPTC (final IIOMetadata metadata)
+    public Optional<DirectoryLoader> getIptcLoader (final IIOMetadata metadata)
       {
-        final Node node = metadata.getAsTree(metadata.getNativeMetadataFormatName());
-        return getIPTCDirectory(node);
+        final var node = metadata.getAsTree(metadata.getNativeMetadataFormatName());
+        return Optional.of(new DirectoryDrewLoader(new ArrayList<>(getIPTCDirectories(node)), 0));
       }
 
     /*******************************************************************************************************************
      *
      *
      ******************************************************************************************************************/
-    @Override
-    public Object findXMP (final IIOMetadata metadata)
-      {
-        return null;
-      }
-
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    @Override
-    public Object findTIFF (final IIOMetadata metadata)
-      {
-        return null;
-      }
-
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    @Override
-    public Object findMakerNote (final IIOMetadata metadata)
-      {
-        return null;
-      }
-
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    @Override
-    public Object findDNG (final IIOMetadata metadata)
-      {
-        return null;
-      }
-
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    private static Directory getEXIFDirectory (final Node node)
+    private static Collection<ExifSubIFDDirectory> getEXIFDirectories (final Node node)
       {
         if (node.getNodeName().equals("unknown"))
           {
             if (Integer.parseInt(node.getAttributes().getNamedItem("MarkerTag").getNodeValue()) == EXIF)
               {
-                final byte[] data = (byte[])((IIOMetadataNode)node).getUserObject();
-                final Metadata metadata = new Metadata();
+                final var data = (byte[])((IIOMetadataNode)node).getUserObject();
+                final var metadata = new Metadata();
                 new ExifReader().extract(new ByteArrayReader(data), metadata);
-                return metadata.getFirstDirectoryOfType(ExifSubIFDDirectory.class);
+                return metadata.getDirectoriesOfType(ExifSubIFDDirectory.class);
               }
           }
 
-        Node child = node.getFirstChild();
+        var child = node.getFirstChild();
 
         while (child != null)
           {
-            final Directory directory = getEXIFDirectory(child);
+            final var directory = getEXIFDirectories(child);
 
             if (directory != null)
               {
@@ -146,24 +108,24 @@ public class DrewMetadataLoader implements MetadataLoader
      *
      *
      ******************************************************************************************************************/
-    private static Directory getIPTCDirectory (final Node node)
+    private static Collection<IptcDirectory> getIPTCDirectories (final Node node)
       {
         if (node.getNodeName().equals("unknown"))
           {
             if (Integer.parseInt(node.getAttributes().getNamedItem("MarkerTag").getNodeValue()) == IPTC)
               {
-                final byte[] data = (byte[])((IIOMetadataNode)node).getUserObject();
-                final Metadata metadata = new Metadata();
+                final var data = (byte[])((IIOMetadataNode)node).getUserObject();
+                final var metadata = new Metadata();
                 new ExifReader().extract(new ByteArrayReader(data), metadata);
-                return metadata.getFirstDirectoryOfType(IptcDirectory.class);
+                return metadata.getDirectoriesOfType(IptcDirectory.class);
               }
           }
 
-        Node child = node.getFirstChild();
+        var child = node.getFirstChild();
 
         while (child != null)
           {
-            final Directory directory = getIPTCDirectory(child);
+            final var directory = getIPTCDirectories(child);
 
             if (directory != null)
               {

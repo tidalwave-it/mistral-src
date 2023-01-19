@@ -26,9 +26,13 @@
  */
 package it.tidalwave.image.metadata.loader;
 
+import javax.annotation.Nonnull;
+import java.util.Optional;
 import javax.imageio.metadata.IIOMetadata;
 
 /***********************************************************************************************************************
+ *
+ * Implementation of this interface are capable to extract metadata from an image by means of different adapters.
  *
  * @author Fabrizio Giudici
  *
@@ -37,37 +41,55 @@ public interface MetadataLoader
   {
     /*******************************************************************************************************************
      *
-     *
      ******************************************************************************************************************/
-    public Object findTIFF (IIOMetadata iioMetadata);
+    @Nonnull
+    default public Optional<DirectoryLoader> getTiffLoader (IIOMetadata iioMetadata)
+      {
+        return Optional.empty();
+      }
 
     /*******************************************************************************************************************
      *
-     *
      ******************************************************************************************************************/
-    public Object findEXIF (IIOMetadata iioMetadata);
+    @Nonnull
+    default public Optional<DirectoryLoader> getExifLoader (IIOMetadata iioMetadata)
+      {
+        return Optional.empty();
+      }
 
     /*******************************************************************************************************************
      *
-     *
      ******************************************************************************************************************/
-    public Object findIPTC (IIOMetadata iioMetadata);
+    @Nonnull
+    default public Optional<DirectoryLoader> getIptcLoader (IIOMetadata iioMetadata)
+      {
+        return Optional.empty();
+      }
 
     /*******************************************************************************************************************
      *
-     *
      ******************************************************************************************************************/
-    public Object findXMP (IIOMetadata iioMetadata);
+    @Nonnull
+    default public Optional<DirectoryLoader> getXmpLoader (IIOMetadata iioMetadata)
+      {
+        return Optional.empty();
+      }
 
     /*******************************************************************************************************************
      *
-     *
      ******************************************************************************************************************/
-    public Object findMakerNote (IIOMetadata iioMetadata);
+    @Nonnull
+    default public Optional<DirectoryLoader> getMakerNoteLoader (IIOMetadata iioMetadata)
+      {
+        return Optional.empty();
+      }
 
     /*******************************************************************************************************************
      *
-     *
      ******************************************************************************************************************/
-    public Object findDNG (IIOMetadata iioMetadata);
+    @Nonnull
+    default public Optional<DirectoryLoader> getDngLoader (IIOMetadata iioMetadata)
+      {
+        return Optional.empty();
+      }
   }

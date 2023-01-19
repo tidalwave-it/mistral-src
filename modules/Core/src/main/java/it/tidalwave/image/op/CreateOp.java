@@ -169,7 +169,7 @@ public class CreateOp extends AbstractCreateOp
       {
         final double[] result = {color.getRed(), color.getGreen(), color.getBlue()};
         double scale = 1;
-        final double F = 1.0 / 255.0;
+        final var F = 1.0 / 255.0;
 
         switch (dataType)
           {
@@ -200,7 +200,7 @@ public class CreateOp extends AbstractCreateOp
               throw new IllegalArgumentException("toDoubles: " + dataType);
           }
 
-        for (int i = 0; i < result.length; i++)
+        for (var i = 0; i < result.length; i++)
           {
             result[i] *= scale;
           }

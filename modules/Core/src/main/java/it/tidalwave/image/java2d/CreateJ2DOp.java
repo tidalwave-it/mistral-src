@@ -93,15 +93,15 @@ public class CreateJ2DOp extends OperationImplementation<CreateOp, BufferedImage
         log.info("CreateJ2DOp.execute(" + operation + ", " + image + ")");
         Java2DUtils.logImage(log, ">>>> bufferedImage: ", bufferedImage);
 
-        final double[] filler = operation.getFiller();
-        final int[] dims = new int[filler.length];
+        final var filler = operation.getFiller();
+        final var dims = new int[filler.length];
 
-        for (int i = 0; i < filler.length; i++)
+        for (var i = 0; i < filler.length; i++)
           {
             dims[i] = (int)filler[i];
           }
 
-        int type = 0;
+        var type = 0;
 
         switch (operation.getDataType())
           {
@@ -146,21 +146,21 @@ public class CreateJ2DOp extends OperationImplementation<CreateOp, BufferedImage
               throw new IllegalArgumentException("Unsupported dataType: " + operation.getDataType());
           }
 
-        final BufferedImage result = new BufferedImage(operation.getWidth(), operation.getHeight(), type);
+        final var result = new BufferedImage(operation.getWidth(), operation.getHeight(), type);
 
         if (!isZero(dims))
           {
             if (operation.getDataType() == EditableImage.DataType.UNSIGNED_SHORT)
               {
-                final int[] buffer = new int[operation.getWidth() * operation.getHeight()];
-                final int value = dims[0];
+                final var buffer = new int[operation.getWidth() * operation.getHeight()];
+                final var value = dims[0];
                 Arrays.fill(buffer, value);
                 result.getRaster().setPixels(0, 0, operation.getWidth(), operation.getHeight(), buffer);
               }
 
             else
               {
-                final Graphics2D g = result.createGraphics();
+                final var g = result.createGraphics();
 
                 try
                   {
@@ -186,7 +186,7 @@ public class CreateJ2DOp extends OperationImplementation<CreateOp, BufferedImage
 
     private boolean isZero (final int[] samples)
       {
-        for (int sample : samples)
+        for (var sample : samples)
           {
             if (sample != 0)
               {

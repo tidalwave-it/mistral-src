@@ -29,7 +29,6 @@ package it.tidalwave.mistral.example.histogram;
 import java.io.File;
 import java.io.IOException;
 import it.tidalwave.image.EditableImage;
-import it.tidalwave.image.Histogram;
 import it.tidalwave.image.op.CropOp;
 import it.tidalwave.image.op.HistogramOp;
 import it.tidalwave.image.op.ReadOp;
@@ -46,7 +45,7 @@ public class HistogramExample
     public static void main (final String[] args)
             throws IOException
       {
-        final HistogramExample e = new HistogramExample();
+        final var e = new HistogramExample();
         e.process();
       }
 
@@ -56,27 +55,27 @@ public class HistogramExample
         //
         // Loads the image
         //
-        final File file = new File("../images/20030701-0043.NEF");
-        final EditableImage image = EditableImage.create(new ReadOp(file));
-        log.info("Image loaded in " + image.getLatestOperationTime() + " msec");
+        final var file = new File("../images/20030701-0043.NEF");
+        final var image = EditableImage.create(new ReadOp(file));
+        log.info("Image loaded in " + image.getLatestOperationDuration() + " msec");
         //
         // Crops the image
         //
-        image.execute(new CropOp(10, 10, 600, 400));
-        log.info("Image cropped in " + image.getLatestOperationTime() + " msec");
+        image.executeInPlace(new CropOp(10, 10, 600, 400));
+        log.info("Image cropped in " + image.getLatestOperationDuration() + " msec");
         //
         // Computes the histogram
         //
-        final Histogram histogram = image.execute(new HistogramOp()).getHistogram();
-        log.info("Histogram computed in " + image.getLatestOperationTime() + " msec");
+        final var histogram = image.executeInPlace(new HistogramOp()).getHistogram();
+        log.info("Histogram computed in " + image.getLatestOperationDuration() + " msec");
         //
         // Prints some information item from the histogram
         //
-        for (int band = 0; band < histogram.getBandCount(); band++)
+        for (var band = 0; band < histogram.getBandCount(); band++)
           {
-            final int min = histogram.getMin(band);
-            final int max = histogram.getMax(band);
-            final int[] frequencies = histogram.getFrequencies(band);
+            final var min = histogram.getMin(band);
+            final var max = histogram.getMax(band);
+            final var frequencies = histogram.getFrequencies(band);
             log.info("band #" + band + ": min=" + min + " max=" + max + " " + frequencies.length + " samples");
           }
       }

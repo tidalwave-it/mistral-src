@@ -66,14 +66,14 @@ public class Main
               }
           }
 
-        final ViewerPanel viewerPanel = new ViewerPanel();
+        final var viewerPanel = new ViewerPanel();
         SwingUtilities.invokeAndWait(() ->
                                        {
-                                         final JFrame frame = new JFrame("Mistral Viewer example");
+                                         final var frame = new JFrame("Mistral Viewer example");
                                          frame.getContentPane().add(viewerPanel);
                                          frame.setSize(WINDOW_SIZE);
 
-                                         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                                         final var screenSize = Toolkit.getDefaultToolkit().getScreenSize();
                                          frame.setLocation((screenSize.width - frame.getWidth()) / 2,
                                                            (screenSize.height - frame.getHeight()) / 2);
                                          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

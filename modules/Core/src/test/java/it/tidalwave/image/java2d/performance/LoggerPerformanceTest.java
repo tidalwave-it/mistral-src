@@ -26,6 +26,9 @@
  */
 package it.tidalwave.image.java2d.performance;
 
+import javax.annotation.Nonnull;
+import java.time.Duration;
+import java.time.Instant;
 import java.awt.image.BufferedImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.java2d.Java2DUtils;
@@ -39,16 +42,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LoggerPerformanceTest extends BasePerformanceTestSupport
   {
-    @Override
-    protected long runTest (final EditableImage image)
+    @Override @Nonnull
+    protected Duration runTest (final @Nonnull EditableImage image)
       {
-        long accTime = 0;
+        var accTime = Duration.ZERO;
 
-        for (int i = 0; i < 10; i++)
+        for (var i = 0; i < 10; i++)
           {
-            final long time = System.currentTimeMillis();
+            final var time = Instant.now();
             Java2DUtils.logImage(log, "test", image.getInnerProperty(BufferedImage.class));
-            accTime += System.currentTimeMillis() - time;
+            accTime = accTime.plus(Duration.between(Instant.now(), time));
           }
 
         return accTime;

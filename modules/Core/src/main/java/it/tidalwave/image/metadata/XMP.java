@@ -39,7 +39,7 @@ public class XMP extends Directory
     @Getter
     private final Map<String, String> xmpProperties = new HashMap<>();
 
-    void _setProperties (@Nonnull final Map<String, String> xmpProperties)
+    public void _setProperties (@Nonnull final Map<String, String> xmpProperties)
       {
         this.xmpProperties.clear();
         this.xmpProperties.putAll(xmpProperties);

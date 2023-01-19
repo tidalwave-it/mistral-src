@@ -44,9 +44,9 @@ public class ChangeBufferTypeJ2DOp extends OperationImplementation<ChangeBufferT
                                      final EditableImage image,
                                      final BufferedImage bufferedImage)
       {
-        final int width = bufferedImage.getWidth();
-        final int height = bufferedImage.getHeight();
-        final BufferedImage result = new BufferedImage(width, height, operation.getBufferType());
+        final var width = bufferedImage.getWidth();
+        final var height = bufferedImage.getHeight();
+        final var result = new BufferedImage(width, height, operation.getBufferType());
         Graphics g = null;
 
         try

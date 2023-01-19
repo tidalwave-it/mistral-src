@@ -36,7 +36,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import it.tidalwave.image.EditableImage;
-import it.tidalwave.image.Histogram;
 import it.tidalwave.image.java2d.ImplementationFactoryJ2D;
 import it.tidalwave.image.op.HistogramOp;
 import it.tidalwave.image.util.Platform;
@@ -66,16 +65,16 @@ public class Main
               }
           }
 
-        final JLabel statusBar = new JLabel(" ", SwingConstants.LEFT);
+        final var statusBar = new JLabel(" ", SwingConstants.LEFT);
         statusBar.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
-        final JFrame frame = new JFrame("Mistral Histogram Viewer example");
-        final JPanel p = new JPanel(new BorderLayout());
+        final var frame = new JFrame("Mistral Histogram Viewer example");
+        final var p = new JPanel(new BorderLayout());
         p.add(statusBar, BorderLayout.SOUTH);
         frame.getContentPane().add(p);
 
-        final HistogramRenderer histogramRenderer = new HistogramRenderer();
+        final var histogramRenderer = new HistogramRenderer();
         histogramRenderer.setBounds(20, 20, 200, 150);
-        final JPanel panel = new JPanel();
+        final var panel = new JPanel();
         panel.setLayout(null);
         panel.setOpaque(false);
         panel.add(histogramRenderer);
@@ -86,7 +85,7 @@ public class Main
         histogramRenderer.showComputing();
         histogramRenderer.setVisible(true);
 
-        final AbstractViewerPanel viewerPanel = new AbstractViewerPanel()
+        final var viewerPanel = new AbstractViewerPanel()
           {
             {
               setLayout(new BorderLayout());
@@ -100,11 +99,11 @@ public class Main
                 //
                 // HistogramOp can take some time to perform.
                 //
-                final Thread thread = new Thread(() ->
+                final var thread = new Thread(() ->
                    {
                      histogramRenderer.start();
-                     long time = System.currentTimeMillis();
-                     final Histogram histogram = image.execute(new HistogramOp()).getHistogram();
+                   var time = System.currentTimeMillis();
+                     final var histogram = image.executeInPlace(new HistogramOp()).getHistogram();
                      time = System.currentTimeMillis() - time;
                      histogramRenderer.setHistogram(histogram);
                      statusBar.setText("Computed in " + time + " msec " + (jai ? "with" : "without") + " JAI");

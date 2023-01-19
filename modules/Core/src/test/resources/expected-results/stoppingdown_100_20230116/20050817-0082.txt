@@ -1,53 +1,63 @@
-EXIF [33434] Exposure Time: 1/200
-EXIF [33437] F Number: 11/1
-EXIF [34850] Exposure Program: 3
-EXIF [34855] ISO Speed Ratings: 200
-EXIF [36864] EXIF Version: [48, 50, 50, 49]
-EXIF [36867] Date/Time Original: 2005:08:17 17:44:07
-EXIF [36868] Date/Time Digitized: 2005:08:17 17:44:07
-EXIF [37377] Shutter SpeedValue: 7643856/1000000
-EXIF [37378] Aperture Value: 6918863/1000000
-EXIF [37380] Exposure Bias Value: 0/6
-EXIF [37381] Max Aperture Value: 4/1
-EXIF [37383] Metering Mode: 5
-EXIF [37384] Light Source: 0
-EXIF [37385] Flash: 0
-EXIF [37386] Focal Length: 24/1
-EXIF [37510] User Comment: [65, 83, 67, 73, 73, 0, 0, 0, 40, 67, 41, 32, 67, 111, 112, 121, 114, 105, 103, 104, 116, 32, 98, 121, 32, 70, 97, 98, 114, 105, 122, 105, 111, 32, 71, 105, 117, 100, 105, 99, 105]
-EXIF [40962] Pixel X Dimension: 100
-EXIF [40963] Pixel Y Dimension: 56
-EXIF [41495] Sensing Method: 2
-EXIF [41728] File Source: [3]
-EXIF [41729] Scene Type: [1]
-EXIF [41986] Exposure Mode: 0
-EXIF [42034] LensSpecification: [12/1, 24/1, 4/1, 4/1]
-EXIF [42036] LensModel: Nikkor 12-24mm ƒ/4G DX AF-S
-IPTC [346] null: UTF-8
-IPTC [512] null: 4
-IPTC [537] null: [backgrounds, published, edit process 2022-09-08, landscape]
-IPTC [567] null: 20050817
-IPTC [572] null: 174407+0200
-IPTC [574] null: 20050817
-IPTC [575] null: 174407+0200
-IPTC [592] null: Fabrizio Giudici
-IPTC [597] null: Photographer
-IPTC [602] null: Rocchette
-IPTC [604] null: Via Santa Cristina 5
-IPTC [607] null: Toscana
-IPTC [612] null: IT
-IPTC [613] null: Italia
-IPTC [622] null: Fabrizio Giudici
-IPTC [627] null: Fabrizio Giudici
-IPTC [628] null: © Copyright by Fabrizio Giudici. All rights reserved.
-IPTC [632] null:                                 
-IPTC [634] null: Fabrizio Giudici
-IPTC [720] null: Via Nizza 6/13
-IPTC [721] null: Genoa
-IPTC [722] null: GE
-IPTC [723] null: I-16145
-IPTC [724] null: Italy
-IPTC [725] null: +39 348 1506941
-IPTC [726] null: fabrizio.giudici@libero.it
-IPTC [727] null: http://stoppingdown.net
-IPTC [738] null: Cannot be used without prior written consent of the author.
-IPTC [739] null: http://stoppingdown.net
+TIFF[0][270, Image Description]:                                 
+TIFF[0][271, Make]: NIKON CORPORATION
+TIFF[0][272, Model]: NIKON D100
+TIFF[0][282, X Resolution]: 72/1 - 72.0
+TIFF[0][283, Y Resolution]: 72/1 - 72.0
+TIFF[0][296, Resolution Unit]: 2
+TIFF[0][305, Software]: Capture One 15 Macintosh
+TIFF[0][306, Date/Time]: 2005:08:18 10:12:31
+TIFF[0][315, Artist]: Fabrizio Giudici
+TIFF[0][33432, Copyright]: © Copyright by Fabrizio Giudici. All rights reserved.
+EXIF[0][33434, Exposure Time]: 1/200 - 0.005
+EXIF[0][33437, F Number]: 11/1 - 11.0
+EXIF[0][34850, Exposure Program]: 3
+EXIF[0][34855, ISO Speed Ratings]: 200
+EXIF[0][36864, EXIF Version]: [48, 50, 50, 49]
+EXIF[0][36867, Date/Time Original]: 2005:08:17 17:44:07
+EXIF[0][36868, Date/Time Digitized]: 2005:08:17 17:44:07
+EXIF[0][37377, Shutter SpeedValue]: 7643856/1000000 - 7.643856
+EXIF[0][37378, Aperture Value]: 6918863/1000000 - 6.918863
+EXIF[0][37380, Exposure Bias Value]: 0/6 - 0.0
+EXIF[0][37381, Max Aperture Value]: 4/1 - 4.0
+EXIF[0][37383, Metering Mode]: 5
+EXIF[0][37384, Light Source]: 0
+EXIF[0][37385, Flash]: 0
+EXIF[0][37386, Focal Length]: 24/1 - 24.0
+EXIF[0][37510, User Comment]: [65, 83, 67, 73, 73, 0, 0, 0, 40, 67, 41, 32, 67, 111, 112, 121, 114, 105, 103, 104, 116, 32, 98, 121, 32, 70, 97, 98, 114, 105, 122, 105, 111, 32, 71, 105, 117, 100, 105, 99, 105]
+EXIF[0][40962, Pixel X Dimension]: 100
+EXIF[0][40963, Pixel Y Dimension]: 56
+EXIF[0][41495, Sensing Method]: 2
+EXIF[0][41728, File Source]: [3]
+EXIF[0][41729, Scene Type]: [1]
+EXIF[0][41986, Exposure Mode]: 0
+EXIF[0][42034, LensSpecification]: [12/1, 24/1, 4/1, 4/1] - [12.0, 24.0, 4.0, 4.0]
+EXIF[0][42036, LensModel]: Nikkor 12-24mm ƒ/4G DX AF-S
+IPTC[0][346]: UTF-8
+IPTC[0][512]: 4
+IPTC[0][537]: [backgrounds, published, edit process 2022-09-08, landscape]
+IPTC[0][567]: 20050817
+IPTC[0][572]: 174407+0200
+IPTC[0][574]: 20050817
+IPTC[0][575]: 174407+0200
+IPTC[0][592]: Fabrizio Giudici
+IPTC[0][597]: Photographer
+IPTC[0][602]: Rocchette
+IPTC[0][604]: Via Santa Cristina 5
+IPTC[0][607]: Toscana
+IPTC[0][612]: IT
+IPTC[0][613]: Italia
+IPTC[0][622]: Fabrizio Giudici
+IPTC[0][627]: Fabrizio Giudici
+IPTC[0][628]: © Copyright by Fabrizio Giudici. All rights reserved.
+IPTC[0][632]:                                 
+IPTC[0][634]: Fabrizio Giudici
+IPTC[0][720]: Via Nizza 6/13
+IPTC[0][721]: Genoa
+IPTC[0][722]: GE
+IPTC[0][723]: I-16145
+IPTC[0][724]: Italy
+IPTC[0][725]: +39 348 1506941
+IPTC[0][726]: fabrizio.giudici@libero.it
+IPTC[0][727]: http://stoppingdown.net
+IPTC[0][738]: Cannot be used without prior written consent of the author.
+IPTC[0][739]: http://stoppingdown.net

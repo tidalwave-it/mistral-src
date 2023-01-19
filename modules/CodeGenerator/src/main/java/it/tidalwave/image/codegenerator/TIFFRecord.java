@@ -90,7 +90,7 @@ public class TIFFRecord
             return this.getCapitalizedTagName();
           }
 
-        final String type = getType();
+        final var type = getType();
 
         try
           {
@@ -104,7 +104,7 @@ public class TIFFRecord
 
     public String getJavaTypeToString()
       {
-        String result = "get" + this.getCapitalizedTagName() + "()";
+        var result = "get" + this.getCapitalizedTagName() + "()";
 
         if (this.getJavaType().endsWith("[]"))
           {

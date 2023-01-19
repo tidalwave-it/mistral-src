@@ -1,48 +1,57 @@
-EXIF [33434] Exposure Time: 1/640
-EXIF [33437] F Number: 56/10
-EXIF [34850] Exposure Program: 3
-EXIF [34855] ISO Speed Ratings: 100
-EXIF [34864] null: 2
-EXIF [34866] RecommendedExposureIndex: 100
-EXIF [36864] EXIF Version: [48, 50, 51, 48]
-EXIF [36867] Date/Time Original: 2016:04:18 16:58:27
-EXIF [36868] Date/Time Digitized: 2016:04:18 16:58:27
-EXIF [37377] Shutter SpeedValue: 9321928/1000000
-EXIF [37378] Aperture Value: 4970854/1000000
-EXIF [37379] Brightness Value: 10584/2560
-EXIF [37380] Exposure Bias Value: 10/10
-EXIF [37381] Max Aperture Value: 0/10
-EXIF [37383] Metering Mode: 5
-EXIF [37384] Light Source: 0
-EXIF [37385] Flash: 16
-EXIF [37386] Focal Length: 50/1
-EXIF [40961] Color Space: 1
-EXIF [41486] Focal Plane X Resolution: 68784793/32768
-EXIF [41487] Focal Plane Y Resolution: 68784793/32768
-EXIF [41488] Focal Plane ResolutionUnit: 3
-EXIF [41728] File Source: [3]
-EXIF [41729] Scene Type: [1]
-EXIF [41985] Custom Rendered: 0
-EXIF [41986] Exposure Mode: 2
-EXIF [41987] White Balance: 0
-EXIF [41988] Digital Zoom Ratio: 16/16
-EXIF [41989] Focal Length 35mm Film: 75
-EXIF [41990] Scene Capture Type: 0
-EXIF [41992] Contrast: 1
-EXIF [41993] Saturation: 0
-EXIF [41994] Sharpness: 1
-EXIF [42036] LensModel: Nikkor AF-D 50.0 mm f/1.8
-IPTC [346] null: UTF-8
-IPTC [512] null: 4
-IPTC [517] null: La scala verso il mare.
-IPTC [537] null: [Workflow, architecture, edit process 2013-09-14, ladder, landscape, photography, sea, seascape, tagged, test, tilt, waves]
-IPTC [567] null: 20160418
-IPTC [572] null: 165827
-IPTC [574] null: 20160418
-IPTC [575] null: 165827
-IPTC [592] null: Fabrizio Giudici
-IPTC [597] null: Photographer
-IPTC [622] null: Fabrizio Giudici
-IPTC [627] null: Fabrizio Giudici
-IPTC [628] null: © Copyright by Fabrizio Giudici. All rights reserved.
-IPTC [634] null: Fabrizio Giudici
+TIFF[0][271, Make]: SONY
+TIFF[0][272, Model]: NEX-6
+TIFF[0][282, X Resolution]: 72/1 - 72.0
+TIFF[0][283, Y Resolution]: 72/1 - 72.0
+TIFF[0][296, Resolution Unit]: 2
+TIFF[0][305, Software]: Adobe Photoshop Lightroom 6.6 (Macintosh)
+TIFF[0][306, Date/Time]: 2017:04:28 14:13:07
+TIFF[0][315, Artist]: Fabrizio Giudici
+TIFF[0][33432, Copyright]: © Copyright by Fabrizio Giudici. All rights reserved.
+EXIF[0][33434, Exposure Time]: 1/640 - 0.0015625
+EXIF[0][33437, F Number]: 56/10 - 5.6
+EXIF[0][34850, Exposure Program]: 3
+EXIF[0][34855, ISO Speed Ratings]: 100
+EXIF[0][34864]: 2
+EXIF[0][34866, RecommendedExposureIndex]: 100
+EXIF[0][36864, EXIF Version]: [48, 50, 51, 48]
+EXIF[0][36867, Date/Time Original]: 2016:04:18 16:58:27
+EXIF[0][36868, Date/Time Digitized]: 2016:04:18 16:58:27
+EXIF[0][37377, Shutter SpeedValue]: 9321928/1000000 - 9.321928
+EXIF[0][37378, Aperture Value]: 4970854/1000000 - 4.970854
+EXIF[0][37379, Brightness Value]: 10584/2560 - 4.134375
+EXIF[0][37380, Exposure Bias Value]: 10/10 - 1.0
+EXIF[0][37381, Max Aperture Value]: 0/10 - 0.0
+EXIF[0][37383, Metering Mode]: 5
+EXIF[0][37384, Light Source]: 0
+EXIF[0][37385, Flash]: 16
+EXIF[0][37386, Focal Length]: 50/1 - 50.0
+EXIF[0][40961, Color Space]: 1
+EXIF[0][41486, Focal Plane X Resolution]: 68784793/32768 - 2099.145294189453
+EXIF[0][41487, Focal Plane Y Resolution]: 68784793/32768 - 2099.145294189453
+EXIF[0][41488, Focal Plane ResolutionUnit]: 3
+EXIF[0][41728, File Source]: [3]
+EXIF[0][41729, Scene Type]: [1]
+EXIF[0][41985, Custom Rendered]: 0
+EXIF[0][41986, Exposure Mode]: 2
+EXIF[0][41987, White Balance]: 0
+EXIF[0][41988, Digital Zoom Ratio]: 16/16 - 1.0
+EXIF[0][41989, Focal Length 35mm Film]: 75
+EXIF[0][41990, Scene Capture Type]: 0
+EXIF[0][41992, Contrast]: 1
+EXIF[0][41993, Saturation]: 0
+EXIF[0][41994, Sharpness]: 1
+EXIF[0][42036, LensModel]: Nikkor AF-D 50.0 mm f/1.8
+IPTC[0][346]: UTF-8
+IPTC[0][512]: 4
+IPTC[0][517]: La scala verso il mare.
+IPTC[0][537]: [Workflow, architecture, edit process 2013-09-14, ladder, landscape, photography, sea, seascape, tagged, test, tilt, waves]
+IPTC[0][567]: 20160418
+IPTC[0][572]: 165827
+IPTC[0][574]: 20160418
+IPTC[0][575]: 165827
+IPTC[0][592]: Fabrizio Giudici
+IPTC[0][597]: Photographer
+IPTC[0][622]: Fabrizio Giudici
+IPTC[0][627]: Fabrizio Giudici
+IPTC[0][628]: © Copyright by Fabrizio Giudici. All rights reserved.
+IPTC[0][634]: Fabrizio Giudici

@@ -54,25 +54,24 @@ import lombok.extern.slf4j.Slf4j;
 @Immutable @Slf4j
 public class ConvertColorProfileJ2DOp extends OperationImplementation<ConvertColorProfileOp, BufferedImage>
   {
-    @Nonnull
-    @Override
+    @Override @Nonnull
     protected BufferedImage execute (@Nonnull final ConvertColorProfileOp operation,
                                      @Nonnull final EditableImage image,
                                      @Nonnull final BufferedImage bufferedImage)
       {
-        final ICC_Profile targetProfile = operation.getIccProfile();
+        final var targetProfile = operation.getIccProfile();
         log.debug("convertColorProfile({})", ImageUtils.getICCProfileName(targetProfile));
         Java2DUtils.logImage(log, ">>>> source bufferedImage", bufferedImage);
 
-        final ICC_Profile sourceProfile = ImageUtils.getICCProfile(bufferedImage);
-        final String sourceProfileName = ImageUtils.getICCProfileName(sourceProfile);
+        final var sourceProfile = ImageUtils.getICCProfile(bufferedImage);
+        final var sourceProfileName = ImageUtils.getICCProfileName(sourceProfile);
         log.debug(">>>> Converting profile from {}  to {}",
                   sourceProfileName,
                   ImageUtils.getICCProfileName(targetProfile));
 
-        final RenderingHints hints = new RenderingHints(Collections.emptyMap());
+        final var hints = new RenderingHints(Collections.emptyMap());
         hints.put(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
-        final ColorConvertOp ccOp = new ColorConvertOp(new ICC_Profile[]{targetProfile}, hints);
+        final var ccOp = new ColorConvertOp(new ICC_Profile[]{targetProfile}, hints);
 
         // Strategy 1: it would be the best, but reduces depth to 8 bit and converts to PixelInterleavedRaster, which
         // is SLOW!
@@ -81,19 +80,19 @@ public class ConvertColorProfileJ2DOp extends OperationImplementation<ConvertCol
         // FIXME: this reduces the depth to 8 bit, which we don't want!
         log.warn(">>>> **** WARNING: convertColorProfile() is reducing depth to 8 bit!");
 
-        final WritableRaster raster = Raster.createPackedRaster(DataBuffer.TYPE_INT,
-                                                                bufferedImage.getWidth(),
-                                                                bufferedImage.getHeight(),
-                                                                3,
-                                                                8,
-                                                                null);
+        final var raster = Raster.createPackedRaster(DataBuffer.TYPE_INT,
+                                                     bufferedImage.getWidth(),
+                                                     bufferedImage.getHeight(),
+                                                     3,
+                                                     8,
+                                                     null);
         final ColorSpace colorSpace = new ICC_ColorSpace(targetProfile);
         final ColorModel colorModel =
                 new DirectColorModel(colorSpace, 24, 0x00ff0000, 0x0000ff00, 0x000000ff, 0, false, DataBuffer.TYPE_INT);
 
-        final BufferedImage image2 =
+        final var image2 =
                 new BufferedImage(colorModel, raster, false, Java2DUtils.getProperties(bufferedImage));
-        final BufferedImage result = ccOp.filter(bufferedImage, image2);
+        final var result = ccOp.filter(bufferedImage, image2);
 
         // Strategy 3: work in place. It would be the best, but it does not work: produces a dark image.
         //        ccOp.filter(image, image);

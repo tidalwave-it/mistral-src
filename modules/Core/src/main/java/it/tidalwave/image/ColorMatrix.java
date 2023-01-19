@@ -73,9 +73,9 @@ public class ColorMatrix
      ******************************************************************************************************************/
     public final void process (final short[] data, final int index)
       {
-        final short d0 = compute(0, data, index);
-        final short d1 = compute(1, data, index);
-        final short d2 = compute(2, data, index);
+        final var d0 = compute(0, data, index);
+        final var d1 = compute(1, data, index);
+        final var d2 = compute(2, data, index);
         data[index + 0] = d0;
         data[index + 1] = d1;
         data[index + 2] = d2;
@@ -93,7 +93,7 @@ public class ColorMatrix
      ******************************************************************************************************************/
     public final ColorMatrix product (final ColorMatrix m)
       {
-        final double[] r = new double[9];
+        final var r = new double[9];
 
         r[2] = (c[0] * m.c[2]) + (c[1] * m.c[5]) + (c[2] * m.c[8]);
         r[5] = (c[3] * m.c[2]) + (c[4] * m.c[5]) + (c[5] * m.c[8]);
@@ -117,7 +117,7 @@ public class ColorMatrix
      ******************************************************************************************************************/
     public final void normalizeRows()
       {
-        double sum = c[0] + c[1] + c[2];
+        var sum = c[0] + c[1] + c[2];
         c[0] /= sum;
         c[1] /= sum;
         c[2] /= sum;
@@ -138,19 +138,19 @@ public class ColorMatrix
      ******************************************************************************************************************/
     public final ColorMatrix inverse()
       {
-        final double cof0 = +((c[4] * c[8]) - (c[7] * c[5]));
-        final double cof1 = -((c[3] * c[8]) - (c[6] * c[5]));
-        final double cof2 = +((c[3] * c[7]) - (c[6] * c[4]));
-        final double cof3 = -((c[1] * c[8]) - (c[7] * c[2]));
-        final double cof4 = +((c[0] * c[8]) - (c[6] * c[2]));
-        final double cof5 = -((c[0] * c[7]) - (c[6] * c[1]));
-        final double cof6 = +((c[1] * c[5]) - (c[4] * c[2]));
-        final double cof7 = -((c[0] * c[5]) - (c[3] * c[2]));
-        final double cof8 = +((c[0] * c[4]) - (c[3] * c[1]));
+        final var cof0 = +((c[4] * c[8]) - (c[7] * c[5]));
+        final var cof1 = -((c[3] * c[8]) - (c[6] * c[5]));
+        final var cof2 = +((c[3] * c[7]) - (c[6] * c[4]));
+        final var cof3 = -((c[1] * c[8]) - (c[7] * c[2]));
+        final var cof4 = +((c[0] * c[8]) - (c[6] * c[2]));
+        final var cof5 = -((c[0] * c[7]) - (c[6] * c[1]));
+        final var cof6 = +((c[1] * c[5]) - (c[4] * c[2]));
+        final var cof7 = -((c[0] * c[5]) - (c[3] * c[2]));
+        final var cof8 = +((c[0] * c[4]) - (c[3] * c[1]));
 
-        final double det = (c[0] * cof0) + (c[1] * cof1) + (c[2] * cof2);
+        final var det = (c[0] * cof0) + (c[1] * cof1) + (c[2] * cof2);
 
-        final double[] nc = new double[9];
+        final var nc = new double[9];
         nc[0] = cof0 / det;
         nc[1] = cof3 / det;
         nc[2] = cof6 / det;
@@ -161,7 +161,7 @@ public class ColorMatrix
         nc[7] = cof5 / det;
         nc[8] = cof8 / det;
 
-        final ColorMatrix result = new ColorMatrix(nc);
+        final var result = new ColorMatrix(nc);
 
         log.trace("inverse(" + this + ") = " + result);
 
@@ -177,9 +177,9 @@ public class ColorMatrix
     @Override
     public final String toString()
       {
-        final StringBuilder buffer = new StringBuilder("[");
+        final var buffer = new StringBuilder("[");
 
-        for (int i = 0; i < c.length; i++)
+        for (var i = 0; i < c.length; i++)
           {
             if (i > 0)
               {
@@ -202,13 +202,13 @@ public class ColorMatrix
      ******************************************************************************************************************/
     private short compute (final int channel, final short[] data, final int index)
       {
-        final double c0 = c[(channel * 3) + 0];
-        final double c1 = c[(channel * 3) + 1];
-        final double c2 = c[(channel * 3) + 2];
+        final var c0 = c[(channel * 3) + 0];
+        final var c1 = c[(channel * 3) + 1];
+        final var c2 = c[(channel * 3) + 2];
 
-        final double f = (c0 * (data[index + 0] & SHORT_MASK)) + (c1 * (data[index + 1] & SHORT_MASK))
-                         + (c2 * (data[index + 2] & SHORT_MASK));
-        final int x = (int)f;
+        final var f = (c0 * (data[index + 0] & SHORT_MASK)) + (c1 * (data[index + 1] & SHORT_MASK))
+                      + (c2 * (data[index + 2] & SHORT_MASK));
+        final var x = (int)f;
 
         if (x < 0)
           {

@@ -55,16 +55,16 @@ public class CropOverlay implements Overlay
     @Override
     public void paint (final Graphics2D g, final EditableImageRenderer imageRenderer)
       {
-        final Rectangle bounds = imageRenderer.getBounds();
-        final Color color = new Color(0, 0, 0, 128);
+        final var bounds = imageRenderer.getBounds();
+        final var color = new Color(0, 0, 0, 128);
         g.setColor(color);
-        final double scale = imageRenderer.getScale();
-        final Point origin = imageRenderer.getOrigin();
+        final var scale = imageRenderer.getScale();
+        final var origin = imageRenderer.getOrigin();
 
-        final int x1 = bounds.x + (int)Math.round((left - origin.x) * scale);
-        final int y1 = bounds.y + (int)Math.round((top - origin.y) * scale);
-        final int x2 = bounds.x + (int)Math.round((left + width - origin.x) * scale);
-        final int y2 = bounds.y + (int)Math.round((top + height - origin.y) * scale);
+        final var x1 = bounds.x + (int)Math.round((left - origin.x) * scale);
+        final var y1 = bounds.y + (int)Math.round((top - origin.y) * scale);
+        final var x2 = bounds.x + (int)Math.round((left + width - origin.x) * scale);
+        final var y2 = bounds.y + (int)Math.round((top + height - origin.y) * scale);
 
         fillRect(g, bounds.x, bounds.y, bounds.x + bounds.width - 1, y1 - 1); // top
         fillRect(g, bounds.x, y1, x1 - 1, y2); // left

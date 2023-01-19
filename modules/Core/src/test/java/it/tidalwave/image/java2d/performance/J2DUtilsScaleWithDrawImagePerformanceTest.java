@@ -26,6 +26,9 @@
  */
 package it.tidalwave.image.java2d.performance;
 
+import javax.annotation.Nonnull;
+import java.time.Duration;
+import java.time.Instant;
 import java.awt.image.BufferedImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;
@@ -41,19 +44,19 @@ import static org.junit.Assert.fail;
 @Slf4j
 public class J2DUtilsScaleWithDrawImagePerformanceTest extends BasePerformanceTestSupport
   {
-    @Override
-    protected long runTest (final EditableImage image)
+    @Override @Nonnull
+    protected Duration runTest (final @Nonnull EditableImage image)
       {
         fail("disabled because it takes forever");
-        long accTime = 0;
+        var accTime = Duration.ZERO;
 
-        for (double scale = 0.1; scale <= 1; scale += 0.1)
+        for (var scale = 0.1; scale <= 1; scale += 0.1)
           {
             log.info(">>>> scale: " + scale);
-            final long time = System.currentTimeMillis();
-            final BufferedImage bufferedImage = image.getInnerProperty(BufferedImage.class);
+            final var time = Instant.now();
+            final var bufferedImage = image.getInnerProperty(BufferedImage.class);
             Java2DUtils.scaleWithDrawImage(bufferedImage, scale, scale, Quality.INTERMEDIATE);
-            accTime += System.currentTimeMillis() - time;
+            accTime = accTime.plus(Duration.between(Instant.now(), time));
           }
 
         return accTime;

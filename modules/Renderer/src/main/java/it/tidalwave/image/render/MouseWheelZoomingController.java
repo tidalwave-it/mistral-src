@@ -68,7 +68,7 @@ public class MouseWheelZoomingController
         @Override
         public void mouseWheelMoved (final MouseWheelEvent event)
           {
-            final double changeScale = Math.pow(2, zoomFactor * event.getWheelRotation());
+            final var changeScale = Math.pow(2, zoomFactor * event.getWheelRotation());
             scaleController.setScale(scaleController.getScale() * changeScale);
           }
       };

@@ -62,6 +62,7 @@ import static org.hamcrest.CoreMatchers.*;
 @Slf4j
 public class EditableImageTest extends BaseTestSupport
   {
+    /******************************************************************************************************************/
     @Test
     public void testPropertiesWithJPG()
             throws IOException
@@ -69,11 +70,12 @@ public class EditableImageTest extends BaseTestSupport
         _testProperties(file_20030701_0043_jpg, 100, 66, 3, 8, 24, EditableImage.DataType.BYTE);
       }
 
+    /******************************************************************************************************************/
     @Test
     public void testReadMetadataJpegExportedByCaptureOne()
             throws Exception
       {
-        final EditableImage image = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
+        final var image = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
         assertEquals(3, image.getBandCount());
         assertEquals(8, image.getBitsPerBand());
         assertEquals(24, image.getBitsPerPixel());
@@ -81,71 +83,97 @@ public class EditableImageTest extends BaseTestSupport
         assertEquals(100, image.getWidth());
         assertEquals(66, image.getHeight());
 
-        final TIFF tiff = image.getMetadata(TIFF.class);
-        assertNotNull(tiff);
-        dumpTags("TIFF", tiff, log::info);
-        assertFalse(tiff.isAvailable());
+        assertTrue(image.getMetadata(TIFF.class).isPresent());
+        assertEquals(1, img20060603_0002_jpg.getMetadataCount(TIFF.class));
+        assertTrue(image.getMetadata(EXIF.class).isPresent());
+        assertEquals(1, img20060603_0002_jpg.getMetadataCount(EXIF.class));
 
-        final EXIF exif = image.getMetadata(EXIF.class);
-        assertNotNull(exif);
-        dumpTags("EXIF", exif, log::info);
+        var tiff = image.getMetadata(TIFF.class).get();
+        assertTrue(tiff.isAvailable());
+        assertEquals(10, tiff.getTagCodes().length);
+        dumpTags("TIFF", tiff, log::info);
+
+        assertOptionalEquals("                                ", tiff.getImageDescription());
+        assertOptionalEquals("NIKON CORPORATION", tiff.getMake());
+        assertOptionalEquals("NIKON D100", tiff.getModel());
+        assertOptionalEquals(Rational.of(72, 1), tiff.getXResolution());
+        assertOptionalEquals(Rational.of(72, 1), tiff.getYResolution());
+        assertOptionalEquals(EXIFDirectoryGenerated.ResolutionUnit.INCHES, tiff.getResolutionUnit());
+        assertOptionalEquals("Capture One 15 Macintosh", tiff.getSoftware());
+        assertOptionalEquals("2004:11:05 16:30:47", tiff.getDateTime());
+        // assertOptionalEquals(LocalDateTime.of(2004, 11, 5, 16, 30, 47, 0).toInstant(ZoneOffset.UTC),
+        //                      tiff.getDateTimeAsDate());
+        assertOptionalEquals("Fabrizio Giudici", tiff.getArtist());
+        assertOptionalEquals("© Copyright by Fabrizio Giudici. All rights reserved.", tiff.getCopyright());
+
+        var exif = image.getMetadata(EXIF.class).get();
         assertTrue(exif.isAvailable());
         assertEquals(27, exif.getTagCodes().length);
+        dumpTags("EXIF", exif, log::info);
 
-        // assertOptionalEquals("NIKON CORPORATION", exif.getMake());
-        // assertOptionalEquals("NIKON D100", exif.getModel());
-        // assertOptionalEquals(new Rational(300, 1), exif.getXResolution());
-        // assertOptionalEquals(new Rational(300, 1), exif.getYResolution());
-        // assertOptionalEquals(EXIF.ResolutionUnit.INCHES, exif.getResolutionUnit());
-        // assertOptionalEquals("Nikon Capture Editor 4.1.3 W", exif.getSoftware());
-        // assertOptionalEquals("2006:11:11 20:24:33", exif.getDateTime());
-        // assertOptionalEquals("(C) Copyright 2006 by Fabrizio Giudici", exif.getCopyright());
-        assertOptionalEquals(new Rational(1, 320), exif.getExposureTime());
-        assertOptionalEquals(new Rational(28, 10), exif.getFNumber());
+        assertOptionalEquals(Rational.of(1, 320), exif.getExposureTime());
+        assertOptionalEquals(Rational.of(28, 10), exif.getFNumber());
         assertOptionalEquals(EXIF.ExposureProgram.SHUTTER_PRIORITY, exif.getExposureProgram());
         assertOptionalEquals(400, exif.getISOSpeedRatings());
         assertOptionalEquals(new byte[]{48, 50, 50, 49}, exif.getEXIFVersion());
         assertOptionalEquals("2003:07:01 12:29:36", exif.getDateTimeOriginal());
         assertOptionalEquals("800", exif.getSubsecTimeOriginal());
         assertOptionalEquals(LocalDateTime.of(2003, 7, 1, 12, 29, 44, 0).toInstant(ZoneOffset.UTC),
-                     exif.getDateTimeDigitizedAsDate());
+                             exif.getDateTimeDigitizedAsDate());
         assertOptionalEquals("2003:07:01 12:29:36", exif.getDateTimeDigitized());
         assertOptionalEquals(LocalDateTime.of(2003, 7, 1, 12, 29, 44, 0).toInstant(ZoneOffset.UTC),
-                     exif.getDateTimeOriginalAsDate());
+                             exif.getDateTimeOriginalAsDate());
         assertOptionalEquals("800", exif.getSubsecTimeDigitized());
-//        assertEquals(FORMAT.parse("2007 04 21 21:51:02.000"), exif.getDateTimeAsDate());
-        assertOptionalEquals(new Rational(8321928, 1000000), exif.getShutterSpeedValue());
-        assertOptionalEquals(new Rational(2970854, 1000000), exif.getApertureValue());
-        assertOptionalEquals(new Rational(0, 6), exif.getExposureBiasValue());
-        assertOptionalEquals(new Rational(3, 1), exif.getMaxApertureValue());
+        assertOptionalEquals(Rational.of(8321928, 1000000), exif.getShutterSpeedValue());
+        assertOptionalEquals(Rational.of(2970854, 1000000), exif.getApertureValue());
+        assertOptionalEquals(Rational.of(0, 6), exif.getExposureBiasValue());
+        assertOptionalEquals(Rational.of(3, 1), exif.getMaxApertureValue());
         assertOptionalEquals(EXIF.MeteringMode.PATTERN, exif.getMeteringMode());
         assertOptionalEquals(EXIF.LightSource.FINE_WEATHER, exif.getLightSource());
         assertOptionalEquals(0, exif.getFlash());
-        assertOptionalEquals(new Rational(180, 1), exif.getFocalLength());
-//        assertEquals(9996, (long)exif.getMakerNote());
+        assertOptionalEquals(Rational.of(180, 1), exif.getFocalLength());
+        //        assertEquals(9996, (long)exif.getMakerNote());
         assertOptionalEquals("ASCII\u0000\u0000\u0000(C) Copyright by Fabrizio Giudici",
-                                 exif.getUserComment().map(String::new));
+                             exif.getUserComment().map(String::new));
         assertOptionalEquals(EXIF.SensingMethod.ONE_CHIP_COLOR_AREA_SENSOR, exif.getSensingMethod());
         assertOptionalEquals(EXIF.FileSource.DSC, exif.getFileSource());
         assertOptionalEquals(EXIF.SceneType.DIRECTLY_PHOTOGRAPHED_IMAGE, exif.getSceneType());
       }
 
+    /******************************************************************************************************************/
     @Test
     public void testReadMetadataJpegExportedByAdobeLightroom()
       {
+        assertTrue(img20060603_0002_jpg.getMetadata(TIFF.class).isPresent());
         assertEquals(1, img20060603_0002_jpg.getMetadataCount(TIFF.class));
-        final TIFF tiff = img20060603_0002_jpg.getMetadata(TIFF.class);
-        assertNotNull(tiff);
-        assertFalse(tiff.isAvailable());
+        assertTrue(img20060603_0002_jpg.getMetadata(EXIF.class).isPresent());
+        assertEquals(1, img20060603_0002_jpg.getMetadataCount(EXIF.class));
 
-        final EXIF exif = img20060603_0002_jpg.getMetadata(EXIF.class);
+        var tiff = img20060603_0002_jpg.getMetadata(TIFF.class).get();
+        assertTrue(tiff.isAvailable());
+        assertEquals(9, tiff.getTagCodes().length);
+        dumpTags("TIFF", tiff, log::info);
+
+        assertOptionalEquals("NIKON CORPORATION", tiff.getMake());
+        assertOptionalEquals("NIKON D100", tiff.getModel());
+        assertOptionalEquals(Rational.of(72, 1), tiff.getXResolution());
+        assertOptionalEquals(Rational.of(72, 1), tiff.getYResolution());
+        assertOptionalEquals(EXIFDirectoryGenerated.ResolutionUnit.INCHES, tiff.getResolutionUnit());
+        assertOptionalEquals("Adobe Photoshop Lightroom 6.1.1 (Macintosh)", tiff.getSoftware());
+        assertOptionalEquals("2015:09:06 15:32:17", tiff.getDateTime());
+        // assertOptionalEquals(LocalDateTime.of(2004, 11, 5, 16, 30, 47, 0).toInstant(ZoneOffset.UTC),
+        //                      tiff.getDateTimeAsDate());
+        assertOptionalEquals("Fabrizio Giudici", tiff.getArtist());
+        assertOptionalEquals("© Copyright by Fabrizio Giudici. All rights reserved.", tiff.getCopyright());
+
+        var exif = img20060603_0002_jpg.getMetadata(EXIF.class).get();
+        assertTrue(exif.isAvailable());
         assertEquals(35, exif.getTagCodes().length);
+        dumpTags("EXIF", exif, log::info);
 
         assertOptionalEquals(6.0, exif.getApertureValue());
         assertOptionalEquals(EXIF.Contrast.NORMAL, exif.getContrast());
         assertOptionalEquals(EXIF.CustomRendered.NORMAL_PROCESS, exif.getCustomRendered());
-        // assertOptionalEquals("2007:04:21 21:51:02", exif.getDateTime());
-//        assertEquals(FORMAT.parse("2007 04 21 21:51:02.000"), exif.getDateTimeAsDate());
         assertOptionalEquals("2006:06:03 12:04:53", exif.getDateTimeDigitized());
         assertOptionalEquals("70", exif.getSubsecTimeDigitized());
         assertOptionalEquals(LocalDateTime.of(2006, 6, 3, 12, 4, 53, 700000000).toInstant(ZoneOffset.UTC),
@@ -169,11 +197,8 @@ public class EditableImageTest extends BaseTestSupport
         assertOptionalEquals(EXIF.GainControl.NONE, exif.getGainControl());
         assertOptionalEquals(200, exif.getISOSpeedRatings());
         assertOptionalEquals(EXIF.LightSource.UNKNOWN, exif.getLightSource());
-        // assertOptionalEquals("NIKON CORPORATION", exif.getMake());
         assertOptionalEquals(1.6, exif.getMaxApertureValue());
         assertOptionalEquals(EXIF.MeteringMode.PATTERN, exif.getMeteringMode());
-        // assertOptionalEquals("NIKON D100", exif.getModel());
-        // assertOptionalEquals(EXIF.ResolutionUnit.INCHES, exif.getResolutionUnit());
         assertOptionalEquals(EXIF.Saturation.NORMAL, exif.getSaturation());
         assertOptionalEquals(0, exif.getSceneCaptureType());
         assertOptionalEquals(EXIF.SceneType.DIRECTLY_PHOTOGRAPHED_IMAGE, exif.getSceneType());
@@ -181,14 +206,12 @@ public class EditableImageTest extends BaseTestSupport
         assertOptionalEquals(EXIF.Sharpness.NORMAL, exif.getSharpness());
         assertOptionalEquals(7.321928, exif.getShutterSpeedValue());
         assertOptionalEquals(0, exif.getSubjectDistanceRange());
-        // assertOptionalEquals("Ver.2.00", exif.getSoftware());
-        // assertOptionalEquals(300.0, exif.getXResolution());
-        // assertOptionalEquals(300.0, exif.getYResolution());
         assertOptionalEquals("ASCII\u0000\u0000\u0000(C) Copyright by Fabrizio Giudici",
                              exif.getUserComment().map(String::new));
         assertOptionalEquals(EXIF.WhiteBalance.AUTO, exif.getWhiteBalance());
       }
 
+    /******************************************************************************************************************/
     @Test(enabled = false)
     public void testPropertiesWithNEF()
             throws IOException
@@ -218,13 +241,13 @@ public class EditableImageTest extends BaseTestSupport
 //
 //        assertEquals("Canon", exif.getMake());
 //        assertEquals("Canon EOS 20D", exif.getModel());
-//        assertEquals(new Rational(72, 1), exif.getXResolution());
-//        assertEquals(new Rational(72, 1), exif.getYResolution());
+//        assertEquals(Rational.of(72, 1), exif.getXResolution());
+//        assertEquals(Rational.of(72, 1), exif.getYResolution());
 //        assertEquals(EXIF.ResolutionUnit.INCHES, exif.getResolutionUnit());
 //        assertEquals("2004:09:19 12:25:20", exif.getDateTime());
-//        assertEquals(new Rational(1, 250), exif.getExposureTime());
+//        assertEquals(Rational.of(1, 250), exif.getExposureTime());
 //
-////        assertEquals(new Rational(28, 10), exif.getFNumber());
+////        assertEquals(Rational.of(28, 10), exif.getFNumber());
 ////        assertEquals(EXIF.ExposureProgram.SHUTTER_PRIORITY, exif.getExposureProgram());
 ////        assertEquals(400, (int)exif.getISOSpeedRatings());
 ////        assertTrue(Arrays.equals(new byte[]{48, 50, 50, 49}, exif.getEXIFVersion()));
@@ -233,14 +256,14 @@ public class EditableImageTest extends BaseTestSupport
 //////        assertEquals(FORMAT.parse("2007 04 21 21:51:02.000"), exif.getDateTimeAsDate());
 //////        assertEquals(FORMAT.parse("2006 06 03 12:04:53.700"), exif.getDateTimeDigitizedAsDate());
 //////        assertEquals(FORMAT.parse("2006 06 03 12:04:53.700"), exif.getDateTimeOriginalAsDate());
-////        assertEquals(new Rational(8321928, 1000000), exif.getShutterSpeedValue());
-////        assertEquals(new Rational(2970854, 1000000), exif.getApertureValue());
-////        assertEquals(new Rational(0, 6), exif.getExposureBiasValue());
-////        assertEquals(new Rational(3, 1), exif.getMaxApertureValue());
+////        assertEquals(Rational.of(8321928, 1000000), exif.getShutterSpeedValue());
+////        assertEquals(Rational.of(2970854, 1000000), exif.getApertureValue());
+////        assertEquals(Rational.of(0, 6), exif.getExposureBiasValue());
+////        assertEquals(Rational.of(3, 1), exif.getMaxApertureValue());
 ////        assertEquals(EXIF.MeteringMode.PATTERN, exif.getMeteringMode());
 ////        assertEquals(EXIF.LightSource.FINE_WEATHER, exif.getLightSource());
 ////        assertEquals(0, (int)exif.getFlash());
-////        assertEquals(new Rational(180, 1), exif.getFocalLength());
+////        assertEquals(Rational.of(180, 1), exif.getFocalLength());
 //////        assertEquals(9996, (long)exif.getMakerNote());
 ////        assertEquals("ASCII\u0000\u0000\u0000(C) Copyright by Fabrizio Giudici", new String(exif.getUserComment()));
 ////        assertEquals("80", exif.getSubsecTimeOriginal());
@@ -250,16 +273,17 @@ public class EditableImageTest extends BaseTestSupport
 ////        assertEquals(EXIF.SceneType.DIRECTLY_PHOTOGRAPHED_IMAGE, exif.getSceneType());
 //      }
 
+    /*
     @Test(enabled = false)
     public void testReadMetadataFromNEF()
             throws Exception
       {
-        final File file = file_20030701_0043_nef;
+        final var file = file_20030701_0043_nef;
         assertTrue(file.exists());
-        final EditableImage image = EditableImage.create(new ReadOp(file, METADATA));
+        final var image = EditableImage.create(new ReadOp(file, METADATA));
 
         assertEquals(1, image.getMetadataCount(TIFF.class));
-        final TIFF tiff = image.getMetadata(TIFF.class);
+        final var tiff = image.getMetadata(TIFF.class);
         assertNotNull(tiff);
         assertTrue(tiff.isAvailable());
         assertEquals(25, tiff.getTagCodes().length);
@@ -278,8 +302,8 @@ public class EditableImageTest extends BaseTestSupport
         assertEquals(3, (int)tiff.getSamplesPerPixel().get());
         assertEquals(212, (int)tiff.getRowsPerStrip().get());
         assertEquals(203520, (int)tiff.getStripByteCounts().get());
-        assertEquals(new Rational(300, 1), tiff.getXResolution());
-        assertEquals(new Rational(300, 1), tiff.getYResolution());
+        assertEquals(Rational.of(300, 1), tiff.getXResolution());
+        assertEquals(Rational.of(300, 1), tiff.getYResolution());
         assertEquals(TIFF.PlanarConfiguration.CHUNKY, tiff.getPlanarConfiguration());
         assertEquals(TIFF.ResolutionUnit.INCHES, tiff.getResolutionUnit());
         assertEquals("Nikon Capture Editor 4.1.3 W", tiff.getSoftware());
@@ -292,27 +316,27 @@ public class EditableImageTest extends BaseTestSupport
 
         assertEquals(List.of("EXIF"), new ArrayList<>(tiff.getSubDirectoryNames()));
         assertEquals(1, image.getMetadataCount(EXIF.class));
-        final EXIF exif = image.getMetadata(EXIF.class);
+        final var exif = image.getMetadata(EXIF.class);
         assertNotNull(exif);
 //        assertTrue(exif == tiff.getSubDirectory("EXIF"));
         assertTrue(exif.isAvailable());
         assertEquals(22, exif.getTagCodes().length);
         dumpTags("EXIF", exif, log::info);
 
-        assertEquals(new Rational(3125, 1000000), exif.getExposureTime());
-        assertEquals(new Rational(28, 10), exif.getFNumber());
+        assertEquals(Rational.of(3125, 1000000), exif.getExposureTime());
+        assertEquals(Rational.of(28, 10), exif.getFNumber());
         assertEquals(EXIF.ExposureProgram.SHUTTER_PRIORITY, exif.getExposureProgram());
         assertEquals("2003:07:01 12:29:36", exif.getDateTimeOriginal());
         assertEquals("2003:07:01 12:29:36", exif.getDateTimeDigitized());
 //        assertEquals(FORMAT.parse("2007 04 21 21:51:02.000"), exif.getDateTimeAsDate());
 //        assertEquals(FORMAT.parse("2006 06 03 12:04:53.700"), exif.getDateTimeDigitizedAsDate());
 //        assertEquals(FORMAT.parse("2006 06 03 12:04:53.700"), exif.getDateTimeOriginalAsDate());
-        assertEquals(new Rational(0, 6), exif.getExposureBiasValue());
-        assertEquals(new Rational(3, 1), exif.getMaxApertureValue());
+        assertEquals(Rational.of(0, 6), exif.getExposureBiasValue());
+        assertEquals(Rational.of(3, 1), exif.getMaxApertureValue());
         assertEquals(EXIF.MeteringMode.PATTERN, exif.getMeteringMode());
         assertEquals(EXIF.LightSource.FINE_WEATHER, exif.getLightSource());
         assertEquals(0, (int)exif.getFlash().get());
-        assertEquals(new Rational(180, 1), exif.getFocalLength());
+        assertEquals(Rational.of(180, 1), exif.getFocalLength());
         assertEquals(9996, exif.getMakerNote());
         assertEquals("ASCII\u0000\u0000\u0000(C) Copyright by Fabrizio Giudici   ",
                                  new String(exif.getUserComment().get()));
@@ -326,26 +350,27 @@ public class EditableImageTest extends BaseTestSupport
         assertEquals(EXIF.SceneType.DIRECTLY_PHOTOGRAPHED_IMAGE, exif.getSceneType());
         assertTrue(Arrays.equals(new byte[]{0, 2, 0, 2, 1, 0, 2, 1}, exif.getEXIFCFAPattern().get()));
       }
+    */
 
-
+    /*
     @Test(enabled = false)
     public void testReadIPTCFromJPEG1()
       {
 
         assertEquals(1, imgIPTC1_jpg.getMetadataCount(IPTC.class));
-        final IPTC iptc = imgIPTC1_jpg.getMetadata(IPTC.class);
+        final var iptc = imgIPTC1_jpg.getMetadata(IPTC.class);
         assertNotNull(iptc);
         assertTrue(iptc.isAvailable());
 
-        final String caption = "The Shore Temple of the Seven Pagodas was built under Narsimha II of " +
-                               "the Pallava dynasty between 7th and 8th century AD and is dedicated to " +
-                               "Lord Shiva. It resembles the structure of the Dharmaraja rath, but its " +
-                               "tower rises much higher (approx. five stories or ~ 60 ft. high) and its " +
-                               "stupa spire is small and slender. ";
-        final String keywords = "land, monument, nature, scenery, architectural, architecture, building, " +
-                                "place of worship, religious building, structures, temple, sacred place, " +
-                                "sanctum, Asia, India, Malibalipuram, Tamil Nadu, night, moonlight, moon, " +
-                                "skies, sky, blue";
+        final var caption = "The Shore Temple of the Seven Pagodas was built under Narsimha II of " +
+                            "the Pallava dynasty between 7th and 8th century AD and is dedicated to " +
+                            "Lord Shiva. It resembles the structure of the Dharmaraja rath, but its " +
+                            "tower rises much higher (approx. five stories or ~ 60 ft. high) and its " +
+                            "stupa spire is small and slender. ";
+        final var keywords = "land, monument, nature, scenery, architectural, architecture, building, " +
+                             "place of worship, religious building, structures, temple, sacred place, " +
+                             "sanctum, Asia, India, Malibalipuram, Tamil Nadu, night, moonlight, moon, " +
+                             "skies, sky, blue";
 
         assertEquals(17, iptc.getTagCodes().length);
         assertOptionalEquals("Julie Doe", iptc.getByline());
@@ -365,49 +390,65 @@ public class EditableImageTest extends BaseTestSupport
         assertOptionalEquals("Newsmagazines Out", iptc.getSpecialInstructions());
         assertOptionalEquals("Jacques Brown", iptc.getWriterEditor());
       }
+     */
 
+    /******************************************************************************************************************/
     @Test(enabled = false)
     public void testSerialize()
             throws IOException, ClassNotFoundException
       {
-        final File file = new File("target/Serialized");
-        final ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(file.toPath()));
-        final EditableImage image1 = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
+        final var file = new File("target/Serialized");
+        final var oos = new ObjectOutputStream(Files.newOutputStream(file.toPath()));
+        final var image1 = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
         oos.writeObject(image1);
         oos.close();
         log.info("serialized" + image1);
 
-        final ObjectInputStream ois = new ObjectInputStream(Files.newInputStream(file.toPath()));
-        final EditableImage image2 = (EditableImage)ois.readObject();
+        final var ois = new ObjectInputStream(Files.newInputStream(file.toPath()));
+        final var image2 = (EditableImage)ois.readObject();
         ois.close();
         log.info("deserialized" + image2);
       }
 
-    @Test(dataProvider = "stoppingDownImages")
-    public void testMetadata (@Nonnull final Path path)
+    /******************************************************************************************************************/
+    @Test(dataProvider = "testSet_StoppingDown_100_20230116")
+    public void test_stoppingdown_100_20230116_Metadata (@Nonnull final String testSetName,
+                                                         @Nonnull final Path basePath,
+                                                         @Nonnull final Path path)
+            throws IOException
+      {
+        testMetadata(testSetName, basePath, path);
+      }
+
+    /******************************************************************************************************************/
+    public void testMetadata (@Nonnull final String testSetName,
+                              @Nonnull final Path basePath,
+                              @Nonnull final Path path)
             throws IOException
       {
         // WHEN
-        final EditableImage underTest = EditableImage.create(new ReadOp(path, METADATA));
-        final TIFF tiff = underTest.getMetadata(TIFF.class);
-        final EXIF exif = underTest.getMetadata(EXIF.class);
-        final IPTC iptc = underTest.getMetadata(IPTC.class);
+        final var underTest = EditableImage.create(new ReadOp(path, METADATA));
+        final var tiff = underTest.getMetadata(TIFF.class);
+        final var exif = underTest.getMetadata(EXIF.class);
+        final var iptc = underTest.getMetadata(IPTC.class);
         // final XMP xmp = underTest.getMetadata(XMP.class);
         // THEN
         log.info("TIFF: {}", tiff);
         log.info("EXIF: {}", exif);
         log.info("IPTC: {}", iptc);
         // log.info("XMP: {}", xmp);
-        final String resourceName = path.getFileName().toString().replaceAll("\\.jpg$", ".txt");
-        final List<String> strings = new ArrayList<>();
-        dumpTags("TIFF", tiff, strings::add);
-        dumpTags("EXIF", exif, strings::add);
-        dumpTags("IPTC", iptc, strings::add);
-        final Path actualResults = Path.of("target/test-results/stoppingdown_100_20230116");
-        final Path expectedResults = Path.of("src/test/resources/expected-results/stoppingdown_100_20230116");
-        final Path actualDump = actualResults.resolve(resourceName);
-        final Path expectedDump = expectedResults.resolve(resourceName);
-        Files.createDirectories(actualResults);
+        final var resourceName = path.getFileName().toString().replaceAll("\\.jpg$", ".txt");
+        final var strings = new ArrayList<String>();
+        tiff.ifPresent(t -> dumpTags("TIFF[0]", t, strings::add));
+        exif.ifPresent(e -> dumpTags("EXIF[0]", e, strings::add));
+        iptc.ifPresent(i -> dumpTags("IPTC[0]", i, strings::add));
+        final var actualResults = Path.of("target/test-results/" + testSetName);
+        final var expectedResults = Path.of("src/test/resources/expected-results/" + testSetName);
+        final var relative = basePath.relativize(path.getParent());
+        final var actualDump = actualResults.resolve(relative).resolve(resourceName);
+        final var expectedDump = expectedResults.resolve(relative).resolve(resourceName);
+        Files.createDirectories(actualDump.getParent());
+        Files.createDirectories(expectedDump.getParent());
         Files.write(actualDump, strings, UTF_8);
         assertSameContents(expectedDump, actualDump);
       }

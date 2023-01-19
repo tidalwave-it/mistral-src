@@ -28,12 +28,15 @@ package it.tidalwave.image.op;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.zip.GZIPInputStream;
 import java.io.ByteArrayInputStream;
@@ -45,17 +48,31 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
+import javax.imageio.metadata.IIOMetadata;
 import javax.imageio.stream.ImageInputStream;
 import java.net.URL;
 import java.awt.image.BufferedImage;
+import it.tidalwave.util.Parameters;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.java2d.ImplementationFactoryJ2D;
 import it.tidalwave.image.java2d.Java2DUtils;
+import it.tidalwave.image.metadata.Directory;
+import it.tidalwave.image.metadata.EXIF;
+import it.tidalwave.image.metadata.IPTC;
+import it.tidalwave.image.metadata.MakerNote;
+import it.tidalwave.image.metadata.TIFF;
+import it.tidalwave.image.metadata.XMP;
+import it.tidalwave.image.metadata.loader.DirectoryLoader;
+import it.tidalwave.image.metadata.loader.DrewMetadataLoader;
+import it.tidalwave.image.metadata.loader.JpegDrewMetadataLoader;
+import it.tidalwave.image.metadata.loader.MetadataLoader;
+import it.tidalwave.image.metadata.loader.RAWMetadataLoader;
+import it.tidalwave.image.metadata.loader.TIFFMetadataLoader;
 import it.tidalwave.image.op.impl.FileChannelImageInputStream;
-import it.tidalwave.image.util.Parameters;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import static it.tidalwave.util.FunctionalCheckedExceptionWrappers.*;
 
 /***********************************************************************************************************************
  *
@@ -143,8 +160,8 @@ public class ReadOp extends Operation
 
             if (input instanceof Path)
               {
-                final ImageReader imageReader = createImageReader(((Path)input).toFile(), pluginBlackList);
-                final EditableImage editableImage = read(imageReader);
+                final var imageReader = createImageReader(((Path)input).toFile(), pluginBlackList);
+                final var editableImage = read(imageReader);
                 setProperties(editableImage, imageReader);
                 imageReader.dispose();
                 return editableImage;
@@ -152,8 +169,8 @@ public class ReadOp extends Operation
 
             else if (input instanceof File)
               {
-                final ImageReader imageReader = createImageReader((File)input, pluginBlackList);
-                final EditableImage editableImage = read(imageReader);
+                final var imageReader = createImageReader((File)input, pluginBlackList);
+                final var editableImage = read(imageReader);
                 setProperties(editableImage, imageReader);
                 imageReader.dispose();
                 return editableImage;
@@ -161,8 +178,8 @@ public class ReadOp extends Operation
 
             else if (input instanceof URL)
               {
-                final ImageReader imageReader = createImageReader((URL)input, pluginBlackList);
-                final EditableImage editableImage = read(imageReader);
+                final var imageReader = createImageReader((URL)input, pluginBlackList);
+                final var editableImage = read(imageReader);
                 setProperties(editableImage, imageReader);
                 imageReader.dispose();
                 return editableImage;
@@ -170,8 +187,8 @@ public class ReadOp extends Operation
 
             else if (input instanceof InputStream)
               {
-                final ImageReader imageReader = createImageReader((InputStream)input, pluginBlackList);
-                final EditableImage editableImage = read(imageReader);
+                final var imageReader = createImageReader((InputStream)input, pluginBlackList);
+                final var editableImage = read(imageReader);
                 setProperties(editableImage, imageReader);
                 imageReader.dispose();
                 return editableImage;
@@ -179,9 +196,8 @@ public class ReadOp extends Operation
 
             else if (input instanceof byte[])
               {
-                final ImageReader imageReader =
-                        createImageReader(new ByteArrayInputStream((byte[])input), pluginBlackList);
-                final EditableImage editableImage = read(imageReader);
+                final var imageReader = createImageReader(new ByteArrayInputStream((byte[])input), pluginBlackList);
+                final var editableImage = read(imageReader);
                 setProperties(editableImage, imageReader);
                 imageReader.dispose();
                 return editableImage;
@@ -189,7 +205,7 @@ public class ReadOp extends Operation
 
             else if (input instanceof ImageReader)
               {
-                final EditableImage editableImage = read((ImageReader)input);
+                final var editableImage = read((ImageReader)input);
                 setProperties(editableImage, (ImageReader)input);
                 return editableImage;
                 // don't dispose the ImageReader in this case
@@ -224,13 +240,12 @@ public class ReadOp extends Operation
          **************************************************************************************************************/
         IMAGE
                   {
-                    @Nonnull
-                    @Override
+                    @Override @Nonnull
                     protected EditableImage read (@Nonnull final ReadOp readOp)
                             throws IOException
                       {
-                        final Object input = readOp.getInput();
-                        final int imageIndex = readOp.getImageIndex();
+                        final var input = readOp.getInput();
+                        final var imageIndex = readOp.getImageIndex();
                         log.info("read({}, {})", input, imageIndex);
 
                         return Reader.read(input, new Reader()
@@ -239,12 +254,12 @@ public class ReadOp extends Operation
                             protected EditableImage read (final ImageReader imageReader)
                                     throws IOException
                               {
-                                final long time = System.currentTimeMillis();
-                                final BufferedImage image = imageReader.read(imageIndex);
-                                final EditableImage editableImage = create(image);
-                                editableImage.loadMetadata(imageReader, imageIndex);
+                                final var time = Instant.now();
+                                final var image = imageReader.read(imageIndex);
+                                final var editableImage = create(image);
+                                loadMetadata(editableImage, imageReader, imageIndex);
                                 Java2DUtils.logImage(log, ">>>> Loaded image: ", image);
-                                editableImage.latestOperationTime = System.currentTimeMillis() - time;
+                                editableImage.getInnerProperty(AccessorOp.class).setLatestOperationDuration(Duration.between(Instant.now(), time));
                                 return editableImage;
                               }
                           }, readOp.getPluginBlackList());
@@ -257,14 +272,13 @@ public class ReadOp extends Operation
          **************************************************************************************************************/
         THUMBNAIL
                   {
-                    @Nonnull
-                    @Override
+                    @Override @Nonnull
                     protected EditableImage read (@Nonnull final ReadOp readOp)
                             throws IOException
                       {
-                        final Object input = readOp.getInput();
-                        final int imageIndex = readOp.getImageIndex();
-                        final int thumbnailIndex = readOp.getThumbnailIndex();
+                        final var input = readOp.getInput();
+                        final var imageIndex = readOp.getImageIndex();
+                        final var thumbnailIndex = readOp.getThumbnailIndex();
                         log.info("read({}, {}, {})", input, imageIndex, thumbnailIndex);
 
                         return Reader.read(input, new Reader()
@@ -274,9 +288,9 @@ public class ReadOp extends Operation
                             protected EditableImage read (@Nonnull final ImageReader imageReader)
                                     throws IOException
                               {
-                                final long time = System.currentTimeMillis();
+                                final var time = Instant.now();
                                 return create(imageReader.readThumbnail(imageIndex, thumbnailIndex),
-                                              System.currentTimeMillis() - time);
+                                              Duration.between(Instant.now(), time));
                               }
                           }, readOp.getPluginBlackList());
                       }
@@ -288,13 +302,12 @@ public class ReadOp extends Operation
          **************************************************************************************************************/
         METADATA
                   {
-                    @Nonnull
-                    @Override
+                    @Override @Nonnull
                     protected EditableImage read (@Nonnull final ReadOp readOp)
                             throws IOException
                       {
-                        final Object input = readOp.getInput();
-                        final int imageIndex = readOp.getImageIndex();
+                        final var input = readOp.getInput();
+                        final var imageIndex = readOp.getImageIndex();
                         log.info("read({}, {})", input, imageIndex);
 
                         return Reader.read(input, new Reader()
@@ -303,8 +316,8 @@ public class ReadOp extends Operation
                             @Override
                             protected EditableImage read (@Nonnull final ImageReader imageReader)
                               {
-                                final EditableImage editableImage = new EditableImage(null);
-                                editableImage.loadMetadata(imageReader, imageIndex);
+                                final var editableImage = new EditableImage(null);
+                                loadMetadata(editableImage, imageReader, imageIndex);
                                 return editableImage;
                               }
                           }, readOp.getPluginBlackList());
@@ -334,10 +347,11 @@ public class ReadOp extends Operation
          *
          **************************************************************************************************************/
         @Nonnull
-        private static EditableImage create (@Nonnull final BufferedImage image, final long time)
+        private static EditableImage create (@Nonnull final BufferedImage image,
+                                             @Nonnull final Duration latestOperationDuration)
           {
-            final EditableImage editableImage = create(image);
-            editableImage.latestOperationTime = time;
+            final var editableImage = create(image);
+            editableImage.getInnerProperty(AccessorOp.class).setLatestOperationDuration(latestOperationDuration);
             return editableImage;
           }
       }
@@ -370,9 +384,7 @@ public class ReadOp extends Operation
      * @param  imageIndex     the index of the image to read
      *
      ******************************************************************************************************************/
-    public ReadOp (@Nonnull final Object input,
-                   @Nonnegative final int imageIndex,
-                   @Nonnull final Options... options)
+    public ReadOp (@Nonnull final Object input, @Nonnegative final int imageIndex, @Nonnull final Options... options)
       {
         this(input, imageIndex, 0, options);
       }
@@ -436,16 +448,16 @@ public class ReadOp extends Operation
             throw new IOException("Cannot read " + file.getAbsolutePath());
           }
 
-        String fileName = file.getName();
-        String suffix = "";
-        final boolean gzipCompression = fileName.toLowerCase().endsWith(".gz");
+        var fileName = file.getName();
+        var suffix = "";
+        final var gzipCompression = fileName.toLowerCase().endsWith(".gz");
 
         if (gzipCompression)
           {
             fileName = fileName.substring(0, fileName.length() - 3);
           }
 
-        final int i = fileName.lastIndexOf('.');
+        final var i = fileName.lastIndexOf('.');
 
         if (i > 0)
           {
@@ -491,11 +503,11 @@ public class ReadOp extends Operation
       {
         log.trace("createImageReader({})", url);
 
-        final String fileName = url.getPath();
-        String suffix = "";
-        final boolean gzipCompression = fileName.toLowerCase().endsWith(".gz");
+        final var fileName = url.getPath();
+        var suffix = "";
+        final var gzipCompression = fileName.toLowerCase().endsWith(".gz");
 
-        final int i = fileName.lastIndexOf('.');
+        final var i = fileName.lastIndexOf('.');
 
         if (i > 0)
           {
@@ -507,7 +519,7 @@ public class ReadOp extends Operation
         //
         // This will not work with multiple-file formats such as Canon .CRW.
         //
-        final InputStream inputStream = gzipCompression ? new GZIPInputStream(url.openStream()) : url.openStream();
+        final var inputStream = gzipCompression ? new GZIPInputStream(url.openStream()) : url.openStream();
         imageInputStream = ImageIO.createImageInputStream(inputStream);
         return createImageReader(imageInputStream, gzipCompression, suffix, pluginBlackList);
       }
@@ -527,8 +539,8 @@ public class ReadOp extends Operation
             throws IOException
       {
         log.info("createImageReader({})", inputStream);
-        final ImageInputStream imageInputStream = ImageIO.createImageInputStream(inputStream);
-        final Iterator<ImageReader> iterator = ImageIO.getImageReaders(imageInputStream);
+        final var imageInputStream = ImageIO.createImageInputStream(inputStream);
+        final var iterator = ImageIO.getImageReaders(imageInputStream);
         return createImageReader(imageInputStream, iterator, pluginBlackList);
       }
 
@@ -551,7 +563,7 @@ public class ReadOp extends Operation
       {
         log.info("createImageReader({}, {}, {})", imageInputStream, gzipCompression, suffix);
 //        logger.finest(">>>> Suffixes: " + Arrays.asList(ImageIO.getReaderFileSuffixes()));
-        final Iterator<ImageReader> iterator = ImageIO.getImageReaders(imageInputStream);
+        final var iterator = ImageIO.getImageReaders(imageInputStream);
         return createImageReader(imageInputStream, iterator, pluginBlackList);
       }
 
@@ -583,8 +595,8 @@ public class ReadOp extends Operation
 
         while (iterator.hasNext())
           {
-            final ImageReader reader = iterator.next();
-            final String pluginClassName = reader.getOriginatingProvider().getPluginClassName();
+            final var reader = iterator.next();
+            final var pluginClassName = reader.getOriginatingProvider().getPluginClassName();
 
             if (reader != null)
               {
@@ -609,7 +621,7 @@ public class ReadOp extends Operation
 
         readers.addAll(tiffReaders);
 
-        for (final ImageReader reader : readers)
+        for (final var reader : readers)
           {
             log.trace(">>>> testing reader: {}, vendor: {}", reader, reader.getOriginatingProvider().getVendorName());
 
@@ -625,5 +637,181 @@ public class ReadOp extends Operation
           }
 
         throw new IOException("No ImageReader");
+      }
+
+    /*******************************************************************************************************************
+     *
+     *
+     ******************************************************************************************************************/
+    private static void loadMetadata (final @Nonnull EditableImage image,
+                                      final @Nonnull ImageReader reader,
+                                      final @Nonnegative int imageIndex)
+      {
+        log.trace("loadMetadata({}, {})", reader, imageIndex);
+        var accessor = image.getInnerProperty(AccessorOp.class);
+        var metadataMapByClass = accessor.getMetadataMapByClass();
+        final IIOMetadata iioMetadata;
+
+        try
+          {
+            iioMetadata = reader.getImageMetadata(imageIndex);
+          }
+        catch (Exception e)
+          {
+            throw new RuntimeException(e);
+            /*
+            if ("ICC APP2 encountered without prior JFIF!".equals(e.getMessage()) && (workaroundBM25 != null))
+              {
+                try
+                  {
+                    var tiff = new TIFF();
+                    var exif = new EXIF();
+                    var iptc = new IPTC();
+                    var xmp = new XMP();
+                    workaroundBM25.loadExifAndIptcFromJpeg(reader, tiff, exif, iptc, xmp);
+                    metadataMapByClass.put(TIFF.class, List.of(tiff));
+                    metadataMapByClass.put(EXIF.class, List.of(exif));
+                    metadataMapByClass.put(IPTC.class, List.of(iptc));
+                    metadataMapByClass.put(XMP.class, List.of(xmp));
+                  }
+                catch (Exception e1)
+                  {
+                    log.error("Cannot load EXIF/IPTC metadata: ", e1);
+                  }
+              }
+            else
+              {
+                log.error("Cannot load EXIF/IPTC metadata: ", e);
+              }
+
+            return;
+             */
+          }
+
+        if (iioMetadata == null)
+          {
+            log.warn(">>>> null imagemetadata");
+            return;
+          }
+
+        accessor.setIIOMetadata(iioMetadata);
+
+        var iioMetadataClass = iioMetadata.getClass();
+        final MetadataLoader metadataLoader;
+
+        if (isSubClass(iioMetadataClass, "com.sun.imageio.plugins.jpeg.JPEGMetadata"))
+          {
+            metadataLoader = new JpegDrewMetadataLoader(reader);
+          }
+        else if (isSubClass(iioMetadataClass, "com.sun.media.imageio.plugins.tiff.TIFFImageMetadata"))
+          {
+            metadataLoader = new TIFFMetadataLoader();
+          }
+        else if (isSubClass(iioMetadataClass, "it.tidalwave.imageio.raw.RAWMetadataSupport"))
+          {
+            metadataLoader = new RAWMetadataLoader();
+          }
+        else
+          {
+            metadataLoader = new DrewMetadataLoader();
+          }
+
+        log.debug(">>>> iioMetadata class: {}, using metadata loader: {}", iioMetadataClass, metadataLoader.getClass());
+
+        try
+          {
+            List.of(TIFF.class, EXIF.class, MakerNote.class, IPTC.class, XMP.class)
+                .forEach(_c(t -> metadataMapByClass.put(t, loadDirectories(iioMetadata, metadataLoader, t))));
+          }
+        catch (Exception e)
+          {
+            log.error("loadMetadata()", e);
+          }
+      }
+
+    /*******************************************************************************************************************
+     *
+     * Loads directories of metadata by means of a loader.
+     *
+     * @param   iioMetadata
+     * @param   metadataLoader    the metadata loader
+     * @param   directoryClass    the type of the directory to laod
+     * @return                    the loaded items
+     *
+     ******************************************************************************************************************/
+    private static <T extends Directory> List<Directory> loadDirectories (final @Nonnull IIOMetadata iioMetadata,
+                                                                          final @Nonnull MetadataLoader metadataLoader,
+                                                                          final @Nonnull Class<T> directoryClass)
+      {
+        log.debug("loadDirectories({}, {}, {})", iioMetadata, metadataLoader, directoryClass);
+        final var items = new ArrayList<Directory>();
+        Optional<DirectoryLoader> loader = Optional.empty();
+
+        // FIXME: get rid of the if chain
+        if (TIFF.class.equals(directoryClass))
+          {
+            loader = metadataLoader.getTiffLoader(iioMetadata);
+          }
+        else if (EXIF.class.equals(directoryClass))
+          {
+            loader = metadataLoader.getExifLoader(iioMetadata);
+          }
+        else if (IPTC.class.equals(directoryClass))
+          {
+            loader = metadataLoader.getIptcLoader(iioMetadata);
+          }
+        else if (XMP.class.equals(directoryClass))
+          {
+            loader = metadataLoader.getXmpLoader(iioMetadata);
+          }
+        else if (MakerNote.class.equals(directoryClass))
+          {
+            loader = metadataLoader.getMakerNoteLoader(iioMetadata);
+          }
+
+        loader.ifPresentOrElse(_c(a -> items.addAll(loadDirectories(a, directoryClass))),
+                               () -> log.warn("No loader for {}", directoryClass));
+        return items;
+      }
+
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    private static List<Directory> loadDirectories (@Nonnull DirectoryLoader loader,
+                                                    final @Nonnull Class<? extends Directory> itemClass)
+            throws InstantiationException, IllegalAccessException
+      {
+        var result = new ArrayList<Directory>();
+
+        for (; ; loader = loader.next())
+          {
+            final var item = itemClass.newInstance();
+            item.load(loader);
+            result.add(item);
+
+            if (!loader.hasNext())
+              {
+                break;
+              }
+          }
+
+        return result;
+      }
+
+    /*******************************************************************************************************************
+     *
+     *
+     ******************************************************************************************************************/
+    private static boolean isSubClass (@Nonnull Class<?> aClass, final @Nonnull String ancestorClassName)
+      {
+        for (; aClass != null; aClass = aClass.getSuperclass())
+          {
+            if (aClass.getName().equals(ancestorClassName))
+              {
+                return true;
+              }
+          }
+
+        return false;
       }
   }

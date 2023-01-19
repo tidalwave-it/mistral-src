@@ -30,7 +30,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.PaintOp;
@@ -57,18 +56,18 @@ public class PrintJ2DOp extends OperationImplementation<PrintOp, BufferedImage>
                 return Printable.NO_SUCH_PAGE;
               }
 
-            final Graphics2D g2d = (Graphics2D)graphics;
+            final var g2d = (Graphics2D)graphics;
             g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
-            final double xScale = pageFormat.getImageableWidth() / image.getWidth();
-            final double yScale = pageFormat.getImageableHeight() / image.getHeight();
-            final double aspectScale = Math.min(xScale, yScale);
-            final int width = (int)Math.round(image.getWidth() * aspectScale);
-            final int height = (int)Math.round(image.getHeight() * aspectScale);
-            image.execute(new PaintOp(g2d, 0, 0, width, height, null, null));
+            final var xScale = pageFormat.getImageableWidth() / image.getWidth();
+            final var yScale = pageFormat.getImageableHeight() / image.getHeight();
+            final var aspectScale = Math.min(xScale, yScale);
+            final var width = (int)Math.round(image.getWidth() * aspectScale);
+            final var height = (int)Math.round(image.getHeight() * aspectScale);
+            image.executeInPlace(new PaintOp(g2d, 0, 0, width, height, null, null));
             return Printable.PAGE_EXISTS;
           };
 
-        final PrinterJob pj = operation.getPrinterJob();
+        final var pj = operation.getPrinterJob();
         pj.setPrintable(printable);
 
         if (operation.confirmPrint())

@@ -207,7 +207,7 @@ public class Statistics implements Serializable, Iterable<Item>
      ******************************************************************************************************************/
     public synchronized void addSample (final String name, final long value)
       {
-        Item statItem = map.get(name);
+        var statItem = map.get(name);
 
         if (statItem == null)
           {
@@ -227,9 +227,9 @@ public class Statistics implements Serializable, Iterable<Item>
      ******************************************************************************************************************/
     public synchronized void merge (final Statistics statistics)
       {
-        for (final Item statItem : statistics)
+        for (final var statItem : statistics)
           {
-            final Item here = map.get(statItem.getName());
+            final var here = map.get(statItem.getName());
 
             if (here == null)
               {
@@ -250,7 +250,7 @@ public class Statistics implements Serializable, Iterable<Item>
      ******************************************************************************************************************/
     public void dump()
       {
-        for (final Statistics.Item item : this)
+        for (final var item : this)
           {
             log.info("STATS: >>>> " +
                      item.getName() + ": min/max/avg " +
@@ -269,7 +269,7 @@ public class Statistics implements Serializable, Iterable<Item>
      ******************************************************************************************************************/
     public void dump (final PrintWriter pw)
       {
-        for (final Statistics.Item item : this)
+        for (final var item : this)
           {
             pw.println(item.getName() + ": min/max/avg " +
                        item.getMinimum() + "/" +

@@ -26,6 +26,8 @@
  */
 package it.tidalwave.image.java2d.performance;
 
+import javax.annotation.Nonnull;
+import java.time.Duration;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.awt.image.PixelInterleavedSampleModel;
@@ -54,12 +56,12 @@ public abstract class BasePerformanceTestSupport extends BaseTestSupport
     static
       {
         os = Platform.isLinux() ? "Linux Ubuntu" : Platform.isMacOSX() ? "Mac OS X" : "Win XP";
-        String h = "???";
+        var h = "???";
 
         try
           {
             h = InetAddress.getLocalHost().getHostName();
-            final int i = h.indexOf('.');
+            final var i = h.indexOf('.');
 
             if (i >= 0)
               {
@@ -76,8 +78,8 @@ public abstract class BasePerformanceTestSupport extends BaseTestSupport
 
     private String getClassName()
       {
-        String name = getClass().getName();
-        int i = name.lastIndexOf('.');
+        var name = getClass().getName();
+        var i = name.lastIndexOf('.');
 
         if (i >= 0)
           {
@@ -97,14 +99,14 @@ public abstract class BasePerformanceTestSupport extends BaseTestSupport
     @Test
     public void testPerformance()
       {
-        for (final Quality quality : Quality.values())
+        for (final var quality : Quality.values())
           {
-            final String name = getClassName();
+            final var name = getClassName();
             log.info(name + " running");
 
             AssertJUnit.assertEquals(PixelInterleavedSampleModel.class,
                                      img20030701_0043_jpg.getInnerProperty(SampleModel.class).getClass());
-            final long time = runTest(img20030701_0043_jpg);
+            final var time = runTest(img20030701_0043_jpg);
             log.info(name + img20030701_0043_jpg);
             log.info("STATS: " + "VERSION" + "::" + host + "::" + os + "::" + name + "::" + quality + "::" +
                      file_20030701_0043_jpg.getFileName() + "=" + time);
@@ -114,20 +116,21 @@ public abstract class BasePerformanceTestSupport extends BaseTestSupport
     @Test
     public void testOptimizedPerformance()
       {
-        for (final Quality quality : Quality.values())
+        for (final var quality : Quality.values())
           {
-            final String name = getClassName() + " (opt)";
+            final var name = getClassName() + " (opt)";
             log.info(name + " running");
 
-            final EditableImage optimizedImage = img20030701_0043_jpg.execute2(new OptimizeOp());
+            final var optimizedImage = img20030701_0043_jpg.execute(new OptimizeOp());
             AssertJUnit.assertEquals(SinglePixelPackedSampleModel.class,
                                      optimizedImage.getInnerProperty(SampleModel.class).getClass());
-            final long time = runTest(optimizedImage);
+            final var time = runTest(optimizedImage);
             log.info(name + optimizedImage);
             log.info("STATS: " + "VERSION" + "::" + host + "::" + os + "::" + name + "::" + quality + "::" +
                      file_20030701_0043_jpg.getFileName() + "=" + time);
           }
       }
 
-    protected abstract long runTest (EditableImage image);
+    @Nonnull
+    protected abstract Duration runTest (@Nonnull EditableImage image);
   }

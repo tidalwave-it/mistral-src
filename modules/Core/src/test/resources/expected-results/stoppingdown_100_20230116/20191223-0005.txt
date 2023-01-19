@@ -1,64 +1,74 @@
-EXIF [33434] Exposure Time: 1/200
-EXIF [33437] F Number: 8/1
-EXIF [34850] Exposure Program: 3
-EXIF [34855] ISO Speed Ratings: 100
-EXIF [34864] null: 2
-EXIF [34866] RecommendedExposureIndex: 100
-EXIF [36864] EXIF Version: [48, 50, 51, 48]
-EXIF [36867] Date/Time Original: 2019:12:23 16:02:45
-EXIF [36868] Date/Time Digitized: 2019:12:23 16:02:45
-EXIF [37377] Shutter SpeedValue: 7643856/1000000
-EXIF [37378] Aperture Value: 6/1
-EXIF [37379] Brightness Value: 24134/2560
-EXIF [37380] Exposure Bias Value: 3/10
-EXIF [37381] Max Aperture Value: 1024/256
-EXIF [37383] Metering Mode: 5
-EXIF [37384] Light Source: 1
-EXIF [37385] Flash: 16
-EXIF [37386] Focal Length: 1640/10
-EXIF [40962] Pixel X Dimension: 100
-EXIF [40963] Pixel Y Dimension: 43
-EXIF [41486] Focal Plane X Resolution: 83662979/32768
-EXIF [41487] Focal Plane Y Resolution: 83662979/32768
-EXIF [41488] Focal Plane ResolutionUnit: 3
-EXIF [41728] File Source: [3]
-EXIF [41729] Scene Type: [1]
-EXIF [41985] Custom Rendered: 0
-EXIF [41986] Exposure Mode: 2
-EXIF [41987] White Balance: 1
-EXIF [41988] Digital Zoom Ratio: 16/16
-EXIF [41989] Focal Length 35mm Film: 246
-EXIF [41990] Scene Capture Type: 0
-EXIF [41992] Contrast: 0
-EXIF [41993] Saturation: 0
-EXIF [41994] Sharpness: 0
-EXIF [42034] LensSpecification: [700/10, 2000/10, 40/10, 40/10]
-EXIF [42036] LensModel: Sony FE 70-200mm F4 G OSS
-IPTC [346] null: UTF-8
-IPTC [512] null: 4
-IPTC [537] null: [edit process 2017-10-21, backgrounds, published]
-IPTC [567] null: 20191223
-IPTC [572] null: 160245+0100
-IPTC [574] null: 20191223
-IPTC [575] null: 160245+0100
-IPTC [592] null: Fabrizio Giudici
-IPTC [597] null: Photographer
-IPTC [602] null: Sori
-IPTC [604] null: Strada senza nome
-IPTC [607] null: Liguria
-IPTC [612] null: IT
-IPTC [613] null: Italia
-IPTC [622] null: Fabrizio Giudici
-IPTC [627] null: Fabrizio Giudici
-IPTC [628] null: © Copyright by Fabrizio Giudici. All rights reserved.
-IPTC [632] null:                                
-IPTC [634] null: Fabrizio Giudici
-IPTC [720] null: Via Nizza 6/13
-IPTC [721] null: Genoa
-IPTC [722] null: GE
-IPTC [723] null: I-16145
-IPTC [724] null: Italy
-IPTC [726] null: email@fabriziogiudici.it
-IPTC [727] null: http://stoppingdown.net
-IPTC [738] null: Cannot be used without prior written consent of the author.
-IPTC [739] null: http://stoppingdown.net
+TIFF[0][270, Image Description]:                                
+TIFF[0][271, Make]: SONY
+TIFF[0][272, Model]: ILCE-6300
+TIFF[0][282, X Resolution]: 72/1 - 72.0
+TIFF[0][283, Y Resolution]: 72/1 - 72.0
+TIFF[0][296, Resolution Unit]: 2
+TIFF[0][305, Software]: Capture One 15 Macintosh
+TIFF[0][306, Date/Time]: 2019:12:23 16:02:45
+TIFF[0][315, Artist]: Fabrizio Giudici
+TIFF[0][33432, Copyright]: © Copyright by Fabrizio Giudici. All rights reserved.
+EXIF[0][33434, Exposure Time]: 1/200 - 0.005
+EXIF[0][33437, F Number]: 8/1 - 8.0
+EXIF[0][34850, Exposure Program]: 3
+EXIF[0][34855, ISO Speed Ratings]: 100
+EXIF[0][34864]: 2
+EXIF[0][34866, RecommendedExposureIndex]: 100
+EXIF[0][36864, EXIF Version]: [48, 50, 51, 48]
+EXIF[0][36867, Date/Time Original]: 2019:12:23 16:02:45
+EXIF[0][36868, Date/Time Digitized]: 2019:12:23 16:02:45
+EXIF[0][37377, Shutter SpeedValue]: 7643856/1000000 - 7.643856
+EXIF[0][37378, Aperture Value]: 6/1 - 6.0
+EXIF[0][37379, Brightness Value]: 24134/2560 - 9.42734375
+EXIF[0][37380, Exposure Bias Value]: 3/10 - 0.3
+EXIF[0][37381, Max Aperture Value]: 1024/256 - 4.0
+EXIF[0][37383, Metering Mode]: 5
+EXIF[0][37384, Light Source]: 1
+EXIF[0][37385, Flash]: 16
+EXIF[0][37386, Focal Length]: 1640/10 - 164.0
+EXIF[0][40962, Pixel X Dimension]: 100
+EXIF[0][40963, Pixel Y Dimension]: 43
+EXIF[0][41486, Focal Plane X Resolution]: 83662979/32768 - 2553.1914978027344
+EXIF[0][41487, Focal Plane Y Resolution]: 83662979/32768 - 2553.1914978027344
+EXIF[0][41488, Focal Plane ResolutionUnit]: 3
+EXIF[0][41728, File Source]: [3]
+EXIF[0][41729, Scene Type]: [1]
+EXIF[0][41985, Custom Rendered]: 0
+EXIF[0][41986, Exposure Mode]: 2
+EXIF[0][41987, White Balance]: 1
+EXIF[0][41988, Digital Zoom Ratio]: 16/16 - 1.0
+EXIF[0][41989, Focal Length 35mm Film]: 246
+EXIF[0][41990, Scene Capture Type]: 0
+EXIF[0][41992, Contrast]: 0
+EXIF[0][41993, Saturation]: 0
+EXIF[0][41994, Sharpness]: 0
+EXIF[0][42034, LensSpecification]: [700/10, 2000/10, 40/10, 40/10] - [70.0, 200.0, 4.0, 4.0]
+EXIF[0][42036, LensModel]: Sony FE 70-200mm F4 G OSS
+IPTC[0][346]: UTF-8
+IPTC[0][512]: 4
+IPTC[0][537]: [edit process 2017-10-21, backgrounds, published]
+IPTC[0][567]: 20191223
+IPTC[0][572]: 160245+0100
+IPTC[0][574]: 20191223
+IPTC[0][575]: 160245+0100
+IPTC[0][592]: Fabrizio Giudici
+IPTC[0][597]: Photographer
+IPTC[0][602]: Sori
+IPTC[0][604]: Strada senza nome
+IPTC[0][607]: Liguria
+IPTC[0][612]: IT
+IPTC[0][613]: Italia
+IPTC[0][622]: Fabrizio Giudici
+IPTC[0][627]: Fabrizio Giudici
+IPTC[0][628]: © Copyright by Fabrizio Giudici. All rights reserved.
+IPTC[0][632]:                                
+IPTC[0][634]: Fabrizio Giudici
+IPTC[0][720]: Via Nizza 6/13
+IPTC[0][721]: Genoa
+IPTC[0][722]: GE
+IPTC[0][723]: I-16145
+IPTC[0][724]: Italy
+IPTC[0][726]: email@fabriziogiudici.it
+IPTC[0][727]: http://stoppingdown.net
+IPTC[0][738]: Cannot be used without prior written consent of the author.
+IPTC[0][739]: http://stoppingdown.net

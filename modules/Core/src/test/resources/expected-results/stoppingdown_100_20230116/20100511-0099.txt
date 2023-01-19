@@ -1,48 +1,58 @@
-EXIF [33434] Exposure Time: 1/40
-EXIF [33437] F Number: 4/1
-EXIF [34850] Exposure Program: 1
-EXIF [34855] ISO Speed Ratings: 800
-EXIF [36864] EXIF Version: [48, 50, 51, 48]
-EXIF [36867] Date/Time Original: 2010:05:11 12:27:21
-EXIF [36868] Date/Time Digitized: 2010:05:11 11:27:21
-EXIF [37377] Shutter SpeedValue: 5321928/1000000
-EXIF [37378] Aperture Value: 4/1
-EXIF [37380] Exposure Bias Value: -2/6
-EXIF [37381] Max Aperture Value: 40/10
-EXIF [37382] Subject Distance: 200/100
-EXIF [37383] Metering Mode: 5
-EXIF [37384] Light Source: 0
-EXIF [37385] Flash: 0
-EXIF [37386] Focal Length: 120/10
-EXIF [37522] Subsec Time Digitized: 08
-EXIF [41495] Sensing Method: 2
-EXIF [41728] File Source: [3]
-EXIF [41729] Scene Type: [1]
-EXIF [41730] EXIF CFA Pattern: [2, 0, 2, 0, 1, 0, 2, 1]
-EXIF [41985] Custom Rendered: 0
-EXIF [41986] Exposure Mode: 1
-EXIF [41987] White Balance: 0
-EXIF [41988] Digital Zoom Ratio: 1/1
-EXIF [41989] Focal Length 35mm Film: 18
-EXIF [41990] Scene Capture Type: 0
-EXIF [41991] Gain Control: 1
-EXIF [41992] Contrast: 0
-EXIF [41993] Saturation: 0
-EXIF [41994] Sharpness: 2
-EXIF [41996] Subject Distance Range: 0
-EXIF [42034] LensSpecification: [120/10, 240/10, 40/10, 40/10]
-EXIF [42036] LensModel: 12.0-24.0 mm f/4.0
-EXIF dateTimeDigitizedAsDate: 2010-05-11T11:27:21.080Z
-IPTC [346] null: UTF-8
-IPTC [512] null: 4
-IPTC [517] null: L’Abbaye bénédictine Saint-Pierre à Baume-les-Messieurs.
-IPTC [567] null: 20100511
-IPTC [572] null: 122721+0200
-IPTC [574] null: 20100511
-IPTC [575] null: 112721+0200
-IPTC [592] null: Fabrizio Giudici
-IPTC [597] null: Photographer
-IPTC [622] null: Fabrizio Giudici
-IPTC [627] null: Fabrizio Giudici
-IPTC [628] null: © Copyright by Fabrizio Giudici. All rights reserved.
-IPTC [634] null: Fabrizio Giudici
+TIFF[0][271, Make]: NIKON CORPORATION
+TIFF[0][272, Model]: NIKON D200
+TIFF[0][274, Orientation]: 1
+TIFF[0][282, X Resolution]: 72/1 - 72.0
+TIFF[0][283, Y Resolution]: 72/1 - 72.0
+TIFF[0][296, Resolution Unit]: 2
+TIFF[0][305, Software]: Adobe Photoshop Lightroom 6.0 (Macintosh)
+TIFF[0][306, Date/Time]: 2015:07:12 16:26:04
+TIFF[0][315, Artist]: Fabrizio Giudici
+TIFF[0][33432, Copyright]: © Copyright by Fabrizio Giudici. All rights reserved.
+EXIF[0][33434, Exposure Time]: 1/40 - 0.025
+EXIF[0][33437, F Number]: 4/1 - 4.0
+EXIF[0][34850, Exposure Program]: 1
+EXIF[0][34855, ISO Speed Ratings]: 800
+EXIF[0][36864, EXIF Version]: [48, 50, 51, 48]
+EXIF[0][36867, Date/Time Original]: 2010:05:11 12:27:21
+EXIF[0][36868, Date/Time Digitized]: 2010:05:11 11:27:21
+EXIF[0][37377, Shutter SpeedValue]: 5321928/1000000 - 5.321928
+EXIF[0][37378, Aperture Value]: 4/1 - 4.0
+EXIF[0][37380, Exposure Bias Value]: -2/6 - -0.3333333333333333
+EXIF[0][37381, Max Aperture Value]: 40/10 - 4.0
+EXIF[0][37382, Subject Distance]: 200/100 - 2.0
+EXIF[0][37383, Metering Mode]: 5
+EXIF[0][37384, Light Source]: 0
+EXIF[0][37385, Flash]: 0
+EXIF[0][37386, Focal Length]: 120/10 - 12.0
+EXIF[0][37522, Subsec Time Digitized]: 08
+EXIF[0][41495, Sensing Method]: 2
+EXIF[0][41728, File Source]: [3]
+EXIF[0][41729, Scene Type]: [1]
+EXIF[0][41730, EXIF CFA Pattern]: [2, 0, 2, 0, 1, 0, 2, 1]
+EXIF[0][41985, Custom Rendered]: 0
+EXIF[0][41986, Exposure Mode]: 1
+EXIF[0][41987, White Balance]: 0
+EXIF[0][41988, Digital Zoom Ratio]: 1/1 - 1.0
+EXIF[0][41989, Focal Length 35mm Film]: 18
+EXIF[0][41990, Scene Capture Type]: 0
+EXIF[0][41991, Gain Control]: 1
+EXIF[0][41992, Contrast]: 0
+EXIF[0][41993, Saturation]: 0
+EXIF[0][41994, Sharpness]: 2
+EXIF[0][41996, Subject Distance Range]: 0
+EXIF[0][42034, LensSpecification]: [120/10, 240/10, 40/10, 40/10] - [12.0, 24.0, 4.0, 4.0]
+EXIF[0][42036, LensModel]: 12.0-24.0 mm f/4.0
+EXIF[0] dateTimeDigitizedAsDate: 2010-05-11T11:27:21.080Z
+IPTC[0][346]: UTF-8
+IPTC[0][512]: 4
+IPTC[0][517]: L’Abbaye bénédictine Saint-Pierre à Baume-les-Messieurs.
+IPTC[0][567]: 20100511
+IPTC[0][572]: 122721+0200
+IPTC[0][574]: 20100511
+IPTC[0][575]: 112721+0200
+IPTC[0][592]: Fabrizio Giudici
+IPTC[0][597]: Photographer
+IPTC[0][622]: Fabrizio Giudici
+IPTC[0][627]: Fabrizio Giudici
+IPTC[0][628]: © Copyright by Fabrizio Giudici. All rights reserved.
+IPTC[0][634]: Fabrizio Giudici

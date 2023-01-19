@@ -45,11 +45,11 @@ public class Utils
 
     public static String strip (final String s)
       {
-        final StringBuilder result = new StringBuilder();
+        final var result = new StringBuilder();
 
-        for (int i = 0; i < s.length(); i++)
+        for (var i = 0; i < s.length(); i++)
           {
-            char c = s.charAt(i);
+            var c = s.charAt(i);
 
             if (Character.isJavaIdentifierPart(c))
               {

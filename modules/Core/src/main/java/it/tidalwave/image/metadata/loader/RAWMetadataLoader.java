@@ -26,6 +26,7 @@
  */
 package it.tidalwave.image.metadata.loader;
 
+import java.util.Optional;
 import javax.imageio.metadata.IIOMetadata;
 import it.tidalwave.imageio.tiff.TIFFMetadataSupport;
 
@@ -37,13 +38,12 @@ import it.tidalwave.imageio.tiff.TIFFMetadataSupport;
 public class RAWMetadataLoader implements MetadataLoader
   {
     /*******************************************************************************************************************
-     *
-     *
+     * {@inheritDoc}
      ******************************************************************************************************************/
     @Override
-    public Object findEXIF (final IIOMetadata metadata)
+    public Optional<DirectoryLoader> getExifLoader (final IIOMetadata metadata)
       {
-        return ((TIFFMetadataSupport)metadata).getExifIFD();
+        return Optional.of(new DirectoryRawLoader(((TIFFMetadataSupport)metadata).getExifIFD()));
 //        final IFD newEXIFIFD = new IFD();
 //
 ///*
@@ -66,52 +66,20 @@ public class RAWMetadataLoader implements MetadataLoader
       }
 
     /*******************************************************************************************************************
-     *
-     *
+     * {@inheritDoc}
      ******************************************************************************************************************/
     @Override
-    public Object findIPTC (final IIOMetadata iioMetadata)
+    public Optional<DirectoryLoader> getTiffLoader (final IIOMetadata metadata)
       {
-        return null;
+        return Optional.of(new DirectoryRawLoader(((TIFFMetadataSupport)metadata).getPrimaryIFD()));
       }
 
     /*******************************************************************************************************************
-     *
-     *
+     * {@inheritDoc}
      ******************************************************************************************************************/
     @Override
-    public Object findXMP (final IIOMetadata iioMetadata)
+    public Optional<DirectoryLoader> getMakerNoteLoader (final IIOMetadata metadata)
       {
-        return null;
-      }
-
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    @Override
-    public Object findTIFF (final IIOMetadata metadata)
-      {
-        return ((TIFFMetadataSupport)metadata).getPrimaryIFD();
-      }
-
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    @Override
-    public Object findMakerNote (final IIOMetadata metadata)
-      {
-        return ((TIFFMetadataSupport)metadata).getMakerNote();
-      }
-
-    /*******************************************************************************************************************
-     *
-     *
-     ******************************************************************************************************************/
-    @Override
-    public Object findDNG (final IIOMetadata metadata)
-      {
-        return null;
+        return Optional.of(new DirectoryRawLoader(((TIFFMetadataSupport)metadata).getMakerNote()));
       }
   }

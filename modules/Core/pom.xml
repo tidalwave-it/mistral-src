@@ -28,6 +28,7 @@
         <dependency>
             <groupId>org.rawdarkroom</groupId>
             <artifactId>codec</artifactId>
+            <optional>true</optional>
             <exclusions>
                 <exclusion>
                     <groupId>com.google.code.findbugs</groupId>
@@ -43,6 +44,7 @@
         <dependency>
             <groupId>com.kenai.nbpwr</groupId>
             <artifactId>com-sun-media-imageio</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
