@@ -43,6 +43,7 @@ import it.tidalwave.image.metadata.TIFF;
 import it.tidalwave.image.op.ReadOp;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Test;
+import static it.tidalwave.image.metadata.MetadataTestUtils.*;
 import static it.tidalwave.image.op.ReadOp.Type.METADATA;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static it.tidalwave.util.test.FileComparisonUtils.assertSameContents;
