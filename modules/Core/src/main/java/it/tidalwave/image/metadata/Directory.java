@@ -236,13 +236,13 @@ public class Directory extends JavaBeanSupport implements Serializable
       {
         if ((value != null) && (value instanceof Optional))
           {
-            if (((Optional<?>)value).isEmpty())
-              {
-                remove(code);
-                return;
-              }
+            value = (((Optional<?>)value).orElse(null);
+          }
 
-            value = ((Optional<?>)value).get();
+        if (value == null)
+          {
+            remove(code);
+            return;
           }
 
         if (value.getClass().isEnum())
