@@ -6,13 +6,13 @@
     <parent>
         <groupId>it.tidalwave.image</groupId>
         <artifactId>image</artifactId>
-        <version>1.0-ALPHA-6-SNAPSHOT</version>
+        <version>1.0-ALPHA-7-SNAPSHOT</version>
     </parent>
 
     <groupId>it.tidalwave.image</groupId>
     <artifactId>image-modules</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-ALPHA-6-SNAPSHOT</version>
+    <version>1.0-ALPHA-7-SNAPSHOT</version>
     <name>Mistral (modules)</name>
 
     <properties>
