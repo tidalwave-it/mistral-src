@@ -163,9 +163,8 @@ public class MetadataTestUtils
                                  @Nonnull final Directory directory,
                                  @Nonnull final Consumer<String> consumer)
       {
-        for (final var tag : directory.getTagCodes())
+        directory.forEachTag((tag, value) ->
           {
-            final var value = directory.getRaw(tag);
             var valueAsString = value;
 
             if (value instanceof byte[])
@@ -192,19 +191,18 @@ public class MetadataTestUtils
                                              .format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
               }
 
-            valueAsString += directory.getTagInfo(tag)
-                                      .map(Directory.Tag::getType)
-                                      .filter(Class::isEnum)
-                                      .map(tagType -> toString(value, tagType))
-                                      .orElse("");
+            if (tag.getType().isEnum())
+              {
+                valueAsString += toString(value, tag.getType());
+              }
 
             final var s = String.format("%s[%d%s]: %s",
                                         directoryName,
-                                        tag,
-                                        directory.getTagInfo(tag).map(n -> ", " + n.getName()).orElse(""),
+                                        tag.getCode(),
+                                        ("" + tag.getCode()).equals(tag.getName()) ? "" : ", " + tag.getName(),
                                         valueAsString);
             consumer.accept(s);
-          }
+          });
 
         if (directory instanceof EXIF)
           {

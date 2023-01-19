@@ -42,7 +42,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
-import java.util.function.Function;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.IntConsumer;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import java.io.Serializable;
 import com.drew.metadata.StringValue;
@@ -303,20 +306,20 @@ public class Directory extends JavaBeanSupport implements Serializable
 
     /*******************************************************************************************************************
      *
-     * Returns the tag codes contained in this directory.
+     * Returns the tag codes contained in this directory, sorted by code.
      *
-     * @return   the tag codes
+     * @return    the tag codes
      *
      ******************************************************************************************************************/
     @Nonnull
     public int[] getTagCodes()
       {
-        return valueMapByCode.keySet().stream().sorted().mapToInt(Integer::intValue).toArray();
+        return valueMapByCode.keySet().stream().mapToInt(Integer::intValue).sorted().toArray();
       }
 
     /*******************************************************************************************************************
      *
-     * Returns the tags contained in this directory.
+     * Returns the tags contained in this directory. Tags are sorted by code.
      *
      * @return   the tags
      *
@@ -324,9 +327,43 @@ public class Directory extends JavaBeanSupport implements Serializable
     @Nonnull
     public Tag[] getTags()
       {
-        final Function<Integer, Tag> converter =
-                code -> getTagInfo(code).orElseGet(() -> Tag.of(code, "?", "?", Object.class));
-        return valueMapByCode.keySet().stream().sorted().map(converter).toArray(Tag[]::new);
+        return valueMapByCode.keySet().stream().sorted().map(this::toTag).toArray(Tag[]::new);
+      }
+
+    /*******************************************************************************************************************
+     *
+     * Iterates through all the tags calling the provided action.
+     *
+     * @param     action    the action to call
+     *
+     ******************************************************************************************************************/
+    public void forEachTag (@Nonnull final Consumer<Tag<?>> action)
+      {
+        IntStream.of(getTagCodes()).mapToObj(this::toTag).forEach(action);
+      }
+
+    /*******************************************************************************************************************
+     *
+     * Iterates through all the tags and related raw values calling the provided action.
+     *
+     * @param     action    the action to call
+     *
+     ******************************************************************************************************************/
+    public void forEachTag (@Nonnull final BiConsumer<Tag<?>, Object> action)
+      {
+        IntStream.of(getTagCodes()).mapToObj(this::toTag).forEach(t -> action.accept(t, getRaw(t.getCode())));
+      }
+
+    /*******************************************************************************************************************
+     *
+     * Iterates through all the tag codes calling the provided action.
+     *
+     * @param     action    the action to call
+     *
+     ******************************************************************************************************************/
+    public void forEachTagCode (@Nonnull final IntConsumer action)
+      {
+        IntStream.of(getTagCodes()).forEach(action);
       }
 
     /*******************************************************************************************************************
@@ -697,5 +734,14 @@ public class Directory extends JavaBeanSupport implements Serializable
           }
 
         return instant.orElse(null);
+      }
+
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    @Nonnull
+    private Tag<?> toTag (@Nonnegative final int code)
+      {
+        return getTagInfo(code).orElseGet(() -> Tag.of(code, "" + code, "" + code, Object.class));
       }
   }
