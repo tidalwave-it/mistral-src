@@ -27,7 +27,6 @@
 package it.tidalwave.image.java2d;
 
 import java.awt.image.BufferedImage;
-import java.awt.image.Kernel;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.ConvolveOp;
 import it.tidalwave.image.op.OperationImplementation;

@@ -28,13 +28,10 @@ package it.tidalwave.image.metadata.loader;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
-import java.util.Collection;
 import java.util.List;
 import java.util.NoSuchElementException;
 import com.drew.metadata.Directory;
-import com.drew.metadata.exif.ExifSubIFDDirectory;
 import it.tidalwave.image.Rational;
-import lombok.RequiredArgsConstructor;
 
 /***********************************************************************************************************************
  *

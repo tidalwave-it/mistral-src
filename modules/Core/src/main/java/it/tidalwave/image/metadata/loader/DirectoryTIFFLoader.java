@@ -27,7 +27,6 @@
 package it.tidalwave.image.metadata.loader;
 
 import javax.annotation.Nonnull;
-import java.util.NoSuchElementException;
 import com.sun.media.imageioimpl.plugins.tiff.TIFFIFD;
 import lombok.RequiredArgsConstructor;
 

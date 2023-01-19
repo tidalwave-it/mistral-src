@@ -48,7 +48,6 @@ import it.tidalwave.image.Rational;
 import it.tidalwave.image.metadata.loader.DirectoryLoader;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;

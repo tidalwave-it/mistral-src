@@ -26,8 +26,6 @@
  */
 package it.tidalwave.image;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import javax.annotation.Nonnull;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -38,7 +36,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.security.MessageDigest;
 import java.io.BufferedInputStream;
@@ -270,7 +267,7 @@ public abstract class BaseTestSupport
                                     @Nonnull final Directory directory,
                                     @Nonnull final Consumer<String> consumer)
       {
-        for (final int tag : directory.getTagCodes())
+        for (final var tag : directory.getTagCodes())
           {
             final var value = directory.getRawObject(tag);
             var valueAsString = value;

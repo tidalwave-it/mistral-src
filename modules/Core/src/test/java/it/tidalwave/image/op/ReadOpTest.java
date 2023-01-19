@@ -27,13 +27,8 @@
 package it.tidalwave.image.op;
 
 import java.util.Arrays;
-import java.util.Iterator;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Path;
 import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
 import it.tidalwave.image.BaseTestSupport;
 import it.tidalwave.image.EditableImage;
 import lombok.extern.slf4j.Slf4j;

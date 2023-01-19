@@ -31,13 +31,8 @@
 
 package it.tidalwave.image.metadata;
 
-import java.util.Arrays;
-import java.io.File;
 import java.io.IOException;
 import it.tidalwave.image.BaseTestSupport;
-import it.tidalwave.image.EditableImage;
-import it.tidalwave.image.op.ReadOp;
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 /**

@@ -38,8 +38,6 @@ import javax.imageio.metadata.IIOMetadata;
 import javax.imageio.stream.ImageInputStream;
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
-import com.drew.imaging.jpeg.JpegMetadataReader;
-import com.drew.imaging.jpeg.JpegProcessingException;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.exif.ExifIFD0Directory;
 import com.drew.metadata.exif.ExifSubIFDDirectory;
@@ -128,7 +126,7 @@ public class JpegDrewMetadataLoader implements MetadataLoader
      * {@inheritDoc}
      ******************************************************************************************************************/
     @Override @Nonnull
-    public Optional<DirectoryLoader> getTiffLoader (IIOMetadata iioMetadata)
+    public Optional<DirectoryLoader> getTiffLoader (@Nonnull final IIOMetadata iioMetadata)
       {
         return Optional.of(new DirectoryDrewLoader(list(metadata.getDirectoriesOfType(ExifIFD0Directory.class)), 0));
       }
@@ -137,7 +135,7 @@ public class JpegDrewMetadataLoader implements MetadataLoader
      * {@inheritDoc}
      ******************************************************************************************************************/
     @Override @Nonnull
-    public Optional<DirectoryLoader> getExifLoader (IIOMetadata iioMetadata)
+    public Optional<DirectoryLoader> getExifLoader (@Nonnull final IIOMetadata iioMetadata)
       {
         return Optional.of(new DirectoryDrewLoader(list(metadata.getDirectoriesOfType(ExifSubIFDDirectory.class)), 0));
       }
@@ -146,7 +144,7 @@ public class JpegDrewMetadataLoader implements MetadataLoader
      * {@inheritDoc}
      ******************************************************************************************************************/
     @Override @Nonnull
-    public Optional<DirectoryLoader> getIptcLoader (IIOMetadata iioMetadata)
+    public Optional<DirectoryLoader> getIptcLoader (@Nonnull final IIOMetadata iioMetadata)
       {
         return Optional.of(new DirectoryDrewLoader(list(metadata.getDirectoriesOfType(IptcDirectory.class)), 0));
       }
@@ -155,7 +153,7 @@ public class JpegDrewMetadataLoader implements MetadataLoader
      * {@inheritDoc}
      ******************************************************************************************************************/
     @Override @Nonnull
-    public Optional<DirectoryLoader> getXmpLoader (IIOMetadata iioMetadata)
+    public Optional<DirectoryLoader> getXmpLoader (@Nonnull final IIOMetadata iioMetadata)
       {
         return Optional.of(new DirectoryDrewLoader(list(metadata.getDirectoriesOfType(XmpDirectory.class)), 0));
       }

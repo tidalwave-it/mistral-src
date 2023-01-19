@@ -26,7 +26,6 @@
  */
 package it.tidalwave.image.java2d;
 
-import java.lang.reflect.Method;
 import javax.annotation.Nonnull;
 import java.util.ServiceLoader;
 import java.util.stream.StreamSupport;

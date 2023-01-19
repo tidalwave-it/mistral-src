@@ -28,7 +28,6 @@ package it.tidalwave.image.java2d;
 
 import java.io.File;
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import it.tidalwave.image.BaseTestSupport;

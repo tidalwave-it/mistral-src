@@ -34,7 +34,6 @@ import java.io.Writer;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
-import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupFile;
 import it.tidalwave.image.codegenerator.grammar.TIFFLexer;
@@ -43,7 +42,6 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class MetadataGenerator
   {
@@ -65,7 +63,7 @@ public class MetadataGenerator
         System.out.println("    TEMPLATE:   " + template);
         System.out.println("    OUTPUT      " + outputFile);
 
-        try (final Reader r = Files.newBufferedReader(Paths.get(source));
+        try (final Reader r = Files.newBufferedReader(Path.of(source));
              final var pw = new PrintWriter(Files.newBufferedWriter(outputFile)))
           {
             new MetadataGenerator(r).generate(pw, className, template);
@@ -87,7 +85,7 @@ public class MetadataGenerator
             throws IOException
       {
         System.out.println("    GENERATING CODE...");
-        final STGroup group = new STGroupFile(Paths.get(template).toAbsolutePath().toString(), '$' ,'$');
+        final STGroup group = new STGroupFile(Path.of(template).toAbsolutePath().toString(), '$' ,'$');
         final var st = group.getInstanceOf("generator");
         st.add("creation_date", new Date());
         st.add("class_name", className);

@@ -26,6 +26,7 @@
  */
 package it.tidalwave.image.metadata.loader;
 
+import javax.annotation.Nonnull;
 import java.util.Optional;
 import javax.imageio.metadata.IIOMetadata;
 import it.tidalwave.imageio.tiff.TIFFMetadataSupport;
@@ -41,9 +42,9 @@ public class RAWMetadataLoader implements MetadataLoader
      * {@inheritDoc}
      ******************************************************************************************************************/
     @Override
-    public Optional<DirectoryLoader> getExifLoader (final IIOMetadata metadata)
+    public Optional<DirectoryLoader> getExifLoader (@Nonnull final IIOMetadata iioMetadata)
       {
-        return Optional.of(new DirectoryRawLoader(((TIFFMetadataSupport)metadata).getExifIFD()));
+        return Optional.of(new DirectoryRawLoader(((TIFFMetadataSupport)iioMetadata).getExifIFD()));
 //        final IFD newEXIFIFD = new IFD();
 //
 ///*
@@ -69,17 +70,17 @@ public class RAWMetadataLoader implements MetadataLoader
      * {@inheritDoc}
      ******************************************************************************************************************/
     @Override
-    public Optional<DirectoryLoader> getTiffLoader (final IIOMetadata metadata)
+    public Optional<DirectoryLoader> getTiffLoader (@Nonnull final IIOMetadata iioMetadata)
       {
-        return Optional.of(new DirectoryRawLoader(((TIFFMetadataSupport)metadata).getPrimaryIFD()));
+        return Optional.of(new DirectoryRawLoader(((TIFFMetadataSupport)iioMetadata).getPrimaryIFD()));
       }
 
     /*******************************************************************************************************************
      * {@inheritDoc}
      ******************************************************************************************************************/
     @Override
-    public Optional<DirectoryLoader> getMakerNoteLoader (final IIOMetadata metadata)
+    public Optional<DirectoryLoader> getMakerNoteLoader (@Nonnull final IIOMetadata iioMetadata)
       {
-        return Optional.of(new DirectoryRawLoader(((TIFFMetadataSupport)metadata).getMakerNote()));
+        return Optional.of(new DirectoryRawLoader(((TIFFMetadataSupport)iioMetadata).getMakerNote()));
       }
   }

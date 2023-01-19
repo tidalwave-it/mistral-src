@@ -30,18 +30,14 @@ import javax.annotation.Nonnull;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import it.tidalwave.image.metadata.Directory;
 import it.tidalwave.image.metadata.EXIF;
 import it.tidalwave.image.metadata.EXIFDirectoryGenerated;
-import it.tidalwave.image.metadata.EXIFTest;
 import it.tidalwave.image.metadata.IPTC;
 import it.tidalwave.image.metadata.TIFF;
 import it.tidalwave.image.op.ReadOp;
@@ -50,9 +46,7 @@ import org.testng.annotations.Test;
 import static it.tidalwave.image.op.ReadOp.Type.METADATA;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static it.tidalwave.util.test.FileComparisonUtils.assertSameContents;
-import static org.junit.Assert.assertThat;
 import static org.testng.AssertJUnit.*;
-import static org.hamcrest.CoreMatchers.*;
 
 /***********************************************************************************************************************
  *
