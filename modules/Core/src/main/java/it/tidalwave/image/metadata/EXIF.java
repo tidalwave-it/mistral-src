@@ -71,7 +71,7 @@ public class EXIF extends EXIFDirectoryGenerated
     @Override @Nonnull
     public Optional<int[]> getBitsPerSample()
       {
-        Object object = getRawObject(BITS_PER_SAMPLE);
+        Object object = getRaw(C_BITS_PER_SAMPLE);
 
         if (object instanceof short[])
           {
@@ -99,7 +99,7 @@ public class EXIF extends EXIFDirectoryGenerated
     @Override @Nonnull
     public Optional<FileSource> getFileSource()
       {
-        Object object = getRawObject(FILE_SOURCE);
+        Object object = getRaw(C_FILE_SOURCE);
 
         if (object instanceof byte[])
           {
@@ -124,7 +124,7 @@ public class EXIF extends EXIFDirectoryGenerated
     @Override @Nonnull
     public Optional<SceneType> getSceneType()
       {
-        Object object = getRawObject(SCENE_TYPE);
+        Object object = getRaw(C_SCENE_TYPE);
 
         if (object instanceof byte[])
           {
@@ -153,7 +153,7 @@ public class EXIF extends EXIFDirectoryGenerated
           }
         catch (Exception e)
           {
-            final int i = (Integer)getRawObject(37510); // flowers.jpeg does this strange thing
+            final int i = (Integer)getRaw(37510); // flowers.jpeg does this strange thing
 
             return Optional.ofNullable(("" + i).getBytes());
           }
@@ -188,9 +188,7 @@ public class EXIF extends EXIFDirectoryGenerated
      ******************************************************************************************************************/
     public void setUserCommentAsString (@Nonnull final String string)
       {
-        final var oldValue = getUserCommentAsString();
         setUserComment((string == null) ? null : (ASCII_PREFIX + string).getBytes());
-        propertyChangeSupport.firePropertyChange("userCommentAsString", oldValue, getUserCommentAsString());
       }
 
     /*******************************************************************************************************************
@@ -201,7 +199,7 @@ public class EXIF extends EXIFDirectoryGenerated
     @Override @Nonnull
     public Optional<String> getOriginalRawFileName()
       {
-        Object value = getRawObject(ORIGINAL_RAW_FILE_NAME);
+        var value = getRaw(C_ORIGINAL_RAW_FILE_NAME);
 
         if (value instanceof byte[])
           {
@@ -258,9 +256,7 @@ public class EXIF extends EXIFDirectoryGenerated
      ******************************************************************************************************************/
     public void setDateTimeOriginalAsDate (@Nonnull final Instant date)
       {
-        final var oldValue = getDateTimeOriginalAsDate();
         setDateTimeOriginal((date == null) ? null : formatDateTime(date));
-        propertyChangeSupport.firePropertyChange("dateTimeOriginalAsDate", oldValue, getDateTimeOriginalAsDate());
       }
 
     /*******************************************************************************************************************
@@ -280,9 +276,7 @@ public class EXIF extends EXIFDirectoryGenerated
      ******************************************************************************************************************/
     public void setDateTimeDigitizedAsDate (@Nonnull final Instant date)
       {
-        final var oldValue = getDateTimeDigitizedAsDate();
         setDateTimeDigitized((date == null) ? null : formatDateTime(date));
-        propertyChangeSupport.firePropertyChange("dateTimeDigitizedAsDate", oldValue, getDateTimeDigitizedAsDate());
       }
 
     /*******************************************************************************************************************
@@ -291,9 +285,7 @@ public class EXIF extends EXIFDirectoryGenerated
     @Override
     public void setDateTime (@Nonnull final String dateTime)
       {
-        final var oldValue = getDateTimeAsDate();
         super.setDateTime(dateTime);
-        propertyChangeSupport.firePropertyChange("dateTimeAsDate", oldValue, getDateTimeAsDate());
       }
 
     /*******************************************************************************************************************
@@ -302,9 +294,7 @@ public class EXIF extends EXIFDirectoryGenerated
     @Override
     public void setDateTimeDigitized (@Nonnull final String dateTimeDigitized)
       {
-        final var oldValue = getDateTimeDigitizedAsDate();
         super.setDateTimeDigitized(dateTimeDigitized);
-        propertyChangeSupport.firePropertyChange("dateTimeDigitizedAsDate", oldValue, getDateTimeDigitizedAsDate());
       }
 
     /*******************************************************************************************************************
@@ -313,9 +303,7 @@ public class EXIF extends EXIFDirectoryGenerated
     @Override
     public void setDateTimeOriginal (@Nonnull final String dateTimeOriginal)
       {
-        final var oldValue = getDateTimeOriginalAsDate();
         super.setDateTimeOriginal(dateTimeOriginal);
-        propertyChangeSupport.firePropertyChange("dateTimeOriginalAsDate", oldValue, getDateTimeOriginalAsDate());
       }
 
     /*******************************************************************************************************************

@@ -159,7 +159,7 @@ public class ViewerPanel extends AbstractViewerPanel
             for (final var code : directory.getTagCodes())
               {
                 final var tagName = directory.getTagName(code).get();
-                final var tagValue = directory.getRawObject(code);
+                final var tagValue = directory.getRaw(code);
                 sb.append("<tr><td>");
                 sb.append(Integer.toString(code));
                 sb.append("</td><td>");

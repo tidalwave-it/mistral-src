@@ -27,7 +27,9 @@
 package it.tidalwave.image;
 
 import java.lang.reflect.InvocationTargetException;
+import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -48,7 +50,6 @@ import java.nio.file.Path;
 import it.tidalwave.util.Pair;
 import it.tidalwave.image.metadata.Directory;
 import it.tidalwave.image.metadata.EXIF;
-import it.tidalwave.image.metadata.EXIFDirectoryGenerated;
 import it.tidalwave.image.op.ReadOp;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.AssertJUnit;
@@ -270,7 +271,7 @@ public abstract class BaseTestSupport
       {
         for (final var tag : directory.getTagCodes())
           {
-            final var value = directory.getRawObject(tag);
+            final var value = directory.getRaw(tag);
             var valueAsString = value;
 
             if (value instanceof byte[])
@@ -297,7 +298,8 @@ public abstract class BaseTestSupport
                                      .format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
               }
 
-            valueAsString += directory.getTagType(tag)
+            valueAsString += directory.getTagInfo(tag)
+                                      .map(Directory.Tag::getType)
                                       .filter(Class::isEnum)
                                       .map(tagType -> toString(value, tagType))
                                       .orElse("");
@@ -305,9 +307,8 @@ public abstract class BaseTestSupport
             final var s = String.format("%s[%d%s]: %s",
                                         directoryName,
                                         tag,
-                                        directory.getTagName(tag).map(n -> ", " + n).orElse(""),
+                                        directory.getTagInfo(tag).map(n -> ", " + n.getName()).orElse(""),
                                         valueAsString);
-            // log.info("{}", s);
             consumer.accept(s);
           }
 
@@ -321,6 +322,37 @@ public abstract class BaseTestSupport
             x.forEach(p ->
                     p.b.apply(exif).ifPresent(i -> consumer.accept(String.format("%s %s: %s", directoryName, p.a, i))));
           }
+      }
+
+    /*******************************************************************************************************************
+     *
+     ******************************************************************************************************************/
+    @CheckForNull
+    public String toHexString (final @Nullable byte[] array)
+      {
+        if (array == null)
+          {
+            return "null";
+          }
+
+        if (array.length > 64)
+          {
+            return "" + array.length + " bytes";
+          }
+
+        final var buffer = new StringBuilder();
+
+        for (var i = 0; i < array.length; i++)
+          {
+            if (i > 0)
+              {
+                buffer.append(",");
+              }
+
+            buffer.append(Integer.toHexString(array[i] & 0xff));
+          }
+
+        return buffer.toString();
       }
 
     /*******************************************************************************************************************

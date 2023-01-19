@@ -11,12 +11,14 @@ enumIf(type) ::= <<
 printDescriptionTags(records) ::= <<
     static
       {
-        $records: {record | mapTagInfo.put("$class_name$.$record.id$", TagInfo.of("$record.tagName$", $record.javaType$.class));$\n$}$
+        $records: {record | tagMapByCode.put("$class_name$.$record.id$", $record.constTagName$);$\n$}$
       }
 >>
 
 printMemberDecl(records) ::= <<
-    $records: {record | public final static int $record.constTagName$ = $record.id$;$\n$}$
+    $records: {record | public final static int C_$record.constTagName$ = $record.id$;$\n$}$
+    $records: {record | public final static Tag<$record.javaType$> $record.constTagName$ =
+       Tag.of($record.id$, "$record.tagName$", "$record.uncapitalizedTagName$", $record.javaType$.class);$\n$}$
 >>
 
 printEnumRecord(record) ::= <<
@@ -73,13 +75,7 @@ $if(record.hasEnums)$$printEnumRecord(record = record)$$endif$
     public void set$record.capitalizedTagName$ (@Nonnull final Optional<$record.javaType$> $record.uncapitalizedTagName$)
       {
         requireNonNull($record.uncapitalizedTagName$, "$record.uncapitalizedTagName$");
-        final Optional<$record.javaType$> oldValue = get$record.capitalizedTagName$();
-        final boolean oldAvailable = isAvailable();
-        final Instant oldLatestModificationTime = getLatestModificationTime();
-        setObject($class_name$.$record.constTagName$, $record.uncapitalizedTagName$);
-        propertyChangeSupport.firePropertyChange("$record.uncapitalizedTagName$", oldValue, $record.uncapitalizedTagName$);
-        propertyChangeSupport.firePropertyChange("available", oldAvailable, isAvailable());
-        propertyChangeSupport.firePropertyChange("latestModificationTime", oldLatestModificationTime, getLatestModificationTime());
+        set($class_name$.$record.constTagName$, $record.uncapitalizedTagName$);
       }
 
     /*******************************************************************************************************************
@@ -92,7 +88,7 @@ $if(record.hasEnums)$$printEnumRecord(record = record)$$endif$
     @Nonnull
     public Optional<$record.javaType$> get$record.capitalizedTagName$()
       {
-        return getObject($record.constTagName$, $record.javaType$.class);
+        return get($record.constTagName$, $record.javaType$.class);
       }
 >>
 

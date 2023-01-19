@@ -83,7 +83,7 @@ public class EditableImageTest extends BaseTestSupport
         assertEquals(1, img20060603_0002_jpg.getMetadataCount(EXIF.class));
 
         var tiff = image.getMetadata(TIFF.class).get();
-        assertTrue(tiff.isAvailable());
+        assertFalse(tiff.isEmpty());
         assertEquals(10, tiff.getTagCodes().length);
         dumpTags("TIFF", tiff, log::info);
 
@@ -101,7 +101,7 @@ public class EditableImageTest extends BaseTestSupport
         assertOptionalEquals("© Copyright by Fabrizio Giudici. All rights reserved.", tiff.getCopyright());
 
         var exif = image.getMetadata(EXIF.class).get();
-        assertTrue(exif.isAvailable());
+        assertFalse(exif.isEmpty());
         assertEquals(27, exif.getTagCodes().length);
         dumpTags("EXIF", exif, log::info);
 
@@ -144,7 +144,7 @@ public class EditableImageTest extends BaseTestSupport
         assertEquals(1, img20060603_0002_jpg.getMetadataCount(EXIF.class));
 
         var tiff = img20060603_0002_jpg.getMetadata(TIFF.class).get();
-        assertTrue(tiff.isAvailable());
+        assertFalse(tiff.isEmpty());
         assertEquals(9, tiff.getTagCodes().length);
         dumpTags("TIFF", tiff, log::info);
 
@@ -161,7 +161,7 @@ public class EditableImageTest extends BaseTestSupport
         assertOptionalEquals("© Copyright by Fabrizio Giudici. All rights reserved.", tiff.getCopyright());
 
         var exif = img20060603_0002_jpg.getMetadata(EXIF.class).get();
-        assertTrue(exif.isAvailable());
+        assertFalse(exif.isEmpty());
         assertEquals(35, exif.getTagCodes().length);
         dumpTags("EXIF", exif, log::info);
 
