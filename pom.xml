@@ -13,7 +13,7 @@
     <groupId>it.tidalwave.image</groupId>
     <artifactId>image</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-ALPHA-7-SNAPSHOT</version>
+    <version>1.0-ALPHA-7</version>
     <name>Mistral</name>
     <description>
 This library is a façade for image manipulation, acting as a proxy to libraries such as Java2D, JAI, ImageJ.
@@ -82,7 +82,7 @@ Directory tree
         <connection>scm:git:${scm.repo.readonly.url}</connection>
         <developerConnection>scm:git:${scm.repo.effective.url}</developerConnection>
         <url>${scm.repo.browse.url}</url>
-        <tag>HEAD</tag>
+        <tag>1.0-ALPHA-7</tag>
     </scm>
 
     <dependencyManagement>
@@ -90,38 +90,38 @@ Directory tree
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>code-generator</artifactId>
-                <version>1.0-ALPHA-7-SNAPSHOT</version>
+                <version>1.0-ALPHA-7</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-core</artifactId>
-                <version>1.0-ALPHA-7-SNAPSHOT</version>
+                <version>1.0-ALPHA-7</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-core</artifactId>
-                <version>1.0-ALPHA-7-SNAPSHOT</version>
+                <version>1.0-ALPHA-7</version>
                 <classifier>tests</classifier>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-operations</artifactId>
-                <version>1.0-ALPHA-7-SNAPSHOT</version>
+                <version>1.0-ALPHA-7</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-contributions</artifactId>
-                <version>1.0-ALPHA-7-SNAPSHOT</version>
+                <version>1.0-ALPHA-7</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-processor</artifactId>
-                <version>1.0-ALPHA-7-SNAPSHOT</version>
+                <version>1.0-ALPHA-7</version>
             </dependency>
             <dependency>
                 <groupId>it.tidalwave.image</groupId>
                 <artifactId>image-renderer</artifactId>
-                <version>1.0-ALPHA-7-SNAPSHOT</version>
+                <version>1.0-ALPHA-7</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
