@@ -30,7 +30,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.concurrent.Immutable;
 import java.awt.color.ColorSpace;
 import java.awt.color.ICC_ColorSpace;
-import java.awt.color.ICC_Profile;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.ComponentColorModel;

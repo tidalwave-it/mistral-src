@@ -26,8 +26,8 @@
  */
 package it.tidalwave.image.op;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.awt.image.BufferedImage;
 import it.tidalwave.image.BaseTestSupport;
 import it.tidalwave.image.EditableImage;
@@ -56,7 +56,7 @@ public class ChangeBufferTypeJ2DOpTest extends BaseTestSupport
         AssertJUnit.assertEquals(4, image.getBandCount());
         image.executeInPlace(new ChangeBufferTypeOp(BufferedImage.TYPE_3BYTE_BGR));
         AssertJUnit.assertEquals(3, image.getBandCount());
-        final var file = new File(tmp + "/result.jpg");
+        final var file = Path.of(tmp + "/result.jpg");
         image.executeInPlace(new WriteOp("JPEG", file));
         assertChecksum("ec0149544e522dbbb441b4f83a358425", file);
       }

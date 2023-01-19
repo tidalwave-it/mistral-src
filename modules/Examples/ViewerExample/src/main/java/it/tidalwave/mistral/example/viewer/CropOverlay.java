@@ -28,8 +28,6 @@ package it.tidalwave.mistral.example.viewer;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Rectangle;
 import it.tidalwave.image.render.EditableImageRenderer;
 import it.tidalwave.image.render.Overlay;
 

@@ -27,13 +27,9 @@
 package it.tidalwave.image.op;
 
 import java.util.Arrays;
-import java.util.Iterator;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Path;
+import java.nio.file.Files;
 import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
 import it.tidalwave.image.BaseTestSupport;
 import it.tidalwave.image.EditableImage;
 import lombok.extern.slf4j.Slf4j;
@@ -79,7 +75,7 @@ public class ReadOpTest extends BaseTestSupport
             throws IOException
       {
         final var file = file_uncompressed_tiff;
-        AssertJUnit.assertTrue(file.exists());
+        AssertJUnit.assertTrue(Files.exists(file));
         final var image = EditableImage.create(new ReadOp(file));
         AssertJUnit.assertEquals("tif", image.getAttribute(EditableImage.PROP_FORMAT));
         AssertJUnit.assertEquals("image/tiff", image.getAttribute(EditableImage.PROP_MIME_TYPE));
@@ -90,7 +86,7 @@ public class ReadOpTest extends BaseTestSupport
             throws IOException
       {
         final var file = file_w1_tiff;
-        AssertJUnit.assertTrue(file.exists());
+        AssertJUnit.assertTrue(Files.exists(file));
         final var image = EditableImage.create(new ReadOp(file));
         AssertJUnit.assertEquals("tif", image.getAttribute(EditableImage.PROP_FORMAT));
         AssertJUnit.assertEquals("image/tiff", image.getAttribute(EditableImage.PROP_MIME_TYPE));

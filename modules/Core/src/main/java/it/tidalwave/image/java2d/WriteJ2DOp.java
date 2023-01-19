@@ -26,7 +26,6 @@
  */
 package it.tidalwave.image.java2d;
 
-import java.util.Iterator;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -34,7 +33,6 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
-import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.ImageOutputStream;
 import java.awt.image.BufferedImage;

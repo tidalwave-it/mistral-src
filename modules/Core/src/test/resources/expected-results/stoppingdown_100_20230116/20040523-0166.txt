@@ -1,16 +1,16 @@
 TIFF[0][271, Make]: NIKON CORPORATION
 TIFF[0][272, Model]: NIKON D70
-TIFF[0][274, Orientation]: 1
+TIFF[0][274, Orientation]: 1 - TOP_LEFT
 TIFF[0][282, X Resolution]: 72/1 - 72.0
 TIFF[0][283, Y Resolution]: 72/1 - 72.0
-TIFF[0][296, Resolution Unit]: 2
+TIFF[0][296, Resolution Unit]: 2 - INCHES
 TIFF[0][305, Software]: Adobe Photoshop Lightroom 6.0 (Macintosh)
 TIFF[0][306, Date/Time]: 2015:07:19 00:09:54
 TIFF[0][315, Artist]: Fabrizio Giudici
 TIFF[0][33432, Copyright]: © Copyright by Fabrizio Giudici. All rights reserved.
 EXIF[0][33434, Exposure Time]: 1/320 - 0.003125
 EXIF[0][33437, F Number]: 8/1 - 8.0
-EXIF[0][34850, Exposure Program]: 1
+EXIF[0][34850, Exposure Program]: 1 - MANUAL
 EXIF[0][34855, ISO Speed Ratings]: 360
 EXIF[0][36864, EXIF Version]: [48, 50, 51, 48]
 EXIF[0][36867, Date/Time Original]: 2004:05:23 17:44:23
@@ -19,15 +19,15 @@ EXIF[0][37377, Shutter SpeedValue]: 8321928/1000000 - 8.321928
 EXIF[0][37378, Aperture Value]: 6/1 - 6.0
 EXIF[0][37380, Exposure Bias Value]: -4/6 - -0.6666666666666666
 EXIF[0][37381, Max Aperture Value]: 5/1 - 5.0
-EXIF[0][37383, Metering Mode]: 5
-EXIF[0][37384, Light Source]: 9
+EXIF[0][37383, Metering Mode]: 5 - PATTERN
+EXIF[0][37384, Light Source]: 9 - FINE_WEATHER
 EXIF[0][37385, Flash]: 0
 EXIF[0][37386, Focal Length]: 420/1 - 420.0
 EXIF[0][37510, User Comment]: [65, 83, 67, 73, 73, 0, 0, 0, 40, 67, 41, 32, 98, 121, 32, 70, 97, 98, 114, 105, 122, 105, 111, 32, 71, 73, 85, 68, 73, 67, 73]
 EXIF[0][37521, Subsec Time Original]: 8
 EXIF[0][37522, Subsec Time Digitized]: 8
-EXIF[0][40961, Color Space]: 1
-EXIF[0][41495, Sensing Method]: 2
+EXIF[0][40961, Color Space]: 1 - SRGB
+EXIF[0][41495, Sensing Method]: 2 - ONE_CHIP_COLOR_AREA_SENSOR
 EXIF[0][41728, File Source]: [3]
 EXIF[0][41729, Scene Type]: [1]
 EXIF[0][42033, BodySerialNumber]: 100062dc

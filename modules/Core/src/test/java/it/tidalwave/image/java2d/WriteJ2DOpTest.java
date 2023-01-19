@@ -26,7 +26,6 @@
  */
 package it.tidalwave.image.java2d;
 
-import java.io.File;
 import it.tidalwave.image.BaseTestSupport;
 import it.tidalwave.image.op.OptimizeOp;
 import it.tidalwave.image.op.WriteOp;
@@ -44,7 +43,7 @@ public class WriteJ2DOpTest extends BaseTestSupport
     @Test
     public void testWriteJPEG()
       {
-        final var f = (File)img20030701_0043_jpg.executeInPlace(new WriteOp("JPEG", tmp + "/written.jpg")).getOutput();
+        final var f = img20030701_0043_jpg.executeInPlace(new WriteOp("JPEG", tmp + "/written.jpg")).getOutput();
 //        assertChecksum("b49272bff3e945d32ad9b617a17829ae", f);
       }
 
@@ -52,7 +51,7 @@ public class WriteJ2DOpTest extends BaseTestSupport
     public void testWriteOptimizedJPEG()
       {
         final var result = img20030701_0043_jpg.execute(new OptimizeOp(0.5));
-        final var f = (File)result.executeInPlace(new WriteOp("JPEG", tmp + "/written-optimized.jpg")).getOutput();
+        final var f = result.executeInPlace(new WriteOp("JPEG", tmp + "/written-optimized.jpg")).getOutput();
 //        assertChecksum("b49272bff3e945d32ad9b617a17829ae", f);
       }
   }

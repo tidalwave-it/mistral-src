@@ -26,7 +26,6 @@
  */
 package it.tidalwave.image;
 
-import java.awt.color.ColorSpace;
 import java.awt.color.ICC_ColorSpace;
 import java.awt.color.ICC_Profile;
 import java.awt.image.Kernel;

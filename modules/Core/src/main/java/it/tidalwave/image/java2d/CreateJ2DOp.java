@@ -28,7 +28,6 @@ package it.tidalwave.image.java2d;
 
 import java.util.Arrays;
 import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.CreateOp;

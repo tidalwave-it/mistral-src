@@ -30,23 +30,19 @@ import javax.annotation.Nonnull;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import it.tidalwave.image.metadata.Directory;
 import it.tidalwave.image.metadata.EXIF;
 import it.tidalwave.image.metadata.EXIFDirectoryGenerated;
-import it.tidalwave.image.metadata.EXIFTest;
 import it.tidalwave.image.metadata.IPTC;
 import it.tidalwave.image.metadata.TIFF;
 import it.tidalwave.image.op.ReadOp;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Test;
+import static it.tidalwave.image.metadata.MetadataTestUtils.*;
 import static it.tidalwave.image.op.ReadOp.Type.METADATA;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static it.tidalwave.util.test.FileComparisonUtils.assertSameContents;
@@ -89,8 +85,8 @@ public class EditableImageTest extends BaseTestSupport
         assertEquals(1, img20060603_0002_jpg.getMetadataCount(EXIF.class));
 
         var tiff = image.getMetadata(TIFF.class).get();
-        assertTrue(tiff.isAvailable());
-        assertEquals(10, tiff.getTagCodes().length);
+        assertFalse(tiff.isEmpty());
+        assertThat(tiff.getTagCodes(), is(new int[]{270, 271, 272, 282, 283, 296, 305, 306, 315, 33432}));
         dumpTags("TIFF", tiff, log::info);
 
         assertOptionalEquals("                                ", tiff.getImageDescription());
@@ -107,8 +103,11 @@ public class EditableImageTest extends BaseTestSupport
         assertOptionalEquals("© Copyright by Fabrizio Giudici. All rights reserved.", tiff.getCopyright());
 
         var exif = image.getMetadata(EXIF.class).get();
-        assertTrue(exif.isAvailable());
-        assertEquals(27, exif.getTagCodes().length);
+        assertFalse(exif.isEmpty());
+        assertThat(exif.getTagCodes(), is(
+                new int[]{ 33434, 33437, 34850, 34855, 36864, 36867, 36868, 37377, 37378, 37380, 37381, 37383, 37384,
+                           37385, 37386, 37510, 37520, 37521, 37522, 40962, 40963, 41495, 41728, 41729, 41986, 42034,
+                           42036}));
         dumpTags("EXIF", exif, log::info);
 
         assertOptionalEquals(Rational.of(1, 320), exif.getExposureTime());
@@ -150,7 +149,7 @@ public class EditableImageTest extends BaseTestSupport
         assertEquals(1, img20060603_0002_jpg.getMetadataCount(EXIF.class));
 
         var tiff = img20060603_0002_jpg.getMetadata(TIFF.class).get();
-        assertTrue(tiff.isAvailable());
+        assertFalse(tiff.isEmpty());
         assertEquals(9, tiff.getTagCodes().length);
         dumpTags("TIFF", tiff, log::info);
 
@@ -167,7 +166,7 @@ public class EditableImageTest extends BaseTestSupport
         assertOptionalEquals("© Copyright by Fabrizio Giudici. All rights reserved.", tiff.getCopyright());
 
         var exif = img20060603_0002_jpg.getMetadata(EXIF.class).get();
-        assertTrue(exif.isAvailable());
+        assertFalse(exif.isEmpty());
         assertEquals(35, exif.getTagCodes().length);
         dumpTags("EXIF", exif, log::info);
 
@@ -218,21 +217,21 @@ public class EditableImageTest extends BaseTestSupport
       {
         // Reajent is enabled
         // FIXME: should be 16 and 48, UNSIGNED_SHORT
-        _testProperties(file_20030701_0043_nef.toPath(), 3008, 2000, 3, 8, 24, EditableImage.DataType.BYTE);
+        _testProperties(file_20030701_0043_nef, 3008, 2000, 3, 8, 24, EditableImage.DataType.BYTE);
       }
 
 //    @Test
 //    public void testReadMetadataFromJPEXXX()
 //      throws Exception
 //      {
-//        final EditableImage image = EditableImage.create(new ReadOp(new File("/Users/fritz/Desktop/1205789521406
+//        final EditableImage image = EditableImage.create(new ReadOp(new Path("/Users/fritz/Desktop/1205789521406
 //        .jpg"), ReadOp.Type.METADATA));
 //        final EXIF exif = image.getMetadata(EXIF.class);
 //        assertNotNull(exif);
 //        assertEquals(38, exif.getTagCodes().length);
 //        System.err.println("XXXX EXIF: " + exif);
 //
-//        for (int i = 0; i < exif.getTagCodes().length; i++)
+//        for (int i = 0; i  exif.getTagCodes().length; i++)
 //          {
 //            final int code = exif.getTagCodes()[i];
 //            final String tag = exif.getTagName(code);
@@ -314,7 +313,7 @@ public class EditableImageTest extends BaseTestSupport
         assertEquals("2003:07:01 12:29:36", tiff.getDateTimeOriginal());
         assertTrue(Arrays.equals(new byte[]{1, 0, 0, 0}, tiff.getTIFF_EPStandardID().get()));
 
-        assertEquals(List.of("EXIF"), new ArrayList<>(tiff.getSubDirectoryNames()));
+        assertEquals(List.of("EXIF"), new ArrayList(tiff.getSubDirectoryNames()));
         assertEquals(1, image.getMetadataCount(EXIF.class));
         final var exif = image.getMetadata(EXIF.class);
         assertNotNull(exif);
@@ -397,14 +396,14 @@ public class EditableImageTest extends BaseTestSupport
     public void testSerialize()
             throws IOException, ClassNotFoundException
       {
-        final var file = new File("target/Serialized");
-        final var oos = new ObjectOutputStream(Files.newOutputStream(file.toPath()));
+        final var file = Path.of("target/Serialized");
+        final var oos = new ObjectOutputStream(Files.newOutputStream(file));
         final var image1 = EditableImage.create(new ReadOp(file_20030701_0043_jpg));
         oos.writeObject(image1);
         oos.close();
         log.info("serialized" + image1);
 
-        final var ois = new ObjectInputStream(Files.newInputStream(file.toPath()));
+        final var ois = new ObjectInputStream(Files.newInputStream(file));
         final var image2 = (EditableImage)ois.readObject();
         ois.close();
         log.info("deserialized" + image2);

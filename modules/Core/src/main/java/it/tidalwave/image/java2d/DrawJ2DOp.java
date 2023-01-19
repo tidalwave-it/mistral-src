@@ -57,7 +57,7 @@ public class DrawJ2DOp extends OperationImplementation<DrawOp, BufferedImage>
 //            g.drawImage(bufferedImage, 0, 0, null);
             operation.getExecutor().draw(g, image);
 /*            try {
-                ImageIO.write(bufferedImage, "JPEG", File.createTempFile("Draw2JDOp-Result", "jpg"));
+                ImageIO.write(bufferedImage, "JPEG", Path.createTempFile("Draw2JDOp-Result", "jpg"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }*/

@@ -26,8 +26,9 @@
  */
 package it.tidalwave.mistral.example;
 
-import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.awt.Color;
@@ -62,9 +63,9 @@ public class AbstractViewerPanel extends JPanel
       {
         try // used during development
           {
-            final var file = new File("../../../www/images/" + fileName);
+            final var file = Path.of("../../../www/images/" + fileName);
 
-            if (file.exists() && file.canRead())
+            if (Files.exists(file) && Files.isReadable(file))
               {
                 loadImage(file);
               }

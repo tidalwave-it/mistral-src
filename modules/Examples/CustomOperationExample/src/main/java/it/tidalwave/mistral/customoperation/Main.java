@@ -26,8 +26,8 @@
  */
 package it.tidalwave.mistral.customoperation;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.awt.image.BufferedImage;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.java2d.ImplementationFactoryJ2D;
@@ -49,9 +49,9 @@ public class Main
         //
         ImplementationFactoryJ2D.getDefault().registerImplementation(ChangeBufferTypeOp.class, ChangeBufferTypeJ2DOp.class);
 
-        final var file = new File("20030701-0043.jpg");
+        final var file = Path.of("20030701-0043.jpg");
         final var image = EditableImage.create(new ReadOp(file));
         image.executeInPlace(new ChangeBufferTypeOp(BufferedImage.TYPE_3BYTE_BGR));
-        image.executeInPlace(new WriteOp("JPEG", new File("/tmp/Result.tif")));
+        image.executeInPlace(new WriteOp("JPEG", Path.of("/tmp/Result.tif")));
       }
   }

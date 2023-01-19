@@ -31,8 +31,8 @@
 
 package it.tidalwave.image;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import it.tidalwave.image.metadata.IPTC;
 import it.tidalwave.image.op.ReadOp;
 import org.testng.annotations.Test;
@@ -47,7 +47,7 @@ public class IPTCTest
             throws IOException
       {
         final var image =
-                EditableImage.create(new ReadOp(new File("/Users/fritz/Desktop/TEST/BaragliEtruscan181.jpg")));
+                EditableImage.create(new ReadOp(Path.of("/Users/fritz/Desktop/TEST/BaragliEtruscan181.jpg")));
         final var iptc = image.getMetadata(IPTC.class);
         System.err.println(iptc);
       }

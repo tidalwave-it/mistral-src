@@ -28,7 +28,6 @@ package it.tidalwave.image.java2d;
 
 import java.awt.image.BufferedImage;
 import it.tidalwave.image.EditableImage;
-import it.tidalwave.image.Quality;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.RotateOp;
 import lombok.extern.slf4j.Slf4j;

@@ -1,16 +1,16 @@
 TIFF[0][271, Make]: NIKON CORPORATION
 TIFF[0][272, Model]: NIKON D100
-TIFF[0][274, Orientation]: 1
+TIFF[0][274, Orientation]: 1 - TOP_LEFT
 TIFF[0][282, X Resolution]: 72/1 - 72.0
 TIFF[0][283, Y Resolution]: 72/1 - 72.0
-TIFF[0][296, Resolution Unit]: 2
+TIFF[0][296, Resolution Unit]: 2 - INCHES
 TIFF[0][305, Software]: Adobe Photoshop Lightroom 6.0 (Macintosh)
 TIFF[0][306, Date/Time]: 2015:07:12 14:29:03
 TIFF[0][315, Artist]: Fabrizio Giudici
 TIFF[0][33432, Copyright]: © Copyright by Fabrizio Giudici. All rights reserved.
 EXIF[0][33434, Exposure Time]: 1/250 - 0.004
 EXIF[0][33437, F Number]: 8/1 - 8.0
-EXIF[0][34850, Exposure Program]: 3
+EXIF[0][34850, Exposure Program]: 3 - APERTURE_PRIORITY
 EXIF[0][34855, ISO Speed Ratings]: 400
 EXIF[0][36864, EXIF Version]: [48, 50, 51, 48]
 EXIF[0][36867, Date/Time Original]: 2005:10:22 15:27:26
@@ -19,15 +19,15 @@ EXIF[0][37377, Shutter SpeedValue]: 7965784/1000000 - 7.965784
 EXIF[0][37378, Aperture Value]: 6/1 - 6.0
 EXIF[0][37380, Exposure Bias Value]: -4/6 - -0.6666666666666666
 EXIF[0][37381, Max Aperture Value]: 16/10 - 1.6
-EXIF[0][37383, Metering Mode]: 5
-EXIF[0][37384, Light Source]: 0
+EXIF[0][37383, Metering Mode]: 5 - PATTERN
+EXIF[0][37384, Light Source]: 0 - UNKNOWN
 EXIF[0][37385, Flash]: 0
 EXIF[0][37386, Focal Length]: 85/1 - 85.0
 EXIF[0][37510, User Comment]: [65, 83, 67, 73, 73, 0, 0, 0, 40, 67, 41, 32, 67, 111, 112, 121, 114, 105, 103, 104, 116, 32, 98, 121, 32, 70, 97, 98, 114, 105, 122, 105, 111, 32, 71, 105, 117, 100, 105, 99, 105]
 EXIF[0][37521, Subsec Time Original]: 8
 EXIF[0][37522, Subsec Time Digitized]: 8
-EXIF[0][40961, Color Space]: 1
-EXIF[0][41495, Sensing Method]: 2
+EXIF[0][40961, Color Space]: 1 - SRGB
+EXIF[0][41495, Sensing Method]: 2 - ONE_CHIP_COLOR_AREA_SENSOR
 EXIF[0][41728, File Source]: [3]
 EXIF[0][41729, Scene Type]: [1]
 EXIF[0][41730, EXIF CFA Pattern]: [2, 0, 2, 0, 1, 0, 2, 1]

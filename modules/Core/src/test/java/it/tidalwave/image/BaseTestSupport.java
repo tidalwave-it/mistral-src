@@ -26,40 +26,19 @@
  */
 package it.tidalwave.image;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import javax.annotation.Nonnull;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import java.security.MessageDigest;
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import it.tidalwave.util.Pair;
-import it.tidalwave.image.metadata.Directory;
-import it.tidalwave.image.metadata.EXIF;
-import it.tidalwave.image.metadata.EXIFDirectoryGenerated;
+import it.tidalwave.image.metadata.MetadataTestUtils;
 import it.tidalwave.image.op.ReadOp;
 import lombok.extern.slf4j.Slf4j;
-import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
-import static java.util.stream.Collectors.*;
-import static org.junit.Assert.assertThat;
+import static it.tidalwave.image.metadata.MetadataTestUtils.*;
 import static org.testng.AssertJUnit.*;
-import static org.hamcrest.CoreMatchers.*;
 
 /***********************************************************************************************************************
  *
@@ -69,14 +48,7 @@ import static org.hamcrest.CoreMatchers.*;
 @Slf4j
 public abstract class BaseTestSupport
   {
-    protected static final String P_TS_STOPPINGDOWN_100_20230116 = "testSet.stoppingdown_100_20230116.folder";
-    protected static final Path TEST_SD100_FOLDER =
-            Path.of(System.getProperty(P_TS_STOPPINGDOWN_100_20230116,
-                    "(WARNING: property '" + P_TS_STOPPINGDOWN_100_20230116 + "' missing)"));
-
     protected static final String tmp = System.getProperty("java.io.tmpdir");
-    protected static File imageFolder = new File(System.getProperty("it.tidalwave.image.test.folder", ""));
-    protected static final File file_timezones32_png;
     /*
      * THIS INFO IS OBSOLETE.
      *
@@ -90,14 +62,15 @@ public abstract class BaseTestSupport
      * The first test run will download once and for all the required test images.
      *
      */
+    protected static final Path file_timezones32_png;
     protected static final Path file_20030701_0043_jpg;
     protected static final Path file_20060603_0002_jpg;
-    protected static final File file_20030701_0043_nef;
-    protected static File file_L4840172_dng;
-    protected static final File file_w1_tiff;
-    protected static final File file_uncompressed_tiff;
-    protected static final File file_fax1_tif;
-    protected static final File file_IPTC1_jpg;
+    protected static final Path file_20030701_0043_nef;
+    protected static Path file_L4840172_dng;
+    protected static final Path file_w1_tiff;
+    protected static final Path file_uncompressed_tiff;
+    protected static final Path file_fax1_tif;
+    protected static final Path file_IPTC1_jpg;
 
     protected EditableImage img20030701_0043_jpg;
     protected EditableImage img20060603_0002_jpg;
@@ -109,28 +82,22 @@ public abstract class BaseTestSupport
      ******************************************************************************************************************/
     static
       {
-        if (!imageFolder.exists())
+        try
           {
-            imageFolder = new File(tmp, "MistralTestFolder");
-
-            System.err.printf("it.tidalwave.image.test.folder not defined, using %s\n", imageFolder);
-
-            if (!imageFolder.exists())
-              {
-                imageFolder.mkdirs();
-                System.err.printf("%s does not exist, creating it...\n", imageFolder);
-              }
-          }
-
-        file_20030701_0043_jpg = TEST_SD100_FOLDER.resolve("20030701-0043.jpg");
-        file_20060603_0002_jpg = TEST_SD100_FOLDER.resolve("20060603-0002.jpg");
-        file_20030701_0043_nef = downloadFile("https://mistral.dev.java.net/images/20030701-0043.NEF");
+            MetadataTestUtils.createTestImageFolder();
+            file_20030701_0043_jpg = TEST_SD100_FOLDER.resolve("20030701-0043.jpg");
+            file_20060603_0002_jpg = TEST_SD100_FOLDER.resolve("20060603-0002.jpg");
+            file_20030701_0043_nef = downloadFile("https://mistral.dev.java.net/images/20030701-0043.NEF");
 //        file_L4840172_dng      = downloadFile("http://www.digitalworld.com.bn/images/dmr_test/raw/L4840172.DNG");
-        file_timezones32_png = downloadFile("https://mistral.dev.java.net/images/timezones32.png");
-        file_w1_tiff = downloadFile("https://mistral.dev.java.net/images/w1.tif");
-        file_uncompressed_tiff = downloadFile("https://mistral.dev.java.net/images/uncompressed.tif");
-        file_fax1_tif = downloadFile("https://mistral.dev.java.net/images/Fax_1.tif");
-        file_IPTC1_jpg = downloadFile("https://mistral.dev.java.net/images/AgencyPhotographer-Example.jpg");
+            file_timezones32_png = downloadFile("https://mistral.dev.java.net/images/timezones32.png");
+            file_w1_tiff = downloadFile("https://mistral.dev.java.net/images/w1.tif");
+            file_uncompressed_tiff = downloadFile("https://mistral.dev.java.net/images/uncompressed.tif");
+            file_fax1_tif = downloadFile("https://mistral.dev.java.net/images/Fax_1.tif");
+            file_IPTC1_jpg = downloadFile("https://mistral.dev.java.net/images/AgencyPhotographer-Example.jpg");          }
+        catch (IOException e)
+          {
+            throw new ExceptionInInitializerError(e);
+          }
       }
 
     /*******************************************************************************************************************
@@ -138,14 +105,6 @@ public abstract class BaseTestSupport
      ******************************************************************************************************************/
     protected BaseTestSupport()
       {
-      }
-
-    /*******************************************************************************************************************
-     *
-     ******************************************************************************************************************/
-    protected static File downloadFile (final String urlString)
-      {
-        return null;
       }
 
     /*******************************************************************************************************************
@@ -194,7 +153,7 @@ public abstract class BaseTestSupport
         assertEquals(expectedBitsPerPixel, bitsPerPixel);
         assertEquals(expectedDataType, dataType);
 
-        log.info(">>>> File:           " + file);
+        log.info(">>>> Path:           " + file);
         log.info(">>>> Size:           " + width + " x " + height);
         log.info(">>>> Bands:          " + bandCount);
         log.info(">>>> Bits per bands: " + bitsPerBand);
@@ -205,154 +164,13 @@ public abstract class BaseTestSupport
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-    @DataProvider
-    protected static Object[][] testSet_StoppingDown_100_20230116()
-            throws IOException
-      {
-        if (!Files.exists(TEST_SD100_FOLDER))
-          {
-            log.warn("TEST SET PATH NOT FOUND: {}", TEST_SD100_FOLDER);
-            return new Object[0][1];
-          }
-
-        final var limit = Boolean.getBoolean("it.tidalwave-ci.skipLongTests") ? 100 : 99999;
-
-        try (final var s = Files.list(TEST_SD100_FOLDER))
-          {
-            return s.filter(p -> p.getFileName().toString().endsWith(".jpg"))
-                    .sorted()
-                    .limit(limit)
-                    .map(p -> new Object[]{ "stoppingdown_100_20230116", TEST_SD100_FOLDER, p})
-                    .toArray(Object[][]::new);
-          }
-      }
-
-    /*******************************************************************************************************************
-     *
-     ******************************************************************************************************************/
-    /*
-    private void dump (final Directory directory)
-            throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
-      {
-        final String name = directory.getClass().getSimpleName();
-
-        for (final int tag : directory.getTagCodes())
-          {
-            String string = "???";
-            String type = "???";
-            final Object value = directory.getObject(tag);
-
-            if (value == null)
-              {
-                string = "null";
-                type = "null";
-              }
-            else if (!value.getClass().isArray())
-              {
-                string = value.toString();
-                type = value.getClass().getSimpleName();
-              }
-            else
-              {
-                string = (String)Arrays.class.getMethod("toString", value.getClass()).invoke(null, value);
-                type = value.getClass().getSimpleName();
-              }
-
-            System.err.printf("%5d %-10s %-30s %-10s %s\n", tag, name, directory.getTagName(tag), type, string);
-          }
-      }
-    */
-
-    /*******************************************************************************************************************
-     *
-     ******************************************************************************************************************/
-    protected static void dumpTags (@Nonnull final String directoryName,
-                                    @Nonnull final Directory directory,
-                                    @Nonnull final Consumer<String> consumer)
-      {
-        for (final int tag : directory.getTagCodes())
-          {
-            final var value = directory.getRawObject(tag);
-            var valueAsString = value;
-
-            if (value instanceof byte[])
-              {
-                valueAsString = Arrays.toString((byte[])value);
-              }
-            else if (value instanceof Rational)
-              {
-                valueAsString = value.toString() + " - " + ((Rational)value).doubleValue();
-              }
-            else if (value instanceof Rational[])
-              {
-                var rationals = (Rational[])value;
-                valueAsString = Arrays.toString(rationals) + " - "
-                                + Stream.of(rationals).map(Rational::doubleValue).collect(toList());
-              }
-            else if (value instanceof Object[])
-              {
-                valueAsString = Arrays.toString((Object[])value);
-              }
-            else if (value instanceof Date)
-              {
-                valueAsString = ((Date)value).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
-                                     .format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-              }
-
-            // valueAsString += directory.getTagType(tag)
-            //                           .filter(Class::isEnum)
-            //                           .map(tagType -> toString(value, tagType))
-            //                           .orElse("");
-
-            final var s = String.format("%s[%d%s]: %s",
-                                        directoryName,
-                                        tag,
-                                        directory.getTagName(tag).map(n -> ", " + n).orElse(""),
-                                        valueAsString);
-            // log.info("{}", s);
-            consumer.accept(s);
-          }
-
-        if (directory instanceof EXIF)
-          {
-            final var exif = (EXIF)directory;
-            final List<Pair<String, Function<EXIF, Optional<Instant>>>> x = List.of(
-                    Pair.of("dateTimeAsDate", EXIF::getDateTimeAsDate),
-                    Pair.of("dateTimeOriginalAsDate", EXIF::getDateTimeOriginalAsDate),
-                    Pair.of("dateTimeDigitizedAsDate", EXIF::getDateTimeDigitizedAsDate));
-            x.forEach(p ->
-                    p.b.apply(exif).ifPresent(i -> consumer.accept(String.format("%s %s: %s", directoryName, p.a, i))));
-          }
-      }
-
-    /*******************************************************************************************************************
-     *
-     ******************************************************************************************************************/
-    protected static <T> void assertOptionalEquals (final T expected, final Optional<T> actual)
-      {
-        assertTrue("Empty optional", actual.isPresent());
-        assertThat(actual.get(), is(expected));
-      }
-
-    /*******************************************************************************************************************
-     *
-     ******************************************************************************************************************/
-    protected static void assertOptionalEquals (final double expected, final Optional<Rational> actual)
-      {
-        assertTrue("Empty optional", actual.isPresent());
-        assertThat(actual.get().doubleValue(), is(expected));
-      }
-
-    /*******************************************************************************************************************
-     *
-     ******************************************************************************************************************/
-    protected void assertChecksum (final String expectedChecksum, final File file)
+    protected void assertChecksum (final String expectedChecksum, final Path file)
       {
         try
           {
             final var messageDigest = MessageDigest.getInstance("MD5");
             final var buffer = new byte[128 * 1024];
-            final InputStream is = new BufferedInputStream(Files.newInputStream(file.toPath()));
+            final InputStream is = new BufferedInputStream(Files.newInputStream(file));
 
             for (; ; )
               {
@@ -368,8 +186,8 @@ public abstract class BaseTestSupport
 
             is.close();
             final var digest = messageDigest.digest();
-            final var checksum = toString(digest);
-            AssertJUnit.assertEquals("Unxepected checksum for file " + file, expectedChecksum, checksum);
+            final var checksum = toHexString(digest);
+            assertEquals("Unxepected checksum for file " + file, expectedChecksum, checksum);
           }
         catch (Exception e)
           {
@@ -380,42 +198,12 @@ public abstract class BaseTestSupport
     /*******************************************************************************************************************
      *
      ******************************************************************************************************************/
-    @Nonnull
-    private static String toString (@Nonnull final Object value, @Nonnull final Class<?> tagType)
+    @DataProvider
+    protected static Object[][] testSet_StoppingDown_100_20230116()
+            throws IOException
       {
-        try
-          {
-            var method = tagType.getDeclaredMethod("fromInteger", int.class);
-            log.info("===== {}", Arrays.toString(method.getParameterTypes()));
-            return " - " + method.invoke(Integer.parseInt(value.toString()));
-          }
-        catch (Exception /*| IllegalAccessException | InvocationTargetException | NoSuchMethodException */ e)
-          {
-            log.warn("Can't get enum for: {} {} because of {}", value, tagType, e.toString());
-            log.warn("", e);
-            return "";
-          }
-      }
-
-    /*******************************************************************************************************************
-     *
-     ******************************************************************************************************************/
-    private static String toString (final byte[] bytes)
-      {
-        final var stringBuilder = new StringBuilder();
-
-        for (var aByte : bytes)
-          {
-            final var s = Integer.toHexString(aByte & 0xff);
-
-            if (s.length() < 2)
-              {
-                stringBuilder.append('0');
-              }
-
-            stringBuilder.append(s);
-          }
-
-        return stringBuilder.toString();
+        return MetadataTestUtils.testSet_StoppingDown_100_20230116().stream()
+              .map(p -> new Object[]{ "stoppingdown_100_20230116", TEST_SD100_FOLDER, p})
+              .toArray(Object[][]::new);
       }
   }

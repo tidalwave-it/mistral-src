@@ -26,7 +26,6 @@
  */
 package it.tidalwave.image.processor;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
@@ -34,6 +33,7 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import it.tidalwave.image.ImageModel;
 import it.tidalwave.image.ImageModelHolder;
 
@@ -46,7 +46,7 @@ import it.tidalwave.image.ImageModelHolder;
   {
     private Serializable id;
 
-    private File file;
+    private Path file;
 
     private transient ImageModel imageModel;
 
@@ -67,11 +67,9 @@ import it.tidalwave.image.ImageModelHolder;
       {
         if (imageModel == null)
           {
-            try
+            try (final var ois = new ObjectInputStream(Files.newInputStream(file)))
               {
-                final var ois = new ObjectInputStream(Files.newInputStream(file.toPath()));
                 imageModel = (ImageModel)ois.readObject();
-                ois.close();
               }
             catch (Exception e)
               {
@@ -102,10 +100,10 @@ import it.tidalwave.image.ImageModelHolder;
       {
         if (file == null)
           {
-            file = new File("HOLDER-" + id);
+            file = Path.of("HOLDER-" + id);
             // FIXME: be sure to create the file in a place where it will not be added in
             // the job result .zip. But I don't know if /tmp is shared among nodes in the grid.
-            final var oos = new ObjectOutputStream(Files.newOutputStream(file.toPath()));
+            final var oos = new ObjectOutputStream(Files.newOutputStream(file));
             oos.writeObject(imageModel);
             oos.close();
           }
@@ -122,6 +120,6 @@ import it.tidalwave.image.ImageModelHolder;
             throws IOException, ClassNotFoundException
       {
         id = (Serializable)in.readObject();
-        file = (File)in.readObject();
+        file = (Path)in.readObject();
       }
   }

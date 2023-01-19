@@ -43,7 +43,7 @@ public interface MetadataLoader
      *
      ******************************************************************************************************************/
     @Nonnull
-    default public Optional<DirectoryLoader> getTiffLoader (IIOMetadata iioMetadata)
+    default public Optional<DirectoryLoader> getTiffLoader (@Nonnull final IIOMetadata iioMetadata)
       {
         return Optional.empty();
       }
@@ -52,7 +52,7 @@ public interface MetadataLoader
      *
      ******************************************************************************************************************/
     @Nonnull
-    default public Optional<DirectoryLoader> getExifLoader (IIOMetadata iioMetadata)
+    default public Optional<DirectoryLoader> getExifLoader (@Nonnull final IIOMetadata iioMetadata)
       {
         return Optional.empty();
       }
@@ -61,7 +61,7 @@ public interface MetadataLoader
      *
      ******************************************************************************************************************/
     @Nonnull
-    default public Optional<DirectoryLoader> getIptcLoader (IIOMetadata iioMetadata)
+    default public Optional<DirectoryLoader> getIptcLoader (@Nonnull final IIOMetadata iioMetadata)
       {
         return Optional.empty();
       }
@@ -70,7 +70,7 @@ public interface MetadataLoader
      *
      ******************************************************************************************************************/
     @Nonnull
-    default public Optional<DirectoryLoader> getXmpLoader (IIOMetadata iioMetadata)
+    default public Optional<DirectoryLoader> getXmpLoader (@Nonnull final IIOMetadata iioMetadata)
       {
         return Optional.empty();
       }
@@ -79,7 +79,7 @@ public interface MetadataLoader
      *
      ******************************************************************************************************************/
     @Nonnull
-    default public Optional<DirectoryLoader> getMakerNoteLoader (IIOMetadata iioMetadata)
+    default public Optional<DirectoryLoader> getMakerNoteLoader (@Nonnull final IIOMetadata iioMetadata)
       {
         return Optional.empty();
       }
@@ -88,7 +88,7 @@ public interface MetadataLoader
      *
      ******************************************************************************************************************/
     @Nonnull
-    default public Optional<DirectoryLoader> getDngLoader (IIOMetadata iioMetadata)
+    default public Optional<DirectoryLoader> getDngLoader (@Nonnull final IIOMetadata iioMetadata)
       {
         return Optional.empty();
       }

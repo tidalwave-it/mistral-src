@@ -26,9 +26,8 @@
  */
 package it.tidalwave.image.java2d;
 
-import java.io.File;
+import java.nio.file.Path;
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import it.tidalwave.image.BaseTestSupport;
@@ -60,8 +59,8 @@ public class CaptureJ2DOpTest extends BaseTestSupport
         final var instance = new CaptureJ2DOp();
         final var result = instance.execute(operation, null, null);
 
-        final var f = new File(tmp + "/CaptureOp.tif");
-        ImageIO.write(result, "TIFF", f);
+        final var f = Path.of(tmp + "/CaptureOp.tif");
+        ImageIO.write(result, "TIFF", f.toFile());
         AssertJUnit.assertEquals(label.getWidth(), result.getWidth());
         AssertJUnit.assertEquals(label.getHeight(), result.getHeight());
         assertChecksum("5bd101c6e9b6d3901b1eb7a0e5f98d64", f);

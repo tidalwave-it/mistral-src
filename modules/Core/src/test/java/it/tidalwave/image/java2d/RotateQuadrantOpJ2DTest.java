@@ -26,7 +26,7 @@
  */
 package it.tidalwave.image.java2d;
 
-import java.io.File;
+import java.nio.file.Path;
 import it.tidalwave.image.BaseTestSupport;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.op.RotateQuadrantOp;
@@ -93,7 +93,7 @@ public class RotateQuadrantOpJ2DTest extends BaseTestSupport
     public void testRotate (final EditableImage image, final int angle, final String prefix, final String hash)
       {
         final var result = image.execute(new RotateQuadrantOp(angle));
-        final var f = (File)result.executeInPlace(new WriteOp("TIFF", tmp + "/" + prefix + "-" + angle + ".tif")).getOutput();
+        final var f = (Path)result.executeInPlace(new WriteOp("TIFF", tmp + "/" + prefix + "-" + angle + ".tif")).getOutput();
         assertChecksum(hash, f);
 
         if ((angle / 90) % 2 == 0)

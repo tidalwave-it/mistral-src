@@ -29,7 +29,6 @@ package it.tidalwave.image.java2d;
 import java.util.Arrays;
 import java.util.List;
 import java.awt.image.BufferedImage;
-import java.awt.image.SampleModel;
 import java.awt.image.SinglePixelPackedSampleModel;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.Quality;

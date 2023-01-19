@@ -26,6 +26,7 @@
  */
 package it.tidalwave.image.metadata.loader;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
@@ -53,9 +54,9 @@ public class DrewMetadataLoader implements MetadataLoader
      *
      ******************************************************************************************************************/
     @Override
-    public Optional<DirectoryLoader> getExifLoader (final IIOMetadata metadata)
+    public Optional<DirectoryLoader> getExifLoader (@Nonnull final IIOMetadata iioMetadata)
       {
-        final var node = metadata.getAsTree(metadata.getNativeMetadataFormatName());
+        final var node = iioMetadata.getAsTree(iioMetadata.getNativeMetadataFormatName());
         return Optional.of(new DirectoryDrewLoader(new ArrayList<>(getEXIFDirectories(node)), 0));
       }
 
@@ -64,9 +65,9 @@ public class DrewMetadataLoader implements MetadataLoader
      *
      ******************************************************************************************************************/
     @Override
-    public Optional<DirectoryLoader> getIptcLoader (final IIOMetadata metadata)
+    public Optional<DirectoryLoader> getIptcLoader (@Nonnull final IIOMetadata iioMetadata)
       {
-        final var node = metadata.getAsTree(metadata.getNativeMetadataFormatName());
+        final var node = iioMetadata.getAsTree(iioMetadata.getNativeMetadataFormatName());
         return Optional.of(new DirectoryDrewLoader(new ArrayList<>(getIPTCDirectories(node)), 0));
       }
 

@@ -27,10 +27,8 @@
 package it.tidalwave.image.java2d;
 
 import java.awt.image.BufferedImage;
-import java.awt.image.SampleModel;
 import java.awt.image.SinglePixelPackedSampleModel;
 import it.tidalwave.image.EditableImage;
-import it.tidalwave.image.Quality;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.OptimizeOp;
 import lombok.extern.slf4j.Slf4j;

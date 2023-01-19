@@ -26,7 +26,6 @@
  */
 package it.tidalwave.image.java2d;
 
-import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import it.tidalwave.image.EditableImage;

@@ -40,37 +40,37 @@ import java.beans.VetoableChangeSupport;
  **********************************************************************************************************************/
 public abstract class JavaBeanSupport
   {
-    protected final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
+    protected final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     protected final VetoableChangeSupport vetoableChangeSupport = new VetoableChangeSupport(this);
 
     public final void addPropertyChangeListener (final PropertyChangeListener listener)
       {
-        propertyChangeSupport.addPropertyChangeListener(listener);
+        pcs.addPropertyChangeListener(listener);
       }
 
     public final void removePropertyChangeListener (final PropertyChangeListener listener)
       {
-        propertyChangeSupport.removePropertyChangeListener(listener);
+        pcs.removePropertyChangeListener(listener);
       }
 
     public final PropertyChangeListener[] getPropertyChangeListeners()
       {
-        return propertyChangeSupport.getPropertyChangeListeners();
+        return pcs.getPropertyChangeListeners();
       }
 
     public final void addPropertyChangeListener (final String propertyName, final PropertyChangeListener listener)
       {
-        propertyChangeSupport.addPropertyChangeListener(propertyName, listener);
+        pcs.addPropertyChangeListener(propertyName, listener);
       }
 
     public final void removePropertyChangeListener (final String propertyName, final PropertyChangeListener listener)
       {
-        propertyChangeSupport.removePropertyChangeListener(propertyName, listener);
+        pcs.removePropertyChangeListener(propertyName, listener);
       }
 
     public final PropertyChangeListener[] getPropertyChangeListeners (final String propertyName)
       {
-        return propertyChangeSupport.getPropertyChangeListeners(propertyName);
+        return pcs.getPropertyChangeListeners(propertyName);
       }
 
     public final void addVetoableChangeListener (final VetoableChangeListener listener)

@@ -36,13 +36,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.nio.CharBuffer;
-import java.nio.DoubleBuffer;
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
-import java.nio.LongBuffer;
 import java.nio.MappedByteBuffer;
-import java.nio.ShortBuffer;
 import java.nio.channels.FileChannel;
 import javax.imageio.stream.ImageInputStreamImpl;
 

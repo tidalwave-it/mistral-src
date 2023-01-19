@@ -39,7 +39,6 @@ import java.awt.image.ColorModel;
 import java.awt.image.DataBuffer;
 import java.awt.image.DirectColorModel;
 import java.awt.image.Raster;
-import java.awt.image.WritableRaster;
 import it.tidalwave.image.EditableImage;
 import it.tidalwave.image.ImageUtils;
 import it.tidalwave.image.op.ConvertColorProfileOp;

@@ -26,15 +26,12 @@
  */
 package it.tidalwave.image.java2d;
 
-import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBuffer;
-import java.awt.image.ImageObserver;
 import java.awt.image.LookupOp;
 import java.awt.image.LookupTable;
 import it.tidalwave.image.EditableImage;
-import it.tidalwave.image.Quality;
 import it.tidalwave.image.op.OperationImplementation;
 import it.tidalwave.image.op.PaintOp;
 import it.tidalwave.image.render.PreviewSettings;
